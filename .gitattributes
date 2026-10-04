@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.png -text
+*.blend -text
+*.glb -text
+*.exe -text
+*.zip -text
