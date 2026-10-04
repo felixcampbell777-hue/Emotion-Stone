@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "start_map": "coastal_path",
+  "player_character": "hero",
+  "walk_speed": 2.4,
+  "world_resolution": [640, 360],
+  "camera_size": 11.4,
+  "camera_offset": [0, 16, 12],
+  "camera_focus_offset": [0, 0, -3.2],
+  "interaction_distance": 1.8,
+  "save_version": 1
+}

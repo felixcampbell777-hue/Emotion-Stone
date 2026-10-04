@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "display_name", "rig_family", "modules", "palette"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "display_name": {"type": "string", "minLength": 1},
+    "rig_family": {"const": "humanoid_v1"},
+    "modules": {
+      "type": "object", "additionalProperties": false, "required": ["hair", "outfit", "equipment"],
+      "properties": {"hair": {"enum": ["bob", "crop"]}, "outfit": {"enum": ["dress", "tunic"]}, "equipment": {"enum": ["none", "greatsword"]}}
+    },
+    "palette": {
+      "type": "object", "additionalProperties": false,
+      "required": ["skin", "hair", "dress", "leather", "metal", "gem", "socks"],
+      "properties": {
+        "skin": {"$ref": "#/$defs/color"}, "hair": {"$ref": "#/$defs/color"}, "dress": {"$ref": "#/$defs/color"},
+        "leather": {"$ref": "#/$defs/color"}, "metal": {"$ref": "#/$defs/color"}, "gem": {"$ref": "#/$defs/color"}, "socks": {"$ref": "#/$defs/color"}
+      }
+    }
+  },
+  "$defs": {"color": {"type": "string", "pattern": "^#[0-9a-fA-F]{6}$"}}
+}

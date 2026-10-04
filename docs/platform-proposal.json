@@ -1,0 +1,73 @@
+{
+  "document_type": "implementation_record",
+  "revision": 2,
+  "date": "2026-10-04",
+  "implementation_status": "playable_foundation",
+  "confirmed_requirements": {
+    "first_platform": "windows_desktop",
+    "map_appearance": "3d_pixelated",
+    "jumping": false,
+    "movement_style_reference": "pokemon_like_exploration",
+    "priority": "lower_model_usage_for_later_changes",
+    "main_character_identity_reference": "output/imagegen/main-character-coastal-bluff-greatsword-v6.png"
+  },
+  "recommended_defaults": {
+    "engine": "Godot 4.5.1",
+    "language": "GDScript",
+    "asset_editor": "Blender 4.5.3 LTS",
+    "runtime_asset_format": "glb",
+    "character_art": "low_poly_3d_rendered_at_low_resolution",
+    "renderer_trial": "Compatibility",
+    "camera": "fixed_elevated_orthographic",
+    "horizontal_axes": ["x", "z"],
+    "height_axis": "y",
+    "initial_walk_surface": "fixed_height_plane",
+    "movement_trial": "four_cardinal_directions_continuous_collision_movement",
+    "world_viewport_trial": [640, 360],
+    "chunkier_comparison_viewport": [320, 180],
+    "display_scaling": "nearest_neighbor_integer_scale",
+    "ui": "separate_legible_layer",
+    "initial_animation_set": ["idle_loop", "walk_loop", "interact"],
+    "equipment_animation": "separate_greatsword_on_spine_attachment",
+    "rig_families_initial": 1,
+    "exact_tool_versions": "tools/toolchain.local.json"
+  },
+  "future_content_contracts": {
+    "character_definition": ["stable_id", "rig_family", "module_ids", "palette_slots", "equipment_ids", "behavior_id"],
+    "map_definition": ["stable_id", "terrain_cells", "prop_instances", "spawns", "interaction_ids", "variation_seed"],
+    "build_cache_key": ["source_hashes", "dependency_hashes", "export_options", "tool_versions"]
+  },
+  "construction_gates": [
+    "game_scale_visual_validation",
+    "shared_rig_animation_validation",
+    "recolor_module_swap_map_edit_demonstration",
+    "windows_playable_export_with_save_reload"
+  ],
+  "artifacts": {
+    "plan": "docs/optimization-plan.md",
+    "character_direction": "docs/character-art-direction.md",
+    "reduced_character_reference": "output/imagegen/main-character-pixel-3d-reference-v1.png",
+    "generation_prompt": "output/imagegen/main-character-pixel-3d-reference-v1.prompt.txt",
+    "runtime_config": "game/content/platform.json",
+    "editing_manual": "docs/EDITING.md",
+    "master_character": "art/source/humanoid-v1.blend",
+    "equipment_source": "art/source/greatsword-v1.blend",
+    "launcher": "Play.cmd",
+    "windows_executable": "output/windows/CoastalFoundation.exe",
+    "windows_archive": "output/windows/CoastalFoundation-Windows.zip",
+    "integration_report": "output/verification/integration-report.json",
+    "export_integration_report": "output/verification/export-integration-report.json"
+  },
+  "implemented_reuse": {
+    "rig_bones": 14,
+    "hair_modules": ["bob", "crop"],
+    "outfit_modules": ["dress", "tunic"],
+    "shared_animation_resources": true,
+    "palette_edit_reexports_geometry": false,
+    "map_edit_reexports_geometry": false,
+    "unchanged_windows_build_cache": true,
+    "validation": "JSON Schema 2020-12 plus content reference/bounds checks",
+    "integration_checks": 31,
+    "sample_maps": ["coastal_path", "village_green"]
+  }
+}

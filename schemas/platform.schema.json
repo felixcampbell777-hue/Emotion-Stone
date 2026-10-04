@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "start_map", "player_character", "walk_speed", "world_resolution", "camera_size", "camera_offset", "camera_focus_offset", "interaction_distance", "save_version"],
+  "properties": {
+    "schema_version": {"const": 1}, "save_version": {"const": 1},
+    "start_map": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "player_character": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "walk_speed": {"type": "number", "minimum": 0.1, "maximum": 8},
+    "camera_size": {"type": "number", "minimum": 5, "maximum": 30},
+    "world_resolution": {"enum": [[640,360],[320,180]]},
+    "camera_offset": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}},
+    "camera_focus_offset": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}},
+    "interaction_distance": {"type": "number", "minimum": 0.5, "maximum": 4}
+  }
+}

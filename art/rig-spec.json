@@ -1,0 +1,11 @@
+{
+  "id": "humanoid_v1",
+  "revision": 1,
+  "height_m": 1.97,
+  "forward_blender": "-Y",
+  "forward_godot": "+Z",
+  "animation_fps": 30,
+  "modules": {"hair": ["bob", "crop"], "outfit": ["dress", "tunic"], "equipment": ["none", "greatsword"]},
+  "clips": ["idle_loop", "walk_loop", "interact"],
+  "bones": ["root", "pelvis", "spine", "head", "upper_arm.L", "forearm.L", "upper_arm.R", "forearm.R", "thigh.L", "shin.L", "foot.L", "thigh.R", "shin.R", "foot.R"]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "hero",
+  "display_name": "Traveler",
+  "rig_family": "humanoid_v1",
+  "modules": {"hair": "bob", "outfit": "dress", "equipment": "greatsword"},
+  "palette": {
+    "skin": "#E6B78D",
+    "hair": "#865E3D",
+    "dress": "#617688",
+    "leather": "#725136",
+    "metal": "#BDC4CE",
+    "gem": "#247BCB",
+    "socks": "#D6D0BF"
+  }
+}

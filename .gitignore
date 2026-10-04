@@ -1,0 +1,10 @@
+game/.godot/
+game/export_presets.cfg
+tools/toolchain.local.json
+tools/__pycache__/
+art/source/*.blend1
+art/source/*.blend2
+output/build-cache.json
+output/verification/
+output/windows/
+*.partial

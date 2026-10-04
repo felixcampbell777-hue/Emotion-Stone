@@ -1,0 +1,40 @@
+{
+  "id": "village_green",
+  "display_name": "Village Green",
+  "subtitle": "A clearing in the pines",
+  "seed": 613,
+  "bounds": [-11, -10, 11, 10],
+  "spawn": [0, 7],
+  "sea": false,
+  "terrain_regions": [
+    {"rect": [-2, -10, 4, 20], "kind": "path"},
+    {"rect": [-8, -2, 16, 4], "kind": "path"},
+    {"rect": [-3, -3, 6, 6], "kind": "sand"}
+  ],
+  "props": [
+    {"id": "cottage_w", "kind": "house", "at": [-6, -5], "variant": 1},
+    {"id": "cottage_e", "kind": "house", "at": [5, -5], "variant": 0},
+    {"id": "tree_1", "kind": "tree", "at": [-9, -8], "scale": 1.3},
+    {"id": "tree_2", "kind": "tree", "at": [-4, -8], "scale": 1.1},
+    {"id": "tree_3", "kind": "tree", "at": [2.8, -8], "scale": 0.9},
+    {"id": "tree_4", "kind": "tree", "at": [8.2, -7.8], "scale": 1.2},
+    {"id": "tree_5", "kind": "tree", "at": [-8.8, 3.5]},
+    {"id": "tree_6", "kind": "tree", "at": [8.7, 3.4], "scale": 1.1},
+    {"id": "tree_7", "kind": "tree", "at": [-6, 6.3], "scale": 0.8},
+    {"id": "tree_8", "kind": "tree", "at": [5.4, 6.5], "scale": 0.95},
+    {"id": "well", "kind": "well", "at": [0, -0.5]},
+    {"id": "flowers_w", "kind": "flowers", "at": [-3.5, 2.4]},
+    {"id": "flowers_e", "kind": "flowers", "at": [3.7, 2.7]},
+    {"id": "bench_w", "kind": "bench", "at": [-4.8, 0.6]},
+    {"id": "bench_e", "kind": "bench", "at": [4.8, 0.6]}
+  ],
+  "npcs": [
+    {"id": "keeper_green", "character": "keeper", "at": [-2.9, 0.7], "dialogue": ["Welcome to the green.", "The coastal path is just south of here."]}
+  ],
+  "interactions": [
+    {"id": "green_sign", "kind": "sign", "at": [-2.1, 6.5], "title": "Waymarker", "lines": ["SOUTH  —  Coastal Path"]}
+  ],
+  "exits": [
+    {"id": "south_gate", "rect": [-1.7, 8.8, 3.4, 1.0], "target": "coastal_path", "spawn": [0, -9.3], "label": "Coastal Path"}
+  ]
+}
