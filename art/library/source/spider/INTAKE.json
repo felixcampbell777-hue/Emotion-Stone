@@ -1,0 +1,44 @@
+{
+  "id": "spider",
+  "type": "creature",
+  "provider": "OpenGameArt",
+  "author": "Panther-One",
+  "license": "CC-BY-3.0",
+  "biomes": [
+    "forest",
+    "castle",
+    "mountain"
+  ],
+  "note": "448-triangle spider; walk/idle only, attack/death still needed.",
+  "source": "https://opengameart.org/content/spider-animated",
+  "downloads": [
+    {
+      "url": "https://opengameart.org/sites/default/files/Spider.blend",
+      "bytes": 818976,
+      "sha256": "df00b8879b12255651b852b3b4a257f4fca6228600760604ec141dbb2101be56",
+      "publisher_md5": null
+    },
+    {
+      "url": "https://opengameart.org/sites/default/files/Spider_0.png",
+      "bytes": 6746,
+      "sha256": "203da8643b1f05833c9bf3ed0353dd99e2aad141747f9ee2f1607bc518116321",
+      "publisher_md5": null
+    }
+  ],
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:44:45.109500+00:00",
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "spider\\Spider.blend",
+      "bytes": 818976,
+      "sha256": "df00b8879b12255651b852b3b4a257f4fca6228600760604ec141dbb2101be56"
+    },
+    {
+      "path": "spider\\Spider_0.png",
+      "bytes": 6746,
+      "sha256": "203da8643b1f05833c9bf3ed0353dd99e2aad141747f9ee2f1607bc518116321"
+    }
+  ]
+}

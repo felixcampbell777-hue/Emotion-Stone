@@ -1,0 +1,1093 @@
+{
+  "id": "quaternius-pirate",
+  "type": "modular-kit",
+  "provider": "Quaternius",
+  "author": "Quaternius",
+  "source": "https://quaternius.com/packs/piratekit.html",
+  "license": "Quaternius Asset License 1.0",
+  "license_source": "https://quaternius.com/license.html",
+  "supplied_license_text": null,
+  "license_handling": "User explicitly authorized Quaternius on 2026-10-11. Retain legacy declarations; conservatively comply with current QAL restrictions for new use; do not redistribute raw assets. This exception is separate from the open-license collection.",
+  "biomes": [
+    "beach",
+    "town"
+  ],
+  "note": "Original art sources only; no installers, addon, Godot code, demos, or duplicate FBX/OBJ exports. No game integration.",
+  "utc": "2026-10-11T17:21:20.321711+00:00",
+  "downloads": [
+    {
+      "official_creator_page": "https://quaternius.com/packs/piratekit.html",
+      "official_drive_root": "https://drive.google.com/drive/folders/1KjMzhVsDcyvYMWeVjZcRfuu8auBLpNi2",
+      "transfer": "Authenticated Google Drive connector raw-file response; returned scoped download URL consumed ephemerally, not retained."
+    }
+  ],
+  "status": "collected_defender_no_threats_detected",
+  "gltf_checks": [
+    {
+      "file": "quaternius-pirate\\glTF\\Characters_Tentacle.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Tentacle_Attack",
+        "Tentacle_Attack2",
+        "Tentacle_Idle",
+        "Tentacle_Poke"
+      ]
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Characters_Skeleton_Headless.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Idlea",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Sword",
+        "Walk",
+        "Wave",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Characters_Skeleton.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Idlea",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Sword",
+        "Walk",
+        "Wave",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Characters_Sharky.gltf",
+      "meshes": 3,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Sword",
+        "Walk",
+        "Wave",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Characters_Shark.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Swim",
+        "Swim_Bite",
+        "Swim_Fast"
+      ]
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Characters_Mako.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Sword",
+        "Walk",
+        "Wave",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Characters_Henry.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Sword",
+        "Walk",
+        "Wave",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Characters_Captain_Barbarossa.gltf",
+      "meshes": 3,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Sword",
+        "Walk",
+        "Wave",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Characters_Anne.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Sword",
+        "Walk",
+        "Wave",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Enemy_Tentacle.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_House1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_Barrel.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_Bottle_1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_Bottle_2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_Cannon.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_Chest_Closed.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_Chest_Gold.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_Fish_Mackerel.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_Fish_Tuna.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_Skull.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Ship_Large.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\UI_ChickenLeg.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\UI_Gem_Blue.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\UI_Gem_Green.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\UI_Gem_Pink.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\UI_Wheat.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Weapon_Cutlass.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Weapon_Pistol.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_Cliff2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_Cliff3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_Cliff4.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_House2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_LargeBones.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_PalmTree_1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_PalmTree_2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_PalmTree_3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_Rock_1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_Rock_2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_Rock_3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_Rock_4.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_Rock_5.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_Sawmill.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_Skulls.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_Anchor.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_Bomb.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_Bucket_Fishes.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_Bucket.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_Coins.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_GoldBag.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Ship_Small.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\UI_Gold.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\UI_Paper.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\UI_Red_Dash.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\UI_Red_X.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\UI_Rocks.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\UI_Swords.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\UI_Wood.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Weapon_DoubleShotgun.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_Cliff1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_Dock_Broken.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_Dock_Pole.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_Dock.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Environment_House3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Prop_CannonBall.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Weapon_Axe.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Weapon_AxeRifle.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Weapon_Dagger.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Weapon_DoubleAxe.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Weapon_Lute.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Weapon_Rifle.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Weapon_Sword_1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-pirate\\glTF\\Weapon_Sword_2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    }
+  ],
+  "files": [
+    {
+      "path": "quaternius-pirate\\glTF\\Characters_Tentacle.gltf",
+      "bytes": 460501,
+      "sha256": "2f9215484538bc93a671d328c4a77005b8b14717fac98371d640655eb3da3918",
+      "official_drive_id": "1EPs0YcaJuOXC1gHHtZWzLfJhJahRlrHw",
+      "official_drive_url": "https://drive.google.com/file/d/1EPs0YcaJuOXC1gHHtZWzLfJhJahRlrHw/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Characters_Skeleton_Headless.gltf",
+      "bytes": 1571261,
+      "sha256": "123c2f4eb47afe173616ec1bf8353f60ca26419b7c25549bab9dedd278607329",
+      "official_drive_id": "1XHIehuO4lsvg-YsR5PeWlNeE0_-8uuZY",
+      "official_drive_url": "https://drive.google.com/file/d/1XHIehuO4lsvg-YsR5PeWlNeE0_-8uuZY/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Characters_Skeleton.gltf",
+      "bytes": 1731410,
+      "sha256": "c4f060ac42cd3e761a0726dbd339b6e9ae10e153ff10540dffefc44c6270092b",
+      "official_drive_id": "1P7xfiYZd_jCxnilRfxKMdLS4cVgIvJZu",
+      "official_drive_url": "https://drive.google.com/file/d/1P7xfiYZd_jCxnilRfxKMdLS4cVgIvJZu/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Characters_Sharky.gltf",
+      "bytes": 1625097,
+      "sha256": "868c6f137926fe7cd8997e70e9200fa8ce0e81646866caa091dd125917bac07b",
+      "official_drive_id": "1f8csDfhKpCNC4V1YOc8VwsKRcDbxD6B8",
+      "official_drive_url": "https://drive.google.com/file/d/1f8csDfhKpCNC4V1YOc8VwsKRcDbxD6B8/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Characters_Shark.gltf",
+      "bytes": 701731,
+      "sha256": "1f62e757f280be1337f0ea2d0ac65d54cc448ecc20d5ed052e8012d62de4b9eb",
+      "official_drive_id": "1vvH5IE8jvg3TIJnlcXr-ZSpuhtyxUP1h",
+      "official_drive_url": "https://drive.google.com/file/d/1vvH5IE8jvg3TIJnlcXr-ZSpuhtyxUP1h/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Characters_Mako.gltf",
+      "bytes": 1800069,
+      "sha256": "2c86b7ab4019a938a5164fc88176e60460fe266fa33b350eb9af275fcfd369e8",
+      "official_drive_id": "1PSeRgR4Qr7ubVXzWQu9H_RTB2A-valwd",
+      "official_drive_url": "https://drive.google.com/file/d/1PSeRgR4Qr7ubVXzWQu9H_RTB2A-valwd/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Characters_Henry.gltf",
+      "bytes": 1491195,
+      "sha256": "fc52c1ea8b87a8c24e1710a75290e9f0b520d3f30d2e4be6d3616d82e41fef7e",
+      "official_drive_id": "1cUT-8deWwUXfsMJn28zujMgAA32D7vpC",
+      "official_drive_url": "https://drive.google.com/file/d/1cUT-8deWwUXfsMJn28zujMgAA32D7vpC/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Characters_Captain_Barbarossa.gltf",
+      "bytes": 1335348,
+      "sha256": "db9499c91a143750031bcff287cab6c9b63a0682801bb120c128e244f0d6d5c4",
+      "official_drive_id": "1jL12GSoJAJah5CkZWbPM6BBdM4R--hU1",
+      "official_drive_url": "https://drive.google.com/file/d/1jL12GSoJAJah5CkZWbPM6BBdM4R--hU1/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Characters_Anne.gltf",
+      "bytes": 1552200,
+      "sha256": "9eafbfc1250652bbfd338cfd29c258ba0e0fee31586162696ee4bc3217ac3485",
+      "official_drive_id": "1mvAWwbjuKd7KTEBl6766BPM7UM_icFmF",
+      "official_drive_url": "https://drive.google.com/file/d/1mvAWwbjuKd7KTEBl6766BPM7UM_icFmF/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Enemy_Tentacle.gltf",
+      "bytes": 192936,
+      "sha256": "d3c3ec81b0a1315f38a0d90cc747eb3578a064ebd611b3bb3e69e4075e1ea3d5",
+      "official_drive_id": "1L3K7H-2YYpIfbioLADzsjXdHaG4pbaua",
+      "official_drive_url": "https://drive.google.com/file/d/1L3K7H-2YYpIfbioLADzsjXdHaG4pbaua/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_House1.gltf",
+      "bytes": 913785,
+      "sha256": "85097513cfa68d9b38398a56b1c76ab14dd9a5d0ddb93e8d78401cc7de69114d",
+      "official_drive_id": "1jdC55RZt2vBaU6yKKUfULu049N6bttF6",
+      "official_drive_url": "https://drive.google.com/file/d/1jdC55RZt2vBaU6yKKUfULu049N6bttF6/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_Barrel.gltf",
+      "bytes": 45196,
+      "sha256": "5180ba3e2dd3a3485bf24a2e309dc5e24ec22deb2a2da15a516a02085fef66c4",
+      "official_drive_id": "1afnIEj6hYtj2fkVLDpp1zyZdoWwZUmnR",
+      "official_drive_url": "https://drive.google.com/file/d/1afnIEj6hYtj2fkVLDpp1zyZdoWwZUmnR/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_Bottle_1.gltf",
+      "bytes": 26008,
+      "sha256": "426d086e8cea225ba7b200d5548448e3ce68c17e135c52b48841fd94fcd0dcd3",
+      "official_drive_id": "16uiFRkXEUfas0n76BQ2YIGqiBhUo1Tcg",
+      "official_drive_url": "https://drive.google.com/file/d/16uiFRkXEUfas0n76BQ2YIGqiBhUo1Tcg/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_Bottle_2.gltf",
+      "bytes": 26008,
+      "sha256": "7258b3eda2e440f49da3bb71116ee204080f93b31240b2752896abcc26b61723",
+      "official_drive_id": "1uBx4mvkuYpCzLR6GNCLa36JUxqJRML6e",
+      "official_drive_url": "https://drive.google.com/file/d/1uBx4mvkuYpCzLR6GNCLa36JUxqJRML6e/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_Cannon.gltf",
+      "bytes": 123358,
+      "sha256": "3461566b94dd978a52d27461d687d086db10abb932c812d332d38620f9141695",
+      "official_drive_id": "1uH_g9lnqqOlq-lIcRblcptsBrwA8dtMw",
+      "official_drive_url": "https://drive.google.com/file/d/1uH_g9lnqqOlq-lIcRblcptsBrwA8dtMw/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_Chest_Closed.gltf",
+      "bytes": 144572,
+      "sha256": "18e2bcb8be38d7f1922079c7138ec9559dd423cb6688dee3ccccaba76f3f204c",
+      "official_drive_id": "1__qGmoEib1C9EQgPtK3pny7sSKfE-YUd",
+      "official_drive_url": "https://drive.google.com/file/d/1__qGmoEib1C9EQgPtK3pny7sSKfE-YUd/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_Chest_Gold.gltf",
+      "bytes": 402736,
+      "sha256": "6810efd30cd1a072c2f272ee76a046b278984f3f050e4d9b256d50242d958811",
+      "official_drive_id": "1v-Drn2LxmpoSL6vUlJ83DdvYY-6fyorA",
+      "official_drive_url": "https://drive.google.com/file/d/1v-Drn2LxmpoSL6vUlJ83DdvYY-6fyorA/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_Fish_Mackerel.gltf",
+      "bytes": 61094,
+      "sha256": "2695abf47ba7f8b15959fee50df63ea6c44ce15347323880a9c66bbd38bff92e",
+      "official_drive_id": "1xWvn_cBCQWbE1pSr81SLMAOyuMe1eRrC",
+      "official_drive_url": "https://drive.google.com/file/d/1xWvn_cBCQWbE1pSr81SLMAOyuMe1eRrC/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_Fish_Tuna.gltf",
+      "bytes": 71652,
+      "sha256": "148d38cabae94f3d9507234155f75d269c5a276b4a67e8ed01333f476ea8b742",
+      "official_drive_id": "1ptP9rKHigDThk7Y-RNMnB5LsSnBt_cQA",
+      "official_drive_url": "https://drive.google.com/file/d/1ptP9rKHigDThk7Y-RNMnB5LsSnBt_cQA/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_Skull.gltf",
+      "bytes": 41597,
+      "sha256": "b1d1eb216788879fd0f6617f3dc65ace5d8343753b17f2e0b96f6d209ba782b2",
+      "official_drive_id": "1EMz4SEdR8Qm1zL6xYM75-yG8uAndMeNo",
+      "official_drive_url": "https://drive.google.com/file/d/1EMz4SEdR8Qm1zL6xYM75-yG8uAndMeNo/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Ship_Large.gltf",
+      "bytes": 1238178,
+      "sha256": "7f4acd7490bbc3c1ceac9d6a5e0fa9006449884ca148fade96bba7e35eede2e1",
+      "official_drive_id": "185_TUcJiwB_4vz7aRr4u6wiASODTk0ZS",
+      "official_drive_url": "https://drive.google.com/file/d/185_TUcJiwB_4vz7aRr4u6wiASODTk0ZS/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\UI_ChickenLeg.gltf",
+      "bytes": 28690,
+      "sha256": "e53d4b8db23bbd34657919bd0f6c9a123f3a381bb40fe36aaf0374ce35e65a68",
+      "official_drive_id": "10OjUIL593VOI89cxMKNbum8HPVO5qCLc",
+      "official_drive_url": "https://drive.google.com/file/d/10OjUIL593VOI89cxMKNbum8HPVO5qCLc/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\UI_Gem_Blue.gltf",
+      "bytes": 11745,
+      "sha256": "74f27278a59e6cf789052eb5227cd33790f51602d04fcefacd1bb726744fcc49",
+      "official_drive_id": "1hEx0nwQ9cb6fCO0IaCYhkb0qXW25waCu",
+      "official_drive_url": "https://drive.google.com/file/d/1hEx0nwQ9cb6fCO0IaCYhkb0qXW25waCu/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\UI_Gem_Green.gltf",
+      "bytes": 12572,
+      "sha256": "d3c865f4e70aa3bbef20051a3fccea5eafdbb74df86163864e8bf2dfd678495b",
+      "official_drive_id": "1AzO6If8OZIhf7qpPZIrXu8Tv-pNWTAXA",
+      "official_drive_url": "https://drive.google.com/file/d/1AzO6If8OZIhf7qpPZIrXu8Tv-pNWTAXA/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\UI_Gem_Pink.gltf",
+      "bytes": 11056,
+      "sha256": "eca5d441487f32f502b6ddd551192fd18d4497ed8f3ec172e609e7e65abc3e68",
+      "official_drive_id": "17f59BhBSoIoO8giuCxm7IYsfta80UClC",
+      "official_drive_url": "https://drive.google.com/file/d/17f59BhBSoIoO8giuCxm7IYsfta80UClC/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\UI_Wheat.gltf",
+      "bytes": 36377,
+      "sha256": "d526b0e0d926deffb38dc7f89d367acdf1c96e52595192ff3c8a482c762e855f",
+      "official_drive_id": "10_iF19hvons1ksLO1OIShudSoGLonvkO",
+      "official_drive_url": "https://drive.google.com/file/d/10_iF19hvons1ksLO1OIShudSoGLonvkO/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Weapon_Cutlass.gltf",
+      "bytes": 35603,
+      "sha256": "008b82fbb88bb5b1e4f15aa3af9bd313c54ee06a934f9fdd895463613cb3cc30",
+      "official_drive_id": "1Po6yti96WXeSXRNKVKe1xM0DQMH4-1xu",
+      "official_drive_url": "https://drive.google.com/file/d/1Po6yti96WXeSXRNKVKe1xM0DQMH4-1xu/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Weapon_Pistol.gltf",
+      "bytes": 71671,
+      "sha256": "ebc21db32ce31f043b5a1cb97a25b1ae0785dc28dc29bf6903cad7f17e2ded19",
+      "official_drive_id": "1xZvGswHWu-NBBCeKKOlkCcE_tD_wwErb",
+      "official_drive_url": "https://drive.google.com/file/d/1xZvGswHWu-NBBCeKKOlkCcE_tD_wwErb/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_Cliff2.gltf",
+      "bytes": 603616,
+      "sha256": "c5c022324a365158e1f2df9b53efde31cd0c2bb27fa4ec198665714c928d2826",
+      "official_drive_id": "1L34oRW5Inbeqx9MRR1n74bhQiiRHveqk",
+      "official_drive_url": "https://drive.google.com/file/d/1L34oRW5Inbeqx9MRR1n74bhQiiRHveqk/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_Cliff3.gltf",
+      "bytes": 624711,
+      "sha256": "0f0566322d2958e0081da2c2910861962ceea7096c400a46ff090bd3f86f0cd0",
+      "official_drive_id": "1YTzUWqOJznzURlI1TGl6jMsGNdS8AyYu",
+      "official_drive_url": "https://drive.google.com/file/d/1YTzUWqOJznzURlI1TGl6jMsGNdS8AyYu/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_Cliff4.gltf",
+      "bytes": 743217,
+      "sha256": "4f8722d63f775ee923626b6601a8493d36ad5350d085c7922ed929b9960dc1ca",
+      "official_drive_id": "1HGcISs9Kh35_BP0xktaF-qrxyqNOCLR_",
+      "official_drive_url": "https://drive.google.com/file/d/1HGcISs9Kh35_BP0xktaF-qrxyqNOCLR_/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_House2.gltf",
+      "bytes": 360338,
+      "sha256": "d0b483d0b25fed781c82f0041831444503559bb885d993dd0b0d56712010026d",
+      "official_drive_id": "1vJz4IQB0Fj0HaV6trv9DcHH2Al1mQF6J",
+      "official_drive_url": "https://drive.google.com/file/d/1vJz4IQB0Fj0HaV6trv9DcHH2Al1mQF6J/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_LargeBones.gltf",
+      "bytes": 100976,
+      "sha256": "b2b3c698f21628d654c18d2705d90dbc7e9ca0c3354cdcd16b2e8fbb87dde93e",
+      "official_drive_id": "1XMsbHsdHOZXVjPdFgtlnAvU49Pxlctec",
+      "official_drive_url": "https://drive.google.com/file/d/1XMsbHsdHOZXVjPdFgtlnAvU49Pxlctec/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_PalmTree_1.gltf",
+      "bytes": 147125,
+      "sha256": "c38f9ee0f5385422a69863a0948d088b1119611b017e872417fceefdaf20ed94",
+      "official_drive_id": "18Q8BCUIUOpb4qmZrKEy13F7sQPu8M5ST",
+      "official_drive_url": "https://drive.google.com/file/d/18Q8BCUIUOpb4qmZrKEy13F7sQPu8M5ST/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_PalmTree_2.gltf",
+      "bytes": 141647,
+      "sha256": "59bf3607dcce7becd1473e96e8d5c1a23ed103aef51e9ce9f95c86278d645829",
+      "official_drive_id": "1DAzIhuOcUBZQA_3ge9MYy3wmtjtl5fSw",
+      "official_drive_url": "https://drive.google.com/file/d/1DAzIhuOcUBZQA_3ge9MYy3wmtjtl5fSw/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_PalmTree_3.gltf",
+      "bytes": 149860,
+      "sha256": "5bc795e2010d4ee0a6ed8e1a96446478151f804c2ac2ddeb5a01b1dadea632ca",
+      "official_drive_id": "1eF4XtSNY08kk1hlRVg_-WPBy7GALTjLA",
+      "official_drive_url": "https://drive.google.com/file/d/1eF4XtSNY08kk1hlRVg_-WPBy7GALTjLA/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_Rock_1.gltf",
+      "bytes": 30464,
+      "sha256": "57e7bb033b0db4842d1cadda86af1f3604d5504b9547fc0397001e352c89461b",
+      "official_drive_id": "1Agk58yl3i7Q_reKzdSbb14YGVZxKya5g",
+      "official_drive_url": "https://drive.google.com/file/d/1Agk58yl3i7Q_reKzdSbb14YGVZxKya5g/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_Rock_2.gltf",
+      "bytes": 97520,
+      "sha256": "06c5012110d3a513ebb05c2f9080a3232c457e19cfd4246b63311a1ee2c1518b",
+      "official_drive_id": "129Oy6SIdcUgsUvSxKz-Teue6rXO_nH92",
+      "official_drive_url": "https://drive.google.com/file/d/129Oy6SIdcUgsUvSxKz-Teue6rXO_nH92/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_Rock_3.gltf",
+      "bytes": 28922,
+      "sha256": "ee4717601b37de40126a8d1a35e2f811f1cbe4d38bab27c1bc51fe467d5198f2",
+      "official_drive_id": "1ZgpQDme1g5STjfj0bbzq5X4Rbnn-_ZMi",
+      "official_drive_url": "https://drive.google.com/file/d/1ZgpQDme1g5STjfj0bbzq5X4Rbnn-_ZMi/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_Rock_4.gltf",
+      "bytes": 29138,
+      "sha256": "1eea738b93713690f3ee0805030c14ad64db0977f256cd9ae638db061d82ecd1",
+      "official_drive_id": "1Ce6fVwQZGxleWRFnrNBOmh119FozKIwl",
+      "official_drive_url": "https://drive.google.com/file/d/1Ce6fVwQZGxleWRFnrNBOmh119FozKIwl/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_Rock_5.gltf",
+      "bytes": 29679,
+      "sha256": "46a2b61c283527b57bf9a56884f5b34cb506e6d4f0c5420027e48c3a5a92da9c",
+      "official_drive_id": "1cWJHr-w1QtFhxm0CpRQAUeFhbrL-o6yE",
+      "official_drive_url": "https://drive.google.com/file/d/1cWJHr-w1QtFhxm0CpRQAUeFhbrL-o6yE/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_Sawmill.gltf",
+      "bytes": 48299,
+      "sha256": "994d359a7cb9dcf232c4d4c7c2b94fe5f48e5a33dcf69b733b60271f0214cb0f",
+      "official_drive_id": "1z-GP4krqozPJURldde4NNAa3si2RBs5x",
+      "official_drive_url": "https://drive.google.com/file/d/1z-GP4krqozPJURldde4NNAa3si2RBs5x/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_Skulls.gltf",
+      "bytes": 116980,
+      "sha256": "2b04703b2e7b1a5e3063564e4fd0d5b77ed9efcaae2d0bff217c4af5f2b5f768",
+      "official_drive_id": "1J-7fgZKQJnHNxZ0pE1iLDUbD_ZtDehe-",
+      "official_drive_url": "https://drive.google.com/file/d/1J-7fgZKQJnHNxZ0pE1iLDUbD_ZtDehe-/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_Anchor.gltf",
+      "bytes": 43082,
+      "sha256": "98504894d03160b86f8b4a34d6e1b9b31bac173ce424378100f13143fd0223fc",
+      "official_drive_id": "1BrxKp3juHV7C-74LVzDEJLtsBRxqZ2Fg",
+      "official_drive_url": "https://drive.google.com/file/d/1BrxKp3juHV7C-74LVzDEJLtsBRxqZ2Fg/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_Bomb.gltf",
+      "bytes": 31449,
+      "sha256": "51662694cfca79d985a87cea767cac7f00eff6259752d7b54064d9bb078ef5ba",
+      "official_drive_id": "1Vq3gDOGdARl659nQEjit1I02xhpnXVLn",
+      "official_drive_url": "https://drive.google.com/file/d/1Vq3gDOGdARl659nQEjit1I02xhpnXVLn/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_Bucket_Fishes.gltf",
+      "bytes": 217814,
+      "sha256": "f366412e831a4f14b73cf4a1d15e2acc70c2588c36bdf7db24f18d235e059861",
+      "official_drive_id": "1wtdo4wGr64nkDXBitakU6Tg1vAZl5rLL",
+      "official_drive_url": "https://drive.google.com/file/d/1wtdo4wGr64nkDXBitakU6Tg1vAZl5rLL/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_Bucket.gltf",
+      "bytes": 41601,
+      "sha256": "23dd284c44d7e1bc0f8e948739c47b8215715edacf2e59962cf7c92b59f7d00d",
+      "official_drive_id": "1MKwzdc_ck6opmo1HSvNFf82vrCKgJTdk",
+      "official_drive_url": "https://drive.google.com/file/d/1MKwzdc_ck6opmo1HSvNFf82vrCKgJTdk/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_Coins.gltf",
+      "bytes": 113623,
+      "sha256": "13ab5a39537fc661731b2053fb00c7f2799f3ab0d542a36c1c413eae60ebdf4d",
+      "official_drive_id": "1lVm2myTDmMVm7dSvqZq6F_GftLAz09dh",
+      "official_drive_url": "https://drive.google.com/file/d/1lVm2myTDmMVm7dSvqZq6F_GftLAz09dh/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_GoldBag.gltf",
+      "bytes": 212776,
+      "sha256": "cb9bfa79277c5da163ce94c5c2ab9b2567aa4b59ff02776b277b53570c2dfc00",
+      "official_drive_id": "1PPh96N1VyRjxJvF9EjLI_7ka-6PZDwkH",
+      "official_drive_url": "https://drive.google.com/file/d/1PPh96N1VyRjxJvF9EjLI_7ka-6PZDwkH/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Ship_Small.gltf",
+      "bytes": 317113,
+      "sha256": "c2596ed1eec90c9b0338109f5e66a88755db92f37c5473937fe5f463365a726f",
+      "official_drive_id": "1ScqR_EdqqJkOwU7Z51kNrI41y0klDzkg",
+      "official_drive_url": "https://drive.google.com/file/d/1ScqR_EdqqJkOwU7Z51kNrI41y0klDzkg/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\UI_Gold.gltf",
+      "bytes": 52784,
+      "sha256": "401f25cf0bb10d5b1b99259473f70165b09bdcd0fb1158090efd715db9d6c75a",
+      "official_drive_id": "1iGEdTMDaZ4o2p8VrAaJm6p2OQAv_uBlT",
+      "official_drive_url": "https://drive.google.com/file/d/1iGEdTMDaZ4o2p8VrAaJm6p2OQAv_uBlT/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\UI_Paper.gltf",
+      "bytes": 23047,
+      "sha256": "44174894dd2514e9a55094f0fafa08fad1f92a6fedd952ecc2be7a5988b5afcc",
+      "official_drive_id": "1V3pDzVhxBYKxUDYbYV10bovBOYgynQyR",
+      "official_drive_url": "https://drive.google.com/file/d/1V3pDzVhxBYKxUDYbYV10bovBOYgynQyR/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\UI_Red_Dash.gltf",
+      "bytes": 10989,
+      "sha256": "4129cd1d95f69c8f3bd5f10bd0f0c7e68cde2d48a4047ff81168f78b985d6071",
+      "official_drive_id": "1RIbYJ4BgtVIorDKXaVlFoLvlzWZy5py1",
+      "official_drive_url": "https://drive.google.com/file/d/1RIbYJ4BgtVIorDKXaVlFoLvlzWZy5py1/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\UI_Red_X.gltf",
+      "bytes": 25220,
+      "sha256": "7e1fbce870e25ba5bf0281e1fad127ef99ed6093bd859be2a4467741727b2dbb",
+      "official_drive_id": "1Du97H9hJWr359AdSz1FzORT9N9yli9dr",
+      "official_drive_url": "https://drive.google.com/file/d/1Du97H9hJWr359AdSz1FzORT9N9yli9dr/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\UI_Rocks.gltf",
+      "bytes": 31599,
+      "sha256": "73d0a4b55ac43ba79113e01c7e0dbbe87813ea1b6c367b686fe9929bfb7f7763",
+      "official_drive_id": "1wZ2cgtHkfg7t10jfJnotXh_UPb52d3cd",
+      "official_drive_url": "https://drive.google.com/file/d/1wZ2cgtHkfg7t10jfJnotXh_UPb52d3cd/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\UI_Swords.gltf",
+      "bytes": 43457,
+      "sha256": "97dc38883ef802640d0048b4b97dc12781252c8b5035f89b0bd9af686cb5f5b5",
+      "official_drive_id": "1uFtIAQt6y988vqIGGDKFIpMglDwBHqDD",
+      "official_drive_url": "https://drive.google.com/file/d/1uFtIAQt6y988vqIGGDKFIpMglDwBHqDD/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\UI_Wood.gltf",
+      "bytes": 26026,
+      "sha256": "990b20e67bb623077658e4a893a91b38f8a77bc2c9ea00b70741c68d489578b1",
+      "official_drive_id": "1-nAHGBnO6OcivIGa6gwKxmbMoDKGI8tW",
+      "official_drive_url": "https://drive.google.com/file/d/1-nAHGBnO6OcivIGa6gwKxmbMoDKGI8tW/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Weapon_DoubleShotgun.gltf",
+      "bytes": 90240,
+      "sha256": "4ce9faa4b799f99c1ff584c1ec1c1dcf1fb829f89f6d1259eb2aaa2c1ef76ee8",
+      "official_drive_id": "11f7N7HXHEer95xuHk3-R9C40RRC8zCfH",
+      "official_drive_url": "https://drive.google.com/file/d/11f7N7HXHEer95xuHk3-R9C40RRC8zCfH/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_Cliff1.gltf",
+      "bytes": 270947,
+      "sha256": "648acbf25f9b8aa05f38e8f4f7c2421671c606cd6dd77481fadb6dc1f708a0d3",
+      "official_drive_id": "1PQXp1HGkKv75DxGbw_tvjpcpiX7t8s4R",
+      "official_drive_url": "https://drive.google.com/file/d/1PQXp1HGkKv75DxGbw_tvjpcpiX7t8s4R/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_Dock_Broken.gltf",
+      "bytes": 134208,
+      "sha256": "935d5a09562bb64909d70630a2719a9c4eca37aa725cb753acaff0411f838123",
+      "official_drive_id": "1mAlCOsEummes9cQqzJktuHQBZZXly_l0",
+      "official_drive_url": "https://drive.google.com/file/d/1mAlCOsEummes9cQqzJktuHQBZZXly_l0/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_Dock_Pole.gltf",
+      "bytes": 25593,
+      "sha256": "f5a511f3f59283153ed470b3edd4a3f91700ee31d6fe89fd941510ac08318ced",
+      "official_drive_id": "1um2OgeTm1aDwaLp9-bzGXMy6X9uMl0wG",
+      "official_drive_url": "https://drive.google.com/file/d/1um2OgeTm1aDwaLp9-bzGXMy6X9uMl0wG/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_Dock.gltf",
+      "bytes": 119792,
+      "sha256": "cdbcd1dc78b7adb0a83f9ef475e61c5df5302c2cac9a340266b986165636d940",
+      "official_drive_id": "1s_Nf0uuUr2l-aGWJUQhYb00FSqBubSq1",
+      "official_drive_url": "https://drive.google.com/file/d/1s_Nf0uuUr2l-aGWJUQhYb00FSqBubSq1/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Environment_House3.gltf",
+      "bytes": 798598,
+      "sha256": "d4da178f124de86a7c21a66e009689dff7ad1b9a19c7a70777782343ca2511a2",
+      "official_drive_id": "1ERoGrN_2mrznW950ljlsvmYJRhyiV5_p",
+      "official_drive_url": "https://drive.google.com/file/d/1ERoGrN_2mrznW950ljlsvmYJRhyiV5_p/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Prop_CannonBall.gltf",
+      "bytes": 28656,
+      "sha256": "497fb5fe801448edb4cb927f8fa5d014d8ae03b5243a0dcec5598bb6d18da482",
+      "official_drive_id": "1ppH0S1DuGFpsoyYC_43cPhuZmGgSCpxC",
+      "official_drive_url": "https://drive.google.com/file/d/1ppH0S1DuGFpsoyYC_43cPhuZmGgSCpxC/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Weapon_Axe.gltf",
+      "bytes": 58689,
+      "sha256": "09e26ca81a09b72166214b39c0aa2b79d0de3862a14cbe43816ce86875e086d3",
+      "official_drive_id": "1V3UVuVYheRT6pyA7oTsOJV7MId93Pu3a",
+      "official_drive_url": "https://drive.google.com/file/d/1V3UVuVYheRT6pyA7oTsOJV7MId93Pu3a/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Weapon_AxeRifle.gltf",
+      "bytes": 69993,
+      "sha256": "77f253a4614c15238c4af8ae3723bde3199be0f7d559e84e695e88a6b663b613",
+      "official_drive_id": "1IwpeEdclfux3wED3jpFI-GE8_V6yKAvR",
+      "official_drive_url": "https://drive.google.com/file/d/1IwpeEdclfux3wED3jpFI-GE8_V6yKAvR/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Weapon_Dagger.gltf",
+      "bytes": 31875,
+      "sha256": "627b9e686eb2901f81eaf8b9cb3c9c27c780a1e491e0e43243edf80396b7d1ba",
+      "official_drive_id": "154TKY8_ZVOkVc-uDdbzJfQgUOM1kbJOg",
+      "official_drive_url": "https://drive.google.com/file/d/154TKY8_ZVOkVc-uDdbzJfQgUOM1kbJOg/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Weapon_DoubleAxe.gltf",
+      "bytes": 72226,
+      "sha256": "04504ef42e13f077ff22d972fed0b929dee79f2c777c954ccc5ab45026775b4a",
+      "official_drive_id": "1sGlpjC85ZmytfkdOynJpqKBy_9FOOdJk",
+      "official_drive_url": "https://drive.google.com/file/d/1sGlpjC85ZmytfkdOynJpqKBy_9FOOdJk/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Weapon_Lute.gltf",
+      "bytes": 47376,
+      "sha256": "a72458c992089fdc9520908a40556048afafbdd968bb4a1281ab5fd4443ec6d4",
+      "official_drive_id": "19E6QDFykpeqTVrwFxLaabGXOsksrOe2H",
+      "official_drive_url": "https://drive.google.com/file/d/19E6QDFykpeqTVrwFxLaabGXOsksrOe2H/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Weapon_Rifle.gltf",
+      "bytes": 77782,
+      "sha256": "ce0196eade690c29224a9a20a736585c1c0a31ba31b8da256fcea13e21bb9dbc",
+      "official_drive_id": "1sN3ubuWEgRuRe7BRU97TQJcTKgBX6c_Z",
+      "official_drive_url": "https://drive.google.com/file/d/1sN3ubuWEgRuRe7BRU97TQJcTKgBX6c_Z/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Weapon_Sword_1.gltf",
+      "bytes": 37477,
+      "sha256": "3ea3c343d1271679d62ac1689cf6fa2d74ac4c6c0c21fb753b0e4c4d8e8af8a6",
+      "official_drive_id": "1YeOBcmbUwwXkGNtkxMmVxoJixIUP1BJ2",
+      "official_drive_url": "https://drive.google.com/file/d/1YeOBcmbUwwXkGNtkxMmVxoJixIUP1BJ2/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\glTF\\Weapon_Sword_2.gltf",
+      "bytes": 27979,
+      "sha256": "07d9dbad1f96175b4caaabec1c9255f16eefc4ac6e510ed96c7b623c9a959d43",
+      "official_drive_id": "1QUNSmm02Oh9yE80vqDi7xaeb1mVyV9sy",
+      "official_drive_url": "https://drive.google.com/file/d/1QUNSmm02Oh9yE80vqDi7xaeb1mVyV9sy/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-pirate\\Atlas_Pirate.png",
+      "bytes": 9014,
+      "sha256": "a538d23f834ab4233d871cb9688f98ff574fc31b00e4dd99b9b42750f577ede4",
+      "official_drive_id": "1bLKM6Nm_jTtXJN0CVK0GNqHto3eMGn6r",
+      "official_drive_url": "https://drive.google.com/file/d/1bLKM6Nm_jTtXJN0CVK0GNqHto3eMGn6r/view"
+    }
+  ],
+  "excluded_files": [
+    "FBX/OBJ duplicate exports",
+    "native Blender scenery duplicate exports",
+    "Scene_AllModels combined scene"
+  ]
+}

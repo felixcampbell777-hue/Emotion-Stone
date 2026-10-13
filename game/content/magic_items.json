@@ -1,0 +1,449 @@
+{
+  "items": [
+    {
+      "id": "tidal_signet",
+      "code": "R1",
+      "category": "ring",
+      "name": "Tidal Signet",
+      "description": "Water attacks cost 30% less stamina and deal 20% more damage.",
+      "color": "#577d95",
+      "accent": "#8ae1eb",
+      "variant": 0,
+      "effects": {
+        "water_saving": 0.3,
+        "water_damage": 0.2
+      }
+    },
+    {
+      "id": "bloodbloom",
+      "code": "R2",
+      "category": "ring",
+      "name": "Bloodbloom Ring",
+      "description": "Successful sword hits restore 3 HP. Armor-blocked hits give no healing.",
+      "color": "#856257",
+      "accent": "#f28e9b",
+      "variant": 1,
+      "effects": {
+        "life_on_hit": 3
+      }
+    },
+    {
+      "id": "echo_loop",
+      "code": "R3",
+      "category": "ring",
+      "name": "Echo Loop",
+      "description": "A successful parry refunds 12 stamina; guard timing is widened by 0.04 seconds.",
+      "color": "#b6a16b",
+      "accent": "#dde9b6",
+      "variant": 2,
+      "effects": {
+        "parry_refund": 12,
+        "parry_window": 0.04
+      }
+    },
+    {
+      "id": "starfall_band",
+      "code": "R4",
+      "category": "ring",
+      "name": "Starfall Band",
+      "description": "Sword damage +8%; hammer slam shockwave range +25% and force +45%.",
+      "color": "#757490",
+      "accent": "#b7a5f0",
+      "variant": 3,
+      "effects": {
+        "melee": 0.08,
+        "slam_range": 0.25,
+        "slam_force": 0.45
+      }
+    },
+    {
+      "id": "oakheart",
+      "code": "T1",
+      "category": "torso",
+      "name": "Oakheart Cuirass",
+      "description": "Maximum HP +35; incoming damage reduced by 20%.",
+      "color": "#68785a",
+      "accent": "#d8c593",
+      "variant": 0,
+      "effects": {
+        "health": 35,
+        "armor": 0.2
+      }
+    },
+    {
+      "id": "stormweave",
+      "code": "T2",
+      "category": "torso",
+      "name": "Stormweave Mantle",
+      "description": "Movement +10%; recover 5 additional stamina per second.",
+      "color": "#496b85",
+      "accent": "#afdfe8",
+      "variant": 1,
+      "effects": {
+        "speed": 0.1,
+        "stamina_regen": 5
+      }
+    },
+    {
+      "id": "duelist",
+      "code": "T3",
+      "category": "torso",
+      "name": "Duelist Jacket",
+      "description": "Sword damage +20%; parries cost 30% less stamina.",
+      "color": "#904f55",
+      "accent": "#ead098",
+      "variant": 2,
+      "effects": {
+        "melee": 0.2,
+        "parry_saving": 0.3
+      }
+    },
+    {
+      "id": "tideglass",
+      "code": "T4",
+      "category": "torso",
+      "name": "Tideglass Vest",
+      "description": "Water damage +35%; Water Lance charges 20% faster, but incoming damage rises 10%.",
+      "color": "#4f888e",
+      "accent": "#a0ede5",
+      "variant": 3,
+      "effects": {
+        "water_damage": 0.35,
+        "lance_haste": 0.2,
+        "armor": -0.1
+      }
+    },
+    {
+      "id": "reedstrider",
+      "code": "L1",
+      "category": "leggings",
+      "name": "Reedstrider Leggings",
+      "description": "Sprinting costs 25% less stamina; sticky terrain slow is 55% weaker.",
+      "color": "#657a57",
+      "accent": "#c5ce91",
+      "variant": 0,
+      "effects": {
+        "sprint_saving": 0.25,
+        "slow_resist": 0.55
+      }
+    },
+    {
+      "id": "ironroot",
+      "code": "L2",
+      "category": "leggings",
+      "name": "Ironroot Greaves",
+      "description": "Sword knockback +35%; incoming knockback reduced by 35%.",
+      "color": "#737c80",
+      "accent": "#bcc6bc",
+      "variant": 1,
+      "effects": {
+        "sword_recoil": 0.35,
+        "hurt_recoil_saving": 0.35
+      }
+    },
+    {
+      "id": "acrobat",
+      "code": "L3",
+      "category": "leggings",
+      "name": "Acrobat Wraps",
+      "description": "Dodges cost 35% less stamina; get up from rolls 25% faster. Dodge still requires its Form unlock.",
+      "color": "#896976",
+      "accent": "#e0b6cf",
+      "variant": 2,
+      "effects": {
+        "dodge_saving": 0.35,
+        "stand_haste": 0.25
+      }
+    },
+    {
+      "id": "hunter",
+      "code": "L4",
+      "category": "leggings",
+      "name": "Hunter's Legguards",
+      "description": "All XP rewards +20%; maximum HP +10.",
+      "color": "#87664c",
+      "accent": "#d9b96f",
+      "variant": 3,
+      "effects": {
+        "xp": 0.2,
+        "health": 10
+      }
+    },
+    {
+      "id": "gale",
+      "code": "B1",
+      "category": "boots",
+      "name": "Gale Boots",
+      "description": "All movement speeds +18%, including dragging and sprinting with the sword.",
+      "color": "#607d96",
+      "accent": "#b6e4ed",
+      "variant": 0,
+      "effects": {
+        "speed": 0.18
+      }
+    },
+    {
+      "id": "pilgrim",
+      "code": "B2",
+      "category": "boots",
+      "name": "Pilgrim Boots",
+      "description": "Recover 4 extra stamina per second; heal 1 HP per second after 4 seconds without a hit.",
+      "color": "#8d7454",
+      "accent": "#eee0b3",
+      "variant": 1,
+      "effects": {
+        "stamina_regen": 4,
+        "health_regen": 1
+      }
+    },
+    {
+      "id": "quake",
+      "code": "B3",
+      "category": "boots",
+      "name": "Quake Treads",
+      "description": "Hammer slam shockwave force +50% and range +35%. Stacks with Starfall.",
+      "color": "#686b77",
+      "accent": "#d2a66a",
+      "variant": 2,
+      "effects": {
+        "slam_force": 0.5,
+        "slam_range": 0.35
+      }
+    },
+    {
+      "id": "marshgrip",
+      "code": "B4",
+      "category": "boots",
+      "name": "Marshgrip Boots",
+      "description": "Sticky puddles cannot slow you; sprinting costs 20% less stamina.",
+      "color": "#566f5e",
+      "accent": "#a4d5a4",
+      "variant": 3,
+      "effects": {
+        "slow_resist": 1,
+        "sprint_saving": 0.2
+      }
+    },
+    {
+      "id": "lantern",
+      "code": "H1",
+      "category": "headwear",
+      "name": "Lantern Headband",
+      "description": "A warm light follows your head and illuminates caves. Maximum HP +15.",
+      "color": "#8a7452",
+      "accent": "#f4d291",
+      "variant": 0,
+      "effects": {
+        "health": 15
+      }
+    },
+    {
+      "id": "seer",
+      "code": "H2",
+      "category": "headwear",
+      "name": "Seer Circlet",
+      "description": "Water attack range and Water Lance blast radius +25%.",
+      "color": "#76719b",
+      "accent": "#c6b2f0",
+      "variant": 1,
+      "effects": {
+        "water_range": 0.25
+      }
+    },
+    {
+      "id": "foxmask",
+      "code": "H3",
+      "category": "headwear",
+      "name": "Fox Mask",
+      "description": "Parry window +0.08 seconds; movement +8%.",
+      "color": "#b47f54",
+      "accent": "#f1ddbf",
+      "variant": 2,
+      "effects": {
+        "parry_window": 0.08,
+        "speed": 0.08
+      }
+    },
+    {
+      "id": "phoenix",
+      "code": "H4",
+      "category": "headwear",
+      "name": "Phoenix Diadem",
+      "description": "Survive one lethal hit at 1 HP, then recharge for 60 seconds of active play. Cooldown survives saves.",
+      "color": "#a06849",
+      "accent": "#ffb66b",
+      "variant": 3,
+      "effects": {
+        "phoenix": 1
+      }
+    },
+    {
+      "id": "windstep",
+      "code": "N1",
+      "category": "necklace",
+      "name": "Windstep Necklace",
+      "description": "All movement speeds +20%. The Windstep Charm from the goblin shrine now occupies this necklace slot.",
+      "color": "#668b7a",
+      "accent": "#8ee9cc",
+      "variant": 0,
+      "effects": {
+        "speed": 0.2
+      }
+    },
+    {
+      "id": "rootbound",
+      "code": "N2",
+      "category": "necklace",
+      "name": "Rootbound Locket",
+      "description": "Maximum HP +25; heal 1 HP per second after 4 seconds without a hit.",
+      "color": "#78825a",
+      "accent": "#d7dda1",
+      "variant": 1,
+      "effects": {
+        "health": 25,
+        "health_regen": 1
+      }
+    },
+    {
+      "id": "river_pearl",
+      "code": "N3",
+      "category": "necklace",
+      "name": "River Pearl Pendant",
+      "description": "Water attacks cost 15% less stamina and deal 15% more damage.",
+      "color": "#6582a0",
+      "accent": "#c5edf4",
+      "variant": 2,
+      "effects": {
+        "water_saving": 0.15,
+        "water_damage": 0.15
+      }
+    },
+    {
+      "id": "warding",
+      "code": "N4",
+      "category": "necklace",
+      "name": "Warding Amulet",
+      "description": "Incoming damage reduced by 12%; successful parries refund 6 stamina.",
+      "color": "#96734c",
+      "accent": "#f1d89d",
+      "variant": 3,
+      "effects": {
+        "armor": 0.12,
+        "parry_refund": 6
+      }
+    },
+    {
+      "id": "kings_torso",
+      "code": "T5",
+      "category": "torso",
+      "name": "King's Armor: Cuirass",
+      "description": "King's Armor. Reduces incoming damage by 4%. Wear all four pieces for 3 HP/second regeneration after four seconds without damage.",
+      "color": "#788a9c",
+      "accent": "#e4bf64",
+      "variant": 4,
+      "effects": {
+        "armor": 0.04
+      }
+    },
+    {
+      "id": "kings_leggings",
+      "code": "L5",
+      "category": "leggings",
+      "name": "King's Armor: Greaves",
+      "description": "King's Armor. Reduces incoming damage by 4%. Wear all four pieces for 3 HP/second regeneration after four seconds without damage.",
+      "color": "#788a9c",
+      "accent": "#e4bf64",
+      "variant": 4,
+      "effects": {
+        "armor": 0.04
+      }
+    },
+    {
+      "id": "kings_boots",
+      "code": "B5",
+      "category": "boots",
+      "name": "King's Armor: Boots",
+      "description": "King's Armor. Reduces incoming damage by 4%. Wear all four pieces for 3 HP/second regeneration after four seconds without damage.",
+      "color": "#788a9c",
+      "accent": "#e4bf64",
+      "variant": 4,
+      "effects": {
+        "armor": 0.04
+      }
+    },
+    {
+      "id": "kings_headwear",
+      "code": "H5",
+      "category": "headwear",
+      "name": "King's Armor: Crown",
+      "description": "King's Armor. Reduces incoming damage by 4%. Wear all four pieces for 3 HP/second regeneration after four seconds without damage.",
+      "color": "#788a9c",
+      "accent": "#e4bf64",
+      "variant": 4,
+      "effects": {
+        "armor": 0.04
+      }
+    },
+    {
+      "id": "mending_tonic",
+      "code": "C1",
+      "category": "consumable",
+      "name": "Mending Tonic",
+      "description": "Regenerate 2 HP/second for 20 seconds. Drink in Inventory. Each dose stacks its healing and keeps an independent timer. Effects pause with menus.",
+      "color": "#83b26b",
+      "accent": "#e9efd8",
+      "variant": 0,
+      "effects": {
+        "regen_rate": 2,
+        "regen_seconds": 20,
+        "burst_heal": 0
+      }
+    },
+    {
+      "id": "renewal_draught",
+      "code": "C2",
+      "category": "consumable",
+      "name": "Renewal Draught",
+      "description": "Regenerate 6 HP/second for 8 seconds. Drink in Inventory. Each dose stacks its healing and keeps an independent timer. Effects pause with menus.",
+      "color": "#6baebc",
+      "accent": "#e9efd8",
+      "variant": 0,
+      "effects": {
+        "regen_rate": 6,
+        "regen_seconds": 8,
+        "burst_heal": 0
+      }
+    },
+    {
+      "id": "spring_elixir",
+      "code": "C3",
+      "category": "consumable",
+      "name": "Spring Elixir",
+      "description": "Restore 25 HP immediately, then regenerate 3 HP/second for 10 seconds. Drink in Inventory. Each dose stacks its healing and keeps an independent timer. Effects pause with menus.",
+      "color": "#c597bb",
+      "accent": "#e9efd8",
+      "variant": 0,
+      "effects": {
+        "regen_rate": 3,
+        "regen_seconds": 10,
+        "burst_heal": 25
+      }
+    }
+  ],
+  "sets": [
+    {
+      "id": "kings_armor",
+      "name": "King's Armor",
+      "items": [
+        "kings_torso",
+        "kings_leggings",
+        "kings_boots",
+        "kings_headwear"
+      ],
+      "effects": {
+        "health_regen": 3
+      },
+      "description": "Full set: regenerate 3 HP/second after four seconds without damage."
+    }
+  ]
+}

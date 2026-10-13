@@ -1,0 +1,88 @@
+{
+  "files": [
+    {
+      "sha256": "a19c83b46e88867a9d9f23872fba6d4d19b18a38e66ce1ebfd4540026b5e090e",
+      "map": "Diffuse",
+      "md5": "ed1d5da1ac94f3a082c0a32b726b3c4e",
+      "asset": "denim_fabric_05",
+      "path": "C:\\Games\\CoastalFoundation\\art\\source\\heroine-draft-materials\\denim_fabric_05\\denim_fabric_05_diff_2k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/denim_fabric_05/denim_fabric_05_diff_2k.png",
+      "bytes": 23483519,
+      "official_hash_verified": true
+    },
+    {
+      "sha256": "43d2311dde535ad749decf73a1e646404f33a25c0e12eaae8731f8a17be8793b",
+      "map": "nor_gl",
+      "md5": "9b38ac1d473c3eb5642823a5af99359e",
+      "asset": "denim_fabric_05",
+      "path": "C:\\Games\\CoastalFoundation\\art\\source\\heroine-draft-materials\\denim_fabric_05\\denim_fabric_05_nor_gl_2k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/denim_fabric_05/denim_fabric_05_nor_gl_2k.png",
+      "bytes": 23493540,
+      "official_hash_verified": true
+    },
+    {
+      "sha256": "46ae1bc48c1fddbb186122728a834e1c506f49964d6dc064f11d8ed29363e55b",
+      "map": "Rough",
+      "md5": "e8eb25246a70963c3ff55a37c5923e63",
+      "asset": "denim_fabric_05",
+      "path": "C:\\Games\\CoastalFoundation\\art\\source\\heroine-draft-materials\\denim_fabric_05\\denim_fabric_05_rough_2k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/denim_fabric_05/denim_fabric_05_rough_2k.png",
+      "bytes": 8187677,
+      "official_hash_verified": true
+    },
+    {
+      "sha256": "e3d2b4be0c73560e7ca061743a803531bff565a50ba6eee3ad77c6001d775feb",
+      "map": "Diffuse",
+      "md5": "73575f35a81a1243a4cd0b941e47a7cd",
+      "asset": "brown_leather",
+      "path": "C:\\Games\\CoastalFoundation\\art\\source\\heroine-draft-materials\\brown_leather\\brown_leather_albedo_2k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/brown_leather/brown_leather_albedo_2k.png",
+      "bytes": 7372676,
+      "official_hash_verified": true
+    },
+    {
+      "sha256": "a9a3f2bf3d04c0ffefc97fbe6aa7b9ed56992359a9a97e37571faa6a15aeefd3",
+      "map": "nor_gl",
+      "md5": "79e5a78506947a412d2b739a4bec34b4",
+      "asset": "brown_leather",
+      "path": "C:\\Games\\CoastalFoundation\\art\\source\\heroine-draft-materials\\brown_leather\\brown_leather_nor_gl_2k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/brown_leather/brown_leather_nor_gl_2k.png",
+      "bytes": 7284076,
+      "official_hash_verified": true
+    },
+    {
+      "sha256": "f41d74519a09f24e5a58b0c3bd2f2439f292ab8c3553d6e88ed0cbca690c6e73",
+      "map": "Rough",
+      "md5": "6d95a0d3d528efb41567e1708fa0911a",
+      "asset": "brown_leather",
+      "path": "C:\\Games\\CoastalFoundation\\art\\source\\heroine-draft-materials\\brown_leather\\brown_leather_rough_2k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/2k/brown_leather/brown_leather_rough_2k.png",
+      "bytes": 3959148,
+      "official_hash_verified": true
+    }
+  ],
+  "intake": "Only PNG maps downloaded; no scripts, plugins, installers or downloaded Blender files.",
+  "license": "CC0-1.0",
+  "license_url": "https://polyhaven.com/license",
+  "assets": {
+    "brown_leather": {
+      "page": "https://polyhaven.com/a/brown_leather",
+      "authors": [
+        "Rob Tuytel"
+      ]
+    },
+    "denim_fabric_05": {
+      "page": "https://polyhaven.com/a/denim_fabric_05",
+      "authors": [
+        "colormass",
+        "Rico Cilliers"
+      ]
+    }
+  },
+  "defender_scan": {
+    "scan_type": "custom directory scan",
+    "status": "completed",
+    "result": "no threats",
+    "date": "2026-10-10"
+  }
+}

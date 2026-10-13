@@ -1,0 +1,648 @@
+{
+  "id": "slime_forest",
+  "display_name": "Slime Forest",
+  "subtitle": "Moss-covered cobbles beneath the pines",
+  "seed": 918,
+  "bounds": [
+    -12,
+    -10,
+    12,
+    12
+  ],
+  "spawn": [
+    0,
+    -8.2
+  ],
+  "sea": false,
+  "terrain_regions": [
+    {
+      "rect": [
+        -1,
+        -10,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -1,
+        -9,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -1,
+        -8,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -1,
+        -7,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -1,
+        -6,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -1,
+        -5,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -1,
+        -4,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -1,
+        -3,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -1,
+        -2,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -1,
+        -1,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -1,
+        0,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -1,
+        1,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -1,
+        2,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -2,
+        3,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -2,
+        4,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -2,
+        5,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -2,
+        6,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -2,
+        7,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -2,
+        8,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -2,
+        9,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -2,
+        10,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "rect": [
+        -1,
+        11,
+        3,
+        1
+      ],
+      "kind": "cobble"
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -12,
+        -2,
+        13,
+        2
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "mossy_rock",
+      "kind": "rock",
+      "at": [
+        -5,
+        2
+      ],
+      "scale": 0.7
+    },
+    {
+      "id": "forest_flowers",
+      "kind": "flowers",
+      "at": [
+        4,
+        3
+      ]
+    },
+    {
+      "id": "dense_pine_0",
+      "kind": "tree",
+      "at": [
+        8.21,
+        3.78
+      ],
+      "scale": 1.06
+    },
+    {
+      "id": "dense_pine_1",
+      "kind": "tree",
+      "at": [
+        -7.81,
+        5.73
+      ],
+      "scale": 0.91
+    },
+    {
+      "id": "dense_pine_4",
+      "kind": "tree",
+      "at": [
+        7.83,
+        -8.66
+      ],
+      "scale": 0.88
+    },
+    {
+      "id": "dense_pine_5",
+      "kind": "tree",
+      "at": [
+        4.71,
+        -0.11
+      ],
+      "scale": 1.01
+    },
+    {
+      "id": "dense_pine_6",
+      "kind": "tree",
+      "at": [
+        -9.15,
+        -8.04
+      ],
+      "scale": 0.92
+    },
+    {
+      "id": "dense_pine_7",
+      "kind": "tree",
+      "at": [
+        9.82,
+        -6.39
+      ],
+      "scale": 1.06
+    },
+    {
+      "id": "dense_pine_8",
+      "kind": "tree",
+      "at": [
+        -5.87,
+        9.13
+      ],
+      "scale": 0.85
+    },
+    {
+      "id": "dense_pine_9",
+      "kind": "tree",
+      "at": [
+        8.87,
+        6.82
+      ],
+      "scale": 1.19
+    },
+    {
+      "id": "dense_pine_11",
+      "kind": "tree",
+      "at": [
+        -10.44,
+        -2.93
+      ],
+      "scale": 0.8
+    },
+    {
+      "id": "dense_pine_13",
+      "kind": "tree",
+      "at": [
+        9.66,
+        -1.7
+      ],
+      "scale": 1.16
+    },
+    {
+      "id": "dense_pine_16",
+      "kind": "tree",
+      "at": [
+        7.86,
+        0.27
+      ],
+      "scale": 1.11
+    },
+    {
+      "id": "dense_pine_18",
+      "kind": "tree",
+      "at": [
+        -4.67,
+        4.94
+      ],
+      "scale": 0.99
+    },
+    {
+      "id": "dense_pine_21",
+      "kind": "tree",
+      "at": [
+        -10.41,
+        4.02
+      ],
+      "scale": 1.12
+    },
+    {
+      "id": "dense_pine_25",
+      "kind": "tree",
+      "at": [
+        -4.96,
+        -4.49
+      ],
+      "scale": 1.15
+    },
+    {
+      "id": "dense_pine_31",
+      "kind": "tree",
+      "at": [
+        -4.57,
+        -7.09
+      ],
+      "scale": 1.16
+    },
+    {
+      "id": "dense_pine_32",
+      "kind": "tree",
+      "at": [
+        6.18,
+        9.71
+      ],
+      "scale": 1.05
+    },
+    {
+      "id": "dense_pine_39",
+      "kind": "tree",
+      "at": [
+        5.0,
+        -3.82
+      ],
+      "scale": 0.77
+    },
+    {
+      "id": "dense_pine_41",
+      "kind": "tree",
+      "at": [
+        4.1,
+        6.3
+      ],
+      "scale": 0.95
+    },
+    {
+      "id": "dense_pine_45",
+      "kind": "tree",
+      "at": [
+        4.3,
+        3.88
+      ],
+      "scale": 1.07
+    },
+    {
+      "id": "dense_pine_53",
+      "kind": "tree",
+      "at": [
+        -8.59,
+        -5.28
+      ],
+      "scale": 0.92
+    },
+    {
+      "id": "dense_pine_54",
+      "kind": "tree",
+      "at": [
+        -5.74,
+        0.83
+      ],
+      "scale": 0.85
+    },
+    {
+      "id": "dense_pine_60",
+      "kind": "tree",
+      "at": [
+        10.56,
+        4.07
+      ],
+      "scale": 0.9
+    },
+    {
+      "id": "dense_pine_83",
+      "kind": "tree",
+      "at": [
+        10.27,
+        -4.3
+      ],
+      "scale": 0.86
+    },
+    {
+      "id": "dense_pine_87",
+      "kind": "tree",
+      "at": [
+        3.61,
+        -1.95
+      ],
+      "scale": 0.95
+    },
+    {
+      "id": "dense_pine_92",
+      "kind": "tree",
+      "at": [
+        -7.15,
+        -7.05
+      ],
+      "scale": 0.76
+    },
+    {
+      "id": "dense_pine_113",
+      "kind": "tree",
+      "at": [
+        4.94,
+        -8.25
+      ],
+      "scale": 1.06
+    },
+    {
+      "id": "dense_pine_132",
+      "kind": "tree",
+      "at": [
+        -3.29,
+        6.78
+      ],
+      "scale": 0.91
+    },
+    {
+      "id": "dense_pine_137",
+      "kind": "tree",
+      "at": [
+        9.9,
+        2.03
+      ],
+      "scale": 1.09
+    },
+    {
+      "id": "dense_pine_145",
+      "kind": "tree",
+      "at": [
+        -9.23,
+        9.99
+      ],
+      "scale": 1.14
+    },
+    {
+      "id": "dense_pine_154",
+      "kind": "tree",
+      "at": [
+        -3.94,
+        2.65
+      ],
+      "scale": 0.84
+    },
+    {
+      "id": "dense_pine_168",
+      "kind": "tree",
+      "at": [
+        7.2,
+        -5.84
+      ],
+      "scale": 0.75
+    },
+    {
+      "id": "dense_pine_178",
+      "kind": "tree",
+      "at": [
+        2.32,
+        -5.44
+      ],
+      "scale": 0.89
+    },
+    {
+      "id": "dense_pine_188",
+      "kind": "tree",
+      "at": [
+        6.7,
+        -2.09
+      ],
+      "scale": 0.95
+    },
+    {
+      "id": "dense_pine_195",
+      "kind": "tree",
+      "at": [
+        2.74,
+        10.33
+      ],
+      "scale": 0.98
+    },
+    {
+      "id": "dense_pine_205",
+      "kind": "tree",
+      "at": [
+        6.11,
+        6.98
+      ],
+      "scale": 1.01
+    }
+  ],
+  "npcs": [],
+  "interactions": [
+    {
+      "id": "forest_sign",
+      "kind": "sign",
+      "at": [
+        -2.1,
+        -7.0
+      ],
+      "title": "Forest warning",
+      "lines": [
+        "Defeated creatures stay defeated. The warden's hollow lies south along the old cobbled road.",
+        "Clear the slime before taking the deeper trail. Talk to Mother at the west cottage about the alchemical core.",
+        "Face incoming attacks and right-click to parry. A stone warden can only be hurt after reflecting its thrown rock."
+      ]
+    },
+    {
+      "id": "jungle_waymarker",
+      "kind": "sign",
+      "at": [
+        -6,
+        1
+      ],
+      "title": "Jungle Hollow",
+      "lines": [
+        "West: Jungle Hollow and the Queen's Basin.",
+        "Watch the canopy. Smash the queen's brood cores before they take shape."
+      ]
+    }
+  ],
+  "exits": [
+    {
+      "id": "coast_gate",
+      "rect": [
+        -1.7,
+        -9.8,
+        3.4,
+        1.0
+      ],
+      "target": "coastal_path",
+      "spawn": [
+        0,
+        8.5
+      ],
+      "label": "Coastal Path"
+    },
+    {
+      "id": "glade_gate",
+      "rect": [
+        -1.7,
+        10.8,
+        3.4,
+        1
+      ],
+      "target": "herb_glade",
+      "spawn": [
+        0,
+        -17
+      ],
+      "label": "Warden's Hollow"
+    },
+    {
+      "id": "jungle_gate",
+      "rect": [
+        -12,
+        -3,
+        1,
+        4
+      ],
+      "target": "jungle_approach",
+      "spawn": [
+        12,
+        0
+      ],
+      "label": "Jungle Hollow"
+    }
+  ],
+  "enemies": [
+    {
+      "id": "forest_slime",
+      "kind": "slime",
+      "at": [
+        0,
+        1.8
+      ],
+      "size": "medium"
+    }
+  ]
+}

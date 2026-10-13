@@ -1,0 +1,62 @@
+[
+  {
+    "mesh": "module_body",
+    "original_vertices": 1264,
+    "advanced_vertices": 5276
+  },
+  {
+    "mesh": "left_arm_human",
+    "original_vertices": 228,
+    "advanced_vertices": 964
+  },
+  {
+    "mesh": "footwear_boots",
+    "original_vertices": 400,
+    "advanced_vertices": 1620
+  },
+  {
+    "mesh": "footwear_bare",
+    "original_vertices": 456,
+    "advanced_vertices": 1928
+  },
+  {
+    "mesh": "hair_bob",
+    "original_vertices": 3038,
+    "advanced_vertices": 12698
+  },
+  {
+    "mesh": "hair_crop",
+    "original_vertices": 746,
+    "advanced_vertices": 3138
+  },
+  {
+    "mesh": "hair_headscarf",
+    "original_vertices": 998,
+    "advanced_vertices": 4200
+  },
+  {
+    "mesh": "outfit_dress",
+    "original_vertices": 636,
+    "advanced_vertices": 3042
+  },
+  {
+    "mesh": "outfit_tunic",
+    "original_vertices": 580,
+    "advanced_vertices": 2660
+  },
+  {
+    "mesh": "outfit_workdress",
+    "original_vertices": 620,
+    "advanced_vertices": 2994
+  },
+  {
+    "mesh": "arm_prototype",
+    "original_vertices": 420,
+    "advanced_vertices": 1668
+  },
+  {
+    "mesh": "arm_wrapped",
+    "original_vertices": 224,
+    "advanced_vertices": 888
+  }
+]

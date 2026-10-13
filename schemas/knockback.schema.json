@@ -1,0 +1,128 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "small",
+    "medium",
+    "large",
+    "giant",
+    "deceleration"
+  ],
+  "properties": {
+    "small": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "light",
+        "strong",
+        "stun"
+      ],
+      "properties": {
+        "light": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 12
+        },
+        "strong": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 12
+        },
+        "stun": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 12
+        }
+      }
+    },
+    "medium": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "light",
+        "strong",
+        "stun"
+      ],
+      "properties": {
+        "light": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 12
+        },
+        "strong": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 12
+        },
+        "stun": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 12
+        }
+      }
+    },
+    "large": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "light",
+        "strong",
+        "stun"
+      ],
+      "properties": {
+        "light": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 12
+        },
+        "strong": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 12
+        },
+        "stun": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 12
+        }
+      }
+    },
+    "giant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "light",
+        "strong",
+        "stun",
+        "weakspot_strong"
+      ],
+      "properties": {
+        "light": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 12
+        },
+        "strong": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 12
+        },
+        "stun": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 12
+        },
+        "weakspot_strong": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 12
+        }
+      }
+    },
+    "deceleration": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 30
+    }
+  }
+}

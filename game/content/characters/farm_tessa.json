@@ -1,0 +1,19 @@
+{
+  "id": "farm_tessa",
+  "display_name": "Tessa Lark",
+  "rig_family": "humanoid_v1",
+  "modules": {
+    "hair": "headscarf",
+    "outfit": "workdress",
+    "equipment": "none"
+  },
+  "palette": {
+    "skin": "#CE9C72",
+    "hair": "#70523C",
+    "dress": "#738862",
+    "leather": "#5F4834",
+    "metal": "#BDC4CE",
+    "gem": "#247BCB",
+    "socks": "#D6D0BF"
+  }
+}

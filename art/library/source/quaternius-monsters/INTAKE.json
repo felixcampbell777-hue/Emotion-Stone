@@ -1,0 +1,1648 @@
+{
+  "id": "quaternius-monsters",
+  "type": "creature-kit",
+  "provider": "Quaternius",
+  "author": "Quaternius",
+  "source": "https://quaternius.com/packs/ultimatemonsters.html",
+  "license": "CC0-1.0 (supplied legacy license; current QAL conflict recorded)",
+  "license_source": "https://quaternius.com/license.html",
+  "supplied_license_text": "------------------------------------------------------\nUltimate Platformer Pack by @Quaternius\nConsider supporting me on Patreon, even $1 helps me a lot!\n\nhttps://www.patreon.com/quaternius\n-------------------------------------------------------\n\nLicense:\nCC0 1.0 Universal (CC0 1.0) \nPublic Domain Dedication\nhttps://creativecommons.org/publicdomain/zero/1.0/\n\n",
+  "license_handling": "User explicitly authorized Quaternius on 2026-10-11. Retain legacy declarations; conservatively comply with current QAL restrictions for new use; do not redistribute raw assets. This exception is separate from the open-license collection.",
+  "biomes": [
+    "forest",
+    "mountain",
+    "castle",
+    "beach"
+  ],
+  "note": "Original art sources only; no installers, addon, Godot code, demos, or duplicate FBX/OBJ exports. No game integration.",
+  "utc": "2026-10-11T17:21:18.696023+00:00",
+  "downloads": [
+    {
+      "official_creator_page": "https://quaternius.com/packs/ultimatemonsters.html",
+      "official_drive_root": "https://drive.google.com/drive/folders/18m4KpzpEzhC9wl7jzr6dUc0N8Jozr79C",
+      "transfer": "Authenticated Google Drive connector raw-file response; returned scoped download URL consumed ephemerally, not retained."
+    }
+  ],
+  "status": "collected_defender_no_threats_detected",
+  "gltf_checks": [
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\Yeti.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\Tribal.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\Orc_Skull.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\Orc.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\Ninja.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\MushroomKing.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\Monkroose.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\Frog.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\Dino.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\Fish.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\Demon.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\Bunny.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\Cactoro.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\BlueDemon.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\Birb.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Big\\glTF\\Alien.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Duck",
+        "HitReact",
+        "Idle",
+        "Jump",
+        "Jump_Idle",
+        "Jump_Land",
+        "No",
+        "Punch",
+        "Run",
+        "Walk",
+        "Wave",
+        "Weapon",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\Yeti.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\Wizard.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\PinkBlob.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\Pigeon.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\Orc.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\Mushnub_Evolved.gltf",
+      "meshes": 3,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\Ninja.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\Mushnub.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\GreenSpikyBlob.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\Fish.gltf",
+      "meshes": 3,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\Chicken.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\GreenBlob.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\Birb.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\Cactoro.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\Cat.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\Dog.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Blob\\glTF\\Alien.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Bite_Front",
+        "Dance",
+        "Death",
+        "HitRecieve",
+        "Idle",
+        "Jump",
+        "No",
+        "Walk",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Tribal.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Squidle.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Hywirl.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Goleling_Evolved.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Goleling.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Pigeon.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Glub_Evolved.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Glub.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Dragon_Evolved.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Ghost_Skull.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Ghost.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Dragon.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Demon.gltf",
+      "meshes": 3,
+      "skins": 1,
+      "animations": [
+        "Flying_Idle"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Alpaking_Evolved.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Armabee_Evolved.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Armabee.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    },
+    {
+      "file": "quaternius-monsters\\Flying\\glTF\\Alpaking.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Death",
+        "Fast_Flying",
+        "Flying_Idle",
+        "Headbutt",
+        "HitReact",
+        "No",
+        "Punch",
+        "Yes"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\Yeti.gltf",
+      "bytes": 1227684,
+      "sha256": "ab60f4fbc1c2e1fdc3ed4f63023dc2185240dbd55751df568099557b29af6fd5",
+      "official_drive_id": "1_skNq11VXoaGPu9D-hHb4-0OQXEWNTzY",
+      "official_drive_url": "https://drive.google.com/file/d/1_skNq11VXoaGPu9D-hHb4-0OQXEWNTzY/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\Tribal.gltf",
+      "bytes": 1327295,
+      "sha256": "ffe686b0f0e7a2fb968ea9829358f059df903d2a60c9a94bd3516b1c3d42b7c4",
+      "official_drive_id": "1hWEwACHKMfDzYbqG2Cum3KP6semUY_Ap",
+      "official_drive_url": "https://drive.google.com/file/d/1hWEwACHKMfDzYbqG2Cum3KP6semUY_Ap/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\Orc_Skull.gltf",
+      "bytes": 1286559,
+      "sha256": "e27e3acf826e9f5cad021c647bd3ce6f1c82d2aaa3530c03ee442df4828a710e",
+      "official_drive_id": "13wbbztVj_2eYyF5lavumLvK9JyCfQEhI",
+      "official_drive_url": "https://drive.google.com/file/d/13wbbztVj_2eYyF5lavumLvK9JyCfQEhI/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\Orc.gltf",
+      "bytes": 1280189,
+      "sha256": "e61a37f8d9b2eee28928bdfad2c55e0798cc0a212e925cc5dcc66b243526c1a3",
+      "official_drive_id": "17675H4Owu5FeHUk_7Goyc9TKI5YK3cEM",
+      "official_drive_url": "https://drive.google.com/file/d/17675H4Owu5FeHUk_7Goyc9TKI5YK3cEM/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\Ninja.gltf",
+      "bytes": 1226528,
+      "sha256": "f1042e533bd24b98ceee179eaf4119517051fd745feb8d71af1b78a4ac3c88a3",
+      "official_drive_id": "1T45Ab6f3oX6m-r-kRqEOsmv0Yp9ySmDb",
+      "official_drive_url": "https://drive.google.com/file/d/1T45Ab6f3oX6m-r-kRqEOsmv0Yp9ySmDb/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\MushroomKing.gltf",
+      "bytes": 1219690,
+      "sha256": "ccf27e126b881d80a2046c3ab96ddd94eb996837480e783142009ecd6629a3a4",
+      "official_drive_id": "1sCGed1ce1CrdCdFz5bxVQMqphu5e3a1m",
+      "official_drive_url": "https://drive.google.com/file/d/1sCGed1ce1CrdCdFz5bxVQMqphu5e3a1m/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\Monkroose.gltf",
+      "bytes": 1230779,
+      "sha256": "4e984e22bef1a49da0ff92154f5747d3e61997637937532bc066867f08e8e719",
+      "official_drive_id": "1EhDGjdMRdNZA52otQt73a0x3VpiunwOP",
+      "official_drive_url": "https://drive.google.com/file/d/1EhDGjdMRdNZA52otQt73a0x3VpiunwOP/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\Frog.gltf",
+      "bytes": 1173679,
+      "sha256": "8a73522affc7483fbd43736e95d5581ff993685312995d2c7ebb112eb7d5c004",
+      "official_drive_id": "19QwNJOpMLNtw5jS2D6tOQQ48nPPk9VSI",
+      "official_drive_url": "https://drive.google.com/file/d/19QwNJOpMLNtw5jS2D6tOQQ48nPPk9VSI/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\Dino.gltf",
+      "bytes": 1211215,
+      "sha256": "d7c57a4ad6444f9c845ecdc13782a7430fcb377594a00f719cd2d37b9434b6de",
+      "official_drive_id": "1xBAObQmJQP1kCslielMmS_KMfPZUsdNm",
+      "official_drive_url": "https://drive.google.com/file/d/1xBAObQmJQP1kCslielMmS_KMfPZUsdNm/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\Fish.gltf",
+      "bytes": 1261440,
+      "sha256": "9549f80351ad7c8e97c6894662a80fb42e4df8ebc7588b6912ea8f9e2ec6b9b1",
+      "official_drive_id": "1mQqf-c9O4u3bk2ycpt-DFraGfRjcVfZV",
+      "official_drive_url": "https://drive.google.com/file/d/1mQqf-c9O4u3bk2ycpt-DFraGfRjcVfZV/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\Demon.gltf",
+      "bytes": 1264925,
+      "sha256": "9ce361b41a0e80d42a70f6325169b9c70a6e3304b8d856b8344a2b7f185067af",
+      "official_drive_id": "1XhBLnR6tjqIrFy0AUfRlqKf-hYmVwIR4",
+      "official_drive_url": "https://drive.google.com/file/d/1XhBLnR6tjqIrFy0AUfRlqKf-hYmVwIR4/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\Bunny.gltf",
+      "bytes": 1452855,
+      "sha256": "89fce228bdcefac4e498378fa061b9d928bca01b680101530648f8b28c9c9ad9",
+      "official_drive_id": "1wy1OR4I3CHbWqgD_JMrMkQiUABRGKQfO",
+      "official_drive_url": "https://drive.google.com/file/d/1wy1OR4I3CHbWqgD_JMrMkQiUABRGKQfO/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\Cactoro.gltf",
+      "bytes": 1261358,
+      "sha256": "29051fc39751fa5b3af69f7bce77297c620651b1b2235bbd644962bd6a895461",
+      "official_drive_id": "19Po2Ae16TbImr6dCu7PRZdpPQhEA13OQ",
+      "official_drive_url": "https://drive.google.com/file/d/19Po2Ae16TbImr6dCu7PRZdpPQhEA13OQ/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\BlueDemon.gltf",
+      "bytes": 1190068,
+      "sha256": "9eb899fc619dff9a973669e0962452990c8ec44d4501dd41fe4f4fe5afd631f4",
+      "official_drive_id": "1mcxtHj9Aw1uu1FWYhl1rfPenuq3My-Z4",
+      "official_drive_url": "https://drive.google.com/file/d/1mcxtHj9Aw1uu1FWYhl1rfPenuq3My-Z4/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\Birb.gltf",
+      "bytes": 1223075,
+      "sha256": "d2422f23943125b397078377026172d36ccfd5a657057ffc3803be4a9e983307",
+      "official_drive_id": "1x_TV2p9dZg6UKhEM-5484Wt_4Mw1zMGL",
+      "official_drive_url": "https://drive.google.com/file/d/1x_TV2p9dZg6UKhEM-5484Wt_4Mw1zMGL/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\Alien.gltf",
+      "bytes": 1295881,
+      "sha256": "e6fec42f9d4db3c3177da9027c5cdb2c4abd71cb934ea4f4788aea155f267124",
+      "official_drive_id": "1rWF4Jo_G7-odDa5LfkQ0e2d9_p9pxb3W",
+      "official_drive_url": "https://drive.google.com/file/d/1rWF4Jo_G7-odDa5LfkQ0e2d9_p9pxb3W/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\glTF\\Atlas_Monsters.png",
+      "bytes": 9007,
+      "sha256": "b970ed1359ce749fd81a8395d58ff5f3044d843213e17fb94b97892d417c0af9",
+      "official_drive_id": "1fX6w5W_wuiak8-Cm2ocef3VRzJdLzA-U",
+      "official_drive_url": "https://drive.google.com/file/d/1fX6w5W_wuiak8-Cm2ocef3VRzJdLzA-U/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\Yeti.blend",
+      "bytes": 2954612,
+      "sha256": "c093bb3e81cfdb323465c9c550f1a5cf15d0af8b2bb8072e59cca1b585625f76",
+      "official_drive_id": "174GVv54Yo0q2dNRYVoJifKyepy8K3gO7",
+      "official_drive_url": "https://drive.google.com/file/d/174GVv54Yo0q2dNRYVoJifKyepy8K3gO7/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\Tribal.blend",
+      "bytes": 2988104,
+      "sha256": "0409aa0cdbc52fb22819dab67f10d1a7c3dbecf07cf1a7cdc5b2aeccc1efe6f1",
+      "official_drive_id": "1HUBMIJrmoSU5icrdB0PX4xRr64JsSvRq",
+      "official_drive_url": "https://drive.google.com/file/d/1HUBMIJrmoSU5icrdB0PX4xRr64JsSvRq/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\Orc_Skull.blend",
+      "bytes": 3054544,
+      "sha256": "6f3bfaab1fab8f0f962818d5adbe7035d056a1dad7f847dff769b16f4a7fe136",
+      "official_drive_id": "1PQ1-8_tqPNWj--SRsBfKnhTPsSo57kjb",
+      "official_drive_url": "https://drive.google.com/file/d/1PQ1-8_tqPNWj--SRsBfKnhTPsSo57kjb/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\Orc.blend",
+      "bytes": 3046180,
+      "sha256": "88a9ec1b17044b254dd715f7068549d1a1a9413d033e0ae0136f5267c00f12de",
+      "official_drive_id": "1c3MUyIuICUIihEoommpccm4e1BaPSxZ9",
+      "official_drive_url": "https://drive.google.com/file/d/1c3MUyIuICUIihEoommpccm4e1BaPSxZ9/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\Ninja.blend",
+      "bytes": 2896616,
+      "sha256": "02b47134b1c33a1cbeb6c5e7dc5d0c54a17ff9a6ac740f9dbccef68e15d9f521",
+      "official_drive_id": "1fVlQGO1_fWPFPK_oOVtSVjNlA3ebIhRT",
+      "official_drive_url": "https://drive.google.com/file/d/1fVlQGO1_fWPFPK_oOVtSVjNlA3ebIhRT/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\MushroomKing.blend",
+      "bytes": 2938552,
+      "sha256": "6b100c6e8e70db9a2a2a2f07cf5a6a00ae327cd9258e22fbdc6e57b1876526e6",
+      "official_drive_id": "1E8k_zVAbeiFhguw09wfeSVqbYmNIaTW6",
+      "official_drive_url": "https://drive.google.com/file/d/1E8k_zVAbeiFhguw09wfeSVqbYmNIaTW6/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\Monkroose.blend",
+      "bytes": 2921384,
+      "sha256": "ce511c1eb19db09b11c9726e033b70f1002ba72de60591883b412c7fe5edf3ea",
+      "official_drive_id": "1gviB0VFh96a6Mdrzs5DLX3evRiQIR48p",
+      "official_drive_url": "https://drive.google.com/file/d/1gviB0VFh96a6Mdrzs5DLX3evRiQIR48p/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\Frog.blend",
+      "bytes": 2845248,
+      "sha256": "4af32f5d9b3084c242afda66a2269ae13ea78501b023d5873dfbf210bcc89f3e",
+      "official_drive_id": "1KppStmo8AbkOxKuNliuuBNZJN8o8ujdX",
+      "official_drive_url": "https://drive.google.com/file/d/1KppStmo8AbkOxKuNliuuBNZJN8o8ujdX/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\Fish.blend",
+      "bytes": 3027476,
+      "sha256": "c63643b64df6bba7a2eeb2c6f69e3533f5c7360ef0c7b1ee5775d05ee23bce4b",
+      "official_drive_id": "1Snzz46rhAccNKF4LDC-QEswk75W4YrfX",
+      "official_drive_url": "https://drive.google.com/file/d/1Snzz46rhAccNKF4LDC-QEswk75W4YrfX/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\Dino.blend",
+      "bytes": 2885260,
+      "sha256": "47e6ad90a8bdab41a13186911dadc40e8bdcafa0958aeeabcbfb9726f58027eb",
+      "official_drive_id": "1wtFhj8f7piiOA3v6_44c6xCfh0veIfxQ",
+      "official_drive_url": "https://drive.google.com/file/d/1wtFhj8f7piiOA3v6_44c6xCfh0veIfxQ/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\Demon.blend",
+      "bytes": 2985780,
+      "sha256": "86a9aebbfe9fd4ae55828517f101867338848f4096e2609117c3c0d68520e09b",
+      "official_drive_id": "1ehcq9DH5LXAlZKMRJNr2_w1xeVXScGGx",
+      "official_drive_url": "https://drive.google.com/file/d/1ehcq9DH5LXAlZKMRJNr2_w1xeVXScGGx/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\Cactoro.blend",
+      "bytes": 2971588,
+      "sha256": "819a5c58883323ae735d980591e493d6bc284605977f12c71817d9a3a5abc1d4",
+      "official_drive_id": "1HRXE3xPBCKtqye2EgVvHqVbETTTDYob0",
+      "official_drive_url": "https://drive.google.com/file/d/1HRXE3xPBCKtqye2EgVvHqVbETTTDYob0/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\Bunny.blend",
+      "bytes": 3453204,
+      "sha256": "f39fa3ea2d57955c5313722664796c8fd55e92e478d8b982da18952721472193",
+      "official_drive_id": "1P0dGW-epIr4kb22xHc5hNulyldAKVfZM",
+      "official_drive_url": "https://drive.google.com/file/d/1P0dGW-epIr4kb22xHc5hNulyldAKVfZM/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\BlueDemon.blend",
+      "bytes": 2904788,
+      "sha256": "20a5b0c424ca2b03f4d4ee457d762e0f2cf236f410d4ac54a6ec1b6c66ce3346",
+      "official_drive_id": "1YUtUzG-2QlA5Tj2dWKzNq1GExTNb6rkN",
+      "official_drive_url": "https://drive.google.com/file/d/1YUtUzG-2QlA5Tj2dWKzNq1GExTNb6rkN/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\Birb.blend",
+      "bytes": 2924152,
+      "sha256": "e1f2c2fe2681de7783a7c43bce53ce0a6bd189752ef3c037f2415dfe1e7dbc84",
+      "official_drive_id": "1sdNFEiMDGMlcHHXBW3NU56sXfQKfVxTA",
+      "official_drive_url": "https://drive.google.com/file/d/1sdNFEiMDGMlcHHXBW3NU56sXfQKfVxTA/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\Alien.blend",
+      "bytes": 3153760,
+      "sha256": "05a0d1156614968abc756428bb54015d90f825f9cc14739a32cd5764691169c2",
+      "official_drive_id": "1thfj0xKcrvc9QyLRMGlLjKTjk4XS9p_n",
+      "official_drive_url": "https://drive.google.com/file/d/1thfj0xKcrvc9QyLRMGlLjKTjk4XS9p_n/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Big\\Blends\\Atlas_Monsters.png",
+      "bytes": 9007,
+      "sha256": "b970ed1359ce749fd81a8395d58ff5f3044d843213e17fb94b97892d417c0af9",
+      "official_drive_id": "1glCkqdNYhTv7EP9gvRIqjwTqC02zNmiM",
+      "official_drive_url": "https://drive.google.com/file/d/1glCkqdNYhTv7EP9gvRIqjwTqC02zNmiM/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\Mushnub_Evolved.blend",
+      "bytes": 1095184,
+      "sha256": "47082b5c4c1523087d501579f8e91911cfbd23035ee7abfb53a9b1e580b30104",
+      "official_drive_id": "1cKxTuw_KtCIZdTti7YEiCu0KmvxlQY9O",
+      "official_drive_url": "https://drive.google.com/file/d/1cKxTuw_KtCIZdTti7YEiCu0KmvxlQY9O/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\Yeti.blend",
+      "bytes": 996448,
+      "sha256": "8f335c498df9b480c88bfb7c43ff3007141490c9ef254485bb128f6b293600e8",
+      "official_drive_id": "1x9VF3XtETgPlW1mdf7XZ5GaaDtaumBqg",
+      "official_drive_url": "https://drive.google.com/file/d/1x9VF3XtETgPlW1mdf7XZ5GaaDtaumBqg/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\Wizard.blend",
+      "bytes": 952088,
+      "sha256": "d3dab432a698379c960c3eddf25f29a48088407e67dba275d851c9a078d44ba5",
+      "official_drive_id": "1DzZNoIlqkPJoJNCIJ5MQ1IF-JxAti47u",
+      "official_drive_url": "https://drive.google.com/file/d/1DzZNoIlqkPJoJNCIJ5MQ1IF-JxAti47u/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\Pigeon.blend",
+      "bytes": 990796,
+      "sha256": "da3f16dea3a469aa65985cfc313b0d7e82b22db5cdd0e7f861df3b45a6c5b8b2",
+      "official_drive_id": "1ikL2e8BQBEIa21c3tWL7B0FKgyHGzBG7",
+      "official_drive_url": "https://drive.google.com/file/d/1ikL2e8BQBEIa21c3tWL7B0FKgyHGzBG7/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\Ninja.blend",
+      "bytes": 992392,
+      "sha256": "d6cb906fc7ca61bc405d3b1b6d19ef71521755b6e2d206050e30f2a6c9882f81",
+      "official_drive_id": "1ERyKctA9WybyNGeqxNbEqp_sDwT3YBzQ",
+      "official_drive_url": "https://drive.google.com/file/d/1ERyKctA9WybyNGeqxNbEqp_sDwT3YBzQ/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\Orc.blend",
+      "bytes": 1008032,
+      "sha256": "1e6f5f739c775edbfb25f2218397694b176bbacdba4680650bd2e59c206ea3aa",
+      "official_drive_id": "1XsBo6vZjRaUq65ZhKXKn0G2MWmUXABV8",
+      "official_drive_url": "https://drive.google.com/file/d/1XsBo6vZjRaUq65ZhKXKn0G2MWmUXABV8/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\PinkBlob.blend",
+      "bytes": 891456,
+      "sha256": "e07562e93326af46e546bf444cc16219375e64cd298a7243f82ae9a3e5499df7",
+      "official_drive_id": "11J8cTpvwCOCuW0T4aq-8cYtUSNPZAApt",
+      "official_drive_url": "https://drive.google.com/file/d/11J8cTpvwCOCuW0T4aq-8cYtUSNPZAApt/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\Mushnub.blend",
+      "bytes": 903500,
+      "sha256": "fd514b8fa2368443a257bbd0f60dfa2f188a701407ad4fdca325a2d08e7b6c2b",
+      "official_drive_id": "16MSyomZ8iOHcO2Xz2JKjulRMh747Fwl0",
+      "official_drive_url": "https://drive.google.com/file/d/16MSyomZ8iOHcO2Xz2JKjulRMh747Fwl0/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\GreenSpikyBlob.blend",
+      "bytes": 1289996,
+      "sha256": "f0a033477c80abf716975696716fabdc75e2c4b3dcf423c1cedf54a4b81f8055",
+      "official_drive_id": "1ht3nyzGHCYvQR2pGdOtwQ1lWlASWfEu3",
+      "official_drive_url": "https://drive.google.com/file/d/1ht3nyzGHCYvQR2pGdOtwQ1lWlASWfEu3/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\Fish.blend",
+      "bytes": 1125532,
+      "sha256": "aa26952d2aea1d2110bbab05c4e5e492a8709b6207a233849d186eec32c09b80",
+      "official_drive_id": "1U6rDfO9IUvqhKRqcYR4Fp6OBibtGHyDr",
+      "official_drive_url": "https://drive.google.com/file/d/1U6rDfO9IUvqhKRqcYR4Fp6OBibtGHyDr/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\Chicken.blend",
+      "bytes": 1061316,
+      "sha256": "ecb6310825192ad96cb7035db9e7b3947ca43431b5ccfb479f0ddec8936ce1c3",
+      "official_drive_id": "1aJSuxiC1zfqK3dtLTrt4lzc3-CVVHwY6",
+      "official_drive_url": "https://drive.google.com/file/d/1aJSuxiC1zfqK3dtLTrt4lzc3-CVVHwY6/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\Birb.blend",
+      "bytes": 1106128,
+      "sha256": "b7dc1911b70fc0ed55b86256b0fc39168d0c17a8309ebf3ff5cb730600ddab8a",
+      "official_drive_id": "1jTCSd9i2bPNn_jk5Y8gDT2b4wPl8LD5Q",
+      "official_drive_url": "https://drive.google.com/file/d/1jTCSd9i2bPNn_jk5Y8gDT2b4wPl8LD5Q/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\Dog.blend",
+      "bytes": 917392,
+      "sha256": "c01be0f73aec0ff498518b7fab049a1e5f888143948598b1d5855bda2bb1f1fc",
+      "official_drive_id": "1b21kvW2GHQ_3vmM07r4IiiUX5VoDeQUE",
+      "official_drive_url": "https://drive.google.com/file/d/1b21kvW2GHQ_3vmM07r4IiiUX5VoDeQUE/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\GreenBlob.blend",
+      "bytes": 942644,
+      "sha256": "1b8d1b125670396d520f61b01b916089805ad6ed0dbb728d5b6ba94a00310c0f",
+      "official_drive_id": "1-rKbmgZNpFu3qrr0cDaxDKY3-V8452aY",
+      "official_drive_url": "https://drive.google.com/file/d/1-rKbmgZNpFu3qrr0cDaxDKY3-V8452aY/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\Cactoro.blend",
+      "bytes": 998884,
+      "sha256": "1294e0afa7c3950cb9e3aaa5c503d11b561ff3ffb779f752b07f1ab845addb5e",
+      "official_drive_id": "1ocpPOFoMdzxQq6aaZhn3qXdjM8Bfi3L9",
+      "official_drive_url": "https://drive.google.com/file/d/1ocpPOFoMdzxQq6aaZhn3qXdjM8Bfi3L9/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\Alien.blend",
+      "bytes": 1051708,
+      "sha256": "b33f3bcbfdaa30aff551a2c363084b9dcf681bd0fb44c02ba6ecdb93c51a659c",
+      "official_drive_id": "1dN5XyD1oD2X5xKb7FlmnqDByRzHE-syy",
+      "official_drive_url": "https://drive.google.com/file/d/1dN5XyD1oD2X5xKb7FlmnqDByRzHE-syy/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\Cat.blend",
+      "bytes": 955144,
+      "sha256": "358eaed7da2cad3263966e9b5d097947c450d68ef00570be0de3186be9a7a550",
+      "official_drive_id": "1zJMDGdhenqUJx0w5L7LBQfc_e7O1C30W",
+      "official_drive_url": "https://drive.google.com/file/d/1zJMDGdhenqUJx0w5L7LBQfc_e7O1C30W/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\Blends\\Atlas_Monsters.png",
+      "bytes": 9007,
+      "sha256": "b970ed1359ce749fd81a8395d58ff5f3044d843213e17fb94b97892d417c0af9",
+      "official_drive_id": "18KRmBP4IIs8ewxjWFIRBACxx4WKKjQlH",
+      "official_drive_url": "https://drive.google.com/file/d/18KRmBP4IIs8ewxjWFIRBACxx4WKKjQlH/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\Yeti.gltf",
+      "bytes": 191774,
+      "sha256": "44b0627cc65112756642f2d0de529a1fba9d74c4fbc9829b572d90625bbb842f",
+      "official_drive_id": "1VpqldMiSmrmoDtTqA5PqOZ0FrPIKKjiP",
+      "official_drive_url": "https://drive.google.com/file/d/1VpqldMiSmrmoDtTqA5PqOZ0FrPIKKjiP/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\Wizard.gltf",
+      "bytes": 162486,
+      "sha256": "074302ab7039f3a6644c8f0be2580a0d747e8981bfa9725bcc6af422222c155a",
+      "official_drive_id": "1lkfBVrpoKi3JwrkJ3M_vwi7tQXG53RjV",
+      "official_drive_url": "https://drive.google.com/file/d/1lkfBVrpoKi3JwrkJ3M_vwi7tQXG53RjV/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\PinkBlob.gltf",
+      "bytes": 123900,
+      "sha256": "0cc6c64f3e2bad775a7ff82b3ccc11e26359266967a765740655cdaccc5c7ff4",
+      "official_drive_id": "1KcjhxeBkIhsdm_lMKY-OcTmsKDQt3uoK",
+      "official_drive_url": "https://drive.google.com/file/d/1KcjhxeBkIhsdm_lMKY-OcTmsKDQt3uoK/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\Pigeon.gltf",
+      "bytes": 178568,
+      "sha256": "32a03c1018936d06e4dd0c8c5e93e0f6ff5ff73aad47a1653216a7be32e3c62f",
+      "official_drive_id": "19-BdZiXRrGvgZFDusAxoksTWH1yqb9SP",
+      "official_drive_url": "https://drive.google.com/file/d/19-BdZiXRrGvgZFDusAxoksTWH1yqb9SP/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\Orc.gltf",
+      "bytes": 213802,
+      "sha256": "23d3e6e15c9594e8d958e642208ddade1f369e31b762caf2b14c4ef89358b026",
+      "official_drive_id": "154RnrgtkqQ_KgMhRS-Jiz7WeiSdcq4EQ",
+      "official_drive_url": "https://drive.google.com/file/d/154RnrgtkqQ_KgMhRS-Jiz7WeiSdcq4EQ/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\Mushnub_Evolved.gltf",
+      "bytes": 246194,
+      "sha256": "ea6c90e8522eeeba7c6c4cece3a031706de55e9b7e660b362f261a4e5bfaff95",
+      "official_drive_id": "1x86_FT5A-d7oVcCRuqczS7GB1t2GydyN",
+      "official_drive_url": "https://drive.google.com/file/d/1x86_FT5A-d7oVcCRuqczS7GB1t2GydyN/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\Ninja.gltf",
+      "bytes": 182184,
+      "sha256": "41974ce0c56d660950e554d672742e056776518a888e376341bebcce5951178e",
+      "official_drive_id": "1GXgJxRhROHmHAAcoDzIKkQgDmnLqglPf",
+      "official_drive_url": "https://drive.google.com/file/d/1GXgJxRhROHmHAAcoDzIKkQgDmnLqglPf/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\Mushnub.gltf",
+      "bytes": 132465,
+      "sha256": "15e44e46e6c52ff677d946c70d41c4cbb1acb6598e7ec09f8642ee942d7751e2",
+      "official_drive_id": "1bNqyLU2o3FbQueRyaHFuhxN_XEGosnwo",
+      "official_drive_url": "https://drive.google.com/file/d/1bNqyLU2o3FbQueRyaHFuhxN_XEGosnwo/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\GreenSpikyBlob.gltf",
+      "bytes": 312327,
+      "sha256": "ff55e6424f20576cac02578d012b3527af642ef15e7bab4abd2fd8d1f51b3e7e",
+      "official_drive_id": "125zPNBLl1VAgzhfVom9Kj29hSClaZhjF",
+      "official_drive_url": "https://drive.google.com/file/d/125zPNBLl1VAgzhfVom9Kj29hSClaZhjF/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\Fish.gltf",
+      "bytes": 239863,
+      "sha256": "97f6439faff6a85a4ea390a4eb85a54feaa358db8436d920af0be5a1a0432d7e",
+      "official_drive_id": "1Fqsl3XXpkXb1w0Wxn5EikENpy-0O6bAr",
+      "official_drive_url": "https://drive.google.com/file/d/1Fqsl3XXpkXb1w0Wxn5EikENpy-0O6bAr/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\Chicken.gltf",
+      "bytes": 213187,
+      "sha256": "a8ad394817989e1e68c111a3a60b3203b203a3ab4563350b4f3a6e1b5a6c98b1",
+      "official_drive_id": "1IB0MLe3-z1oKSR2AxXBWWx5t9wzreRIe",
+      "official_drive_url": "https://drive.google.com/file/d/1IB0MLe3-z1oKSR2AxXBWWx5t9wzreRIe/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\GreenBlob.gltf",
+      "bytes": 148007,
+      "sha256": "e2d2049ebe8d243bd0f60a3f48a7e174444f641ebc40cbea2f6c23cb97a82519",
+      "official_drive_id": "1Qj3EPCAzN7P3KNrfjV_sFMw98nsBUyob",
+      "official_drive_url": "https://drive.google.com/file/d/1Qj3EPCAzN7P3KNrfjV_sFMw98nsBUyob/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\Birb.gltf",
+      "bytes": 250210,
+      "sha256": "af555c16465c10e1ea4c1c3a8e6df15d199fc3cbcbfa4b3c788e1aff685ce11f",
+      "official_drive_id": "1S3pQ-fJ3FLZjFNU2QvRI_o37dzu4LqS3",
+      "official_drive_url": "https://drive.google.com/file/d/1S3pQ-fJ3FLZjFNU2QvRI_o37dzu4LqS3/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\Cactoro.gltf",
+      "bytes": 209646,
+      "sha256": "a11045fd73ea27f43ddc4ba989e76d29acf569c8a6e6de865f0b3794fc637434",
+      "official_drive_id": "1zkRgEGD59pniSqIWt4ycEU4CR0wPop7u",
+      "official_drive_url": "https://drive.google.com/file/d/1zkRgEGD59pniSqIWt4ycEU4CR0wPop7u/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\Cat.gltf",
+      "bytes": 175682,
+      "sha256": "59aba7e4ea6da3ac11be9d5220304e649de8cb8cf975eef588d30a003c6cd275",
+      "official_drive_id": "1DaLGZYClS3GTBHVP3F6tF3mVjQ4-rTc-",
+      "official_drive_url": "https://drive.google.com/file/d/1DaLGZYClS3GTBHVP3F6tF3mVjQ4-rTc-/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\Dog.gltf",
+      "bytes": 142124,
+      "sha256": "21ed475bbf4d5fb7016085290f79663ad7107aedd2a5856318f2716c7ecc6402",
+      "official_drive_id": "1zLzeCmfxleaolUOPvAEDSWzWXSlKAnQe",
+      "official_drive_url": "https://drive.google.com/file/d/1zLzeCmfxleaolUOPvAEDSWzWXSlKAnQe/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\Alien.gltf",
+      "bytes": 198883,
+      "sha256": "9779ff35883ddf0afea041d4e05628e2233d374472d242310ff2d31c7c0a5108",
+      "official_drive_id": "1DY3eAtSljj-Iiww1Q2kWnj7t25L1Wx8F",
+      "official_drive_url": "https://drive.google.com/file/d/1DY3eAtSljj-Iiww1Q2kWnj7t25L1Wx8F/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Blob\\glTF\\Atlas_Monsters.png",
+      "bytes": 9007,
+      "sha256": "b970ed1359ce749fd81a8395d58ff5f3044d843213e17fb94b97892d417c0af9",
+      "official_drive_id": "1tSw6RTcAIONQpTnPRsQebFPC_QLmWQvd",
+      "official_drive_url": "https://drive.google.com/file/d/1tSw6RTcAIONQpTnPRsQebFPC_QLmWQvd/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Tribal.blend",
+      "bytes": 2110808,
+      "sha256": "ebff484ac636228cf000905473a2d95a29356c8948425971bd88986add24b6e3",
+      "official_drive_id": "1fzGMcPY2UHId_BmLho6JjGMjmPuVVAFR",
+      "official_drive_url": "https://drive.google.com/file/d/1fzGMcPY2UHId_BmLho6JjGMjmPuVVAFR/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Squidle.blend",
+      "bytes": 2301024,
+      "sha256": "db98183a78e71e178e013ac916e304d2c8a2cd296af37227fe782ff8fcd390ff",
+      "official_drive_id": "1WdZsQC5GPbzq5JXq469UrqPh1hxRB1PK",
+      "official_drive_url": "https://drive.google.com/file/d/1WdZsQC5GPbzq5JXq469UrqPh1hxRB1PK/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Pigeon.blend",
+      "bytes": 1400400,
+      "sha256": "150a0f340e5de04e7176136f913ad21a33b5ba28cc108c9d042125b380f658fd",
+      "official_drive_id": "1f915A8l_I3Pguxe6OEkzI_o88hx4ct3C",
+      "official_drive_url": "https://drive.google.com/file/d/1f915A8l_I3Pguxe6OEkzI_o88hx4ct3C/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Hywirl.blend",
+      "bytes": 1941296,
+      "sha256": "77fd6be311ccef4462a05984aa77f3fe8bf5c2e9e3b9bbf493f6032bd4187ed0",
+      "official_drive_id": "1zfBxWAq8-1ilocw8oGZskIzVI8WP48VS",
+      "official_drive_url": "https://drive.google.com/file/d/1zfBxWAq8-1ilocw8oGZskIzVI8WP48VS/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Goleling_Evolved.blend",
+      "bytes": 1623832,
+      "sha256": "9f5b6bab8f4e11fd554768949fb1e01240e9cdc194487e779272eb3841bce78f",
+      "official_drive_id": "1NYaHwor7eqGUowgOfhLFTZXP63sImhMc",
+      "official_drive_url": "https://drive.google.com/file/d/1NYaHwor7eqGUowgOfhLFTZXP63sImhMc/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Goleling.blend",
+      "bytes": 1421640,
+      "sha256": "b575e98098ee03d00ac434ff1c32d524e466ca8ae750e4e4a259693a1cd281b2",
+      "official_drive_id": "1y8XT7Zvn3POS6RieJFNDx8VyK9D2ox1U",
+      "official_drive_url": "https://drive.google.com/file/d/1y8XT7Zvn3POS6RieJFNDx8VyK9D2ox1U/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Glub_Evolved.blend",
+      "bytes": 1490408,
+      "sha256": "3df293b6039176876fae8bcb93b9e492acc5e6cbf286fd6997af33048999d07f",
+      "official_drive_id": "1wSz5T4Xg-5f3CczVpUJtkn3LZvOzHuPf",
+      "official_drive_url": "https://drive.google.com/file/d/1wSz5T4Xg-5f3CczVpUJtkn3LZvOzHuPf/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Glub.blend",
+      "bytes": 1309072,
+      "sha256": "b03b6a7516d5ecbdd11b634fd36a536d624096a47c11d0f0ef767a391918890c",
+      "official_drive_id": "1LMTi6l56xtfRI-E7rqwQ6nbZQvPDnqjw",
+      "official_drive_url": "https://drive.google.com/file/d/1LMTi6l56xtfRI-E7rqwQ6nbZQvPDnqjw/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Ghost_Skull.blend",
+      "bytes": 1914648,
+      "sha256": "bc3b28f58d7158a9b438b559c70ef94a75df387d7627f98d60846a2cb0b3eaf9",
+      "official_drive_id": "1zgDg0LYZiAq5DoB-6owIFjvouYHIgvJg",
+      "official_drive_url": "https://drive.google.com/file/d/1zgDg0LYZiAq5DoB-6owIFjvouYHIgvJg/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Ghost.blend",
+      "bytes": 1925848,
+      "sha256": "405d976bbeea9a289252d0530605d415f44661f850944bd28133cc7ebdaf3ccc",
+      "official_drive_id": "1pJlf_pLx2Oehf97p_J88iCieZgQYRhUD",
+      "official_drive_url": "https://drive.google.com/file/d/1pJlf_pLx2Oehf97p_J88iCieZgQYRhUD/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Dragon_Evolved.blend",
+      "bytes": 2621728,
+      "sha256": "12180f770e86b94297472f0c65d79003d1da033a87b99217411dbb445e6bcf15",
+      "official_drive_id": "11fIW__GYPqvjfBAH9cEJvoSdrDFfDYMz",
+      "official_drive_url": "https://drive.google.com/file/d/11fIW__GYPqvjfBAH9cEJvoSdrDFfDYMz/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Dragon.blend",
+      "bytes": 1503940,
+      "sha256": "da8e23dd09d7dd1c11f7e51fe2cd5853b77b0edfc27feff68e1dde36f2772f14",
+      "official_drive_id": "1bZlKtOdoyBNstgm0Qfko6R6WdCBzNzCv",
+      "official_drive_url": "https://drive.google.com/file/d/1bZlKtOdoyBNstgm0Qfko6R6WdCBzNzCv/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Demon.blend",
+      "bytes": 2332040,
+      "sha256": "4257f6398bc7a16ae4020bd106da0d0eb12558ee31d9b6eb4edd923937359e62",
+      "official_drive_id": "1s_vB55M1TVlpe8Rm3Am3oO4gQnQWGy7w",
+      "official_drive_url": "https://drive.google.com/file/d/1s_vB55M1TVlpe8Rm3Am3oO4gQnQWGy7w/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Armabee_Evolved.blend",
+      "bytes": 1369280,
+      "sha256": "ba188e8ae7ccd2b55318b4ab8e9edeb2d117b3eb6c014ee03448d9d260d0e8b6",
+      "official_drive_id": "1g8Dq8o5yUhuxone2ELaVGiz8vP7aidA7",
+      "official_drive_url": "https://drive.google.com/file/d/1g8Dq8o5yUhuxone2ELaVGiz8vP7aidA7/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Armabee.blend",
+      "bytes": 1283736,
+      "sha256": "2661be420dce2e57d28ce69cb92ba26a6e8f14b25f3247e9089e2671d795ac81",
+      "official_drive_id": "1WBs_GHaNVGK1ujTstOxDIoNBgH48ODPG",
+      "official_drive_url": "https://drive.google.com/file/d/1WBs_GHaNVGK1ujTstOxDIoNBgH48ODPG/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Alpaking_Evolved.blend",
+      "bytes": 1507248,
+      "sha256": "428a2a136c160e61b516f3048e1adc87621ca0114cdeb629ed13949dcc8f49c3",
+      "official_drive_id": "1VcMuYa2WcV6VfEft4txT3qjbcTPuDFSs",
+      "official_drive_url": "https://drive.google.com/file/d/1VcMuYa2WcV6VfEft4txT3qjbcTPuDFSs/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Alpaking.blend",
+      "bytes": 1304896,
+      "sha256": "50d9c8ad49517ae45f75dd6c8780abf99dc707b451ae2b1725e988e3958c0358",
+      "official_drive_id": "1FDSISgt1e9AFg-ZNeLCHspCpgzR9uNxj",
+      "official_drive_url": "https://drive.google.com/file/d/1FDSISgt1e9AFg-ZNeLCHspCpgzR9uNxj/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\Blends\\Atlas_Monsters.png",
+      "bytes": 9007,
+      "sha256": "b970ed1359ce749fd81a8395d58ff5f3044d843213e17fb94b97892d417c0af9",
+      "official_drive_id": "14tiMTLyeW6iXd-Lyj5O9kPgb1Ybngluc",
+      "official_drive_url": "https://drive.google.com/file/d/14tiMTLyeW6iXd-Lyj5O9kPgb1Ybngluc/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Tribal.gltf",
+      "bytes": 777249,
+      "sha256": "689db4c3375bc14a82a831f8fc575c0791a85bee40d1fe42ec8ac16545940afa",
+      "official_drive_id": "10vwCwj_WXcOG0PTC6l3yhaAN63DLyX9p",
+      "official_drive_url": "https://drive.google.com/file/d/10vwCwj_WXcOG0PTC6l3yhaAN63DLyX9p/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Squidle.gltf",
+      "bytes": 805758,
+      "sha256": "ed41b8a3e4a49d0eb9522e52d3055a85e7c051607c6f1092aeb4242e0c87c77b",
+      "official_drive_id": "1VbcCYeqrlwYF6b64EY2S_e9hV0HXMr3O",
+      "official_drive_url": "https://drive.google.com/file/d/1VbcCYeqrlwYF6b64EY2S_e9hV0HXMr3O/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Hywirl.gltf",
+      "bytes": 638684,
+      "sha256": "aed5759f91d18ce1922723d5698f5afad2c8d8b26f5c6f11b018ca967898fa50",
+      "official_drive_id": "1LJG8sJYUwdoF7zrzPbEO-Vt9Xt7MQCu-",
+      "official_drive_url": "https://drive.google.com/file/d/1LJG8sJYUwdoF7zrzPbEO-Vt9Xt7MQCu-/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Goleling_Evolved.gltf",
+      "bytes": 494339,
+      "sha256": "a36f8c1636b692d44fd74fbca07e1164ad14acc5db71300a92d5e51bc1a476ca",
+      "official_drive_id": "1DXqke-QxMth9mq5eYiawcmJDACm4-jvL",
+      "official_drive_url": "https://drive.google.com/file/d/1DXqke-QxMth9mq5eYiawcmJDACm4-jvL/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Goleling.gltf",
+      "bytes": 384972,
+      "sha256": "fad1c4d98e88b21a139fadd74e96c370f1c8ece8d1ae8c4b3bec80d1d7163c29",
+      "official_drive_id": "1bVAbwxtJhLOBpuJNtl3XBbJhl4cDPdcL",
+      "official_drive_url": "https://drive.google.com/file/d/1bVAbwxtJhLOBpuJNtl3XBbJhl4cDPdcL/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Pigeon.gltf",
+      "bytes": 368129,
+      "sha256": "502f0530567fd912b24ba15990e4a4ccca84cf4e4f63f1d7376d73202089a763",
+      "official_drive_id": "1m5PJFA3ytir_ES3nPq0HC8UmCynHIzZY",
+      "official_drive_url": "https://drive.google.com/file/d/1m5PJFA3ytir_ES3nPq0HC8UmCynHIzZY/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Glub_Evolved.gltf",
+      "bytes": 395400,
+      "sha256": "5b9f9f35246eae72fa5907dc5120cf25c7f4810579d6e2b36fdf5d0aaa3ae6f6",
+      "official_drive_id": "1WyNv3hlbY4gIxzbm3sFyn8MzBORQHCIr",
+      "official_drive_url": "https://drive.google.com/file/d/1WyNv3hlbY4gIxzbm3sFyn8MzBORQHCIr/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Glub.gltf",
+      "bytes": 308583,
+      "sha256": "54f638cef5aae04f4d00874d8cbbfadd863697157fedad7c5e6e5cb9724abbb0",
+      "official_drive_id": "1X-6f4qyrbloGVq3wf-IdxUgmuA0u1JGu",
+      "official_drive_url": "https://drive.google.com/file/d/1X-6f4qyrbloGVq3wf-IdxUgmuA0u1JGu/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Dragon_Evolved.gltf",
+      "bytes": 991335,
+      "sha256": "39ba6ea24b5f27acf68bbf4c19fe80ba070dbec167ff14bbe933453303426f5c",
+      "official_drive_id": "1Mcfuavq7F4itG9xhqc-20_IL257ZY2_3",
+      "official_drive_url": "https://drive.google.com/file/d/1Mcfuavq7F4itG9xhqc-20_IL257ZY2_3/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Ghost_Skull.gltf",
+      "bytes": 682385,
+      "sha256": "5bf24cf0f22aa94b0b58315e7d879afc53a0964a5b326aa0c844ba3278cae1da",
+      "official_drive_id": "1JIw8lx6H5IIhf_3Z5FprEu_yCoMcoRN7",
+      "official_drive_url": "https://drive.google.com/file/d/1JIw8lx6H5IIhf_3Z5FprEu_yCoMcoRN7/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Ghost.gltf",
+      "bytes": 643180,
+      "sha256": "40bea9d887874cc86b391b83e72cc5ac2cac340892e23f3d8068a568b6e61457",
+      "official_drive_id": "1rUs1QRA9v1Y2wRYEXsfteBisTsz4JlLi",
+      "official_drive_url": "https://drive.google.com/file/d/1rUs1QRA9v1Y2wRYEXsfteBisTsz4JlLi/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Dragon.gltf",
+      "bytes": 427100,
+      "sha256": "d219a29b5e928da26c24218a64284bbf999b88484a508ac6c01e0edad9f1f56c",
+      "official_drive_id": "1-mQSm6_oGt7-EEQfNj1dFWYgPQy4AdPC",
+      "official_drive_url": "https://drive.google.com/file/d/1-mQSm6_oGt7-EEQfNj1dFWYgPQy4AdPC/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Demon.gltf",
+      "bytes": 342726,
+      "sha256": "e836b7b97506b3032106528aa5c324fe4158df143f285209ac6d2b5b35e524f1",
+      "official_drive_id": "1CLzKKcKfwGRyK4SM7w8Z0vxeH04HW4RQ",
+      "official_drive_url": "https://drive.google.com/file/d/1CLzKKcKfwGRyK4SM7w8Z0vxeH04HW4RQ/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Alpaking_Evolved.gltf",
+      "bytes": 445787,
+      "sha256": "c91321aa08a94c58f4a05d73e1469adf4d0caec5472abeaccdb67ae001212c50",
+      "official_drive_id": "11ns6AbnnC6WtC7zzrSPEWJkwQG_h0rQN",
+      "official_drive_url": "https://drive.google.com/file/d/11ns6AbnnC6WtC7zzrSPEWJkwQG_h0rQN/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Armabee_Evolved.gltf",
+      "bytes": 357537,
+      "sha256": "1ad3e42c088e01e0c179d54537c63efad0dd185031df61d2833b9f1709362730",
+      "official_drive_id": "196ay2r-nuDXcRiwYu84CoE7Qy_gBj8sB",
+      "official_drive_url": "https://drive.google.com/file/d/196ay2r-nuDXcRiwYu84CoE7Qy_gBj8sB/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Armabee.gltf",
+      "bytes": 297261,
+      "sha256": "10ca05955ab7f7f6e2f9bd8fd85f28ed1351c945e390b1fd0fa84428b43a5916",
+      "official_drive_id": "1k7LbRse-00nyMQhTdJMvebPp8B-05hcG",
+      "official_drive_url": "https://drive.google.com/file/d/1k7LbRse-00nyMQhTdJMvebPp8B-05hcG/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Alpaking.gltf",
+      "bytes": 304328,
+      "sha256": "91763421d7f193d0a6693094031b251f5aee1c8c689ef04ef43124e5797cfba7",
+      "official_drive_id": "1GDlXgTJ8-eQyIsCPlhsQGHQ4yvtl_xtl",
+      "official_drive_url": "https://drive.google.com/file/d/1GDlXgTJ8-eQyIsCPlhsQGHQ4yvtl_xtl/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\Flying\\glTF\\Atlas_Monsters.png",
+      "bytes": 9007,
+      "sha256": "b970ed1359ce749fd81a8395d58ff5f3044d843213e17fb94b97892d417c0af9",
+      "official_drive_id": "1I77ztJm_byEkqBVMmLc4SaVhngxdoB7p",
+      "official_drive_url": "https://drive.google.com/file/d/1I77ztJm_byEkqBVMmLc4SaVhngxdoB7p/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-monsters\\License.txt",
+      "bytes": 374,
+      "sha256": "de990ef6fc68cffd7fd1ae342c4d0c823b541b8848d8f76bca5d3339f4de6f6e",
+      "official_drive_id": "16GqsDGESyEOfRbc4dS7EqAwkIUSIW4_y",
+      "official_drive_url": "https://drive.google.com/file/d/16GqsDGESyEOfRbc4dS7EqAwkIUSIW4_y/view"
+    },
+    {
+      "path": "quaternius-monsters\\Atlas_Monsters.png",
+      "bytes": 9007,
+      "sha256": "b970ed1359ce749fd81a8395d58ff5f3044d843213e17fb94b97892d417c0af9",
+      "official_drive_id": "1CtLGgAKj-6a6GGNVNQT7GRPM7uyo9Fj8",
+      "official_drive_url": "https://drive.google.com/file/d/1CtLGgAKj-6a6GGNVNQT7GRPM7uyo9Fj8/view"
+    }
+  ],
+  "excluded_files": [
+    "FBX/OBJ duplicate exports",
+    "native Blender scenery duplicate exports",
+    "Scene_AllModels combined scene"
+  ]
+}

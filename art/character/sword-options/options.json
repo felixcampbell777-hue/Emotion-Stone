@@ -1,0 +1,38 @@
+{
+  "status": "User selected A; enlarged adaptation in current Beta sword",
+  "installed": false,
+  "overall_length_m": 1.575,
+  "game_dimensions_not_museum_measurements": true,
+  "original_concepts_license": "CC0-1.0",
+  "options": [
+    {
+      "id": "A",
+      "title": "Broad war sword",
+      "width_cm": 8,
+      "spine_mm": 9,
+      "reference": "https://art.thewalters.org/object/51.479/"
+    },
+    {
+      "id": "B",
+      "title": "Highland claymore",
+      "width_cm": 10,
+      "spine_mm": 12,
+      "reference": "https://www.metmuseum.org/art/collection/search/27515"
+    },
+    {
+      "id": "C",
+      "title": "Italian greatsword",
+      "width_cm": 12,
+      "spine_mm": 15,
+      "reference": "https://www.metmuseum.org/art/collection/search/22002"
+    }
+  ],
+  "selected": "A",
+  "final_dimensions": {
+    "overall_m": 1.8048,
+    "blade_m": 1.4,
+    "width_m": 0.1,
+    "spine_m": 0.012
+  },
+  "original_board_dimensions_retained": true
+}

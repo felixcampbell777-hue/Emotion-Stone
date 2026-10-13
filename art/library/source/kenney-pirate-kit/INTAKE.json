@@ -1,0 +1,1139 @@
+{
+  "id": "kenney-pirate-kit",
+  "type": "modular-kit",
+  "provider": "Kenney",
+  "author": "Kenney",
+  "license": "CC0-1.0",
+  "biomes": [
+    "beach"
+  ],
+  "source": "https://kenney.nl/assets/pirate-kit",
+  "note": "Publisher advertises 70 assets; simple stylized shapes, useful kitbash base.",
+  "kenney": true,
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:44:54.118534+00:00",
+  "downloads": [
+    {
+      "url": "https://kenney.nl/media/pages/assets/pirate-kit/e6d4bb1525-1771333093/kenney_pirate-kit.zip",
+      "bytes": 3154665,
+      "sha256": "667ed2caf92954ddb98f7b7cede831fe99ab75063c26b25e23d32715bee9c943",
+      "publisher_md5": null
+    }
+  ],
+  "excluded_files": [
+    "Models/FBX format/barrel.fbx",
+    "Models/FBX format/boat-row-large.fbx",
+    "Models/FBX format/boat-row-small.fbx",
+    "Models/FBX format/bottle-large.fbx",
+    "Models/FBX format/bottle.fbx",
+    "Models/FBX format/cannon-ball.fbx",
+    "Models/FBX format/cannon-mobile.fbx",
+    "Models/FBX format/cannon.fbx",
+    "Models/FBX format/castle-door.fbx",
+    "Models/FBX format/castle-gate.fbx",
+    "Models/FBX format/castle-wall.fbx",
+    "Models/FBX format/castle-window.fbx",
+    "Models/FBX format/chest.fbx",
+    "Models/FBX format/crate-bottles.fbx",
+    "Models/FBX format/crate.fbx",
+    "Models/FBX format/flag-high-pennant.fbx",
+    "Models/FBX format/flag-high.fbx",
+    "Models/FBX format/flag-pennant.fbx",
+    "Models/FBX format/flag-pirate-high-pennant.fbx",
+    "Models/FBX format/flag-pirate-high.fbx",
+    "Models/FBX format/flag-pirate-pennant.fbx",
+    "Models/FBX format/flag-pirate.fbx",
+    "Models/FBX format/flag.fbx",
+    "Models/FBX format/grass-patch.fbx",
+    "Models/FBX format/grass-plant.fbx",
+    "Models/FBX format/grass.fbx",
+    "Models/FBX format/hole.fbx",
+    "Models/FBX format/mast-ropes.fbx",
+    "Models/FBX format/mast.fbx",
+    "Models/FBX format/palm-bend.fbx",
+    "Models/FBX format/palm-detailed-bend.fbx",
+    "Models/FBX format/palm-detailed-straight.fbx",
+    "Models/FBX format/palm-straight.fbx",
+    "Models/FBX format/patch-grass-foliage.fbx",
+    "Models/FBX format/patch-grass.fbx",
+    "Models/FBX format/patch-sand-foliage.fbx",
+    "Models/FBX format/patch-sand.fbx",
+    "Models/FBX format/platform-planks.fbx",
+    "Models/FBX format/platform.fbx",
+    "Models/FBX format/rocks-a.fbx",
+    "Models/FBX format/rocks-b.fbx",
+    "Models/FBX format/rocks-c.fbx",
+    "Models/FBX format/rocks-sand-a.fbx",
+    "Models/FBX format/rocks-sand-b.fbx",
+    "Models/FBX format/rocks-sand-c.fbx",
+    "Models/FBX format/ship-ghost.fbx",
+    "Models/FBX format/ship-large.fbx",
+    "Models/FBX format/ship-medium.fbx",
+    "Models/FBX format/ship-pirate-large.fbx",
+    "Models/FBX format/ship-pirate-medium.fbx",
+    "Models/FBX format/ship-pirate-small.fbx",
+    "Models/FBX format/ship-small.fbx",
+    "Models/FBX format/ship-wreck.fbx",
+    "Models/FBX format/structure-fence-sides.fbx",
+    "Models/FBX format/structure-fence.fbx",
+    "Models/FBX format/structure-platform-dock-small.fbx",
+    "Models/FBX format/structure-platform-dock.fbx",
+    "Models/FBX format/structure-platform-small.fbx",
+    "Models/FBX format/structure-platform.fbx",
+    "Models/FBX format/structure-roof.fbx",
+    "Models/FBX format/structure.fbx",
+    "Models/FBX format/tool-paddle.fbx",
+    "Models/FBX format/tool-shovel.fbx",
+    "Models/FBX format/tower-base-door.fbx",
+    "Models/FBX format/tower-base.fbx",
+    "Models/FBX format/tower-complete-large.fbx",
+    "Models/FBX format/tower-complete-small.fbx",
+    "Models/FBX format/tower-middle-windows.fbx",
+    "Models/FBX format/tower-middle.fbx",
+    "Models/FBX format/tower-roof.fbx",
+    "Models/FBX format/tower-top.fbx",
+    "Models/FBX format/tower-watch.fbx",
+    "Models/OBJ format/barrel.mtl",
+    "Models/OBJ format/barrel.obj",
+    "Models/OBJ format/boat-row-large.mtl",
+    "Models/OBJ format/boat-row-large.obj",
+    "Models/OBJ format/boat-row-small.mtl",
+    "Models/OBJ format/boat-row-small.obj",
+    "Models/OBJ format/bottle-large.mtl",
+    "Models/OBJ format/bottle-large.obj",
+    "Models/OBJ format/bottle.mtl",
+    "Models/OBJ format/bottle.obj",
+    "Models/OBJ format/cannon-ball.mtl",
+    "Models/OBJ format/cannon-ball.obj",
+    "Models/OBJ format/cannon-mobile.mtl",
+    "Models/OBJ format/cannon-mobile.obj",
+    "Models/OBJ format/cannon.mtl",
+    "Models/OBJ format/cannon.obj",
+    "Models/OBJ format/castle-door.mtl",
+    "Models/OBJ format/castle-door.obj",
+    "Models/OBJ format/castle-gate.mtl",
+    "Models/OBJ format/castle-gate.obj",
+    "Models/OBJ format/castle-wall.mtl",
+    "Models/OBJ format/castle-wall.obj",
+    "Models/OBJ format/castle-window.mtl",
+    "Models/OBJ format/castle-window.obj",
+    "Models/OBJ format/chest.mtl",
+    "Models/OBJ format/chest.obj",
+    "Models/OBJ format/crate-bottles.mtl",
+    "Models/OBJ format/crate-bottles.obj",
+    "Models/OBJ format/crate.mtl",
+    "Models/OBJ format/crate.obj",
+    "Models/OBJ format/flag-high-pennant.mtl",
+    "Models/OBJ format/flag-high-pennant.obj",
+    "Models/OBJ format/flag-high.mtl",
+    "Models/OBJ format/flag-high.obj",
+    "Models/OBJ format/flag-pennant.mtl",
+    "Models/OBJ format/flag-pennant.obj",
+    "Models/OBJ format/flag-pirate-high-pennant.mtl",
+    "Models/OBJ format/flag-pirate-high-pennant.obj",
+    "Models/OBJ format/flag-pirate-high.mtl",
+    "Models/OBJ format/flag-pirate-high.obj",
+    "Models/OBJ format/flag-pirate-pennant.mtl",
+    "Models/OBJ format/flag-pirate-pennant.obj",
+    "Models/OBJ format/flag-pirate.mtl",
+    "Models/OBJ format/flag-pirate.obj",
+    "Models/OBJ format/flag.mtl",
+    "Models/OBJ format/flag.obj",
+    "Models/OBJ format/grass-patch.mtl",
+    "Models/OBJ format/grass-patch.obj",
+    "Models/OBJ format/grass-plant.mtl",
+    "Models/OBJ format/grass-plant.obj",
+    "Models/OBJ format/grass.mtl",
+    "Models/OBJ format/grass.obj",
+    "Models/OBJ format/hole.mtl",
+    "Models/OBJ format/hole.obj",
+    "Models/OBJ format/mast-ropes.mtl",
+    "Models/OBJ format/mast-ropes.obj",
+    "Models/OBJ format/mast.mtl",
+    "Models/OBJ format/mast.obj",
+    "Models/OBJ format/palm-bend.mtl",
+    "Models/OBJ format/palm-bend.obj",
+    "Models/OBJ format/palm-detailed-bend.mtl",
+    "Models/OBJ format/palm-detailed-bend.obj",
+    "Models/OBJ format/palm-detailed-straight.mtl",
+    "Models/OBJ format/palm-detailed-straight.obj",
+    "Models/OBJ format/palm-straight.mtl",
+    "Models/OBJ format/palm-straight.obj",
+    "Models/OBJ format/patch-grass-foliage.mtl",
+    "Models/OBJ format/patch-grass-foliage.obj",
+    "Models/OBJ format/patch-grass.mtl",
+    "Models/OBJ format/patch-grass.obj",
+    "Models/OBJ format/patch-sand-foliage.mtl",
+    "Models/OBJ format/patch-sand-foliage.obj",
+    "Models/OBJ format/patch-sand.mtl",
+    "Models/OBJ format/patch-sand.obj",
+    "Models/OBJ format/platform-planks.mtl",
+    "Models/OBJ format/platform-planks.obj",
+    "Models/OBJ format/platform.mtl",
+    "Models/OBJ format/platform.obj",
+    "Models/OBJ format/rocks-a.mtl",
+    "Models/OBJ format/rocks-a.obj",
+    "Models/OBJ format/rocks-b.mtl",
+    "Models/OBJ format/rocks-b.obj",
+    "Models/OBJ format/rocks-c.mtl",
+    "Models/OBJ format/rocks-c.obj",
+    "Models/OBJ format/rocks-sand-a.mtl",
+    "Models/OBJ format/rocks-sand-a.obj",
+    "Models/OBJ format/rocks-sand-b.mtl",
+    "Models/OBJ format/rocks-sand-b.obj",
+    "Models/OBJ format/rocks-sand-c.mtl",
+    "Models/OBJ format/rocks-sand-c.obj",
+    "Models/OBJ format/ship-ghost.mtl",
+    "Models/OBJ format/ship-ghost.obj",
+    "Models/OBJ format/ship-large.mtl",
+    "Models/OBJ format/ship-large.obj",
+    "Models/OBJ format/ship-medium.mtl",
+    "Models/OBJ format/ship-medium.obj",
+    "Models/OBJ format/ship-pirate-large.mtl",
+    "Models/OBJ format/ship-pirate-large.obj",
+    "Models/OBJ format/ship-pirate-medium.mtl",
+    "Models/OBJ format/ship-pirate-medium.obj",
+    "Models/OBJ format/ship-pirate-small.mtl",
+    "Models/OBJ format/ship-pirate-small.obj",
+    "Models/OBJ format/ship-small.mtl",
+    "Models/OBJ format/ship-small.obj",
+    "Models/OBJ format/ship-wreck.mtl",
+    "Models/OBJ format/ship-wreck.obj",
+    "Models/OBJ format/structure-fence-sides.mtl",
+    "Models/OBJ format/structure-fence-sides.obj",
+    "Models/OBJ format/structure-fence.mtl",
+    "Models/OBJ format/structure-fence.obj",
+    "Models/OBJ format/structure-platform-dock-small.mtl",
+    "Models/OBJ format/structure-platform-dock-small.obj",
+    "Models/OBJ format/structure-platform-dock.mtl",
+    "Models/OBJ format/structure-platform-dock.obj",
+    "Models/OBJ format/structure-platform-small.mtl",
+    "Models/OBJ format/structure-platform-small.obj",
+    "Models/OBJ format/structure-platform.mtl",
+    "Models/OBJ format/structure-platform.obj",
+    "Models/OBJ format/structure-roof.mtl",
+    "Models/OBJ format/structure-roof.obj",
+    "Models/OBJ format/structure.mtl",
+    "Models/OBJ format/structure.obj",
+    "Models/OBJ format/tool-paddle.mtl",
+    "Models/OBJ format/tool-paddle.obj",
+    "Models/OBJ format/tool-shovel.mtl",
+    "Models/OBJ format/tool-shovel.obj",
+    "Models/OBJ format/tower-base-door.mtl",
+    "Models/OBJ format/tower-base-door.obj",
+    "Models/OBJ format/tower-base.mtl",
+    "Models/OBJ format/tower-base.obj",
+    "Models/OBJ format/tower-complete-large.mtl",
+    "Models/OBJ format/tower-complete-large.obj",
+    "Models/OBJ format/tower-complete-small.mtl",
+    "Models/OBJ format/tower-complete-small.obj",
+    "Models/OBJ format/tower-middle-windows.mtl",
+    "Models/OBJ format/tower-middle-windows.obj",
+    "Models/OBJ format/tower-middle.mtl",
+    "Models/OBJ format/tower-middle.obj",
+    "Models/OBJ format/tower-roof.mtl",
+    "Models/OBJ format/tower-roof.obj",
+    "Models/OBJ format/tower-top.mtl",
+    "Models/OBJ format/tower-top.obj",
+    "Models/OBJ format/tower-watch.mtl",
+    "Models/OBJ format/tower-watch.obj",
+    "Overview.html",
+    "Preview.png",
+    "Previews/barrel.png",
+    "Previews/boat-row-large.png",
+    "Previews/boat-row-small.png",
+    "Previews/bottle-large.png",
+    "Previews/bottle.png",
+    "Previews/cannon-ball.png",
+    "Previews/cannon-mobile.png",
+    "Previews/cannon.png",
+    "Previews/castle-door.png",
+    "Previews/castle-gate.png",
+    "Previews/castle-wall.png",
+    "Previews/castle-window.png",
+    "Previews/chest.png",
+    "Previews/crate-bottles.png",
+    "Previews/crate.png",
+    "Previews/flag-high-pennant.png",
+    "Previews/flag-high.png",
+    "Previews/flag-pennant.png",
+    "Previews/flag-pirate-high-pennant.png",
+    "Previews/flag-pirate-high.png",
+    "Previews/flag-pirate-pennant.png",
+    "Previews/flag-pirate.png",
+    "Previews/flag.png",
+    "Previews/grass-patch.png",
+    "Previews/grass-plant.png",
+    "Previews/grass.png",
+    "Previews/hole.png",
+    "Previews/mast-ropes.png",
+    "Previews/mast.png",
+    "Previews/palm-bend.png",
+    "Previews/palm-detailed-bend.png",
+    "Previews/palm-detailed-straight.png",
+    "Previews/palm-straight.png",
+    "Previews/patch-grass-foliage.png",
+    "Previews/patch-grass.png",
+    "Previews/patch-sand-foliage.png",
+    "Previews/patch-sand.png",
+    "Previews/platform-planks.png",
+    "Previews/platform.png",
+    "Previews/rocks-a.png",
+    "Previews/rocks-b.png",
+    "Previews/rocks-c.png",
+    "Previews/rocks-sand-a.png",
+    "Previews/rocks-sand-b.png",
+    "Previews/rocks-sand-c.png",
+    "Previews/ship-ghost.png",
+    "Previews/ship-large.png",
+    "Previews/ship-medium.png",
+    "Previews/ship-pirate-large.png",
+    "Previews/ship-pirate-medium.png",
+    "Previews/ship-pirate-small.png",
+    "Previews/ship-small.png",
+    "Previews/ship-wreck.png",
+    "Previews/structure-fence-sides.png",
+    "Previews/structure-fence.png",
+    "Previews/structure-platform-dock-small.png",
+    "Previews/structure-platform-dock.png",
+    "Previews/structure-platform-small.png",
+    "Previews/structure-platform.png",
+    "Previews/structure-roof.png",
+    "Previews/structure.png",
+    "Previews/tool-paddle.png",
+    "Previews/tool-shovel.png",
+    "Previews/tower-base-door.png",
+    "Previews/tower-base.png",
+    "Previews/tower-complete-large.png",
+    "Previews/tower-complete-small.png",
+    "Previews/tower-middle-windows.png",
+    "Previews/tower-middle.png",
+    "Previews/tower-roof.png",
+    "Previews/tower-top.png",
+    "Previews/tower-watch.png",
+    "Sample.png",
+    "View Documentation.url",
+    "Visit Kenney.url",
+    "Visit Patreon.url"
+  ],
+  "gltf_checks": [
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\barrel.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\boat-row-large.glb",
+      "meshes": 2,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\boat-row-small.glb",
+      "meshes": 2,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\bottle-large.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\bottle.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\cannon-ball.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\cannon-mobile.glb",
+      "meshes": 3,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\cannon.glb",
+      "meshes": 3,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\castle-door.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\castle-gate.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\castle-wall.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\castle-window.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\chest.glb",
+      "meshes": 2,
+      "skins": 0,
+      "animations": [
+        "open",
+        "close",
+        "open-close"
+      ]
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\crate-bottles.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\crate.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\flag-high-pennant.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\flag-high.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\flag-pennant.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\flag-pirate-high-pennant.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\flag-pirate-high.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\flag-pirate-pennant.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\flag-pirate.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\flag.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\grass-patch.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\grass-plant.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\grass.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\hole.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\mast-ropes.glb",
+      "meshes": 3,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\mast.glb",
+      "meshes": 3,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\palm-bend.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\palm-detailed-bend.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\palm-detailed-straight.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\palm-straight.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\patch-grass-foliage.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\patch-grass.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\patch-sand-foliage.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\patch-sand.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\platform-planks.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\platform.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\rocks-a.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\rocks-b.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\rocks-c.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\rocks-sand-a.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\rocks-sand-b.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\rocks-sand-c.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\ship-ghost.glb",
+      "meshes": 6,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\ship-large.glb",
+      "meshes": 6,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\ship-medium.glb",
+      "meshes": 6,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\ship-pirate-large.glb",
+      "meshes": 6,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\ship-pirate-medium.glb",
+      "meshes": 6,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\ship-pirate-small.glb",
+      "meshes": 4,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\ship-small.glb",
+      "meshes": 4,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\ship-wreck.glb",
+      "meshes": 16,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\structure-fence-sides.glb",
+      "meshes": 2,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\structure-fence.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\structure-platform-dock-small.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\structure-platform-dock.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\structure-platform-small.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\structure-platform.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\structure-roof.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\structure.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\tool-paddle.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\tool-shovel.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\tower-base-door.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\tower-base.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\tower-complete-large.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\tower-complete-small.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\tower-middle-windows.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\tower-middle.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\tower-roof.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\tower-top.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-pirate-kit\\Models\\GLB format\\tower-watch.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    }
+  ],
+  "files": [
+    {
+      "path": "kenney-pirate-kit\\License.txt",
+      "bytes": 699,
+      "sha256": "5e99246a5a65fa3420a1a1c7a8616f096202c78866f73d7aacfe73c0aab0ca36"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\FBX format\\Textures\\colormap.png",
+      "bytes": 10061,
+      "sha256": "451e1d7a53b8e76f4b2ee58742e241509fee5f82cf2cee6e3f7aca86ba718abe"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\barrel.glb",
+      "bytes": 14092,
+      "sha256": "7616dedf7c1023afa6ecd3c52a4609460aae0e582dee14e60ec5e47c1174793b"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\boat-row-large.glb",
+      "bytes": 15972,
+      "sha256": "b496c0d5f9053ebc7e9b9a39a4770d5ccaff5510c51b7c72c1b8391442e61d0f"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\boat-row-small.glb",
+      "bytes": 17616,
+      "sha256": "846d9b17a73f80e03f7201d3bf0ad1b1bbb49e114b99697740d3426e4f42482d"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\bottle-large.glb",
+      "bytes": 12232,
+      "sha256": "03ae246d2fe0a76c448626b5e6e12ff10313175d713489abac7cbf42f14c0b1f"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\bottle.glb",
+      "bytes": 13796,
+      "sha256": "b59ff617014ace27dacf2909bba94f3ad3a9a9d1660c6ae4d468b5e8561637ae"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\cannon-ball.glb",
+      "bytes": 7192,
+      "sha256": "8d60d9f56df1bf118d3c589bc14a1b37d21b7834ecb9541b7840a4e8200797e6"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\cannon-mobile.glb",
+      "bytes": 43824,
+      "sha256": "0e8ae9889b35bb43c0da779a7eed3c2a7a204b80350516f7c4ad523a550d8867"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\cannon.glb",
+      "bytes": 24024,
+      "sha256": "b2ea71475fa52de312a0fe3fb9085e1a3f83f9e6bb167668fb62f71383cbc41a"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\castle-door.glb",
+      "bytes": 37648,
+      "sha256": "e91a7c08e36a1ca5d85189f8b375c6dc9ac27a4b6567d64d0bc3b517ab68cbbd"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\castle-gate.glb",
+      "bytes": 67440,
+      "sha256": "2d798e124b46a48d94eb40009fadb3cf77a9bf403f63b8a83d434aa8df84db2b"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\castle-wall.glb",
+      "bytes": 30504,
+      "sha256": "92cd2e842f4bda218289a7c7b5ca7714780dfc943735e7ff60097b08114dd40f"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\castle-window.glb",
+      "bytes": 28668,
+      "sha256": "242345b513261c46ddf832e387d580f530c8be29b3cb0b8afa33aabe467d25a1"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\chest.glb",
+      "bytes": 25240,
+      "sha256": "26d26c4c032a12320fe05b5005a72eba96db7167db0d35873639a4b7dcc06bcb"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\crate-bottles.glb",
+      "bytes": 58588,
+      "sha256": "8412a3d3dc00a81ac61f0975682ef9f08288bee5c5eb783b09dbc1144e655302"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\crate.glb",
+      "bytes": 9232,
+      "sha256": "b525674e07c8b83667512a8dd93be0d7684358347d0e64d2bb16b156ac382ed1"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\flag-high-pennant.glb",
+      "bytes": 13656,
+      "sha256": "e322c06023b5cbc6a187cef12c296ae1c65ea3582c5b101b83756213d8a700e1"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\flag-high.glb",
+      "bytes": 15196,
+      "sha256": "a82a944b7bf57a1329e4595fde4d076f3ac8bb650b6d212d47791ec90cb4f47a"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\flag-pennant.glb",
+      "bytes": 13640,
+      "sha256": "05956b9389135492e0644bd7d49711d1e4f865cd67808f7da5709a23e02d7d6f"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\flag-pirate-high-pennant.glb",
+      "bytes": 13676,
+      "sha256": "baa86b7557b1875afa56054bd41963acbb39e6a7cd5667162066f505a6a3664e"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\flag-pirate-high.glb",
+      "bytes": 15220,
+      "sha256": "5fe71dae983b573920515e980784ce70b67549cc987b4fdb2fd35a3ed767abf9"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\flag-pirate-pennant.glb",
+      "bytes": 13660,
+      "sha256": "b08d6605b85e69e5541e9947bb59e7618b89f1e156f3a3f6d9aaccf69f04e224"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\flag-pirate.glb",
+      "bytes": 15204,
+      "sha256": "4672c3a8c2844e9fb09838b65c97fdf5c49447c2566310918f8e7563f7200baf"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\flag.glb",
+      "bytes": 15184,
+      "sha256": "374500dc875e3e713fbd3e2d4bf18087b4a450bfc5a7b04b4329aaf0c0e3a877"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\grass-patch.glb",
+      "bytes": 38640,
+      "sha256": "6458a2b3224bb709f3da175ef33833494357f425583b28c12eec2ca5df421c60"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\grass-plant.glb",
+      "bytes": 14400,
+      "sha256": "f422f991fdf75df2b7bd7cd642d67f9ec884279590130e7a213e2ddaea5d0a54"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\grass.glb",
+      "bytes": 8964,
+      "sha256": "0edde2aeb269b7d6498b27647b7e379ae177a12a0732b82bc966d5610f44008e"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\hole.glb",
+      "bytes": 28168,
+      "sha256": "700b45b6f97046298cd3936637f5ad3e484a742adf21bc7b7ca0c280b15c311d"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\mast-ropes.glb",
+      "bytes": 36156,
+      "sha256": "ad2bd14acacd3f4901177d8b13bcc6158f558e8c1959b6e19576e17ea8b10570"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\mast.glb",
+      "bytes": 30816,
+      "sha256": "22b04158e300d9a1c99c27d884214be5241d599dc93cba7394e9164043f99db8"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\palm-bend.glb",
+      "bytes": 36528,
+      "sha256": "8c5c6f119ca62b63d4a6e5e3e3b74b3a7415815a9e448fd1408a2858ae95d40f"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\palm-detailed-bend.glb",
+      "bytes": 52012,
+      "sha256": "9bc339e2942d6fba9007caa9fa4301a6a08f4b134511bea65ce236ba2910e7f8"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\palm-detailed-straight.glb",
+      "bytes": 51916,
+      "sha256": "cdc42b4bd02d01a5e15a5d69f1db83e1c77ca7d0a97ad2d9ae8f6a409fed8a36"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\palm-straight.glb",
+      "bytes": 36524,
+      "sha256": "a4101242b8c825280dfb6152900285aacc091203ce7bf9c743579599f1496520"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\patch-grass-foliage.glb",
+      "bytes": 30716,
+      "sha256": "b6915f81ab6ddb19b1e552b27f5a16a02e9650d7250e70b9e6e3147b47c680f4"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\patch-grass.glb",
+      "bytes": 8416,
+      "sha256": "0c928d062fc8094bf2be7fe319b7831fbb3d798567b93d5b24d04739ab3c370d"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\patch-sand-foliage.glb",
+      "bytes": 63008,
+      "sha256": "35eea1e7ad6ef7c2349aa69f67824e4698ec1320f19b42bf1870013106e51680"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\patch-sand.glb",
+      "bytes": 10212,
+      "sha256": "9c7331c40897f293d2fec4035d534581ccb9b4e105e4cbce5cfd3abd0bb15f90"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\platform-planks.glb",
+      "bytes": 6524,
+      "sha256": "4313f45d4feb8cd01adbb4b4785f368c7df091f33e473dea536172868805b167"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\platform.glb",
+      "bytes": 7668,
+      "sha256": "c6b688473f8ffbd41810d0e9aed7a572c148400f2f8bb0aab3560dbc4d6e407b"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\rocks-a.glb",
+      "bytes": 27644,
+      "sha256": "df8f27bd88a9b624337b08adde53c73dd25ddabd52dbee1de9da412d68bb4f08"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\rocks-b.glb",
+      "bytes": 31316,
+      "sha256": "218cf9bfbe51228c78c9fa48a8543bef1037a695024f8fd5f3c47eec4c3a26d4"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\rocks-c.glb",
+      "bytes": 24572,
+      "sha256": "67c086e5d522fda43f3c84b34092ae88c4b142ad23c11be9cf9743659a138032"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\rocks-sand-a.glb",
+      "bytes": 57052,
+      "sha256": "bde0570946080d6f2dafd63a34be640d5c3713abd4559d6a9d689ce63f74113f"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\rocks-sand-b.glb",
+      "bytes": 53404,
+      "sha256": "55ef34f2e96fcd8687a422b6287295cb94e04540ec964a0f42900ce55c89b719"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\rocks-sand-c.glb",
+      "bytes": 46624,
+      "sha256": "ffd3a911a3b916b047245427526405d390eb12f97f90f657e8ca230048e78865"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\ship-ghost.glb",
+      "bytes": 155692,
+      "sha256": "16a99fc478826c151a2f2612f385ec3eae440ec86700491eb0049e05e70793ce"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\ship-large.glb",
+      "bytes": 155792,
+      "sha256": "270fff44a9c97f0f5038b0776f9a9b661961ff2098109a9ce614b645cc5e0d20"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\ship-medium.glb",
+      "bytes": 144944,
+      "sha256": "279ea019268f855240c3cebf7616644c8141c20bee617da72eae4733b8e310af"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\ship-pirate-large.glb",
+      "bytes": 177216,
+      "sha256": "7c3959e0f039a13e5294904282ddc678dfc442fb8b055555cc45eae7a0d2adf8"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\ship-pirate-medium.glb",
+      "bytes": 166388,
+      "sha256": "193590503ed533ace1260e4a4c6b30e13b13bf7c2ce6f5fad667cde5979859cc"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\ship-pirate-small.glb",
+      "bytes": 131464,
+      "sha256": "4b075cd7f90cc152acd477c2636b38dad08890391c5947b060a7ac0c6da8fcdb"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\ship-small.glb",
+      "bytes": 116440,
+      "sha256": "6fdabdfd358f345ad3dd0510af4165843ab3fffe46357395c94ca00db4f317b3"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\ship-wreck.glb",
+      "bytes": 223676,
+      "sha256": "0b2cac74f23ffdc3bf5020880126338287a0a0317d6a98ce4250123d8821ad2b"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\structure-fence-sides.glb",
+      "bytes": 44480,
+      "sha256": "8c11f8e0bc274cd287f7d6f9b8abe054aa5ee3b2bb9b60d53bee4c1266004031"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\structure-fence.glb",
+      "bytes": 35752,
+      "sha256": "d4b9eca0f219efc7ec37d45170c5888a4ba6e0e8f39905f9d92d491ae5de7281"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\structure-platform-dock-small.glb",
+      "bytes": 32156,
+      "sha256": "63fb708c20db73860da2380ba6c13e4725930c07535bb2ed5958a2f30eeea36c"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\structure-platform-dock.glb",
+      "bytes": 33336,
+      "sha256": "bf64343d37b5570cb78cf0918e3eeb98f96f9b2c69b3f16d103c61ebc8f063f7"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\structure-platform-small.glb",
+      "bytes": 23068,
+      "sha256": "6f056b0563f4a980908129fe3c53df1d83f3f41c2fb31bbea87e074515107880"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\structure-platform.glb",
+      "bytes": 24248,
+      "sha256": "250e85e6021c47a1244603bba3924f04dbc4b0ab171fb589fb9eacc952609904"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\structure-roof.glb",
+      "bytes": 34480,
+      "sha256": "d7518ffa7cf209b91dc07920e762f28706a367742edc45c27ae45c434b089329"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\structure.glb",
+      "bytes": 27988,
+      "sha256": "b82b2f949063fc418576dc14fcaedf407db6badf87dc529a33114e2f62606f9a"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\Textures\\colormap.png",
+      "bytes": 10061,
+      "sha256": "451e1d7a53b8e76f4b2ee58742e241509fee5f82cf2cee6e3f7aca86ba718abe"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\tool-paddle.glb",
+      "bytes": 6864,
+      "sha256": "2a387ead62c44ec4218d664582a956f92a66b3c7db168d68394ccfabefae58b8"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\tool-shovel.glb",
+      "bytes": 16144,
+      "sha256": "b468372526e419c712f50b824eff50d6e7838de646eaa5a6aacfc4dcdfcfa265"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\tower-base-door.glb",
+      "bytes": 12592,
+      "sha256": "b53f9cb400834ad802e9cf48ca55b7a6111c54cad660afc8a5bbc4b3c41b6eb6"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\tower-base.glb",
+      "bytes": 5772,
+      "sha256": "18277cd7710d86d4161c524c41f55f1d0faf5e48baab7e73f4748a7054a46c96"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\tower-complete-large.glb",
+      "bytes": 54660,
+      "sha256": "3e65bcb990840a59c0b7c0c1237ba41da5a2b5434cab65d6f904a732d4899eb0"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\tower-complete-small.glb",
+      "bytes": 58412,
+      "sha256": "0932848a81ecf78c6dcfd1f54440ff802e024cd744ef255aaf0c05d05a7d8699"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\tower-middle-windows.glb",
+      "bytes": 23188,
+      "sha256": "69d866461a2b2a48639596145b5befacd398a566fb0bf4c9059b2e1f8f456e58"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\tower-middle.glb",
+      "bytes": 21112,
+      "sha256": "0dfb39c4e8450843d57b8ac27086989070b1cbb50907eace8640a971d9eb07c4"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\tower-roof.glb",
+      "bytes": 11772,
+      "sha256": "41a84e37594bd3eff2552c7aceb208c9790cff5d22db32350853e6a91929709b"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\tower-top.glb",
+      "bytes": 29484,
+      "sha256": "256c7f2e1d0929a8736a9ea168fa261edcc4aa68ff693c63ee201eeec16a0761"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\GLB format\\tower-watch.glb",
+      "bytes": 21672,
+      "sha256": "0cdba767016b9ee8831084f94357f6b6dd00e2f10c6db41d81f15352dff5c4b4"
+    },
+    {
+      "path": "kenney-pirate-kit\\Models\\OBJ format\\Textures\\colormap.png",
+      "bytes": 10061,
+      "sha256": "451e1d7a53b8e76f4b2ee58742e241509fee5f82cf2cee6e3f7aca86ba718abe"
+    }
+  ]
+}

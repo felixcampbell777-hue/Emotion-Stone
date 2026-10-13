@@ -1,55 +1,23 @@
-# Main character: reduced 3D pixel-art direction
+# Current character direction
 
-Prepared October 4, 2026. Proposed art direction for the reusable game platform.
+Current asset preference (2026-10-10): focus on OPEN SOURCE / openly licensed components. Read the updated HERO-ASSET-SHORTLIST.md; the paid shortlist is superseded. Design requirements and model-before-animation approval are unchanged.
 
-## References
+Current work status (2026-10-10): the user rejected the static draft and stopped modeling. HERO-ASSET-SHORTLIST.md is the current research deliverable. Its candidates are unapproved and unpurchased; earlier "edits resumed" notes below describe historical work, not present authorization. Preserve the design specification and static-model approval requirement.
 
-- Identity/costume source: `output/imagegen/main-character-coastal-bluff-greatsword-v6.png`.
-- New reduced reference: `output/imagegen/main-character-pixel-3d-reference-v1.png`.
-- Exact generation prompt: `output/imagegen/main-character-pixel-3d-reference-v1.prompt.txt`.
+Latest user direction (2026-10-10): preserve the ORIGINAL blue-gray denim shirt-dress and HIGH-WAISTED brown leather belt. Use art/reference/hero-clothing-proportions-texture-target.png for the way clothing fits the body, coordinated body proportions and convincing texture/material finish. Do not copy its black cape, layered outfit, short skirt, tall boots or ponytail as costume changes. Hair remains chestnut and SHOULDER-LENGTH as planned, with natural layered movement. art/reference/hero-proportion-target.png remains the original identity/costume reference. The current v0.23.2 likeness and the unfinished draft still require refinement. Read HERO-REBUILD-RESEARCH.md before modeling. Model edits have resumed. Latest direction requires comparable REALISTIC HUMAN proportions: a girl with a lean, strong build, without bulk or an oversized stylized head. The user explicitly requires approval of the static model BEFORE animation work. Stop at the review renders and await an explicit response; no retargeting or replacement release is authorized yet. See art/character/model-review.json. The playable release remains v0.23.2.
 
-The reduced reference was generated with the built-in image generation tool using the earlier illustration as a reference. It depicts a possible low-poly, pixelated appearance. It is concept art, rather than a mesh, rig, animation sheet, or measured engine render.
+Use both current references for their explicitly assigned purposes above; hero-faceted-turnaround-v4.png remains supporting Original reference material. Original identity artwork under output/imagegen is reference material, not an alternative implementation.
 
-## Preserve identity through large shapes
+Advanced heroine v0.23.2 additionally follows the early coastal-bluff/greatsword-v6 illustrations for warm freckles, brown eyes, chestnut hair, dress and boots. art/reference/hero-realism-quality.png sets the requested RPG anatomy/material detail level. Read HERO-ART.md for the complete CC0 body rebuild and fitted/retargeted skeleton, custom/CC0 textures, derived source and audit workflow. Preserve the Original profile separately.
 
-Keep her short, slightly tousled chestnut bob, warm light skin, blue-gray collared shirt dress with rolled sleeves, brown belt, light socks, and brown calf boots. Keep the oversized straight silver sword, brown grip, and blue teardrop pommel gem as a separate recognizable accessory.
+Preserve shoulder-length chestnut hair, warm skin, blue-gray denim collared pleated dress with rolled sleeves, high-waisted brown belt, socks and boots. Match the latest reference's convincing garment fit and texture quality while retaining this original outfit. The silver greatsword has a small blue crystal visible from both sides. Semantic palette slots allow recoloring without rebuilding geometry.
 
-Use approximately four-and-a-half-heads-tall stylized proportions for the initial modeling experiment. Preserve the source's youthful face and understated expression; the larger head is a readability proposal, not a change in identity.
+The current model has hair, facial features, pleated hem, belt tail and boot laces/soles. Heroine presentation scale is .92; the Advanced body is approximately 1.67m tall, with its own fitted joint rests. Original remains 1.81m. These are current implementation measurements, not approved proportion targets; reshape the head, lower body and boots together to match the latest turnaround.
 
-At normal play scale, prioritize these five cues: brown bob silhouette, blue dress, brown waist stripe, dark boots, and a bright blue sword accent. Freckles, laces, tiny buttons, flyaway strands, and cloth grain can disappear at that scale. The new concept has more hair and fabric detail than the final small model should need.
+The Advanced 16-bone rig retargets all 19 current animations; Original/NPCs retain their shared clips. Both include separate sheathed Dodge/stand clips. Hair/skirt use secondary-motion bones without cloth simulation. Drawn blade drags behind her: forward hunch, free forearm horizontal across the stomach and held in front. Sheathed blade lies diagonally on the back. Preserve the own-right-side parry and synchronized special trajectories from CURRENT-BASELINE.md.
 
-## Initial model and material proposals
+Inspect gameplay from front/back/sides during walking and attacks. Check hand grips, foot contact, dress deformation and blade/body separation. Full resolution removes presentation pixelation; Original retains its faceted model and Advanced uses the complete anatomical body. Read GRAPHICS.md and COMBAT.md before asset edits.
 
-Start with a modest humanoid mesh and distinct modules for bob hair, dress, boots, and sword. Use a few large hair masses rather than individual strands. Suggest dress folds with geometry and a few color blocks. Avoid cloth simulation for the first model; test skinning and a small garment-bone setup only if simple deformation fails.
+Greatsword motion references: [Dark Souls moveset](https://darksouls.wikidot.com/greatsword) and [Greatsword Class Overview footage](https://www.youtube.com/watch?v=f0aUrrKZcdU). Use broad right-to-left/return cuts, torso anticipation, hip turn and a low recovery as motion references. The game retains its current choreography, trajectories and weighted heroine identity, solving the new limbs against fitted rests.
 
-Trial visual budget: roughly 1,000–3,000 triangles for the body and outfit, with separate modest hair/equipment budgets. This is a starting production constraint, not a requirement or measured performance threshold. Favor clean deformation and readable silhouettes over a strict count.
 
-Use semantic palette slots. The following hexadecimal colors are proposed swatches interpreted from the illustration, not exact sampled source colors:
-
-| Slot | Trial colors |
-| --- | --- |
-| Hair | Shadow `#50382A`, base `#865E3D`, highlight `#B98C5C` |
-| Dress | Shadow `#354553`, base `#617688`, highlight `#92A4B0` |
-| Leather | Shadow `#3D2A20`, base `#725136`, highlight `#A37A50` |
-| Skin | Shadow `#B97F5B`, base `#E6B78D`, highlight `#F4D2AA` |
-| Metal | Shadow `#747C87`, base `#BDC4CE`, highlight `#E8EDF0` |
-| Blue gem | Shadow `#174174`, base `#247BCB`, highlight `#84D9F4` |
-| Socks | Shadow `#ADA89A`, base `#D6D0BF` |
-
-Try flat matte shading and low-resolution textures. Pixel density comes from the game's world render and texture settings; painting a detailed model and applying a coarse filter is not a substitute for silhouette design.
-
-## Animation and sword considerations
-
-The sword planted beside her works for an idle reference pose. A walking carry pose must keep its tip clear of the ground and keep her visible from the elevated camera. Test a raised one-handed carry and a stowed socket before deciding which fits the model; the greatsword's scale may require a distinct carry override.
-
-Keep the sword mesh independent, with documented socket offsets. An ordinary NPC can reuse the same locomotion without equipment. A two-handed grip or combat motion would be additional animation work.
-
-Her dress is the main deformation risk. Test the front/back hem during a full walk loop before making more outfits from it. Belt accessories should use simple attachments or skinning; avoid physics-driven straps at this stage.
-
-## Game-scale acceptance views
-
-Capture the actual model from the gameplay camera in all four cardinal facing directions, both idle and walking. Test approximately 40–56 pixels of character height at the trial 640 × 360 world resolution, and adjust the camera scale based on readability.
-
-Check foot contact, dress/leg intersections, sword/ground clearance, silhouette separation from vegetation and buildings, and stable hair edges during camera movement. A front/side/back concept board helps modeling but does not replace these elevated engine views.
-
-Preserve the original illustration and save later experiments under new versioned filenames.

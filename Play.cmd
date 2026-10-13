@@ -1,2 +1,2 @@
 @echo off
-start "Coastal Foundation" "%~dp0output\windows\CoastalFoundation.exe"
+powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "%~dp0tools\launch_game.ps1"

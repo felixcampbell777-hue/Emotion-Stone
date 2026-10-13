@@ -1,0 +1,18 @@
+{
+  "release": "0.29.0",
+  "game_key": "d5b014ed25c486803c2b60e237fd2bcb76a386398c3a78c44e54e1d809c6ede9",
+  "source_checks": 1329,
+  "windows_checks": 1329,
+  "source_and_donor_hashes_match": true,
+  "canonical_and_personal_sources_unchanged": true,
+  "sole_current_release": "C:\\Games\\CoastalFoundation\\output\\windows\\v0.29.0",
+  "editable_wolf": "art/source/beta-wolf.blend",
+  "rendered_pack_phases": [
+    "single-windup",
+    "single-leap",
+    "pair-windup",
+    "pair-leap"
+  ],
+  "current_rendered_files": 1359,
+  "no_new_downloads": true
+}

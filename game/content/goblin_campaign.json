@@ -1,0 +1,178 @@
+{
+  "quest_xp": 160,
+  "secret_xp": 25,
+  "speed_bonus": 0.2,
+  "enemies": {
+    "goblin_raider": {
+      "health": 52,
+      "damage": 9,
+      "speed": 1.65,
+      "windup": 0.85,
+      "lunge_speed": 4.2,
+      "recovery": 0.85
+    },
+    "goblin_guard": {
+      "health": 72,
+      "damage": 12,
+      "speed": 1.2,
+      "windup": 1.15,
+      "lunge_speed": 3.4,
+      "recovery": 1.25
+    },
+    "goblin_slinger": {
+      "health": 42,
+      "damage": 8,
+      "speed": 1.1,
+      "windup": 1.35,
+      "lunge_speed": 0,
+      "recovery": 1.25
+    },
+    "goblin_foreman": {
+      "health": 145,
+      "damage": 15,
+      "speed": 1.1,
+      "windup": 1.25,
+      "lunge_speed": 4,
+      "recovery": 1.6
+    }
+  },
+  "actions": [
+    {
+      "id": "gate",
+      "map": "goblin_approach",
+      "type": "gate",
+      "at": [
+        0,
+        -1
+      ],
+      "title": "Palisade gate"
+    },
+    {
+      "id": "gate_lever",
+      "map": "goblin_approach",
+      "type": "lever",
+      "at": [
+        2,
+        -0.1
+      ],
+      "title": "Turn gate winch"
+    },
+    {
+      "id": "alarm",
+      "map": "goblin_approach",
+      "type": "alarm",
+      "at": [
+        -2,
+        0
+      ],
+      "title": "Silence goblin alarm"
+    },
+    {
+      "id": "barricade",
+      "map": "goblin_cave",
+      "type": "barricade",
+      "at": [
+        0.15,
+        2.6
+      ],
+      "title": "Break / clear barricade"
+    },
+    {
+      "id": "heirloom",
+      "map": "goblin_cave",
+      "type": "heirloom",
+      "at": [
+        -5,
+        -6
+      ],
+      "title": "Search small stolen box"
+    },
+    {
+      "id": "rest",
+      "map": "goblin_cave",
+      "type": "rest",
+      "at": [
+        -4,
+        5
+      ],
+      "title": "Rest at sheltered fire"
+    },
+    {
+      "id": "secret_wall",
+      "map": "goblin_depths",
+      "type": "secret_wall",
+      "at": [
+        -4,
+        -3.5
+      ],
+      "title": "Investigate loose shrine stones"
+    },
+    {
+      "id": "windstep",
+      "map": "goblin_depths",
+      "type": "charm",
+      "at": [
+        -4,
+        -5
+      ],
+      "title": "Take Windstep Charm"
+    },
+    {
+      "id": "goods",
+      "map": "goblin_depths",
+      "type": "goods",
+      "at": [
+        0,
+        -7
+      ],
+      "title": "Recover stolen farm supplies"
+    },
+    {
+      "id": "shortcut",
+      "map": "goblin_depths",
+      "type": "shortcut",
+      "at": [
+        4,
+        -7
+      ],
+      "title": "Open supply tunnel to farm"
+    },
+    {
+      "id": "shortcut_back",
+      "map": "lark_farm",
+      "type": "return_shortcut",
+      "at": [
+        4,
+        -8
+      ],
+      "title": "Supply tunnel: Foreman Vault"
+    }
+  ],
+  "ambushes": [
+    {
+      "id": "ambush_road",
+      "map": "goblin_approach",
+      "at": [
+        0,
+        -4
+      ],
+      "radius": 2.6,
+      "enemies": [
+        "rush_left",
+        "rush_right"
+      ]
+    },
+    {
+      "id": "ambush_cave",
+      "map": "goblin_cave",
+      "at": [
+        0,
+        -2.5
+      ],
+      "radius": 2.3,
+      "enemies": [
+        "lurker"
+      ]
+    }
+  ]
+}

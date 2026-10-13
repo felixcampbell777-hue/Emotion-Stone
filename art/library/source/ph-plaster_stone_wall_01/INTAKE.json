@@ -1,0 +1,55 @@
+{
+  "id": "ph-plaster_stone_wall_01",
+  "asset_id": "plaster_stone_wall_01",
+  "type": "pbr-texture",
+  "provider": "Poly Haven",
+  "license": "CC0-1.0",
+  "biomes": [
+    "town",
+    "castle"
+  ],
+  "source": "https://polyhaven.com/a/plaster_stone_wall_01",
+  "note": "2K albedo, OpenGL normal and roughness; no redundant 8K/16K maps.",
+  "polyhaven": true,
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:46:44.642556+00:00",
+  "downloads": [
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/plaster_stone_wall_01/plaster_stone_wall_01_diff_2k.jpg",
+      "bytes": 3104861,
+      "sha256": "d2dfed68cae9e78a1d5e2b5bbe2f311a7a648981c1d177244edf1a4f24cb6db7",
+      "publisher_md5": "53bc66b847d9a1ee63f88bbcba1d45d3"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/plaster_stone_wall_01/plaster_stone_wall_01_nor_gl_2k.jpg",
+      "bytes": 4026546,
+      "sha256": "4b245a8b02ac93eda5520bbfb311eb468ed569e6d279351f89feee0cf25d04d4",
+      "publisher_md5": "0a118fa69fa6892cbc588fb2b5e9dc88"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/plaster_stone_wall_01/plaster_stone_wall_01_rough_2k.jpg",
+      "bytes": 783398,
+      "sha256": "d650740ab9380e08a31ba73c5997ed96021f5914754c3d8f19e4c6030d28e256",
+      "publisher_md5": "4dd6c1fc9cc57e52daab33627234d096"
+    }
+  ],
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "ph-plaster_stone_wall_01\\albedo.jpg",
+      "bytes": 3104861,
+      "sha256": "d2dfed68cae9e78a1d5e2b5bbe2f311a7a648981c1d177244edf1a4f24cb6db7"
+    },
+    {
+      "path": "ph-plaster_stone_wall_01\\normal.jpg",
+      "bytes": 4026546,
+      "sha256": "4b245a8b02ac93eda5520bbfb311eb468ed569e6d279351f89feee0cf25d04d4"
+    },
+    {
+      "path": "ph-plaster_stone_wall_01\\roughness.jpg",
+      "bytes": 783398,
+      "sha256": "d650740ab9380e08a31ba73c5997ed96021f5914754c3d8f19e4c6030d28e256"
+    }
+  ]
+}

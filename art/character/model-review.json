@@ -1,0 +1,83 @@
+{
+  "status": "awaiting_user_approval",
+  "date": "2026-10-10",
+  "user_instruction": "get my verification once you have a model before begining animations",
+  "direction": "Realistic human girl, lean and strong without bulk; original denim dress and high-waisted belt; shoulder-length chestnut hair.",
+  "static_model": "art/source/hero-detailed.blend",
+  "preview": "game/assets/characters/humanoid-hero-preview.glb",
+  "metrics": {
+    "height_m": 1.648068766593933,
+    "body_source": "CC0 anatomical topology sculpted to reference proportions",
+    "whole_body": true,
+    "rig_retargeted": false,
+    "design": {
+      "body_width": 0.87,
+      "leg_height": 0.95,
+      "torso_height": 0.88,
+      "head_width": 1.19,
+      "head_height": 1.12,
+      "head_center": 1.565,
+      "hair_crown": 1.739,
+      "hair_width": 0.139,
+      "hair_end": 1.315,
+      "realistic_head_width": 0.78,
+      "realistic_head_height": 0.76,
+      "stature_scale": 1.08
+    }
+  },
+  "renders": "output/verification/draft-render/hero-detail",
+  "playable_release": "0.23.2",
+  "animation_fitting_approved": false,
+  "notes": "User rejected the static draft and stopped modeling. Current work is asset-shortlist research only (docs/HERO-ASSET-SHORTLIST.md). No replacement model selected; retain awaiting_user_approval to preserve the build/animation gate. Static renders are rejected review evidence, not gameplay or release verification.",
+  "sha256": {
+    "tools/remake_hero.py": "dc5d9a988b573fc889c4dee47bb72fc31f72464fb2fcb399b89af1f9a6f5d074",
+    "tools/prepare_character_detail.py": "a8c2e97cc5d46023a342682e9157a42924535362756b8efc05827683ade260f9",
+    "game/shaders/hero_hair.gdshader": "d62c4564d233dd5719d5b200560bfc18a12a05852f2962f0f9921c2f47bf9590",
+    "game/shaders/hero_surface.gdshaderinc": "0e41da0305fed0c71b3e760ebfaf88f1c30fd9fcedb9aae00340a6f5d7131fc1",
+    "art/source/hero-detailed.blend": "005b078c4ca43c436fe1ee7dd92b9de46ccb7f713a12fdc0cb41790670b6df7a",
+    "game/assets/characters/humanoid-hero-preview.glb": "784f263035171255d5478a8d0a88ecec8ec8d1289557c38550ccebe3d0e9dd23",
+    "game/scripts/hero_capture.gd": "055d4dc8f37f8c07de906387965c705bd1717fc4877c66079081b7db2c7dfa9b",
+    "game/scripts/environment_art.gd": "0165973a6fde2bb5a43fdf3d34b522fbfc5e858260deba68216c87575f63882b"
+  },
+  "files": [
+    "front.png",
+    "three-quarter.png",
+    "side.png",
+    "back.png",
+    "face.png",
+    "boots.png"
+  ],
+  "visual_review": "Front, three-quarter, side, back, face and boots inspected. Static preview uses Forward+ at native resolution; no animation or gameplay clearance certification. Face/hair finish remains below reference quality.",
+  "render_resolution": [
+    720,
+    1000
+  ],
+  "static_integration": {
+    "scope": "Static fixed-pose graphics option only. No animation fitting, no approval of rejected generated models.",
+    "date": "2026-10-10",
+    "authorized": true,
+    "user_instruction": "port the standalone 3d from the non anime character into the game as a standalone graffic option, no animations, checking scale and look",
+    "frozen_assets": {
+      "art/source/humanoid-v1.blend": "9a22db88fdb56f68a7ed6c1767beb87b7d114b5048a503a5520455995aa165f8",
+      "art/source/greatsword-v1.blend": "be8974e5032c0e083ebc33890e007ce9a39ba43cb91bccced18ff3700bd19346",
+      "game/assets/characters/humanoid-v1.glb": "67e61ac3b435e960e367e2897905d1efbe54ba9f9c6bdf1335ad4d243733d41c",
+      "game/assets/characters/greatsword-v1.glb": "3971a8906191957122fc2bcde721dd06da42f80a27c2c5b1811896922be4481d",
+      "game/assets/characters/humanoid-advanced-v1.glb": "d06c7dcb4c9fd504dcfa04c7eeeb3b2ba8881ed221e6eca8574652520f39c4f1",
+      "game/assets/characters/humanoid-hero-v1.glb": "09e13f3970dedc9676a62f6e7cb620d3cde55f2fb2420ca1208449efb00b0678"
+    },
+    "source": "C:\\Users\\felix\\OneDrive\\Documents\\heroinedraft1.blend",
+    "report": "art/character/standalone-export.json"
+  },
+  "alpha_integration": {
+    "authorized": true,
+    "date": "2026-10-12",
+    "user_instruction": "make this character the main model in advanced graffics settings alpha with first person enabled.",
+    "scope": "Reuse the saved, already animated heroine-beta skin in Advanced Alpha. No source or canonical animation regeneration."
+  },
+  "alpha_sword_integration": {
+    "authorized": true,
+    "date": "2026-10-12",
+    "user_instruction": "Confirmed switching Alpha's sword to Beta's broad war sword",
+    "scope": "Reuse the verified saved Beta war sword and back anchor in Advanced Alpha, without changing source artwork or combat costs"
+  }
+}

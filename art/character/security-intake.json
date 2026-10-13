@@ -1,0 +1,13 @@
+{
+  "ScanStarted": "2026-10-10T18:00:40.7262749Z",
+  "ScanFinished": "2026-10-10T18:00:43.5001665Z",
+  "AntivirusEnabled": true,
+  "RealTimeProtectionEnabled": true,
+  "Detections": 0,
+  "Scope": [
+    "art/character",
+    "game/assets/characters"
+  ],
+  "BundleSHA256": "46A912C0524072AC3B78C35D5D2471DF7B8DF102394A050CA8CD7184E3393648",
+  "SignaturesUpdated": "2026-10-10T03:33:59.0000000-05:00"
+}

@@ -1,0 +1,40 @@
+{
+  "blender_version": "5.2.2 LTS",
+  "dress": {
+    "tint": [
+      0.11,
+      0.22,
+      0.34,
+      1
+    ],
+    "uv_scale": 1.5,
+    "asset": "denim_fabric_05",
+    "normal_strength": 0.75
+  },
+  "sword": {
+    "origin": [
+      -0.1854,
+      0.085,
+      0.93
+    ],
+    "source": "C:\\Games\\CoastalFoundation\\art\\source\\greatsword-v1.blend",
+    "blade_axis": [
+      -0.72,
+      0.015,
+      0.69381195
+    ],
+    "mount": "fitted leather cradle and two retention straps",
+    "scale": 0.58
+  },
+  "belt": {
+    "height_range": [
+      0.677,
+      0.725
+    ],
+    "fitted_to": "existing evaluated cocktail dress",
+    "leather_asset": "brown_leather",
+    "buckle": "rectangular aged brass"
+  },
+  "source": "C:\\Users\\felix\\OneDrive\\Documents\\heroinedraft1.blend",
+  "approval": "Static review only; no animations or game integration approved"
+}

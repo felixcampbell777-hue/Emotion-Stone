@@ -1,0 +1,87 @@
+{
+  "id": "goblin_depths",
+  "display_name": "Goblins: Foreman Vault",
+  "subtitle": "Recover the farm supplies; follow the draft to a forgotten shrine",
+  "seed": 417,
+  "bounds": [
+    -8,
+    -9,
+    8,
+    8
+  ],
+  "spawn": [
+    0,
+    5.5
+  ],
+  "sea": false,
+  "terrain_regions": [
+    {
+      "kind": "path",
+      "rect": [
+        -8,
+        -9,
+        16,
+        17
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "shrine_side",
+      "kind": "wall",
+      "at": [
+        -2.1,
+        -5.4
+      ],
+      "rotation": 90,
+      "length": 3.6
+    }
+  ],
+  "npcs": [],
+  "interactions": [],
+  "exits": [
+    {
+      "id": "gallery",
+      "rect": [
+        -1,
+        6,
+        2,
+        1
+      ],
+      "target": "goblin_cave",
+      "spawn": [
+        0,
+        -6
+      ],
+      "label": "Return to gallery",
+      "interact": true
+    }
+  ],
+  "enemies": [
+    {
+      "id": "vault_guard",
+      "kind": "goblin_guard",
+      "at": [
+        3,
+        1
+      ]
+    },
+    {
+      "id": "foreman",
+      "kind": "goblin_foreman",
+      "at": [
+        0,
+        -5
+      ]
+    },
+    {
+      "id": "foreman_slinger",
+      "kind": "goblin_slinger",
+      "at": [
+        4,
+        -5
+      ]
+    }
+  ],
+  "cave": true
+}

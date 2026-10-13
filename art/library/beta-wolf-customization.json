@@ -1,0 +1,29 @@
+{
+  "source": "art/source/beta-wolf.blend",
+  "runtime": "game/assets/creatures/beta-wolf.glb",
+  "donor": "art/library/source/quaternius-animals/glTF/Wolf.gltf",
+  "donor_sha256": "cc02e9d128b5715f352ee8bea086f97a35f1d875d240de99b0f9f2775c37d415",
+  "license": "Quaternius legacy CC0; use embedded in game",
+  "original_fur_maps_license": "CC0-1.0",
+  "body_vertices": 5888,
+  "tufts": 828,
+  "clips": [
+    "Attack",
+    "Death",
+    "Eating",
+    "Gallop",
+    "Gallop_Jump",
+    "Idle",
+    "Idle_2",
+    "Idle_2_HeadLow",
+    "Idle_HitReact1",
+    "Idle_HitReact2",
+    "Jump_ToIdle",
+    "Walk"
+  ],
+  "source_sha256": "b20eab0e6c35456f06dcb4461a1e5b3c059e8e454231b75dd5324bffb1b37e19",
+  "runtime_sha256": "2f47cc9a7a46205b655fc3742105fe154107ae9b475016558ec50ccd6526016c",
+  "saved_source_reopened": true,
+  "embedded_scripts": 0,
+  "drivers": 0
+}

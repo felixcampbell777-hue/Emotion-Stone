@@ -1,11 +1,71 @@
 {
   "id": "humanoid_v1",
-  "revision": 1,
-  "height_m": 1.97,
+  "revision": 8,
+  "height_m": 1.81,
   "forward_blender": "-Y",
   "forward_godot": "+Z",
   "animation_fps": 30,
-  "modules": {"hair": ["bob", "crop"], "outfit": ["dress", "tunic"], "equipment": ["none", "greatsword"]},
-  "clips": ["idle_loop", "walk_loop", "interact"],
-  "bones": ["root", "pelvis", "spine", "head", "upper_arm.L", "forearm.L", "upper_arm.R", "forearm.R", "thigh.L", "shin.L", "foot.L", "thigh.R", "shin.R", "foot.R"]
+  "modules": {
+    "hair": [
+      "bob",
+      "crop",
+      "headscarf"
+    ],
+    "outfit": [
+      "dress",
+      "tunic",
+      "workdress"
+    ],
+    "equipment": [
+      "none",
+      "greatsword"
+    ],
+    "left_arm": [
+      "human",
+      "prototype"
+    ],
+    "footwear": [
+      "boots",
+      "bare"
+    ]
+  },
+  "clips": [
+    "idle_loop",
+    "walk_loop",
+    "interact",
+    "drag_idle_loop",
+    "drag_walk_loop",
+    "draw_sword",
+    "sheathe_sword",
+    "attack_light",
+    "attack_heavy",
+    "attack_light2",
+    "attack_light3",
+    "attack_water",
+    "attack_lance",
+    "parry_guard",
+    "attack_thrust",
+    "dodge_roll",
+    "stand_up",
+    "dodge_roll_sheathed",
+    "stand_up_sheathed"
+  ],
+  "bones": [
+    "root",
+    "pelvis",
+    "spine",
+    "head",
+    "upper_arm.L",
+    "forearm.L",
+    "upper_arm.R",
+    "forearm.R",
+    "thigh.L",
+    "shin.L",
+    "foot.L",
+    "thigh.R",
+    "shin.R",
+    "foot.R",
+    "hair_sway",
+    "skirt_sway"
+  ]
 }

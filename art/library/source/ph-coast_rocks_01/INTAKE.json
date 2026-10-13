@@ -1,0 +1,83 @@
+{
+  "id": "ph-coast_rocks_01",
+  "asset_id": "coast_rocks_01",
+  "type": "scanned-model",
+  "provider": "Poly Haven",
+  "license": "CC0-1.0",
+  "biomes": [
+    "beach"
+  ],
+  "source": "https://polyhaven.com/a/coast_rocks_01",
+  "note": "1K glTF source scan and dependencies; optimize geometry/LOD before runtime.",
+  "polyhaven": true,
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:45:16.095559+00:00",
+  "downloads": [
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/coast_rocks_01/coast_rocks_01_1k.gltf",
+      "bytes": 2810,
+      "sha256": "9d45b232fe8bfc8f9d84aaa900ba28f150764e4b40accf7d50fbb45a3de54c51",
+      "publisher_md5": "91f13d2ab5e6e56180649b22712632f5"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/coast_rocks_01/coast_rocks_01.bin",
+      "bytes": 19320352,
+      "sha256": "3d1c33b18fdcf0efebab46526e94d17efccbc3c9a06dc14b89b04b93109fa3d2",
+      "publisher_md5": "4cf9d5009388434a0520e1643127a725"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/coast_rocks_01/coast_rocks_01_nor_gl_1k.jpg",
+      "bytes": 918464,
+      "sha256": "848292bb5fd720fefd37fa94326071bc81e2290bbf409bb019efb6fb30399809",
+      "publisher_md5": "00fc7775241e25e089624d3c6a15c39b"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/coast_rocks_01/coast_rocks_01_arm_1k.jpg",
+      "bytes": 602817,
+      "sha256": "13fddfb9051fa36720b5c35f4f52a49826b1e3a4063f66e440a7033dd90c30cc",
+      "publisher_md5": "60792c07b60d046459f11ca3baf50f1d"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/coast_rocks_01/coast_rocks_01_diff_1k.jpg",
+      "bytes": 839761,
+      "sha256": "a6814ce9c023fc7c90eb38c2afe658a3076b94ed44d136c2dbd3605d18fade7b",
+      "publisher_md5": "4d6b6e50668887922d08b8c0f789c350"
+    }
+  ],
+  "excluded_files": [],
+  "gltf_checks": [
+    {
+      "file": "ph-coast_rocks_01\\coast_rocks_01_1k.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    }
+  ],
+  "files": [
+    {
+      "path": "ph-coast_rocks_01\\coast_rocks_01_1k.gltf",
+      "bytes": 2810,
+      "sha256": "9d45b232fe8bfc8f9d84aaa900ba28f150764e4b40accf7d50fbb45a3de54c51"
+    },
+    {
+      "path": "ph-coast_rocks_01\\coast_rocks_01.bin",
+      "bytes": 19320352,
+      "sha256": "3d1c33b18fdcf0efebab46526e94d17efccbc3c9a06dc14b89b04b93109fa3d2"
+    },
+    {
+      "path": "ph-coast_rocks_01\\textures\\coast_rocks_01_nor_gl_1k.jpg",
+      "bytes": 918464,
+      "sha256": "848292bb5fd720fefd37fa94326071bc81e2290bbf409bb019efb6fb30399809"
+    },
+    {
+      "path": "ph-coast_rocks_01\\textures\\coast_rocks_01_arm_1k.jpg",
+      "bytes": 602817,
+      "sha256": "13fddfb9051fa36720b5c35f4f52a49826b1e3a4063f66e440a7033dd90c30cc"
+    },
+    {
+      "path": "ph-coast_rocks_01\\textures\\coast_rocks_01_diff_1k.jpg",
+      "bytes": 839761,
+      "sha256": "a6814ce9c023fc7c90eb38c2afe658a3076b94ed44d136c2dbd3605d18fade7b"
+    }
+  ]
+}

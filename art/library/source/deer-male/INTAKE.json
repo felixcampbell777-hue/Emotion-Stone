@@ -1,0 +1,32 @@
+{
+  "id": "deer-male",
+  "type": "creature",
+  "provider": "OpenGameArt",
+  "author": "CDmir / TinyWorlds",
+  "license": "CC0-1.0",
+  "biomes": [
+    "forest",
+    "mountain"
+  ],
+  "note": "Ambient stag; rigged and animated with packed maps.",
+  "source": "https://opengameart.org/content/old-deer-male",
+  "downloads": [
+    {
+      "url": "https://opengameart.org/sites/default/files/deer1.blend",
+      "bytes": 7710492,
+      "sha256": "729f47b10f29e13d128aa2e0a2a5ba47be40cb6593e1e86ac31e236e93bef003",
+      "publisher_md5": null
+    }
+  ],
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:44:38.661349+00:00",
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "deer-male\\deer1.blend",
+      "bytes": 7710492,
+      "sha256": "729f47b10f29e13d128aa2e0a2a5ba47be40cb6593e1e86ac31e236e93bef003"
+    }
+  ]
+}

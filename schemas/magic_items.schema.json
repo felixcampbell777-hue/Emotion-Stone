@@ -1,0 +1,373 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "items"
+  ],
+  "properties": {
+    "items": {
+      "type": "array",
+      "minItems": 31,
+      "maxItems": 128,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "code",
+          "category",
+          "name",
+          "description",
+          "color",
+          "accent",
+          "variant",
+          "effects"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "code": {
+            "type": "string"
+          },
+          "category": {
+            "enum": [
+              "ring",
+              "torso",
+              "leggings",
+              "boots",
+              "headwear",
+              "necklace",
+              "consumable"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 60
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 350
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "accent": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "variant": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4
+          },
+          "effects": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": false,
+            "properties": {
+              "armor": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "dodge_saving": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "health": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "health_regen": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "hurt_recoil_saving": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "lance_haste": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "life_on_hit": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "melee": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "parry_refund": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "parry_saving": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "parry_window": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "phoenix": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "slam_force": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "slam_range": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "slow_resist": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "speed": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "sprint_saving": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "stamina_regen": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "stand_haste": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "sword_recoil": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "water_damage": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "water_range": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "water_saving": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "xp": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "regen_rate": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 30
+              },
+              "regen_seconds": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 30
+              },
+              "burst_heal": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 30
+              }
+            }
+          }
+        }
+      }
+    },
+    "sets": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "items",
+          "effects",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "effects": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": false,
+            "properties": {
+              "armor": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "dodge_saving": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "health": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "health_regen": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "hurt_recoil_saving": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "lance_haste": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "life_on_hit": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "melee": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "parry_refund": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "parry_saving": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "parry_window": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "phoenix": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "slam_force": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "slam_range": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "slow_resist": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "speed": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "sprint_saving": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "stamina_regen": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "stand_haste": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "sword_recoil": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "water_damage": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "water_range": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "water_saving": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "xp": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

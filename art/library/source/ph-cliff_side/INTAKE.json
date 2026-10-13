@@ -1,0 +1,55 @@
+{
+  "id": "ph-cliff_side",
+  "asset_id": "cliff_side",
+  "type": "pbr-texture",
+  "provider": "Poly Haven",
+  "license": "CC0-1.0",
+  "biomes": [
+    "mountain",
+    "beach"
+  ],
+  "source": "https://polyhaven.com/a/cliff_side",
+  "note": "2K albedo, OpenGL normal and roughness; no redundant 8K/16K maps.",
+  "polyhaven": true,
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:45:29.917518+00:00",
+  "downloads": [
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cliff_side/cliff_side_diff_2k.jpg",
+      "bytes": 3387348,
+      "sha256": "bc6f92d72eb6383ecc3a1094ed9f5b37efb36ccf83cf29699bb5990e6775afee",
+      "publisher_md5": "6d129836144e271b30071281241e237d"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cliff_side/cliff_side_nor_gl_2k.jpg",
+      "bytes": 3585856,
+      "sha256": "eec5c0bb3daa1ad72f0f9c1d19caf78e84dfedcf3283b35b5a5dcf163718025f",
+      "publisher_md5": "8209033c3ad15185977d91c92cf5866f"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cliff_side/cliff_side_rough_2k.jpg",
+      "bytes": 1765122,
+      "sha256": "7fd4f6d289b1b44c812533eaea7802e640dda55070b9746025a9d33117a1bd1f",
+      "publisher_md5": "44abb195b6c4c7b6da902e97e5bbbef2"
+    }
+  ],
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "ph-cliff_side\\albedo.jpg",
+      "bytes": 3387348,
+      "sha256": "bc6f92d72eb6383ecc3a1094ed9f5b37efb36ccf83cf29699bb5990e6775afee"
+    },
+    {
+      "path": "ph-cliff_side\\normal.jpg",
+      "bytes": 3585856,
+      "sha256": "eec5c0bb3daa1ad72f0f9c1d19caf78e84dfedcf3283b35b5a5dcf163718025f"
+    },
+    {
+      "path": "ph-cliff_side\\roughness.jpg",
+      "bytes": 1765122,
+      "sha256": "7fd4f6d289b1b44c812533eaea7802e640dda55070b9746025a9d33117a1bd1f"
+    }
+  ]
+}

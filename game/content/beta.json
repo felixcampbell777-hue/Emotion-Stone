@@ -1,0 +1,97 @@
+{
+  "start_map": "beta_meadow",
+  "back_anchor": {
+    "blade_distance": 0.51,
+    "pad_x": -0.045,
+    "back_z": -0.108,
+    "width": 0.18,
+    "height": 0.23,
+    "depth": 0.016
+  },
+  "locomotion": {
+    "walk_speed": 1.55,
+    "walk_cycle_distance": 1.34,
+    "run_cycle_distance": 3.0,
+    "burden_run_cycle_distance": 2.5,
+    "walk_stride_scale": 1.0,
+    "run_stride_scale": 0.9,
+    "burden_run_stride_scale": 0.55,
+    "walk_lift_scale": 0.13,
+    "run_lift_scale": 0.72,
+    "burden_run_lift_scale": 0.5
+  },
+  "animals": {
+    "beta_wolf": {
+      "name": "Wolf",
+      "model": "res://assets/creatures/beta-wolf.glb",
+      "max_health": 80,
+      "damage": 12,
+      "notice_range": 6.5,
+      "walk_speed": 1.65,
+      "lunge_speed": 7.8,
+      "windup": 0.85,
+      "lunge_seconds": 0.5,
+      "recovery": 1.5,
+      "height": 0.95,
+      "radius": 0.33,
+      "clips": {
+        "idle": "Idle",
+        "walk": "Walk",
+        "run": "Gallop",
+        "attack": "Attack",
+        "hit": "Idle_HitReact1",
+        "death": "Death"
+      }
+    },
+    "beta_rat": {
+      "name": "Giant rat",
+      "model": "res://assets/creatures/beta-rat.glb",
+      "max_health": 35,
+      "damage": 6,
+      "notice_range": 5.0,
+      "walk_speed": 1.4,
+      "lunge_speed": 3.6,
+      "windup": 0.75,
+      "lunge_seconds": 0.25,
+      "recovery": 1.3,
+      "height": 0.4,
+      "combat_height": 1.0,
+      "radius": 0.22,
+      "clips": {
+        "idle": "Idle.001",
+        "walk": "Walk",
+        "run": "Run",
+        "attack": "Attack.000",
+        "hit": "Hit",
+        "death": "Die"
+      }
+    }
+  },
+  "wolf_packs": {
+    "patrol_speed": 1.2,
+    "circle_speed": 2.2,
+    "circle_radius": 3.1,
+    "circle_angular_speed": 0.32,
+    "attack_distance": 4.2,
+    "first_attack_delay": 1.65,
+    "wave_interval": 3.3,
+    "leash_radius": 12.0,
+    "lost_sight_seconds": 4.5,
+    "territories": {
+      "west_woodland": {
+        "center": [
+          -9,
+          12
+        ],
+        "radius": 5.5
+      },
+      "east_woodland": {
+        "center": [
+          10,
+          20
+        ],
+        "radius": 5.5
+      }
+    }
+  }
+}

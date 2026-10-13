@@ -1,0 +1,269 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "level_thresholds",
+    "enemy_xp",
+    "quest_xp",
+    "skills",
+    "well_quest_xp"
+  ],
+  "properties": {
+    "level_thresholds": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "enemy_xp": {
+      "type": "object",
+      "required": [
+        "slime",
+        "boar",
+        "warden",
+        "moss_slime",
+        "resin_slime",
+        "bramble_slime",
+        "piglet",
+        "bat",
+        "hare",
+        "squirrel",
+        "puffcap"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "slime": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "boar": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "warden": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "moss_slime": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "resin_slime": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "bramble_slime": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "piglet": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "bat": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "hare": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "squirrel": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "puffcap": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "green_slime": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "queen_slime": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "goblin_raider": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "goblin_guard": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "goblin_slinger": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "goblin_foreman": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "beta_wolf": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "beta_rat": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "quest_xp": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "skills": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "branch",
+          "name",
+          "description",
+          "requires",
+          "excludes",
+          "max_rank",
+          "effects"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z_]+$"
+          },
+          "branch": {
+            "enum": [
+              "Strength",
+              "Form",
+              "Mana"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "requires": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "max_rank": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "excludes": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "effects": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "health": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "melee": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "speed": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "sprint_saving": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "swing_saving": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "melee_multiplier": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "water_saving": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "opening_damage": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "return_damage": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "spin_damage": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "heavy_damage": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "thrust_damage": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "thrust_control": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "water_damage": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "lance_damage": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "lance_control": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "lance_stability": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "stamina": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            }
+          },
+          "category": {
+            "enum": [
+              "active",
+              "passive",
+              "capacity"
+            ]
+          }
+        }
+      }
+    },
+    "well_quest_xp": {
+      "type": "integer",
+      "minimum": 1
+    }
+  }
+}

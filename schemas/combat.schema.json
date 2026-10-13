@@ -1,0 +1,578 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "max_health",
+    "drawn_walk_speed",
+    "draw_seconds",
+    "sheathe_seconds",
+    "hurt_invulnerability",
+    "sword_scale",
+    "light",
+    "heavy",
+    "slime",
+    "max_stamina",
+    "sprint_speed",
+    "sprint_drain",
+    "stamina_regen",
+    "stamina_regen_delay",
+    "sprint_resume_stamina",
+    "heavy_hold_seconds",
+    "parry",
+    "combo",
+    "combo_window",
+    "drawn_sprint_speed",
+    "drawn_sprint_drain",
+    "turn_response",
+    "rush_min_seconds",
+    "rush_heavy_windup",
+    "rush_light_windup",
+    "combo_link_phase",
+    "water",
+    "lance",
+    "thrust",
+    "dodge",
+    "slam_shockwave",
+    "thrust_charge"
+  ],
+  "properties": {
+    "max_health": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 999
+    },
+    "drawn_walk_speed": {
+      "$ref": "#/$defs/positive"
+    },
+    "draw_seconds": {
+      "$ref": "#/$defs/positive"
+    },
+    "sheathe_seconds": {
+      "$ref": "#/$defs/positive"
+    },
+    "hurt_invulnerability": {
+      "$ref": "#/$defs/positive"
+    },
+    "sword_scale": {
+      "$ref": "#/$defs/positive"
+    },
+    "light": {
+      "$ref": "#/$defs/attack"
+    },
+    "heavy": {
+      "$ref": "#/$defs/attack"
+    },
+    "slime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_health",
+        "damage",
+        "respawn_seconds",
+        "notice_range",
+        "walk_speed",
+        "lunge_speed",
+        "windup",
+        "lunge_seconds",
+        "recovery"
+      ],
+      "properties": {
+        "max_health": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 999
+        },
+        "damage": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 999
+        },
+        "respawn_seconds": {
+          "$ref": "#/$defs/positive"
+        },
+        "notice_range": {
+          "$ref": "#/$defs/positive"
+        },
+        "walk_speed": {
+          "$ref": "#/$defs/positive"
+        },
+        "lunge_speed": {
+          "$ref": "#/$defs/positive"
+        },
+        "windup": {
+          "$ref": "#/$defs/positive"
+        },
+        "lunge_seconds": {
+          "$ref": "#/$defs/positive"
+        },
+        "recovery": {
+          "$ref": "#/$defs/positive"
+        }
+      }
+    },
+    "max_stamina": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 999
+    },
+    "sprint_speed": {
+      "$ref": "#/$defs/positive"
+    },
+    "sprint_drain": {
+      "$ref": "#/$defs/positive"
+    },
+    "stamina_regen": {
+      "$ref": "#/$defs/positive"
+    },
+    "stamina_regen_delay": {
+      "$ref": "#/$defs/positive"
+    },
+    "sprint_resume_stamina": {
+      "$ref": "#/$defs/positive"
+    },
+    "heavy_hold_seconds": {
+      "$ref": "#/$defs/positive"
+    },
+    "parry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "duration",
+        "active_start",
+        "active_end",
+        "stamina_cost",
+        "cone_dot",
+        "knockback",
+        "stun_seconds",
+        "contact_range"
+      ],
+      "properties": {
+        "duration": {
+          "$ref": "#/$defs/positive"
+        },
+        "active_start": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 60
+        },
+        "active_end": {
+          "$ref": "#/$defs/positive"
+        },
+        "stamina_cost": {
+          "$ref": "#/$defs/positive"
+        },
+        "cone_dot": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "knockback": {
+          "$ref": "#/$defs/positive"
+        },
+        "stun_seconds": {
+          "$ref": "#/$defs/positive"
+        },
+        "contact_range": {
+          "type": "number",
+          "minimum": 0.65,
+          "maximum": 3
+        }
+      }
+    },
+    "combo_window": {
+      "$ref": "#/$defs/positive"
+    },
+    "combo": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/$defs/attack"
+      }
+    },
+    "drawn_sprint_speed": {
+      "$ref": "#/$defs/positive"
+    },
+    "drawn_sprint_drain": {
+      "$ref": "#/$defs/positive"
+    },
+    "turn_response": {
+      "$ref": "#/$defs/positive"
+    },
+    "rush_min_seconds": {
+      "$ref": "#/$defs/positive"
+    },
+    "rush_heavy_windup": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "exclusiveMaximum": 1
+    },
+    "rush_light_windup": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "exclusiveMaximum": 1
+    },
+    "combo_link_phase": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "exclusiveMaximum": 1
+    },
+    "water": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "duration",
+        "release_phase",
+        "stamina_cost",
+        "range",
+        "speed",
+        "damage",
+        "half_angle",
+        "thickness"
+      ],
+      "properties": {
+        "duration": {
+          "$ref": "#/$defs/positive"
+        },
+        "stamina_cost": {
+          "$ref": "#/$defs/positive"
+        },
+        "range": {
+          "$ref": "#/$defs/positive"
+        },
+        "speed": {
+          "$ref": "#/$defs/positive"
+        },
+        "damage": {
+          "$ref": "#/$defs/positive"
+        },
+        "half_angle": {
+          "$ref": "#/$defs/positive"
+        },
+        "thickness": {
+          "$ref": "#/$defs/positive"
+        },
+        "release_phase": {
+          "$ref": "#/$defs/phase"
+        }
+      }
+    },
+    "lance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "charge_seconds",
+        "recovery_seconds",
+        "stamina_cost",
+        "damage",
+        "splash_damage",
+        "blast_radius",
+        "range",
+        "speed"
+      ],
+      "properties": {
+        "charge_seconds": {
+          "$ref": "#/$defs/positive"
+        },
+        "recovery_seconds": {
+          "$ref": "#/$defs/positive"
+        },
+        "stamina_cost": {
+          "$ref": "#/$defs/positive"
+        },
+        "damage": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 999
+        },
+        "splash_damage": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999
+        },
+        "blast_radius": {
+          "$ref": "#/$defs/positive"
+        },
+        "range": {
+          "$ref": "#/$defs/positive"
+        },
+        "speed": {
+          "$ref": "#/$defs/positive"
+        },
+        "stagger_seconds": {
+          "$ref": "#/$defs/positive"
+        }
+      }
+    },
+    "thrust": {
+      "$ref": "#/$defs/attack"
+    },
+    "dodge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "duration",
+        "stand_seconds",
+        "stamina_cost",
+        "speed",
+        "tap_seconds",
+        "attack_exit_phase",
+        "attack_exit_blend"
+      ],
+      "properties": {
+        "duration": {
+          "$ref": "#/$defs/positive"
+        },
+        "stand_seconds": {
+          "$ref": "#/$defs/positive"
+        },
+        "stamina_cost": {
+          "$ref": "#/$defs/positive"
+        },
+        "speed": {
+          "$ref": "#/$defs/positive"
+        },
+        "tap_seconds": {
+          "$ref": "#/$defs/positive"
+        },
+        "attack_exit_phase": {
+          "type": "number",
+          "minimum": 0.05,
+          "maximum": 0.8
+        },
+        "attack_exit_blend": {
+          "type": "number",
+          "minimum": 0.12,
+          "maximum": 0.6
+        }
+      }
+    },
+    "draw_timing": {
+      "$ref": "#/$defs/sword_timing"
+    },
+    "sheathe_timing": {
+      "$ref": "#/$defs/sword_timing"
+    },
+    "slam_shockwave": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "radius",
+        "seconds",
+        "force_factor",
+        "stun_seconds"
+      ],
+      "properties": {
+        "radius": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 4
+        },
+        "seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "force_factor": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 2
+        },
+        "stun_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 2
+        }
+      }
+    },
+    "thrust_charge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_seconds",
+        "prepare_seconds",
+        "ready_phase",
+        "damage_per_second",
+        "base_distance",
+        "distance_per_second",
+        "launch_seconds",
+        "launch_seconds_per_charge",
+        "release_windup_seconds",
+        "unprepared_windup_seconds",
+        "recovery_seconds",
+        "hold_base_seconds",
+        "hold_reference_charge",
+        "stagger_seconds",
+        "stamina_per_second",
+        "recoil_multiplier",
+        "gust_distance",
+        "gust_half_width",
+        "gust_seconds",
+        "gust_stun_seconds"
+      ],
+      "properties": {
+        "max_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "prepare_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "ready_phase": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "damage_per_second": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "base_distance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "distance_per_second": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "launch_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "launch_seconds_per_charge": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "release_windup_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "unprepared_windup_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "recovery_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "hold_base_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "hold_reference_charge": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "stagger_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "stamina_per_second": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "recoil_multiplier": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "gust_distance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "gust_half_width": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "gust_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "gust_stun_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    }
+  },
+  "$defs": {
+    "positive": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 60
+    },
+    "phase": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "attack": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "duration",
+        "active_start",
+        "active_end",
+        "damage",
+        "range",
+        "cone_dot",
+        "momentum",
+        "stamina_cost"
+      ],
+      "properties": {
+        "duration": {
+          "$ref": "#/$defs/positive"
+        },
+        "active_start": {
+          "$ref": "#/$defs/phase"
+        },
+        "active_end": {
+          "$ref": "#/$defs/phase"
+        },
+        "damage": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 999
+        },
+        "range": {
+          "$ref": "#/$defs/positive"
+        },
+        "cone_dot": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "momentum": {
+          "$ref": "#/$defs/positive"
+        },
+        "stamina_cost": {
+          "$ref": "#/$defs/positive"
+        }
+      }
+    },
+    "sword_timing": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "time",
+          "pose"
+        ],
+        "properties": {
+          "time": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "pose": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    }
+  }
+}

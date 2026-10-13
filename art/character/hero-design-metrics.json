@@ -1,0 +1,20 @@
+{
+  "height_m": 1.648068766593933,
+  "body_source": "CC0 anatomical topology sculpted to reference proportions",
+  "whole_body": true,
+  "rig_retargeted": false,
+  "design": {
+    "body_width": 0.87,
+    "leg_height": 0.95,
+    "torso_height": 0.88,
+    "head_width": 1.19,
+    "head_height": 1.12,
+    "head_center": 1.565,
+    "hair_crown": 1.739,
+    "hair_width": 0.139,
+    "hair_end": 1.315,
+    "realistic_head_width": 0.78,
+    "realistic_head_height": 0.76,
+    "stature_scale": 1.08
+  }
+}

@@ -1,0 +1,7 @@
+Source: https://polyhaven.com/a/damp_beach_sand
+Author: Poly Haven; see official asset/API metadata
+License: CC0-1.0
+License reference: https://creativecommons.org/publicdomain/zero/1.0/
+Checked: 2026-10-11
+Attribution optional; retain source provenance.
+Collected for later development; no gameplay integration approved by this intake.

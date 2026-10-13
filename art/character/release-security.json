@@ -1,0 +1,13 @@
+{
+  "Release": "0.23.2",
+  "ScanStarted": "2026-10-10T19:55:21.1594370Z",
+  "ScanFinished": "2026-10-10T19:55:30.5482626Z",
+  "AntivirusEnabled": true,
+  "RealTimeProtectionEnabled": true,
+  "Detections": 0,
+  "Paths": [
+    "C:\\Games\\CoastalFoundation\\output\\windows\\v0.23.2",
+    "C:\\Games\\CoastalFoundation\\art\\source\\hero-detailed.blend"
+  ],
+  "ExecutableSHA256": "C93A825E893AE1699D0FB9858ED8D25E4EF1DE9C547A73CA7F9615C6216086CB"
+}

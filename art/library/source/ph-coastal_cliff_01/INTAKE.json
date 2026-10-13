@@ -1,0 +1,84 @@
+{
+  "id": "ph-coastal_cliff_01",
+  "asset_id": "coastal_cliff_01",
+  "type": "scanned-model",
+  "provider": "Poly Haven",
+  "license": "CC0-1.0",
+  "biomes": [
+    "beach",
+    "mountain"
+  ],
+  "source": "https://polyhaven.com/a/coastal_cliff_01",
+  "note": "1K glTF source scan and dependencies; optimize geometry/LOD before runtime.",
+  "polyhaven": true,
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:45:07.567432+00:00",
+  "downloads": [
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/coastal_cliff_01/coastal_cliff_01_1k.gltf",
+      "bytes": 2825,
+      "sha256": "2e6bb1f77965b314208b309ac89b94b8148c6a08ee6c9808cd71455e5475602d",
+      "publisher_md5": "da3cb728c6ce195ecc0261d976251c40"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/coastal_cliff_01/coastal_cliff_01_diff_1k.jpg",
+      "bytes": 699457,
+      "sha256": "6c9626fdb5550ba260b195638c8c89053faedc22005f4ca94d3be5df72ae525a",
+      "publisher_md5": "a43df03bd9b94f0594551a42b7a24f1b"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/coastal_cliff_01/coastal_cliff_01.bin",
+      "bytes": 13179840,
+      "sha256": "6833dfaf75e0d039e64bc09ad642c4be3361739f20048af32ad50fd8e6471a65",
+      "publisher_md5": "d9f1e368b18c018e158d06ab9d924646"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/coastal_cliff_01/coastal_cliff_01_arm_1k.jpg",
+      "bytes": 640985,
+      "sha256": "7f287d0b44a3162b5e360fe45ccc8b6009c189d21bd33c1094060eef613c6fa6",
+      "publisher_md5": "ebd8e7dd1877230886bde89da565828e"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/coastal_cliff_01/coastal_cliff_01_nor_gl_1k.jpg",
+      "bytes": 853524,
+      "sha256": "afbe8c2f9ff62dd616f776c074b996d2d275eef982a40aee1f28f4f3b3a3cf0e",
+      "publisher_md5": "9257a41db772c4680a8b3cb87d0eaf04"
+    }
+  ],
+  "excluded_files": [],
+  "gltf_checks": [
+    {
+      "file": "ph-coastal_cliff_01\\coastal_cliff_01_1k.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    }
+  ],
+  "files": [
+    {
+      "path": "ph-coastal_cliff_01\\coastal_cliff_01_1k.gltf",
+      "bytes": 2825,
+      "sha256": "2e6bb1f77965b314208b309ac89b94b8148c6a08ee6c9808cd71455e5475602d"
+    },
+    {
+      "path": "ph-coastal_cliff_01\\textures\\coastal_cliff_01_diff_1k.jpg",
+      "bytes": 699457,
+      "sha256": "6c9626fdb5550ba260b195638c8c89053faedc22005f4ca94d3be5df72ae525a"
+    },
+    {
+      "path": "ph-coastal_cliff_01\\coastal_cliff_01.bin",
+      "bytes": 13179840,
+      "sha256": "6833dfaf75e0d039e64bc09ad642c4be3361739f20048af32ad50fd8e6471a65"
+    },
+    {
+      "path": "ph-coastal_cliff_01\\textures\\coastal_cliff_01_arm_1k.jpg",
+      "bytes": 640985,
+      "sha256": "7f287d0b44a3162b5e360fe45ccc8b6009c189d21bd33c1094060eef613c6fa6"
+    },
+    {
+      "path": "ph-coastal_cliff_01\\textures\\coastal_cliff_01_nor_gl_1k.jpg",
+      "bytes": 853524,
+      "sha256": "afbe8c2f9ff62dd616f776c074b996d2d275eef982a40aee1f28f4f3b3a3cf0e"
+    }
+  ]
+}

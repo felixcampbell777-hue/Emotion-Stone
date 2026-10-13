@@ -1,0 +1,3576 @@
+{
+  "blender": "4.5.3 LTS",
+  "file": "C:\\Users\\felix\\OneDrive\\Documents\\heroinedraft1.blend",
+  "meshes": [
+    {
+      "name": "Back sword fitted leather cradle",
+      "vertices": 12,
+      "bounds": [
+        [
+          -0.08643108606338501,
+          0.08311909437179565
+        ],
+        [
+          0.012913175858557224,
+          0.06666529923677444
+        ],
+        [
+          0.6696069836616516,
+          0.8362714052200317
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Cradle leather thickness",
+          "SOLIDIFY",
+          null
+        ]
+      ],
+      "materials": [
+        "Heroine fitted belt leather"
+      ]
+    },
+    {
+      "name": "Back sword leather retention strap -0.35",
+      "vertices": 8,
+      "bounds": [
+        [
+          -0.08402334898710251,
+          0.006144785322248936
+        ],
+        [
+          0.10463493317365646,
+          0.1149488016963005
+        ],
+        [
+          0.7426449656486511,
+          0.8350878357887268
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Rounded edges",
+          "BEVEL",
+          null
+        ],
+        [
+          "Weighted normals",
+          "WEIGHTED_NORMAL",
+          null
+        ]
+      ],
+      "materials": [
+        "Heroine fitted belt leather"
+      ]
+    },
+    {
+      "name": "Back sword leather retention strap -0.53",
+      "vertices": 8,
+      "bounds": [
+        [
+          -0.0088553661480546,
+          0.08131276816129684
+        ],
+        [
+          0.10306893289089203,
+          0.11338280141353607
+        ],
+        [
+          0.6702110171318054,
+          0.7626538872718811
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Rounded edges",
+          "BEVEL",
+          null
+        ],
+        [
+          "Weighted normals",
+          "WEIGHTED_NORMAL",
+          null
+        ]
+      ],
+      "materials": [
+        "Heroine fitted belt leather"
+      ]
+    },
+    {
+      "name": "Back sword leather strap side -0.35 -1",
+      "vertices": 8,
+      "bounds": [
+        [
+          -0.08543979376554489,
+          -0.06321556121110916
+        ],
+        [
+          0.03108995221555233,
+          0.11094488948583603
+        ],
+        [
+          0.7412028908729553,
+          0.7630816102027893
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Rounded edges",
+          "BEVEL",
+          null
+        ],
+        [
+          "Weighted normals",
+          "WEIGHTED_NORMAL",
+          null
+        ]
+      ],
+      "materials": [
+        "Heroine fitted belt leather"
+      ]
+    },
+    {
+      "name": "Back sword leather strap side -0.35 1",
+      "vertices": 8,
+      "bounds": [
+        [
+          -0.01452646404504776,
+          0.007424681913107634
+        ],
+        [
+          0.056371718645095825,
+          0.11094631254673004
+        ],
+        [
+          0.8147827386856079,
+          0.8363983631134033
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Rounded edges",
+          "BEVEL",
+          null
+        ],
+        [
+          "Weighted normals",
+          "WEIGHTED_NORMAL",
+          null
+        ]
+      ],
+      "materials": [
+        "Heroine fitted belt leather"
+      ]
+    },
+    {
+      "name": "Back sword leather strap side -0.53 -1",
+      "vertices": 8,
+      "bounds": [
+        [
+          -0.010304619558155537,
+          0.011985239572823048
+        ],
+        [
+          0.023448647931218147,
+          0.10937854647636414
+        ],
+        [
+          0.6687372922897339,
+          0.6906793117523193
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Rounded edges",
+          "BEVEL",
+          null
+        ],
+        [
+          "Weighted normals",
+          "WEIGHTED_NORMAL",
+          null
+        ]
+      ],
+      "materials": [
+        "Heroine fitted belt leather"
+      ]
+    },
+    {
+      "name": "Back sword leather strap side -0.53 1",
+      "vertices": 8,
+      "bounds": [
+        [
+          0.06711709499359131,
+          0.07611709833145142
+        ],
+        [
+          0.033846769481897354,
+          0.10922586917877197
+        ],
+        [
+          0.7426565885543823,
+          0.7636566162109375
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Rounded edges",
+          "BEVEL",
+          null
+        ],
+        [
+          "Weighted normals",
+          "WEIGHTED_NORMAL",
+          null
+        ]
+      ],
+      "materials": [
+        "Heroine fitted belt leather"
+      ]
+    },
+    {
+      "name": "Belt buckle bottom",
+      "vertices": 8,
+      "bounds": [
+        [
+          -0.020999999716877937,
+          0.020999999716877937
+        ],
+        [
+          -0.12295553088188171,
+          -0.1179555356502533
+        ],
+        [
+          0.6810000538825989,
+          0.6850000023841858
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Rounded edges",
+          "BEVEL",
+          null
+        ],
+        [
+          "Weighted normals",
+          "WEIGHTED_NORMAL",
+          null
+        ]
+      ],
+      "materials": [
+        "Heroine aged brass buckle"
+      ]
+    },
+    {
+      "name": "Belt buckle left",
+      "vertices": 8,
+      "bounds": [
+        [
+          -0.020999999716877937,
+          -0.016999999061226845
+        ],
+        [
+          -0.12295553088188171,
+          -0.1179555356502533
+        ],
+        [
+          0.6829999685287476,
+          0.718999981880188
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Rounded edges",
+          "BEVEL",
+          null
+        ],
+        [
+          "Weighted normals",
+          "WEIGHTED_NORMAL",
+          null
+        ]
+      ],
+      "materials": [
+        "Heroine aged brass buckle"
+      ]
+    },
+    {
+      "name": "Belt buckle right",
+      "vertices": 8,
+      "bounds": [
+        [
+          0.016999999061226845,
+          0.020999999716877937
+        ],
+        [
+          -0.12295553088188171,
+          -0.1179555356502533
+        ],
+        [
+          0.6829999685287476,
+          0.718999981880188
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Rounded edges",
+          "BEVEL",
+          null
+        ],
+        [
+          "Weighted normals",
+          "WEIGHTED_NORMAL",
+          null
+        ]
+      ],
+      "materials": [
+        "Heroine aged brass buckle"
+      ]
+    },
+    {
+      "name": "Belt buckle tongue",
+      "vertices": 8,
+      "bounds": [
+        [
+          -0.01900000125169754,
+          0.009000000543892384
+        ],
+        [
+          -0.12395554035902023,
+          -0.12095553427934647
+        ],
+        [
+          0.6994999647140503,
+          0.7024999856948853
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Rounded edges",
+          "BEVEL",
+          null
+        ],
+        [
+          "Weighted normals",
+          "WEIGHTED_NORMAL",
+          null
+        ]
+      ],
+      "materials": [
+        "Heroine aged brass buckle"
+      ]
+    },
+    {
+      "name": "Belt buckle top",
+      "vertices": 8,
+      "bounds": [
+        [
+          -0.020999999716877937,
+          0.020999999716877937
+        ],
+        [
+          -0.12295553088188171,
+          -0.1179555356502533
+        ],
+        [
+          0.7170000076293945,
+          0.7209999561309814
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Rounded edges",
+          "BEVEL",
+          null
+        ],
+        [
+          "Weighted normals",
+          "WEIGHTED_NORMAL",
+          null
+        ]
+      ],
+      "materials": [
+        "Heroine aged brass buckle"
+      ]
+    },
+    {
+      "name": "Belt hanging tail",
+      "vertices": 10,
+      "bounds": [
+        [
+          0.03099999949336052,
+          0.07599999755620956
+        ],
+        [
+          -0.12325984239578247,
+          -0.10502895712852478
+        ],
+        [
+          0.5889999866485596,
+          0.722000002861023
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Tail thickness",
+          "SOLIDIFY",
+          null
+        ],
+        [
+          "Tail soft edges",
+          "BEVEL",
+          null
+        ]
+      ],
+      "materials": [
+        "Heroine fitted belt leather"
+      ]
+    },
+    {
+      "name": "Denim open shirt collar and fitted yoke",
+      "vertices": 1154,
+      "bounds": [
+        [
+          -0.1115606501698494,
+          0.11150000244379044
+        ],
+        [
+          -0.1385175883769989,
+          0.07759463042020798
+        ],
+        [
+          0.7269999980926514,
+          1.0040827989578247
+        ]
+      ],
+      "groups": [
+        "pelvis.L",
+        "upperleg01.L",
+        "upperleg02.L",
+        "lowerleg01.L",
+        "lowerleg02.L",
+        "foot.L",
+        "pelvis.R",
+        "upperleg01.R",
+        "upperleg02.R",
+        "lowerleg01.R",
+        "lowerleg02.R",
+        "foot.R",
+        "spine05",
+        "spine04",
+        "spine03",
+        "spine02",
+        "breast.L",
+        "breast.R",
+        "spine01",
+        "clavicle.L",
+        "shoulder01.L",
+        "upperarm01.L",
+        "upperarm02.L",
+        "lowerarm01.L",
+        "lowerarm02.L",
+        "wrist.L",
+        "finger1-1.L",
+        "metacarpal1.L",
+        "metacarpal3.L",
+        "metacarpal4.L",
+        "clavicle.R",
+        "shoulder01.R",
+        "upperarm01.R",
+        "upperarm02.R",
+        "lowerarm01.R",
+        "lowerarm02.R",
+        "wrist.R",
+        "finger1-1.R",
+        "metacarpal1.R",
+        "metacarpal3.R",
+        "metacarpal4.R",
+        "neck01",
+        "neck02",
+        "neck03",
+        "head",
+        "jaw"
+      ],
+      "modifiers": [
+        [
+          "Armature",
+          "ARMATURE",
+          "Human.rig"
+        ],
+        [
+          "Soft collar folds",
+          "SUBSURF",
+          null
+        ],
+        [
+          "Denim fabric thickness",
+          "SOLIDIFY",
+          null
+        ]
+      ],
+      "materials": [
+        "Human.punkduck_black_cocktail_dress"
+      ]
+    },
+    {
+      "name": "Denim short shirt sleeves",
+      "vertices": 950,
+      "bounds": [
+        [
+          -0.22945179045200348,
+          0.22991961240768433
+        ],
+        [
+          -0.10656987875699997,
+          0.07355986535549164
+        ],
+        [
+          0.7789598107337952,
+          0.9561018943786621
+        ]
+      ],
+      "groups": [
+        "pelvis.L",
+        "upperleg01.L",
+        "upperleg02.L",
+        "lowerleg01.L",
+        "lowerleg02.L",
+        "foot.L",
+        "pelvis.R",
+        "upperleg01.R",
+        "upperleg02.R",
+        "lowerleg01.R",
+        "lowerleg02.R",
+        "foot.R",
+        "spine05",
+        "spine04",
+        "spine03",
+        "spine02",
+        "breast.L",
+        "breast.R",
+        "spine01",
+        "clavicle.L",
+        "shoulder01.L",
+        "upperarm01.L",
+        "upperarm02.L",
+        "lowerarm01.L",
+        "lowerarm02.L",
+        "wrist.L",
+        "finger1-1.L",
+        "metacarpal1.L",
+        "metacarpal3.L",
+        "metacarpal4.L",
+        "clavicle.R",
+        "shoulder01.R",
+        "upperarm01.R",
+        "upperarm02.R",
+        "lowerarm01.R",
+        "lowerarm02.R",
+        "wrist.R",
+        "finger1-1.R",
+        "metacarpal1.R",
+        "metacarpal3.R",
+        "metacarpal4.R",
+        "neck01",
+        "neck02",
+        "neck03",
+        "head",
+        "jaw"
+      ],
+      "modifiers": [
+        [
+          "Armature",
+          "ARMATURE",
+          "Human.rig"
+        ],
+        [
+          "Soft short sleeve folds",
+          "SUBSURF",
+          null
+        ],
+        [
+          "Denim sleeve thickness",
+          "SOLIDIFY",
+          null
+        ]
+      ],
+      "materials": [
+        "Human.punkduck_black_cocktail_dress"
+      ]
+    },
+    {
+      "name": "Equipped SwordBlade",
+      "vertices": 24,
+      "bounds": [
+        [
+          -0.21938668191432953,
+          0.2924163043498993
+        ],
+        [
+          0.057020898908376694,
+          0.10270626842975616
+        ],
+        [
+          0.4627682566642761,
+          0.9609482288360596
+        ]
+      ],
+      "groups": [],
+      "modifiers": [],
+      "materials": [
+        "metal_base"
+      ]
+    },
+    {
+      "name": "Equipped SwordBlueGem",
+      "vertices": 58,
+      "bounds": [
+        [
+          -0.4385375678539276,
+          -0.3389187157154083
+        ],
+        [
+          0.049369439482688904,
+          0.08538338541984558
+        ],
+        [
+          1.0720839500427246,
+          1.1711843013763428
+        ]
+      ],
+      "groups": [],
+      "modifiers": [],
+      "materials": [
+        "gem_light"
+      ]
+    },
+    {
+      "name": "Equipped SwordBlueGemBack",
+      "vertices": 58,
+      "bounds": [
+        [
+          -0.4380764961242676,
+          -0.3384576439857483
+        ],
+        [
+          0.0920526385307312,
+          0.12806658446788788
+        ],
+        [
+          1.0716396570205688,
+          1.170740008354187
+        ]
+      ],
+      "groups": [],
+      "modifiers": [],
+      "materials": [
+        "gem_light"
+      ]
+    },
+    {
+      "name": "Equipped SwordGemMount",
+      "vertices": 58,
+      "bounds": [
+        [
+          -0.45354700088500977,
+          -0.31384339928627014
+        ],
+        [
+          0.0666094422340393,
+          0.11062648147344589
+        ],
+        [
+          1.0472657680511475,
+          1.186302661895752
+        ]
+      ],
+      "groups": [],
+      "modifiers": [],
+      "materials": [
+        "metal_light"
+      ]
+    },
+    {
+      "name": "Equipped SwordGrip",
+      "vertices": 24,
+      "bounds": [
+        [
+          -0.36428138613700867,
+          -0.21581539511680603
+        ],
+        [
+          0.06409477442502975,
+          0.10923919826745987
+        ],
+        [
+          0.9541143178939819,
+          1.0989729166030884
+        ]
+      ],
+      "groups": [],
+      "modifiers": [],
+      "materials": [
+        "leather_base"
+      ]
+    },
+    {
+      "name": "Equipped SwordGuard",
+      "vertices": 24,
+      "bounds": [
+        [
+          -0.31654372811317444,
+          -0.10027144849300385
+        ],
+        [
+          0.05878597870469093,
+          0.11114629358053207
+        ],
+        [
+          0.8365961313247681,
+          1.0591484308242798
+        ]
+      ],
+      "groups": [],
+      "modifiers": [],
+      "materials": [
+        "metal_dark"
+      ]
+    },
+    {
+      "name": "Equipped SwordTip",
+      "vertices": 5,
+      "bounds": [
+        [
+          0.21273955702781677,
+          0.3486708402633667
+        ],
+        [
+          0.018770884722471237,
+          0.13195177912712097
+        ],
+        [
+          0.4110560417175293,
+          0.5449539422988892
+        ]
+      ],
+      "groups": [],
+      "modifiers": [],
+      "materials": [
+        "metal_base"
+      ]
+    },
+    {
+      "name": "Heroine relaxed layered hair",
+      "vertices": 4885,
+      "bounds": [
+        [
+          -0.14807359874248505,
+          0.10455834865570068
+        ],
+        [
+          -0.12145745009183884,
+          0.07024569809436798
+        ],
+        [
+          0.871138870716095,
+          1.1764979362487793
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Subdivision",
+          "SUBSURF",
+          null
+        ]
+      ],
+      "materials": [
+        "Chestnut layered hair",
+        "Chestnut opaque hair roots"
+      ]
+    },
+    {
+      "name": "Heroine smooth textured crown",
+      "vertices": 832,
+      "bounds": [
+        [
+          -0.06406901031732559,
+          0.056069012731313705
+        ],
+        [
+          -0.07053554058074951,
+          0.04253553971648216
+        ],
+        [
+          1.1457774639129639,
+          1.174999713897705
+        ]
+      ],
+      "groups": [],
+      "modifiers": [],
+      "materials": [
+        "Chestnut opaque hair roots"
+      ]
+    },
+    {
+      "name": "High-waisted cinched leather belt",
+      "vertices": 896,
+      "bounds": [
+        [
+          -0.10614997148513794,
+          0.10615184903144836
+        ],
+        [
+          -0.11875316500663757,
+          0.03366565704345703
+        ],
+        [
+          0.6769999861717224,
+          0.7250000238418579
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Leather thickness",
+          "SOLIDIFY",
+          null
+        ],
+        [
+          "Soft leather edges",
+          "BEVEL",
+          null
+        ]
+      ],
+      "materials": [
+        "Heroine fitted belt leather"
+      ]
+    },
+    {
+      "name": "Human",
+      "vertices": 19158,
+      "bounds": [
+        [
+          -0.49732011556625366,
+          0.49732011556625366
+        ],
+        [
+          -0.3256400525569916,
+          0.11034002900123596
+        ],
+        [
+          -0.02594006061553955,
+          1.6686103343963623
+        ]
+      ],
+      "groups": [
+        "HelperGeometry",
+        "JointCubes",
+        "Left",
+        "Mid",
+        "Right",
+        "body",
+        "helper-genital",
+        "helper-hair",
+        "helper-l-eye",
+        "helper-l-eyelashes-1",
+        "helper-l-eyelashes-2",
+        "helper-lower-teeth",
+        "helper-r-eye",
+        "helper-r-eyelashes-1",
+        "helper-r-eyelashes-2",
+        "helper-skirt",
+        "helper-tights",
+        "helper-tongue",
+        "helper-upper-teeth",
+        "joint-ground",
+        "joint-head",
+        "joint-head-2",
+        "joint-jaw",
+        "joint-l-ankle",
+        "joint-l-clavicle",
+        "joint-l-elbow",
+        "joint-l-eye",
+        "joint-l-eye-target",
+        "joint-l-finger-1-1",
+        "joint-l-finger-1-2",
+        "joint-l-finger-1-3",
+        "joint-l-finger-1-4",
+        "joint-l-finger-2-1",
+        "joint-l-finger-2-2",
+        "joint-l-finger-2-3",
+        "joint-l-finger-2-4",
+        "joint-l-finger-3-1",
+        "joint-l-finger-3-2",
+        "joint-l-finger-3-3",
+        "joint-l-finger-3-4",
+        "joint-l-finger-4-1",
+        "joint-l-finger-4-2",
+        "joint-l-finger-4-3",
+        "joint-l-finger-4-4",
+        "joint-l-finger-5-1",
+        "joint-l-finger-5-2",
+        "joint-l-finger-5-3",
+        "joint-l-finger-5-4",
+        "joint-l-foot-1",
+        "joint-l-foot-2",
+        "joint-l-hand",
+        "joint-l-hand-2",
+        "joint-l-hand-3",
+        "joint-l-knee",
+        "joint-l-lowerlid",
+        "joint-l-scapula",
+        "joint-l-shoulder",
+        "joint-l-toe-1-1",
+        "joint-l-toe-1-2",
+        "joint-l-toe-1-3",
+        "joint-l-toe-2-1",
+        "joint-l-toe-2-2",
+        "joint-l-toe-2-3",
+        "joint-l-toe-2-4",
+        "joint-l-toe-3-1",
+        "joint-l-toe-3-2",
+        "joint-l-toe-3-3",
+        "joint-l-toe-3-4",
+        "joint-l-toe-4-1",
+        "joint-l-toe-4-2",
+        "joint-l-toe-4-3",
+        "joint-l-toe-4-4",
+        "joint-l-toe-5-1",
+        "joint-l-toe-5-2",
+        "joint-l-toe-5-3",
+        "joint-l-toe-5-4",
+        "joint-l-upper-leg",
+        "joint-l-upperlid",
+        "joint-mouth",
+        "joint-neck",
+        "joint-pelvis",
+        "joint-r-ankle",
+        "joint-r-clavicle",
+        "joint-r-elbow",
+        "joint-r-eye",
+        "joint-r-eye-target",
+        "joint-r-finger-1-1",
+        "joint-r-finger-1-2",
+        "joint-r-finger-1-3",
+        "joint-r-finger-1-4",
+        "joint-r-finger-2-1",
+        "joint-r-finger-2-2",
+        "joint-r-finger-2-3",
+        "joint-r-finger-2-4",
+        "joint-r-finger-3-1",
+        "joint-r-finger-3-2",
+        "joint-r-finger-3-3",
+        "joint-r-finger-3-4",
+        "joint-r-finger-4-1",
+        "joint-r-finger-4-2",
+        "joint-r-finger-4-3",
+        "joint-r-finger-4-4",
+        "joint-r-finger-5-1",
+        "joint-r-finger-5-2",
+        "joint-r-finger-5-3",
+        "joint-r-finger-5-4",
+        "joint-r-foot-1",
+        "joint-r-foot-2",
+        "joint-r-hand",
+        "joint-r-hand-2",
+        "joint-r-hand-3",
+        "joint-r-knee",
+        "joint-r-lowerlid",
+        "joint-r-scapula",
+        "joint-r-shoulder",
+        "joint-r-toe-1-1",
+        "joint-r-toe-1-2",
+        "joint-r-toe-1-3",
+        "joint-r-toe-2-1",
+        "joint-r-toe-2-2",
+        "joint-r-toe-2-3",
+        "joint-r-toe-2-4",
+        "joint-r-toe-3-1",
+        "joint-r-toe-3-2",
+        "joint-r-toe-3-3",
+        "joint-r-toe-3-4",
+        "joint-r-toe-4-1",
+        "joint-r-toe-4-2",
+        "joint-r-toe-4-3",
+        "joint-r-toe-4-4",
+        "joint-r-toe-5-1",
+        "joint-r-toe-5-2",
+        "joint-r-toe-5-3",
+        "joint-r-toe-5-4",
+        "joint-r-upper-leg",
+        "joint-r-upperlid",
+        "joint-spine-1",
+        "joint-spine-2",
+        "joint-spine-3",
+        "joint-spine-4",
+        "joint-tongue-1",
+        "joint-tongue-2",
+        "joint-tongue-3",
+        "joint-tongue-4",
+        "nippleTip",
+        "nipple",
+        "lips",
+        "fingernails",
+        "toenails",
+        "ears",
+        "scalp",
+        "genitals",
+        "root",
+        "pelvis.L",
+        "upperleg01.L",
+        "upperleg02.L",
+        "lowerleg01.L",
+        "lowerleg02.L",
+        "foot.L",
+        "toe1-1.L",
+        "pelvis.R",
+        "upperleg01.R",
+        "upperleg02.R",
+        "lowerleg01.R",
+        "lowerleg02.R",
+        "foot.R",
+        "toe1-1.R",
+        "spine05",
+        "spine04",
+        "spine03",
+        "spine02",
+        "breast.L",
+        "breast.R",
+        "spine01",
+        "clavicle.L",
+        "shoulder01.L",
+        "upperarm01.L",
+        "upperarm02.L",
+        "lowerarm01.L",
+        "lowerarm02.L",
+        "wrist.L",
+        "finger1-1.L",
+        "finger1-2.L",
+        "finger1-3.L",
+        "metacarpal1.L",
+        "finger2-1.L",
+        "finger2-2.L",
+        "finger2-3.L",
+        "metacarpal2.L",
+        "finger3-1.L",
+        "finger3-2.L",
+        "finger3-3.L",
+        "metacarpal3.L",
+        "finger4-1.L",
+        "finger4-2.L",
+        "finger4-3.L",
+        "metacarpal4.L",
+        "finger5-1.L",
+        "finger5-2.L",
+        "finger5-3.L",
+        "clavicle.R",
+        "shoulder01.R",
+        "upperarm01.R",
+        "upperarm02.R",
+        "lowerarm01.R",
+        "lowerarm02.R",
+        "wrist.R",
+        "finger1-1.R",
+        "finger1-2.R",
+        "finger1-3.R",
+        "metacarpal1.R",
+        "finger2-1.R",
+        "finger2-2.R",
+        "finger2-3.R",
+        "metacarpal2.R",
+        "finger3-1.R",
+        "finger3-2.R",
+        "finger3-3.R",
+        "metacarpal3.R",
+        "finger4-1.R",
+        "finger4-2.R",
+        "finger4-3.R",
+        "metacarpal4.R",
+        "finger5-1.R",
+        "finger5-2.R",
+        "finger5-3.R",
+        "neck01",
+        "neck02",
+        "neck03",
+        "head",
+        "jaw",
+        "special04",
+        "oris01",
+        "oris07.L",
+        "oris07.R",
+        "tongue00",
+        "tongue01",
+        "tongue02",
+        "tongue03",
+        "tongue04",
+        "tongue07.L",
+        "tongue07.R",
+        "tongue06.L",
+        "tongue06.R",
+        "tongue05.L",
+        "tongue05.R",
+        "levator05.L",
+        "levator05.R",
+        "oris03.L",
+        "oris03.R",
+        "oris05",
+        "levator06.L",
+        "levator06.R",
+        "special05.L",
+        "eye.L",
+        "orbicularis03.L",
+        "orbicularis04.L",
+        "special05.R",
+        "eye.R",
+        "orbicularis03.R",
+        "orbicularis04.R",
+        "oculi01.L",
+        "oculi01.R",
+        "risorius03.L",
+        "risorius03.R",
+        "Delete.maciekg_leather_boots",
+        "Delete.scailman_low-heeled_boots",
+        "Delete.mindfront_f_dress_02",
+        "Delete.mindfront_f_dress_01",
+        "Delete.male_worksuit01",
+        "Delete.female_elegantsuit01",
+        "Delete.punkduck_female_half-boots",
+        "Delete.punkduck_black_cocktail_dress"
+      ],
+      "modifiers": [
+        [
+          "Armature",
+          "ARMATURE",
+          "Human.rig"
+        ],
+        [
+          "Hide helpers",
+          "MASK",
+          null
+        ],
+        [
+          "Delete.maciekg_leather_boots",
+          "MASK",
+          null
+        ],
+        [
+          "Delete.punkduck_black_cocktail_dress",
+          "MASK",
+          null
+        ]
+      ],
+      "materials": [
+        "Human.body"
+      ]
+    },
+    {
+      "name": "Human.eyebrow006",
+      "vertices": 124,
+      "bounds": [
+        [
+          -0.04811568185687065,
+          0.04811568185687065
+        ],
+        [
+          -0.11402732133865356,
+          -0.08682479709386826
+        ],
+        [
+          1.0726760625839233,
+          1.0856434106826782
+        ]
+      ],
+      "groups": [
+        "head",
+        "orbicularis03.L",
+        "orbicularis03.R",
+        "oculi01.L",
+        "oculi01.R",
+        "risorius03.L",
+        "risorius03.R"
+      ],
+      "modifiers": [
+        [
+          "Armature",
+          "ARMATURE",
+          "Human.rig"
+        ],
+        [
+          "Subdivision",
+          "SUBSURF",
+          null
+        ]
+      ],
+      "materials": [
+        "Human.eyebrow006"
+      ]
+    },
+    {
+      "name": "Human.eyelashes03",
+      "vertices": 250,
+      "bounds": [
+        [
+          -0.048194337636232376,
+          0.048194337636232376
+        ],
+        [
+          -0.10808177292346954,
+          -0.09658554941415787
+        ],
+        [
+          1.0608532428741455,
+          1.0800487995147705
+        ]
+      ],
+      "groups": [
+        "head",
+        "eye.L",
+        "orbicularis03.L",
+        "orbicularis04.L",
+        "eye.R",
+        "orbicularis03.R",
+        "orbicularis04.R"
+      ],
+      "modifiers": [
+        [
+          "Armature",
+          "ARMATURE",
+          "Human.rig"
+        ],
+        [
+          "Subdivision",
+          "SUBSURF",
+          null
+        ]
+      ],
+      "materials": [
+        "Human.eyelashes03"
+      ]
+    },
+    {
+      "name": "Human.high-poly",
+      "vertices": 1064,
+      "bounds": [
+        [
+          -0.038100093603134155,
+          0.038100093603134155
+        ],
+        [
+          -0.10480771213769913,
+          -0.08441904187202454
+        ],
+        [
+          1.055589199066162,
+          1.0827014446258545
+        ]
+      ],
+      "groups": [
+        "eye.L",
+        "orbicularis03.L",
+        "eye.R",
+        "orbicularis03.R",
+        "oculi01.L",
+        "oculi01.R"
+      ],
+      "modifiers": [
+        [
+          "Armature",
+          "ARMATURE",
+          "Human.rig"
+        ],
+        [
+          "Subdivision",
+          "SUBSURF",
+          null
+        ]
+      ],
+      "materials": [
+        "Human.high-poly"
+      ]
+    },
+    {
+      "name": "Human.maciekg_leather_boots",
+      "vertices": 696,
+      "bounds": [
+        [
+          -0.1870986670255661,
+          0.1870986968278885
+        ],
+        [
+          -0.17620493471622467,
+          0.03278651833534241
+        ],
+        [
+          -0.010535357519984245,
+          0.18626150488853455
+        ]
+      ],
+      "groups": [
+        "lowerleg01.L",
+        "lowerleg02.L",
+        "foot.L",
+        "toe1-1.L",
+        "lowerleg01.R",
+        "lowerleg02.R",
+        "foot.R",
+        "toe1-1.R"
+      ],
+      "modifiers": [
+        [
+          "Armature",
+          "ARMATURE",
+          "Human.rig"
+        ],
+        [
+          "Subdivision",
+          "SUBSURF",
+          null
+        ]
+      ],
+      "materials": [
+        "Human.maciekg_leather_boots.001"
+      ]
+    },
+    {
+      "name": "Human.punkduck_black_cocktail_dress",
+      "vertices": 1772,
+      "bounds": [
+        [
+          -0.17822778224945068,
+          0.17822778224945068
+        ],
+        [
+          -0.13913404941558838,
+          0.08901885896921158
+        ],
+        [
+          0.31240764260292053,
+          0.9509122371673584
+        ]
+      ],
+      "groups": [
+        "pelvis.L",
+        "upperleg01.L",
+        "upperleg02.L",
+        "lowerleg01.L",
+        "pelvis.R",
+        "upperleg01.R",
+        "upperleg02.R",
+        "lowerleg01.R",
+        "spine05",
+        "spine04",
+        "spine03",
+        "spine02",
+        "breast.L",
+        "breast.R",
+        "spine01",
+        "clavicle.L",
+        "shoulder01.L",
+        "upperarm01.L",
+        "upperarm02.L",
+        "clavicle.R",
+        "shoulder01.R",
+        "upperarm01.R",
+        "upperarm02.R",
+        "neck01",
+        "neck02",
+        "jaw"
+      ],
+      "modifiers": [
+        [
+          "Armature",
+          "ARMATURE",
+          "Human.rig"
+        ],
+        [
+          "Subdivision",
+          "SUBSURF",
+          null
+        ]
+      ],
+      "materials": [
+        "Human.punkduck_black_cocktail_dress"
+      ]
+    },
+    {
+      "name": "Human.teeth_base",
+      "vertices": 3868,
+      "bounds": [
+        [
+          -0.024517204612493515,
+          0.02451694756746292
+        ],
+        [
+          -0.1076013594865799,
+          -0.04694841802120209
+        ],
+        [
+          0.9947842359542847,
+          1.034280776977539
+        ]
+      ],
+      "groups": [
+        "head",
+        "jaw"
+      ],
+      "modifiers": [
+        [
+          "Armature",
+          "ARMATURE",
+          "Human.rig"
+        ],
+        [
+          "Subdivision",
+          "SUBSURF",
+          null
+        ]
+      ],
+      "materials": [
+        "Human.teeth_base"
+      ]
+    },
+    {
+      "name": "Human.tongue01",
+      "vertices": 226,
+      "bounds": [
+        [
+          -0.018060263246297836,
+          0.018060263246297836
+        ],
+        [
+          -0.10063346475362778,
+          -0.04289793223142624
+        ],
+        [
+          1.0072145462036133,
+          1.0280423164367676
+        ]
+      ],
+      "groups": [
+        "head",
+        "jaw",
+        "oris01",
+        "tongue01",
+        "tongue02",
+        "tongue03",
+        "tongue04",
+        "tongue07.L",
+        "tongue07.R",
+        "tongue06.L",
+        "tongue06.R",
+        "tongue05.L",
+        "tongue05.R",
+        "levator05.L",
+        "levator05.R",
+        "oris03.L",
+        "oris03.R"
+      ],
+      "modifiers": [
+        [
+          "Armature",
+          "ARMATURE",
+          "Human.rig"
+        ],
+        [
+          "Subdivision",
+          "SUBSURF",
+          null
+        ]
+      ],
+      "materials": [
+        "Human.tongue01"
+      ]
+    },
+    {
+      "name": "Leather belt keeper",
+      "vertices": 8,
+      "bounds": [
+        [
+          0.0279999990016222,
+          0.03399999812245369
+        ],
+        [
+          -0.11895553022623062,
+          -0.1139555349946022
+        ],
+        [
+          0.6809999942779541,
+          0.7209999561309814
+        ]
+      ],
+      "groups": [],
+      "modifiers": [
+        [
+          "Rounded edges",
+          "BEVEL",
+          null
+        ],
+        [
+          "Weighted normals",
+          "WEIGHTED_NORMAL",
+          null
+        ]
+      ],
+      "materials": [
+        "Heroine fitted belt leather"
+      ]
+    },
+    {
+      "name": "Shirt button 1",
+      "vertices": 182,
+      "bounds": [
+        [
+          -0.002800001297146082,
+          0.0028000001329928637
+        ],
+        [
+          -0.09588057547807693,
+          -0.09388057142496109
+        ],
+        [
+          0.8622000217437744,
+          0.8677999973297119
+        ]
+      ],
+      "groups": [],
+      "modifiers": [],
+      "materials": [
+        "Denim shirt dark buttons"
+      ]
+    },
+    {
+      "name": "Shirt button 2",
+      "vertices": 182,
+      "bounds": [
+        [
+          -0.002800001297146082,
+          0.0028000001329928637
+        ],
+        [
+          -0.12410468608140945,
+          -0.12210468202829361
+        ],
+        [
+          0.8222000002861023,
+          0.8277999758720398
+        ]
+      ],
+      "groups": [],
+      "modifiers": [],
+      "materials": [
+        "Denim shirt dark buttons"
+      ]
+    },
+    {
+      "name": "Shirt button 3",
+      "vertices": 182,
+      "bounds": [
+        [
+          -0.002800001297146082,
+          0.0028000001329928637
+        ],
+        [
+          -0.14038866758346558,
+          -0.13838866353034973
+        ],
+        [
+          0.782200038433075,
+          0.7878000140190125
+        ]
+      ],
+      "groups": [],
+      "modifiers": [],
+      "materials": [
+        "Denim shirt dark buttons"
+      ]
+    },
+    {
+      "name": "Shirt button 4",
+      "vertices": 182,
+      "bounds": [
+        [
+          -0.002800001297146082,
+          0.0028000001329928637
+        ],
+        [
+          -0.12310872226953506,
+          -0.12110871821641922
+        ],
+        [
+          0.7432000041007996,
+          0.7487999796867371
+        ]
+      ],
+      "groups": [],
+      "modifiers": [],
+      "materials": [
+        "Denim shirt dark buttons"
+      ]
+    }
+  ],
+  "rigs": [
+    {
+      "name": "Human.rig",
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "bones": [
+        {
+          "name": "root",
+          "parent": null,
+          "head": [
+            0.0,
+            0.04856324568390846,
+            0.5552862882614136
+          ],
+          "tail": [
+            0.0,
+            -0.01816602237522602,
+            0.5698880553245544
+          ]
+        },
+        {
+          "name": "pelvis.L",
+          "parent": "root",
+          "head": [
+            0.0,
+            -0.01816602237522602,
+            0.5698880553245544
+          ],
+          "tail": [
+            0.07737373560667038,
+            -0.019246401265263557,
+            0.5522977113723755
+          ]
+        },
+        {
+          "name": "upperleg01.L",
+          "parent": "pelvis.L",
+          "head": [
+            0.07737373560667038,
+            -0.019246401265263557,
+            0.5522977113723755
+          ],
+          "tail": [
+            0.07189572602510452,
+            -0.03422944247722626,
+            0.4951156973838806
+          ]
+        },
+        {
+          "name": "upperleg02.L",
+          "parent": "upperleg01.L",
+          "head": [
+            0.07189572602510452,
+            -0.03422944247722626,
+            0.4951156973838806
+          ],
+          "tail": [
+            0.11196072399616241,
+            -0.0395158976316452,
+            0.3575389087200165
+          ]
+        },
+        {
+          "name": "lowerleg01.L",
+          "parent": "upperleg02.L",
+          "head": [
+            0.11196072399616241,
+            -0.0395158976316452,
+            0.3575389087200165
+          ],
+          "tail": [
+            0.12152902781963348,
+            -0.029561739414930344,
+            0.17452707886695862
+          ]
+        },
+        {
+          "name": "lowerleg02.L",
+          "parent": "lowerleg01.L",
+          "head": [
+            0.12152902781963348,
+            -0.029561739414930344,
+            0.17452707886695862
+          ],
+          "tail": [
+            0.13919873535633087,
+            -0.019574224948883057,
+            0.05331290885806084
+          ]
+        },
+        {
+          "name": "foot.L",
+          "parent": "lowerleg02.L",
+          "head": [
+            0.13919873535633087,
+            -0.019574224948883057,
+            0.05331290885806084
+          ],
+          "tail": [
+            0.14353300631046295,
+            -0.10561997443437576,
+            0.005068205296993256
+          ]
+        },
+        {
+          "name": "toe1-1.L",
+          "parent": "foot.L",
+          "head": [
+            0.14353300631046295,
+            -0.10561997443437576,
+            0.005068205296993256
+          ],
+          "tail": [
+            0.1472422033548355,
+            -0.16533024609088898,
+            0.012405501678586006
+          ]
+        },
+        {
+          "name": "pelvis.R",
+          "parent": "root",
+          "head": [
+            0.0,
+            -0.01816602237522602,
+            0.5698880553245544
+          ],
+          "tail": [
+            -0.07737373560667038,
+            -0.019246401265263557,
+            0.5522977113723755
+          ]
+        },
+        {
+          "name": "upperleg01.R",
+          "parent": "pelvis.R",
+          "head": [
+            -0.07737373560667038,
+            -0.019246401265263557,
+            0.5522977113723755
+          ],
+          "tail": [
+            -0.07189572602510452,
+            -0.03422944247722626,
+            0.4951156973838806
+          ]
+        },
+        {
+          "name": "upperleg02.R",
+          "parent": "upperleg01.R",
+          "head": [
+            -0.07189572602510452,
+            -0.03422944247722626,
+            0.4951156973838806
+          ],
+          "tail": [
+            -0.11196072399616241,
+            -0.0395158976316452,
+            0.3575389087200165
+          ]
+        },
+        {
+          "name": "lowerleg01.R",
+          "parent": "upperleg02.R",
+          "head": [
+            -0.11196072399616241,
+            -0.0395158976316452,
+            0.3575389087200165
+          ],
+          "tail": [
+            -0.12152902781963348,
+            -0.029561739414930344,
+            0.17452707886695862
+          ]
+        },
+        {
+          "name": "lowerleg02.R",
+          "parent": "lowerleg01.R",
+          "head": [
+            -0.12152902781963348,
+            -0.029561739414930344,
+            0.17452707886695862
+          ],
+          "tail": [
+            -0.13919873535633087,
+            -0.019574224948883057,
+            0.05331290885806084
+          ]
+        },
+        {
+          "name": "foot.R",
+          "parent": "lowerleg02.R",
+          "head": [
+            -0.13919873535633087,
+            -0.019574224948883057,
+            0.05331290885806084
+          ],
+          "tail": [
+            -0.14353300631046295,
+            -0.10561997443437576,
+            0.005068205296993256
+          ]
+        },
+        {
+          "name": "toe1-1.R",
+          "parent": "foot.R",
+          "head": [
+            -0.14353300631046295,
+            -0.10561997443437576,
+            0.005068205296993256
+          ],
+          "tail": [
+            -0.1472422033548355,
+            -0.16533024609088898,
+            0.012405501678586006
+          ]
+        },
+        {
+          "name": "spine05",
+          "parent": "root",
+          "head": [
+            0.0,
+            -0.01816602237522602,
+            0.5698880553245544
+          ],
+          "tail": [
+            0.0,
+            0.015571655705571175,
+            0.6143290400505066
+          ]
+        },
+        {
+          "name": "spine04",
+          "parent": "spine05",
+          "head": [
+            0.0,
+            0.015571655705571175,
+            0.6143290400505066
+          ],
+          "tail": [
+            0.0,
+            -0.00038618751568719745,
+            0.6668585538864136
+          ]
+        },
+        {
+          "name": "spine03",
+          "parent": "spine04",
+          "head": [
+            0.0,
+            -0.00038618751568719745,
+            0.6668585538864136
+          ],
+          "tail": [
+            0.0,
+            -0.010088814422488213,
+            0.7384759187698364
+          ]
+        },
+        {
+          "name": "spine02",
+          "parent": "spine03",
+          "head": [
+            0.0,
+            -0.010088814422488213,
+            0.7384759187698364
+          ],
+          "tail": [
+            0.0,
+            0.0026697281282395124,
+            0.8389710187911987
+          ]
+        },
+        {
+          "name": "breast.L",
+          "parent": "spine02",
+          "head": [
+            0.0,
+            0.0026697281282395124,
+            0.8389710187911987
+          ],
+          "tail": [
+            0.08273488283157349,
+            -0.12879514694213867,
+            0.7993435263633728
+          ]
+        },
+        {
+          "name": "breast.R",
+          "parent": "spine02",
+          "head": [
+            0.0,
+            0.0026697281282395124,
+            0.8389710187911987
+          ],
+          "tail": [
+            -0.08273488283157349,
+            -0.12879514694213867,
+            0.7993435263633728
+          ]
+        },
+        {
+          "name": "spine01",
+          "parent": "spine02",
+          "head": [
+            0.0,
+            0.0026697281282395124,
+            0.8389710187911987
+          ],
+          "tail": [
+            0.0,
+            -0.0006613603909499943,
+            0.9527215957641602
+          ]
+        },
+        {
+          "name": "clavicle.L",
+          "parent": "spine01",
+          "head": [
+            0.019903337582945824,
+            -0.009608479216694832,
+            0.9003846645355225
+          ],
+          "tail": [
+            0.07293485105037689,
+            -0.01791459321975708,
+            0.9148886799812317
+          ]
+        },
+        {
+          "name": "shoulder01.L",
+          "parent": "clavicle.L",
+          "head": [
+            0.07293485105037689,
+            -0.01791459321975708,
+            0.9148886799812317
+          ],
+          "tail": [
+            0.12359922379255295,
+            -0.015184527263045311,
+            0.8852347135543823
+          ]
+        },
+        {
+          "name": "upperarm01.L",
+          "parent": "shoulder01.L",
+          "head": [
+            0.12359922379255295,
+            -0.015184527263045311,
+            0.8852347135543823
+          ],
+          "tail": [
+            0.16520076990127563,
+            -0.011043096892535686,
+            0.8484508991241455
+          ]
+        },
+        {
+          "name": "upperarm02.L",
+          "parent": "upperarm01.L",
+          "head": [
+            0.16520076990127563,
+            -0.011043096892535686,
+            0.8484508991241455
+          ],
+          "tail": [
+            0.24196289479732513,
+            -0.01344897598028183,
+            0.7553087472915649
+          ]
+        },
+        {
+          "name": "lowerarm01.L",
+          "parent": "upperarm02.L",
+          "head": [
+            0.24196289479732513,
+            -0.01344897598028183,
+            0.7553087472915649
+          ],
+          "tail": [
+            0.2801034450531006,
+            -0.05621156841516495,
+            0.713358998298645
+          ]
+        },
+        {
+          "name": "lowerarm02.L",
+          "parent": "lowerarm01.L",
+          "head": [
+            0.2801034450531006,
+            -0.05621156841516495,
+            0.713358998298645
+          ],
+          "tail": [
+            0.3214261829853058,
+            -0.10477372258901596,
+            0.6735135316848755
+          ]
+        },
+        {
+          "name": "wrist.L",
+          "parent": "lowerarm02.L",
+          "head": [
+            0.3214261829853058,
+            -0.10477372258901596,
+            0.6735135316848755
+          ],
+          "tail": [
+            0.329499751329422,
+            -0.12412063777446747,
+            0.6616247892379761
+          ]
+        },
+        {
+          "name": "finger1-1.L",
+          "parent": "wrist.L",
+          "head": [
+            0.32231056690216064,
+            -0.13757500052452087,
+            0.6675405502319336
+          ],
+          "tail": [
+            0.3063492178916931,
+            -0.15311305224895477,
+            0.6611766815185547
+          ]
+        },
+        {
+          "name": "finger1-2.L",
+          "parent": "finger1-1.L",
+          "head": [
+            0.3063492178916931,
+            -0.15311305224895477,
+            0.6611766815185547
+          ],
+          "tail": [
+            0.29705455899238586,
+            -0.1760013848543167,
+            0.6507048606872559
+          ]
+        },
+        {
+          "name": "finger1-3.L",
+          "parent": "finger1-2.L",
+          "head": [
+            0.29705455899238586,
+            -0.1760013848543167,
+            0.6507048606872559
+          ],
+          "tail": [
+            0.29309624433517456,
+            -0.19220656156539917,
+            0.6367144584655762
+          ]
+        },
+        {
+          "name": "metacarpal1.L",
+          "parent": "wrist.L",
+          "head": [
+            0.329499751329422,
+            -0.12412063777446747,
+            0.6616247892379761
+          ],
+          "tail": [
+            0.34292224049568176,
+            -0.17537200450897217,
+            0.6426080465316772
+          ]
+        },
+        {
+          "name": "finger2-1.L",
+          "parent": "metacarpal1.L",
+          "head": [
+            0.34292224049568176,
+            -0.17537200450897217,
+            0.6426080465316772
+          ],
+          "tail": [
+            0.3454040586948395,
+            -0.19066011905670166,
+            0.6311960816383362
+          ]
+        },
+        {
+          "name": "finger2-2.L",
+          "parent": "finger2-1.L",
+          "head": [
+            0.3454040586948395,
+            -0.19066011905670166,
+            0.6311960816383362
+          ],
+          "tail": [
+            0.3448806405067444,
+            -0.202525794506073,
+            0.618850827217102
+          ]
+        },
+        {
+          "name": "finger2-3.L",
+          "parent": "finger2-2.L",
+          "head": [
+            0.3448806405067444,
+            -0.202525794506073,
+            0.618850827217102
+          ],
+          "tail": [
+            0.3415403962135315,
+            -0.2156444489955902,
+            0.6030039191246033
+          ]
+        },
+        {
+          "name": "metacarpal2.L",
+          "parent": "wrist.L",
+          "head": [
+            0.329499751329422,
+            -0.12412063777446747,
+            0.6616247892379761
+          ],
+          "tail": [
+            0.3554847240447998,
+            -0.16174978017807007,
+            0.635100245475769
+          ]
+        },
+        {
+          "name": "finger3-1.L",
+          "parent": "metacarpal2.L",
+          "head": [
+            0.3554847240447998,
+            -0.16174978017807007,
+            0.635100245475769
+          ],
+          "tail": [
+            0.36058640480041504,
+            -0.1766691505908966,
+            0.6151676177978516
+          ]
+        },
+        {
+          "name": "finger3-2.L",
+          "parent": "finger3-1.L",
+          "head": [
+            0.36058640480041504,
+            -0.1766691505908966,
+            0.6151676177978516
+          ],
+          "tail": [
+            0.36241984367370605,
+            -0.18952792882919312,
+            0.5986431241035461
+          ]
+        },
+        {
+          "name": "finger3-3.L",
+          "parent": "finger3-2.L",
+          "head": [
+            0.36241984367370605,
+            -0.18952792882919312,
+            0.5986431241035461
+          ],
+          "tail": [
+            0.36166825890541077,
+            -0.20032177865505219,
+            0.5811430215835571
+          ]
+        },
+        {
+          "name": "metacarpal3.L",
+          "parent": "wrist.L",
+          "head": [
+            0.338262140750885,
+            -0.11615804582834244,
+            0.6503000259399414
+          ],
+          "tail": [
+            0.36076775193214417,
+            -0.14915545284748077,
+            0.6292028427124023
+          ]
+        },
+        {
+          "name": "finger4-1.L",
+          "parent": "metacarpal3.L",
+          "head": [
+            0.36076775193214417,
+            -0.14915545284748077,
+            0.6292028427124023
+          ],
+          "tail": [
+            0.3678711950778961,
+            -0.15943899750709534,
+            0.6105155944824219
+          ]
+        },
+        {
+          "name": "finger4-2.L",
+          "parent": "finger4-1.L",
+          "head": [
+            0.3678711950778961,
+            -0.15943899750709534,
+            0.6105155944824219
+          ],
+          "tail": [
+            0.3708585798740387,
+            -0.1685318946838379,
+            0.5946961641311646
+          ]
+        },
+        {
+          "name": "finger4-3.L",
+          "parent": "finger4-2.L",
+          "head": [
+            0.3708585798740387,
+            -0.1685318946838379,
+            0.5946961641311646
+          ],
+          "tail": [
+            0.372049480676651,
+            -0.1764775812625885,
+            0.5760267376899719
+          ]
+        },
+        {
+          "name": "metacarpal4.L",
+          "parent": "wrist.L",
+          "head": [
+            0.338262140750885,
+            -0.11615804582834244,
+            0.6503000259399414
+          ],
+          "tail": [
+            0.36176419258117676,
+            -0.13465750217437744,
+            0.6225405335426331
+          ]
+        },
+        {
+          "name": "finger5-1.L",
+          "parent": "metacarpal4.L",
+          "head": [
+            0.36176419258117676,
+            -0.13465750217437744,
+            0.6225405335426331
+          ],
+          "tail": [
+            0.36632004380226135,
+            -0.1397508680820465,
+            0.6082801222801208
+          ]
+        },
+        {
+          "name": "finger5-2.L",
+          "parent": "finger5-1.L",
+          "head": [
+            0.36632004380226135,
+            -0.1397508680820465,
+            0.6082801222801208
+          ],
+          "tail": [
+            0.36754506826400757,
+            -0.14391663670539856,
+            0.5972741842269897
+          ]
+        },
+        {
+          "name": "finger5-3.L",
+          "parent": "finger5-2.L",
+          "head": [
+            0.36754506826400757,
+            -0.14391663670539856,
+            0.5972741842269897
+          ],
+          "tail": [
+            0.3692575693130493,
+            -0.14883781969547272,
+            0.5832163691520691
+          ]
+        },
+        {
+          "name": "clavicle.R",
+          "parent": "spine01",
+          "head": [
+            -0.019903337582945824,
+            -0.009608479216694832,
+            0.9003846645355225
+          ],
+          "tail": [
+            -0.07293485105037689,
+            -0.01791459321975708,
+            0.9148886799812317
+          ]
+        },
+        {
+          "name": "shoulder01.R",
+          "parent": "clavicle.R",
+          "head": [
+            -0.07293485105037689,
+            -0.01791459321975708,
+            0.9148886799812317
+          ],
+          "tail": [
+            -0.12359922379255295,
+            -0.015184527263045311,
+            0.8852347135543823
+          ]
+        },
+        {
+          "name": "upperarm01.R",
+          "parent": "shoulder01.R",
+          "head": [
+            -0.12359922379255295,
+            -0.015184527263045311,
+            0.8852347135543823
+          ],
+          "tail": [
+            -0.16520076990127563,
+            -0.011043096892535686,
+            0.8484508991241455
+          ]
+        },
+        {
+          "name": "upperarm02.R",
+          "parent": "upperarm01.R",
+          "head": [
+            -0.16520076990127563,
+            -0.011043096892535686,
+            0.8484508991241455
+          ],
+          "tail": [
+            -0.24196289479732513,
+            -0.01344897598028183,
+            0.7553087472915649
+          ]
+        },
+        {
+          "name": "lowerarm01.R",
+          "parent": "upperarm02.R",
+          "head": [
+            -0.24196289479732513,
+            -0.01344897598028183,
+            0.7553087472915649
+          ],
+          "tail": [
+            -0.2801034450531006,
+            -0.05621156841516495,
+            0.713358998298645
+          ]
+        },
+        {
+          "name": "lowerarm02.R",
+          "parent": "lowerarm01.R",
+          "head": [
+            -0.2801034450531006,
+            -0.05621156841516495,
+            0.713358998298645
+          ],
+          "tail": [
+            -0.3214261829853058,
+            -0.10477372258901596,
+            0.6735135316848755
+          ]
+        },
+        {
+          "name": "wrist.R",
+          "parent": "lowerarm02.R",
+          "head": [
+            -0.3214261829853058,
+            -0.10477372258901596,
+            0.6735135316848755
+          ],
+          "tail": [
+            -0.329499751329422,
+            -0.12412063777446747,
+            0.6616247892379761
+          ]
+        },
+        {
+          "name": "finger1-1.R",
+          "parent": "wrist.R",
+          "head": [
+            -0.32231056690216064,
+            -0.13757500052452087,
+            0.6675405502319336
+          ],
+          "tail": [
+            -0.3063492178916931,
+            -0.15311305224895477,
+            0.6611766815185547
+          ]
+        },
+        {
+          "name": "finger1-2.R",
+          "parent": "finger1-1.R",
+          "head": [
+            -0.3063492178916931,
+            -0.15311305224895477,
+            0.6611766815185547
+          ],
+          "tail": [
+            -0.29705455899238586,
+            -0.1760013848543167,
+            0.6507048606872559
+          ]
+        },
+        {
+          "name": "finger1-3.R",
+          "parent": "finger1-2.R",
+          "head": [
+            -0.29705455899238586,
+            -0.1760013848543167,
+            0.6507048606872559
+          ],
+          "tail": [
+            -0.29309624433517456,
+            -0.19220656156539917,
+            0.6367144584655762
+          ]
+        },
+        {
+          "name": "metacarpal1.R",
+          "parent": "wrist.R",
+          "head": [
+            -0.329499751329422,
+            -0.12412063777446747,
+            0.6616247892379761
+          ],
+          "tail": [
+            -0.34292224049568176,
+            -0.17537200450897217,
+            0.6426080465316772
+          ]
+        },
+        {
+          "name": "finger2-1.R",
+          "parent": "metacarpal1.R",
+          "head": [
+            -0.34292224049568176,
+            -0.17537200450897217,
+            0.6426080465316772
+          ],
+          "tail": [
+            -0.3454040586948395,
+            -0.19066011905670166,
+            0.6311960816383362
+          ]
+        },
+        {
+          "name": "finger2-2.R",
+          "parent": "finger2-1.R",
+          "head": [
+            -0.3454040586948395,
+            -0.19066011905670166,
+            0.6311960816383362
+          ],
+          "tail": [
+            -0.3448806405067444,
+            -0.202525794506073,
+            0.618850827217102
+          ]
+        },
+        {
+          "name": "finger2-3.R",
+          "parent": "finger2-2.R",
+          "head": [
+            -0.3448806405067444,
+            -0.202525794506073,
+            0.618850827217102
+          ],
+          "tail": [
+            -0.3415403962135315,
+            -0.2156444489955902,
+            0.6030039191246033
+          ]
+        },
+        {
+          "name": "metacarpal2.R",
+          "parent": "wrist.R",
+          "head": [
+            -0.329499751329422,
+            -0.12412063777446747,
+            0.6616247892379761
+          ],
+          "tail": [
+            -0.3554847240447998,
+            -0.16174978017807007,
+            0.635100245475769
+          ]
+        },
+        {
+          "name": "finger3-1.R",
+          "parent": "metacarpal2.R",
+          "head": [
+            -0.3554847240447998,
+            -0.16174978017807007,
+            0.635100245475769
+          ],
+          "tail": [
+            -0.36058640480041504,
+            -0.1766691505908966,
+            0.6151676177978516
+          ]
+        },
+        {
+          "name": "finger3-2.R",
+          "parent": "finger3-1.R",
+          "head": [
+            -0.36058640480041504,
+            -0.1766691505908966,
+            0.6151676177978516
+          ],
+          "tail": [
+            -0.36241984367370605,
+            -0.18952792882919312,
+            0.5986431241035461
+          ]
+        },
+        {
+          "name": "finger3-3.R",
+          "parent": "finger3-2.R",
+          "head": [
+            -0.36241984367370605,
+            -0.18952792882919312,
+            0.5986431241035461
+          ],
+          "tail": [
+            -0.36166825890541077,
+            -0.20032177865505219,
+            0.5811430215835571
+          ]
+        },
+        {
+          "name": "metacarpal3.R",
+          "parent": "wrist.R",
+          "head": [
+            -0.338262140750885,
+            -0.11615804582834244,
+            0.6503000259399414
+          ],
+          "tail": [
+            -0.36076775193214417,
+            -0.14915545284748077,
+            0.6292028427124023
+          ]
+        },
+        {
+          "name": "finger4-1.R",
+          "parent": "metacarpal3.R",
+          "head": [
+            -0.36076775193214417,
+            -0.14915545284748077,
+            0.6292028427124023
+          ],
+          "tail": [
+            -0.3678711950778961,
+            -0.15943899750709534,
+            0.6105155944824219
+          ]
+        },
+        {
+          "name": "finger4-2.R",
+          "parent": "finger4-1.R",
+          "head": [
+            -0.3678711950778961,
+            -0.15943899750709534,
+            0.6105155944824219
+          ],
+          "tail": [
+            -0.3708585798740387,
+            -0.1685318946838379,
+            0.5946961641311646
+          ]
+        },
+        {
+          "name": "finger4-3.R",
+          "parent": "finger4-2.R",
+          "head": [
+            -0.3708585798740387,
+            -0.1685318946838379,
+            0.5946961641311646
+          ],
+          "tail": [
+            -0.372049480676651,
+            -0.1764775812625885,
+            0.5760267376899719
+          ]
+        },
+        {
+          "name": "metacarpal4.R",
+          "parent": "wrist.R",
+          "head": [
+            -0.338262140750885,
+            -0.11615804582834244,
+            0.6503000259399414
+          ],
+          "tail": [
+            -0.36176419258117676,
+            -0.13465750217437744,
+            0.6225405335426331
+          ]
+        },
+        {
+          "name": "finger5-1.R",
+          "parent": "metacarpal4.R",
+          "head": [
+            -0.36176419258117676,
+            -0.13465750217437744,
+            0.6225405335426331
+          ],
+          "tail": [
+            -0.36632004380226135,
+            -0.1397508680820465,
+            0.6082801222801208
+          ]
+        },
+        {
+          "name": "finger5-2.R",
+          "parent": "finger5-1.R",
+          "head": [
+            -0.36632004380226135,
+            -0.1397508680820465,
+            0.6082801222801208
+          ],
+          "tail": [
+            -0.36754506826400757,
+            -0.14391663670539856,
+            0.5972741842269897
+          ]
+        },
+        {
+          "name": "finger5-3.R",
+          "parent": "finger5-2.R",
+          "head": [
+            -0.36754506826400757,
+            -0.14391663670539856,
+            0.5972741842269897
+          ],
+          "tail": [
+            -0.3692575693130493,
+            -0.14883781969547272,
+            0.5832163691520691
+          ]
+        },
+        {
+          "name": "neck01",
+          "parent": "spine01",
+          "head": [
+            0.0,
+            -0.0006613603909499943,
+            0.9527215957641602
+          ],
+          "tail": [
+            -0.0006811982020735741,
+            -0.001373443752527237,
+            0.988238513469696
+          ]
+        },
+        {
+          "name": "neck02",
+          "parent": "neck01",
+          "head": [
+            -0.0006811982020735741,
+            -0.001373443752527237,
+            0.988238513469696
+          ],
+          "tail": [
+            -0.00039452221244573593,
+            -0.0014936774969100952,
+            1.0243650674819946
+          ]
+        },
+        {
+          "name": "neck03",
+          "parent": "neck02",
+          "head": [
+            -0.00039452221244573593,
+            -0.0014936774969100952,
+            1.0243650674819946
+          ],
+          "tail": [
+            0.0,
+            -0.03411540389060974,
+            1.0409190654754639
+          ]
+        },
+        {
+          "name": "head",
+          "parent": "neck03",
+          "head": [
+            0.0,
+            -0.03411540389060974,
+            1.0409190654754639
+          ],
+          "tail": [
+            0.0,
+            -0.030220644548535347,
+            1.155554175376892
+          ]
+        },
+        {
+          "name": "jaw",
+          "parent": "head",
+          "head": [
+            0.0,
+            -0.04483586549758911,
+            1.041638731956482
+          ],
+          "tail": [
+            0.0,
+            -0.0801803469657898,
+            0.9854734539985657
+          ]
+        },
+        {
+          "name": "special04",
+          "parent": "jaw",
+          "head": [
+            0.0,
+            -0.0801803469657898,
+            0.9854734539985657
+          ],
+          "tail": [
+            0.0,
+            -0.1030835509300232,
+            1.0017462968826294
+          ]
+        },
+        {
+          "name": "oris02",
+          "parent": "special04",
+          "head": [
+            0.0,
+            -0.1030835509300232,
+            1.0017462968826294
+          ],
+          "tail": [
+            0.0,
+            -0.11072426289319992,
+            1.0072726011276245
+          ]
+        },
+        {
+          "name": "oris01",
+          "parent": "oris02",
+          "head": [
+            0.0,
+            -0.11072426289319992,
+            1.0072726011276245
+          ],
+          "tail": [
+            0.0,
+            -0.11572638899087906,
+            1.0176161527633667
+          ]
+        },
+        {
+          "name": "oris06.L",
+          "parent": "special04",
+          "head": [
+            0.0,
+            -0.1030835509300232,
+            1.0017462968826294
+          ],
+          "tail": [
+            0.009818777441978455,
+            -0.10817895829677582,
+            1.0028437376022339
+          ]
+        },
+        {
+          "name": "oris07.L",
+          "parent": "oris06.L",
+          "head": [
+            0.009818777441978455,
+            -0.10817895829677582,
+            1.0028437376022339
+          ],
+          "tail": [
+            0.013520370237529278,
+            -0.1100175678730011,
+            1.012704610824585
+          ]
+        },
+        {
+          "name": "oris06.R",
+          "parent": "special04",
+          "head": [
+            0.0,
+            -0.1030835509300232,
+            1.0017462968826294
+          ],
+          "tail": [
+            -0.009818777441978455,
+            -0.10817895829677582,
+            1.0028437376022339
+          ]
+        },
+        {
+          "name": "oris07.R",
+          "parent": "oris06.R",
+          "head": [
+            -0.009818777441978455,
+            -0.10817895829677582,
+            1.0028437376022339
+          ],
+          "tail": [
+            -0.013520370237529278,
+            -0.1100175678730011,
+            1.012704610824585
+          ]
+        },
+        {
+          "name": "tongue00",
+          "parent": "jaw",
+          "head": [
+            0.0,
+            -0.0801803469657898,
+            0.9854734539985657
+          ],
+          "tail": [
+            0.0,
+            -0.04894111305475235,
+            1.018789291381836
+          ]
+        },
+        {
+          "name": "tongue01",
+          "parent": "tongue00",
+          "head": [
+            0.0,
+            -0.04894111305475235,
+            1.018789291381836
+          ],
+          "tail": [
+            0.0,
+            -0.07330440729856491,
+            1.0220746994018555
+          ]
+        },
+        {
+          "name": "tongue02",
+          "parent": "tongue01",
+          "head": [
+            0.0,
+            -0.07330440729856491,
+            1.0220746994018555
+          ],
+          "tail": [
+            0.0,
+            -0.09040350466966629,
+            1.0219919681549072
+          ]
+        },
+        {
+          "name": "tongue03",
+          "parent": "tongue02",
+          "head": [
+            0.0,
+            -0.09040350466966629,
+            1.0219919681549072
+          ],
+          "tail": [
+            -0.00036525819450616837,
+            -0.0963655337691307,
+            1.0164505243301392
+          ]
+        },
+        {
+          "name": "tongue04",
+          "parent": "tongue03",
+          "head": [
+            -0.00036525819450616837,
+            -0.0963655337691307,
+            1.0164505243301392
+          ],
+          "tail": [
+            0.0,
+            -0.10421053320169449,
+            1.0145277976989746
+          ]
+        },
+        {
+          "name": "tongue07.L",
+          "parent": "tongue03",
+          "head": [
+            -0.00036525819450616837,
+            -0.0963655337691307,
+            1.0164505243301392
+          ],
+          "tail": [
+            0.009242046624422073,
+            -0.09691167622804642,
+            1.01498544216156
+          ]
+        },
+        {
+          "name": "tongue07.R",
+          "parent": "tongue03",
+          "head": [
+            -0.00036525819450616837,
+            -0.0963655337691307,
+            1.0164505243301392
+          ],
+          "tail": [
+            -0.009242046624422073,
+            -0.09691167622804642,
+            1.01498544216156
+          ]
+        },
+        {
+          "name": "tongue06.L",
+          "parent": "tongue02",
+          "head": [
+            0.0,
+            -0.09040350466966629,
+            1.0219919681549072
+          ],
+          "tail": [
+            0.013135510496795177,
+            -0.08827022463083267,
+            1.0168116092681885
+          ]
+        },
+        {
+          "name": "tongue06.R",
+          "parent": "tongue02",
+          "head": [
+            0.0,
+            -0.09040350466966629,
+            1.0219919681549072
+          ],
+          "tail": [
+            -0.013135510496795177,
+            -0.08827022463083267,
+            1.0168116092681885
+          ]
+        },
+        {
+          "name": "tongue05.L",
+          "parent": "tongue01",
+          "head": [
+            0.0,
+            -0.07330440729856491,
+            1.0220746994018555
+          ],
+          "tail": [
+            0.015764521434903145,
+            -0.07499261945486069,
+            1.0183212757110596
+          ]
+        },
+        {
+          "name": "tongue05.R",
+          "parent": "tongue01",
+          "head": [
+            0.0,
+            -0.07330440729856491,
+            1.0220746994018555
+          ],
+          "tail": [
+            -0.015764521434903145,
+            -0.07499261945486069,
+            1.0183212757110596
+          ]
+        },
+        {
+          "name": "levator02.L",
+          "parent": "head",
+          "head": [
+            0.0027273509185761213,
+            -0.12026683986186981,
+            1.0593539476394653
+          ],
+          "tail": [
+            0.01642356626689434,
+            -0.10849514603614807,
+            1.0461907386779785
+          ]
+        },
+        {
+          "name": "levator03.L",
+          "parent": "levator02.L",
+          "head": [
+            0.01642356626689434,
+            -0.10849514603614807,
+            1.0461907386779785
+          ],
+          "tail": [
+            0.020564299076795578,
+            -0.10814835131168365,
+            1.0325660705566406
+          ]
+        },
+        {
+          "name": "levator04.L",
+          "parent": "levator03.L",
+          "head": [
+            0.020564299076795578,
+            -0.10814835131168365,
+            1.0325660705566406
+          ],
+          "tail": [
+            0.02192998118698597,
+            -0.10644194483757019,
+            1.0191426277160645
+          ]
+        },
+        {
+          "name": "levator05.L",
+          "parent": "levator04.L",
+          "head": [
+            0.02192998118698597,
+            -0.10644194483757019,
+            1.0191426277160645
+          ],
+          "tail": [
+            0.019507557153701782,
+            -0.10538768768310547,
+            1.012857437133789
+          ]
+        },
+        {
+          "name": "levator02.R",
+          "parent": "head",
+          "head": [
+            -0.0027273509185761213,
+            -0.12026683986186981,
+            1.0593539476394653
+          ],
+          "tail": [
+            -0.01642356626689434,
+            -0.10849514603614807,
+            1.0461907386779785
+          ]
+        },
+        {
+          "name": "levator03.R",
+          "parent": "levator02.R",
+          "head": [
+            -0.01642356626689434,
+            -0.10849514603614807,
+            1.0461907386779785
+          ],
+          "tail": [
+            -0.020564299076795578,
+            -0.10814835131168365,
+            1.0325660705566406
+          ]
+        },
+        {
+          "name": "levator04.R",
+          "parent": "levator03.R",
+          "head": [
+            -0.020564299076795578,
+            -0.10814835131168365,
+            1.0325660705566406
+          ],
+          "tail": [
+            -0.02192998118698597,
+            -0.10644194483757019,
+            1.0191426277160645
+          ]
+        },
+        {
+          "name": "levator05.R",
+          "parent": "levator04.R",
+          "head": [
+            -0.02192998118698597,
+            -0.10644194483757019,
+            1.0191426277160645
+          ],
+          "tail": [
+            -0.019507557153701782,
+            -0.10538768768310547,
+            1.012857437133789
+          ]
+        },
+        {
+          "name": "special01",
+          "parent": "head",
+          "head": [
+            0.0,
+            0.020749898627400398,
+            1.0375874042510986
+          ],
+          "tail": [
+            0.0,
+            -0.11971181631088257,
+            1.0327234268188477
+          ]
+        },
+        {
+          "name": "oris04.L",
+          "parent": "special01",
+          "head": [
+            0.0,
+            -0.11971181631088257,
+            1.0327234268188477
+          ],
+          "tail": [
+            0.010232897475361824,
+            -0.11646852642297745,
+            1.0276391506195068
+          ]
+        },
+        {
+          "name": "oris03.L",
+          "parent": "oris04.L",
+          "head": [
+            0.010232897475361824,
+            -0.11646852642297745,
+            1.0276391506195068
+          ],
+          "tail": [
+            0.012521732598543167,
+            -0.11529747396707535,
+            1.0230954885482788
+          ]
+        },
+        {
+          "name": "oris04.R",
+          "parent": "special01",
+          "head": [
+            0.0,
+            -0.11971181631088257,
+            1.0327234268188477
+          ],
+          "tail": [
+            -0.010232897475361824,
+            -0.11646852642297745,
+            1.0276391506195068
+          ]
+        },
+        {
+          "name": "oris03.R",
+          "parent": "oris04.R",
+          "head": [
+            -0.010232897475361824,
+            -0.11646852642297745,
+            1.0276391506195068
+          ],
+          "tail": [
+            -0.012521732598543167,
+            -0.11529747396707535,
+            1.0230954885482788
+          ]
+        },
+        {
+          "name": "oris06",
+          "parent": "special01",
+          "head": [
+            0.0,
+            -0.11971181631088257,
+            1.0327234268188477
+          ],
+          "tail": [
+            0.0,
+            -0.11983776092529297,
+            1.0287721157073975
+          ]
+        },
+        {
+          "name": "oris05",
+          "parent": "oris06",
+          "head": [
+            0.0,
+            -0.11983776092529297,
+            1.0287721157073975
+          ],
+          "tail": [
+            0.0,
+            -0.12130483239889145,
+            1.023697853088379
+          ]
+        },
+        {
+          "name": "special03",
+          "parent": "head",
+          "head": [
+            0.0,
+            -0.04483586549758911,
+            1.041638731956482
+          ],
+          "tail": [
+            0.0,
+            -0.1283477246761322,
+            1.0500632524490356
+          ]
+        },
+        {
+          "name": "levator06.L",
+          "parent": "special03",
+          "head": [
+            0.004381728358566761,
+            -0.128460094332695,
+            1.0449789762496948
+          ],
+          "tail": [
+            0.013571327552199364,
+            -0.11054866015911102,
+            1.043479084968567
+          ]
+        },
+        {
+          "name": "levator06.R",
+          "parent": "special03",
+          "head": [
+            -0.004381728358566761,
+            -0.128460094332695,
+            1.0449789762496948
+          ],
+          "tail": [
+            -0.013571327552199364,
+            -0.11054866015911102,
+            1.043479084968567
+          ]
+        },
+        {
+          "name": "special06.L",
+          "parent": "head",
+          "head": [
+            0.0,
+            -0.030220644548535347,
+            1.155554175376892
+          ],
+          "tail": [
+            0.01700330339372158,
+            -0.0699896588921547,
+            1.1534733772277832
+          ]
+        },
+        {
+          "name": "special05.L",
+          "parent": "special06.L",
+          "head": [
+            0.01700330339372158,
+            -0.0699896588921547,
+            1.1534733772277832
+          ],
+          "tail": [
+            0.02449139393866062,
+            -0.08992905914783478,
+            1.06910240650177
+          ]
+        },
+        {
+          "name": "eye.L",
+          "parent": "special05.L",
+          "head": [
+            0.02449139393866062,
+            -0.08992905914783478,
+            1.06910240650177
+          ],
+          "tail": [
+            0.025390993803739548,
+            -0.12415073066949844,
+            1.0692449808120728
+          ]
+        },
+        {
+          "name": "orbicularis03.L",
+          "parent": "special05.L",
+          "head": [
+            0.02449139393866062,
+            -0.08992905914783478,
+            1.06910240650177
+          ],
+          "tail": [
+            0.025280993431806564,
+            -0.12194514274597168,
+            1.0788486003875732
+          ]
+        },
+        {
+          "name": "orbicularis04.L",
+          "parent": "special05.L",
+          "head": [
+            0.02449139393866062,
+            -0.08992905914783478,
+            1.06910240650177
+          ],
+          "tail": [
+            0.02541099116206169,
+            -0.12256369739770889,
+            1.059657096862793
+          ]
+        },
+        {
+          "name": "special06.R",
+          "parent": "head",
+          "head": [
+            0.0,
+            -0.030220644548535347,
+            1.155554175376892
+          ],
+          "tail": [
+            -0.01700330339372158,
+            -0.0699896588921547,
+            1.1534733772277832
+          ]
+        },
+        {
+          "name": "special05.R",
+          "parent": "special06.R",
+          "head": [
+            -0.01700330339372158,
+            -0.0699896588921547,
+            1.1534733772277832
+          ],
+          "tail": [
+            -0.02449139393866062,
+            -0.08992905914783478,
+            1.06910240650177
+          ]
+        },
+        {
+          "name": "eye.R",
+          "parent": "special05.R",
+          "head": [
+            -0.02449139393866062,
+            -0.08992905914783478,
+            1.06910240650177
+          ],
+          "tail": [
+            -0.025390993803739548,
+            -0.12415073066949844,
+            1.0692449808120728
+          ]
+        },
+        {
+          "name": "orbicularis03.R",
+          "parent": "special05.R",
+          "head": [
+            -0.02449139393866062,
+            -0.08992905914783478,
+            1.06910240650177
+          ],
+          "tail": [
+            -0.025280993431806564,
+            -0.12194514274597168,
+            1.0788486003875732
+          ]
+        },
+        {
+          "name": "orbicularis04.R",
+          "parent": "special05.R",
+          "head": [
+            -0.02449139393866062,
+            -0.08992905914783478,
+            1.06910240650177
+          ],
+          "tail": [
+            -0.02541099116206169,
+            -0.12256369739770889,
+            1.059657096862793
+          ]
+        },
+        {
+          "name": "temporalis01.L",
+          "parent": "head",
+          "head": [
+            0.05161688104271889,
+            -0.0788339152932167,
+            1.074623703956604
+          ],
+          "tail": [
+            0.045340120792388916,
+            -0.09177442640066147,
+            1.0751537084579468
+          ]
+        },
+        {
+          "name": "oculi02.L",
+          "parent": "temporalis01.L",
+          "head": [
+            0.045340120792388916,
+            -0.09177442640066147,
+            1.0751537084579468
+          ],
+          "tail": [
+            0.027401044964790344,
+            -0.10987111926078796,
+            1.0891705751419067
+          ]
+        },
+        {
+          "name": "oculi01.L",
+          "parent": "oculi02.L",
+          "head": [
+            0.027401044964790344,
+            -0.10987111926078796,
+            1.0891705751419067
+          ],
+          "tail": [
+            0.013371780514717102,
+            -0.11496973037719727,
+            1.0916132926940918
+          ]
+        },
+        {
+          "name": "temporalis01.R",
+          "parent": "head",
+          "head": [
+            -0.05161688104271889,
+            -0.0788339152932167,
+            1.074623703956604
+          ],
+          "tail": [
+            -0.045340120792388916,
+            -0.09177442640066147,
+            1.0751537084579468
+          ]
+        },
+        {
+          "name": "oculi02.R",
+          "parent": "temporalis01.R",
+          "head": [
+            -0.045340120792388916,
+            -0.09177442640066147,
+            1.0751537084579468
+          ],
+          "tail": [
+            -0.027401044964790344,
+            -0.10987111926078796,
+            1.0891705751419067
+          ]
+        },
+        {
+          "name": "oculi01.R",
+          "parent": "oculi02.R",
+          "head": [
+            -0.027401044964790344,
+            -0.10987111926078796,
+            1.0891705751419067
+          ],
+          "tail": [
+            -0.013371780514717102,
+            -0.11496973037719727,
+            1.0916132926940918
+          ]
+        },
+        {
+          "name": "temporalis02.L",
+          "parent": "head",
+          "head": [
+            0.052393846213817596,
+            -0.0764278993010521,
+            1.0560708045959473
+          ],
+          "tail": [
+            0.04568266496062279,
+            -0.09003527462482452,
+            1.0597219467163086
+          ]
+        },
+        {
+          "name": "risorius02.L",
+          "parent": "temporalis02.L",
+          "head": [
+            0.04568266496062279,
+            -0.09003527462482452,
+            1.0597219467163086
+          ],
+          "tail": [
+            0.040366970002651215,
+            -0.0954286977648735,
+            1.0391185283660889
+          ]
+        },
+        {
+          "name": "risorius03.L",
+          "parent": "risorius02.L",
+          "head": [
+            0.040366970002651215,
+            -0.0954286977648735,
+            1.0391185283660889
+          ],
+          "tail": [
+            0.044517505913972855,
+            -0.08223851770162582,
+            1.0246857404708862
+          ]
+        },
+        {
+          "name": "temporalis02.R",
+          "parent": "head",
+          "head": [
+            -0.052393846213817596,
+            -0.0764278993010521,
+            1.0560708045959473
+          ],
+          "tail": [
+            -0.04568266496062279,
+            -0.09003527462482452,
+            1.0597219467163086
+          ]
+        },
+        {
+          "name": "risorius02.R",
+          "parent": "temporalis02.R",
+          "head": [
+            -0.04568266496062279,
+            -0.09003527462482452,
+            1.0597219467163086
+          ],
+          "tail": [
+            -0.040366970002651215,
+            -0.0954286977648735,
+            1.0391185283660889
+          ]
+        },
+        {
+          "name": "risorius03.R",
+          "parent": "risorius02.R",
+          "head": [
+            -0.040366970002651215,
+            -0.0954286977648735,
+            1.0391185283660889
+          ],
+          "tail": [
+            -0.044517505913972855,
+            -0.08223851770162582,
+            1.0246857404708862
+          ]
+        }
+      ]
+    }
+  ]
+}

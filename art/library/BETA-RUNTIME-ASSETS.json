@@ -1,0 +1,18 @@
+{
+  "rat_source": "C:\\Games\\CoastalFoundation\\art\\library\\source\\giant-rat\\rat_2.blend",
+  "source_sha256": "52530520c71787da6c9ced7130cca02ddaf2b0af567bc38221b746d2297b5be2",
+  "source_unchanged": true,
+  "output": "C:\\Games\\CoastalFoundation\\game\\assets\\creatures\\beta-rat.glb",
+  "output_sha256": "8b4722744940be149b45c2c61bc555286d7f3d35b7acb6d51e20583dbeef5746",
+  "existing_clips": [
+    "Idle.001",
+    "Walk",
+    "Run",
+    "Attack.000",
+    "Hit",
+    "Die"
+  ],
+  "license": "CC0-1.0",
+  "author": "CDmir / TinyWorlds",
+  "source_url": "https://opengameart.org/content/evil-giant-rat"
+}

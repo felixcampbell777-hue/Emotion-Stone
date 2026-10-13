@@ -1,0 +1,166 @@
+{
+  "id": "lark_farm",
+  "display_name": "Lark Farm",
+  "subtitle": "The northern road - a harvest held hostage",
+  "seed": 417,
+  "bounds": [
+    -10,
+    -12,
+    10,
+    12
+  ],
+  "spawn": [
+    0,
+    9
+  ],
+  "sea": false,
+  "terrain_regions": [
+    {
+      "kind": "cobble",
+      "rect": [
+        -2,
+        -12,
+        4,
+        24
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "farmhouse",
+      "kind": "house",
+      "at": [
+        -5,
+        5
+      ],
+      "variant": 1
+    },
+    {
+      "id": "barn",
+      "kind": "house",
+      "at": [
+        6,
+        8
+      ],
+      "variant": 0
+    },
+    {
+      "id": "oak",
+      "kind": "tree",
+      "at": [
+        -7,
+        -9
+      ],
+      "scale": 1.4
+    },
+    {
+      "id": "pine",
+      "kind": "tree",
+      "at": [
+        7,
+        -9
+      ]
+    },
+    {
+      "id": "bench",
+      "kind": "bench",
+      "at": [
+        -3,
+        3
+      ]
+    },
+    {
+      "id": "well",
+      "kind": "well",
+      "at": [
+        6,
+        3
+      ]
+    }
+  ],
+  "npcs": [
+    {
+      "id": "rowan",
+      "character": "farm_rowan",
+      "role": "farm_parent",
+      "at": [
+        -2,
+        4
+      ],
+      "dialogue": [
+        "Our harvest needs your help."
+      ]
+    },
+    {
+      "id": "tessa",
+      "character": "farm_tessa",
+      "role": "farm_partner",
+      "at": [
+        2,
+        3
+      ],
+      "dialogue": [
+        "Welcome to Lark Farm."
+      ]
+    },
+    {
+      "id": "mira",
+      "character": "farm_mira",
+      "role": "farm_child",
+      "at": [
+        -3,
+        1
+      ],
+      "dialogue": [
+        "Have you seen my copper swallow?"
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "id": "farm_sign",
+      "kind": "sign",
+      "at": [
+        2,
+        7
+      ],
+      "title": "North: Lark Farm and goblin caves",
+      "lines": [
+        "The goblin caves lie beyond the north fields. Speak to Rowan beside the farmhouse."
+      ]
+    }
+  ],
+  "exits": [
+    {
+      "id": "town",
+      "rect": [
+        -1.7,
+        10.6,
+        3.4,
+        1
+      ],
+      "target": "village_green",
+      "spawn": [
+        0,
+        -8
+      ],
+      "label": "Village Green"
+    },
+    {
+      "id": "north",
+      "rect": [
+        -1.7,
+        -11.7,
+        3.4,
+        1
+      ],
+      "target": "goblin_approach",
+      "spawn": [
+        0,
+        9.5
+      ],
+      "label": "Goblin palisade"
+    }
+  ],
+  "enemies": []
+}

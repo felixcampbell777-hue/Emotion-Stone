@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-12T16:52:59.888917+00:00",
+  "release": "0.29.0",
+  "game_key": "d5b014ed25c486803c2b60e237fd2bcb76a386398c3a78c44e54e1d809c6ede9",
+  "source_checks": 1329,
+  "windows_checks": 1329,
+  "required_native_views": [
+    "beta/castle-town-overview.png",
+    "beta/castle-town-gate.png",
+    "beta/castle-town-market.png",
+    "beta/castle-town-keep.png",
+    "beta/castle-town-follow.png",
+    "beta/castle-town-first-person.png",
+    "beta/castle-town-street-first-person.png"
+  ],
+  "current_evidence_files": 1359,
+  "sources_unchanged": true,
+  "new_downloads": false,
+  "sole_release": "C:\\Games\\CoastalFoundation\\output\\windows\\v0.29.0",
+  "houses": 9,
+  "castle_interiors": "closed exterior scenery; streets, gate and courtyard playable"
+}

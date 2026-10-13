@@ -1,0 +1,65 @@
+{
+  "id": "fox",
+  "type": "creature",
+  "provider": "Khronos glTF Sample Assets",
+  "author": "PixelMannen; tomkranis; AsoboStudio; scurest",
+  "license": "CC0-1.0 mesh + CC-BY-4.0 animation",
+  "biomes": [
+    "forest"
+  ],
+  "source": "https://github.com/KhronosGroup/glTF-Sample-Assets/tree/edc7c9e67c639d230715049ee31f9a96a6babbbe/Models/Fox",
+  "note": "Survey/Walk/Run sample; ambient fox, no combat clips. Preserve mixed-license credits.",
+  "downloads": [
+    {
+      "url": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/edc7c9e67c639d230715049ee31f9a96a6babbbe/Models/Fox/glTF-Binary/Fox.glb",
+      "bytes": 162852,
+      "sha256": "d97044e701822bac5a62696459b27d7b375aada5de8574ed4362edbba94771f7",
+      "publisher_md5": null
+    },
+    {
+      "url": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/edc7c9e67c639d230715049ee31f9a96a6babbbe/Models/Fox/LICENSE.md",
+      "bytes": 1061,
+      "sha256": "9ddaa2edd6a8f72117eec9709d38cd7d284f61f77752d342c32c828e61f78eae",
+      "publisher_md5": null
+    },
+    {
+      "url": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/edc7c9e67c639d230715049ee31f9a96a6babbbe/Models/Fox/README.md",
+      "bytes": 1782,
+      "sha256": "cf767a7943b12f3af0ea14a1b18947a45ed7a03c3e722678df33854d97df0f88",
+      "publisher_md5": null
+    }
+  ],
+  "commit": "edc7c9e67c639d230715049ee31f9a96a6babbbe",
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:44:57.207224+00:00",
+  "excluded_files": [],
+  "gltf_checks": [
+    {
+      "file": "fox\\Fox.glb",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Survey",
+        "Walk",
+        "Run"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "fox\\Fox.glb",
+      "bytes": 162852,
+      "sha256": "d97044e701822bac5a62696459b27d7b375aada5de8574ed4362edbba94771f7"
+    },
+    {
+      "path": "fox\\LICENSE.md",
+      "bytes": 1061,
+      "sha256": "9ddaa2edd6a8f72117eec9709d38cd7d284f61f77752d342c32c828e61f78eae"
+    },
+    {
+      "path": "fox\\README.md",
+      "bytes": 1782,
+      "sha256": "cf767a7943b12f3af0ea14a1b18947a45ed7a03c3e722678df33854d97df0f88"
+    }
+  ]
+}

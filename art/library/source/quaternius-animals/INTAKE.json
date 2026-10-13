@@ -1,0 +1,446 @@
+{
+  "id": "quaternius-animals",
+  "type": "creature-kit",
+  "provider": "Quaternius",
+  "author": "Quaternius",
+  "source": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+  "license": "CC0-1.0 (supplied legacy license; current QAL conflict recorded)",
+  "license_source": "https://quaternius.com/license.html",
+  "supplied_license_text": "------------------------------------------------------\nLowPoly Models by @Quaternius\nConsider supporting me on Patreon, even $1 helps me a lot!\n\nhttps://www.patreon.com/quaternius\n-------------------------------------------------------\n\nLicense:\nCC0 1.0 Universal (CC0 1.0) \nPublic Domain Dedication\nhttps://creativecommons.org/publicdomain/zero/1.0/\n\n",
+  "license_handling": "User explicitly authorized Quaternius on 2026-10-11. Retain legacy declarations; conservatively comply with current QAL restrictions for new use; do not redistribute raw assets. This exception is separate from the open-license collection.",
+  "biomes": [
+    "forest",
+    "mountain",
+    "town"
+  ],
+  "note": "Original art sources only; no installers, addon, Godot code, demos, or duplicate FBX/OBJ exports. No game integration.",
+  "utc": "2026-10-11T17:21:17.751723+00:00",
+  "downloads": [
+    {
+      "official_creator_page": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "official_drive_root": "https://drive.google.com/drive/folders/1uJ3N5HfB7jKTseJUNQr3N4YaN0UuEtHk",
+      "transfer": "Authenticated Google Drive connector raw-file response; returned scoped download URL consumed ephemerally, not retained."
+    }
+  ],
+  "status": "collected_defender_no_threats_detected",
+  "gltf_checks": [
+    {
+      "file": "quaternius-animals\\glTF\\Wolf.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Attack",
+        "Death",
+        "Eating",
+        "Gallop",
+        "Gallop_Jump",
+        "Idle",
+        "Idle_2",
+        "Idle_2_HeadLow",
+        "Idle_HitReact1",
+        "Idle_HitReact2",
+        "Jump_ToIdle",
+        "Walk"
+      ]
+    },
+    {
+      "file": "quaternius-animals\\glTF\\Stag.gltf",
+      "meshes": 2,
+      "skins": 1,
+      "animations": [
+        "Attack_Headbutt",
+        "Attack_Kick",
+        "Death",
+        "Eating",
+        "Gallop",
+        "Gallop_Jump",
+        "Idle",
+        "Idle_2",
+        "Idle_Headlow",
+        "Idle_HitReact1",
+        "Idle_HitReact2",
+        "Jump_toIdle",
+        "Walk"
+      ]
+    },
+    {
+      "file": "quaternius-animals\\glTF\\Husky.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Attack",
+        "Death",
+        "Eating",
+        "Gallop",
+        "Gallop_Jump",
+        "Idle",
+        "Idle_2",
+        "Idle_2_HeadLow",
+        "Idle_HitReact1",
+        "Idle_HitReact2",
+        "Jump_ToIdle",
+        "Walk"
+      ]
+    },
+    {
+      "file": "quaternius-animals\\glTF\\ShibaInu.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Attack",
+        "Death",
+        "Eating",
+        "Gallop",
+        "Gallop_Jump",
+        "Idle",
+        "Idle_2",
+        "Idle_2_HeadLow",
+        "Idle_HitReact1",
+        "Idle_HitReact2",
+        "Jump_ToIdle",
+        "Walk"
+      ]
+    },
+    {
+      "file": "quaternius-animals\\glTF\\Horse_White.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Attack_Headbutt",
+        "Attack_Kick",
+        "Death",
+        "Eating",
+        "Gallop",
+        "Gallop_Jump",
+        "Idle",
+        "Idle_2",
+        "Idle_Headlow",
+        "Idle_HitReact1",
+        "Idle_HitReact2",
+        "Jump_toIdle",
+        "Walk"
+      ]
+    },
+    {
+      "file": "quaternius-animals\\glTF\\Horse.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Attack_Headbutt",
+        "Attack_Kick",
+        "Death",
+        "Eating",
+        "Gallop",
+        "Gallop_Jump",
+        "Idle",
+        "Idle_2",
+        "Idle_Headlow",
+        "Idle_HitReact1",
+        "Idle_HitReact2",
+        "Jump_toIdle",
+        "Walk"
+      ]
+    },
+    {
+      "file": "quaternius-animals\\glTF\\Fox.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Attack",
+        "Death",
+        "Eating",
+        "Gallop",
+        "Gallop_Jump",
+        "Idle",
+        "Idle_2",
+        "Idle_2_HeadLow",
+        "Idle_HitReact1",
+        "Idle_HitReact2",
+        "Jump_ToIdle",
+        "Walk"
+      ]
+    },
+    {
+      "file": "quaternius-animals\\glTF\\Donkey.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Attack_Headbutt",
+        "Attack_Kick",
+        "Death",
+        "Eating",
+        "Gallop",
+        "Gallop_Jump",
+        "Idle",
+        "Idle_2",
+        "Idle_Headlow",
+        "Idle_HitReact1",
+        "Idle_HitReact2",
+        "Jump_toIdle",
+        "Walk"
+      ]
+    },
+    {
+      "file": "quaternius-animals\\glTF\\Deer.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Attack_Headbutt",
+        "Attack_Kick",
+        "Death",
+        "Eating",
+        "Gallop",
+        "Gallop_Jump",
+        "Idle",
+        "Idle_2",
+        "Idle_Headlow",
+        "Idle_HitReact1",
+        "Idle_HitReact2",
+        "Jump_toIdle",
+        "Walk"
+      ]
+    },
+    {
+      "file": "quaternius-animals\\glTF\\Cow.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Attack_Headbutt",
+        "Attack_Kick",
+        "Death",
+        "Eating",
+        "Gallop",
+        "Gallop_Jump",
+        "Idle",
+        "Idle_2",
+        "Idle_Headlow",
+        "Idle_HitReact1",
+        "Idle_HitReact2",
+        "Jump_toIdle",
+        "Walk"
+      ]
+    },
+    {
+      "file": "quaternius-animals\\glTF\\Bull.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Attack_Headbutt",
+        "Attack_Kick",
+        "Death",
+        "Eating",
+        "Gallop",
+        "Gallop_Jump",
+        "Idle",
+        "Idle_2",
+        "Idle_Headlow",
+        "Idle_HitReact1",
+        "Idle_HitReact2",
+        "Jump_toIdle",
+        "Walk"
+      ]
+    },
+    {
+      "file": "quaternius-animals\\glTF\\Alpaca.gltf",
+      "meshes": 1,
+      "skins": 1,
+      "animations": [
+        "Attack_Headbutt",
+        "Attack_Kick",
+        "Death",
+        "Eating",
+        "Gallop",
+        "Gallop_Jump",
+        "Idle",
+        "Idle_2",
+        "Idle_Headlow",
+        "Idle_HitReact1",
+        "Idle_HitReact2",
+        "Jump_toIdle",
+        "Walk"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "quaternius-animals\\Blends\\Wolf.blend",
+      "bytes": 2571200,
+      "sha256": "fe31c3829dd2a8b9dfedb2e5cb656939a1d525ebd535a62434d2d25a4399cb9e",
+      "official_drive_id": "1daskW0IjLfPK8tLe7qTRTrjNwzyrQnjl",
+      "official_drive_url": "https://drive.google.com/file/d/1daskW0IjLfPK8tLe7qTRTrjNwzyrQnjl/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\Blends\\Stag.blend",
+      "bytes": 2315696,
+      "sha256": "09cc635a05452d149baadd285ee1ea2cfe5ea1e7e0a6067f2ea147e612c50c3c",
+      "official_drive_id": "1JFpz-m6ZnSxCD50ImedmOHGFh_5aKQQd",
+      "official_drive_url": "https://drive.google.com/file/d/1JFpz-m6ZnSxCD50ImedmOHGFh_5aKQQd/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\Blends\\ShibaInu.blend",
+      "bytes": 2366516,
+      "sha256": "2da1c35ed46f532b8a7f1d7e92a4efc016cefb50e8c794e2969a048b16c5c44d",
+      "official_drive_id": "1HbN45J5I19ZZsuMwEqW0caho-EWp0VfX",
+      "official_drive_url": "https://drive.google.com/file/d/1HbN45J5I19ZZsuMwEqW0caho-EWp0VfX/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\Blends\\Husky.blend",
+      "bytes": 2509344,
+      "sha256": "c3214271cbce42ecf0f2abf1bf9b66c3a2ddb36ba9d5d02293583320502b40db",
+      "official_drive_id": "1TZJdLLCJ2fhd8wOEDI9BsJY9B7SIXCd4",
+      "official_drive_url": "https://drive.google.com/file/d/1TZJdLLCJ2fhd8wOEDI9BsJY9B7SIXCd4/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\Blends\\Horse_White.blend",
+      "bytes": 2850040,
+      "sha256": "2d85c7199ffba64f65222cf3f8979e2ae52bb798d368ea9efb4a7a71f55bc6f2",
+      "official_drive_id": "1kWhdC2IOldmCrEndD5YzSRTqV2EWvJit",
+      "official_drive_url": "https://drive.google.com/file/d/1kWhdC2IOldmCrEndD5YzSRTqV2EWvJit/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\Blends\\Horse.blend",
+      "bytes": 2850084,
+      "sha256": "56cb97026a6f4dbd9024e94cc58784e94e635042e4686b4c2344bf1eba715e01",
+      "official_drive_id": "1XEstRdaMvbc7Xb5tK_mk6KP6fkFz_WXh",
+      "official_drive_url": "https://drive.google.com/file/d/1XEstRdaMvbc7Xb5tK_mk6KP6fkFz_WXh/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\Blends\\Fox.blend",
+      "bytes": 2585572,
+      "sha256": "14bb38cd76fb6554a4ecbac9e972d54708f49c07f95c00f958143d48f64ca009",
+      "official_drive_id": "1mURf8Sd70PZJlFJzodmvb756kM26w0A5",
+      "official_drive_url": "https://drive.google.com/file/d/1mURf8Sd70PZJlFJzodmvb756kM26w0A5/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\Blends\\Donkey.blend",
+      "bytes": 2858844,
+      "sha256": "e0b2e675219e6d7af2904594d048214490fd85b900b0281e2e55ff353b771066",
+      "official_drive_id": "1_zF8xp1UjtYi2Cir0m850zLVDukkYWZL",
+      "official_drive_url": "https://drive.google.com/file/d/1_zF8xp1UjtYi2Cir0m850zLVDukkYWZL/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\Blends\\Deer.blend",
+      "bytes": 2603644,
+      "sha256": "e0561b31230bb10434fdaf1755a140dcffce80f1d1e36d5d674f922976d801a4",
+      "official_drive_id": "1XOyqlUcRPKO6J3eLTJypQt6LAuvCw4M_",
+      "official_drive_url": "https://drive.google.com/file/d/1XOyqlUcRPKO6J3eLTJypQt6LAuvCw4M_/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\Blends\\Cow.blend",
+      "bytes": 2532300,
+      "sha256": "b91db3c3957780a56ed9386633942cf25d149ea8b8b0cc2d8b03fae7ff4bc982",
+      "official_drive_id": "1ebESVKfuQ4Dmj8bHEe6Bg7GU1cxtiznv",
+      "official_drive_url": "https://drive.google.com/file/d/1ebESVKfuQ4Dmj8bHEe6Bg7GU1cxtiznv/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\Blends\\Bull.blend",
+      "bytes": 2531860,
+      "sha256": "6cd6cb9db2ff50cc32af34c4138613b92f1132d14476322cd23dd1f4347605fd",
+      "official_drive_id": "14GAVfZIbpweka8tUlDDI2M8-tR9c39YC",
+      "official_drive_url": "https://drive.google.com/file/d/14GAVfZIbpweka8tUlDDI2M8-tR9c39YC/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\Blends\\Alpaca.blend",
+      "bytes": 2561952,
+      "sha256": "e7bab173ef68b9aecf15933a481ea07b2cbbe3452ed8c3d919ccb4a95ba84aec",
+      "official_drive_id": "1Ze3dbyu_kv30kwt1XoxRWBM78NphsigD",
+      "official_drive_url": "https://drive.google.com/file/d/1Ze3dbyu_kv30kwt1XoxRWBM78NphsigD/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\glTF\\Wolf.gltf",
+      "bytes": 3175890,
+      "sha256": "cc02e9d128b5715f352ee8bea086f97a35f1d875d240de99b0f9f2775c37d415",
+      "official_drive_id": "1lFQoQ9ln2Z2wGuFFWObj9i5jHqUl_ftG",
+      "official_drive_url": "https://drive.google.com/file/d/1lFQoQ9ln2Z2wGuFFWObj9i5jHqUl_ftG/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\glTF\\Stag.gltf",
+      "bytes": 3224724,
+      "sha256": "170b964909d16d1ab4d428b1d714f25016913d32481acd9c3d62923192583be6",
+      "official_drive_id": "1URNoFeIFblJXPFOV6qwPrxZr5dLZ3YGx",
+      "official_drive_url": "https://drive.google.com/file/d/1URNoFeIFblJXPFOV6qwPrxZr5dLZ3YGx/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\glTF\\Husky.gltf",
+      "bytes": 3059335,
+      "sha256": "0cfd85ddfcc5c07caf1bdeb296b21017b0da4c8558a92086daf4a172e0bf8d97",
+      "official_drive_id": "1oYn47mfq9JAdkJJDcUftbhHNsgQ_CWdt",
+      "official_drive_url": "https://drive.google.com/file/d/1oYn47mfq9JAdkJJDcUftbhHNsgQ_CWdt/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\glTF\\ShibaInu.gltf",
+      "bytes": 2894445,
+      "sha256": "3236979b94a840eb72d9ce091b1361da327a96f5ce068e666680297480f30f6b",
+      "official_drive_id": "1XWUVbmMbiG9E90OqrumueD_pBdnYdyHZ",
+      "official_drive_url": "https://drive.google.com/file/d/1XWUVbmMbiG9E90OqrumueD_pBdnYdyHZ/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\glTF\\Horse_White.gltf",
+      "bytes": 3607730,
+      "sha256": "f137ee67bd565244f7441f35b5594a597588cda8b60ab109e2041cf13c58e1dd",
+      "official_drive_id": "1sb2XaaPjEV9Z3a1bG8ReISiGlRXrSA7W",
+      "official_drive_url": "https://drive.google.com/file/d/1sb2XaaPjEV9Z3a1bG8ReISiGlRXrSA7W/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\glTF\\Horse.gltf",
+      "bytes": 3610082,
+      "sha256": "3deb61550dff1d2786d04b6e8559d63ad3907d6ab606ba28ce0af074ed96341b",
+      "official_drive_id": "1hbtY8kxnXiPdwYGVY7rWRgU0jl_-Q-LG",
+      "official_drive_url": "https://drive.google.com/file/d/1hbtY8kxnXiPdwYGVY7rWRgU0jl_-Q-LG/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\glTF\\Fox.gltf",
+      "bytes": 3163174,
+      "sha256": "2f36e3c9c75ecddda85c5f9944e98ee1e88e7c679a546534aff1cea8ecde64c7",
+      "official_drive_id": "1z-CWoUC2vJxrqgGFTYlMaywpE1ooV-bA",
+      "official_drive_url": "https://drive.google.com/file/d/1z-CWoUC2vJxrqgGFTYlMaywpE1ooV-bA/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\glTF\\Donkey.gltf",
+      "bytes": 3564269,
+      "sha256": "4cbb2eb7d057789c945b6445d99d0c73b76c0caf7ac9b37ce88a04ca718be2ff",
+      "official_drive_id": "1Buic-_4vNtmwN0rtMHcdWw3TEaSPz4iW",
+      "official_drive_url": "https://drive.google.com/file/d/1Buic-_4vNtmwN0rtMHcdWw3TEaSPz4iW/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\glTF\\Deer.gltf",
+      "bytes": 3288813,
+      "sha256": "b8afd0647e7a74332ce802c8326dfefe1a2b76da67ab925a631aaddb5ae9bdd4",
+      "official_drive_id": "1iGpXKrqYGyZCPGHPPSuDAoKnOXLhXJ0q",
+      "official_drive_url": "https://drive.google.com/file/d/1iGpXKrqYGyZCPGHPPSuDAoKnOXLhXJ0q/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\glTF\\Cow.gltf",
+      "bytes": 3114187,
+      "sha256": "b04af067688d9fadf1395b4456dbf3117c2f760fb49e704ee5c8b6391fc8adb5",
+      "official_drive_id": "1lS3t1Sof0FVne1C1WXfdX48qaHES_pDG",
+      "official_drive_url": "https://drive.google.com/file/d/1lS3t1Sof0FVne1C1WXfdX48qaHES_pDG/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\glTF\\Bull.gltf",
+      "bytes": 3110158,
+      "sha256": "535da2992eb125d517725159a2eddeb520b72595bcb3021985fc43d2c84bff76",
+      "official_drive_id": "1M9gyr2UikIDW_Ynp-OfgiK-JjI7ziPd3",
+      "official_drive_url": "https://drive.google.com/file/d/1M9gyr2UikIDW_Ynp-OfgiK-JjI7ziPd3/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\glTF\\Alpaca.gltf",
+      "bytes": 1435679,
+      "sha256": "5009bfa756c7b7af5e02263d47a6d9088cadaada2240b41b4e87f31327b0e063",
+      "official_drive_id": "13dxCPosR1tVx24LKXr6gN44sIOY4hZgo",
+      "official_drive_url": "https://drive.google.com/file/d/13dxCPosR1tVx24LKXr6gN44sIOY4hZgo/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-animals\\License.txt",
+      "bytes": 364,
+      "sha256": "83d8959f9fc56353ed571fbe2dc52e4bcd64508e2399501cd45ac2ce3df0bf8c",
+      "official_drive_id": "1F2uy8T2fRpdc6gZ4mnS02_C2E63WvKtn",
+      "official_drive_url": "https://drive.google.com/file/d/1F2uy8T2fRpdc6gZ4mnS02_C2E63WvKtn/view"
+    }
+  ],
+  "excluded_files": [
+    "FBX/OBJ duplicate exports",
+    "native Blender scenery duplicate exports",
+    "Scene_AllModels combined scene"
+  ]
+}

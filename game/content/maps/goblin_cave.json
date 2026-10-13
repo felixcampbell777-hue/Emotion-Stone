@@ -1,0 +1,102 @@
+{
+  "id": "goblin_cave",
+  "display_name": "Goblins: Smuggler Gallery",
+  "subtitle": "Shield guards, rock slingers and a hidden keepsake",
+  "seed": 417,
+  "bounds": [
+    -8,
+    -9,
+    8,
+    8
+  ],
+  "spawn": [
+    0,
+    5.5
+  ],
+  "sea": false,
+  "terrain_regions": [
+    {
+      "kind": "path",
+      "rect": [
+        -8,
+        -9,
+        16,
+        17
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "right_palisade",
+      "kind": "wall",
+      "at": [
+        4.75,
+        2.6
+      ],
+      "length": 5.8
+    }
+  ],
+  "npcs": [],
+  "interactions": [],
+  "exits": [
+    {
+      "id": "out",
+      "rect": [
+        -1,
+        6,
+        2,
+        1
+      ],
+      "target": "goblin_approach",
+      "spawn": [
+        0,
+        -8
+      ],
+      "label": "Leave cave",
+      "interact": true
+    },
+    {
+      "id": "depths",
+      "rect": [
+        -1,
+        -7.5,
+        2,
+        1
+      ],
+      "target": "goblin_depths",
+      "spawn": [
+        0,
+        5.5
+      ],
+      "label": "Descend to foreman vault",
+      "interact": true
+    }
+  ],
+  "enemies": [
+    {
+      "id": "shield_guard",
+      "kind": "goblin_guard",
+      "at": [
+        3,
+        1.5
+      ]
+    },
+    {
+      "id": "cave_slinger",
+      "kind": "goblin_slinger",
+      "at": [
+        -4,
+        -4
+      ]
+    },
+    {
+      "id": "lurker",
+      "kind": "goblin_raider",
+      "at": [
+        1,
+        -4
+      ]
+    }
+  ],
+  "cave": true
+}

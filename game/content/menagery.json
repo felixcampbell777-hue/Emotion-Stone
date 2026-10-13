@@ -1,0 +1,399 @@
+{
+  "schema_version": 1,
+  "features": [
+    {
+      "code": "1A",
+      "name": "Layered fir",
+      "style": "fir",
+      "description": "Narrow evergreen, layered canopy"
+    },
+    {
+      "code": "2A",
+      "name": "Broad oak",
+      "style": "oak",
+      "description": "Wide branching crown"
+    },
+    {
+      "code": "3A",
+      "name": "White birch",
+      "style": "birch",
+      "description": "Pale marked trunk and light leaves"
+    },
+    {
+      "code": "4A",
+      "name": "Weeping willow",
+      "style": "willow",
+      "description": "Drooping leaf curtains"
+    },
+    {
+      "code": "1B",
+      "name": "Pebble cluster",
+      "style": "pebbles",
+      "description": "Small rounded stones"
+    },
+    {
+      "code": "2B",
+      "name": "Slate shard",
+      "style": "shard",
+      "description": "Tall angular split stone"
+    },
+    {
+      "code": "3B",
+      "name": "Heavy boulder",
+      "style": "boulder",
+      "description": "Large squat faceted rock"
+    },
+    {
+      "code": "4B",
+      "name": "Moss rock",
+      "style": "moss_rock",
+      "description": "Medium stone with moss cap"
+    },
+    {
+      "code": "5B",
+      "name": "Rock tumble",
+      "style": "rock_pile",
+      "description": "Mixed stacked stones"
+    },
+    {
+      "code": "1C",
+      "name": "Fallen log",
+      "style": "log",
+      "description": "Hollow fallen timber"
+    },
+    {
+      "code": "2C",
+      "name": "Cut stump",
+      "style": "stump",
+      "description": "Tree stump with rings"
+    },
+    {
+      "code": "3C",
+      "name": "Fern bed",
+      "style": "ferns",
+      "description": "Spreading woodland ferns"
+    },
+    {
+      "code": "4C",
+      "name": "Mushroom cluster",
+      "style": "mushrooms",
+      "description": "Mixed caps and stalks"
+    },
+    {
+      "code": "5C",
+      "name": "Deadwood",
+      "style": "deadwood",
+      "description": "Bare branches and broken trunk"
+    },
+    {
+      "code": "6C",
+      "name": "Berry thicket",
+      "style": "shrub",
+      "description": "Dense shrub with berries"
+    },
+    {
+      "code": "7C",
+      "name": "Reed bed",
+      "style": "reeds",
+      "description": "Tall damp-ground rushes"
+    },
+    {
+      "code": "8C",
+      "name": "Forest pool",
+      "style": "pool",
+      "description": "Shallow water with stone rim"
+    },
+    {
+      "code": "1D",
+      "name": "Dirt trail",
+      "style": "dirt",
+      "description": "Narrow worn-earth path"
+    },
+    {
+      "code": "2D",
+      "name": "Old cobbles",
+      "style": "cobbles",
+      "description": "Irregular mossy paving"
+    },
+    {
+      "code": "3D",
+      "name": "Gravel trail",
+      "style": "gravel",
+      "description": "Light gravel with rough edges"
+    },
+    {
+      "code": "4D",
+      "name": "Stepping stones",
+      "style": "steps",
+      "description": "Spaced flat stones"
+    },
+    {
+      "code": "5D",
+      "name": "Trail fork",
+      "style": "fork",
+      "description": "Y-shaped junction"
+    },
+    {
+      "code": "6D",
+      "name": "Log crossing",
+      "style": "bridge",
+      "description": "Rustic timber crossing"
+    },
+    {
+      "code": "1F",
+      "name": "Rolling knoll",
+      "style": "knoll",
+      "description": "Gentle rounded walkable rise; 1.8m summit"
+    },
+    {
+      "code": "2F",
+      "name": "Twin rolling ridge",
+      "style": "ridge",
+      "description": "Linked hilltops and a traversable saddle; 2.2m"
+    },
+    {
+      "code": "3F",
+      "name": "Ramp bluff",
+      "style": "bluff",
+      "description": "Rock faces block the sides/back; broad southern walk-up"
+    },
+    {
+      "code": "4F",
+      "name": "Terraced bluff",
+      "style": "terrace",
+      "description": "Two grassy shelves with a continuous walk-up"
+    },
+    {
+      "code": "1G",
+      "name": "Cave mouth",
+      "style": "cave_mouth",
+      "description": "Framed rock entrance; demo doorway in northern gallery"
+    },
+    {
+      "code": "2G",
+      "name": "Rock arch",
+      "style": "arch",
+      "description": "Walk-through natural stone arch"
+    },
+    {
+      "code": "3G",
+      "name": "Stalagmite cluster",
+      "style": "stalagmites",
+      "description": "Pointed cave formations with movement collision"
+    },
+    {
+      "code": "4G",
+      "name": "Glow crystals",
+      "style": "crystals",
+      "description": "Blue crystal cluster and local cool light"
+    },
+    {
+      "code": "5A",
+      "name": "Jungle canopy tree",
+      "style": "jungle_tree",
+      "description": "Broad layered leaves, aerial roots and hanging vines; ambush perch"
+    },
+    {
+      "code": "9C",
+      "name": "Jungle undergrowth",
+      "style": "jungle_growth",
+      "description": "Broad tropical leaves, ferns and red flowers"
+    },
+    {
+      "code": "10C",
+      "name": "Root and vine arch",
+      "style": "vine_arch",
+      "description": "Walk-through living arch with hanging vines"
+    },
+    {
+      "code": "7D",
+      "name": "Jungle stepping stones",
+      "style": "jungle_path",
+      "description": "Moss-covered stepping stones across jungle soil"
+    },
+    {
+      "code": "5F",
+      "name": "Sloped slime arena",
+      "style": "sloped_arena",
+      "description": "Walkable bowl with a shallow floor and gently rolling raised rim"
+    }
+  ],
+  "monsters": [
+    {
+      "code": "1E",
+      "name": "Moss slime",
+      "style": "moss_slime",
+      "ability": "Two-bounce lunge; moss regrowth while resting",
+      "health": 48,
+      "damage": 8,
+      "speed": 0.85,
+      "windup": 0.65,
+      "attack_speed": 4.2,
+      "recover": 1.4,
+      "size": "medium",
+      "color": "#74a44e"
+    },
+    {
+      "code": "2E",
+      "name": "Resin slime",
+      "style": "resin_slime",
+      "ability": "Lobs sticky gloop; trapped targets trigger a long-range charged dash",
+      "health": 42,
+      "damage": 6,
+      "speed": 0.65,
+      "windup": 0.9,
+      "attack_speed": 3.2,
+      "recover": 2.1,
+      "size": "medium",
+      "color": "#cb9e43"
+    },
+    {
+      "code": "3E",
+      "name": "Bramble slime",
+      "style": "bramble_slime",
+      "ability": "Telegraphed fan of three parryable thorn seeds",
+      "health": 40,
+      "damage": 7,
+      "speed": 0.7,
+      "windup": 1,
+      "attack_speed": 4,
+      "recover": 1.8,
+      "size": "medium",
+      "color": "#779883"
+    },
+    {
+      "code": "4E",
+      "name": "Briar piglet",
+      "style": "piglet",
+      "ability": "Pawing wind-up followed by a straight tusk charge",
+      "health": 58,
+      "damage": 10,
+      "speed": 1.1,
+      "windup": 0.85,
+      "attack_speed": 5.6,
+      "recover": 1.8,
+      "size": "medium",
+      "color": "#85674e"
+    },
+    {
+      "code": "5E",
+      "name": "Sapwing bat",
+      "style": "bat",
+      "ability": "Circles the target then dives across its flank",
+      "health": 26,
+      "damage": 6,
+      "speed": 1.8,
+      "windup": 0.6,
+      "attack_speed": 5,
+      "recover": 1.1,
+      "size": "small",
+      "color": "#746687"
+    },
+    {
+      "code": "6E",
+      "name": "Thorn hare",
+      "style": "hare",
+      "ability": "Sidesteps then dashes twice on alternating angles",
+      "health": 32,
+      "damage": 7,
+      "speed": 1.6,
+      "windup": 0.6,
+      "attack_speed": 4.8,
+      "recover": 1.3,
+      "size": "small",
+      "color": "#ad9b7a"
+    },
+    {
+      "code": "7E",
+      "name": "Acorn squirrel",
+      "style": "squirrel",
+      "ability": "Retreats to range and throws a reflectable acorn",
+      "health": 30,
+      "damage": 8,
+      "speed": 1.4,
+      "windup": 0.8,
+      "attack_speed": 0,
+      "recover": 1.7,
+      "size": "small",
+      "color": "#b5784a"
+    },
+    {
+      "code": "8E",
+      "name": "Puffcap",
+      "style": "puffcap",
+      "ability": "Telegraphs a local spore burst; approach after it fades",
+      "health": 46,
+      "damage": 9,
+      "speed": 0.45,
+      "windup": 1.1,
+      "attack_speed": 0,
+      "recover": 2.2,
+      "size": "medium",
+      "color": "#ac7386"
+    },
+    {
+      "code": "9E",
+      "name": "Green slime",
+      "style": "green_slime",
+      "ability": "Classic short wind-up and bouncing charge",
+      "health": 45,
+      "damage": 8,
+      "speed": 0.85,
+      "windup": 0.7,
+      "attack_speed": 4,
+      "recover": 1.4,
+      "size": "medium",
+      "color": "#70b560"
+    },
+    {
+      "code": "10E",
+      "name": "Queen slime",
+      "style": "queen_slime",
+      "ability": "Four-color brood splashes, marked jumping slams and heavy charges",
+      "health": 650,
+      "damage": 24,
+      "speed": 0.8,
+      "windup": 1.2,
+      "attack_speed": 6,
+      "recover": 1.8,
+      "size": "large",
+      "color": "#5078ba"
+    }
+  ],
+  "arena": [
+    10,
+    0
+  ],
+  "spawn_ring_radius": 3.8,
+  "sticky_seconds": 5,
+  "sticky_multiplier": 0.45,
+  "max_specimens": 10,
+  "resin_attack": {
+    "flight_seconds": 0.9,
+    "arc_height": 1.8,
+    "puddle_radius": 1.6,
+    "puddle_seconds": 7,
+    "charge_seconds": 1.15,
+    "aim_lock_remaining": 0.35,
+    "dash_speed": 9,
+    "max_dash_distance": 11,
+    "recover_seconds": 2.3
+  },
+  "queen_attack": {
+    "core_seconds": 5,
+    "core_health": 18,
+    "splash_damage": 12,
+    "splash_radius": 1.35,
+    "max_brood": 4,
+    "lob_seconds": 0.95,
+    "jump_warning": 1.35,
+    "jump_seconds": 1.15,
+    "jump_height": 4.5,
+    "jump_radius": 2.6,
+    "jump_damage": 28,
+    "charge_warning": 1.0,
+    "charge_speed": 6.5,
+    "charge_seconds": 1.4,
+    "recover_seconds": 1.8
+  }
+}

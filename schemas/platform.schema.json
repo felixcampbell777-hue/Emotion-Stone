@@ -1,16 +1,160 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "type": "object", "additionalProperties": false,
-  "required": ["schema_version", "start_map", "player_character", "walk_speed", "world_resolution", "camera_size", "camera_offset", "camera_focus_offset", "interaction_distance", "save_version"],
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "start_map",
+    "player_character",
+    "walk_speed",
+    "world_resolution",
+    "camera_size",
+    "camera_offset",
+    "camera_focus_offset",
+    "interaction_distance",
+    "save_version",
+    "follow_camera"
+  ],
   "properties": {
-    "schema_version": {"const": 1}, "save_version": {"const": 1},
-    "start_map": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
-    "player_character": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
-    "walk_speed": {"type": "number", "minimum": 0.1, "maximum": 8},
-    "camera_size": {"type": "number", "minimum": 5, "maximum": 30},
-    "world_resolution": {"enum": [[640,360],[320,180]]},
-    "camera_offset": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}},
-    "camera_focus_offset": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}},
-    "interaction_distance": {"type": "number", "minimum": 0.5, "maximum": 4}
+    "schema_version": {
+      "const": 1
+    },
+    "save_version": {
+      "const": 1
+    },
+    "start_map": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "player_character": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "walk_speed": {
+      "type": "number",
+      "minimum": 0.1,
+      "maximum": 8
+    },
+    "camera_size": {
+      "type": "number",
+      "minimum": 5,
+      "maximum": 30
+    },
+    "world_resolution": {
+      "enum": [
+        [
+          640,
+          360
+        ],
+        [
+          320,
+          180
+        ],
+        [
+          960,
+          540
+        ]
+      ]
+    },
+    "camera_offset": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number"
+      }
+    },
+    "camera_focus_offset": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number"
+      }
+    },
+    "interaction_distance": {
+      "type": "number",
+      "minimum": 0.5,
+      "maximum": 4
+    },
+    "follow_camera": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "distance",
+        "min_distance",
+        "max_distance",
+        "pitch",
+        "min_pitch",
+        "max_pitch",
+        "fov",
+        "focus_height",
+        "follow_response",
+        "sensitivity"
+      ],
+      "properties": {
+        "distance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "min_distance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_distance": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "pitch": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "min_pitch": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_pitch": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "fov": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "focus_height": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "follow_response": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "sensitivity": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "first_person_fov": {
+          "type": "number", "minimum": 45, "maximum": 100
+        },
+        "first_person_eye_height": {
+          "type": "number", "minimum": 1, "maximum": 2
+        },
+        "original_eye_height": {
+          "type": "number", "minimum": 1, "maximum": 2
+        },
+        "first_person_movement_motion": {
+          "type": "number", "minimum": 0, "maximum": 1
+        },
+        "first_person_parry_motion": {
+          "type": "number", "minimum": 0, "maximum": 1
+        },
+        "first_person_lance_yaw_degrees": {
+          "type": "number", "minimum": 0, "maximum": 12
+        },
+        "first_person_lance_pitch_degrees": {
+          "type": "number", "minimum": 0, "maximum": 10
+        }
+      }
+    }
   }
 }

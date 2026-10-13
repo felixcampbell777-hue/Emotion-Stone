@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "drag",
+    "light",
+    "heavy",
+    "light2",
+    "light3",
+    "water",
+    "parry",
+    "lance",
+    "thrust",
+    "roll",
+    "stand",
+    "draw"
+  ],
+  "properties": {
+    "drag": {
+      "$ref": "#/$defs/poses"
+    },
+    "light": {
+      "$ref": "#/$defs/poses"
+    },
+    "heavy": {
+      "$ref": "#/$defs/poses"
+    },
+    "light2": {
+      "$ref": "#/$defs/poses"
+    },
+    "light3": {
+      "$ref": "#/$defs/poses"
+    },
+    "water": {
+      "$ref": "#/$defs/poses"
+    },
+    "parry": {
+      "$ref": "#/$defs/poses"
+    },
+    "lance": {
+      "$ref": "#/$defs/poses"
+    },
+    "thrust": {
+      "$ref": "#/$defs/poses"
+    },
+    "roll": {
+      "$ref": "#/$defs/poses"
+    },
+    "stand": {
+      "$ref": "#/$defs/poses"
+    },
+    "draw": {
+      "$ref": "#/$defs/poses"
+    }
+  },
+  "$defs": {
+    "point": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number",
+        "minimum": -10,
+        "maximum": 10
+      }
+    },
+    "poses": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "t",
+          "grip",
+          "tip"
+        ],
+        "properties": {
+          "t": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "grip": {
+            "$ref": "#/$defs/point"
+          },
+          "tip": {
+            "$ref": "#/$defs/point"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+Source: https://opengameart.org/content/spider-animated
+Author: Panther-One
+License: CC-BY-3.0
+License reference: https://creativecommons.org/licenses/by/3.0/
+Checked: 2026-10-11
+Attribution required; name the author, link the source/license and identify modifications.
+Collected for later development; no gameplay integration approved by this intake.

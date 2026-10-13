@@ -1,0 +1,377 @@
+{
+  "level_thresholds": [
+    0,
+    100,
+    240,
+    430,
+    680,
+    1000,
+    1400,
+    1900,
+    2500,
+    3200,
+    4000,
+    4900,
+    5900,
+    7000,
+    8200,
+    9568,
+    11128,
+    12906,
+    14933,
+    17244,
+    19879,
+    22883,
+    26308,
+    30212,
+    34663,
+    39737,
+    45521,
+    52115,
+    59632,
+    68201,
+    77970,
+    89107,
+    101803,
+    116276,
+    132775,
+    151584,
+    173026,
+    197470,
+    225336,
+    257103,
+    293317,
+    334601,
+    381665,
+    435318,
+    496482,
+    566209,
+    645698,
+    736315,
+    839618,
+    957383
+  ],
+  "enemy_xp": {
+    "slime": 35,
+    "boar": 60,
+    "warden": 120,
+    "moss_slime": 35,
+    "resin_slime": 45,
+    "bramble_slime": 50,
+    "piglet": 55,
+    "bat": 20,
+    "hare": 30,
+    "squirrel": 35,
+    "puffcap": 45,
+    "green_slime": 35,
+    "queen_slime": 400,
+    "goblin_raider": 30,
+    "goblin_guard": 45,
+    "goblin_slinger": 35,
+    "goblin_foreman": 100,
+    "beta_wolf": 30,
+    "beta_rat": 12
+  },
+  "quest_xp": 80,
+  "skills": [
+    {
+      "id": "strength",
+      "branch": "Strength",
+      "name": "Base Strength",
+      "description": "Each rank: +4 sword damage and +10 maximum HP. Up to five ranks.",
+      "effects": {
+        "melee": 4,
+        "health": 10
+      },
+      "requires": [],
+      "excludes": [],
+      "max_rank": 5,
+      "category": "capacity"
+    },
+    {
+      "id": "efficient_swing",
+      "branch": "Strength",
+      "name": "Measured Force",
+      "description": "30% less stamina for every light, heavy and charge thrust. Equip in a passive slot. Each extra rank strengthens this bonus by 25% of its base; three ranks maximum.",
+      "effects": {
+        "swing_saving": 0.3
+      },
+      "requires": [
+        "strength"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "category": "passive"
+    },
+    {
+      "id": "crushing_force",
+      "branch": "Strength",
+      "name": "Crushing Force",
+      "description": "50% more damage for all sword strikes after base Strength bonuses. Equip in a passive slot. Each extra rank strengthens this bonus by 25% of its base; three ranks maximum.",
+      "effects": {
+        "melee_multiplier": 0.5
+      },
+      "requires": [
+        "strength"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "category": "passive"
+    },
+    {
+      "id": "form",
+      "branch": "Form",
+      "name": "Base Form",
+      "description": "Each rank: +5% walking and sprint speed; 8% less sprint stamina. Up to five ranks.",
+      "effects": {
+        "speed": 0.05,
+        "sprint_saving": 0.08
+      },
+      "requires": [],
+      "excludes": [],
+      "max_rank": 5,
+      "category": "capacity"
+    },
+    {
+      "id": "charge_thrust",
+      "branch": "Form",
+      "name": "Driving Thrust",
+      "description": "Equip in Inventory: hold to charge (8 stamina/s), then release a long thrust with 2.5x knockback and a stopping wind gust.",
+      "effects": {},
+      "requires": [
+        "form"
+      ],
+      "excludes": [],
+      "max_rank": 1,
+      "category": "active"
+    },
+    {
+      "id": "belly_roll",
+      "branch": "Form",
+      "name": "Dodge",
+      "description": "Press Ctrl or tap Shift to dive and roll, then stand up. Hold Shift to sprint. Costs 18 stamina.",
+      "effects": {},
+      "requires": [
+        "form"
+      ],
+      "excludes": [],
+      "max_rank": 1,
+      "category": "active"
+    },
+    {
+      "id": "mana",
+      "branch": "Mana",
+      "name": "Water Slash",
+      "description": "Unlock the moving water slash. Equip on Q in Inventory. Costs 24 stamina.",
+      "effects": {},
+      "requires": [],
+      "excludes": [],
+      "max_rank": 1,
+      "category": "active"
+    },
+    {
+      "id": "mana_lance",
+      "branch": "Mana",
+      "name": "Water Lance",
+      "description": "Unlock the three-second charged beam. Equip on Q in Inventory. Damage interrupts charging.",
+      "effects": {},
+      "requires": [
+        "mana"
+      ],
+      "excludes": [],
+      "max_rank": 1,
+      "category": "active"
+    },
+    {
+      "id": "flowing_splash",
+      "branch": "Mana",
+      "name": "Flowing Splash",
+      "description": "60% less stamina for water slashes: 24 to 9.6. Equip in a passive slot. Each extra rank strengthens this bonus by 25% of its base; three ranks maximum.",
+      "effects": {
+        "water_saving": 0.6
+      },
+      "requires": [
+        "mana"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "category": "passive"
+    },
+    {
+      "id": "opening_cut",
+      "branch": "Strength",
+      "name": "Opening Cut",
+      "description": "Each rank: +15% opening light-cut damage. Three ranks.",
+      "effects": {
+        "opening_damage": 0.15
+      },
+      "requires": [
+        "strength"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "category": "active"
+    },
+    {
+      "id": "return_cut",
+      "branch": "Strength",
+      "name": "Return Cut",
+      "description": "Each rank: +15% second combo slash damage. Three ranks.",
+      "effects": {
+        "return_damage": 0.15
+      },
+      "requires": [
+        "strength"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "category": "active"
+    },
+    {
+      "id": "spinning_cut",
+      "branch": "Strength",
+      "name": "Spin & Slam",
+      "description": "Each rank: +15% third combo attack damage. Three ranks.",
+      "effects": {
+        "spin_damage": 0.15
+      },
+      "requires": [
+        "strength"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "category": "active"
+    },
+    {
+      "id": "heavy_mastery",
+      "branch": "Strength",
+      "name": "Heavy Impact",
+      "description": "Each rank: +15% overhead-heavy damage. Three ranks.",
+      "effects": {
+        "heavy_damage": 0.15
+      },
+      "requires": [
+        "strength"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "category": "active"
+    },
+    {
+      "id": "thrust_power",
+      "branch": "Form",
+      "name": "Thrust Power",
+      "description": "Each rank: +15% Driving Thrust damage. Three ranks.",
+      "effects": {
+        "thrust_damage": 0.15
+      },
+      "requires": [
+        "charge_thrust"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "category": "active"
+    },
+    {
+      "id": "thrust_control",
+      "branch": "Form",
+      "name": "Thrust Control",
+      "description": "Each rank: 15% faster charge buildup and 15% less windup, extended hold and recovery time. Three ranks.",
+      "effects": {
+        "thrust_control": 0.15
+      },
+      "requires": [
+        "charge_thrust"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "category": "active"
+    },
+    {
+      "id": "dash",
+      "branch": "Form",
+      "name": "Dash",
+      "description": "Hold T to build distance, release to dart straight forward. 2.5 to 7 metres over 1.5 seconds; 12 to 24 stamina. No invulnerability.",
+      "effects": {},
+      "requires": [
+        "form"
+      ],
+      "excludes": [],
+      "max_rank": 1,
+      "category": "active"
+    },
+    {
+      "id": "jump",
+      "branch": "Form",
+      "name": "Jump",
+      "description": "Press Space for a short jump while moving. Costs 12 stamina; no invulnerability.",
+      "effects": {},
+      "requires": [
+        "form"
+      ],
+      "excludes": [],
+      "max_rank": 1,
+      "category": "active"
+    },
+    {
+      "id": "water_power",
+      "branch": "Mana",
+      "name": "Water Slash Power",
+      "description": "Each rank: +15% Water Slash damage. Three ranks.",
+      "effects": {
+        "water_damage": 0.15
+      },
+      "requires": [
+        "mana"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "category": "active"
+    },
+    {
+      "id": "lance_power",
+      "branch": "Mana",
+      "name": "Lance Power",
+      "description": "Each rank: +15% Water Lance damage. Three ranks.",
+      "effects": {
+        "lance_damage": 0.15
+      },
+      "requires": [
+        "mana_lance"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "category": "active"
+    },
+    {
+      "id": "lance_control",
+      "branch": "Mana",
+      "name": "Lance Control",
+      "description": "Each rank: 25% less Water Lance aim kick and 15% shorter charge. Three ranks; up to 75% steadier control.",
+      "effects": {
+        "lance_control": 0.15,
+        "lance_stability": 0.25
+      },
+      "requires": [
+        "mana_lance"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "category": "active"
+    },
+    {
+      "id": "endurance",
+      "branch": "Form",
+      "name": "Stamina Capacity",
+      "description": "Each rank: +10 maximum stamina. Five ranks.",
+      "effects": {
+        "stamina": 10
+      },
+      "requires": [],
+      "excludes": [],
+      "max_rank": 5,
+      "category": "capacity"
+    }
+  ],
+  "well_quest_xp": 40
+}

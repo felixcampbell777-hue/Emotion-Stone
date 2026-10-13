@@ -85,7 +85,7 @@ def main():
         'blender_download_source': f'https://mirrors.ocf.berkeley.edu/blender/release/Blender4.5/{blender_name}',
     }
     (ROOT / 'tools' / 'toolchain.local.json').write_text(json.dumps(record, indent=2) + '\n')
-    subprocess.run([sys.executable,'-m','pip','install','--disable-pip-version-check','--quiet','--target',str(CACHE/'python'),'jsonschema==4.25.1'],check=True)
+    subprocess.run([sys.executable,'-m','pip','install','--disable-pip-version-check','--quiet','--target',str(CACHE/'python'),'jsonschema==4.25.1','Pillow==12.3.0'],check=True)
     print('Portable toolchain ready; paths saved in tools/toolchain.local.json.', flush=True)
 
 

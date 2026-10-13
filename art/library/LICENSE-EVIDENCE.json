@@ -1,0 +1,393 @@
+[
+  {
+    "source": "https://opengameart.org/content/boar",
+    "author": "Teh_Bucket",
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "page_download": {
+      "url": "https://opengameart.org/content/boar",
+      "bytes": 23354,
+      "sha256": "a2b4798c5c92a4163943069aec850f42ca6e0caca8773424cabc5d06b4df67cd",
+      "publisher_md5": null
+    },
+    "license_field": "License(s): CC0"
+  },
+  {
+    "source": "https://opengameart.org/content/animated-crab",
+    "author": "CoinCoin",
+    "license": "CC-BY-4.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "page_download": {
+      "url": "https://opengameart.org/content/animated-crab",
+      "bytes": 20825,
+      "sha256": "76fe5a491e945e094b7aa22a21ad4b239e481792f6aaa15381efe2c75c7601d2",
+      "publisher_md5": null
+    },
+    "license_field": "License(s): CC-BY 4.0"
+  },
+  {
+    "source": "https://opengameart.org/content/deer-female",
+    "author": "CDmir / TinyWorlds",
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "page_download": {
+      "url": "https://opengameart.org/content/deer-female",
+      "bytes": 28761,
+      "sha256": "db2713d4072a1c3b5fac7e501b637e212945e1a516b83d7833756647a041c2f4",
+      "publisher_md5": null
+    },
+    "license_field": "License(s): CC0"
+  },
+  {
+    "source": "https://opengameart.org/content/old-deer-male",
+    "author": "CDmir / TinyWorlds",
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "page_download": {
+      "url": "https://opengameart.org/content/old-deer-male",
+      "bytes": 44084,
+      "sha256": "3a50f985d54c0a5cd48bdce51846d595eb76764fbaf01c9c501d91a692fbb096",
+      "publisher_md5": null
+    },
+    "license_field": "License(s): CC0"
+  },
+  {
+    "source": "https://opengameart.org/content/forest-monster",
+    "author": "CDmir / TinyWorlds",
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "page_download": {
+      "url": "https://opengameart.org/content/forest-monster",
+      "bytes": 45146,
+      "sha256": "442ade77a5f1848fd8eebea8f0e1a2aa511cf2d371368d519843590442267535",
+      "publisher_md5": null
+    },
+    "license_field": "License(s): CC0"
+  },
+  {
+    "source": "https://github.com/KhronosGroup/glTF-Sample-Assets/tree/edc7c9e67c639d230715049ee31f9a96a6babbbe/Models/Fox",
+    "author": "PixelMannen; tomkranis; AsoboStudio; scurest",
+    "license": "CC0-1.0 mesh + CC-BY-4.0 animation",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_files": [
+      "fox\\LICENSE.md"
+    ]
+  },
+  {
+    "source": "https://opengameart.org/content/evil-giant-rat",
+    "author": "CDmir / TinyWorlds",
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "page_download": {
+      "url": "https://opengameart.org/content/evil-giant-rat",
+      "bytes": 38084,
+      "sha256": "95c8b1eb0bd798c91f1ba207e9ccf4e703ee2bd169ef585f20c8844378c27f03",
+      "publisher_md5": null
+    },
+    "license_field": "License(s): CC0"
+  },
+  {
+    "source": "https://opengameart.org/content/goblin-1",
+    "author": "CDmir / TinyWorlds",
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "page_download": {
+      "url": "https://opengameart.org/content/goblin-1",
+      "bytes": 38290,
+      "sha256": "bee0a34664f338d988f16b06bbe69d0613cef77908a8c4f2be46d8d51a5dc247",
+      "publisher_md5": null
+    },
+    "license_field": "License(s): CC0"
+  },
+  {
+    "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0",
+    "author": "Kay Lousberg",
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_files": [
+      "kaykit-skeletons\\KayKit-Character-Pack-Skeletons-1.0-15b62b9bad122f72926c10fb14d622c73819fa54\\addons\\kaykit_character_pack_skeletons\\LICENSE.txt"
+    ]
+  },
+  {
+    "source": "https://kenney.nl/assets/castle-kit",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "page_download": {
+      "url": "https://kenney.nl/assets/castle-kit",
+      "bytes": 17717,
+      "sha256": "580d7ae0605a455166fa925277b92d1c49f45d9901d842c3933075569abdff60",
+      "publisher_md5": null
+    },
+    "license_field": "License Creative Commons CC0"
+  },
+  {
+    "source": "https://kenney.nl/assets/fantasy-town-kit",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "page_download": {
+      "url": "https://kenney.nl/assets/fantasy-town-kit",
+      "bytes": 18677,
+      "sha256": "7dc6cb0ec200e3104249d6ef99b6c92d37532543e1001937848023c0f974afd3",
+      "publisher_md5": null
+    },
+    "license_field": "License Creative Commons CC0"
+  },
+  {
+    "source": "https://kenney.nl/assets/pirate-kit",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "page_download": {
+      "url": "https://kenney.nl/assets/pirate-kit",
+      "bytes": 18138,
+      "sha256": "42561ccfaba1c44a37f00abf954ee9111c75bf1208d69547f41f9108b94a4112",
+      "publisher_md5": null
+    },
+    "license_field": "License Creative Commons CC0"
+  },
+  {
+    "source": "https://opengameart.org/content/mudeater-animated",
+    "author": "CDmir / TinyWorlds",
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "page_download": {
+      "url": "https://opengameart.org/content/mudeater-animated",
+      "bytes": 42880,
+      "sha256": "2eeae6c6dc9911b1ebd55361ace1ed240370035b74b380eeffb181bf57e1e16a",
+      "publisher_md5": null
+    },
+    "license_field": "License(s): CC0"
+  },
+  {
+    "source": "https://polyhaven.com/a/boulder_01",
+    "author": null,
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://polyhaven.com/license",
+    "checksum_contract": "Official API size and MD5 validated for every art file; local SHA256 retained."
+  },
+  {
+    "source": "https://polyhaven.com/a/castle_brick_01",
+    "author": null,
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://polyhaven.com/license",
+    "checksum_contract": "Official API size and MD5 validated for every art file; local SHA256 retained."
+  },
+  {
+    "source": "https://polyhaven.com/a/cliff_side",
+    "author": null,
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://polyhaven.com/license",
+    "checksum_contract": "Official API size and MD5 validated for every art file; local SHA256 retained."
+  },
+  {
+    "source": "https://polyhaven.com/a/coast_rocks_01",
+    "author": null,
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://polyhaven.com/license",
+    "checksum_contract": "Official API size and MD5 validated for every art file; local SHA256 retained."
+  },
+  {
+    "source": "https://polyhaven.com/a/coast_sand_01",
+    "author": null,
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://polyhaven.com/license",
+    "checksum_contract": "Official API size and MD5 validated for every art file; local SHA256 retained."
+  },
+  {
+    "source": "https://polyhaven.com/a/coastal_cliff_01",
+    "author": null,
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://polyhaven.com/license",
+    "checksum_contract": "Official API size and MD5 validated for every art file; local SHA256 retained."
+  },
+  {
+    "source": "https://polyhaven.com/a/damp_beach_sand",
+    "author": null,
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://polyhaven.com/license",
+    "checksum_contract": "Official API size and MD5 validated for every art file; local SHA256 retained."
+  },
+  {
+    "source": "https://polyhaven.com/a/flower_heliophila",
+    "author": null,
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://polyhaven.com/license",
+    "checksum_contract": "Official API size and MD5 validated for every art file; local SHA256 retained."
+  },
+  {
+    "source": "https://polyhaven.com/a/nettle_plant",
+    "author": null,
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://polyhaven.com/license",
+    "checksum_contract": "Official API size and MD5 validated for every art file; local SHA256 retained."
+  },
+  {
+    "source": "https://polyhaven.com/a/plaster_stone_wall_01",
+    "author": null,
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://polyhaven.com/license",
+    "checksum_contract": "Official API size and MD5 validated for every art file; local SHA256 retained."
+  },
+  {
+    "source": "https://polyhaven.com/a/rock_face",
+    "author": null,
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://polyhaven.com/license",
+    "checksum_contract": "Official API size and MD5 validated for every art file; local SHA256 retained."
+  },
+  {
+    "source": "https://polyhaven.com/a/rock_moss_set_02",
+    "author": null,
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://polyhaven.com/license",
+    "checksum_contract": "Official API size and MD5 validated for every art file; local SHA256 retained."
+  },
+  {
+    "source": "https://polyhaven.com/a/snow_02",
+    "author": null,
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://polyhaven.com/license",
+    "checksum_contract": "Official API size and MD5 validated for every art file; local SHA256 retained."
+  },
+  {
+    "source": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+    "author": "Quaternius",
+    "license": "CC0-1.0 (supplied legacy license; current QAL conflict recorded)",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://quaternius.com/license.html",
+    "supplied_license_text": "------------------------------------------------------\nLowPoly Models by @Quaternius\nConsider supporting me on Patreon, even $1 helps me a lot!\n\nhttps://www.patreon.com/quaternius\n-------------------------------------------------------\n\nLicense:\nCC0 1.0 Universal (CC0 1.0) \nPublic Domain Dedication\nhttps://creativecommons.org/publicdomain/zero/1.0/\n\n",
+    "license_handling": "User explicitly authorized Quaternius on 2026-10-11. Retain legacy declarations; conservatively comply with current QAL restrictions for new use; do not redistribute raw assets. This exception is separate from the open-license collection.",
+    "official_creator_linked_drive": true
+  },
+  {
+    "source": "https://quaternius.com/packs/ultimatefantasyrts.html",
+    "author": "Quaternius",
+    "license": "CC0-1.0 (supplied legacy license; current QAL conflict recorded)",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://quaternius.com/license.html",
+    "supplied_license_text": "------------------------------------------------------\nUltimate Platformer Pack by @Quaternius\nConsider supporting me on Patreon, even $1 helps me a lot!\n\nhttps://www.patreon.com/quaternius\n-------------------------------------------------------\n\nLicense:\nCC0 1.0 Universal (CC0 1.0) \nPublic Domain Dedication\nhttps://creativecommons.org/publicdomain/zero/1.0/\n\n",
+    "license_handling": "User explicitly authorized Quaternius on 2026-10-11. Retain legacy declarations; conservatively comply with current QAL restrictions for new use; do not redistribute raw assets. This exception is separate from the open-license collection.",
+    "official_creator_linked_drive": true
+  },
+  {
+    "source": "https://quaternius.com/packs/ultimatemonsters.html",
+    "author": "Quaternius",
+    "license": "CC0-1.0 (supplied legacy license; current QAL conflict recorded)",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://quaternius.com/license.html",
+    "supplied_license_text": "------------------------------------------------------\nUltimate Platformer Pack by @Quaternius\nConsider supporting me on Patreon, even $1 helps me a lot!\n\nhttps://www.patreon.com/quaternius\n-------------------------------------------------------\n\nLicense:\nCC0 1.0 Universal (CC0 1.0) \nPublic Domain Dedication\nhttps://creativecommons.org/publicdomain/zero/1.0/\n\n",
+    "license_handling": "User explicitly authorized Quaternius on 2026-10-11. Retain legacy declarations; conservatively comply with current QAL restrictions for new use; do not redistribute raw assets. This exception is separate from the open-license collection.",
+    "official_creator_linked_drive": true
+  },
+  {
+    "source": "https://quaternius.com/packs/piratekit.html",
+    "author": "Quaternius",
+    "license": "Quaternius Asset License 1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "license_source": "https://quaternius.com/license.html",
+    "supplied_license_text": null,
+    "license_handling": "User explicitly authorized Quaternius on 2026-10-11. Retain legacy declarations; conservatively comply with current QAL restrictions for new use; do not redistribute raw assets. This exception is separate from the open-license collection.",
+    "official_creator_linked_drive": true
+  },
+  {
+    "source": "https://opengameart.org/content/rabbit-0",
+    "author": "CDmir / TinyWorlds",
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "page_download": {
+      "url": "https://opengameart.org/content/rabbit-0",
+      "bytes": 40593,
+      "sha256": "5d16bf06b6ed81bfefef3acb54d72b1836aca3a33f38ec6a18131c7ffc7abb89",
+      "publisher_md5": null
+    },
+    "license_field": "License(s): CC0"
+  },
+  {
+    "source": "https://opengameart.org/content/spider-animated",
+    "author": "Panther-One",
+    "license": "CC-BY-3.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "page_download": {
+      "url": "https://opengameart.org/content/spider-animated",
+      "bytes": 32665,
+      "sha256": "a028ccaa90f8908f9e0242addbf244274edad9af72319da642d42a18979c064b",
+      "publisher_md5": null
+    },
+    "license_field": "License(s): CC-BY 3.0"
+  },
+  {
+    "source": "https://opengameart.org/content/undead-squirrel-animated",
+    "author": "CDmir",
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "page_download": {
+      "url": "https://opengameart.org/content/undead-squirrel-animated",
+      "bytes": 30468,
+      "sha256": "0f57faedeaa57336f698477e71edb20d23a64c8cd4e85f0045d82d7f7fee77c6",
+      "publisher_md5": null
+    },
+    "license_field": "License(s): CC0"
+  },
+  {
+    "source": "https://opengameart.org/content/3d-wolf",
+    "author": "NewDLC",
+    "license": "CC0-1.0",
+    "checked_on": "2026-10-11",
+    "status": "publisher declaration verified; not an independent ownership audit",
+    "page_download": {
+      "url": "https://opengameart.org/content/3d-wolf",
+      "bytes": 32914,
+      "sha256": "5c8a3baa0eba101d26dd8d979421ef521cc3a1a5abf9db67cfa6cae49cf681bb",
+      "publisher_md5": null
+    },
+    "license_field": "License(s): CC0"
+  }
+]

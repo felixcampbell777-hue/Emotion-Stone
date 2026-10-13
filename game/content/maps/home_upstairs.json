@@ -1,0 +1,128 @@
+{
+  "id": "home_upstairs",
+  "display_name": "Home \u00b7 Upstairs",
+  "subtitle": "A quiet morning at home",
+  "seed": 412,
+  "bounds": [
+    -5,
+    -5,
+    5,
+    5
+  ],
+  "spawn": [
+    -1.7,
+    -1.2
+  ],
+  "sea": false,
+  "interior": "bedroom",
+  "terrain_regions": [
+    {
+      "rect": [
+        -5,
+        -5,
+        10,
+        10
+      ],
+      "kind": "path"
+    }
+  ],
+  "props": [
+    {
+      "id": "bed",
+      "kind": "bed",
+      "at": [
+        -3.1,
+        -2.1
+      ]
+    },
+    {
+      "id": "bedside",
+      "kind": "table",
+      "at": [
+        -1.7,
+        -3.2
+      ],
+      "scale": 0.38
+    },
+    {
+      "id": "wardrobe",
+      "kind": "cupboard",
+      "at": [
+        3.3,
+        -4.3
+      ]
+    },
+    {
+      "id": "bookcase",
+      "kind": "shelf",
+      "at": [
+        0.2,
+        -4.4
+      ]
+    },
+    {
+      "id": "writing_desk",
+      "kind": "table",
+      "at": [
+        3,
+        -1.7
+      ],
+      "scale": 0.75
+    },
+    {
+      "id": "desk_chair",
+      "kind": "chair",
+      "at": [
+        3,
+        -0.5
+      ],
+      "scale": 0.85
+    },
+    {
+      "id": "woven_rug",
+      "kind": "rug",
+      "at": [
+        -0.5,
+        1
+      ],
+      "scale": 0.65
+    },
+    {
+      "id": "stairs_down",
+      "kind": "stairs",
+      "at": [
+        3,
+        2
+      ],
+      "variant": 1
+    },
+    {
+      "id": "travel_chest",
+      "kind": "cupboard",
+      "at": [
+        -3.7,
+        2.8
+      ],
+      "scale": 0.65
+    }
+  ],
+  "npcs": [],
+  "interactions": [],
+  "exits": [
+    {
+      "id": "downstairs",
+      "rect": [
+        2.25,
+        1.2,
+        1.5,
+        0.85
+      ],
+      "target": "home_downstairs",
+      "spawn": [
+        3,
+        0.75
+      ],
+      "label": "Go downstairs"
+    }
+  ]
+}

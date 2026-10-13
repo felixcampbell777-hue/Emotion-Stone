@@ -1,12 +1,42 @@
 {
   "schema_version": 1,
-  "start_map": "coastal_path",
+  "start_map": "home_upstairs",
   "player_character": "hero",
   "walk_speed": 2.4,
-  "world_resolution": [640, 360],
+  "world_resolution": [
+    320,
+    180
+  ],
   "camera_size": 11.4,
-  "camera_offset": [0, 16, 12],
-  "camera_focus_offset": [0, 0, -3.2],
+  "camera_offset": [
+    0,
+    16,
+    12
+  ],
+  "camera_focus_offset": [
+    0,
+    0,
+    -3.2
+  ],
   "interaction_distance": 1.8,
-  "save_version": 1
+  "save_version": 1,
+  "follow_camera": {
+    "distance": 5.5,
+    "min_distance": 3.0,
+    "max_distance": 8.0,
+    "pitch": 0.32,
+    "min_pitch": 0.14,
+    "max_pitch": 0.96,
+    "fov": 60,
+    "focus_height": 1.05,
+    "follow_response": 8,
+    "sensitivity": 0.006,
+    "first_person_fov": 75,
+    "first_person_eye_height": 1.52,
+    "original_eye_height": 1.65,
+    "first_person_movement_motion": 0.5,
+    "first_person_parry_motion": 0.2,
+    "first_person_lance_yaw_degrees": 6,
+    "first_person_lance_pitch_degrees": 4
+  }
 }

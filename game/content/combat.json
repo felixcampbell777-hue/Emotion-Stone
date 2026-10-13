@@ -1,0 +1,250 @@
+{
+  "max_health": 100,
+  "max_stamina": 100,
+  "sprint_speed": 4.6,
+  "sprint_drain": 22.0,
+  "stamina_regen": 26.0,
+  "stamina_regen_delay": 0.8,
+  "sprint_resume_stamina": 20.0,
+  "heavy_hold_seconds": 0.42,
+  "drawn_walk_speed": 1.25,
+  "draw_seconds": 1.69,
+  "sheathe_seconds": 1.56,
+  "hurt_invulnerability": 0.9,
+  "sword_scale": 1.6,
+  "light": {
+    "duration": 1.55,
+    "active_start": 0.44,
+    "active_end": 0.72,
+    "damage": 22,
+    "range": 2.45,
+    "cone_dot": 0.12,
+    "momentum": 5.1,
+    "stamina_cost": 20
+  },
+  "heavy": {
+    "duration": 2.45,
+    "active_start": 0.6,
+    "active_end": 0.72,
+    "damage": 45,
+    "range": 2.7,
+    "cone_dot": 0.65,
+    "momentum": 3.8,
+    "stamina_cost": 36
+  },
+  "parry": {
+    "duration": 0.7,
+    "active_start": 0.2,
+    "active_end": 0.48,
+    "stamina_cost": 10,
+    "cone_dot": 0.0,
+    "knockback": 8.0,
+    "stun_seconds": 1.0,
+    "contact_range": 1.45
+  },
+  "slime": {
+    "max_health": 60,
+    "damage": 12,
+    "respawn_seconds": 10.0,
+    "notice_range": 5.5,
+    "walk_speed": 0.85,
+    "lunge_speed": 4.1,
+    "windup": 0.65,
+    "lunge_seconds": 0.3,
+    "recovery": 1.4
+  },
+  "combo_window": 0.65,
+  "combo": [
+    {
+      "duration": 1.5,
+      "active_start": 0.34,
+      "active_end": 0.62,
+      "damage": 24,
+      "range": 2.45,
+      "cone_dot": 0.12,
+      "momentum": 0.75,
+      "stamina_cost": 20
+    },
+    {
+      "duration": 1.65,
+      "active_start": 0.05,
+      "active_end": 0.7,
+      "damage": 30,
+      "range": 2.45,
+      "cone_dot": -1,
+      "momentum": 0.65,
+      "stamina_cost": 28
+    }
+  ],
+  "drawn_sprint_speed": 2.4,
+  "drawn_sprint_drain": 34.0,
+  "turn_response": 18.0,
+  "rush_min_seconds": 0.18,
+  "rush_heavy_windup": 0.42,
+  "rush_light_windup": 0.65,
+  "combo_link_phase": 0.74,
+  "water": {
+    "duration": 1.1,
+    "release_phase": 0.42,
+    "stamina_cost": 24,
+    "range": 8.0,
+    "speed": 7.5,
+    "damage": 32,
+    "half_angle": 0.72,
+    "thickness": 0.48
+  },
+  "lance": {
+    "charge_seconds": 3.0,
+    "recovery_seconds": 0.75,
+    "stamina_cost": 52,
+    "damage": 120,
+    "splash_damage": 55,
+    "blast_radius": 1.8,
+    "range": 18.0,
+    "speed": 32.0,
+    "stagger_seconds": 0.8
+  },
+  "thrust": {
+    "duration": 2.05,
+    "active_start": 0.24,
+    "active_end": 0.64,
+    "damage": 54,
+    "range": 3.1,
+    "cone_dot": 0.94,
+    "momentum": 8.4,
+    "stamina_cost": 36
+  },
+  "dodge": {
+    "duration": 0.85,
+    "stand_seconds": 0.55,
+    "stamina_cost": 18,
+    "speed": 4.8,
+    "tap_seconds": 0.3,
+    "attack_exit_phase": 0.1,
+    "attack_exit_blend": 0.42
+  },
+  "draw_timing": [
+    {
+      "time": 0,
+      "pose": 0
+    },
+    {
+      "time": 0.12,
+      "pose": 0.1
+    },
+    {
+      "time": 0.31,
+      "pose": 0.24
+    },
+    {
+      "time": 0.48,
+      "pose": 0.36
+    },
+    {
+      "time": 0.65,
+      "pose": 0.485
+    },
+    {
+      "time": 0.75,
+      "pose": 0.61
+    },
+    {
+      "time": 0.815,
+      "pose": 0.71
+    },
+    {
+      "time": 0.85,
+      "pose": 0.775
+    },
+    {
+      "time": 0.88,
+      "pose": 0.82
+    },
+    {
+      "time": 0.935,
+      "pose": 0.9
+    },
+    {
+      "time": 0.975,
+      "pose": 0.96
+    },
+    {
+      "time": 1,
+      "pose": 1
+    }
+  ],
+  "sheathe_timing": [
+    {
+      "time": 0,
+      "pose": 0
+    },
+    {
+      "time": 0.08,
+      "pose": 0.08
+    },
+    {
+      "time": 0.16,
+      "pose": 0.18
+    },
+    {
+      "time": 0.3,
+      "pose": 0.225
+    },
+    {
+      "time": 0.43,
+      "pose": 0.29
+    },
+    {
+      "time": 0.58,
+      "pose": 0.39
+    },
+    {
+      "time": 0.73,
+      "pose": 0.515
+    },
+    {
+      "time": 0.81,
+      "pose": 0.64
+    },
+    {
+      "time": 0.88,
+      "pose": 0.76
+    },
+    {
+      "time": 0.95,
+      "pose": 0.9
+    },
+    {
+      "time": 1,
+      "pose": 1
+    }
+  ],
+  "slam_shockwave": {
+    "radius": 2.6,
+    "seconds": 0.42,
+    "force_factor": 0.75,
+    "stun_seconds": 0.65
+  },
+  "thrust_charge": {
+    "max_seconds": 8.0,
+    "prepare_seconds": 0.65,
+    "ready_phase": 0.18,
+    "damage_per_second": 0.3,
+    "base_distance": 4.0,
+    "distance_per_second": 1.2,
+    "launch_seconds": 0.85,
+    "launch_seconds_per_charge": 0.06,
+    "release_windup_seconds": 0.18,
+    "unprepared_windup_seconds": 0.45,
+    "recovery_seconds": 0.74,
+    "hold_base_seconds": 4.0,
+    "hold_reference_charge": 4.0,
+    "stagger_seconds": 0.8,
+    "stamina_per_second": 8.0,
+    "recoil_multiplier": 2.5,
+    "gust_distance": 4.5,
+    "gust_half_width": 2.2,
+    "gust_seconds": 0.55,
+    "gust_stun_seconds": 0.85
+  }
+}

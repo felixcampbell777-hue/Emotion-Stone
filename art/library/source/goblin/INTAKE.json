@@ -1,0 +1,33 @@
+{
+  "id": "goblin",
+  "type": "creature",
+  "provider": "OpenGameArt",
+  "author": "CDmir / TinyWorlds",
+  "license": "CC0-1.0",
+  "biomes": [
+    "forest",
+    "castle",
+    "mountain"
+  ],
+  "note": "Future goblin visual candidate; retain campaign AI and save IDs.",
+  "source": "https://opengameart.org/content/goblin-1",
+  "downloads": [
+    {
+      "url": "https://opengameart.org/sites/default/files/goblin-FINAL.blend",
+      "bytes": 7498900,
+      "sha256": "cec34eb0c06d6efd35b42f8a70c7921a0d404aa6755ac6ba526a6b4585faab1a",
+      "publisher_md5": null
+    }
+  ],
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:44:43.713780+00:00",
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "goblin\\goblin-FINAL.blend",
+      "bytes": 7498900,
+      "sha256": "cec34eb0c06d6efd35b42f8a70c7921a0d404aa6755ac6ba526a6b4585faab1a"
+    }
+  ]
+}

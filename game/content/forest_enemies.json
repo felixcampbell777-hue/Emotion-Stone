@@ -1,0 +1,35 @@
+{
+  "boar": {
+    "health": 70,
+    "color": "#795543",
+    "notice": 7,
+    "range": 4.5,
+    "windup": 0.9,
+    "speed": 1.2,
+    "attack_speed": 6.2,
+    "damage": 16,
+    "recovery": 1.7
+  },
+  "wisp": {
+    "health": 45,
+    "color": "#80638e",
+    "notice": 7,
+    "range": 3.8,
+    "windup": 0.42,
+    "speed": 1.7,
+    "attack_speed": 4.8,
+    "damage": 10,
+    "recovery": 0.8
+  },
+  "warden": {
+    "health": 90,
+    "color": "#747e68",
+    "notice": 8,
+    "range": 7.5,
+    "windup": 1.15,
+    "speed": 0.65,
+    "attack_speed": 0,
+    "damage": 18,
+    "recovery": 2.3
+  }
+}

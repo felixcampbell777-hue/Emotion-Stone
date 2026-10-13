@@ -1,0 +1,54 @@
+{
+  "id": "ph-snow_02",
+  "asset_id": "snow_02",
+  "type": "pbr-texture",
+  "provider": "Poly Haven",
+  "license": "CC0-1.0",
+  "biomes": [
+    "mountain"
+  ],
+  "source": "https://polyhaven.com/a/snow_02",
+  "note": "2K albedo, OpenGL normal and roughness; no redundant 8K/16K maps.",
+  "polyhaven": true,
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:45:25.424634+00:00",
+  "downloads": [
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/snow_02/snow_02_diff_2k.jpg",
+      "bytes": 1314409,
+      "sha256": "d185c2853c7e674161789db4eed1c5708d85e4f6e3dcb5698209568adf02aa98",
+      "publisher_md5": "5541e5601951b071691238ddc70632c0"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/snow_02/snow_02_nor_gl_2k.jpg",
+      "bytes": 4761595,
+      "sha256": "288539ee33387e91035be4dc8d10da574bf6a95c8374d33b6b1dc465c6949e8f",
+      "publisher_md5": "ef128fbdf1b31932c792eb6472c84574"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/snow_02/snow_02_rough_2k.jpg",
+      "bytes": 628467,
+      "sha256": "9cfa994318ef190d4540875a166c7c745184c1a166e82271bca7c0a628f8820f",
+      "publisher_md5": "8b9787b4c7b1d7390a4b4a1ae67728b1"
+    }
+  ],
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "ph-snow_02\\albedo.jpg",
+      "bytes": 1314409,
+      "sha256": "d185c2853c7e674161789db4eed1c5708d85e4f6e3dcb5698209568adf02aa98"
+    },
+    {
+      "path": "ph-snow_02\\normal.jpg",
+      "bytes": 4761595,
+      "sha256": "288539ee33387e91035be4dc8d10da574bf6a95c8374d33b6b1dc465c6949e8f"
+    },
+    {
+      "path": "ph-snow_02\\roughness.jpg",
+      "bytes": 628467,
+      "sha256": "9cfa994318ef190d4540875a166c7c745184c1a166e82271bca7c0a628f8820f"
+    }
+  ]
+}

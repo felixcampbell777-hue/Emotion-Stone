@@ -1,0 +1,32 @@
+{
+  "id": "mudeater",
+  "type": "creature",
+  "provider": "OpenGameArt",
+  "author": "CDmir / TinyWorlds",
+  "license": "CC0-1.0",
+  "biomes": [
+    "forest",
+    "beach"
+  ],
+  "note": "Distinct creature for mud/swamp encounters; rigged and animated.",
+  "source": "https://opengameart.org/content/mudeater-animated",
+  "downloads": [
+    {
+      "url": "https://opengameart.org/sites/default/files/mudeater.blend",
+      "bytes": 16056328,
+      "sha256": "7811ebdf63ab96baeba03d427376005008d0949af8014a3e4e57d2daa9e71b3a",
+      "publisher_md5": null
+    }
+  ],
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:44:45.009682+00:00",
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "mudeater\\mudeater.blend",
+      "bytes": 16056328,
+      "sha256": "7811ebdf63ab96baeba03d427376005008d0949af8014a3e4e57d2daa9e71b3a"
+    }
+  ]
+}

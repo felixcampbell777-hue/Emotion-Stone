@@ -1,0 +1,1073 @@
+{
+  "id": "beta_meadow",
+  "display_name": "Beta \u00b7 Meadow, Woodland & Castle Town",
+  "subtitle": "Follow the eastern cobbled road to the open town gate.",
+  "seed": 71026,
+  "bounds": [
+    -24,
+    -24,
+    78,
+    30
+  ],
+  "spawn": [
+    0,
+    -12
+  ],
+  "sea": false,
+  "terrain_regions": [
+    {
+      "kind": "path",
+      "rect": [
+        0,
+        -14,
+        29,
+        4
+      ]
+    },
+    {
+      "kind": "cobble",
+      "rect": [
+        27,
+        -14,
+        44,
+        6
+      ]
+    },
+    {
+      "kind": "cobble",
+      "rect": [
+        31,
+        -21,
+        38,
+        46
+      ]
+    },
+    {
+      "kind": "grass",
+      "rect": [
+        33,
+        -20,
+        10,
+        7
+      ]
+    },
+    {
+      "kind": "grass",
+      "rect": [
+        33,
+        1,
+        10,
+        22
+      ]
+    },
+    {
+      "kind": "grass",
+      "rect": [
+        63,
+        3,
+        5,
+        19
+      ]
+    },
+    {
+      "kind": "cobble",
+      "rect": [
+        50,
+        -12,
+        6,
+        24
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "woodland_tree_0",
+      "kind": "tree",
+      "at": [
+        14.57,
+        2.34
+      ],
+      "scale": 0.81,
+      "rotation": 233
+    },
+    {
+      "id": "woodland_tree_1",
+      "kind": "tree",
+      "at": [
+        7.92,
+        5.63
+      ],
+      "scale": 0.77,
+      "rotation": 192
+    },
+    {
+      "id": "woodland_tree_2",
+      "kind": "tree",
+      "at": [
+        -11.19,
+        16.5
+      ],
+      "scale": 0.91,
+      "rotation": 97
+    },
+    {
+      "id": "woodland_tree_3",
+      "kind": "tree",
+      "at": [
+        14.75,
+        9.16
+      ],
+      "scale": 0.86,
+      "rotation": 238
+    },
+    {
+      "id": "woodland_tree_4",
+      "kind": "tree",
+      "at": [
+        8.44,
+        11.91
+      ],
+      "scale": 0.89,
+      "rotation": 219
+    },
+    {
+      "id": "woodland_tree_5",
+      "kind": "tree",
+      "at": [
+        -6.21,
+        22.32
+      ],
+      "scale": 0.87,
+      "rotation": 88
+    },
+    {
+      "id": "woodland_tree_6",
+      "kind": "tree",
+      "at": [
+        3.06,
+        8.37
+      ],
+      "scale": 0.91,
+      "rotation": 38
+    },
+    {
+      "id": "woodland_tree_7",
+      "kind": "tree",
+      "at": [
+        2.33,
+        23.84
+      ],
+      "scale": 0.87,
+      "rotation": 130
+    },
+    {
+      "id": "woodland_tree_8",
+      "kind": "tree",
+      "at": [
+        7.32,
+        10.24
+      ],
+      "scale": 0.86,
+      "rotation": 124
+    },
+    {
+      "id": "woodland_tree_9",
+      "kind": "tree",
+      "at": [
+        8.73,
+        18.17
+      ],
+      "scale": 0.9,
+      "rotation": 179
+    },
+    {
+      "id": "woodland_tree_10",
+      "kind": "tree",
+      "at": [
+        16.81,
+        18.25
+      ],
+      "scale": 0.81,
+      "rotation": 323
+    },
+    {
+      "id": "woodland_tree_11",
+      "kind": "tree",
+      "at": [
+        9.71,
+        24.38
+      ],
+      "scale": 0.65,
+      "rotation": 354
+    },
+    {
+      "id": "woodland_tree_12",
+      "kind": "tree",
+      "at": [
+        11.24,
+        23.04
+      ],
+      "scale": 0.72,
+      "rotation": 130
+    },
+    {
+      "id": "woodland_tree_13",
+      "kind": "tree",
+      "at": [
+        4.83,
+        21.54
+      ],
+      "scale": 0.76,
+      "rotation": 134
+    },
+    {
+      "id": "woodland_tree_14",
+      "kind": "tree",
+      "at": [
+        4.28,
+        14.17
+      ],
+      "scale": 0.72,
+      "rotation": 258
+    },
+    {
+      "id": "woodland_tree_15",
+      "kind": "tree",
+      "at": [
+        19.12,
+        18.0
+      ],
+      "scale": 0.88,
+      "rotation": 232
+    },
+    {
+      "id": "woodland_tree_16",
+      "kind": "tree",
+      "at": [
+        -16.37,
+        13.47
+      ],
+      "scale": 0.76,
+      "rotation": 11
+    },
+    {
+      "id": "woodland_tree_17",
+      "kind": "tree",
+      "at": [
+        13.42,
+        17.09
+      ],
+      "scale": 0.93,
+      "rotation": 64
+    },
+    {
+      "id": "woodland_tree_18",
+      "kind": "tree",
+      "at": [
+        -10.7,
+        9.64
+      ],
+      "scale": 0.9,
+      "rotation": 312
+    },
+    {
+      "id": "woodland_tree_19",
+      "kind": "tree",
+      "at": [
+        15.62,
+        19.7
+      ],
+      "scale": 0.7,
+      "rotation": 189
+    },
+    {
+      "id": "woodland_tree_20",
+      "kind": "tree",
+      "at": [
+        -20.17,
+        22.59
+      ],
+      "scale": 0.88,
+      "rotation": 42
+    },
+    {
+      "id": "woodland_tree_21",
+      "kind": "tree",
+      "at": [
+        3.26,
+        17.75
+      ],
+      "scale": 0.9,
+      "rotation": 181
+    },
+    {
+      "id": "woodland_tree_22",
+      "kind": "tree",
+      "at": [
+        15.7,
+        23.48
+      ],
+      "scale": 0.8,
+      "rotation": 354
+    },
+    {
+      "id": "woodland_tree_23",
+      "kind": "tree",
+      "at": [
+        -20.71,
+        24.23
+      ],
+      "scale": 0.87,
+      "rotation": 149
+    },
+    {
+      "id": "woodland_tree_24",
+      "kind": "tree",
+      "at": [
+        -15.96,
+        18.2
+      ],
+      "scale": 0.86,
+      "rotation": 159
+    },
+    {
+      "id": "woodland_tree_25",
+      "kind": "tree",
+      "at": [
+        -4.31,
+        18.11
+      ],
+      "scale": 0.73,
+      "rotation": 48
+    },
+    {
+      "id": "woodland_tree_26",
+      "kind": "tree",
+      "at": [
+        2.62,
+        24.15
+      ],
+      "scale": 0.78,
+      "rotation": 194
+    },
+    {
+      "id": "woodland_tree_27",
+      "kind": "tree",
+      "at": [
+        16.36,
+        5.85
+      ],
+      "scale": 0.78,
+      "rotation": 139
+    },
+    {
+      "id": "meadow_sapling_0",
+      "kind": "tree",
+      "at": [
+        -13,
+        -11
+      ],
+      "scale": 0.62,
+      "rotation": 315
+    },
+    {
+      "id": "meadow_sapling_1",
+      "kind": "tree",
+      "at": [
+        15,
+        -6
+      ],
+      "scale": 0.62,
+      "rotation": 198
+    },
+    {
+      "id": "meadow_sapling_2",
+      "kind": "tree",
+      "at": [
+        -18,
+        -2
+      ],
+      "scale": 0.62,
+      "rotation": 166
+    },
+    {
+      "id": "meadow_sapling_3",
+      "kind": "tree",
+      "at": [
+        19,
+        -15
+      ],
+      "scale": 0.62,
+      "rotation": 302
+    },
+    {
+      "id": "meadow_sapling_4",
+      "kind": "tree",
+      "at": [
+        -20,
+        16
+      ],
+      "scale": 0.62,
+      "rotation": 241
+    },
+    {
+      "id": "meadow_sapling_5",
+      "kind": "tree",
+      "at": [
+        15,
+        22
+      ],
+      "scale": 0.62,
+      "rotation": 353
+    },
+    {
+      "id": "moss_rock_0",
+      "kind": "rock",
+      "at": [
+        -8,
+        2
+      ],
+      "scale": 0.8
+    },
+    {
+      "id": "moss_rock_1",
+      "kind": "rock",
+      "at": [
+        9,
+        6
+      ],
+      "scale": 0.8
+    },
+    {
+      "id": "moss_rock_2",
+      "kind": "rock",
+      "at": [
+        -17,
+        15
+      ],
+      "scale": 0.8
+    },
+    {
+      "id": "moss_rock_3",
+      "kind": "rock",
+      "at": [
+        16,
+        17
+      ],
+      "scale": 0.8
+    },
+    {
+      "id": "moss_rock_4",
+      "kind": "rock",
+      "at": [
+        -13,
+        -5
+      ],
+      "scale": 0.8
+    },
+    {
+      "id": "moss_rock_5",
+      "kind": "rock",
+      "at": [
+        14,
+        -8
+      ],
+      "scale": 0.8
+    },
+    {
+      "id": "town_south_wall_40",
+      "kind": "castle_wall",
+      "at": [
+        40,
+        -22
+      ],
+      "length": 20
+    },
+    {
+      "id": "town_north_wall_40",
+      "kind": "castle_wall",
+      "at": [
+        40,
+        26
+      ],
+      "length": 20
+    },
+    {
+      "id": "town_south_wall_60",
+      "kind": "castle_wall",
+      "at": [
+        60,
+        -22
+      ],
+      "length": 20
+    },
+    {
+      "id": "town_north_wall_60",
+      "kind": "castle_wall",
+      "at": [
+        60,
+        26
+      ],
+      "length": 20
+    },
+    {
+      "id": "town_west_wall_neg19",
+      "kind": "castle_wall",
+      "at": [
+        30,
+        -19
+      ],
+      "length": 6,
+      "rotation": 90
+    },
+    {
+      "id": "town_west_wall_10",
+      "kind": "castle_wall",
+      "at": [
+        30,
+        6
+      ],
+      "length": 20,
+      "rotation": 90
+    },
+    {
+      "id": "town_west_wall_23",
+      "kind": "castle_wall",
+      "at": [
+        30,
+        21
+      ],
+      "length": 10,
+      "rotation": 90
+    },
+    {
+      "id": "town_east_wall_neg12",
+      "kind": "castle_wall",
+      "at": [
+        70,
+        -12
+      ],
+      "length": 20,
+      "rotation": 90
+    },
+    {
+      "id": "town_east_wall_8",
+      "kind": "castle_wall",
+      "at": [
+        70,
+        8
+      ],
+      "length": 20,
+      "rotation": 90
+    },
+    {
+      "id": "town_east_wall_23",
+      "kind": "castle_wall",
+      "at": [
+        70,
+        22
+      ],
+      "length": 8,
+      "rotation": 90
+    },
+    {
+      "id": "town_tower_30_neg22",
+      "kind": "castle_tower",
+      "at": [
+        30,
+        -22
+      ]
+    },
+    {
+      "id": "town_tower_30_26",
+      "kind": "castle_tower",
+      "at": [
+        30,
+        26
+      ]
+    },
+    {
+      "id": "town_tower_70_neg22",
+      "kind": "castle_tower",
+      "at": [
+        70,
+        -22
+      ]
+    },
+    {
+      "id": "town_tower_70_26",
+      "kind": "castle_tower",
+      "at": [
+        70,
+        26
+      ]
+    },
+    {
+      "id": "town_west_gate",
+      "kind": "castle_gate",
+      "at": [
+        30,
+        -10
+      ],
+      "rotation": 90
+    },
+    {
+      "id": "town_keep",
+      "kind": "castle_keep",
+      "at": [
+        53,
+        18
+      ],
+      "rotation": 180
+    },
+    {
+      "id": "town_house_0",
+      "kind": "house",
+      "at": [
+        37,
+        -17
+      ],
+      "rotation": 0,
+      "variant": 0,
+      "floors": 2,
+      "scale": 1.6
+    },
+    {
+      "id": "town_house_1",
+      "kind": "house",
+      "at": [
+        47,
+        -18
+      ],
+      "rotation": 0,
+      "variant": 1,
+      "floors": 2,
+      "scale": 1.45
+    },
+    {
+      "id": "town_house_2",
+      "kind": "house",
+      "at": [
+        59,
+        -18
+      ],
+      "rotation": 0,
+      "variant": 0,
+      "floors": 2,
+      "scale": 1.6
+    },
+    {
+      "id": "town_house_3",
+      "kind": "house",
+      "at": [
+        65,
+        -17
+      ],
+      "rotation": 0,
+      "variant": 1,
+      "floors": 2,
+      "scale": 1.45
+    },
+    {
+      "id": "town_house_4",
+      "kind": "house",
+      "at": [
+        37,
+        -3
+      ],
+      "rotation": 180,
+      "variant": 1,
+      "floors": 2,
+      "scale": 1.6
+    },
+    {
+      "id": "town_house_5",
+      "kind": "house",
+      "at": [
+        38,
+        8
+      ],
+      "rotation": 90,
+      "variant": 0,
+      "floors": 2,
+      "scale": 1.45
+    },
+    {
+      "id": "town_house_6",
+      "kind": "house",
+      "at": [
+        39,
+        18
+      ],
+      "rotation": 90,
+      "variant": 1,
+      "floors": 2,
+      "scale": 1.6
+    },
+    {
+      "id": "town_house_7",
+      "kind": "house",
+      "at": [
+        65,
+        10
+      ],
+      "rotation": -90,
+      "variant": 1,
+      "floors": 2,
+      "scale": 1.45
+    },
+    {
+      "id": "town_house_8",
+      "kind": "house",
+      "at": [
+        65,
+        20
+      ],
+      "rotation": -90,
+      "variant": 0,
+      "floors": 2,
+      "scale": 1.6
+    },
+    {
+      "id": "town_market_west",
+      "kind": "market_stall",
+      "at": [
+        46,
+        -3
+      ],
+      "rotation": 180
+    },
+    {
+      "id": "town_market_east",
+      "kind": "market_stall",
+      "at": [
+        61,
+        -3
+      ],
+      "rotation": 180
+    },
+    {
+      "id": "town_well",
+      "kind": "well",
+      "at": [
+        58,
+        3
+      ],
+      "scale": 1.3
+    },
+    {
+      "id": "town_bench_0",
+      "kind": "bench",
+      "at": [
+        46,
+        3
+      ],
+      "rotation": 90,
+      "scale": 1.2
+    },
+    {
+      "id": "town_bench_1",
+      "kind": "bench",
+      "at": [
+        61,
+        5
+      ],
+      "rotation": -90,
+      "scale": 1.2
+    },
+    {
+      "id": "town_bench_2",
+      "kind": "bench",
+      "at": [
+        48,
+        10
+      ],
+      "rotation": 0,
+      "scale": 1.2
+    },
+    {
+      "id": "town_bench_3",
+      "kind": "bench",
+      "at": [
+        58,
+        10
+      ],
+      "rotation": 0,
+      "scale": 1.2
+    },
+    {
+      "id": "town_garden_0",
+      "kind": "flowers",
+      "at": [
+        34,
+        3
+      ],
+      "scale": 1.8
+    },
+    {
+      "id": "town_garden_1",
+      "kind": "flowers",
+      "at": [
+        34,
+        16
+      ],
+      "scale": 1.8
+    },
+    {
+      "id": "town_garden_2",
+      "kind": "flowers",
+      "at": [
+        42,
+        22
+      ],
+      "scale": 1.8
+    },
+    {
+      "id": "town_garden_3",
+      "kind": "flowers",
+      "at": [
+        66,
+        5
+      ],
+      "scale": 1.8
+    },
+    {
+      "id": "town_garden_4",
+      "kind": "flowers",
+      "at": [
+        74,
+        -17
+      ],
+      "scale": 1.8
+    },
+    {
+      "id": "town_garden_5",
+      "kind": "flowers",
+      "at": [
+        75,
+        22
+      ],
+      "scale": 1.8
+    },
+    {
+      "id": "town_garden_6",
+      "kind": "flowers",
+      "at": [
+        26,
+        -19
+      ],
+      "scale": 1.8
+    },
+    {
+      "id": "town_sapling_0",
+      "kind": "tree",
+      "at": [
+        23,
+        -17
+      ],
+      "scale": 0.7
+    },
+    {
+      "id": "town_sapling_1",
+      "kind": "tree",
+      "at": [
+        23,
+        -6
+      ],
+      "scale": 0.7
+    },
+    {
+      "id": "town_sapling_2",
+      "kind": "tree",
+      "at": [
+        27,
+        25
+      ],
+      "scale": 0.7
+    },
+    {
+      "id": "town_sapling_3",
+      "kind": "tree",
+      "at": [
+        74,
+        15
+      ],
+      "scale": 0.7
+    },
+    {
+      "id": "town_sapling_4",
+      "kind": "tree",
+      "at": [
+        74,
+        -5
+      ],
+      "scale": 0.7
+    }
+  ],
+  "npcs": [],
+  "interactions": [
+    {
+      "id": "town_road_sign",
+      "kind": "sign",
+      "at": [
+        21,
+        -15
+      ],
+      "title": "Castle Town",
+      "lines": [
+        "Castle Town \u2014 follow the cobbled road east.",
+        "The gates open onto the market square; the keep stands beyond the north courtyard."
+      ]
+    },
+    {
+      "id": "town_keep_sign",
+      "kind": "sign",
+      "at": [
+        56,
+        11
+      ],
+      "title": "Castle Courtyard",
+      "lines": [
+        "Castle Courtyard",
+        "The keep interior is not open yet. Explore the streets and market below."
+      ]
+    }
+  ],
+  "exits": [],
+  "enemies": [
+    {
+      "id": "meadow_slime",
+      "kind": "slime",
+      "at": [
+        -5,
+        3
+      ],
+      "size": "medium"
+    },
+    {
+      "id": "woodland_slime",
+      "kind": "slime",
+      "at": [
+        5,
+        8
+      ],
+      "size": "medium"
+    },
+    {
+      "id": "woodland_wolf_1",
+      "kind": "beta_wolf",
+      "at": [
+        -9,
+        12
+      ],
+      "size": "medium",
+      "pack": "west_woodland"
+    },
+    {
+      "id": "woodland_wolf_2",
+      "kind": "beta_wolf",
+      "at": [
+        10,
+        20
+      ],
+      "size": "medium",
+      "pack": "east_woodland"
+    },
+    {
+      "id": "woodland_rat_1",
+      "kind": "beta_rat",
+      "at": [
+        8,
+        3
+      ],
+      "size": "small"
+    },
+    {
+      "id": "woodland_rat_2",
+      "kind": "beta_rat",
+      "at": [
+        -7,
+        20
+      ],
+      "size": "small"
+    },
+    {
+      "id": "west_woodland_wolf_2",
+      "kind": "beta_wolf",
+      "at": [
+        -10.1,
+        10.8
+      ],
+      "size": "medium",
+      "pack": "west_woodland"
+    },
+    {
+      "id": "west_woodland_wolf_3",
+      "kind": "beta_wolf",
+      "at": [
+        -7.9,
+        10.8
+      ],
+      "size": "medium",
+      "pack": "west_woodland"
+    },
+    {
+      "id": "west_woodland_wolf_4",
+      "kind": "beta_wolf",
+      "at": [
+        -9,
+        9.8
+      ],
+      "size": "medium",
+      "pack": "west_woodland"
+    },
+    {
+      "id": "east_woodland_wolf_2",
+      "kind": "beta_wolf",
+      "at": [
+        8.9,
+        18.8
+      ],
+      "size": "medium",
+      "pack": "east_woodland"
+    },
+    {
+      "id": "east_woodland_wolf_3",
+      "kind": "beta_wolf",
+      "at": [
+        11.1,
+        18.8
+      ],
+      "size": "medium",
+      "pack": "east_woodland"
+    },
+    {
+      "id": "east_woodland_wolf_4",
+      "kind": "beta_wolf",
+      "at": [
+        10,
+        17.8
+      ],
+      "size": "medium",
+      "pack": "east_woodland"
+    }
+  ],
+  "catalog_enemies": [
+    {
+      "id": "woodland_resin_1",
+      "code": "2E",
+      "at": [
+        -13,
+        7
+      ]
+    },
+    {
+      "id": "woodland_resin_2",
+      "code": "2E",
+      "at": [
+        14,
+        13
+      ]
+    }
+  ]
+}

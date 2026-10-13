@@ -1,0 +1,122 @@
+{
+  "source": "C:\\Users\\felix\\OneDrive\\Documents\\heroinedraft1.blend",
+  "source_sha256": "20bdf232e6b7cebbbcc8d29a80960fa60ccead6fded5da76981caabb852e3f33",
+  "export": "game\\assets\\characters\\heroine-standalone.glb",
+  "export_sha256": "73171a33de0bfc6540a75b67682b3c7be3790da3b04890a179559fd7d6dd2847",
+  "recipe_sha256": "036bb1d970dccce408f9874bd41a48b6ff0161972d5f9c120a5ec66c917db82e",
+  "blender": "5.2.2 LTS",
+  "static": true,
+  "target_height_m": 1.67,
+  "source_height_m": 1.1936145992949605,
+  "scale_factor": 1.399111573355779,
+  "ground_offset": -0.01053535658866167,
+  "meshes": 36,
+  "triangles": 68856,
+  "materials": [
+    {
+      "material": "Human.body",
+      "resolution": 2048,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "Human.high-poly",
+      "resolution": 1024,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "Human.eyelashes03",
+      "resolution": 1024,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "Human.eyebrow006",
+      "resolution": 1024,
+      "normal": true,
+      "roughness": false
+    },
+    {
+      "material": "Human.teeth_base",
+      "resolution": 1024,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "Human.tongue01",
+      "resolution": 1024,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "Human.maciekg_leather_boots.001",
+      "resolution": 1024,
+      "normal": true,
+      "roughness": true
+    },
+    {
+      "material": "Human.punkduck_black_cocktail_dress",
+      "resolution": 2048,
+      "normal": true,
+      "roughness": true
+    },
+    {
+      "material": "Human.elvs_wavy_bob",
+      "resolution": 1024,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "Heroine fitted belt leather",
+      "resolution": 256,
+      "normal": true,
+      "roughness": true
+    },
+    {
+      "material": "Heroine aged brass buckle",
+      "resolution": 256,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "metal_base",
+      "resolution": 256,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "metal_dark",
+      "resolution": 256,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "leather_base",
+      "resolution": 256,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "metal_light",
+      "resolution": 256,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "gem_light",
+      "resolution": 256,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "Denim shirt dark buttons",
+      "resolution": 256,
+      "normal": false,
+      "roughness": false
+    }
+  ],
+  "animations": 0,
+  "skins": 0,
+  "main_unchanged": true
+}

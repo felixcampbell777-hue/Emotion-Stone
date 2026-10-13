@@ -1,0 +1,83 @@
+{
+  "id": "ph-nettle_plant",
+  "asset_id": "nettle_plant",
+  "type": "scanned-model",
+  "provider": "Poly Haven",
+  "license": "CC0-1.0",
+  "biomes": [
+    "forest"
+  ],
+  "source": "https://polyhaven.com/a/nettle_plant",
+  "note": "1K glTF source scan and dependencies; optimize geometry/LOD before runtime.",
+  "polyhaven": true,
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:45:20.182774+00:00",
+  "downloads": [
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/nettle_plant/nettle_plant_1k.gltf",
+      "bytes": 10450,
+      "sha256": "45baafa16feb0017e6a46712e2aa7afe7841fd00905075ead8316a5fc8314b0e",
+      "publisher_md5": "474e138cdee694335ca4270ac43f9d49"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/nettle_plant/nettle_plant_arm_1k.jpg",
+      "bytes": 467172,
+      "sha256": "8fb33e5e939b4e089f08c867bf449d9e27aa32af94990c3cad1a89dcabd44f14",
+      "publisher_md5": "7244d9f04fdc0b53212c3d38f5a215b4"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/nettle_plant/nettle_plant_nor_gl_1k.jpg",
+      "bytes": 654754,
+      "sha256": "ab5d0cdc9a487a8874b6e9a11bf67ef90319f02bbd74579576198aca90b0fa85",
+      "publisher_md5": "471821200314d7eee64cbd35bf3e5bd0"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/nettle_plant/nettle_plant_diff_1k.jpg",
+      "bytes": 388629,
+      "sha256": "7172a9971818a18a7cb7ebaa144d9d2313b83d2a6180c9582000f7260542ea7b",
+      "publisher_md5": "efa546b37e9a8669b214b1fea1422892"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/nettle_plant/nettle_plant.bin",
+      "bytes": 956560,
+      "sha256": "24810f9d80b5fafdd71e1599b0cc81afa3eb9b744cfa8bf388c5e9f30271ba46",
+      "publisher_md5": "975cb59d9f42871bb448de70aeecbc01"
+    }
+  ],
+  "excluded_files": [],
+  "gltf_checks": [
+    {
+      "file": "ph-nettle_plant\\nettle_plant_1k.gltf",
+      "meshes": 6,
+      "skins": 0,
+      "animations": []
+    }
+  ],
+  "files": [
+    {
+      "path": "ph-nettle_plant\\nettle_plant_1k.gltf",
+      "bytes": 10450,
+      "sha256": "45baafa16feb0017e6a46712e2aa7afe7841fd00905075ead8316a5fc8314b0e"
+    },
+    {
+      "path": "ph-nettle_plant\\textures\\nettle_plant_arm_1k.jpg",
+      "bytes": 467172,
+      "sha256": "8fb33e5e939b4e089f08c867bf449d9e27aa32af94990c3cad1a89dcabd44f14"
+    },
+    {
+      "path": "ph-nettle_plant\\textures\\nettle_plant_nor_gl_1k.jpg",
+      "bytes": 654754,
+      "sha256": "ab5d0cdc9a487a8874b6e9a11bf67ef90319f02bbd74579576198aca90b0fa85"
+    },
+    {
+      "path": "ph-nettle_plant\\textures\\nettle_plant_diff_1k.jpg",
+      "bytes": 388629,
+      "sha256": "7172a9971818a18a7cb7ebaa144d9d2313b83d2a6180c9582000f7260542ea7b"
+    },
+    {
+      "path": "ph-nettle_plant\\nettle_plant.bin",
+      "bytes": 956560,
+      "sha256": "24810f9d80b5fafdd71e1599b0cc81afa3eb9b744cfa8bf388c5e9f30271ba46"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "rabbit",
+  "type": "creature",
+  "provider": "OpenGameArt",
+  "author": "CDmir / TinyWorlds",
+  "license": "CC0-1.0",
+  "biomes": [
+    "forest",
+    "mountain"
+  ],
+  "note": "Ambient fauna; keep distinct from monster-core profiles.",
+  "source": "https://opengameart.org/content/rabbit-0",
+  "downloads": [
+    {
+      "url": "https://opengameart.org/sites/default/files/rabbit.blend",
+      "bytes": 5996916,
+      "sha256": "bb6deef1ee91b21380355138374cae87946451ce864502b1af68eb60f4750843",
+      "publisher_md5": null
+    }
+  ],
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:44:40.000772+00:00",
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "rabbit\\rabbit.blend",
+      "bytes": 5996916,
+      "sha256": "bb6deef1ee91b21380355138374cae87946451ce864502b1af68eb60f4750843"
+    }
+  ]
+}

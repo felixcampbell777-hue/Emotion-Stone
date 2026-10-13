@@ -1,0 +1,84 @@
+{
+  "id": "ph-rock_moss_set_02",
+  "asset_id": "rock_moss_set_02",
+  "type": "scanned-model",
+  "provider": "Poly Haven",
+  "license": "CC0-1.0",
+  "biomes": [
+    "forest",
+    "mountain"
+  ],
+  "source": "https://polyhaven.com/a/rock_moss_set_02",
+  "note": "1K glTF source scan and dependencies; optimize geometry/LOD before runtime.",
+  "polyhaven": true,
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:45:16.533463+00:00",
+  "downloads": [
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/rock_moss_set_02/rock_moss_set_02_1k.gltf",
+      "bytes": 11608,
+      "sha256": "c3b992a7622e94f7d8da97a47277a2a5177a513af0312a127ec908d4056c97db",
+      "publisher_md5": "257569e8c064d0cf198ff866446a5f96"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_moss_set_02/rock_moss_set_02_nor_gl_1k.jpg",
+      "bytes": 273527,
+      "sha256": "dd2503789089fb72ef469efd14364d393e769c0de8781a251475cac7e0b6f51d",
+      "publisher_md5": "936601de53528f15a12d16a7e187a4f1"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_moss_set_02/rock_moss_set_02_diff_1k.jpg",
+      "bytes": 194307,
+      "sha256": "91dd2cc77d5198b067d77e5bdb3fa8ee7b8950aeff5aec2c1ccaddb76dcca481",
+      "publisher_md5": "50a31622ba7d6f3b8157035ce375de4d"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/rock_moss_set_02/rock_moss_set_02_rough_1k.jpg",
+      "bytes": 146226,
+      "sha256": "12252219a98a560940359973e83af831abdcfab0ead3f0a2a7b135a0143105f1",
+      "publisher_md5": "5de4c0669f19304230fa550a8f3ac0f4"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/rock_moss_set_02/rock_moss_set_02.bin",
+      "bytes": 1316572,
+      "sha256": "2df9d8eaaca4207529b0f613d4886d3962d0b9ffc0cdfd2bc4bf35dbcd391cb5",
+      "publisher_md5": "a63878339f14feceab7347cc28110eaa"
+    }
+  ],
+  "excluded_files": [],
+  "gltf_checks": [
+    {
+      "file": "ph-rock_moss_set_02\\rock_moss_set_02_1k.gltf",
+      "meshes": 7,
+      "skins": 0,
+      "animations": []
+    }
+  ],
+  "files": [
+    {
+      "path": "ph-rock_moss_set_02\\rock_moss_set_02_1k.gltf",
+      "bytes": 11608,
+      "sha256": "c3b992a7622e94f7d8da97a47277a2a5177a513af0312a127ec908d4056c97db"
+    },
+    {
+      "path": "ph-rock_moss_set_02\\textures\\rock_moss_set_02_nor_gl_1k.jpg",
+      "bytes": 273527,
+      "sha256": "dd2503789089fb72ef469efd14364d393e769c0de8781a251475cac7e0b6f51d"
+    },
+    {
+      "path": "ph-rock_moss_set_02\\textures\\rock_moss_set_02_diff_1k.jpg",
+      "bytes": 194307,
+      "sha256": "91dd2cc77d5198b067d77e5bdb3fa8ee7b8950aeff5aec2c1ccaddb76dcca481"
+    },
+    {
+      "path": "ph-rock_moss_set_02\\textures\\rock_moss_set_02_rough_1k.jpg",
+      "bytes": 146226,
+      "sha256": "12252219a98a560940359973e83af831abdcfab0ead3f0a2a7b135a0143105f1"
+    },
+    {
+      "path": "ph-rock_moss_set_02\\rock_moss_set_02.bin",
+      "bytes": 1316572,
+      "sha256": "2df9d8eaaca4207529b0f613d4886d3962d0b9ffc0cdfd2bc4bf35dbcd391cb5"
+    }
+  ]
+}

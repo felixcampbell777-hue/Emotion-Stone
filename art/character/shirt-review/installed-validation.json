@@ -1,0 +1,27 @@
+{
+  "release": "0.29.0",
+  "source_checks": 1329,
+  "windows_checks": 1329,
+  "garment_source_checks": {
+    "source_sha256": "851a1c7e51afa505d4e743cbe6a6aade6d014571b4a1a389cb322fa6e67b5b40",
+    "panel_vertices_checked": 882,
+    "matching_body_weights": true,
+    "normal_offset_m": 0.005,
+    "visible_skin_triangles_in_covered_region": 0,
+    "bones": 16,
+    "clips": 19,
+    "opaque_denim": true,
+    "passed": true
+  },
+  "personal_and_canonical_sources_unchanged": true,
+  "sole_current_release": "C:\\Games\\CoastalFoundation\\output\\windows\\v0.29.0",
+  "rendered_coverage_poses": [
+    "idle_loop",
+    "draw_sword",
+    "attack_heavy",
+    "attack_lance",
+    "parry_guard",
+    "drag_walk_loop"
+  ],
+  "current_rendered_files": 1359
+}

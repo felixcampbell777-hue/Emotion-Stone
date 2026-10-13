@@ -1,8 +1,8 @@
 {
   "document_type": "implementation_record",
-  "revision": 2,
+  "revision": 7,
   "date": "2026-10-04",
-  "implementation_status": "playable_foundation",
+  "implementation_status": "playable_selectable_water_lance_and_armored_warden_breach",
   "confirmed_requirements": {
     "first_platform": "windows_desktop",
     "map_appearance": "3d_pixelated",
@@ -19,23 +19,65 @@
     "character_art": "low_poly_3d_rendered_at_low_resolution",
     "renderer_trial": "Compatibility",
     "camera": "fixed_elevated_orthographic",
-    "horizontal_axes": ["x", "z"],
+    "horizontal_axes": [
+      "x",
+      "z"
+    ],
     "height_axis": "y",
     "initial_walk_surface": "fixed_height_plane",
-    "movement_trial": "four_cardinal_directions_continuous_collision_movement",
-    "world_viewport_trial": [640, 360],
-    "chunkier_comparison_viewport": [320, 180],
-    "display_scaling": "nearest_neighbor_integer_scale",
+    "movement_trial": "normalized_diagonals_with_smooth_facing",
+    "world_viewport_trial": [
+      960,
+      540
+    ],
+    "chunkier_comparison_viewport": [
+      320,
+      180
+    ],
+    "display_scaling": "detailed_aspect_fit_linear_or_legacy_nearest_integer",
     "ui": "separate_legible_layer",
-    "initial_animation_set": ["idle_loop", "walk_loop", "interact"],
-    "equipment_animation": "separate_greatsword_on_spine_attachment",
+    "initial_animation_set": [
+      "idle_loop",
+      "walk_loop",
+      "interact",
+      "drag_idle_loop",
+      "drag_walk_loop",
+      "draw_sword",
+      "sheathe_sword",
+      "attack_light",
+      "attack_heavy",
+      "attack_light2",
+      "attack_light3",
+      "attack_water",
+      "attack_lance"
+    ],
+    "equipment_animation": "shared_grip_trajectory_with_blender_ik_and_runtime_sword_pose",
     "rig_families_initial": 1,
     "exact_tool_versions": "tools/toolchain.local.json"
   },
   "future_content_contracts": {
-    "character_definition": ["stable_id", "rig_family", "module_ids", "palette_slots", "equipment_ids", "behavior_id"],
-    "map_definition": ["stable_id", "terrain_cells", "prop_instances", "spawns", "interaction_ids", "variation_seed"],
-    "build_cache_key": ["source_hashes", "dependency_hashes", "export_options", "tool_versions"]
+    "character_definition": [
+      "stable_id",
+      "rig_family",
+      "module_ids",
+      "palette_slots",
+      "equipment_ids",
+      "behavior_id"
+    ],
+    "map_definition": [
+      "stable_id",
+      "terrain_cells",
+      "prop_instances",
+      "spawns",
+      "interaction_ids",
+      "variation_seed"
+    ],
+    "build_cache_key": [
+      "source_hashes",
+      "dependency_hashes",
+      "export_options",
+      "tool_versions"
+    ]
   },
   "construction_gates": [
     "game_scale_visual_validation",
@@ -46,28 +88,84 @@
   "artifacts": {
     "plan": "docs/optimization-plan.md",
     "character_direction": "docs/character-art-direction.md",
-    "reduced_character_reference": "output/imagegen/main-character-pixel-3d-reference-v1.png",
-    "generation_prompt": "output/imagegen/main-character-pixel-3d-reference-v1.prompt.txt",
+    "reduced_character_reference": "art/reference/hero-faceted-turnaround-v4.png",
     "runtime_config": "game/content/platform.json",
     "editing_manual": "docs/EDITING.md",
+    "combat_manual": "docs/COMBAT.md",
+    "combat_balance": "game/content/combat.json",
+    "sword_motion": "game/content/sword_motion.json",
     "master_character": "art/source/humanoid-v1.blend",
     "equipment_source": "art/source/greatsword-v1.blend",
     "launcher": "Play.cmd",
-    "windows_executable": "output/windows/CoastalFoundation.exe",
-    "windows_archive": "output/windows/CoastalFoundation-Windows.zip",
+    "windows_executable": "output/windows/v0.9.8/CoastalFoundation.exe",
+    "windows_archive": "output/windows/v0.9.8/CoastalFoundation-Windows.zip",
     "integration_report": "output/verification/integration-report.json",
-    "export_integration_report": "output/verification/export-integration-report.json"
+    "export_integration_report": "output/verification/export-integration-report.json",
+    "launcher_art": "game/assets/ui/launcher-icon-v1.png",
+    "launcher_prompt": "game/assets/ui/launcher-icon-v1.prompt.txt",
+    "shortcut_installer": "tools/install_desktop_shortcut.ps1",
+    "story_manual": "docs/STORY.md",
+    "release_manifest": "game/content/release.json"
   },
   "implemented_reuse": {
-    "rig_bones": 14,
-    "hair_modules": ["bob", "crop"],
-    "outfit_modules": ["dress", "tunic"],
+    "rig_bones": 16,
+    "hair_modules": [
+      "bob",
+      "crop",
+      "headscarf"
+    ],
+    "outfit_modules": [
+      "dress",
+      "tunic",
+      "workdress"
+    ],
+    "left_arm_modules": [
+      "human",
+      "prototype",
+      "removable_wrap"
+    ],
+    "footwear_modules": [
+      "boots",
+      "bare"
+    ],
     "shared_animation_resources": true,
     "palette_edit_reexports_geometry": false,
     "map_edit_reexports_geometry": false,
     "unchanged_windows_build_cache": true,
     "validation": "JSON Schema 2020-12 plus content reference/bounds checks",
-    "integration_checks": 31,
-    "sample_maps": ["coastal_path", "village_green"]
+    "combat_balance_edit_reexports_geometry": false,
+    "integration_checks": 271,
+    "sample_maps": [
+      "coastal_path",
+      "village_green",
+      "slime_forest",
+      "herb_glade"
+    ],
+    "sprint_stamina_parry_data_driven": true,
+    "custom_launcher_icon": true,
+    "water_and_rush_data_driven": true,
+    "conversation_and_persistent_quest": true,
+    "equipment_inventory": true
+  },
+  "progression_revision": {
+    "xp_and_levels": true,
+    "starter_skill_nodes": 6,
+    "branches": [
+      "Body",
+      "Blade",
+      "Water"
+    ],
+    "legacy_earned_xp_migration": true,
+    "procedural_warden_kit": true,
+    "editing_manual": "docs/PROGRESSION.md"
+  },
+  "graphics_revision_9": {
+    "native_resolution_option": true,
+    "native_preset_id": 0,
+    "native_msaa_samples": 8,
+    "native_camera_snapping": false,
+    "bottom_controls_removed": true,
+    "diagonal_back_carry": true,
+    "model_geometry_rebuilt": false
   }
 }

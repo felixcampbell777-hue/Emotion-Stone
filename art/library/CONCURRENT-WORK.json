@@ -1,0 +1,34 @@
+{
+  "verified_updates": {
+    "C:\\Games\\CoastalFoundation\\output\\verification\\user-heroine-draft\\face-close.png": {
+      "observed_sha256": "91bc4bc67d821125873bcc93204ce337b20a31ba1da9d1ee0247fc8722df08b3",
+      "source_thread_id": "01a107e9-f003-7c93-a76e-335effb2d6c6",
+      "source_thread_title": "Plan 3D pixel game platform",
+      "evidence": "Thread completed authorized hair-fit revision, rendered two current images, and copied current front render to face-close/front/smile-review aliases; recorded in docs/CURRENT-BASELINE.md. This intake did not write those files."
+    },
+    "C:\\Games\\CoastalFoundation\\output\\verification\\user-heroine-draft\\front.png": {
+      "observed_sha256": "91bc4bc67d821125873bcc93204ce337b20a31ba1da9d1ee0247fc8722df08b3",
+      "source_thread_id": "01a107e9-f003-7c93-a76e-335effb2d6c6",
+      "source_thread_title": "Plan 3D pixel game platform",
+      "evidence": "Thread completed authorized hair-fit revision, rendered two current images, and copied current front render to face-close/front/smile-review aliases; recorded in docs/CURRENT-BASELINE.md. This intake did not write those files."
+    },
+    "C:\\Games\\CoastalFoundation\\output\\verification\\user-heroine-draft\\hair-fix-review.png": {
+      "observed_sha256": "91bc4bc67d821125873bcc93204ce337b20a31ba1da9d1ee0247fc8722df08b3",
+      "source_thread_id": "01a107e9-f003-7c93-a76e-335effb2d6c6",
+      "source_thread_title": "Plan 3D pixel game platform",
+      "evidence": "Thread completed authorized hair-fit revision, rendered two current images, and copied current front render to face-close/front/smile-review aliases; recorded in docs/CURRENT-BASELINE.md. This intake did not write those files."
+    },
+    "C:\\Games\\CoastalFoundation\\output\\verification\\user-heroine-draft\\hair-fix-three-quarter.png": {
+      "observed_sha256": "647b6de8bbf9a0dea726f91358d0b825c75eaca275ec8860c4ac2a49e3e5b378",
+      "source_thread_id": "01a107e9-f003-7c93-a76e-335effb2d6c6",
+      "source_thread_title": "Plan 3D pixel game platform",
+      "evidence": "Thread completed authorized hair-fit revision, rendered two current images, and copied current front render to face-close/front/smile-review aliases; recorded in docs/CURRENT-BASELINE.md. This intake did not write those files."
+    },
+    "C:\\Games\\CoastalFoundation\\output\\verification\\user-heroine-draft\\smile-review.png": {
+      "observed_sha256": "91bc4bc67d821125873bcc93204ce337b20a31ba1da9d1ee0247fc8722df08b3",
+      "source_thread_id": "01a107e9-f003-7c93-a76e-335effb2d6c6",
+      "source_thread_title": "Plan 3D pixel game platform",
+      "evidence": "Thread completed authorized hair-fit revision, rendered two current images, and copied current front render to face-close/front/smile-review aliases; recorded in docs/CURRENT-BASELINE.md. This intake did not write those files."
+    }
+  }
+}

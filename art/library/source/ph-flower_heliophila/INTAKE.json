@@ -1,0 +1,84 @@
+{
+  "id": "ph-flower_heliophila",
+  "asset_id": "flower_heliophila",
+  "type": "scanned-model",
+  "provider": "Poly Haven",
+  "license": "CC0-1.0",
+  "biomes": [
+    "forest",
+    "beach"
+  ],
+  "source": "https://polyhaven.com/a/flower_heliophila",
+  "note": "1K glTF source scan and dependencies; optimize geometry/LOD before runtime.",
+  "polyhaven": true,
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:45:17.611699+00:00",
+  "downloads": [
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/flower_heliophila/flower_heliophila_1k.gltf",
+      "bytes": 5983,
+      "sha256": "629274399d44a1a9c8666d7a341bf7c5b2083c3ec292166cb23419ff9eb192b1",
+      "publisher_md5": "0f0838e09b55edfe74ab34ef7d6980ea"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/flower_heliophila/flower_heliophila_nor_gl_1k.jpg",
+      "bytes": 501286,
+      "sha256": "ab22e05c1f350a2f95914049f832bb52817e951142b259aec751e16a4a75d54a",
+      "publisher_md5": "7dee360a2a64500056b1ce0f3cfefba9"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/flower_heliophila/flower_heliophila_arm_1k.jpg",
+      "bytes": 444561,
+      "sha256": "61c7a47fdf8ff0f5251c0f569588efefad7856b3b069d07c1c025d18a1420e22",
+      "publisher_md5": "769a32a15f4d73465a12f1f3fa05c948"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/flower_heliophila/flower_heliophila_diff_1k.jpg",
+      "bytes": 377527,
+      "sha256": "50a3eb8afd206eff0ea95ff73db7dc3ca9188d3e120d93a708d2a72790fa0240",
+      "publisher_md5": "5bc66662e45e47c957bcc893dcc79161"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/flower_heliophila/flower_heliophila.bin",
+      "bytes": 2519780,
+      "sha256": "dd5cba0ea1890ed9dc2e13e109551cefd069fe47bb34f8deb2b302af76b2bab1",
+      "publisher_md5": "68a757b5563acc23b3d92959f6c07c2d"
+    }
+  ],
+  "excluded_files": [],
+  "gltf_checks": [
+    {
+      "file": "ph-flower_heliophila\\flower_heliophila_1k.gltf",
+      "meshes": 3,
+      "skins": 0,
+      "animations": []
+    }
+  ],
+  "files": [
+    {
+      "path": "ph-flower_heliophila\\flower_heliophila_1k.gltf",
+      "bytes": 5983,
+      "sha256": "629274399d44a1a9c8666d7a341bf7c5b2083c3ec292166cb23419ff9eb192b1"
+    },
+    {
+      "path": "ph-flower_heliophila\\textures\\flower_heliophila_nor_gl_1k.jpg",
+      "bytes": 501286,
+      "sha256": "ab22e05c1f350a2f95914049f832bb52817e951142b259aec751e16a4a75d54a"
+    },
+    {
+      "path": "ph-flower_heliophila\\textures\\flower_heliophila_arm_1k.jpg",
+      "bytes": 444561,
+      "sha256": "61c7a47fdf8ff0f5251c0f569588efefad7856b3b069d07c1c025d18a1420e22"
+    },
+    {
+      "path": "ph-flower_heliophila\\textures\\flower_heliophila_diff_1k.jpg",
+      "bytes": 377527,
+      "sha256": "50a3eb8afd206eff0ea95ff73db7dc3ca9188d3e120d93a708d2a72790fa0240"
+    },
+    {
+      "path": "ph-flower_heliophila\\flower_heliophila.bin",
+      "bytes": 2519780,
+      "sha256": "dd5cba0ea1890ed9dc2e13e109551cefd069fe47bb34f8deb2b302af76b2bab1"
+    }
+  ]
+}

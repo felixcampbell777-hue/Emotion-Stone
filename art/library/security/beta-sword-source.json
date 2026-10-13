@@ -1,0 +1,7 @@
+{
+  "utc": "2026-10-11T21:47:18.270557+00:00",
+  "scanner": "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26080.4-0\\MpCmdRun.exe",
+  "path": "C:\\Games\\CoastalFoundation\\art\\library\\source\\quandtum-knights-trust",
+  "exit_code": 0,
+  "output": "Scan starting...\nScan finished.\nScanning C:\\Games\\CoastalFoundation\\art\\library\\source\\quandtum-knights-trust found no threats.\n"
+}

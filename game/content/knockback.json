@@ -1,0 +1,24 @@
+{
+  "small": {
+    "light": 8.0,
+    "strong": 10.5,
+    "stun": 0.6
+  },
+  "medium": {
+    "light": 6.0,
+    "strong": 8.0,
+    "stun": 0.48
+  },
+  "large": {
+    "light": 3.8,
+    "strong": 5.4,
+    "stun": 0.35
+  },
+  "giant": {
+    "light": 0.0,
+    "strong": 0.0,
+    "weakspot_strong": 2.2,
+    "stun": 0.35
+  },
+  "deceleration": 8.0
+}

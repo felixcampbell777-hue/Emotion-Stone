@@ -1,0 +1,124 @@
+{
+  "source": "C:\\Users\\felix\\OneDrive\\Documents\\heroinedraft1.blend",
+  "source_sha256": "dbfce2db2c8ee3e99d97cd64c0c6801e3052dd29945fda8e32aca133964ee3d8",
+  "export": "game\\assets\\characters\\heroine-beta.glb",
+  "export_sha256": "cdb69dc65041d2f9ffe9965c0c655aa3c51781463d33d61ed785bb568ecc4cb7",
+  "recipe_sha256": "44f77a88be77a6f7c6b2e32e6374eecc49b50e6ea7f02520d11f3c0915ef2b41",
+  "blender": "4.5.3 LTS",
+  "static": false,
+  "target_height_m": 1.67,
+  "source_height_m": 1.1711268397048116,
+  "scale_factor": 1.425977053365912,
+  "ground_offset": -0.01053535658866167,
+  "meshes": 26,
+  "triangles": 87394,
+  "materials": [
+    {
+      "material": "Chestnut opaque hair roots",
+      "resolution": 512,
+      "normal": true,
+      "roughness": false
+    },
+    {
+      "material": "Human.body",
+      "resolution": 1024,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "Human.high-poly",
+      "resolution": 512,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "Human.eyelashes03",
+      "resolution": 512,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "Human.eyebrow006",
+      "resolution": 512,
+      "normal": true,
+      "roughness": false
+    },
+    {
+      "material": "Human.teeth_base",
+      "resolution": 512,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "Human.tongue01",
+      "resolution": 512,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "Human.maciekg_leather_boots.001",
+      "resolution": 512,
+      "normal": true,
+      "roughness": true
+    },
+    {
+      "material": "Human.punkduck_black_cocktail_dress",
+      "resolution": 1024,
+      "normal": true,
+      "roughness": true
+    },
+    {
+      "material": "Chestnut layered hair",
+      "resolution": 512,
+      "normal": true,
+      "roughness": false
+    },
+    {
+      "material": "Heroine fitted belt leather",
+      "resolution": 256,
+      "normal": true,
+      "roughness": true
+    },
+    {
+      "material": "Heroine aged brass buckle",
+      "resolution": 256,
+      "normal": false,
+      "roughness": false
+    },
+    {
+      "material": "Denim shirt dark buttons",
+      "resolution": 256,
+      "normal": false,
+      "roughness": false
+    }
+  ],
+  "animations": [
+    "attack_heavy",
+    "attack_lance",
+    "attack_light",
+    "attack_light2",
+    "attack_light3",
+    "attack_thrust",
+    "attack_water",
+    "dodge_roll",
+    "dodge_roll_sheathed",
+    "drag_idle_loop",
+    "drag_walk_loop",
+    "draw_sword",
+    "idle_loop",
+    "interact",
+    "parry_guard",
+    "sheathe_sword",
+    "stand_up",
+    "stand_up_sheathed",
+    "walk_loop"
+  ],
+  "skins": 1,
+  "method": "Existing canonical movement/combat actions, consolidated saved MakeHuman weights; no new hand-authored motion",
+  "main_unchanged": true,
+  "editable_source": "art/source/beta-heroine.blend",
+  "editable_source_sha256": "851a1c7e51afa505d4e743cbe6a6aade6d014571b4a1a389cb322fa6e67b5b40",
+  "saved_source_reopened": true,
+  "current_export_recipe": "tools/export_beta_saved.py",
+  "back_panel": "Denim continuous back and shoulder panel"
+}

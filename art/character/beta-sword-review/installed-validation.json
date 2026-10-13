@@ -1,0 +1,42 @@
+{
+  "utc": "2026-10-12T16:53:00.489705+00:00",
+  "release": "0.29.0",
+  "game_key": "d5b014ed25c486803c2b60e237fd2bcb76a386398c3a78c44e54e1d809c6ede9",
+  "source_checks": 1329,
+  "windows_checks": 1329,
+  "current_rendered_files": 1359,
+  "canonical_sources_and_exports_unchanged": true,
+  "personal_source_unchanged": true,
+  "sole_release": "C:\\Games\\CoastalFoundation\\output\\windows\\v0.29.0",
+  "editable_source": "C:\\Games\\CoastalFoundation\\art\\source\\beta-greatsword.blend",
+  "donor_source_unchanged": true,
+  "defender_archive": 0,
+  "defender_source": 0,
+  "provenance": "https://opengameart.org/content/long-sword-%E2%80%93-knights-trust",
+  "human_motion_intake": "Defender found no threats; data-only import",
+  "sword_dimensions": {
+    "overall_length_m": 1.8048,
+    "blade_length_m": 1.4,
+    "blade_width_m": 0.09999999809265137,
+    "blade_thickness_m": 0.01199999988079071
+  },
+  "required_reviewed_frames": [
+    "beta/war-sword-ground-drag.png",
+    "beta/longsword-ground-impact.png",
+    "beta/longsword-energy-1.0.png",
+    "beta/longsword-restored-steel.png",
+    "beta/longsword-back-carry.png",
+    "beta/inventory.png",
+    "beta/gait-side-walk-sheet.png",
+    "beta/gait-side-run-sheet.png",
+    "beta/gait-side-burden-walk-sheet.png",
+    "beta/gait-side-burden-run-sheet.png",
+    "camera-first-person-look-right.png",
+    "camera-first-person-look-left.png",
+    "camera-first-person-spin-020.png",
+    "camera-first-person-spin-036.png",
+    "camera-first-person-parry.png",
+    "lance-restored-steel.png",
+    "sword-burden-walk-25.png"
+  ]
+}

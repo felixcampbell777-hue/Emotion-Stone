@@ -1,0 +1,167 @@
+{
+  "id": "home_downstairs",
+  "display_name": "Home \u00b7 Hearth Room",
+  "subtitle": "Warm bread, old timber and a crackling hearth",
+  "seed": 412,
+  "bounds": [
+    -5,
+    -5,
+    5,
+    5
+  ],
+  "spawn": [
+    0,
+    2.2
+  ],
+  "sea": false,
+  "interior": "hearth",
+  "terrain_regions": [
+    {
+      "rect": [
+        -5,
+        -5,
+        10,
+        10
+      ],
+      "kind": "path"
+    }
+  ],
+  "props": [
+    {
+      "id": "fireplace",
+      "kind": "hearth",
+      "at": [
+        -3,
+        -4.1
+      ]
+    },
+    {
+      "id": "pantry",
+      "kind": "cupboard",
+      "at": [
+        3.5,
+        -4.3
+      ]
+    },
+    {
+      "id": "kitchen_shelf",
+      "kind": "shelf",
+      "at": [
+        0.5,
+        -4.4
+      ]
+    },
+    {
+      "id": "dining_table",
+      "kind": "table",
+      "at": [
+        -0.3,
+        -0.2
+      ],
+      "scale": 0.85
+    },
+    {
+      "id": "chair_left",
+      "kind": "chair",
+      "at": [
+        -1.9,
+        -0.2
+      ],
+      "rotation": 90,
+      "scale": 0.85
+    },
+    {
+      "id": "chair_right",
+      "kind": "chair",
+      "at": [
+        1.2,
+        -0.2
+      ],
+      "rotation": -90,
+      "scale": 0.85
+    },
+    {
+      "id": "hearth_rug",
+      "kind": "rug",
+      "at": [
+        -2.8,
+        -1.9
+      ],
+      "scale": 0.65
+    },
+    {
+      "id": "stairs_up",
+      "kind": "stairs",
+      "at": [
+        3,
+        2
+      ],
+      "variant": 0
+    },
+    {
+      "id": "entry_door",
+      "kind": "door",
+      "at": [
+        0,
+        4.84
+      ]
+    },
+    {
+      "id": "bench_home",
+      "kind": "bench",
+      "at": [
+        -3.4,
+        2.4
+      ],
+      "scale": 0.8
+    }
+  ],
+  "npcs": [
+    {
+      "id": "mother_home",
+      "character": "mother",
+      "role": "mother",
+      "at": [
+        -1.4,
+        -2.8
+      ],
+      "dialogue": [
+        "Good morning, love. I kept the fire going for you."
+      ]
+    }
+  ],
+  "interactions": [],
+  "exits": [
+    {
+      "id": "upstairs",
+      "rect": [
+        2.25,
+        1.2,
+        1.5,
+        0.85
+      ],
+      "target": "home_upstairs",
+      "spawn": [
+        3,
+        0.75
+      ],
+      "label": "Go upstairs"
+    },
+    {
+      "id": "front_door",
+      "rect": [
+        -0.7,
+        3.7,
+        1.4,
+        0.8
+      ],
+      "target": "coastal_path",
+      "spawn": [
+        -5.8,
+        -2.5
+      ],
+      "label": "Leave home",
+      "interact": true
+    }
+  ]
+}

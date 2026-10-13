@@ -1,0 +1,1708 @@
+{
+  "id": "quaternius-fantasy-rts",
+  "type": "modular-kit",
+  "provider": "Quaternius",
+  "author": "Quaternius",
+  "source": "https://quaternius.com/packs/ultimatefantasyrts.html",
+  "license": "CC0-1.0 (supplied legacy license; current QAL conflict recorded)",
+  "license_source": "https://quaternius.com/license.html",
+  "supplied_license_text": "------------------------------------------------------\nUltimate Platformer Pack by @Quaternius\nConsider supporting me on Patreon, even $1 helps me a lot!\n\nhttps://www.patreon.com/quaternius\n-------------------------------------------------------\n\nLicense:\nCC0 1.0 Universal (CC0 1.0) \nPublic Domain Dedication\nhttps://creativecommons.org/publicdomain/zero/1.0/\n\n",
+  "license_handling": "User explicitly authorized Quaternius on 2026-10-11. Retain legacy declarations; conservatively comply with current QAL restrictions for new use; do not redistribute raw assets. This exception is separate from the open-license collection.",
+  "biomes": [
+    "town",
+    "castle",
+    "forest",
+    "mountain",
+    "beach"
+  ],
+  "note": "Original art sources only; no installers, addon, Godot code, demos, or duplicate FBX/OBJ exports. No game integration.",
+  "utc": "2026-10-11T17:21:19.847270+00:00",
+  "downloads": [
+    {
+      "official_creator_page": "https://quaternius.com/packs/ultimatefantasyrts.html",
+      "official_drive_root": "https://drive.google.com/drive/folders/1h7sztlZyavWla-JDk3jp6KiWDdMh08yd",
+      "transfer": "Authenticated Google Drive connector raw-file response; returned scoped download URL consumed ephemerally, not retained."
+    }
+  ],
+  "status": "collected_defender_no_threats_detected",
+  "gltf_checks": [
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Barracks_SecondAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Barracks_SecondAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Barracks_SecondAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Storage_FirstAge_Leve3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Storage_FirstAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Storage_FirstAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_2_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_2_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_2_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_3_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_3_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_3_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Market_FirstAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Market_FirstAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Market_FirstAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Market_SecondAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Market_SecondAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Market_SecondAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Port_SecondAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Port_SecondAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Port_SecondAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Port_FirstAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Port_FirstAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Port_FirstAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Archery_FirstAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Archery_FirstAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Archery_FirstAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_3_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_3_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_3_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Archery_SecondAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Archery_SecondAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Archery_SecondAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Resource_Tree_Group_Cut.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_2_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_2_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_2_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Storage_SecondAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Storage_SecondAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Storage_SecondAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Barracks_FirstAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Barracks_FirstAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_1_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_1_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_1_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_1_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_1_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_1_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Wall_FirstAge.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\WallTowers_DoorClosed_FirstAge.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\WallTowers_Door_FirstAge.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\WallTowers_FirstAge.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Barrel.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Crate_Big_Stack2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Crate_Stack2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Crate_Stack1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Crate.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Dock_FirstAge.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Resource_Gold_3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Resource_Gold_2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Resource_Gold_1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Resource_Rock_3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Resource_Rock_2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Resource_Rock_1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Farm_Dirt_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Farm_Dirt_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Farm_Dirt_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Barracks_FirstAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\WatchTower_FirstAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\WatchTower_FirstAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\WatchTower_FirstAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\WatchTower_SecondAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\WatchTower_SecondAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\WatchTower_SecondAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\TownCenter_FirstAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\TownCenter_FirstAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\TownCenter_FirstAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Logs.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Resource_PineTree_Group_Cut.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Resource_PineTree.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Rock_Group.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Rock.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Resource_Tree2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Resource_Tree1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Resource_PineTree_Group.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Resource_Tree_Group.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Windmill_SecondAge.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Windmill_FirstAge.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\TowerHouse_SecondAge.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\TowerHouse_FirstAge.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Mine.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Wonder_SecondAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Wonder_SecondAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Wonder_SecondAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Wonder_FirstAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Wonder_FirstAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Wonder_FirstAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\TownCenter_SecondAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\TownCenter_SecondAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\TownCenter_SecondAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Wall_SecondAge.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\WallTowers_SecondAge.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\WallTowers_Door_SecondAge.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\WallTowers_DoorClosed_SecondAge.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\WonderWalls_FirstAge.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\WonderWalls_SecondAge.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Temple_SecondAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Temple_SecondAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Temple_SecondAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Temple_FirstAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Temple_FirstAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Temple_FirstAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Farm_SecondAge_Level3_Wheat.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Farm_SecondAge_Level2_Wheat.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Farm_SecondAge_Level1_Wheat.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Farm_FirstAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Farm_FirstAge_Level3_Wheat.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Farm_FirstAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Farm_FirstAge_Level2_Wheat.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Farm_FirstAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Farm_FirstAge_Level1_Wheat.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Farm_SecondAge_Level3.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Farm_SecondAge_Level2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Farm_SecondAge_Level1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Mountain_Group_2.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Mountain_Group_1.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\MountainLarge_Single.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "quaternius-fantasy-rts\\glTF\\Mountain_Single.gltf",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    }
+  ],
+  "files": [
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Barracks_SecondAge_Level3.gltf",
+      "bytes": 786768,
+      "sha256": "7b961ec2083c8a1f7058028500798071b922e37ed4a90f954a1452c09d132e70",
+      "official_drive_id": "1Yh-YB_Ft0uy_3DcJqKXR1UNlcH1Y5UPb",
+      "official_drive_url": "https://drive.google.com/file/d/1Yh-YB_Ft0uy_3DcJqKXR1UNlcH1Y5UPb/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Barracks_SecondAge_Level2.gltf",
+      "bytes": 655342,
+      "sha256": "695b72067a69f03a5e061f0ac5c2eebc6e09a7ce9cd1cf7a601d60d81c0157c0",
+      "official_drive_id": "1XP5Byp-x1YbrUsiDjgyJCpJTBljH0fz1",
+      "official_drive_url": "https://drive.google.com/file/d/1XP5Byp-x1YbrUsiDjgyJCpJTBljH0fz1/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Barracks_SecondAge_Level1.gltf",
+      "bytes": 306649,
+      "sha256": "2275f48b9e18d9969a4b6f2ac55c35e5b804f5104ef11bad84c65327095e3e19",
+      "official_drive_id": "1s4Ml9FK2DGWKnWNI8O5EY8lIKzC9WRph",
+      "official_drive_url": "https://drive.google.com/file/d/1s4Ml9FK2DGWKnWNI8O5EY8lIKzC9WRph/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Storage_FirstAge_Leve3.gltf",
+      "bytes": 477834,
+      "sha256": "6f640c51cc8949c75a3c7a3d7d268189e82a05c0c1c040d91b97614d86adf026",
+      "official_drive_id": "10XeobPS4Ifs1i3qZeGaYLP4qTLufyr5n",
+      "official_drive_url": "https://drive.google.com/file/d/10XeobPS4Ifs1i3qZeGaYLP4qTLufyr5n/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Storage_FirstAge_Level2.gltf",
+      "bytes": 342120,
+      "sha256": "9fc24026b4b5c02b822939a7a6aa610518a2ddbd27100535cadb9a3b0eac0e71",
+      "official_drive_id": "1ZtDg_GKkIAS9iOUdSy0mbmOXAortEdRm",
+      "official_drive_url": "https://drive.google.com/file/d/1ZtDg_GKkIAS9iOUdSy0mbmOXAortEdRm/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Storage_FirstAge_Level1.gltf",
+      "bytes": 267400,
+      "sha256": "baca6e2b0be3b8a85381e6f62cacb08e5875dbbd767d7acd97c65e4250f9d2d3",
+      "official_drive_id": "1gTOKxkeaD-foMDHbCEsfgn8o1gHkZux5",
+      "official_drive_url": "https://drive.google.com/file/d/1gTOKxkeaD-foMDHbCEsfgn8o1gHkZux5/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_2_Level3.gltf",
+      "bytes": 352099,
+      "sha256": "5eb32aaaea242d897abca8ccd315d246fa80c71f638f45805941468ef9b12995",
+      "official_drive_id": "10tR2cZW8cgbbvO24t_p7CFOcHlEfn0dM",
+      "official_drive_url": "https://drive.google.com/file/d/10tR2cZW8cgbbvO24t_p7CFOcHlEfn0dM/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_2_Level2.gltf",
+      "bytes": 242585,
+      "sha256": "0cf1a330e071abd6de8c1f5dab558485e760d7f36e034664aa2050c9da5506b1",
+      "official_drive_id": "1suWFvLfiNjC0tORuwhj6LYo8LJ-lsx9c",
+      "official_drive_url": "https://drive.google.com/file/d/1suWFvLfiNjC0tORuwhj6LYo8LJ-lsx9c/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_2_Level1.gltf",
+      "bytes": 104014,
+      "sha256": "c31680cf08147fb24f21b0c51fa9b1f1da74e5ff72d68ae599eeb04e64a1b0d5",
+      "official_drive_id": "1UPzr6AaA21wYgyM06pUcj-p1iheMUg4E",
+      "official_drive_url": "https://drive.google.com/file/d/1UPzr6AaA21wYgyM06pUcj-p1iheMUg4E/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_3_Level3.gltf",
+      "bytes": 220435,
+      "sha256": "f29504a56b8738494afd95f211e0d481d4564abe25584c46173113fc75438464",
+      "official_drive_id": "1A7eg3E3sgC-ITvHWxp1XHf9jpjdgyLCu",
+      "official_drive_url": "https://drive.google.com/file/d/1A7eg3E3sgC-ITvHWxp1XHf9jpjdgyLCu/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_3_Level2.gltf",
+      "bytes": 152388,
+      "sha256": "5b00b64594ef76f543ea32b8068c85a7a23f5579a0a031f6c91f19760141e3a8",
+      "official_drive_id": "1V7sYhmR-oUSE22rx763xd7B_UPEQxIme",
+      "official_drive_url": "https://drive.google.com/file/d/1V7sYhmR-oUSE22rx763xd7B_UPEQxIme/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_3_Level1.gltf",
+      "bytes": 67213,
+      "sha256": "c06fb99fdfed32d861fb740db1e8b67d9a75943b5557d4d7ff85d8b401c01332",
+      "official_drive_id": "17MLkP7fnIYTvbv7008jeyvhpvbcaYCc_",
+      "official_drive_url": "https://drive.google.com/file/d/17MLkP7fnIYTvbv7008jeyvhpvbcaYCc_/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Market_FirstAge_Level3.gltf",
+      "bytes": 515796,
+      "sha256": "67ffc668c0f3bd61da183df70382979b2edcda867c1d1ca83ac81eb03e78e9a5",
+      "official_drive_id": "1Jv_K00v8C_B7bwM4318H07z7B7deGqiQ",
+      "official_drive_url": "https://drive.google.com/file/d/1Jv_K00v8C_B7bwM4318H07z7B7deGqiQ/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Market_FirstAge_Level2.gltf",
+      "bytes": 334655,
+      "sha256": "bffbc3b34012940a801de3c2fa97e08139a0136fcb78dda01eeb479968c3e3cd",
+      "official_drive_id": "1b3crYnmDhtaXlrCgHM9-GYoxFh2sfLLy",
+      "official_drive_url": "https://drive.google.com/file/d/1b3crYnmDhtaXlrCgHM9-GYoxFh2sfLLy/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Market_FirstAge_Level1.gltf",
+      "bytes": 191538,
+      "sha256": "920868a92d5430271fd3e270dd5b4179e62f61b64fa6fbe6a92226b1fdf5a7ca",
+      "official_drive_id": "1alq0Zr4qJs7Qmz1be5ow3qvnjBZ0bCMH",
+      "official_drive_url": "https://drive.google.com/file/d/1alq0Zr4qJs7Qmz1be5ow3qvnjBZ0bCMH/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Market_SecondAge_Level3.gltf",
+      "bytes": 1321371,
+      "sha256": "514f06abbb1c8fc5336302942744ca7dad3abdf3d1daabaad6bd4180be1cf90d",
+      "official_drive_id": "1ONGCq5vijwzM0liqdG645Y0GvmrJM1I9",
+      "official_drive_url": "https://drive.google.com/file/d/1ONGCq5vijwzM0liqdG645Y0GvmrJM1I9/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Market_SecondAge_Level2.gltf",
+      "bytes": 784809,
+      "sha256": "8eebda72675d6d32d3e7026d7b5519ac3150829cb0daebf8b29dc48a2b72cc23",
+      "official_drive_id": "1c9xZ520aWibG72aTBn473OA_MeuEIGRc",
+      "official_drive_url": "https://drive.google.com/file/d/1c9xZ520aWibG72aTBn473OA_MeuEIGRc/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Market_SecondAge_Level1.gltf",
+      "bytes": 462724,
+      "sha256": "dc10281762288a300e1146279430c6e52e140295100c9f0a788a12ab07271718",
+      "official_drive_id": "16Qcx8sIMOCCtFa8y1ts3g3uHIHh8r5XS",
+      "official_drive_url": "https://drive.google.com/file/d/16Qcx8sIMOCCtFa8y1ts3g3uHIHh8r5XS/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Port_SecondAge_Level3.gltf",
+      "bytes": 719218,
+      "sha256": "3bdd770013bf19cc1fc46821e1dc6f4c8c5f11fe717827c3a59eaa08c666c88e",
+      "official_drive_id": "13HpEtGWyudB3HbgZWUmF2mZvVklL3sl_",
+      "official_drive_url": "https://drive.google.com/file/d/13HpEtGWyudB3HbgZWUmF2mZvVklL3sl_/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Port_SecondAge_Level2.gltf",
+      "bytes": 634358,
+      "sha256": "046fe24fb4ed69ab00ba5d91e708295169101672c94572a55cf6ea3671353a7c",
+      "official_drive_id": "19Hu0_KnaGtQpev5B9D8VeF6sOGU7CIAj",
+      "official_drive_url": "https://drive.google.com/file/d/19Hu0_KnaGtQpev5B9D8VeF6sOGU7CIAj/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Port_SecondAge_Level1.gltf",
+      "bytes": 551060,
+      "sha256": "f1fedfcc33804d4471a783d8ed99b73d702dc88e90464981d5e10a4332171d2d",
+      "official_drive_id": "124DXvG5l4tbqBNFtQNoxWRpYvYYV7v_E",
+      "official_drive_url": "https://drive.google.com/file/d/124DXvG5l4tbqBNFtQNoxWRpYvYYV7v_E/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Port_FirstAge_Level3.gltf",
+      "bytes": 292839,
+      "sha256": "ddd84c62789bbc743a8fc6b9d8729b495e5a996472ff225c1b56d02fc3a6be61",
+      "official_drive_id": "1xp68FKla16BhtIBDtvu69dQ8Qq5A8km7",
+      "official_drive_url": "https://drive.google.com/file/d/1xp68FKla16BhtIBDtvu69dQ8Qq5A8km7/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Port_FirstAge_Level2.gltf",
+      "bytes": 401405,
+      "sha256": "61ab9bb378da844f11789c5dba99ce29b48ed62699eb91423d09f2734085a454",
+      "official_drive_id": "1HsvsZkSiO4ulV1uQbvPC1sFtQtC_VH_h",
+      "official_drive_url": "https://drive.google.com/file/d/1HsvsZkSiO4ulV1uQbvPC1sFtQtC_VH_h/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Port_FirstAge_Level1.gltf",
+      "bytes": 293882,
+      "sha256": "956c5146000b71be5ba862dabcdcdcc42c7f53123e2f4818fcd319a46dd73b11",
+      "official_drive_id": "1Krl_6bve7XQmVQ4qG3cz0UZ7xG3xSchl",
+      "official_drive_url": "https://drive.google.com/file/d/1Krl_6bve7XQmVQ4qG3cz0UZ7xG3xSchl/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Archery_FirstAge_Level3.gltf",
+      "bytes": 535212,
+      "sha256": "2f4b8fc290c6a66d835f38c5993b8f4350a2e3efb9adcffd0eab44df9afb3122",
+      "official_drive_id": "18gmb8BX2BSdZpM2-is8BGD5UnmtMvuc2",
+      "official_drive_url": "https://drive.google.com/file/d/18gmb8BX2BSdZpM2-is8BGD5UnmtMvuc2/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Archery_FirstAge_Level2.gltf",
+      "bytes": 429697,
+      "sha256": "4f4c33e33fc4c3023cf156d7743bcf7fcc23bfccb3b5b66df1eda3ee86473059",
+      "official_drive_id": "1jqPotcTnr-vi8F4sSJ4e6oSeYW0ykLJF",
+      "official_drive_url": "https://drive.google.com/file/d/1jqPotcTnr-vi8F4sSJ4e6oSeYW0ykLJF/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Archery_FirstAge_Level1.gltf",
+      "bytes": 336803,
+      "sha256": "767e779a2942921df8aed9f5eeb76c74ca834a5d4ec6c078b09ad94e32147b31",
+      "official_drive_id": "1-XDduQ7MN-uGlcenuHkTOyeN5u4-Ch31",
+      "official_drive_url": "https://drive.google.com/file/d/1-XDduQ7MN-uGlcenuHkTOyeN5u4-Ch31/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_3_Level3.gltf",
+      "bytes": 124075,
+      "sha256": "156cab36713f5a6932c870f1a3c886127a171a03b72c42aa5750abeec1c3600f",
+      "official_drive_id": "16nJusk2RPow-CUbpmjuk0xmE1TAuoJhz",
+      "official_drive_url": "https://drive.google.com/file/d/16nJusk2RPow-CUbpmjuk0xmE1TAuoJhz/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_3_Level2.gltf",
+      "bytes": 49179,
+      "sha256": "091b9765c4eede3dc3f26b62ab4b36eac3d819e8003cb97868be2498a8e93119",
+      "official_drive_id": "1DNf7aLC7IWRq-DKRt2OjI_oI2uD4R9BG",
+      "official_drive_url": "https://drive.google.com/file/d/1DNf7aLC7IWRq-DKRt2OjI_oI2uD4R9BG/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_3_Level1.gltf",
+      "bytes": 23673,
+      "sha256": "41c0ca58028371250a489d4bba36f0b17585eed1c0aba8c90d59f58601b30317",
+      "official_drive_id": "1jlXJ92Na6bzGGJHnKE-BrvpCIZy__KXm",
+      "official_drive_url": "https://drive.google.com/file/d/1jlXJ92Na6bzGGJHnKE-BrvpCIZy__KXm/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Archery_SecondAge_Level3.gltf",
+      "bytes": 839513,
+      "sha256": "c5ed3c3f36886297f2d6064c4f3f01c02d9ce377bd6dbec49cf014e309dbcc88",
+      "official_drive_id": "1AP5ranSvjfZ-ItNNoTzahHdsz3Z1JQfy",
+      "official_drive_url": "https://drive.google.com/file/d/1AP5ranSvjfZ-ItNNoTzahHdsz3Z1JQfy/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Archery_SecondAge_Level2.gltf",
+      "bytes": 594859,
+      "sha256": "0be366de8c48da510bc1ea2793c9a334280c530ab4ba3bd9201a108cfaa483fe",
+      "official_drive_id": "1IhGO_WOhI2YVNi2GI59dRIa8T1Ay9eeO",
+      "official_drive_url": "https://drive.google.com/file/d/1IhGO_WOhI2YVNi2GI59dRIa8T1Ay9eeO/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Archery_SecondAge_Level1.gltf",
+      "bytes": 512349,
+      "sha256": "05a7e687b9a068f4101e785b318d73cc086da1348c8559c9f49d9b67cad7e813",
+      "official_drive_id": "1iyh7ifcArlAUF83_eerSUXQA-Tq-plRi",
+      "official_drive_url": "https://drive.google.com/file/d/1iyh7ifcArlAUF83_eerSUXQA-Tq-plRi/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Resource_Tree_Group_Cut.gltf",
+      "bytes": 34048,
+      "sha256": "9eff2acfebdb7490fe2fee02255644f57b571a1f3bd85b66db1dfc5ad3406af2",
+      "official_drive_id": "1jT1LGYtke8Xh-vnjHQiiKAzPgHwPn59D",
+      "official_drive_url": "https://drive.google.com/file/d/1jT1LGYtke8Xh-vnjHQiiKAzPgHwPn59D/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_2_Level3.gltf",
+      "bytes": 128532,
+      "sha256": "5a25b6a2672704de087539381e91b8dd1029ac6b3547934a6a2e6a0aa41f5bdc",
+      "official_drive_id": "1FX_C7ON6lE17D3ZCLBPv507cDjHdvozT",
+      "official_drive_url": "https://drive.google.com/file/d/1FX_C7ON6lE17D3ZCLBPv507cDjHdvozT/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_2_Level2.gltf",
+      "bytes": 79473,
+      "sha256": "66fa9c03f4721befec26b7a6c3f3dfd4dc6308a1774c4ebc51f19c50b7e4f0de",
+      "official_drive_id": "1QI2k-qfJYTC4MhiMKLT7BTORC9P-iRPu",
+      "official_drive_url": "https://drive.google.com/file/d/1QI2k-qfJYTC4MhiMKLT7BTORC9P-iRPu/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_2_Level1.gltf",
+      "bytes": 60378,
+      "sha256": "e13ba2241c5e24007a858d32e55a9d92346dd864b3a8a704444c244332a16060",
+      "official_drive_id": "1WxFCkUytMRMjsfOwyvLRju5XFcnu5R3p",
+      "official_drive_url": "https://drive.google.com/file/d/1WxFCkUytMRMjsfOwyvLRju5XFcnu5R3p/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Storage_SecondAge_Level3.gltf",
+      "bytes": 708787,
+      "sha256": "b79cdc5099ead15734ca6bafea8758b1d90c79953516a7c831590db687836339",
+      "official_drive_id": "1TI5nyQ4USrH8c2McSAFMR2riJPwjQg4A",
+      "official_drive_url": "https://drive.google.com/file/d/1TI5nyQ4USrH8c2McSAFMR2riJPwjQg4A/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Storage_SecondAge_Level2.gltf",
+      "bytes": 737684,
+      "sha256": "43aaebbaacf488107804713df8e1dc43091297d2825444e294fe08247bd57b86",
+      "official_drive_id": "1R6KS25xODtT9Mum_BhGnr27QcokE_upF",
+      "official_drive_url": "https://drive.google.com/file/d/1R6KS25xODtT9Mum_BhGnr27QcokE_upF/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Storage_SecondAge_Level1.gltf",
+      "bytes": 687873,
+      "sha256": "3ec0f62960440dfcf7364431e3eaccc752d23fddaa480714f4100ea0b576f195",
+      "official_drive_id": "1r7efXAVOyS7-K-lpJ3UFTPFXo2rh9SVn",
+      "official_drive_url": "https://drive.google.com/file/d/1r7efXAVOyS7-K-lpJ3UFTPFXo2rh9SVn/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Barracks_FirstAge_Level3.gltf",
+      "bytes": 367936,
+      "sha256": "d553c7c54fc6fe2104af19ed06eb437b62642414b4644f67e0c867ab75f3901d",
+      "official_drive_id": "1Xsx_0Kn-Sw5U8iGnfPKKRgkwErC7eIQP",
+      "official_drive_url": "https://drive.google.com/file/d/1Xsx_0Kn-Sw5U8iGnfPKKRgkwErC7eIQP/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Barracks_FirstAge_Level2.gltf",
+      "bytes": 186323,
+      "sha256": "192b58e58b9cdd32ccd0e5c015663593837da1b7ada6913b23fa6255c80c81f9",
+      "official_drive_id": "1SCeHeumgKXAHmp0CV72TvVjuMJMnbY22",
+      "official_drive_url": "https://drive.google.com/file/d/1SCeHeumgKXAHmp0CV72TvVjuMJMnbY22/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_1_Level3.gltf",
+      "bytes": 206024,
+      "sha256": "a3abdaf6287ef1f71622775d72198c2e7ebac1a4b77dd1ded3a6780f353889f2",
+      "official_drive_id": "1ob8us6X4jWX5D-5K8BVAJFjXtt77Cy7Q",
+      "official_drive_url": "https://drive.google.com/file/d/1ob8us6X4jWX5D-5K8BVAJFjXtt77Cy7Q/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_1_Level2.gltf",
+      "bytes": 210869,
+      "sha256": "f261a129a5c22840eb0e7753a5c0b239d2a97dad4cb8008b7eeae884731b6b31",
+      "official_drive_id": "1tHyIo-LEGMdPEeN2a63vHAOfYQbDtEm_",
+      "official_drive_url": "https://drive.google.com/file/d/1tHyIo-LEGMdPEeN2a63vHAOfYQbDtEm_/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_SecondAge_1_Level1.gltf",
+      "bytes": 145717,
+      "sha256": "815bd66691e4ffa1b1a7a3169fc79cc022f1da0db9c6da2a4b4ac4c827ff4e74",
+      "official_drive_id": "1dUsjDBQW4cabHXgqukMU5RWPwxGKxjNk",
+      "official_drive_url": "https://drive.google.com/file/d/1dUsjDBQW4cabHXgqukMU5RWPwxGKxjNk/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_1_Level3.gltf",
+      "bytes": 77593,
+      "sha256": "808c952be57a1778b7ac860de3b30d24fa55592e89ce922d52543f2669e26b55",
+      "official_drive_id": "1Q7aztg9fpyNhgle0tzmK_duyMur4_zaW",
+      "official_drive_url": "https://drive.google.com/file/d/1Q7aztg9fpyNhgle0tzmK_duyMur4_zaW/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_1_Level2.gltf",
+      "bytes": 49081,
+      "sha256": "6cb824925c7a52a8f43a12f9a285fba89e53e5151c4653992da59225f9443fb6",
+      "official_drive_id": "1yPVrcrgqRxFgXmAQwhgQlNJ0uMv1A5iQ",
+      "official_drive_url": "https://drive.google.com/file/d/1yPVrcrgqRxFgXmAQwhgQlNJ0uMv1A5iQ/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Houses_FirstAge_1_Level1.gltf",
+      "bytes": 32724,
+      "sha256": "3f35bc42544f0f26f69bbd1bb5a4716d4d4d9a9298fad8410f0169f1e428866e",
+      "official_drive_id": "1ITHANc2S6cJxNRx0O0wDfEmYC4nXBBVg",
+      "official_drive_url": "https://drive.google.com/file/d/1ITHANc2S6cJxNRx0O0wDfEmYC4nXBBVg/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Wall_FirstAge.gltf",
+      "bytes": 25295,
+      "sha256": "544bc334bb1888d7fa9e4536cae3b72e5febeb8b00c8dcf451eec935cead3432",
+      "official_drive_id": "1pv5TpbAz1ija4CbiQlqQwRs4f1KvaYel",
+      "official_drive_url": "https://drive.google.com/file/d/1pv5TpbAz1ija4CbiQlqQwRs4f1KvaYel/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\WallTowers_DoorClosed_FirstAge.gltf",
+      "bytes": 121860,
+      "sha256": "6660a79f17b28ccc597d559143860a1cbc44c2959caa4b97a343bf5a3929c9f6",
+      "official_drive_id": "1wVBn7fRYfo4L5zHKJS3OwcV_-O17Epaa",
+      "official_drive_url": "https://drive.google.com/file/d/1wVBn7fRYfo4L5zHKJS3OwcV_-O17Epaa/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\WallTowers_Door_FirstAge.gltf",
+      "bytes": 111774,
+      "sha256": "0a0045379efa0c1bd4ec63e4fb263741aac3a8b420eb61dbee252973b0b14cfe",
+      "official_drive_id": "1mIK14JIPfTFfDNNW1mxngv05qCzIfFkU",
+      "official_drive_url": "https://drive.google.com/file/d/1mIK14JIPfTFfDNNW1mxngv05qCzIfFkU/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\WallTowers_FirstAge.gltf",
+      "bytes": 82773,
+      "sha256": "fbf71575b204d9ea7a8d83a33a6875578ece5536a4d800317dfc9102650f0be6",
+      "official_drive_id": "1yuLLfZfrbAOuvl2lQeMV1qoOhhQ5PuUW",
+      "official_drive_url": "https://drive.google.com/file/d/1yuLLfZfrbAOuvl2lQeMV1qoOhhQ5PuUW/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Barrel.gltf",
+      "bytes": 30797,
+      "sha256": "cbb46ddea43fc0c109e30df62b3b3c773e772febd71fb3eb6e44520106278a12",
+      "official_drive_id": "1ZDvUR-xyb9UxByxU8jQgZ-aQo8Ly2BWP",
+      "official_drive_url": "https://drive.google.com/file/d/1ZDvUR-xyb9UxByxU8jQgZ-aQo8Ly2BWP/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Crate_Big_Stack2.gltf",
+      "bytes": 37369,
+      "sha256": "202155e4ef6a645c18ba74cf29284844ebca5ba0f70f0be86957cb0a830e91d0",
+      "official_drive_id": "1AsKMqF8D6JYeqsjsS5TrKLfxHxBqPgcY",
+      "official_drive_url": "https://drive.google.com/file/d/1AsKMqF8D6JYeqsjsS5TrKLfxHxBqPgcY/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Crate_Stack2.gltf",
+      "bytes": 37368,
+      "sha256": "107e5abe8396467dda2f4d62d54893adfd51061749b117cbc144a476795f7527",
+      "official_drive_id": "1eHaS9rAUij0GfbEaAYOdUPFgq32uzPrG",
+      "official_drive_url": "https://drive.google.com/file/d/1eHaS9rAUij0GfbEaAYOdUPFgq32uzPrG/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Crate_Stack1.gltf",
+      "bytes": 37369,
+      "sha256": "f8ca6f2e7396d1a7adfaa442e29696335e8e533362c66236ece908b10afaf857",
+      "official_drive_id": "1HmbxmBsfCyWL6obStqklyrnpjxaiML4v",
+      "official_drive_url": "https://drive.google.com/file/d/1HmbxmBsfCyWL6obStqklyrnpjxaiML4v/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Crate.gltf",
+      "bytes": 20750,
+      "sha256": "34f7f2384d24305a54b3021c8198a38fc4daa5833ba14ce2d92054eb034d41a2",
+      "official_drive_id": "1xgHeEs6VNALsOt7mPw7CytUrzty0b5qR",
+      "official_drive_url": "https://drive.google.com/file/d/1xgHeEs6VNALsOt7mPw7CytUrzty0b5qR/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Dock_FirstAge.gltf",
+      "bytes": 25164,
+      "sha256": "47455401789970a2a4ad7a73ab0fda97b327ac408f0a28abb91bed82e5fcfae8",
+      "official_drive_id": "1Sc2WBPPdXMbYTEdX8TuxLcT9LR2OwUS5",
+      "official_drive_url": "https://drive.google.com/file/d/1Sc2WBPPdXMbYTEdX8TuxLcT9LR2OwUS5/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Resource_Gold_3.gltf",
+      "bytes": 60280,
+      "sha256": "feb9186bb519985def3eb8b32734f99a22721a97956cbb8f20b18bd836182c12",
+      "official_drive_id": "16mYXUh2Be_Qo5L-TvtBSeI1iGX5AfEFk",
+      "official_drive_url": "https://drive.google.com/file/d/16mYXUh2Be_Qo5L-TvtBSeI1iGX5AfEFk/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Resource_Gold_2.gltf",
+      "bytes": 68640,
+      "sha256": "ed811a14ae1a3e15cf5f44b6e0b5ec71a12d1f34a6f02478b6e1a73a2edd11c0",
+      "official_drive_id": "1e_vImsRBaUGw90__UcTJvb0P24Azydef",
+      "official_drive_url": "https://drive.google.com/file/d/1e_vImsRBaUGw90__UcTJvb0P24Azydef/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Resource_Gold_1.gltf",
+      "bytes": 66406,
+      "sha256": "d0e7204301e30e75e4d3bfa32b4ae812827d55788b7cf5d876d884b5fbbf2afd",
+      "official_drive_id": "1Zfz6cBOVppUsHWcYlkO5FTZosao12gh7",
+      "official_drive_url": "https://drive.google.com/file/d/1Zfz6cBOVppUsHWcYlkO5FTZosao12gh7/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Resource_Rock_3.gltf",
+      "bytes": 28317,
+      "sha256": "7bc7df96cf8eec5ff85ad67df3698897fea17fabe56ebf06b081daa471d5e43c",
+      "official_drive_id": "1lh7bbubmqKMr9KLuCjehvH5aZHh-_Bqr",
+      "official_drive_url": "https://drive.google.com/file/d/1lh7bbubmqKMr9KLuCjehvH5aZHh-_Bqr/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Resource_Rock_2.gltf",
+      "bytes": 37975,
+      "sha256": "f9521d286539f09b1b3b1bb7f3c8a7062640e7a828c9bcb365c4b24baca21eaf",
+      "official_drive_id": "1rfy2BSVuw0vh0JywcD3znmOci0JKTlFX",
+      "official_drive_url": "https://drive.google.com/file/d/1rfy2BSVuw0vh0JywcD3znmOci0JKTlFX/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Resource_Rock_1.gltf",
+      "bytes": 41053,
+      "sha256": "2f7d35bf5c1c92c57c3733d0f60f04a6411bbf005c9dbce278cefc39233fb8f7",
+      "official_drive_id": "1gEKrQFbeEzPRMg5BR9fT4ETLfik7NDaQ",
+      "official_drive_url": "https://drive.google.com/file/d/1gEKrQFbeEzPRMg5BR9fT4ETLfik7NDaQ/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Farm_Dirt_Level3.gltf",
+      "bytes": 2637559,
+      "sha256": "ba5a60803628b741123f50a509bd20dbc622734203b1dc8809543e5ab29c4a3c",
+      "official_drive_id": "1Gbgnu-M288VcVVD7M0J_ocZl8MRtG8LZ",
+      "official_drive_url": "https://drive.google.com/file/d/1Gbgnu-M288VcVVD7M0J_ocZl8MRtG8LZ/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Farm_Dirt_Level2.gltf",
+      "bytes": 165969,
+      "sha256": "deaf61a2c7824dba789786999879ebbe1f5aa1528001a03990c347b501ff70aa",
+      "official_drive_id": "1CV_vSCMhW4f96o646P-CIffpdf2zFqDw",
+      "official_drive_url": "https://drive.google.com/file/d/1CV_vSCMhW4f96o646P-CIffpdf2zFqDw/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Farm_Dirt_Level1.gltf",
+      "bytes": 24017,
+      "sha256": "bb1ae7c4126efa87a72dbf51ac00cbbeeaff55d28e9df5381c0c794eeacb8515",
+      "official_drive_id": "1J2CYRk-8ZJ0kZKzILgCfvv9qDdpbevUi",
+      "official_drive_url": "https://drive.google.com/file/d/1J2CYRk-8ZJ0kZKzILgCfvv9qDdpbevUi/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Barracks_FirstAge_Level1.gltf",
+      "bytes": 107856,
+      "sha256": "5cf25a470f743b8ed9824b5e66af30c1521f1bed06efdc9070cb32bc57ad554b",
+      "official_drive_id": "1qMCMZi-luDJhdMJCQjZfTjsB5iF4hFva",
+      "official_drive_url": "https://drive.google.com/file/d/1qMCMZi-luDJhdMJCQjZfTjsB5iF4hFva/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\WatchTower_FirstAge_Level3.gltf",
+      "bytes": 130098,
+      "sha256": "45727c99db1aeba5852c8d7c6e136ae0ebd14824942cbc3ebceab8894147b46b",
+      "official_drive_id": "1P8beAJOrM38HXOcDJql50D41BMN3R1_e",
+      "official_drive_url": "https://drive.google.com/file/d/1P8beAJOrM38HXOcDJql50D41BMN3R1_e/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\WatchTower_FirstAge_Level2.gltf",
+      "bytes": 71852,
+      "sha256": "c3e19c201192f55d70ca2e18aa3171a0e918fae2fcc5712f03f6394ea7a66500",
+      "official_drive_id": "1glwTGpp1tj_LSh8z65J7muGU32aTlyHR",
+      "official_drive_url": "https://drive.google.com/file/d/1glwTGpp1tj_LSh8z65J7muGU32aTlyHR/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\WatchTower_FirstAge_Level1.gltf",
+      "bytes": 52593,
+      "sha256": "780da8a1d2a9a30419dabaa48115555cf95816a750dde9163fd07c8fdf37f430",
+      "official_drive_id": "1ffynJQq0rDyaAL_0APkOGSRY631zWIzG",
+      "official_drive_url": "https://drive.google.com/file/d/1ffynJQq0rDyaAL_0APkOGSRY631zWIzG/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\WatchTower_SecondAge_Level3.gltf",
+      "bytes": 257040,
+      "sha256": "bc4aeb816375fb20db076af4ebcba1a1d495baa9d27a6c9d03100402acad5273",
+      "official_drive_id": "1IIWAbdsApMVU6mOzMBRKlnRL2KjunFgp",
+      "official_drive_url": "https://drive.google.com/file/d/1IIWAbdsApMVU6mOzMBRKlnRL2KjunFgp/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\WatchTower_SecondAge_Level2.gltf",
+      "bytes": 276170,
+      "sha256": "9261464d8d2ffe050ab16093ba282547d3545eec58782407d74fcc6d3acfbe0a",
+      "official_drive_id": "1gxbGo_krHIYDbZVhDYbW8rEcWkLVLP4W",
+      "official_drive_url": "https://drive.google.com/file/d/1gxbGo_krHIYDbZVhDYbW8rEcWkLVLP4W/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\WatchTower_SecondAge_Level1.gltf",
+      "bytes": 291886,
+      "sha256": "4cb2ac66208f149851e2ca462f97d08cfecb151b7ee312f51cc6b70e214de02b",
+      "official_drive_id": "1T0ktCUKgguDzCsRQYXgMhsadIazgv01y",
+      "official_drive_url": "https://drive.google.com/file/d/1T0ktCUKgguDzCsRQYXgMhsadIazgv01y/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\TownCenter_FirstAge_Level3.gltf",
+      "bytes": 321458,
+      "sha256": "652df3034ff5d838621e2f16ccca885aad23e5468d250312ae1f005b66084491",
+      "official_drive_id": "1L6L_nByO0mo9gfRrRfb4dIoebwX3YJSb",
+      "official_drive_url": "https://drive.google.com/file/d/1L6L_nByO0mo9gfRrRfb4dIoebwX3YJSb/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\TownCenter_FirstAge_Level2.gltf",
+      "bytes": 214011,
+      "sha256": "adb08cd8b2512c18b31609f687a6a489ce139146ad37a32d2e234361dbc50b7e",
+      "official_drive_id": "1NX73YfXe7txc8B8DAw38_mOBwMgeGfP0",
+      "official_drive_url": "https://drive.google.com/file/d/1NX73YfXe7txc8B8DAw38_mOBwMgeGfP0/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\TownCenter_FirstAge_Level1.gltf",
+      "bytes": 66568,
+      "sha256": "433f30a5d58103e404e2ef631593033bd64c8d97323414541d0864803159ccc3",
+      "official_drive_id": "1HfAS4folrYwiZla5h4oaX96PKg3cW1rW",
+      "official_drive_url": "https://drive.google.com/file/d/1HfAS4folrYwiZla5h4oaX96PKg3cW1rW/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Logs.gltf",
+      "bytes": 37454,
+      "sha256": "95d60b52a6316d06ba42f1c59b79c9147c11f1736671626c956d4eadcf994638",
+      "official_drive_id": "1U6BkCyI4-KYHr7rzpqm_JZFL6sdEL0Kl",
+      "official_drive_url": "https://drive.google.com/file/d/1U6BkCyI4-KYHr7rzpqm_JZFL6sdEL0Kl/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Resource_PineTree_Group_Cut.gltf",
+      "bytes": 41985,
+      "sha256": "53cb26b8230cd8c4b96ef06e00caa0e084ae9325d7adadc0d068a282a0a66435",
+      "official_drive_id": "1soZgnf64hVG0fbwlXnkRPjN3l6AJVqHc",
+      "official_drive_url": "https://drive.google.com/file/d/1soZgnf64hVG0fbwlXnkRPjN3l6AJVqHc/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Resource_PineTree.gltf",
+      "bytes": 16537,
+      "sha256": "ff12856e2d42145b035430f4f43116ac6a2769e3019f45e4910bc9e07c00ee0b",
+      "official_drive_id": "1IW57vtM6VcJgJVrKp-disHmyzo7S9tYx",
+      "official_drive_url": "https://drive.google.com/file/d/1IW57vtM6VcJgJVrKp-disHmyzo7S9tYx/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Rock_Group.gltf",
+      "bytes": 54634,
+      "sha256": "4c9ce5cd22188c79dcc5fee33e426ac37d0f8ee14f4b6bf77678b4712d2b9676",
+      "official_drive_id": "1erZTsUPUmzENBP10xQN2ozsIyweOw8aF",
+      "official_drive_url": "https://drive.google.com/file/d/1erZTsUPUmzENBP10xQN2ozsIyweOw8aF/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Rock.gltf",
+      "bytes": 12363,
+      "sha256": "99444f7d46d2888259c27918fdfbfa99263d9d70eadace45ebb79efc8ef6558f",
+      "official_drive_id": "1lPYnuHLzd5wm-HhmJwZFHHVVXMdvgsHn",
+      "official_drive_url": "https://drive.google.com/file/d/1lPYnuHLzd5wm-HhmJwZFHHVVXMdvgsHn/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Resource_Tree2.gltf",
+      "bytes": 13736,
+      "sha256": "d09256c47417d06b3188de17fcf18a081fb8438585aef768e4ad6e624ddc9b24",
+      "official_drive_id": "1hwGVY3GNE6vc3wEsyI9NkA7wZgglliqs",
+      "official_drive_url": "https://drive.google.com/file/d/1hwGVY3GNE6vc3wEsyI9NkA7wZgglliqs/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Resource_Tree1.gltf",
+      "bytes": 18032,
+      "sha256": "4c9657ba294cec85dc75159fe751bd7b132833f68f9ce55e7cda5ee11e4625f5",
+      "official_drive_id": "1SxfLA9jE6fza2y9vedlEornDJX-622QJ",
+      "official_drive_url": "https://drive.google.com/file/d/1SxfLA9jE6fza2y9vedlEornDJX-622QJ/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Resource_PineTree_Group.gltf",
+      "bytes": 133261,
+      "sha256": "b41d6c14abbaa51c26854f605f1a485b3959767ed6a9d2869b9fda444aede6f5",
+      "official_drive_id": "1UcIrT1Rbokb1TC6N80Tzex-9KyVF0kFX",
+      "official_drive_url": "https://drive.google.com/file/d/1UcIrT1Rbokb1TC6N80Tzex-9KyVF0kFX/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Resource_Tree_Group.gltf",
+      "bytes": 123646,
+      "sha256": "31c7402f7c6edb45dd9bd6071903556e63fc9f58afb25175af3207b02282a2e5",
+      "official_drive_id": "1Z4A6YKQItAQLwBo6AyKKAnR9o5MUtcMj",
+      "official_drive_url": "https://drive.google.com/file/d/1Z4A6YKQItAQLwBo6AyKKAnR9o5MUtcMj/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Windmill_SecondAge.gltf",
+      "bytes": 170665,
+      "sha256": "43d981a2d3797f5069cac0b36db022c5eff4bd07244c25214a4ba65048458433",
+      "official_drive_id": "18vgSNrmaQmrfcxibCrXzQIyXAF258kaJ",
+      "official_drive_url": "https://drive.google.com/file/d/18vgSNrmaQmrfcxibCrXzQIyXAF258kaJ/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Windmill_FirstAge.gltf",
+      "bytes": 183663,
+      "sha256": "c4af304cbafd7ee3a4fdbc42d7e7406092e29d9f8fac381a0e3ee820c377aabd",
+      "official_drive_id": "1S1uVbf2qCLdXvOXc12fK4RsaYu1WH2RT",
+      "official_drive_url": "https://drive.google.com/file/d/1S1uVbf2qCLdXvOXc12fK4RsaYu1WH2RT/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\TowerHouse_SecondAge.gltf",
+      "bytes": 310805,
+      "sha256": "2fb92f7d35f755a4094b7d19240b3923992b2dff05f40935a9cee3b7bcfd8d6e",
+      "official_drive_id": "10Xbclu-rcqANFffkkvPpk-izbyLjMakz",
+      "official_drive_url": "https://drive.google.com/file/d/10Xbclu-rcqANFffkkvPpk-izbyLjMakz/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\TowerHouse_FirstAge.gltf",
+      "bytes": 161651,
+      "sha256": "8ec3f5596189d413c2b4cbc4841be3091c5d8f83682cb18da2c4b30e215c37a9",
+      "official_drive_id": "1K1NVpOrAKJBnsq-cAKnBjUncnaTnyW49",
+      "official_drive_url": "https://drive.google.com/file/d/1K1NVpOrAKJBnsq-cAKnBjUncnaTnyW49/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Mine.gltf",
+      "bytes": 190856,
+      "sha256": "523f1e38238e252e0e263aae8857c698b63572a5d7811a59c80c966ec26e941d",
+      "official_drive_id": "1cF334DhQWNtVhX9pIAN84i1an0GnLIfh",
+      "official_drive_url": "https://drive.google.com/file/d/1cF334DhQWNtVhX9pIAN84i1an0GnLIfh/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Wonder_SecondAge_Level3.gltf",
+      "bytes": 798211,
+      "sha256": "6d68a9945eca89b73850af8df0e8dbe0d7eac17b8a9b2dbcd35a6fde6252054a",
+      "official_drive_id": "1ANbbuTKmYeeXP-Vl5FSuTaLo9Z-u5cto",
+      "official_drive_url": "https://drive.google.com/file/d/1ANbbuTKmYeeXP-Vl5FSuTaLo9Z-u5cto/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Wonder_SecondAge_Level2.gltf",
+      "bytes": 734083,
+      "sha256": "04ffa9854f9fd3e01e2fdb1ce4f5e8bed6957d2cdb7a23126e581202f2f8ef1e",
+      "official_drive_id": "1iZ8rVI6TcVNEszkwUHffxx2gKELi83TE",
+      "official_drive_url": "https://drive.google.com/file/d/1iZ8rVI6TcVNEszkwUHffxx2gKELi83TE/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Wonder_SecondAge_Level1.gltf",
+      "bytes": 58522,
+      "sha256": "97352e4104e54b5da775ca4f0a1d72309a9067c4ea72f30829be240c325b9658",
+      "official_drive_id": "1HZVe6qxkiVlTPV4d1ldJwHVRyjjzfG2c",
+      "official_drive_url": "https://drive.google.com/file/d/1HZVe6qxkiVlTPV4d1ldJwHVRyjjzfG2c/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Wonder_FirstAge_Level3.gltf",
+      "bytes": 845651,
+      "sha256": "e588ae8a0fb3c78bc080e53837b14e501191ed6bbec6e5d2494ff2f7afc84941",
+      "official_drive_id": "13txr9sbOD5zVZxQ_5kBF4a6kG-x_LqW2",
+      "official_drive_url": "https://drive.google.com/file/d/13txr9sbOD5zVZxQ_5kBF4a6kG-x_LqW2/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Wonder_FirstAge_Level2.gltf",
+      "bytes": 637139,
+      "sha256": "615b4859bd27855ad2b5d62726efd17e34aecb20c60e342f6d66f75a96369ede",
+      "official_drive_id": "1Apugdes1y0XcQC0fZw3YfvYK2MP8TPkS",
+      "official_drive_url": "https://drive.google.com/file/d/1Apugdes1y0XcQC0fZw3YfvYK2MP8TPkS/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Wonder_FirstAge_Level1.gltf",
+      "bytes": 328790,
+      "sha256": "24d87d0d4d1b974a2496a2a79d20b32c475957aabf8b5c081a4484f79eb8a12e",
+      "official_drive_id": "1qH50K_RTEmkgyfV1YZXhUTKIHrl6kkhR",
+      "official_drive_url": "https://drive.google.com/file/d/1qH50K_RTEmkgyfV1YZXhUTKIHrl6kkhR/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\TownCenter_SecondAge_Level3.gltf",
+      "bytes": 532793,
+      "sha256": "b9409cd1b8bd0fa808cf8f7df214f84058cb6c82d74edba0306c19e20a120d95",
+      "official_drive_id": "1y1AtgLu7B9AFgfohwZ5LvtN-_XUH5veX",
+      "official_drive_url": "https://drive.google.com/file/d/1y1AtgLu7B9AFgfohwZ5LvtN-_XUH5veX/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\TownCenter_SecondAge_Level2.gltf",
+      "bytes": 379563,
+      "sha256": "eace1f8771322805fc33080b760dc4f0829387f48723e37beb427e18ea5184a3",
+      "official_drive_id": "1TgBKLkcTGxP7joZmGlxXE8N-s-XsYbMI",
+      "official_drive_url": "https://drive.google.com/file/d/1TgBKLkcTGxP7joZmGlxXE8N-s-XsYbMI/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\TownCenter_SecondAge_Level1.gltf",
+      "bytes": 234182,
+      "sha256": "59c0b7a8c815f3d99ceebfaf47232c5eb7d396a32b6ca86687e872e71b9c4ded",
+      "official_drive_id": "1diPLLjAJ27HPC5H0-HJe8JzTs3dmG-_9",
+      "official_drive_url": "https://drive.google.com/file/d/1diPLLjAJ27HPC5H0-HJe8JzTs3dmG-_9/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Wall_SecondAge.gltf",
+      "bytes": 24946,
+      "sha256": "2f89edd4d11f7b69b64ad4127cafdd6b314f4458888601e6c0d8f3fb73ae0d5a",
+      "official_drive_id": "1v7m072pr_t4v-ZWbPgSlhL3hk1wbXHin",
+      "official_drive_url": "https://drive.google.com/file/d/1v7m072pr_t4v-ZWbPgSlhL3hk1wbXHin/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\WallTowers_SecondAge.gltf",
+      "bytes": 170756,
+      "sha256": "b74071d518e2252e37a1b3e4d4dacc245abef067b31c076132fbd79c5748c9a2",
+      "official_drive_id": "1p-uX3X-jP-sHUrT0_OWQlxQuVXRLImSq",
+      "official_drive_url": "https://drive.google.com/file/d/1p-uX3X-jP-sHUrT0_OWQlxQuVXRLImSq/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\WallTowers_Door_SecondAge.gltf",
+      "bytes": 181866,
+      "sha256": "c2aafa9020b6d89810836ede7fb8ab787a2c244a84bac7d00f0a5ff0ed609ae2",
+      "official_drive_id": "1ynirXwxJgmBZIgbGAxEWiWtMs185e5v4",
+      "official_drive_url": "https://drive.google.com/file/d/1ynirXwxJgmBZIgbGAxEWiWtMs185e5v4/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\WallTowers_DoorClosed_SecondAge.gltf",
+      "bytes": 200928,
+      "sha256": "821b7640a6d30c484d6d4b925a8201180c8e5b2fe2463f5d45027cc14a109ba4",
+      "official_drive_id": "1kelYX8O2QBSPwKnkel9Yuq5-XQbZs0c6",
+      "official_drive_url": "https://drive.google.com/file/d/1kelYX8O2QBSPwKnkel9Yuq5-XQbZs0c6/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\WonderWalls_FirstAge.gltf",
+      "bytes": 315457,
+      "sha256": "c7415770216fed881c5f0bcb6943af2137ec72a402bb6075c036c67f4437b049",
+      "official_drive_id": "1-_EirWEQe08GC9NySFEE8UbC6nA1TPry",
+      "official_drive_url": "https://drive.google.com/file/d/1-_EirWEQe08GC9NySFEE8UbC6nA1TPry/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\WonderWalls_SecondAge.gltf",
+      "bytes": 643290,
+      "sha256": "30bf86826bf57041e02fb766a388015cfbf20c539ea3365a2eaf6907ee6d19bf",
+      "official_drive_id": "1oiOVTYj3qar1q5yOvxzoxnz_fXp4K3bN",
+      "official_drive_url": "https://drive.google.com/file/d/1oiOVTYj3qar1q5yOvxzoxnz_fXp4K3bN/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Temple_SecondAge_Level3.gltf",
+      "bytes": 391069,
+      "sha256": "9e18ace8e07b42d27fcf37963b516ddb857e7b923e33f7c35894fb0faf49a713",
+      "official_drive_id": "1ai94JoN1xfbZZffIPVQ-X3PsfaFKuydi",
+      "official_drive_url": "https://drive.google.com/file/d/1ai94JoN1xfbZZffIPVQ-X3PsfaFKuydi/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Temple_SecondAge_Level2.gltf",
+      "bytes": 168851,
+      "sha256": "c8c4471660b773e560036e2a36567db63d88a9bff56a2d7d331580e9c4086424",
+      "official_drive_id": "1euyxNfR_KvltDTfEkLpNBy64X3KQw8_D",
+      "official_drive_url": "https://drive.google.com/file/d/1euyxNfR_KvltDTfEkLpNBy64X3KQw8_D/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Temple_SecondAge_Level1.gltf",
+      "bytes": 36372,
+      "sha256": "9cea5004f25c9717b005dcec1ae87ae383b9be2abe0ed790c20c982810e6e172",
+      "official_drive_id": "1y6dh9h5134LJj5eG36HpVJtb5O2CEBY1",
+      "official_drive_url": "https://drive.google.com/file/d/1y6dh9h5134LJj5eG36HpVJtb5O2CEBY1/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Temple_FirstAge_Level3.gltf",
+      "bytes": 846578,
+      "sha256": "f33e2fd746a63c48d7ba62605d1acd94d3ce37ab515620f8dc87d2be6124d482",
+      "official_drive_id": "1Xl3ndIB6z2YqlWlLHQRUeTDh4PRglCIT",
+      "official_drive_url": "https://drive.google.com/file/d/1Xl3ndIB6z2YqlWlLHQRUeTDh4PRglCIT/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Temple_FirstAge_Level2.gltf",
+      "bytes": 455362,
+      "sha256": "09b9ee6e22a0312a2cb83bc62e6f3612983d28bcb89fdf347f8831bc8f6888f3",
+      "official_drive_id": "17h6Wq2U-JDcs9bIStCbRMNVLNw26JOAg",
+      "official_drive_url": "https://drive.google.com/file/d/17h6Wq2U-JDcs9bIStCbRMNVLNw26JOAg/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Temple_FirstAge_Level1.gltf",
+      "bytes": 371539,
+      "sha256": "50f03e30b20e4c67f296bcc4571781f3bc8a247ab57632d19d92c9ec3e2f0662",
+      "official_drive_id": "1QB3T-zBkblLovYeAR7uVGxO9lO3-XaiO",
+      "official_drive_url": "https://drive.google.com/file/d/1QB3T-zBkblLovYeAR7uVGxO9lO3-XaiO/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Farm_SecondAge_Level3_Wheat.gltf",
+      "bytes": 710058,
+      "sha256": "63e8fb8c58ac87226b28cd8db2f96a377cbdd04300098d1ab670d3df7b618fec",
+      "official_drive_id": "15MKvRv9sq-Fgg_rThHCHSflR7idpCu1V",
+      "official_drive_url": "https://drive.google.com/file/d/15MKvRv9sq-Fgg_rThHCHSflR7idpCu1V/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Farm_SecondAge_Level2_Wheat.gltf",
+      "bytes": 541582,
+      "sha256": "d485a0796e26e3dcaa9da21e709a27a5acda19c7ff4d60d9802c298ca38f6045",
+      "official_drive_id": "1MeJnk9HVbZlboDVBa-hnuB1MUYyuXZwx",
+      "official_drive_url": "https://drive.google.com/file/d/1MeJnk9HVbZlboDVBa-hnuB1MUYyuXZwx/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Farm_SecondAge_Level1_Wheat.gltf",
+      "bytes": 365613,
+      "sha256": "756fe40ec4d897bb5610ffb3622c12129171833629bc505529cb897c983608ad",
+      "official_drive_id": "1LjaZWVfDLlKYthfsvihGdag6MdZfLYOI",
+      "official_drive_url": "https://drive.google.com/file/d/1LjaZWVfDLlKYthfsvihGdag6MdZfLYOI/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Farm_FirstAge_Level3.gltf",
+      "bytes": 24021,
+      "sha256": "db845752b34f4dfcd86e4673d6df98dbc437b8efc5fbb4b475f37beb4457e9df",
+      "official_drive_id": "1TRz_QzbD5TnHnaDRoSnqc82cls5kc_3n",
+      "official_drive_url": "https://drive.google.com/file/d/1TRz_QzbD5TnHnaDRoSnqc82cls5kc_3n/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Farm_FirstAge_Level3_Wheat.gltf",
+      "bytes": 1245202,
+      "sha256": "b63ebe96a2f445a0bf21c12e7670ce3a11d62bc22e799c09d10ed2d28742f3a5",
+      "official_drive_id": "1RadLI4zSeKAwT9VXzQZSlW8zC4N_jJ0N",
+      "official_drive_url": "https://drive.google.com/file/d/1RadLI4zSeKAwT9VXzQZSlW8zC4N_jJ0N/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Farm_FirstAge_Level2.gltf",
+      "bytes": 19702,
+      "sha256": "4848737d624881597a20092509294d8a0820d5b7c984acc1600ce4a26c29357b",
+      "official_drive_id": "1_44Rfhwhco91LsMUrq-rDylAy9JTgbIY",
+      "official_drive_url": "https://drive.google.com/file/d/1_44Rfhwhco91LsMUrq-rDylAy9JTgbIY/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Farm_FirstAge_Level2_Wheat.gltf",
+      "bytes": 990402,
+      "sha256": "61a474fe28ee829449f86e0478fc3917665585cad2de6d8545b2333fade03b13",
+      "official_drive_id": "15bxaQwMUcfj3U-CY7ifFKNjLqfkd96Hc",
+      "official_drive_url": "https://drive.google.com/file/d/15bxaQwMUcfj3U-CY7ifFKNjLqfkd96Hc/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Farm_FirstAge_Level1.gltf",
+      "bytes": 11063,
+      "sha256": "ec38d362a20e1846ac98dcd8b67ef65ee5997746a27fc88b6d9038d6d4db221d",
+      "official_drive_id": "1gBb75Su5P45fYssJBjtOcezyu7OkijV5",
+      "official_drive_url": "https://drive.google.com/file/d/1gBb75Su5P45fYssJBjtOcezyu7OkijV5/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Farm_FirstAge_Level1_Wheat.gltf",
+      "bytes": 485655,
+      "sha256": "1b8d2d2c59594e3aab48ae1abc54b0c000ed6cb827f1d531380043854a11a5f0",
+      "official_drive_id": "14nA4ZzpEnAFszMy_HeAy0-gFJShIvkSg",
+      "official_drive_url": "https://drive.google.com/file/d/14nA4ZzpEnAFszMy_HeAy0-gFJShIvkSg/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Farm_SecondAge_Level3.gltf",
+      "bytes": 311869,
+      "sha256": "a6c6f0586d0cdef8e277a4f4f23290a6e488dbbcffacfc60bdbddd3db4d0d931",
+      "official_drive_id": "1Fw6IRGiJRimARATY8q1K2GV1n5tFH-hH",
+      "official_drive_url": "https://drive.google.com/file/d/1Fw6IRGiJRimARATY8q1K2GV1n5tFH-hH/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Farm_SecondAge_Level2.gltf",
+      "bytes": 193471,
+      "sha256": "b1db2e033620fb6c0cb758d740100feabb5fe77c8cbafe499495a7dbcf2df08a",
+      "official_drive_id": "1yCG2-cKdzb6J9cg-jc64EXDKHs1VGpYj",
+      "official_drive_url": "https://drive.google.com/file/d/1yCG2-cKdzb6J9cg-jc64EXDKHs1VGpYj/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Farm_SecondAge_Level1.gltf",
+      "bytes": 172557,
+      "sha256": "efb12d4ddc23c84577e5c828c2fead7a736a891b4798bd3de62173534f2e865b",
+      "official_drive_id": "1b0QvQs53yXEXZYnHJGdjtfcsdZ4GnUF3",
+      "official_drive_url": "https://drive.google.com/file/d/1b0QvQs53yXEXZYnHJGdjtfcsdZ4GnUF3/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Mountain_Group_2.gltf",
+      "bytes": 78706,
+      "sha256": "60fd93b73b908cbe7df9afe78b043e9fe6dcdf591e43b3b3976f3959a3143607",
+      "official_drive_id": "1EiPrZGay_vMby1UtbCcgDU4Tlqv5aWyP",
+      "official_drive_url": "https://drive.google.com/file/d/1EiPrZGay_vMby1UtbCcgDU4Tlqv5aWyP/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Mountain_Group_1.gltf",
+      "bytes": 206700,
+      "sha256": "6ef17e6fa6885cdfed1531b72381555665e4bf29a050579c98c7b1f0a03189f0",
+      "official_drive_id": "14JnT07AVnEXFkqpd0rxbgVdoBjWL5hp2",
+      "official_drive_url": "https://drive.google.com/file/d/14JnT07AVnEXFkqpd0rxbgVdoBjWL5hp2/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\MountainLarge_Single.gltf",
+      "bytes": 63627,
+      "sha256": "51f0dae1d3ee7e2753cd8afd5825dd4e4808746d377f7667fcb6671d77e64bfa",
+      "official_drive_id": "1tOuWJFN6HhGgyeAPylXDB_EpTMQDPBIb",
+      "official_drive_url": "https://drive.google.com/file/d/1tOuWJFN6HhGgyeAPylXDB_EpTMQDPBIb/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\glTF\\Mountain_Single.gltf",
+      "bytes": 23608,
+      "sha256": "e83e8ba6cd7653815610a3ee38a7203846481dc686f4185b74d53f1d40d9cb86",
+      "official_drive_id": "1_9xhFTfiSO5d4v6SHvoce810Gz9iYjtA",
+      "official_drive_url": "https://drive.google.com/file/d/1_9xhFTfiSO5d4v6SHvoce810Gz9iYjtA/view?usp=drivesdk"
+    },
+    {
+      "path": "quaternius-fantasy-rts\\License.txt",
+      "bytes": 374,
+      "sha256": "de990ef6fc68cffd7fd1ae342c4d0c823b541b8848d8f76bca5d3339f4de6f6e",
+      "official_drive_id": "1Vf_6mtufbmV2mQHY35l9tPqaR3Oe8Did",
+      "official_drive_url": "https://drive.google.com/file/d/1Vf_6mtufbmV2mQHY35l9tPqaR3Oe8Did/view"
+    }
+  ],
+  "excluded_files": [
+    "FBX/OBJ duplicate exports",
+    "native Blender scenery duplicate exports",
+    "Scene_AllModels combined scene"
+  ]
+}

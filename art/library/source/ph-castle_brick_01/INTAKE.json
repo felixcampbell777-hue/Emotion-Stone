@@ -1,0 +1,55 @@
+{
+  "id": "ph-castle_brick_01",
+  "asset_id": "castle_brick_01",
+  "type": "pbr-texture",
+  "provider": "Poly Haven",
+  "license": "CC0-1.0",
+  "biomes": [
+    "castle",
+    "town"
+  ],
+  "source": "https://polyhaven.com/a/castle_brick_01",
+  "note": "2K albedo, OpenGL normal and roughness; no redundant 8K/16K maps.",
+  "polyhaven": true,
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:45:31.578103+00:00",
+  "downloads": [
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/castle_brick_01/castle_brick_01_diff_2k.jpg",
+      "bytes": 2679995,
+      "sha256": "f7fd9167ba99e0bec13a4f8e0e86357a76bb3fbd154806bc2c0a468e6966a0e6",
+      "publisher_md5": "c6cdd16e81726506d743f5c5378f5338"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/castle_brick_01/castle_brick_01_nor_gl_2k.jpg",
+      "bytes": 4096428,
+      "sha256": "a4e06a187c8f8995ff2f6a722ec15d727655ef9f068c4dc73e0232021dd7a48a",
+      "publisher_md5": "b4fabab8fdf157eb29fc0859b60fc063"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/castle_brick_01/castle_brick_01_rough_2k.jpg",
+      "bytes": 1036467,
+      "sha256": "cf0705d48307209da5c6ee5c038479a9390815c4c1896bbf3a63e7d0593b19da",
+      "publisher_md5": "611d69d62b9d980fcda63414d0697d11"
+    }
+  ],
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "ph-castle_brick_01\\albedo.jpg",
+      "bytes": 2679995,
+      "sha256": "f7fd9167ba99e0bec13a4f8e0e86357a76bb3fbd154806bc2c0a468e6966a0e6"
+    },
+    {
+      "path": "ph-castle_brick_01\\normal.jpg",
+      "bytes": 4096428,
+      "sha256": "a4e06a187c8f8995ff2f6a722ec15d727655ef9f068c4dc73e0232021dd7a48a"
+    },
+    {
+      "path": "ph-castle_brick_01\\roughness.jpg",
+      "bytes": 1036467,
+      "sha256": "cf0705d48307209da5c6ee5c038479a9390815c4c1896bbf3a63e7d0593b19da"
+    }
+  ]
+}

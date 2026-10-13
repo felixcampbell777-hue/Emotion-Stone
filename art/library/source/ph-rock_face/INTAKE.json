@@ -1,0 +1,54 @@
+{
+  "id": "ph-rock_face",
+  "asset_id": "rock_face",
+  "type": "pbr-texture",
+  "provider": "Poly Haven",
+  "license": "CC0-1.0",
+  "biomes": [
+    "mountain"
+  ],
+  "source": "https://polyhaven.com/a/rock_face",
+  "note": "2K albedo, OpenGL normal and roughness; no redundant 8K/16K maps.",
+  "polyhaven": true,
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:45:28.528800+00:00",
+  "downloads": [
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rock_face/rock_face_diff_2k.jpg",
+      "bytes": 2971109,
+      "sha256": "b989c832327538a9e546cca359417acb9a657d041f300407e8398daaf743f5bc",
+      "publisher_md5": "e3964bcefad9a2a758263b077b47ed64"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rock_face/rock_face_nor_gl_2k.jpg",
+      "bytes": 4158538,
+      "sha256": "352b87db2502d54487b0ed8abdfb621fae2abf7d360a281b419f567346178cf0",
+      "publisher_md5": "75d644e0c6a9d2534cafe783602d6c41"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rock_face/rock_face_rough_2k.jpg",
+      "bytes": 980027,
+      "sha256": "91517cdc191bf60fdb135929e12041e2ad50dd7343b33f25dae75d87ba61b226",
+      "publisher_md5": "72bdf484361d84d661a99af4f0b93bea"
+    }
+  ],
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "ph-rock_face\\albedo.jpg",
+      "bytes": 2971109,
+      "sha256": "b989c832327538a9e546cca359417acb9a657d041f300407e8398daaf743f5bc"
+    },
+    {
+      "path": "ph-rock_face\\normal.jpg",
+      "bytes": 4158538,
+      "sha256": "352b87db2502d54487b0ed8abdfb621fae2abf7d360a281b419f567346178cf0"
+    },
+    {
+      "path": "ph-rock_face\\roughness.jpg",
+      "bytes": 980027,
+      "sha256": "91517cdc191bf60fdb135929e12041e2ad50dd7343b33f25dae75d87ba61b226"
+    }
+  ]
+}

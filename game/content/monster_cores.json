@@ -1,0 +1,218 @@
+{
+  "cores": [
+    {
+      "id": "slime_core",
+      "name": "Slime Core",
+      "family": "slime",
+      "healing_percent": 0.1,
+      "color": "#73c9a6"
+    },
+    {
+      "id": "moss_core",
+      "name": "Moss Slime Core",
+      "family": "slime",
+      "healing_percent": 0.12,
+      "color": "#9dbc67"
+    },
+    {
+      "id": "sticky_core",
+      "name": "Sticky Slime Core",
+      "family": "slime",
+      "healing_percent": 0.15,
+      "color": "#e3ad51"
+    },
+    {
+      "id": "bramble_core",
+      "name": "Bramble Slime Core",
+      "family": "slime",
+      "healing_percent": 0.18,
+      "color": "#ad6eab"
+    },
+    {
+      "id": "spring_core",
+      "name": "Verdant Slime Core",
+      "family": "slime",
+      "healing_percent": 0.12,
+      "color": "#5dbf69"
+    },
+    {
+      "id": "goblin_core",
+      "name": "Goblin Core",
+      "family": "goblin",
+      "healing_percent": 0.12,
+      "color": "#caa467"
+    },
+    {
+      "id": "raider_core",
+      "name": "Raider Goblin Core",
+      "family": "goblin",
+      "healing_percent": 0.16,
+      "color": "#d08769"
+    },
+    {
+      "id": "guard_core",
+      "name": "Ironbound Goblin Core",
+      "family": "goblin",
+      "healing_percent": 0.22,
+      "color": "#a1b3bd"
+    },
+    {
+      "id": "slinger_core",
+      "name": "Stone-Slinger Core",
+      "family": "goblin",
+      "healing_percent": 0.18,
+      "color": "#b6aa80"
+    },
+    {
+      "id": "spore_core",
+      "name": "Spore Core",
+      "family": "spore",
+      "healing_percent": 0.12,
+      "color": "#d8bb88"
+    },
+    {
+      "id": "bloom_core",
+      "name": "Puffcap Bloom Core",
+      "family": "spore",
+      "healing_percent": 0.18,
+      "color": "#ce93bc"
+    },
+    {
+      "id": "spirit_core",
+      "name": "Spirit Core",
+      "family": "spirit",
+      "healing_percent": 0.15,
+      "color": "#91b0d4"
+    },
+    {
+      "id": "thorn_core",
+      "name": "Thorn Spirit Core",
+      "family": "spirit",
+      "healing_percent": 0.2,
+      "color": "#ba8dc9"
+    },
+    {
+      "id": "golem_core",
+      "name": "Calcified Aether Core",
+      "family": "boss",
+      "healing_percent": 0.4,
+      "color": "#75f0d7"
+    },
+    {
+      "id": "queen_core",
+      "name": "Royal Slime Core",
+      "family": "boss",
+      "healing_percent": 0.5,
+      "color": "#83d9d0"
+    },
+    {
+      "id": "foreman_core",
+      "name": "Goblin Foreman Core",
+      "family": "boss",
+      "healing_percent": 0.3,
+      "color": "#e8b55b"
+    }
+  ],
+  "profiles": {
+    "slime": {
+      "drop_rate": 0.5,
+      "generic": "slime_core",
+      "variant": "",
+      "variant_chance": 0,
+      "boss_bonus": 0
+    },
+    "moss_slime": {
+      "drop_rate": 0.5,
+      "generic": "slime_core",
+      "variant": "moss_core",
+      "variant_chance": 0.08,
+      "boss_bonus": 0
+    },
+    "resin_slime": {
+      "drop_rate": 0.5,
+      "generic": "slime_core",
+      "variant": "sticky_core",
+      "variant_chance": 0.05,
+      "boss_bonus": 0
+    },
+    "bramble_slime": {
+      "drop_rate": 0.5,
+      "generic": "slime_core",
+      "variant": "bramble_core",
+      "variant_chance": 0.1,
+      "boss_bonus": 0
+    },
+    "green_slime": {
+      "drop_rate": 0.5,
+      "generic": "slime_core",
+      "variant": "spring_core",
+      "variant_chance": 0.03,
+      "boss_bonus": 0
+    },
+    "goblin_raider": {
+      "drop_rate": 0.4,
+      "generic": "goblin_core",
+      "variant": "raider_core",
+      "variant_chance": 0.08,
+      "boss_bonus": 0
+    },
+    "goblin_guard": {
+      "drop_rate": 0.65,
+      "generic": "goblin_core",
+      "variant": "guard_core",
+      "variant_chance": 0.12,
+      "boss_bonus": 0
+    },
+    "goblin_slinger": {
+      "drop_rate": 0.35,
+      "generic": "goblin_core",
+      "variant": "slinger_core",
+      "variant_chance": 0.1,
+      "boss_bonus": 0
+    },
+    "puffcap": {
+      "drop_rate": 0.45,
+      "generic": "spore_core",
+      "variant": "bloom_core",
+      "variant_chance": 0.08,
+      "boss_bonus": 0
+    },
+    "wisp": {
+      "drop_rate": 0.55,
+      "generic": "spirit_core",
+      "variant": "thorn_core",
+      "variant_chance": 0.1,
+      "boss_bonus": 0
+    },
+    "warden": {
+      "drop_rate": 1,
+      "generic": "golem_core",
+      "variant": "",
+      "variant_chance": 0,
+      "boss_bonus": 300
+    },
+    "queen_slime": {
+      "drop_rate": 1,
+      "generic": "queen_core",
+      "variant": "",
+      "variant_chance": 0,
+      "boss_bonus": 800
+    },
+    "goblin_foreman": {
+      "drop_rate": 1,
+      "generic": "foreman_core",
+      "variant": "",
+      "variant_chance": 0,
+      "boss_bonus": 250
+    }
+  },
+  "beasts": [
+    "boar",
+    "piglet",
+    "bat",
+    "hare",
+    "squirrel",
+    "beta_wolf",
+    "beta_rat"
+  ]
+}

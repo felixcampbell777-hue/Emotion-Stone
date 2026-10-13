@@ -1,0 +1,19 @@
+{
+  "source": "C:\\Users\\felix\\OneDrive\\Documents\\heroinedraft1.blend",
+  "release": "0.23.3",
+  "profile": "standalone",
+  "visual_review": "Inspected native Windows front, back, three-quarter, face, neutral-light face, forest follow/overhead, inventory and pause menu captures. Baked denim, tan/freckles, brown hair/leather and back sword transfer correctly. World canopy shadows darken the model; neutral lighting and inventory confirm material/shape transfer.",
+  "height_m": 1.67,
+  "foot_ground_y": 0,
+  "comparison_door_height_m": 2.24,
+  "fixed_pose": true,
+  "fixed_outfit": true,
+  "animations": 0,
+  "skeletons": 0,
+  "original_blend_unchanged": true,
+  "animation_fitting_approved": false,
+  "evidence": "output/verification/windows-render/standalone",
+  "pending": "Complete: source and packaged Windows verification passed; native standalone/menu captures inspected; superseded releases purged.",
+  "verification_checks": 1152,
+  "windows_verified": true
+}

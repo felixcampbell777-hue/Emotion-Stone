@@ -1,0 +1,482 @@
+{
+  "id": "queen_arena",
+  "display_name": "Queen's Basin",
+  "subtitle": "Sloped jungle arena - shatter brood cores before they hatch",
+  "seed": 1904,
+  "bounds": [
+    -18,
+    -15,
+    18,
+    15
+  ],
+  "spawn": [
+    14,
+    0
+  ],
+  "sea": false,
+  "terrain_regions": [],
+  "props": [
+    {
+      "id": "basin",
+      "kind": "catalog_feature",
+      "catalog_code": "5F",
+      "at": [
+        0,
+        0
+      ],
+      "scale": 2.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "entry_roots",
+      "kind": "catalog_feature",
+      "catalog_code": "10C",
+      "at": [
+        15,
+        0
+      ],
+      "scale": 1.1,
+      "rotation": 90,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_1",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        14.1,
+        4.28
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_1",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        12.97,
+        3.93
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_2",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        11.49,
+        8.03
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_2",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        10.57,
+        7.39
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_3",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        7.5,
+        10.83
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_3",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        6.9,
+        9.96
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_4",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        2.6,
+        12.31
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_4",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        2.4,
+        11.33
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_5",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -2.6,
+        12.31
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_5",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -2.4,
+        11.33
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_6",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -7.5,
+        10.83
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_6",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -6.9,
+        9.96
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_7",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -11.49,
+        8.03
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_7",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -10.57,
+        7.39
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_8",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -14.1,
+        4.28
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_8",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -12.97,
+        3.93
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_9",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -15.0,
+        0.0
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_9",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -13.8,
+        0.0
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_10",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -14.1,
+        -4.28
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_10",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -12.97,
+        -3.93
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_11",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -11.49,
+        -8.03
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_11",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -10.57,
+        -7.39
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_12",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -7.5,
+        -10.83
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_12",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -6.9,
+        -9.96
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_13",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -2.6,
+        -12.31
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_13",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -2.4,
+        -11.33
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_14",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        2.6,
+        -12.31
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_14",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        2.4,
+        -11.33
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_15",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        7.5,
+        -10.83
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_15",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        6.9,
+        -9.96
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_16",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        11.49,
+        -8.03
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_16",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        10.57,
+        -7.39
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_tree_17",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        14.1,
+        -4.28
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "rim_growth_17",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        12.97,
+        -3.93
+      ],
+      "scale": 1.3,
+      "rotation": 0,
+      "show_label": false
+    }
+  ],
+  "npcs": [],
+  "interactions": [],
+  "exits": [
+    {
+      "id": "jungle_return",
+      "rect": [
+        17,
+        -2,
+        1,
+        4
+      ],
+      "target": "jungle_approach",
+      "spawn": [
+        -13,
+        0
+      ],
+      "label": "Jungle Hollow"
+    }
+  ],
+  "catalog_enemies": [
+    {
+      "id": "slime_queen",
+      "code": "10E",
+      "at": [
+        -3,
+        0
+      ]
+    }
+  ],
+  "biome": "jungle"
+}

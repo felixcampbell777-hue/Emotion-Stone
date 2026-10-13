@@ -1,0 +1,10 @@
+{
+  "ScanStarted": "2026-10-09T13:30:05.8584267Z",
+  "ScanFinished": "2026-10-09T13:30:11.1173318Z",
+  "AntivirusEnabled": true,
+  "RealtimeEnabled": true,
+  "SignaturesUpdated": "2026-10-08T15:17:05-05:00",
+  "Detections": 0,
+  "Scope": "art/environment",
+  "DownloadPolicy": "Official CC0 data assets only; no scripts, installers or add-ons"
+}

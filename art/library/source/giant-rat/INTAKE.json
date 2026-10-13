@@ -1,0 +1,32 @@
+{
+  "id": "giant-rat",
+  "type": "creature",
+  "provider": "OpenGameArt",
+  "author": "CDmir / TinyWorlds",
+  "license": "CC0-1.0",
+  "biomes": [
+    "town",
+    "castle"
+  ],
+  "note": "Rigged animated sewer/cellar enemy; optimize before swarms.",
+  "source": "https://opengameart.org/content/evil-giant-rat",
+  "downloads": [
+    {
+      "url": "https://opengameart.org/sites/default/files/rat_2.blend",
+      "bytes": 6833728,
+      "sha256": "52530520c71787da6c9ced7130cca02ddaf2b0af567bc38221b746d2297b5be2",
+      "publisher_md5": null
+    }
+  ],
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:44:36.804561+00:00",
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "giant-rat\\rat_2.blend",
+      "bytes": 6833728,
+      "sha256": "52530520c71787da6c9ced7130cca02ddaf2b0af567bc38221b746d2297b5be2"
+    }
+  ]
+}

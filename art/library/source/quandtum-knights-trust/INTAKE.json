@@ -1,0 +1,25 @@
+{
+  "author": "Quandtum",
+  "title": "Long Sword – Knights Trust",
+  "license": "CC0-1.0",
+  "source": "https://opengameart.org/content/long-sword-%E2%80%93-knights-trust",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "download": {
+    "url": "https://opengameart.org/sites/default/files/Quandtum_LongSword_KnightsTrust.zip",
+    "bytes": 4905700,
+    "sha256": "cbfaf73be82a953d2812938894f88373815a43a566a3f48dcea98a7191c49387",
+    "publisher_md5": null
+  },
+  "files": [
+    {
+      "path": "LongSword_KnightsTrust_Quandtum.blend",
+      "sha256": "fce67ffad87d9a1812cf815e3f583c817d361f20ee573eec1e184ee86eb4bfdc"
+    },
+    {
+      "path": "Preview.jpg",
+      "sha256": "f9ceb6c61e06c99133ba6347b34c1207f64994950becb570b3df1fe72e451f2b"
+    }
+  ],
+  "excluded": [],
+  "security": "Defender archive and extracted-data scans found no threats; Blender autoexec disabled."
+}

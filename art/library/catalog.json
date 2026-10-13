@@ -1,0 +1,533 @@
+[
+  {
+    "id": "wolf",
+    "type": "creature",
+    "provider": "OpenGameArt",
+    "author": "NewDLC",
+    "license": "CC0-1.0",
+    "biomes": [
+      "forest",
+      "mountain"
+    ],
+    "note": "Rigged wolf; attack/run/death clips need authoring or verification.",
+    "source": "https://opengameart.org/content/3d-wolf",
+    "downloads": [
+      "https://opengameart.org/sites/default/files/3dwolf_blend.zip"
+    ]
+  },
+  {
+    "id": "boar",
+    "type": "creature",
+    "provider": "OpenGameArt",
+    "author": "Teh_Bucket",
+    "license": "CC0-1.0",
+    "biomes": [
+      "forest"
+    ],
+    "note": "Walk and attack; future art option for existing boar logic.",
+    "source": "https://opengameart.org/content/boar",
+    "downloads": [
+      "https://opengameart.org/sites/default/files/boar_0.blend"
+    ]
+  },
+  {
+    "id": "giant-rat",
+    "type": "creature",
+    "provider": "OpenGameArt",
+    "author": "CDmir / TinyWorlds",
+    "license": "CC0-1.0",
+    "biomes": [
+      "town",
+      "castle"
+    ],
+    "note": "Rigged animated sewer/cellar enemy; optimize before swarms.",
+    "source": "https://opengameart.org/content/evil-giant-rat",
+    "downloads": [
+      "https://opengameart.org/sites/default/files/rat_2.blend"
+    ]
+  },
+  {
+    "id": "deer-female",
+    "type": "creature",
+    "provider": "OpenGameArt",
+    "author": "CDmir / TinyWorlds",
+    "license": "CC0-1.0",
+    "biomes": [
+      "forest",
+      "mountain"
+    ],
+    "note": "Ambient fauna first; packed textures.",
+    "source": "https://opengameart.org/content/deer-female",
+    "downloads": [
+      "https://opengameart.org/sites/default/files/doe.blend"
+    ]
+  },
+  {
+    "id": "deer-male",
+    "type": "creature",
+    "provider": "OpenGameArt",
+    "author": "CDmir / TinyWorlds",
+    "license": "CC0-1.0",
+    "biomes": [
+      "forest",
+      "mountain"
+    ],
+    "note": "Ambient stag; rigged and animated with packed maps.",
+    "source": "https://opengameart.org/content/old-deer-male",
+    "downloads": [
+      "https://opengameart.org/sites/default/files/deer1.blend"
+    ]
+  },
+  {
+    "id": "rabbit",
+    "type": "creature",
+    "provider": "OpenGameArt",
+    "author": "CDmir / TinyWorlds",
+    "license": "CC0-1.0",
+    "biomes": [
+      "forest",
+      "mountain"
+    ],
+    "note": "Ambient fauna; keep distinct from monster-core profiles.",
+    "source": "https://opengameart.org/content/rabbit-0",
+    "downloads": [
+      "https://opengameart.org/sites/default/files/rabbit.blend"
+    ]
+  },
+  {
+    "id": "mudeater",
+    "type": "creature",
+    "provider": "OpenGameArt",
+    "author": "CDmir / TinyWorlds",
+    "license": "CC0-1.0",
+    "biomes": [
+      "forest",
+      "beach"
+    ],
+    "note": "Distinct creature for mud/swamp encounters; rigged and animated.",
+    "source": "https://opengameart.org/content/mudeater-animated",
+    "downloads": [
+      "https://opengameart.org/sites/default/files/mudeater.blend"
+    ]
+  },
+  {
+    "id": "undead-squirrel",
+    "type": "creature",
+    "provider": "OpenGameArt",
+    "author": "CDmir",
+    "license": "CC0-1.0",
+    "biomes": [
+      "forest"
+    ],
+    "note": "Undead enemy alternative; ordinary squirrel remains fauna.",
+    "source": "https://opengameart.org/content/undead-squirrel-animated",
+    "downloads": [
+      "https://opengameart.org/sites/default/files/undeadsquirrell.zip"
+    ]
+  },
+  {
+    "id": "goblin",
+    "type": "creature",
+    "provider": "OpenGameArt",
+    "author": "CDmir / TinyWorlds",
+    "license": "CC0-1.0",
+    "biomes": [
+      "forest",
+      "castle",
+      "mountain"
+    ],
+    "note": "Future goblin visual candidate; retain campaign AI and save IDs.",
+    "source": "https://opengameart.org/content/goblin-1",
+    "downloads": [
+      "https://opengameart.org/sites/default/files/goblin-FINAL.blend"
+    ]
+  },
+  {
+    "id": "forest-monster",
+    "type": "creature",
+    "provider": "OpenGameArt",
+    "author": "CDmir / TinyWorlds",
+    "license": "CC0-1.0",
+    "biomes": [
+      "forest",
+      "mountain"
+    ],
+    "note": "Large forest creature/boss; textured and animated.",
+    "source": "https://opengameart.org/content/forest-monster",
+    "downloads": [
+      "https://opengameart.org/sites/default/files/forest-monster_0.7z"
+    ]
+  },
+  {
+    "id": "spider",
+    "type": "creature",
+    "provider": "OpenGameArt",
+    "author": "Panther-One",
+    "license": "CC-BY-3.0",
+    "biomes": [
+      "forest",
+      "castle",
+      "mountain"
+    ],
+    "note": "448-triangle spider; walk/idle only, attack/death still needed.",
+    "source": "https://opengameart.org/content/spider-animated",
+    "downloads": [
+      "https://opengameart.org/sites/default/files/Spider.blend",
+      "https://opengameart.org/sites/default/files/Spider_0.png"
+    ]
+  },
+  {
+    "id": "crab",
+    "type": "creature",
+    "provider": "OpenGameArt",
+    "author": "CoinCoin",
+    "license": "CC-BY-4.0",
+    "biomes": [
+      "beach"
+    ],
+    "note": "Animated crab; appropriate beach enemy after clip review.",
+    "source": "https://opengameart.org/content/animated-crab",
+    "downloads": [
+      "https://opengameart.org/sites/default/files/crab.zip"
+    ]
+  },
+  {
+    "id": "kenney-castle-kit",
+    "type": "modular-kit",
+    "provider": "Kenney",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "biomes": [
+      "castle"
+    ],
+    "source": "https://kenney.nl/assets/castle-kit",
+    "note": "Publisher advertises 75 assets; simple stylized shapes, useful kitbash base.",
+    "kenney": true
+  },
+  {
+    "id": "kenney-fantasy-town-kit",
+    "type": "modular-kit",
+    "provider": "Kenney",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "biomes": [
+      "town",
+      "castle"
+    ],
+    "source": "https://kenney.nl/assets/fantasy-town-kit",
+    "note": "Publisher advertises 160 assets; simple stylized shapes, useful kitbash base.",
+    "kenney": true
+  },
+  {
+    "id": "kenney-pirate-kit",
+    "type": "modular-kit",
+    "provider": "Kenney",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "biomes": [
+      "beach"
+    ],
+    "source": "https://kenney.nl/assets/pirate-kit",
+    "note": "Publisher advertises 70 assets; simple stylized shapes, useful kitbash base.",
+    "kenney": true
+  },
+  {
+    "id": "kaykit-skeletons",
+    "type": "creature-kit",
+    "provider": "KayKit",
+    "author": "Kay Lousberg",
+    "license": "CC0-1.0",
+    "biomes": [
+      "castle",
+      "town",
+      "mountain"
+    ],
+    "source": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0",
+    "note": "Four skeleton variants with equipment; GLTF only, excludes Godot plugin and scene code.",
+    "downloads": [
+      "https://codeload.github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0/zip/15b62b9bad122f72926c10fb14d622c73819fa54"
+    ],
+    "commit": "15b62b9bad122f72926c10fb14d622c73819fa54",
+    "selector": "kay"
+  },
+  {
+    "id": "fox",
+    "type": "creature",
+    "provider": "Khronos glTF Sample Assets",
+    "author": "PixelMannen; tomkranis; AsoboStudio; scurest",
+    "license": "CC0-1.0 mesh + CC-BY-4.0 animation",
+    "biomes": [
+      "forest"
+    ],
+    "source": "https://github.com/KhronosGroup/glTF-Sample-Assets/tree/edc7c9e67c639d230715049ee31f9a96a6babbbe/Models/Fox",
+    "note": "Survey/Walk/Run sample; ambient fox, no combat clips. Preserve mixed-license credits.",
+    "downloads": [
+      "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/edc7c9e67c639d230715049ee31f9a96a6babbbe/Models/Fox/glTF-Binary/Fox.glb",
+      "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/edc7c9e67c639d230715049ee31f9a96a6babbbe/Models/Fox/LICENSE.md",
+      "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/edc7c9e67c639d230715049ee31f9a96a6babbbe/Models/Fox/README.md"
+    ],
+    "commit": "edc7c9e67c639d230715049ee31f9a96a6babbbe"
+  },
+  {
+    "id": "ph-coastal_cliff_01",
+    "asset_id": "coastal_cliff_01",
+    "type": "scanned-model",
+    "provider": "Poly Haven",
+    "license": "CC0-1.0",
+    "biomes": [
+      "beach",
+      "mountain"
+    ],
+    "source": "https://polyhaven.com/a/coastal_cliff_01",
+    "note": "1K glTF source scan and dependencies; optimize geometry/LOD before runtime.",
+    "polyhaven": true
+  },
+  {
+    "id": "ph-coast_rocks_01",
+    "asset_id": "coast_rocks_01",
+    "type": "scanned-model",
+    "provider": "Poly Haven",
+    "license": "CC0-1.0",
+    "biomes": [
+      "beach"
+    ],
+    "source": "https://polyhaven.com/a/coast_rocks_01",
+    "note": "1K glTF source scan and dependencies; optimize geometry/LOD before runtime.",
+    "polyhaven": true
+  },
+  {
+    "id": "ph-boulder_01",
+    "asset_id": "boulder_01",
+    "type": "scanned-model",
+    "provider": "Poly Haven",
+    "license": "CC0-1.0",
+    "biomes": [
+      "mountain",
+      "forest"
+    ],
+    "source": "https://polyhaven.com/a/boulder_01",
+    "note": "1K glTF source scan and dependencies; optimize geometry/LOD before runtime.",
+    "polyhaven": true
+  },
+  {
+    "id": "ph-rock_moss_set_02",
+    "asset_id": "rock_moss_set_02",
+    "type": "scanned-model",
+    "provider": "Poly Haven",
+    "license": "CC0-1.0",
+    "biomes": [
+      "forest",
+      "mountain"
+    ],
+    "source": "https://polyhaven.com/a/rock_moss_set_02",
+    "note": "1K glTF source scan and dependencies; optimize geometry/LOD before runtime.",
+    "polyhaven": true
+  },
+  {
+    "id": "ph-flower_heliophila",
+    "asset_id": "flower_heliophila",
+    "type": "scanned-model",
+    "provider": "Poly Haven",
+    "license": "CC0-1.0",
+    "biomes": [
+      "forest",
+      "beach"
+    ],
+    "source": "https://polyhaven.com/a/flower_heliophila",
+    "note": "1K glTF source scan and dependencies; optimize geometry/LOD before runtime.",
+    "polyhaven": true
+  },
+  {
+    "id": "ph-nettle_plant",
+    "asset_id": "nettle_plant",
+    "type": "scanned-model",
+    "provider": "Poly Haven",
+    "license": "CC0-1.0",
+    "biomes": [
+      "forest"
+    ],
+    "source": "https://polyhaven.com/a/nettle_plant",
+    "note": "1K glTF source scan and dependencies; optimize geometry/LOD before runtime.",
+    "polyhaven": true
+  },
+  {
+    "id": "ph-coast_sand_01",
+    "asset_id": "coast_sand_01",
+    "type": "pbr-texture",
+    "provider": "Poly Haven",
+    "license": "CC0-1.0",
+    "biomes": [
+      "beach"
+    ],
+    "source": "https://polyhaven.com/a/coast_sand_01",
+    "note": "2K albedo, OpenGL normal and roughness; no redundant 8K/16K maps.",
+    "polyhaven": true
+  },
+  {
+    "id": "ph-damp_beach_sand",
+    "asset_id": "damp_beach_sand",
+    "type": "pbr-texture",
+    "provider": "Poly Haven",
+    "license": "CC0-1.0",
+    "biomes": [
+      "beach"
+    ],
+    "source": "https://polyhaven.com/a/damp_beach_sand",
+    "note": "2K albedo, OpenGL normal and roughness; no redundant 8K/16K maps.",
+    "polyhaven": true
+  },
+  {
+    "id": "ph-snow_02",
+    "asset_id": "snow_02",
+    "type": "pbr-texture",
+    "provider": "Poly Haven",
+    "license": "CC0-1.0",
+    "biomes": [
+      "mountain"
+    ],
+    "source": "https://polyhaven.com/a/snow_02",
+    "note": "2K albedo, OpenGL normal and roughness; no redundant 8K/16K maps.",
+    "polyhaven": true
+  },
+  {
+    "id": "ph-rock_face",
+    "asset_id": "rock_face",
+    "type": "pbr-texture",
+    "provider": "Poly Haven",
+    "license": "CC0-1.0",
+    "biomes": [
+      "mountain"
+    ],
+    "source": "https://polyhaven.com/a/rock_face",
+    "note": "2K albedo, OpenGL normal and roughness; no redundant 8K/16K maps.",
+    "polyhaven": true
+  },
+  {
+    "id": "ph-cliff_side",
+    "asset_id": "cliff_side",
+    "type": "pbr-texture",
+    "provider": "Poly Haven",
+    "license": "CC0-1.0",
+    "biomes": [
+      "mountain",
+      "beach"
+    ],
+    "source": "https://polyhaven.com/a/cliff_side",
+    "note": "2K albedo, OpenGL normal and roughness; no redundant 8K/16K maps.",
+    "polyhaven": true
+  },
+  {
+    "id": "ph-castle_brick_01",
+    "asset_id": "castle_brick_01",
+    "type": "pbr-texture",
+    "provider": "Poly Haven",
+    "license": "CC0-1.0",
+    "biomes": [
+      "castle",
+      "town"
+    ],
+    "source": "https://polyhaven.com/a/castle_brick_01",
+    "note": "2K albedo, OpenGL normal and roughness; no redundant 8K/16K maps.",
+    "polyhaven": true
+  },
+  {
+    "id": "ph-plaster_stone_wall_01",
+    "asset_id": "plaster_stone_wall_01",
+    "type": "pbr-texture",
+    "provider": "Poly Haven",
+    "license": "CC0-1.0",
+    "biomes": [
+      "town",
+      "castle"
+    ],
+    "source": "https://polyhaven.com/a/plaster_stone_wall_01",
+    "note": "2K albedo, OpenGL normal and roughness; no redundant 8K/16K maps.",
+    "polyhaven": true
+  },
+  {
+    "id": "quaternius-animals",
+    "type": "creature-kit",
+    "provider": "Quaternius",
+    "author": "Quaternius",
+    "source": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+    "license": "CC0-1.0 (supplied legacy license; current QAL conflict recorded)",
+    "license_source": "https://quaternius.com/license.html",
+    "license_handling": "User explicitly authorized Quaternius on 2026-10-11. Retain legacy declarations; conservatively comply with current QAL restrictions for new use; do not redistribute raw assets. This exception is separate from the open-license collection.",
+    "biomes": [
+      "forest",
+      "mountain",
+      "town"
+    ],
+    "note": "Original art sources only; no installers, addon, Godot code, demos, or duplicate FBX/OBJ exports. No game integration.",
+    "excluded_files": [
+      "FBX/OBJ duplicate exports",
+      "native Blender scenery duplicate exports",
+      "Scene_AllModels combined scene"
+    ]
+  },
+  {
+    "id": "quaternius-monsters",
+    "type": "creature-kit",
+    "provider": "Quaternius",
+    "author": "Quaternius",
+    "source": "https://quaternius.com/packs/ultimatemonsters.html",
+    "license": "CC0-1.0 (supplied legacy license; current QAL conflict recorded)",
+    "license_source": "https://quaternius.com/license.html",
+    "license_handling": "User explicitly authorized Quaternius on 2026-10-11. Retain legacy declarations; conservatively comply with current QAL restrictions for new use; do not redistribute raw assets. This exception is separate from the open-license collection.",
+    "biomes": [
+      "forest",
+      "mountain",
+      "castle",
+      "beach"
+    ],
+    "note": "Original art sources only; no installers, addon, Godot code, demos, or duplicate FBX/OBJ exports. No game integration.",
+    "excluded_files": [
+      "FBX/OBJ duplicate exports",
+      "native Blender scenery duplicate exports",
+      "Scene_AllModels combined scene"
+    ]
+  },
+  {
+    "id": "quaternius-fantasy-rts",
+    "type": "modular-kit",
+    "provider": "Quaternius",
+    "author": "Quaternius",
+    "source": "https://quaternius.com/packs/ultimatefantasyrts.html",
+    "license": "CC0-1.0 (supplied legacy license; current QAL conflict recorded)",
+    "license_source": "https://quaternius.com/license.html",
+    "license_handling": "User explicitly authorized Quaternius on 2026-10-11. Retain legacy declarations; conservatively comply with current QAL restrictions for new use; do not redistribute raw assets. This exception is separate from the open-license collection.",
+    "biomes": [
+      "town",
+      "castle",
+      "forest",
+      "mountain",
+      "beach"
+    ],
+    "note": "Original art sources only; no installers, addon, Godot code, demos, or duplicate FBX/OBJ exports. No game integration.",
+    "excluded_files": [
+      "FBX/OBJ duplicate exports",
+      "native Blender scenery duplicate exports",
+      "Scene_AllModels combined scene"
+    ]
+  },
+  {
+    "id": "quaternius-pirate",
+    "type": "modular-kit",
+    "provider": "Quaternius",
+    "author": "Quaternius",
+    "source": "https://quaternius.com/packs/piratekit.html",
+    "license": "Quaternius Asset License 1.0",
+    "license_source": "https://quaternius.com/license.html",
+    "license_handling": "User explicitly authorized Quaternius on 2026-10-11. Retain legacy declarations; conservatively comply with current QAL restrictions for new use; do not redistribute raw assets. This exception is separate from the open-license collection.",
+    "biomes": [
+      "beach",
+      "town"
+    ],
+    "note": "Original art sources only; no installers, addon, Godot code, demos, or duplicate FBX/OBJ exports. No game integration.",
+    "excluded_files": [
+      "FBX/OBJ duplicate exports",
+      "native Blender scenery duplicate exports",
+      "Scene_AllModels combined scene"
+    ]
+  }
+]

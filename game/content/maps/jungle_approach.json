@@ -1,0 +1,691 @@
+{
+  "id": "jungle_approach",
+  "display_name": "Jungle Hollow",
+  "subtitle": "Jungle canopy and the slime brood",
+  "seed": 1904,
+  "bounds": [
+    -16,
+    -10,
+    16,
+    10
+  ],
+  "spawn": [
+    12,
+    0
+  ],
+  "sea": false,
+  "terrain_regions": [
+    {
+      "kind": "path",
+      "rect": [
+        -16,
+        -2,
+        32,
+        4
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "ambush_tree_1",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        6,
+        -3
+      ],
+      "scale": 1.2,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "ambush_tree_2",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        8,
+        3
+      ],
+      "scale": 1.2,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "ambush_tree_3",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        10,
+        -3
+      ],
+      "scale": 1.2,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "ambush_tree_4",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        12,
+        3
+      ],
+      "scale": 1.2,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_0",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -14.0,
+        -7
+      ],
+      "scale": 1.25,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_0",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -13.2,
+        -4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_1",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -10.7,
+        -7
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_1",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -9.899999999999999,
+        -4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_2",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -7.4,
+        -7
+      ],
+      "scale": 1.45,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_2",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -6.6000000000000005,
+        -4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_3",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -4.100000000000001,
+        -7
+      ],
+      "scale": 1.25,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_3",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -3.3000000000000016,
+        -4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_4",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -0.8000000000000007,
+        -7
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_4",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -6.661338147750939e-16,
+        -4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_5",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        2.5,
+        -7
+      ],
+      "scale": 1.45,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_5",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        3.3,
+        -4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_6",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        5.799999999999997,
+        -7
+      ],
+      "scale": 1.25,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_6",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        6.599999999999997,
+        -4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_7",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        9.099999999999998,
+        -7
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_7",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        9.899999999999999,
+        -4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_8",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        12.399999999999999,
+        -7
+      ],
+      "scale": 1.45,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_8",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        13.2,
+        -4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_9",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -14.0,
+        7
+      ],
+      "scale": 1.25,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_9",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -13.2,
+        4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_10",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -10.7,
+        7
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_10",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -9.899999999999999,
+        4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_11",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -7.4,
+        7
+      ],
+      "scale": 1.45,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_11",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -6.6000000000000005,
+        4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_12",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -4.100000000000001,
+        7
+      ],
+      "scale": 1.25,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_12",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -3.3000000000000016,
+        4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_13",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        -0.8000000000000007,
+        7
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_13",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        -6.661338147750939e-16,
+        4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_14",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        2.5,
+        7
+      ],
+      "scale": 1.45,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_14",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        3.3,
+        4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_15",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        5.799999999999997,
+        7
+      ],
+      "scale": 1.25,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_15",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        6.599999999999997,
+        4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_16",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        9.099999999999998,
+        7
+      ],
+      "scale": 1.35,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_16",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        9.899999999999999,
+        4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "canopy_17",
+      "kind": "catalog_feature",
+      "catalog_code": "5A",
+      "at": [
+        12.399999999999999,
+        7
+      ],
+      "scale": 1.45,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "growth_17",
+      "kind": "catalog_feature",
+      "catalog_code": "9C",
+      "at": [
+        13.2,
+        4.8999999999999995
+      ],
+      "scale": 1.1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "stones_0",
+      "kind": "catalog_feature",
+      "catalog_code": "7D",
+      "at": [
+        -12,
+        0
+      ],
+      "scale": 1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "stones_1",
+      "kind": "catalog_feature",
+      "catalog_code": "7D",
+      "at": [
+        -8,
+        0
+      ],
+      "scale": 1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "stones_2",
+      "kind": "catalog_feature",
+      "catalog_code": "7D",
+      "at": [
+        -4,
+        0
+      ],
+      "scale": 1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "stones_3",
+      "kind": "catalog_feature",
+      "catalog_code": "7D",
+      "at": [
+        0,
+        0
+      ],
+      "scale": 1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "stones_4",
+      "kind": "catalog_feature",
+      "catalog_code": "7D",
+      "at": [
+        4,
+        0
+      ],
+      "scale": 1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "stones_5",
+      "kind": "catalog_feature",
+      "catalog_code": "7D",
+      "at": [
+        8,
+        0
+      ],
+      "scale": 1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "stones_6",
+      "kind": "catalog_feature",
+      "catalog_code": "7D",
+      "at": [
+        12,
+        0
+      ],
+      "scale": 1,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "jungle_arch",
+      "kind": "catalog_feature",
+      "catalog_code": "10C",
+      "at": [
+        -11,
+        0
+      ],
+      "scale": 1,
+      "rotation": 90,
+      "show_label": false
+    }
+  ],
+  "npcs": [],
+  "interactions": [],
+  "exits": [
+    {
+      "id": "forest_return",
+      "rect": [
+        15,
+        -2,
+        1,
+        4
+      ],
+      "target": "slime_forest",
+      "spawn": [
+        -10,
+        -1
+      ],
+      "label": "Slime Forest"
+    },
+    {
+      "id": "queen_gate",
+      "rect": [
+        -16,
+        -2,
+        1,
+        4
+      ],
+      "target": "queen_arena",
+      "spawn": [
+        14,
+        0
+      ],
+      "label": "Queen's Basin"
+    }
+  ],
+  "catalog_enemies": [
+    {
+      "id": "canopy_slime_1",
+      "code": "9E",
+      "at": [
+        6,
+        -2.16
+      ],
+      "spawn_mode": "tree_drop",
+      "drop_height": 3.8,
+      "trigger_radius": 6,
+      "ambush_group": "jungle_canopy"
+    },
+    {
+      "id": "canopy_slime_2",
+      "code": "1E",
+      "at": [
+        8,
+        2.16
+      ],
+      "spawn_mode": "tree_drop",
+      "drop_height": 3.8,
+      "trigger_radius": 6,
+      "ambush_group": "jungle_canopy"
+    },
+    {
+      "id": "canopy_slime_3",
+      "code": "2E",
+      "at": [
+        10,
+        -2.16
+      ],
+      "spawn_mode": "tree_drop",
+      "drop_height": 3.8,
+      "trigger_radius": 6,
+      "ambush_group": "jungle_canopy"
+    },
+    {
+      "id": "canopy_slime_4",
+      "code": "3E",
+      "at": [
+        12,
+        2.16
+      ],
+      "spawn_mode": "tree_drop",
+      "drop_height": 3.8,
+      "trigger_radius": 6,
+      "ambush_group": "jungle_canopy"
+    }
+  ],
+  "biome": "jungle"
+}

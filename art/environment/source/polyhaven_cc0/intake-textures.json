@@ -1,0 +1,156 @@
+[
+  {
+    "asset": "forest_ground_04",
+    "source": "https://polyhaven.com/a/forest_ground_04",
+    "licence": "CC0-1.0",
+    "files": [
+      {
+        "path": "forest_ground_04\\albedo.jpg",
+        "sha256": "24b8aaf4c8547305d80b0e029ec365219ab1b90748d4ca5651bdc9e75bfde5e6",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/forest_ground_04/forest_ground_04_diff_2k.jpg"
+      },
+      {
+        "path": "forest_ground_04\\normal.jpg",
+        "sha256": "b37ac799ed410976541e0011c246fca254e74eaa3f096ae7a7d74178db5a6d9b",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/forest_ground_04/forest_ground_04_nor_gl_2k.jpg"
+      },
+      {
+        "path": "forest_ground_04\\roughness.jpg",
+        "sha256": "24194662948424c323c75e0918461ad9d38bc0a275022000144f248b3efb4119",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/forest_ground_04/forest_ground_04_rough_2k.jpg"
+      }
+    ]
+  },
+  {
+    "asset": "rocky_trail",
+    "source": "https://polyhaven.com/a/rocky_trail",
+    "licence": "CC0-1.0",
+    "files": [
+      {
+        "path": "rocky_trail\\albedo.jpg",
+        "sha256": "5434c6377a0b74be356c6f1f0a13842a38111a3dcec9934bf74f7c6f6396c54b",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rocky_trail/rocky_trail_diff_2k.jpg"
+      },
+      {
+        "path": "rocky_trail\\normal.jpg",
+        "sha256": "c8783873d83d7a14cb339332ddf59ee7ee31c68c4cd72770e2f673402755c93c",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rocky_trail/rocky_trail_nor_gl_2k.jpg"
+      },
+      {
+        "path": "rocky_trail\\roughness.jpg",
+        "sha256": "e1907ab86a63296504213da70832aed0970098785b65c8763797772d39abbdfc",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rocky_trail/rocky_trail_rough_2k.jpg"
+      }
+    ]
+  },
+  {
+    "asset": "cobblestone_floor_08",
+    "source": "https://polyhaven.com/a/cobblestone_floor_08",
+    "licence": "CC0-1.0",
+    "files": [
+      {
+        "path": "cobblestone_floor_08\\albedo.jpg",
+        "sha256": "9aaf7db7f660f03d0c5c129c11e83caa828fb8bca63f8cd5154d450ffc4c340f",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_08/cobblestone_floor_08_diff_2k.jpg"
+      },
+      {
+        "path": "cobblestone_floor_08\\normal.jpg",
+        "sha256": "42dd5fc2da4a858f9c076c9ac5002857a1c064f8f4c4ffb12fafecffb84e96cc",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_08/cobblestone_floor_08_nor_gl_2k.jpg"
+      },
+      {
+        "path": "cobblestone_floor_08\\roughness.jpg",
+        "sha256": "3bc645ec45543c704fe1042f7b81f9bad4f88a8567760c4898c82bc2a134e093",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cobblestone_floor_08/cobblestone_floor_08_rough_2k.jpg"
+      }
+    ]
+  },
+  {
+    "asset": "pine_bark",
+    "source": "https://polyhaven.com/a/pine_bark",
+    "licence": "CC0-1.0",
+    "files": [
+      {
+        "path": "pine_bark\\albedo.jpg",
+        "sha256": "741f333ab9f8a0996d8a53905b5ac792fab77d7ccb8cac5fbaed8c99b9f6abd5",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/pine_bark/pine_bark_diff_2k.jpg"
+      },
+      {
+        "path": "pine_bark\\normal.jpg",
+        "sha256": "e91d024441a698523472ef2001be2eade2f73005d798466c7acd3ec5d585667f",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/pine_bark/pine_bark_nor_gl_2k.jpg"
+      },
+      {
+        "path": "pine_bark\\roughness.jpg",
+        "sha256": "a86618f6358a97410b15d226d0b3d52bb203aed8d9a29cfa355769b95df94d03",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/pine_bark/pine_bark_rough_2k.jpg"
+      }
+    ]
+  },
+  {
+    "asset": "brown_planks_05",
+    "source": "https://polyhaven.com/a/brown_planks_05",
+    "licence": "CC0-1.0",
+    "files": [
+      {
+        "path": "brown_planks_05\\albedo.jpg",
+        "sha256": "1d6c8a69eec94d89a071f533dc71f99744c8091eb4c6097eb80c04769d964aca",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brown_planks_05/brown_planks_05_diff_2k.jpg"
+      },
+      {
+        "path": "brown_planks_05\\normal.jpg",
+        "sha256": "dbf17e1e0ae9086330295813280e3bee580063c836811acbbac0a289aae1808d",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brown_planks_05/brown_planks_05_nor_gl_2k.jpg"
+      },
+      {
+        "path": "brown_planks_05\\roughness.jpg",
+        "sha256": "8724db75d6b17aae1825ca5a2ebd7f8c170e7a2ed2d0f057c887ba25ab641a40",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brown_planks_05/brown_planks_05_rough_2k.jpg"
+      }
+    ]
+  },
+  {
+    "asset": "forest_leaves_02",
+    "source": "https://polyhaven.com/a/forest_leaves_02",
+    "licence": "CC0-1.0",
+    "files": [
+      {
+        "path": "forest_leaves_02\\albedo.jpg",
+        "sha256": "9c38b2b151a0415457a6914966422cfca5a546c94674442e5395e0b1e908a196",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/forest_leaves_02/forest_leaves_02_diffuse_2k.jpg"
+      },
+      {
+        "path": "forest_leaves_02\\normal.jpg",
+        "sha256": "af0346114834c347a8d6a138f6ea16a97b0bec8d6e4db32c24f1c7e482163235",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/forest_leaves_02/forest_leaves_02_nor_gl_2k.jpg"
+      },
+      {
+        "path": "forest_leaves_02\\roughness.jpg",
+        "sha256": "ed2dd60a10242640b1738760015cfae85c8526a79dbf5da563fdffdf30828eae",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/forest_leaves_02/forest_leaves_02_rough_2k.jpg"
+      }
+    ]
+  },
+  {
+    "asset": "leafy_grass",
+    "source": "https://polyhaven.com/a/leafy_grass",
+    "licence": "CC0-1.0",
+    "files": [
+      {
+        "path": "leafy_grass\\albedo.jpg",
+        "sha256": "8e1c6d21365d4b89bc5a35ab664da98a78dbc3ab9ba6100474881c8619a5b113",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/leafy_grass/leafy_grass_diff_2k.jpg"
+      },
+      {
+        "path": "leafy_grass\\normal.jpg",
+        "sha256": "df0cf0ce96e653f033e5b934d5b12995464bda027aa53bd12e329be889aa9f45",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/leafy_grass/leafy_grass_nor_gl_2k.jpg"
+      },
+      {
+        "path": "leafy_grass\\roughness.jpg",
+        "sha256": "34e1733bf4064b6950a575ff57e78c8b7ff71b63749eb48a49221bd65de6fb4f",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/leafy_grass/leafy_grass_rough_2k.jpg"
+      }
+    ]
+  }
+]

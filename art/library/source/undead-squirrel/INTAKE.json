@@ -1,0 +1,56 @@
+{
+  "id": "undead-squirrel",
+  "type": "creature",
+  "provider": "OpenGameArt",
+  "author": "CDmir",
+  "license": "CC0-1.0",
+  "biomes": [
+    "forest"
+  ],
+  "note": "Undead enemy alternative; ordinary squirrel remains fauna.",
+  "source": "https://opengameart.org/content/undead-squirrel-animated",
+  "downloads": [
+    {
+      "url": "https://opengameart.org/sites/default/files/undeadsquirrell.zip",
+      "bytes": 3530676,
+      "sha256": "96e4c1c4581cbc2b2b65ef6cc24be09cc0059cafd5673b380d3b26fd2f6511cf",
+      "publisher_md5": null
+    }
+  ],
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:44:40.842689+00:00",
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "undead-squirrel\\lecense.txt",
+      "bytes": 61,
+      "sha256": "8d9d600c6a94201059ab69e2a976efb48bb2b8eb4289499b20debab0284042de"
+    },
+    {
+      "path": "undead-squirrel\\squirrel-anim.blend",
+      "bytes": 11226828,
+      "sha256": "150016dac5a6a700f5726c84e18bb66f7d03b23c35f2b7d636a41f413980927f"
+    },
+    {
+      "path": "undead-squirrel\\squirrel-body-norm.png",
+      "bytes": 330758,
+      "sha256": "67feb49457736301642dbf0213e1f0e50d802282b641208b9a4c57552b50c483"
+    },
+    {
+      "path": "undead-squirrel\\squirrel-body.png",
+      "bytes": 1062322,
+      "sha256": "842ac1f7d43477e7cb3818a7da2d10f9f0aed6ecf3eb78fccbd2e4992c43c7de"
+    },
+    {
+      "path": "undead-squirrel\\squirrel-head-norm.png",
+      "bytes": 367013,
+      "sha256": "17c94ea3c123a55f92381d1447abfa191214c08cd18b1fbe6a5787c5d7fca9e1"
+    },
+    {
+      "path": "undead-squirrel\\squirrel-head.png",
+      "bytes": 877994,
+      "sha256": "210de47d5797dcb928d4cdecc755ceaba7b51b4a864a7f2009e3846bb02f9321"
+    }
+  ]
+}

@@ -1,16 +1,30 @@
 # Coastal Foundation
 
-The project now includes a runnable Windows game foundation: an elevated orthographic 3D world rendered at 640 × 360 or 320 × 180, four-direction walking, the simplified heroine, a compatible NPC, two connected maps, interactions, and versioned saving.
+Current source baseline: **v0.31.2**, first-person gameplay with the upright two-hand sword hold and upgradeable Mana Lance aim control.
 
-**Play:** double-click `Play.cmd`, or `output/windows/CoastalFoundation.exe`. A shareable archive is in `output/windows/CoastalFoundation-Windows.zip`. The exported game needs no Godot, Blender, or Python installation.
+The GitHub repository has separate **`alpha`** and **`beta`** branches. This checkout is **Alpha**: the title selects the existing home/village/forest adventure by default. The Beta branch defaults to the meadow, wolf packs and castle town. Both retain the shared engine, map builder, other mode selector and separate saves.
+
+For cloning, Git LFS, Windows builds and branch editing, read [GitHub setup](docs/GITHUB.md). Large editable models and runtime art are stored through Git LFS; generated releases, player saves, caches and local toolchain paths are excluded. Third-party assets retain their credits and licences; see [asset credits](docs/ASSET-CREDITS.md).
+
+v0.23.0 adds a full-world Advanced graphics profile: CC0 scanned woodland vegetation/rocks, photographed terrain/roads, detailed roofs/interiors, wet slime surfaces, a scanned-stone guardian and a denser heroine mesh on the existing rig. Forward+ is the desktop default. Original art remains selectable and its editable sources are preserved. All 14 areas and the standalone builder share the new scenery. See docs/ENVIRONMENT-ASSET-INTEGRATION.md and docs/ASSET-CREDITS.md.
+
+The project includes a runnable Windows game foundation: an elevated orthographic 3D world rendered at full window resolution with 8x MSAA, or in Detailed (960 x 540), Fine (640 x 360), or Chunky (320 x 180) mode, smooth diagonal movement, sprinting/stamina, oversized sword combat with timed parries and a flowing three-hit light combo, rushing wind-up bonuses, selectable water sweeps or a charged, interruptible armor-breaking lance, eight connected maps, illustrated conversations, an alchemical-core quest for Mother, four permanent enemy encounters, a death/respawn screen, XP/levels with a Strength / Form / Mana skill tree with ranked roots and equipable attack choices, and versioned saving.
+
+**Play:** double-click `Play.cmd` or the desktop shortcut. The current executable and shareable ZIP are in the release folder selected by `game/content/release.json`. The exported game needs no Godot, Blender, or Python installation. Only the release selected by `game/content/release.json` is retained. Read `docs/CURRENT-BASELINE.md` before changing the game.
+
+The desktop **Coastal Foundation** shortcut uses the custom coastal sword-and-gem icon. `tools/install_desktop_shortcut.ps1` updates it for this checkout; the Windows archive includes **Install Desktop Shortcut.cmd** for another computer. Keep the ICO beside the executable. Icon artwork and its exact prompt are in `game/assets/ui/`; `tools/icon_assets.py` packages ten Windows sizes using Pillow.
+
+See [Menagery and shared sketch codes](docs/MENAGERY.md) for the western scenery catalog, eight practice creature buttons and later area-layout notation.
 
 See [player controls](docs/PLAY.md) and [editing recipes](docs/EDITING.md). Open `game/project.godot` in the pinned Godot editor to inspect scenes and scripts.
 
+See [XP and starter skills](docs/PROGRESSION.md) for the Strength, Form and Mana branches and the reusable stone guardian kit.
+
 ## Reuse that is already implemented
 
-- One Blender master with a 14-bone humanoid rig and idle, walk, and interaction clips.
-- Bob/short hair and dress/tunic modules, with shared body/boot geometry.
-- A separate greatsword source/export and a chest attachment for walking.
+- One Blender master with a 16-bone humanoid rig and nineteen shared clips, including secondary hair/dress motion, dragging, three combo attacks, water sweep and two-handed lance poses, and braced parry.
+- Bob/short/headscarf hair, dress/tunic/workdress, boots/bare feet, and human/prosthetic left arm modules.
+- A separate oversized greatsword, back carry, grip-aligned combat motion, and pooled ground scrape marks.
 - Semantic palette overrides in character JSON; no model export for recolors.
 - Seeded GridMap terrain, modular scenery, batched grass, and map JSON.
 - Schema validation, reference checks, source/export/build caches, and a Windows packaging command.
@@ -44,14 +58,28 @@ Run these from this project folder in PowerShell:
 | Rig/module contract | `art/rig-spec.json` and `schemas/character.schema.json` |
 | Scenery shapes/materials | `game/scripts/props.gd` |
 | Movement | `game/scripts/actor.gd` |
+| Attack timing/damage/health/slime balance | `game/content/combat.json` |
+| Sprint, rushing, stamina, parry, water and mouse hold threshold | `game/content/combat.json` |
+| Desktop icon artwork | `game/assets/ui/launcher-icon-v1.png` |
+| Authored sword grip/blade trajectory | `game/content/sword_motion.json` |
+| Enemy behavior | `game/scripts/slime.gd` |
 | Dialogue/camera/UI/map travel | `game/scripts/main.gd` |
+
+See [combat editing and animation contracts](docs/COMBAT.md). The mother matches the wrapped/exposed prosthetic concepts from **Create two character variants**; these runtime modules use native editable geometry.
 
 Editable sources are outside the Godot import tree. Runtime GLB exports are in `game/assets/characters/`. The original illustrations are preserved in `output/imagegen/`.
 
 ## Pinned authoring environment
 
-Godot **4.5.1**, Blender **4.5.3 LTS**, and jsonschema **4.25.1** are used here. Portable tools are cached in `%USERPROFILE%\.cache\comic-art-platform`; executable paths are in `tools/toolchain.local.json`. The existing Codex bundled Python runs the tools. Authoring binaries and transient Godot caches are excluded from version control.
+Godot **4.5.1**, Blender **4.5.3 LTS**, jsonschema **4.25.1**, and Pillow **12.3.0** are used here. Portable tools are cached in `%USERPROFILE%\.cache\comic-art-platform`; executable paths are in `tools/toolchain.local.json`. The existing Codex bundled Python runs the tools. Authoring binaries and transient Godot caches are excluded from version control.
 
 To set up the toolchain again on a machine with Python, run `python tools/bootstrap_runtime.py`. It downloads the pinned official Godot release/template and Blender release from the Berkeley Blender distribution mirror and installs validation dependencies into that local cache. It does not change global PATH. Godot archive digests are checked against release metadata when supplied; archive digests are recorded locally.
 
 Use one writer at a time for Blender files in the OneDrive workspace. Preserve source assets and the known working Windows export when making larger changes.
+
+Northern goblin campaign and Windstep equipment: [docs/GOBLIN-CAMPAIGN.md](docs/GOBLIN-CAMPAIGN.md).
+
+Magic equipment: [catalog, slots and set bonuses](docs/MAGIC-ITEMS.md). Menagerie [M] > Magic items provides 28 test specimens; equip in Inventory [I].
+
+
+Monster cores v0.22.0: see [drop/healing/quest rules](docs/MONSTER-CORES.md). Warden, Queen Slime and Goblin Foreman add 300, 800 and 250 XP boss bonuses respectively; prior base rewards remain. Mother now removes one canonical golem core from inventory; consumption is quest locked until completion.

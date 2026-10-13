@@ -1,0 +1,54 @@
+{
+  "assets": [
+    {
+      "filename": "cartoon01_cc0.zip",
+      "source": "https://files2.makehumancommunity.org/asset_packs/cartoon01/cartoon01_cc0.zip",
+      "resolved_url": "https://files2.makehumancommunity.org/asset_packs/cartoon01/cartoon01_cc0.zip",
+      "license": "CC0",
+      "license_evidence": "https://static.makehumancommunity.org/assets/assetpacks/cartoon01.html",
+      "sha256": "5d26425ba1266218e453e2f378fc432706554180a1fd1c6d1af0a6395d8f8c29",
+      "bytes": 1522938,
+      "archive_entries": [
+        "targets/",
+        "targets/cartoon/",
+        "targets/cartoon/spamrakuen_anime_stylized_enhanced_head_only.target",
+        "targets/cartoon/spamrakuen_anime_stylized_enhanced_head_only.thumb",
+        "targets/cartoon/spamrakuen_toon_eyes_and_slim_body_head_only.target",
+        "targets/cartoon/drednicolson_anime_stylized_enhanced.thumb",
+        "targets/cartoon/spamrakuen_sr_anime_female_head_var_01.thumb",
+        "targets/cartoon/sonntag78_toonify_head.thumb",
+        "targets/cartoon/drednicolson_anime_stylized_enhanced.target",
+        "targets/cartoon/spamrakuen_sr_anime_female_01.thumb",
+        "targets/cartoon/spamrakuen_sr_anime_female_head_var_01.target",
+        "targets/cartoon/jaldmic_anime_head_and_body_v6_chiby.thumb",
+        "targets/cartoon/jaldmic_anime_head_and_body_v6_chiby.target",
+        "targets/cartoon/sonntag78_toonify_head.target",
+        "targets/cartoon/spamrakuen_sr_anime_female_02.target",
+        "targets/cartoon/alexander_cidbal_toon_eyes_and_slim_body.thumb",
+        "targets/cartoon/spamrakuen_sr_anime_female_02.thumb",
+        "targets/cartoon/spamrakuen_sr_anime_female_lips_01.target",
+        "targets/cartoon/spamrakuen_toon_eyes_and_slim_body_head_only.thumb",
+        "targets/cartoon/spamrakuen_sr_anime_female_01.target",
+        "targets/cartoon/alexander_cidbal_toon_eyes_and_slim_body.target",
+        "packs/",
+        "packs/cartoon01.json"
+      ]
+    },
+    {
+      "filename": "mngeye_base.blend",
+      "source": "https://note.com/api/v2/attachments/download/7045915cf986f41ad17b0db4426e8e18",
+      "resolved_url": "https://note.com/api/v2/attachments/download/7045915cf986f41ad17b0db4426e8e18",
+      "license": "CC0",
+      "license_evidence": "https://note.com/lab1092/n/ne7cd24b488bb",
+      "sha256": "7034c3fcc1d02c2c72302f0f38a4f60fe49e723eb7df4219f9a83f817c87e8eb",
+      "bytes": 1181032,
+      "archive_entries": null
+    }
+  ],
+  "auto_execution": "disabled",
+  "defender_scan": {
+    "tool": "Microsoft Defender MpCmdRun",
+    "result": "No threats found",
+    "exit_code": 0
+  }
+}

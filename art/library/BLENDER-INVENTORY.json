@@ -1,0 +1,8769 @@
+[
+  {
+    "file": "boar\\boar_0.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 572,
+    "armatures": [
+      {
+        "name": "boar_armature",
+        "bones": 32
+      }
+    ],
+    "actions": [
+      {
+        "name": "attack",
+        "frames": [
+          0.0,
+          19.0
+        ]
+      },
+      {
+        "name": "default",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "walk",
+        "frames": [
+          0.0,
+          40.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "boar",
+        "packed": true,
+        "path": "//boar.png",
+        "size": [
+          1024,
+          1024
+        ]
+      }
+    ],
+    "materials": [
+      "Material"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "deer-female\\doe.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 4,
+    "triangles_before_modifiers": 4786,
+    "armatures": [
+      {
+        "name": "Armature",
+        "bones": 31
+      }
+    ],
+    "actions": [
+      {
+        "name": "Die.000",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Die.001",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Die.002",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Eat.001",
+        "frames": [
+          0.0,
+          118.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          2298.0
+        ]
+      },
+      {
+        "name": "Idle.000",
+        "frames": [
+          0.0,
+          160.0
+        ]
+      },
+      {
+        "name": "Idle.001",
+        "frames": [
+          0.0,
+          160.0
+        ]
+      },
+      {
+        "name": "LookAround.000",
+        "frames": [
+          0.0,
+          150.0
+        ]
+      },
+      {
+        "name": "LookAround.001",
+        "frames": [
+          0.0,
+          140.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Stand",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [
+      "License",
+      "Text"
+    ],
+    "embedded_text_review": [
+      {
+        "name": "License",
+        "looks_like_python": false,
+        "license_text": "Model: Deer Female\nAuthor: \u010cestm\u00edr Dammer\nProject: www.kelgar.org\nVersion: jun 2013\nLicense: CC0 Public Domain"
+      },
+      {
+        "name": "Text",
+        "looks_like_python": false,
+        "license_text": null
+      }
+    ],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "doe-body",
+        "packed": true,
+        "path": "//doe-body.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "doe-head",
+        "packed": true,
+        "path": "//doe-head.png",
+        "size": [
+          1024,
+          1024
+        ]
+      }
+    ],
+    "materials": [
+      "body",
+      "Eye",
+      "head",
+      "Material"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "deer-male\\deer1.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 5,
+    "triangles_before_modifiers": 4926,
+    "armatures": [
+      {
+        "name": "Armature",
+        "bones": 31
+      }
+    ],
+    "actions": [
+      {
+        "name": "Die.000",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Die.001",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Eat.001",
+        "frames": [
+          0.0,
+          118.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          3315.0
+        ]
+      },
+      {
+        "name": "Idle.000",
+        "frames": [
+          0.0,
+          160.0
+        ]
+      },
+      {
+        "name": "Idle.001",
+        "frames": [
+          0.0,
+          160.0
+        ]
+      },
+      {
+        "name": "LookAround.000",
+        "frames": [
+          0.0,
+          140.0
+        ]
+      },
+      {
+        "name": "LookAround.001",
+        "frames": [
+          0.0,
+          140.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "Stand",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [
+      "Animations",
+      "License"
+    ],
+    "embedded_text_review": [
+      {
+        "name": "Animations",
+        "looks_like_python": false,
+        "license_text": null
+      },
+      {
+        "name": "License",
+        "looks_like_python": false,
+        "license_text": "Model: Deer-Male\nProject: www.kelgar.org\nAuthor: \u010cestm\u00edr Dammer\nVersion of May 2013\nLicense: CC0 - Public Domain"
+      }
+    ],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "body",
+        "packed": true,
+        "path": "//deer-body.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "deer-antlers-normal.png",
+        "packed": true,
+        "path": "//deer-antlers-normal.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "deer-antlers.png",
+        "packed": true,
+        "path": "//deer-antlers.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "deer-body-normal.png",
+        "packed": true,
+        "path": "//deer-body-normal.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "deer-head-normal.png",
+        "packed": true,
+        "path": "//deer-head-normal.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "head",
+        "packed": true,
+        "path": "//deer-head.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Head",
+        "packed": true,
+        "path": "//deer-head-normal.png",
+        "size": [
+          1024,
+          1024
+        ]
+      }
+    ],
+    "materials": [
+      "Antlers",
+      "Body",
+      "Eye",
+      "Head",
+      "Material.001"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "forest-monster\\forest-monster-final.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 10,
+    "triangles_before_modifiers": 6648,
+    "armatures": [
+      {
+        "name": "Armature",
+        "bones": 76
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Dying",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          191.0
+        ]
+      },
+      {
+        "name": "Melee_Hold",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Stand",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          40.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [
+      "Lic.txt"
+    ],
+    "embedded_text_review": [
+      {
+        "name": "Lic.txt",
+        "looks_like_python": false,
+        "license_text": "                +++++++++ Licenses ++++++++++\n                === Forest Monster Model ====\n                \nAuthor: \u010cestm\u00edr Dammer (CDmir)\nLicense: Creative Commons (CC0)\nProject: www.kelgar.org\nIdea: Torben\nTextures: UV-Teture was derived from textures by Rick Hoppmann.\n\n-----------------------------------------------------------------------------------------\nAnimations Notes:\n    - Idle (0 - 190)\n    - Walk (0 - 40)\n    - \"melee hold\" (0 - 50)\n    - (0 - 30) \"melee strike\" [10-15], \"melee charge\" [0-10], \"melee cooldown\" [15-30] \n    - Dying (0 - 35) \n    - Dead (35-35 Dying)"
+      }
+    ],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "AO-2048",
+        "packed": false,
+        "path": "//texture\\forest-monster-AO.png",
+        "size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "name": "forest-monster-norm.png",
+        "packed": true,
+        "path": "//texture\\forest-monster-norm.png",
+        "size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "name": "forest-monster-skin1.png",
+        "packed": true,
+        "path": "//texture\\forest-monster-skin1.png",
+        "size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "name": "forest-monster-spec.png",
+        "packed": true,
+        "path": "//texture\\forest-monster-spec.png",
+        "size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "name": "monster-skin",
+        "packed": false,
+        "path": "//texture\\forest-monster-skin.png",
+        "size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "name": "skin_dieing.png",
+        "packed": true,
+        "path": "//texture\\tree.png",
+        "size": [
+          512,
+          512
+        ]
+      },
+      {
+        "name": "tree-norm.png",
+        "packed": true,
+        "path": "//texture\\tree-norm.png",
+        "size": [
+          512,
+          512
+        ]
+      },
+      {
+        "name": "tree-spec.png",
+        "packed": true,
+        "path": "//texture\\tree-spec.png",
+        "size": [
+          512,
+          512
+        ]
+      }
+    ],
+    "materials": [
+      "Monster",
+      "Tree"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "giant-rat\\rat_2.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 7,
+    "triangles_before_modifiers": 6190,
+    "armatures": [
+      {
+        "name": "Armature",
+        "bones": 39
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack.000",
+        "frames": [
+          0.0,
+          21.0
+        ]
+      },
+      {
+        "name": "Attack.001",
+        "frames": [
+          0.0,
+          21.0
+        ]
+      },
+      {
+        "name": "Attack.002",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Attack.003",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Attack.Begin",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Attack.End",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Die",
+        "frames": [
+          0.0,
+          27.0
+        ]
+      },
+      {
+        "name": "Hit",
+        "frames": [
+          0.0,
+          10.0
+        ]
+      },
+      {
+        "name": "Idle.000",
+        "frames": [
+          0.0,
+          1553.0
+        ]
+      },
+      {
+        "name": "Idle.001",
+        "frames": [
+          0.0,
+          90.0
+        ]
+      },
+      {
+        "name": "Idle.002",
+        "frames": [
+          0.0,
+          90.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          10.0
+        ]
+      },
+      {
+        "name": "Stand",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          28.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [
+      "License"
+    ],
+    "embedded_text_review": [
+      {
+        "name": "License",
+        "looks_like_python": false,
+        "license_text": "Model: Evil Giant Rat\nAuthor: \u010cestm\u00edr Dammer\nConcept: Alan Perreira\nLicense: CC0 - Public Domain\nProject: www.kelgar.org"
+      }
+    ],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "hair",
+        "packed": true,
+        "path": "//..\\textures\\rat-hair.png",
+        "size": [
+          512,
+          512
+        ]
+      },
+      {
+        "name": "rat-body",
+        "packed": true,
+        "path": "//rat-body.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "rat-body-AO.png",
+        "packed": true,
+        "path": "//rat-body-AO.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "rat-body-Normalmap.png",
+        "packed": true,
+        "path": "//rat-body-Normalmap.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "rat-head",
+        "packed": true,
+        "path": "//rat-head.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "rat-head-AO.png",
+        "packed": true,
+        "path": "//rat-head-AO.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "rat-head-Normalmap.png",
+        "packed": true,
+        "path": "//rat-head-Normalmap.png",
+        "size": [
+          1024,
+          1024
+        ]
+      }
+    ],
+    "materials": [
+      "body",
+      "head",
+      "head.001",
+      "Material",
+      "Material.001",
+      "Material.002",
+      "Teeth"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "goblin\\goblin-FINAL.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 8,
+    "triangles_before_modifiers": 3746,
+    "armatures": [
+      {
+        "name": "Armature",
+        "bones": 57
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack.000",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Attack.001",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Attack.002",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Die",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          1468.0
+        ]
+      },
+      {
+        "name": "Idle.000",
+        "frames": [
+          0.0,
+          90.0
+        ]
+      },
+      {
+        "name": "Idle.001",
+        "frames": [
+          0.0,
+          90.0
+        ]
+      },
+      {
+        "name": "Idle.002",
+        "frames": [
+          0.0,
+          476.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          32.0
+        ]
+      },
+      {
+        "name": "Stand",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "TPose",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          40.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [
+      "Animations",
+      "License"
+    ],
+    "embedded_text_review": [
+      {
+        "name": "Animations",
+        "looks_like_python": false,
+        "license_text": null
+      },
+      {
+        "name": "License",
+        "looks_like_python": false,
+        "license_text": "Model: Goblin\nAuthor: \u010cestm\u00edr Dammer\nIdea: Torben Wiechmann\nProject: www.kelgar.org\nLicense: CC0 Public Domain"
+      }
+    ],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "glowmap",
+        "packed": true,
+        "path": "//gob-glowmap.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "gobli-tex",
+        "packed": true,
+        "path": "//texture\\goblin-tex.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "goblin-norm",
+        "packed": true,
+        "path": "//texture\\goblin-norm.png",
+        "size": [
+          1024,
+          1024
+        ]
+      }
+    ],
+    "materials": [
+      "Eyes",
+      "goblin",
+      "Gold"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "mudeater\\mudeater.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 7,
+    "triangles_before_modifiers": 4274,
+    "armatures": [
+      {
+        "name": "Armature",
+        "bones": 65
+      }
+    ],
+    "actions": [
+      {
+        "name": "BattleStance.Unarmed.L",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "BattleStance.Unarmed.R",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedL.Attack.000",
+        "frames": [
+          0.0,
+          10.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedL.Attack.001",
+        "frames": [
+          0.0,
+          10.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedL.Backward",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedL.Begin",
+        "frames": [
+          0.0,
+          5.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedL.End",
+        "frames": [
+          0.0,
+          5.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedL.Forward",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedL.StrafeL",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedL.StrafeR",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedL.SwitchToR",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedR.Attack.000",
+        "frames": [
+          0.0,
+          10.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedR.Attack.001",
+        "frames": [
+          0.0,
+          10.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedR.Backward",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedR.Begin",
+        "frames": [
+          0.0,
+          5.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedR.End",
+        "frames": [
+          0.0,
+          5.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedR.Forward",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedR.StrafeL",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedR.StrafeR",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Fight.UnarmedR.SwitchToL",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Idle.Submissive.000",
+        "frames": [
+          0.0,
+          120.0
+        ]
+      },
+      {
+        "name": "Idle.Submissive.001",
+        "frames": [
+          0.0,
+          120.0
+        ]
+      },
+      {
+        "name": "Idle.Submissive.002",
+        "frames": [
+          0.0,
+          120.0
+        ]
+      },
+      {
+        "name": "Idle.Submissive.003",
+        "frames": [
+          0.0,
+          120.0
+        ]
+      },
+      {
+        "name": "Lie",
+        "frames": [
+          0.0,
+          287.0
+        ]
+      },
+      {
+        "name": "Stand",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Stand.Submissive",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Walk.Male.L",
+        "frames": [
+          0.0,
+          47.0
+        ]
+      },
+      {
+        "name": "Walk.Male.R",
+        "frames": [
+          0.0,
+          47.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [
+      "license.txt."
+    ],
+    "embedded_text_review": [
+      {
+        "name": "license.txt.",
+        "looks_like_python": false,
+        "license_text": "License: Creative Commons Public Domain (CC0)\nModel: Mudeater\nCreated by: \u010cestm\u00edr Dammer\nConcept: Winter D. \nProject: www.kelgar.org"
+      }
+    ],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Bags",
+        "packed": true,
+        "path": "//Bags-Tex.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Bags-AO.png",
+        "packed": true,
+        "path": "//Bags-AO.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Bags-normal.png",
+        "packed": true,
+        "path": "//Bags-normal.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "caucasian-male-young.png.001",
+        "packed": true,
+        "path": "//caucasian-male-young.png",
+        "size": [
+          2048,
+          2048
+        ]
+      },
+      {
+        "name": "hair-color.png.001",
+        "packed": true,
+        "path": "//hair-color.png",
+        "size": [
+          512,
+          512
+        ]
+      },
+      {
+        "name": "hair.png.001",
+        "packed": true,
+        "path": "//hair.png",
+        "size": [
+          512,
+          512
+        ]
+      },
+      {
+        "name": "Normal",
+        "packed": true,
+        "path": "//Body-Normal.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "shirt",
+        "packed": true,
+        "path": "//shirt-Tex.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "shirt-AO.png",
+        "packed": true,
+        "path": "//shirt-AO.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "shirt-normal.png",
+        "packed": true,
+        "path": "//shirt-normal.png",
+        "size": [
+          1024,
+          1024
+        ]
+      }
+    ],
+    "materials": [
+      "Bags",
+      "Hair",
+      "MmudeaterShortsleeveMat",
+      "MmudeaterSkin.001"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "rabbit\\rabbit.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 3,
+    "triangles_before_modifiers": 2642,
+    "armatures": [
+      {
+        "name": "Armature",
+        "bones": 37
+      }
+    ],
+    "actions": [
+      {
+        "name": "Basic",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Dead",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Dying.000",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Dying.001",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Guard",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Guarding",
+        "frames": [
+          0.0,
+          400.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          24.0
+        ]
+      },
+      {
+        "name": "Running",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Sitting.000",
+        "frames": [
+          0.0,
+          550.0
+        ]
+      },
+      {
+        "name": "Sitting.001",
+        "frames": [
+          0.0,
+          550.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [
+      "License"
+    ],
+    "embedded_text_review": [
+      {
+        "name": "License",
+        "looks_like_python": false,
+        "license_text": "Model: Rabbit\nAuthor: \u010cestm\u00edr Dammer\nProject: www.kelgar.org\nIdea by Rick Hoppmann & Keppu\nLicense: CC0 - Public Domain"
+      }
+    ],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Fur-skin",
+        "packed": true,
+        "path": "//texture\\Fur-skin.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "rabbit-NORM",
+        "packed": true,
+        "path": "//texture\\rabbit-NORM.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "rabbot-skinn",
+        "packed": true,
+        "path": "//texture\\rabbit-skinn.png",
+        "size": [
+          1024,
+          1024
+        ]
+      }
+    ],
+    "materials": [
+      "Fur",
+      "Fur.001"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "spider\\Spider.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 448,
+    "armatures": [
+      {
+        "name": "Armature",
+        "bones": 27
+      }
+    ],
+    "actions": [
+      {
+        "name": "SpiderStand",
+        "frames": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "SpiderWalk",
+        "frames": [
+          1.0,
+          20.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Spider.png",
+        "packed": false,
+        "path": "//..\\4 - Textures\\Actors\\Critters\\Spider.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Spider"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "undead-squirrel\\squirrel-anim.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 6,
+    "triangles_before_modifiers": 5522,
+    "armatures": [
+      {
+        "name": "Armature",
+        "bones": 34
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack.000",
+        "frames": [
+          0.0,
+          22.0
+        ]
+      },
+      {
+        "name": "Attack.001",
+        "frames": [
+          0.0,
+          22.0
+        ]
+      },
+      {
+        "name": "Attack.002",
+        "frames": [
+          0.0,
+          22.0
+        ]
+      },
+      {
+        "name": "Attack.003",
+        "frames": [
+          0.0,
+          22.0
+        ]
+      },
+      {
+        "name": "Attack.Begin",
+        "frames": [
+          0.0,
+          7.0
+        ]
+      },
+      {
+        "name": "Attack.End",
+        "frames": [
+          0.0,
+          7.0
+        ]
+      },
+      {
+        "name": "Attack.Hold",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Die.000",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Die.001",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          2228.0
+        ]
+      },
+      {
+        "name": "Idle.000",
+        "frames": [
+          0.0,
+          19.0
+        ]
+      },
+      {
+        "name": "Idle.001",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Idle.002",
+        "frames": [
+          0.0,
+          51.0
+        ]
+      },
+      {
+        "name": "Idle.003",
+        "frames": [
+          0.0,
+          77.0
+        ]
+      },
+      {
+        "name": "Idle.004",
+        "frames": [
+          0.0,
+          38.0
+        ]
+      },
+      {
+        "name": "Jump.Attack",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Jump.Begin",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Jump.End",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Jump.Fly",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Pain.000",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "Pain.001",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "Pain.002",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "Pain.003",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Run.Begin",
+        "frames": [
+          0.0,
+          8.0
+        ]
+      },
+      {
+        "name": "Run.End",
+        "frames": [
+          0.0,
+          8.0
+        ]
+      },
+      {
+        "name": "Stand",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "name": "Stand.001",
+        "frames": [
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [
+      "Animations",
+      "lecense"
+    ],
+    "embedded_text_review": [
+      {
+        "name": "Animations",
+        "looks_like_python": false,
+        "license_text": null
+      },
+      {
+        "name": "lecense",
+        "looks_like_python": false,
+        "license_text": null
+      }
+    ],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Body",
+        "packed": false,
+        "path": "//squirrel-body.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Head",
+        "packed": false,
+        "path": "//squirrel-head.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "squirrel-body-norm.png",
+        "packed": false,
+        "path": "//squirrel-body-norm.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "squirrel-head-norm.png",
+        "packed": false,
+        "path": "//squirrel-head-norm.png",
+        "size": [
+          1024,
+          1024
+        ]
+      }
+    ],
+    "materials": [
+      "Body",
+      "Body.001",
+      "Ear-Hair",
+      "Head"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "wolf\\dog2.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 5358,
+    "armatures": [
+      {
+        "name": "Armature",
+        "bones": 36
+      }
+    ],
+    "actions": [],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Normal1",
+        "packed": false,
+        "path": "//dog2Normal.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture1",
+        "packed": false,
+        "path": "//dog2Color.png",
+        "size": [
+          1024,
+          1024
+        ]
+      }
+    ],
+    "materials": [
+      "dog2Mat"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "crab\\source\\minecrab.fbx",
+    "source_modified": false,
+    "mesh_objects": [
+      "cadre",
+      "chariot_02",
+      "crabe",
+      "yeux"
+    ],
+    "armatures": [
+      {
+        "name": "Armature",
+        "bones": 45
+      }
+    ],
+    "actions": [
+      {
+        "name": "Armature|attaque|Baked frames",
+        "frames": [
+          1.0,
+          64.00000762939453
+        ]
+      },
+      {
+        "name": "Armature|cacher|Baked frames",
+        "frames": [
+          1.0,
+          36.000003814697266
+        ]
+      },
+      {
+        "name": "Armature|hit|Baked frames",
+        "frames": [
+          1.0,
+          65.00000762939453
+        ]
+      },
+      {
+        "name": "Armature|idle_cache|Baked frames",
+        "frames": [
+          1.0,
+          81.00000762939453
+        ]
+      },
+      {
+        "name": "Armature|idle|Baked frames",
+        "frames": [
+          1.0,
+          81.00000762939453
+        ]
+      },
+      {
+        "name": "Armature|mort|Baked frames",
+        "frames": [
+          1.0,
+          47.000003814697266
+        ]
+      },
+      {
+        "name": "Armature|rentrer_sol|Baked frames",
+        "frames": [
+          1.0,
+          46.0
+        ]
+      },
+      {
+        "name": "Armature|run_cache|Baked frames",
+        "frames": [
+          1.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Armature|sortie_attaque|Baked frames",
+        "frames": [
+          1.0,
+          64.00000762939453
+        ]
+      },
+      {
+        "name": "Armature|uppercut|Baked frames",
+        "frames": [
+          1.0,
+          46.0
+        ]
+      }
+    ],
+    "images": [
+      {
+        "name": "Diffuse Texture",
+        "path": "C:\\Games\\CoastalFoundation\\art\\library\\source\\crab\\source\\minecrab_FBX_Textures\\dummyPlank.png",
+        "size": [
+          512,
+          512
+        ]
+      },
+      {
+        "name": "Diffuse Texture.001",
+        "path": "C:\\Games\\CoastalFoundation\\art\\library\\source\\crab\\source\\minecrab_FBX_Textures\\metal.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Diffuse Texture.002",
+        "path": "C:\\Games\\CoastalFoundation\\art\\library\\source\\crab\\source\\minecrab_FBX_Textures\\minecrabTex.png",
+        "size": [
+          256,
+          256
+        ]
+      },
+      {
+        "name": "Diffuse Texture.003",
+        "path": "C:\\Games\\CoastalFoundation\\art\\library\\source\\crab\\source\\minecrab_FBX_Textures\\dummyPlank.png",
+        "size": [
+          512,
+          512
+        ]
+      },
+      {
+        "name": "Diffuse Texture.004",
+        "path": "C:\\Games\\CoastalFoundation\\art\\library\\source\\crab\\source\\minecrab_FBX_Textures\\minecrabTex.png",
+        "size": [
+          256,
+          256
+        ]
+      },
+      {
+        "name": "Diffuse Texture.005",
+        "path": "C:\\Games\\CoastalFoundation\\art\\library\\source\\crab\\source\\minecrab_FBX_Textures\\minecrabTex.png",
+        "size": [
+          256,
+          256
+        ]
+      },
+      {
+        "name": "Diffuse Texture.006",
+        "path": "C:\\Games\\CoastalFoundation\\art\\library\\source\\crab\\source\\minecrab_FBX_Textures\\minecrabTex.png",
+        "size": [
+          256,
+          256
+        ]
+      }
+    ],
+    "integration_status": "read-only FBX import; no export or game integration"
+  },
+  {
+    "file": "quaternius-animals\\Blends\\Alpaca.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 2060,
+    "armatures": [
+      {
+        "name": "AnimalArmature",
+        "bones": 46
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack_Headbutt",
+        "frames": [
+          0.0,
+          24.0
+        ]
+      },
+      {
+        "name": "Attack_Kick",
+        "frames": [
+          0.0,
+          24.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Eating",
+        "frames": [
+          0.0,
+          180.0
+        ]
+      },
+      {
+        "name": "Gallop",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Gallop_Jump",
+        "frames": [
+          0.0,
+          42.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_Headlow",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Left",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Right",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Jump_toIdle",
+        "frames": [
+          0.0,
+          46.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Eyes_Black",
+      "Eyes_White",
+      "Hooves",
+      "Main",
+      "Main_Dark",
+      "Main_Light",
+      "Muzzle"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-animals\\Blends\\Bull.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 2418,
+    "armatures": [
+      {
+        "name": "AnimalArmature",
+        "bones": 42
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack_Headbutt",
+        "frames": [
+          0.0,
+          31.0
+        ]
+      },
+      {
+        "name": "Attack_Kick",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Eating",
+        "frames": [
+          0.0,
+          180.0
+        ]
+      },
+      {
+        "name": "Gallop",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Gallop_Jump",
+        "frames": [
+          0.0,
+          44.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_Headlow",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Left",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Right",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Jump_toIdle",
+        "frames": [
+          0.0,
+          52.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Cow_side.png",
+        "packed": false,
+        "path": "//..\\..\\..\\..\\..\\..\\Cow_side.png",
+        "size": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Eye_Black",
+      "Eye_White",
+      "Hooves",
+      "Horns",
+      "Main",
+      "Main_Light",
+      "Muzzle"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-animals\\Blends\\Cow.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 2450,
+    "armatures": [
+      {
+        "name": "AnimalArmature",
+        "bones": 42
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack_Headbutt",
+        "frames": [
+          0.0,
+          31.0
+        ]
+      },
+      {
+        "name": "Attack_Kick",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Eating",
+        "frames": [
+          0.0,
+          180.0
+        ]
+      },
+      {
+        "name": "Gallop",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Gallop_Jump",
+        "frames": [
+          0.0,
+          44.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_Headlow",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Left",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Right",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Jump_toIdle",
+        "frames": [
+          0.0,
+          52.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Cow_side.png",
+        "packed": false,
+        "path": "//..\\..\\..\\..\\..\\..\\Cow_side.png",
+        "size": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Eye_Black",
+      "Eye_White",
+      "Hooves",
+      "Horns",
+      "Main",
+      "Main_Light",
+      "Muzzle"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-animals\\Blends\\Deer.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 2098,
+    "armatures": [
+      {
+        "name": "AnimalArmature",
+        "bones": 46
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack_Headbutt",
+        "frames": [
+          0.0,
+          24.0
+        ]
+      },
+      {
+        "name": "Attack_Kick",
+        "frames": [
+          0.0,
+          24.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Eating",
+        "frames": [
+          0.0,
+          180.0
+        ]
+      },
+      {
+        "name": "Gallop",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Gallop_Jump",
+        "frames": [
+          0.0,
+          42.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_Headlow",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Left",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Right",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Jump_toIdle",
+        "frames": [
+          0.0,
+          46.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Eye_Black",
+      "Eye_Lighter",
+      "Eye_White",
+      "Hooves",
+      "Main",
+      "Main_Dark",
+      "Main_Light",
+      "Muzzle"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-animals\\Blends\\Donkey.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 2000,
+    "armatures": [
+      {
+        "name": "AnimalArmature",
+        "bones": 50
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack_Headbutt",
+        "frames": [
+          0.0,
+          48.0
+        ]
+      },
+      {
+        "name": "Attack_Kick",
+        "frames": [
+          0.0,
+          24.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Eating",
+        "frames": [
+          0.0,
+          180.0
+        ]
+      },
+      {
+        "name": "Gallop",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Gallop_Jump",
+        "frames": [
+          0.0,
+          42.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_Headlow",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Left",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Right",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Jump_toIdle",
+        "frames": [
+          0.0,
+          46.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Eye_Dark",
+      "Eye_White",
+      "Hair",
+      "Hooves",
+      "Main",
+      "Main_Dark",
+      "Main_Light",
+      "Muzzle"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-animals\\Blends\\Fox.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 1848,
+    "armatures": [
+      {
+        "name": "AnimalArmature",
+        "bones": 51
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack",
+        "frames": [
+          0.0,
+          40.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          32.0
+        ]
+      },
+      {
+        "name": "Eating",
+        "frames": [
+          0.0,
+          76.0
+        ]
+      },
+      {
+        "name": "Gallop",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Gallop_Jump",
+        "frames": [
+          0.0,
+          28.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2_HeadLow",
+        "frames": [
+          0.0,
+          120.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Left",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Right",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Jump_ToIdle",
+        "frames": [
+          0.0,
+          40.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          32.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Black",
+      "Eyes",
+      "Grey",
+      "Main",
+      "Main_Light"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-animals\\Blends\\Horse.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 2182,
+    "armatures": [
+      {
+        "name": "AnimalArmature",
+        "bones": 50
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack_Headbutt",
+        "frames": [
+          0.0,
+          31.0
+        ]
+      },
+      {
+        "name": "Attack_Kick",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Eating",
+        "frames": [
+          0.0,
+          180.0
+        ]
+      },
+      {
+        "name": "Gallop",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Gallop_Jump",
+        "frames": [
+          0.0,
+          44.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_Headlow",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Left",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Right",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Jump_toIdle",
+        "frames": [
+          0.0,
+          52.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Eye_Black",
+      "Eye_White",
+      "Hair",
+      "Hooves",
+      "Main",
+      "Main_Dark",
+      "Main_Light",
+      "Muzzle"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-animals\\Blends\\Horse_White.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 2182,
+    "armatures": [
+      {
+        "name": "AnimalArmature",
+        "bones": 50
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack_Headbutt",
+        "frames": [
+          0.0,
+          31.0
+        ]
+      },
+      {
+        "name": "Attack_Kick",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Eating",
+        "frames": [
+          0.0,
+          180.0
+        ]
+      },
+      {
+        "name": "Gallop",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Gallop_Jump",
+        "frames": [
+          0.0,
+          44.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_Headlow",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Left",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Right",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Jump_toIdle",
+        "frames": [
+          0.0,
+          52.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Eye_Black",
+      "Eye_White",
+      "Hair",
+      "Hooves",
+      "Main",
+      "Main_Light",
+      "Muzzle"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-animals\\Blends\\Husky.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 1920,
+    "armatures": [
+      {
+        "name": "AnimalArmature",
+        "bones": 49
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack",
+        "frames": [
+          0.0,
+          36.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          32.0
+        ]
+      },
+      {
+        "name": "Eating",
+        "frames": [
+          0.0,
+          80.0
+        ]
+      },
+      {
+        "name": "Gallop",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Gallop_Jump",
+        "frames": [
+          0.0,
+          28.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2_HeadLow",
+        "frames": [
+          0.0,
+          120.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Left",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Right",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Jump_ToIdle",
+        "frames": [
+          0.0,
+          40.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          32.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Material",
+      "Material.001",
+      "Material.002",
+      "Material.003",
+      "Material.004",
+      "Material.006"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-animals\\Blends\\ShibaInu.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 1950,
+    "armatures": [
+      {
+        "name": "AnimalArmature",
+        "bones": 46
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack",
+        "frames": [
+          0.0,
+          36.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          32.0
+        ]
+      },
+      {
+        "name": "Eating",
+        "frames": [
+          0.0,
+          80.0
+        ]
+      },
+      {
+        "name": "Gallop",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Gallop_Jump",
+        "frames": [
+          0.0,
+          28.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2_HeadLow",
+        "frames": [
+          0.0,
+          120.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Left",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Right",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Jump_ToIdle",
+        "frames": [
+          0.0,
+          40.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          32.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Black",
+      "Eyes_Black",
+      "Eyes_Pupil",
+      "Eyes_White",
+      "Main",
+      "Main_Light"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-animals\\Blends\\Stag.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 2,
+    "triangles_before_modifiers": 3670,
+    "armatures": [
+      {
+        "name": "AnimalArmature",
+        "bones": 38
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack_Headbutt",
+        "frames": [
+          0.0,
+          24.0
+        ]
+      },
+      {
+        "name": "Attack_Kick",
+        "frames": [
+          0.0,
+          24.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          33.0
+        ]
+      },
+      {
+        "name": "Eating",
+        "frames": [
+          0.0,
+          363.0
+        ]
+      },
+      {
+        "name": "Gallop",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Gallop_Jump",
+        "frames": [
+          0.0,
+          42.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_Headlow",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Left",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Right",
+        "frames": [
+          0.0,
+          16.0
+        ]
+      },
+      {
+        "name": "Jump_toIdle",
+        "frames": [
+          0.0,
+          46.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Eye_Lighter",
+      "Material",
+      "Material.001",
+      "Material.003",
+      "Material.010",
+      "Material.011"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-animals\\Blends\\Wolf.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 1962,
+    "armatures": [
+      {
+        "name": "AnimalArmature",
+        "bones": 51
+      }
+    ],
+    "actions": [
+      {
+        "name": "Attack",
+        "frames": [
+          0.0,
+          40.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          32.0
+        ]
+      },
+      {
+        "name": "Eating",
+        "frames": [
+          0.0,
+          76.0
+        ]
+      },
+      {
+        "name": "Gallop",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Gallop_Jump",
+        "frames": [
+          0.0,
+          28.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2",
+        "frames": [
+          0.0,
+          100.0
+        ]
+      },
+      {
+        "name": "Idle_2_HeadLow",
+        "frames": [
+          0.0,
+          120.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Left",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Idle_HitReact_Right",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Jump_ToIdle",
+        "frames": [
+          0.0,
+          40.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          32.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "WolfSide.png",
+        "packed": false,
+        "path": "//..\\..\\..\\..\\..\\..\\WolfSide.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Eyes_Black",
+      "Main",
+      "Main_Light",
+      "Nose"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\Alien.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 7676,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\Birb.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 5704,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\BlueDemon.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 5800,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\Bunny.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 2,
+    "triangles_before_modifiers": 8284,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 49
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\Cactoro.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 6398,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\Demon.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 2,
+    "triangles_before_modifiers": 6712,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\Dino.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 5414,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\Fish.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 6854,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\Frog.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 5016,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\Monkroose.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 5824,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Material"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\MushroomKing.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 2,
+    "triangles_before_modifiers": 6044,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\Ninja.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 5964,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\Orc.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 2,
+    "triangles_before_modifiers": 7344,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\Orc_Skull.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 2,
+    "triangles_before_modifiers": 7364,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\Tribal.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 6620,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Big\\Blends\\Yeti.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 6094,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          23.0
+        ]
+      },
+      {
+        "name": "Duck",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          18.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "Jump_Idle",
+        "frames": [
+          0.0,
+          15.0
+        ]
+      },
+      {
+        "name": "Jump_Land",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Run",
+        "frames": [
+          0.0,
+          17.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Wave",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      },
+      {
+        "name": "Weapon",
+        "frames": [
+          0.0,
+          26.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          50.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": false,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          1024,
+          1024
+        ]
+      },
+      {
+        "name": "Texture.png",
+        "packed": false,
+        "path": "//..\\..\\..\\Game Kits\\Platformer Game Kit - Dec 2021\\Character\\Blends\\\u00a0\\Blender\\DavidThorn\\Library\\Large\\Texture.png",
+        "size": [
+          0,
+          0
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\Alien.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 2,
+    "triangles_before_modifiers": 2616,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\Birb.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 3164,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\Cactoro.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 2,
+    "triangles_before_modifiers": 2388,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\Cat.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 1772,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\Chicken.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 2904,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\Dog.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 1392,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\Fish.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 3,
+    "triangles_before_modifiers": 3346,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\GreenBlob.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 2,
+    "triangles_before_modifiers": 1520,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\GreenSpikyBlob.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 2,
+    "triangles_before_modifiers": 4888,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\Mushnub.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 1248,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\Mushnub_Evolved.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 3,
+    "triangles_before_modifiers": 3072,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png.001",
+        "packed": true,
+        "path": "//..\\..\\Big\\Blends\\Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\Ninja.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 2160,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\Orc.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 2296,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\Pigeon.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 2184,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\PinkBlob.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 2,
+    "triangles_before_modifiers": 1030,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\Wizard.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 2,
+    "triangles_before_modifiers": 1674,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Blob\\Blends\\Yeti.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 2136,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 4
+      }
+    ],
+    "actions": [
+      {
+        "name": "Bite_Front",
+        "frames": [
+          0.0,
+          12.0
+        ]
+      },
+      {
+        "name": "Dance",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          11.0
+        ]
+      },
+      {
+        "name": "HitRecieve",
+        "frames": [
+          0.0,
+          9.0
+        ]
+      },
+      {
+        "name": "Idle",
+        "frames": [
+          0.0,
+          60.0
+        ]
+      },
+      {
+        "name": "Jump",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          30.0
+        ]
+      },
+      {
+        "name": "Walk",
+        "frames": [
+          0.0,
+          13.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          29.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Alpaking.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 2508,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 13
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Alpaking_Evolved.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 4684,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 13
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Armabee.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 2280,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 13
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Armabee_Evolved.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 3200,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 13
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Demon.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 3,
+    "triangles_before_modifiers": 4784,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Dragon.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 4562,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 13
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Material"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Dragon_Evolved.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 7440,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 46
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          45.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          45.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          40.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Ghost.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 3192,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 38
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Ghost_Skull.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 3146,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 38
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Glub.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 2528,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 13
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Glub_Evolved.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 4452,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 13
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Goleling.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 3696,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 13
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Goleling_Evolved.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 5864,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 13
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Hywirl.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 3296,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 38
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Pigeon.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 3512,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 13
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Squidle.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 4880,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 43
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  },
+  {
+    "file": "quaternius-monsters\\Flying\\Blends\\Tribal.blend",
+    "opened_with_autoexec_disabled": true,
+    "source_modified": false,
+    "mesh_objects": 1,
+    "triangles_before_modifiers": 5252,
+    "armatures": [
+      {
+        "name": "CharacterArmature",
+        "bones": 38
+      }
+    ],
+    "actions": [
+      {
+        "name": "Death",
+        "frames": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "name": "Fast_Flying",
+        "frames": [
+          0.0,
+          25.0
+        ]
+      },
+      {
+        "name": "Flying_Idle",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Headbutt",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "HitReact",
+        "frames": [
+          0.0,
+          14.0
+        ]
+      },
+      {
+        "name": "No",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Punch",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      },
+      {
+        "name": "Yes",
+        "frames": [
+          0.0,
+          35.0
+        ]
+      }
+    ],
+    "embedded_text_blocks_not_executed": [],
+    "embedded_text_review": [],
+    "objects_with_drivers": [],
+    "images": [
+      {
+        "name": "Atlas_Monsters.png",
+        "packed": true,
+        "path": "//Atlas_Monsters.png",
+        "size": [
+          32,
+          32
+        ]
+      }
+    ],
+    "materials": [
+      "Atlas"
+    ],
+    "integration_status": "not exported, rendered, retargeted, or tested in the game; legacy materials may need rebuilding"
+  }
+]

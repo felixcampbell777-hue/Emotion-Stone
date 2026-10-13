@@ -1,0 +1,25 @@
+{
+  "id": "mother",
+  "display_name": "Mother",
+  "rig_family": "humanoid_v1",
+  "modules": {
+    "hair": "headscarf",
+    "outfit": "workdress",
+    "equipment": "none",
+    "left_arm": "prototype",
+    "footwear": "bare"
+  },
+  "palette": {
+    "skin": "#E6B78D",
+    "hair": "#865E3D",
+    "dress": "#9A733C",
+    "leather": "#725136",
+    "metal": "#747674",
+    "gem": "#247BCB",
+    "socks": "#D6D0BF",
+    "cream": "#DDD0B5",
+    "rust": "#8B402B",
+    "wrap": "#252528",
+    "flame": "#F1882D"
+  }
+}

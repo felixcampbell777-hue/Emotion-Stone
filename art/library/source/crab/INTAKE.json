@@ -1,0 +1,46 @@
+{
+  "id": "crab",
+  "type": "creature",
+  "provider": "OpenGameArt",
+  "author": "CoinCoin",
+  "license": "CC-BY-4.0",
+  "biomes": [
+    "beach"
+  ],
+  "note": "Animated crab; appropriate beach enemy after clip review.",
+  "source": "https://opengameart.org/content/animated-crab",
+  "downloads": [
+    {
+      "url": "https://opengameart.org/sites/default/files/crab.zip",
+      "bytes": 8296851,
+      "sha256": "bf5a0c5c771d2be25903543eeb2cabdeea8f2b01b2c0ffe79a40fd9a78867909",
+      "publisher_md5": null
+    }
+  ],
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:46:42.521946+00:00",
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "crab\\source\\minecrab.fbx",
+      "bytes": 6662144,
+      "sha256": "a52d32f8210cb0f6e35933980b7674b2e4fff15e79744761fd8325c6bf3bba75"
+    },
+    {
+      "path": "crab\\textures\\dummyPlank.png",
+      "bytes": 54644,
+      "sha256": "bc115b81dab5145b467be5d8cc3529f4b840e58aa27bb4a07728bc4492080c73"
+    },
+    {
+      "path": "crab\\textures\\minecrabTex.png",
+      "bytes": 25912,
+      "sha256": "4de776abc315940b9b1c99bb55fe5dc146fe8a6ca5d780d5c8a6855df1588c26"
+    },
+    {
+      "path": "crab\\textures\\metal.png",
+      "bytes": 1553657,
+      "sha256": "35d3bdf7d334a2818048979e22ec9e76f7f25176049e194c28b805ea355644cf"
+    }
+  ]
+}

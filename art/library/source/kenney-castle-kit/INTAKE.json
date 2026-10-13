@@ -1,0 +1,1230 @@
+{
+  "id": "kenney-castle-kit",
+  "type": "modular-kit",
+  "provider": "Kenney",
+  "author": "Kenney",
+  "license": "CC0-1.0",
+  "biomes": [
+    "castle"
+  ],
+  "source": "https://kenney.nl/assets/castle-kit",
+  "note": "Publisher advertises 75 assets; simple stylized shapes, useful kitbash base.",
+  "kenney": true,
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:44:49.411180+00:00",
+  "downloads": [
+    {
+      "url": "https://kenney.nl/media/pages/assets/castle-kit/a395102d20-1711543616/kenney_castle-kit.zip",
+      "bytes": 2232589,
+      "sha256": "921f3f73927bb23106cae34bc21d5ab4b033a9fc120475e96f714a406e3169df",
+      "publisher_md5": null
+    }
+  ],
+  "excluded_files": [
+    "Models/FBX format/bridge-draw.fbx",
+    "Models/FBX format/bridge-straight-pillar.fbx",
+    "Models/FBX format/bridge-straight.fbx",
+    "Models/FBX format/door.fbx",
+    "Models/FBX format/flag-banner-long.fbx",
+    "Models/FBX format/flag-banner-short.fbx",
+    "Models/FBX format/flag-pennant.fbx",
+    "Models/FBX format/flag-wide.fbx",
+    "Models/FBX format/flag.fbx",
+    "Models/FBX format/gate.fbx",
+    "Models/FBX format/ground-hills.fbx",
+    "Models/FBX format/ground.fbx",
+    "Models/FBX format/metal-gate.fbx",
+    "Models/FBX format/rocks-large.fbx",
+    "Models/FBX format/rocks-small.fbx",
+    "Models/FBX format/siege-ballista-demolished.fbx",
+    "Models/FBX format/siege-ballista.fbx",
+    "Models/FBX format/siege-catapult-demolished.fbx",
+    "Models/FBX format/siege-catapult.fbx",
+    "Models/FBX format/siege-ram-demolished.fbx",
+    "Models/FBX format/siege-ram.fbx",
+    "Models/FBX format/siege-tower-demolished.fbx",
+    "Models/FBX format/siege-tower.fbx",
+    "Models/FBX format/siege-trebuchet-demolished.fbx",
+    "Models/FBX format/siege-trebuchet.fbx",
+    "Models/FBX format/stairs-stone-square.fbx",
+    "Models/FBX format/stairs-stone.fbx",
+    "Models/FBX format/tower-base.fbx",
+    "Models/FBX format/tower-hexagon-base.fbx",
+    "Models/FBX format/tower-hexagon-mid.fbx",
+    "Models/FBX format/tower-hexagon-roof-secondary.fbx",
+    "Models/FBX format/tower-hexagon-roof.fbx",
+    "Models/FBX format/tower-hexagon-top-wood.fbx",
+    "Models/FBX format/tower-hexagon-top.fbx",
+    "Models/FBX format/tower-slant-roof.fbx",
+    "Models/FBX format/tower-square-arch.fbx",
+    "Models/FBX format/tower-square-base-border.fbx",
+    "Models/FBX format/tower-square-base-color.fbx",
+    "Models/FBX format/tower-square-base.fbx",
+    "Models/FBX format/tower-square-mid-color.fbx",
+    "Models/FBX format/tower-square-mid-door.fbx",
+    "Models/FBX format/tower-square-mid-open-simple.fbx",
+    "Models/FBX format/tower-square-mid-open.fbx",
+    "Models/FBX format/tower-square-mid-windows.fbx",
+    "Models/FBX format/tower-square-mid.fbx",
+    "Models/FBX format/tower-square-roof.fbx",
+    "Models/FBX format/tower-square-top-color.fbx",
+    "Models/FBX format/tower-square-top-roof-high-windows.fbx",
+    "Models/FBX format/tower-square-top-roof-high.fbx",
+    "Models/FBX format/tower-square-top-roof-rounded.fbx",
+    "Models/FBX format/tower-square-top-roof.fbx",
+    "Models/FBX format/tower-square-top.fbx",
+    "Models/FBX format/tower-square.fbx",
+    "Models/FBX format/tower-top.fbx",
+    "Models/FBX format/tree-large.fbx",
+    "Models/FBX format/tree-log.fbx",
+    "Models/FBX format/tree-small.fbx",
+    "Models/FBX format/tree-trunk.fbx",
+    "Models/FBX format/wall-corner-half-tower.fbx",
+    "Models/FBX format/wall-corner-half.fbx",
+    "Models/FBX format/wall-corner-slant.fbx",
+    "Models/FBX format/wall-corner.fbx",
+    "Models/FBX format/wall-doorway.fbx",
+    "Models/FBX format/wall-half-modular.fbx",
+    "Models/FBX format/wall-half.fbx",
+    "Models/FBX format/wall-narrow-corner.fbx",
+    "Models/FBX format/wall-narrow-gate.fbx",
+    "Models/FBX format/wall-narrow-stairs-rail.fbx",
+    "Models/FBX format/wall-narrow-stairs.fbx",
+    "Models/FBX format/wall-narrow-wood-fence.fbx",
+    "Models/FBX format/wall-narrow-wood.fbx",
+    "Models/FBX format/wall-narrow.fbx",
+    "Models/FBX format/wall-pillar.fbx",
+    "Models/FBX format/wall-stud.fbx",
+    "Models/FBX format/wall-to-narrow.fbx",
+    "Models/FBX format/wall.fbx",
+    "Models/OBJ format/bridge-draw.mtl",
+    "Models/OBJ format/bridge-draw.obj",
+    "Models/OBJ format/bridge-straight-pillar.mtl",
+    "Models/OBJ format/bridge-straight-pillar.obj",
+    "Models/OBJ format/bridge-straight.mtl",
+    "Models/OBJ format/bridge-straight.obj",
+    "Models/OBJ format/door.mtl",
+    "Models/OBJ format/door.obj",
+    "Models/OBJ format/flag-banner-long.mtl",
+    "Models/OBJ format/flag-banner-long.obj",
+    "Models/OBJ format/flag-banner-short.mtl",
+    "Models/OBJ format/flag-banner-short.obj",
+    "Models/OBJ format/flag-pennant.mtl",
+    "Models/OBJ format/flag-pennant.obj",
+    "Models/OBJ format/flag-wide.mtl",
+    "Models/OBJ format/flag-wide.obj",
+    "Models/OBJ format/flag.mtl",
+    "Models/OBJ format/flag.obj",
+    "Models/OBJ format/gate.mtl",
+    "Models/OBJ format/gate.obj",
+    "Models/OBJ format/ground-hills.mtl",
+    "Models/OBJ format/ground-hills.obj",
+    "Models/OBJ format/ground.mtl",
+    "Models/OBJ format/ground.obj",
+    "Models/OBJ format/metal-gate.mtl",
+    "Models/OBJ format/metal-gate.obj",
+    "Models/OBJ format/rocks-large.mtl",
+    "Models/OBJ format/rocks-large.obj",
+    "Models/OBJ format/rocks-small.mtl",
+    "Models/OBJ format/rocks-small.obj",
+    "Models/OBJ format/siege-ballista-demolished.mtl",
+    "Models/OBJ format/siege-ballista-demolished.obj",
+    "Models/OBJ format/siege-ballista.mtl",
+    "Models/OBJ format/siege-ballista.obj",
+    "Models/OBJ format/siege-catapult-demolished.mtl",
+    "Models/OBJ format/siege-catapult-demolished.obj",
+    "Models/OBJ format/siege-catapult.mtl",
+    "Models/OBJ format/siege-catapult.obj",
+    "Models/OBJ format/siege-ram-demolished.mtl",
+    "Models/OBJ format/siege-ram-demolished.obj",
+    "Models/OBJ format/siege-ram.mtl",
+    "Models/OBJ format/siege-ram.obj",
+    "Models/OBJ format/siege-tower-demolished.mtl",
+    "Models/OBJ format/siege-tower-demolished.obj",
+    "Models/OBJ format/siege-tower.mtl",
+    "Models/OBJ format/siege-tower.obj",
+    "Models/OBJ format/siege-trebuchet-demolished.mtl",
+    "Models/OBJ format/siege-trebuchet-demolished.obj",
+    "Models/OBJ format/siege-trebuchet.mtl",
+    "Models/OBJ format/siege-trebuchet.obj",
+    "Models/OBJ format/stairs-stone-square.mtl",
+    "Models/OBJ format/stairs-stone-square.obj",
+    "Models/OBJ format/stairs-stone.mtl",
+    "Models/OBJ format/stairs-stone.obj",
+    "Models/OBJ format/tower-base.mtl",
+    "Models/OBJ format/tower-base.obj",
+    "Models/OBJ format/tower-hexagon-base.mtl",
+    "Models/OBJ format/tower-hexagon-base.obj",
+    "Models/OBJ format/tower-hexagon-mid.mtl",
+    "Models/OBJ format/tower-hexagon-mid.obj",
+    "Models/OBJ format/tower-hexagon-roof-secondary.mtl",
+    "Models/OBJ format/tower-hexagon-roof-secondary.obj",
+    "Models/OBJ format/tower-hexagon-roof.mtl",
+    "Models/OBJ format/tower-hexagon-roof.obj",
+    "Models/OBJ format/tower-hexagon-top-wood.mtl",
+    "Models/OBJ format/tower-hexagon-top-wood.obj",
+    "Models/OBJ format/tower-hexagon-top.mtl",
+    "Models/OBJ format/tower-hexagon-top.obj",
+    "Models/OBJ format/tower-slant-roof.mtl",
+    "Models/OBJ format/tower-slant-roof.obj",
+    "Models/OBJ format/tower-square-arch.mtl",
+    "Models/OBJ format/tower-square-arch.obj",
+    "Models/OBJ format/tower-square-base-border.mtl",
+    "Models/OBJ format/tower-square-base-border.obj",
+    "Models/OBJ format/tower-square-base-color.mtl",
+    "Models/OBJ format/tower-square-base-color.obj",
+    "Models/OBJ format/tower-square-base.mtl",
+    "Models/OBJ format/tower-square-base.obj",
+    "Models/OBJ format/tower-square-mid-color.mtl",
+    "Models/OBJ format/tower-square-mid-color.obj",
+    "Models/OBJ format/tower-square-mid-door.mtl",
+    "Models/OBJ format/tower-square-mid-door.obj",
+    "Models/OBJ format/tower-square-mid-open-simple.mtl",
+    "Models/OBJ format/tower-square-mid-open-simple.obj",
+    "Models/OBJ format/tower-square-mid-open.mtl",
+    "Models/OBJ format/tower-square-mid-open.obj",
+    "Models/OBJ format/tower-square-mid-windows.mtl",
+    "Models/OBJ format/tower-square-mid-windows.obj",
+    "Models/OBJ format/tower-square-mid.mtl",
+    "Models/OBJ format/tower-square-mid.obj",
+    "Models/OBJ format/tower-square-roof.mtl",
+    "Models/OBJ format/tower-square-roof.obj",
+    "Models/OBJ format/tower-square-top-color.mtl",
+    "Models/OBJ format/tower-square-top-color.obj",
+    "Models/OBJ format/tower-square-top-roof-high-windows.mtl",
+    "Models/OBJ format/tower-square-top-roof-high-windows.obj",
+    "Models/OBJ format/tower-square-top-roof-high.mtl",
+    "Models/OBJ format/tower-square-top-roof-high.obj",
+    "Models/OBJ format/tower-square-top-roof-rounded.mtl",
+    "Models/OBJ format/tower-square-top-roof-rounded.obj",
+    "Models/OBJ format/tower-square-top-roof.mtl",
+    "Models/OBJ format/tower-square-top-roof.obj",
+    "Models/OBJ format/tower-square-top.mtl",
+    "Models/OBJ format/tower-square-top.obj",
+    "Models/OBJ format/tower-square.mtl",
+    "Models/OBJ format/tower-square.obj",
+    "Models/OBJ format/tower-top.mtl",
+    "Models/OBJ format/tower-top.obj",
+    "Models/OBJ format/tree-large.mtl",
+    "Models/OBJ format/tree-large.obj",
+    "Models/OBJ format/tree-log.mtl",
+    "Models/OBJ format/tree-log.obj",
+    "Models/OBJ format/tree-small.mtl",
+    "Models/OBJ format/tree-small.obj",
+    "Models/OBJ format/tree-trunk.mtl",
+    "Models/OBJ format/tree-trunk.obj",
+    "Models/OBJ format/wall-corner-half-tower.mtl",
+    "Models/OBJ format/wall-corner-half-tower.obj",
+    "Models/OBJ format/wall-corner-half.mtl",
+    "Models/OBJ format/wall-corner-half.obj",
+    "Models/OBJ format/wall-corner-slant.mtl",
+    "Models/OBJ format/wall-corner-slant.obj",
+    "Models/OBJ format/wall-corner.mtl",
+    "Models/OBJ format/wall-corner.obj",
+    "Models/OBJ format/wall-doorway.mtl",
+    "Models/OBJ format/wall-doorway.obj",
+    "Models/OBJ format/wall-half-modular.mtl",
+    "Models/OBJ format/wall-half-modular.obj",
+    "Models/OBJ format/wall-half.mtl",
+    "Models/OBJ format/wall-half.obj",
+    "Models/OBJ format/wall-narrow-corner.mtl",
+    "Models/OBJ format/wall-narrow-corner.obj",
+    "Models/OBJ format/wall-narrow-gate.mtl",
+    "Models/OBJ format/wall-narrow-gate.obj",
+    "Models/OBJ format/wall-narrow-stairs-rail.mtl",
+    "Models/OBJ format/wall-narrow-stairs-rail.obj",
+    "Models/OBJ format/wall-narrow-stairs.mtl",
+    "Models/OBJ format/wall-narrow-stairs.obj",
+    "Models/OBJ format/wall-narrow-wood-fence.mtl",
+    "Models/OBJ format/wall-narrow-wood-fence.obj",
+    "Models/OBJ format/wall-narrow-wood.mtl",
+    "Models/OBJ format/wall-narrow-wood.obj",
+    "Models/OBJ format/wall-narrow.mtl",
+    "Models/OBJ format/wall-narrow.obj",
+    "Models/OBJ format/wall-pillar.mtl",
+    "Models/OBJ format/wall-pillar.obj",
+    "Models/OBJ format/wall-stud.mtl",
+    "Models/OBJ format/wall-stud.obj",
+    "Models/OBJ format/wall-to-narrow.mtl",
+    "Models/OBJ format/wall-to-narrow.obj",
+    "Models/OBJ format/wall.mtl",
+    "Models/OBJ format/wall.obj",
+    "Overview.html",
+    "Preview.png",
+    "Previews/bridge-draw.png",
+    "Previews/bridge-straight-pillar.png",
+    "Previews/bridge-straight.png",
+    "Previews/door.png",
+    "Previews/flag-banner-long.png",
+    "Previews/flag-banner-short.png",
+    "Previews/flag-pennant.png",
+    "Previews/flag-wide.png",
+    "Previews/flag.png",
+    "Previews/gate.png",
+    "Previews/ground-hills.png",
+    "Previews/ground.png",
+    "Previews/metal-gate.png",
+    "Previews/rocks-large.png",
+    "Previews/rocks-small.png",
+    "Previews/siege-ballista-demolished.png",
+    "Previews/siege-ballista.png",
+    "Previews/siege-catapult-demolished.png",
+    "Previews/siege-catapult.png",
+    "Previews/siege-ram-demolished.png",
+    "Previews/siege-ram.png",
+    "Previews/siege-tower-demolished.png",
+    "Previews/siege-tower.png",
+    "Previews/siege-trebuchet-demolished.png",
+    "Previews/siege-trebuchet.png",
+    "Previews/stairs-stone-square.png",
+    "Previews/stairs-stone.png",
+    "Previews/tower-base.png",
+    "Previews/tower-hexagon-base.png",
+    "Previews/tower-hexagon-mid.png",
+    "Previews/tower-hexagon-roof-secondary.png",
+    "Previews/tower-hexagon-roof.png",
+    "Previews/tower-hexagon-top-wood.png",
+    "Previews/tower-hexagon-top.png",
+    "Previews/tower-slant-roof.png",
+    "Previews/tower-square-arch.png",
+    "Previews/tower-square-base-border.png",
+    "Previews/tower-square-base-color.png",
+    "Previews/tower-square-base.png",
+    "Previews/tower-square-mid-color.png",
+    "Previews/tower-square-mid-door.png",
+    "Previews/tower-square-mid-open-simple.png",
+    "Previews/tower-square-mid-open.png",
+    "Previews/tower-square-mid-windows.png",
+    "Previews/tower-square-mid.png",
+    "Previews/tower-square-roof.png",
+    "Previews/tower-square-top-color.png",
+    "Previews/tower-square-top-roof-high-windows.png",
+    "Previews/tower-square-top-roof-high.png",
+    "Previews/tower-square-top-roof-rounded.png",
+    "Previews/tower-square-top-roof.png",
+    "Previews/tower-square-top.png",
+    "Previews/tower-square.png",
+    "Previews/tower-top.png",
+    "Previews/tree-large.png",
+    "Previews/tree-log.png",
+    "Previews/tree-small.png",
+    "Previews/tree-trunk.png",
+    "Previews/wall-corner-half-tower.png",
+    "Previews/wall-corner-half.png",
+    "Previews/wall-corner-slant.png",
+    "Previews/wall-corner.png",
+    "Previews/wall-doorway.png",
+    "Previews/wall-half-modular.png",
+    "Previews/wall-half.png",
+    "Previews/wall-narrow-corner.png",
+    "Previews/wall-narrow-gate.png",
+    "Previews/wall-narrow-stairs-rail.png",
+    "Previews/wall-narrow-stairs.png",
+    "Previews/wall-narrow-wood-fence.png",
+    "Previews/wall-narrow-wood.png",
+    "Previews/wall-narrow.png",
+    "Previews/wall-pillar.png",
+    "Previews/wall-stud.png",
+    "Previews/wall-to-narrow.png",
+    "Previews/wall.png",
+    "Sample.png",
+    "View Documentation.url",
+    "Visit Kenney.url",
+    "Visit Patreon.url"
+  ],
+  "gltf_checks": [
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\bridge-draw.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\bridge-straight-pillar.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\bridge-straight.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\door.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\flag-banner-long.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\flag-banner-short.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\flag-pennant.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\flag-wide.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\flag.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\gate.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\ground-hills.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\ground.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\metal-gate.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\rocks-large.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\rocks-small.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\siege-ballista-demolished.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\siege-ballista.glb",
+      "meshes": 4,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\siege-catapult-demolished.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\siege-catapult.glb",
+      "meshes": 6,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\siege-ram-demolished.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\siege-ram.glb",
+      "meshes": 8,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\siege-tower-demolished.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\siege-tower.glb",
+      "meshes": 5,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\siege-trebuchet-demolished.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\siege-trebuchet.glb",
+      "meshes": 10,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\stairs-stone-square.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\stairs-stone.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-base.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-hexagon-base.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-hexagon-mid.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-hexagon-roof-secondary.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-hexagon-roof.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-hexagon-top-wood.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-hexagon-top.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-slant-roof.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-arch.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-base-border.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-base-color.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-base.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-mid-color.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-mid-door.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-mid-open-simple.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-mid-open.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-mid-windows.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-mid.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-roof.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-top-color.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-top-roof-high-windows.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-top-roof-high.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-top-roof-rounded.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-top-roof.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square-top.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-square.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tower-top.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tree-large.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tree-log.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tree-small.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\tree-trunk.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-corner-half-tower.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-corner-half.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-corner-slant.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-corner.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-doorway.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-half-modular.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-half.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-narrow-corner.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-narrow-gate.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-narrow-stairs-rail.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-narrow-stairs.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-narrow-wood-fence.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-narrow-wood.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-narrow.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-pillar.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-stud.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall-to-narrow.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    },
+    {
+      "file": "kenney-castle-kit\\Models\\GLB format\\wall.glb",
+      "meshes": 1,
+      "skins": 0,
+      "animations": []
+    }
+  ],
+  "files": [
+    {
+      "path": "kenney-castle-kit\\License.txt",
+      "bytes": 713,
+      "sha256": "aac944f18106b3a3e29c6fdeec02523d4cab4c735abc01f5a8fa88a79ae173ef"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\FBX format\\Textures\\colormap.png",
+      "bytes": 7529,
+      "sha256": "66fd49be148f32e88f6c8cace67120250d1943a7856601158ad0ff24651db0b0"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\bridge-draw.glb",
+      "bytes": 5140,
+      "sha256": "9fbf9a309fed2063be177ef9518dd707787f8fa2b48d2eda8a52e59bb8829265"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\bridge-straight-pillar.glb",
+      "bytes": 14344,
+      "sha256": "c85521e13dcf55ba8d015a04bbdbd0f063c31d01befb69a7c9fb097d128f195b"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\bridge-straight.glb",
+      "bytes": 16832,
+      "sha256": "ef15989c3d5c7392563888bbedda86de3c1ec4b3013c71c61e25b5257a6f9180"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\door.glb",
+      "bytes": 16968,
+      "sha256": "d9bc817e776e34fc24ad5b448b8cfc2c02603e79f6d90597de8936dc65a07359"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\flag-banner-long.glb",
+      "bytes": 6660,
+      "sha256": "e6a4433f5770b9fc31bf67d72424a877d5c010486d5b7373ce7af900566827e4"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\flag-banner-short.glb",
+      "bytes": 6664,
+      "sha256": "9561b6afd1d551199d02f520d31eab46dbff137eef4f9aa13f12e311b588fbd7"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\flag-pennant.glb",
+      "bytes": 13652,
+      "sha256": "741368448bd21991700a488dfc5125330594c4dccd9395feecaa6bbfa682b65d"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\flag-wide.glb",
+      "bytes": 25460,
+      "sha256": "74e94f48dffb40aca288676191265523c3e752aef40b868bfa3a51394083519b"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\flag.glb",
+      "bytes": 15192,
+      "sha256": "263fc3c7bedcfcd2b30f1aca6feb76c8f249f8f79dc9a694f47ec63b77b180d6"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\gate.glb",
+      "bytes": 13880,
+      "sha256": "fdc3d5b07f619dcacbf2af36024dc9a356696e541f6ce409a5305be782665ec9"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\ground-hills.glb",
+      "bytes": 12732,
+      "sha256": "2593ba3265f3ecdf2ee0a73580986ae6d9b76a536497356cdf093bb2735ecd6e"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\ground.glb",
+      "bytes": 1788,
+      "sha256": "470e9637694bba581e7a67a07399920c9785d8fa9a01a688c80dfc6a0c06ff77"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\metal-gate.glb",
+      "bytes": 23240,
+      "sha256": "7d41f469c9ed3000370bd7995b2fca5ac77ebe0ae1d1f321bb7a9d6f4b86f677"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\rocks-large.glb",
+      "bytes": 16204,
+      "sha256": "7ea1ee769eb063b192c3c3744cd32a11616320f7ca491fbe23289552f6655595"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\rocks-small.glb",
+      "bytes": 15192,
+      "sha256": "d860d3a053e1fc7b5825a39f6df68f14c49bab7443c1703e1f5b28444bd60e0d"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\siege-ballista-demolished.glb",
+      "bytes": 54576,
+      "sha256": "a19ed023a15af7e148fcd0186cb73d0d26983e24de54e858655fa2d77799be46"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\siege-ballista.glb",
+      "bytes": 64608,
+      "sha256": "8b2317b6820dd9782c7c2b5da9b7cf77cc3704f3b4d27a4c32e50069852a6b0d"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\siege-catapult-demolished.glb",
+      "bytes": 71252,
+      "sha256": "e0663eb42a97c5d992b1864ba3459e8246de11cf29fd72f10ef5ffd271f3029a"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\siege-catapult.glb",
+      "bytes": 86164,
+      "sha256": "35a7484ff74630228e474fae885bdc9176c30e0af0d94def80307bdbc87b7583"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\siege-ram-demolished.glb",
+      "bytes": 68036,
+      "sha256": "f895ff0152fb004c72310f6e7b51645babc8f8d22864c468b960f86252d2d8fc"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\siege-ram.glb",
+      "bytes": 103620,
+      "sha256": "6473c77747b1d0a2c273d5a013454a0c85e5fc33b831150dced46d89b8ff9a5e"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\siege-tower-demolished.glb",
+      "bytes": 119700,
+      "sha256": "6504a432e6e72a51c75f862ea08e144058727add6eb0f76dc7d9f7352e8a23d0"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\siege-tower.glb",
+      "bytes": 144200,
+      "sha256": "81909d6c33b181a9935fc7f800e8ee309454bbf99ff3b6b0ab2ecf16c3bf5e9b"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\siege-trebuchet-demolished.glb",
+      "bytes": 66012,
+      "sha256": "6706dee3ec118323ea93ac58545cfcfd46e36c1ffffd750abbea54258aeda495"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\siege-trebuchet.glb",
+      "bytes": 139848,
+      "sha256": "123711fd475e35d061738f648d9bf46c7f463d57681325c369977cee8954679a"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\stairs-stone-square.glb",
+      "bytes": 9556,
+      "sha256": "22b52789ae3b0b208bcf5e9d5e8a70c6e307d51672217a122eaa58c42f2d7b36"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\stairs-stone.glb",
+      "bytes": 9836,
+      "sha256": "ec21b1d65c04ba6384734c31ac542bb4015541e652c411796fd7bcf292e6413c"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\Textures\\colormap.png",
+      "bytes": 7529,
+      "sha256": "66fd49be148f32e88f6c8cace67120250d1943a7856601158ad0ff24651db0b0"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-base.glb",
+      "bytes": 41724,
+      "sha256": "575e6463b9bc58b8294690b2c1a15409b0624e0253af1a215bf67ea5e9cbaaba"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-hexagon-base.glb",
+      "bytes": 8336,
+      "sha256": "1185110eb885e70652558465bfabd07b80bb09afaa7b4be0a2e309fd685982b9"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-hexagon-mid.glb",
+      "bytes": 33568,
+      "sha256": "131045c750296bc84e8f6192918270a4424217484b03627a73e9f584ac4f4888"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-hexagon-roof-secondary.glb",
+      "bytes": 12540,
+      "sha256": "c2c0c2fe60bac1b0b27c65cfc118e98b2bcbaeeb9f32cdbe5b34b96a2c168132"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-hexagon-roof.glb",
+      "bytes": 8400,
+      "sha256": "6bd3fb7fd8069419787e806990c9cf3869396e766a1b8cd16c2b3a1414961a0a"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-hexagon-top-wood.glb",
+      "bytes": 13852,
+      "sha256": "66c7697375b61acdc42cf90c16aaf1340a285a93402426098bc2ab9175bb7bbd"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-hexagon-top.glb",
+      "bytes": 13848,
+      "sha256": "22a043cde795ebc6e5720daee4944f468de5f0ef62296495d0374d4b169ec892"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-slant-roof.glb",
+      "bytes": 47488,
+      "sha256": "f2dd82eca828d2b43c523927e6825539f5a648a18e7fcb68b7a4698f7d6d3d10"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-arch.glb",
+      "bytes": 29724,
+      "sha256": "90ccb41a792ea3c5b8c98a3f18b710b52ebfdcd1e389024168c5ac6e591dd564"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-base-border.glb",
+      "bytes": 3684,
+      "sha256": "7c48a3a8f8af838c0d7e114115c5abb7a557023b89e08aa421f14bd6add924e3"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-base-color.glb",
+      "bytes": 6908,
+      "sha256": "0d9b180fba2229bf62deaaac381e16e912a0f5f2c48a8152e38fec2792e990b5"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-base.glb",
+      "bytes": 4456,
+      "sha256": "996887e98957eeea2ba7b5d14f0d17877c91e4e99e1c5b8ee57d87b7f7c9d5e8"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-mid-color.glb",
+      "bytes": 5380,
+      "sha256": "a12235eb6e86d1e1b46a13e9ea3757ecb0e2fa8e5d82a9a0ae2017e78cf3baf6"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-mid-door.glb",
+      "bytes": 28996,
+      "sha256": "1a7d065cb548b73adcdd497cac10397247bd70377cb2f6b9d36b78b61087b35d"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-mid-open-simple.glb",
+      "bytes": 19752,
+      "sha256": "aa95f69fd90b20c299628830a9abd635a48f440f25dbbe131fe3fdd003742c20"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-mid-open.glb",
+      "bytes": 23568,
+      "sha256": "dd5d242d41654cf4f60b1bbb05ab7263bc8dd9adc671feee08911bba7a46d569"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-mid-windows.glb",
+      "bytes": 30852,
+      "sha256": "68c186f978135ba77969cdbee502a1c0d9d8f40bd01e8aa33b7cc6859a2ba766"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-mid.glb",
+      "bytes": 7744,
+      "sha256": "34a43b162b0984df0c691cb12fcd169ff374412deca0de5fdfdd702a9fa0c98f"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-roof.glb",
+      "bytes": 14036,
+      "sha256": "94215209b27f5274188d70906d2a4df357529abd878b6b916bfb61ac5e64d1c8"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-top-color.glb",
+      "bytes": 14088,
+      "sha256": "56b5677ad749ab114818638bf8a3fd8fcfb64ef25f627fd6d5aefe5203366698"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-top-roof-high-windows.glb",
+      "bytes": 22788,
+      "sha256": "8e673350705e369a25afd6e8706946f0e41abeaf01b94abfe06c358e2e31876b"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-top-roof-high.glb",
+      "bytes": 11288,
+      "sha256": "b9345255366bc88744eea5469dddb4dedf2c70f33075b0fde53144ca251e25ea"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-top-roof-rounded.glb",
+      "bytes": 11296,
+      "sha256": "2127ee2431efa89c4f40932093b43b9b724073a32fc7010547bd46bb58e4b04d"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-top-roof.glb",
+      "bytes": 11256,
+      "sha256": "5516fb45c3158e03773e15e83f5fc8b9bafbbcb3f35fc8e1e06e823cdb01e3bb"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square-top.glb",
+      "bytes": 13276,
+      "sha256": "5e98cdf2bf4d885edc3fa514719f80d63872e11c54ee629c11859223dad8489c"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-square.glb",
+      "bytes": 16564,
+      "sha256": "ae2e4f11247fef4e8e550011c20bc1862839cd4cfd21590aec9781ae0fbbbc7f"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tower-top.glb",
+      "bytes": 27408,
+      "sha256": "222537f0daa9167788a468b4ee71918d1066b7c142e7e251c449c50be3438068"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tree-large.glb",
+      "bytes": 21248,
+      "sha256": "a72a7c237857a9fb04d51b05e3513e97a4d5d5572a709b3251f96b5bffd0a5ab"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tree-log.glb",
+      "bytes": 7952,
+      "sha256": "50b4d452ee818afa9b37f325a594bdd4ffc1cef0f3c87ff3908251350c9960bf"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tree-small.glb",
+      "bytes": 15816,
+      "sha256": "ad5b2d7225241eb0599dbc7f1a9f9c39915be56ccccf88ad091bc9c1b4334034"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\tree-trunk.glb",
+      "bytes": 5684,
+      "sha256": "f07a2ed87d6a636aba46a0ec1e9ffae27b17b4c6ae019e77924bdb9b8f6fe28f"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-corner-half-tower.glb",
+      "bytes": 80020,
+      "sha256": "95a7e63c7716d31a47ffe1fe423c4ed65a610bd802b1d4286d743c1248255ffe"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-corner-half.glb",
+      "bytes": 12976,
+      "sha256": "2a64baa9c8adf4581c3ef28b7c4fc424890c9ed2da2d958bcbf38e239bb49f83"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-corner-slant.glb",
+      "bytes": 16028,
+      "sha256": "fd687db9c9fe6e3e446bd23ba2db23e993cf1119dd3fbcfbf543d23345c98d40"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-corner.glb",
+      "bytes": 15264,
+      "sha256": "82d27b869162b6a9ee19b0d7480913f56928b6620708f3b3899131495803cc9a"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-doorway.glb",
+      "bytes": 37560,
+      "sha256": "8daf5cccceace888d51d74b0e0254e192004faf926e07f1b28e94191879af3a6"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-half-modular.glb",
+      "bytes": 8016,
+      "sha256": "2241397b813c069858987750eaf7dce4a549fca239ae2e40b30fc7e58ff82b0e"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-half.glb",
+      "bytes": 12132,
+      "sha256": "4f0baca90eb52d96717aaabf36db98f1f2b554876f44da533b57dd92b6f67965"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-narrow-corner.glb",
+      "bytes": 9384,
+      "sha256": "3e0a2fb0c7d6b4d8bb52ee30c1a3f5bac01ad558dc382b15a5c5a2d52131aa8a"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-narrow-gate.glb",
+      "bytes": 17092,
+      "sha256": "f01e3005f2cfe7451a0376a4fdba2408594cb60664e24e53e736e52d5b3ec934"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-narrow-stairs-rail.glb",
+      "bytes": 40896,
+      "sha256": "d1791d278f01ad436c7062f9807e6280f11070c47cbb40567ea280c859fe3a72"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-narrow-stairs.glb",
+      "bytes": 26972,
+      "sha256": "51672d47bb3cec6f190334fcb29c3c2f464f605b85f5e13b918e868d72c632e7"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-narrow-wood-fence.glb",
+      "bytes": 32988,
+      "sha256": "253d7f8fd3e9113ef5ae064eed49351b387532d83ccce284851d0a2190872fc6"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-narrow-wood.glb",
+      "bytes": 26812,
+      "sha256": "b536f63dd753575d551ace334549949bd3594559d62356f93b6a577f0efbeb4e"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-narrow.glb",
+      "bytes": 12160,
+      "sha256": "347fcdb0842ed47f20931b962dc0a2ad212690812386a3cb634016b4229145a7"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-pillar.glb",
+      "bytes": 18156,
+      "sha256": "22d359abfaa3cf3dc5a2fece09a108024a07a4e263b21a4a0689da0e630699ed"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-stud.glb",
+      "bytes": 3212,
+      "sha256": "203abbac850f78bb2250005350427d60355532623173730a53e12674798e9637"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall-to-narrow.glb",
+      "bytes": 19776,
+      "sha256": "bb99eb1d5d93affcb2466f74d69a370c32ce5b62307a081fc5a12850e741c707"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\GLB format\\wall.glb",
+      "bytes": 16552,
+      "sha256": "b2ea00acbf4ba91ff0d4b8b942edf9fa12d821abd0b2c945c57a2b9b3153cfe3"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\OBJ format\\Textures\\colormap.png",
+      "bytes": 7529,
+      "sha256": "66fd49be148f32e88f6c8cace67120250d1943a7856601158ad0ff24651db0b0"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\Textures\\variation-a.png",
+      "bytes": 7275,
+      "sha256": "0dd97ff54f3875abe9d44c53732f2b870aa82e0dc40243104ba7eaa4196cedd0"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\Textures\\variation-b.png",
+      "bytes": 6790,
+      "sha256": "86c24e2d004ef945ecae6d89a811ab369588195b90c2f803939e996895f17896"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\Textures\\variation-c.png",
+      "bytes": 7024,
+      "sha256": "3e2177899d218e70793e63553e03e2a689a944acc056aefe3356a94be8979476"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\Textures\\variation-d.png",
+      "bytes": 5974,
+      "sha256": "048fac1067071c4e8111d0b3f843560e813ce22224d5da42ae5547d3e2d1265d"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\Textures\\variation-e.png",
+      "bytes": 5242,
+      "sha256": "94973a973e80e085185bf2f616e3529369a381636af9f0d22fd592c30740d743"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\Textures\\variation-f.png",
+      "bytes": 5807,
+      "sha256": "fe27cd1c3f7ff77b67839ef4a8fc8667d137a0f030413eead070a0bd73a24b48"
+    },
+    {
+      "path": "kenney-castle-kit\\Models\\Textures\\variation-g.png",
+      "bytes": 5143,
+      "sha256": "6b7628b53e9402d8da77c061dd5d9c7f60c95e4fee272774289d330504f68ea6"
+    }
+  ]
+}

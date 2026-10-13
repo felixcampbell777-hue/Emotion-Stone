@@ -1,0 +1,12 @@
+{
+  "license": "CC0-1.0",
+  "author": "Coastal Foundation project",
+  "seed": 27011,
+  "recipe": "tools/make_wolf_fur_textures.py",
+  "files": {
+    "coat-albedo.png": "2774e5ae3d1a5f653fefe3afc902ad78057c597875743e341d06b6ad9aeea9a2",
+    "coat-normal.png": "40c63ac0cccb7e2bfc797d791c4ba999a8a4086d5da0fdc4f9cdbd0f5ba8328b",
+    "coat-roughness.png": "a5f8ab2568b852df68f1eb109249a2b5a86ae8dbadfd39bfd4c9754901dc964e",
+    "fur-tuft.png": "301887a0b5fbbadfe3964e588858a2305efeb4dc11011a2742edc77e82fbfbb8"
+  }
+}

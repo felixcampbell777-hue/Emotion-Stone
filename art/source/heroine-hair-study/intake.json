@@ -1,0 +1,73 @@
+{
+  "source": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+  "publisher": "MakeHuman Community",
+  "license": "CC0 per official pack catalog; headers checked separately",
+  "files": [
+    {
+      "path": "hair\\toigo_blunt_bob_with_bangs\\BakedHairNORMAL.png",
+      "bytes": 10260549,
+      "sha256": "f0b761f31129ef5f808394a4f71b04e902fbd5eadfcad0f3ae0c8d89f87a73cb"
+    },
+    {
+      "path": "hair\\toigo_blunt_bob_with_bangs\\AuburnHair.png",
+      "bytes": 8344296,
+      "sha256": "87515d144d5e6f7722bac12fcf424bce6f7ffa1045425bf8fe959ad55efe9af6"
+    },
+    {
+      "path": "hair\\toigo_blunt_bob_with_bangs\\toigo_blunt_bob_with_bangs.thumb",
+      "bytes": 48497,
+      "sha256": "33151472381e7d035ef857f534b9a2a6f7fdf3312f442bf99651c21a09e06276"
+    },
+    {
+      "path": "hair\\toigo_blunt_bob_with_bangs\\bob_blunt_bangs.obj",
+      "bytes": 211773,
+      "sha256": "88429d8919a9bf30bdf3ace3a0f18751561e02ef67c8fc839c57a610fa49dfe4"
+    },
+    {
+      "path": "hair\\toigo_blunt_bob_with_bangs\\toigo_blunt_bob_with_bangs.mhclo",
+      "bytes": 179911,
+      "sha256": "a10c85fea05740d19fbdb378169052ed0a857281753b5d286080c7a8720fee50"
+    },
+    {
+      "path": "hair\\toigo_blunt_bob_with_bangs\\bob_blunt_bangs.mhmat",
+      "bytes": 558,
+      "sha256": "1e284e295c9b87684fdf434696c6a12b29d24d858fcc411947cb6a32baa8b3bf"
+    },
+    {
+      "path": "hair\\toigo_blunt_bob_with_bangs\\BakedHair_spec.png",
+      "bytes": 5464748,
+      "sha256": "57889d479bc327d3854c7f12689c6c53ce3ef8c445bb7da4dda0ffde9cf5f9b8"
+    },
+    {
+      "path": "hair\\sonntag78_junglebook_hair\\junglebookhair.mhmat",
+      "bytes": 707,
+      "sha256": "06525142aeae3f979f3891269b00548cb627940bf4c84dadc5a92f846c24c846"
+    },
+    {
+      "path": "hair\\sonntag78_junglebook_hair\\sonntag78_junglebook_hair.thumb",
+      "bytes": 56094,
+      "sha256": "3ac543726c5dd070a51aab43cab1ec47e982f57679d13c2b71ad225a1aa96396"
+    },
+    {
+      "path": "hair\\sonntag78_junglebook_hair\\sonntag78_junglebook_hair.mhclo",
+      "bytes": 329609,
+      "sha256": "424a6a929632ade6f99cb6b802f235ebf020592dcd30df6d58d5223dc35c6ee0"
+    },
+    {
+      "path": "hair\\sonntag78_junglebook_hair\\Hairblackseamless2png.png",
+      "bytes": 5189025,
+      "sha256": "0ebfaa8fc9ad9a629e31c95553b789ec2178bb449e9f41012c0d755b3d06d5cb"
+    },
+    {
+      "path": "hair\\sonntag78_junglebook_hair\\junglebookhair.obj",
+      "bytes": 372375,
+      "sha256": "78b669add65fb0e2b573bda71bc04f7b07454a9b1c965426c37e929bd7d7e02c"
+    },
+    {
+      "path": "packs\\hair01.json",
+      "bytes": 16798,
+      "sha256": "b1f3c32a877cf7fb681ed54d28715d53a4d9660656ae063c6a50229181830de7"
+    }
+  ],
+  "method": "CRC-verified selected ZIP entries via HTTPS byte ranges; no scripts"
+}

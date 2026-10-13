@@ -3,45 +3,368 @@
   "display_name": "Coastal Path",
   "subtitle": "The village by the sea",
   "seed": 214,
-  "bounds": [-12, -11, 13, 11],
-  "spawn": [0, 1.8],
+  "bounds": [
+    -12,
+    -11,
+    13,
+    11
+  ],
+  "spawn": [
+    0,
+    1.8
+  ],
   "sea": true,
   "terrain_regions": [
-    {"rect": [-2, -11, 4, 21], "kind": "path"},
-    {"rect": [-10, -2, 20, 3], "kind": "path"},
-    {"rect": [9, -11, 4, 22], "kind": "water"},
-    {"rect": [-12, 9, 25, 2], "kind": "water"},
-    {"rect": [7, -11, 2, 20], "kind": "sand"},
-    {"rect": [-12, 7, 21, 2], "kind": "sand"}
+    {
+      "rect": [
+        -2,
+        -11,
+        4,
+        21
+      ],
+      "kind": "path"
+    },
+    {
+      "rect": [
+        -10,
+        -2,
+        20,
+        3
+      ],
+      "kind": "path"
+    },
+    {
+      "rect": [
+        9,
+        -11,
+        4,
+        22
+      ],
+      "kind": "water"
+    },
+    {
+      "rect": [
+        -12,
+        9,
+        25,
+        2
+      ],
+      "kind": "water"
+    },
+    {
+      "rect": [
+        7,
+        -11,
+        2,
+        20
+      ],
+      "kind": "sand"
+    },
+    {
+      "rect": [
+        -12,
+        7,
+        21,
+        2
+      ],
+      "kind": "sand"
+    },
+    {
+      "rect": [
+        -2,
+        7,
+        4,
+        4
+      ],
+      "kind": "path"
+    },
+    {
+      "rect": [
+        -12,
+        2,
+        6,
+        2
+      ],
+      "kind": "path"
+    }
   ],
   "props": [
-    {"id": "west_cottage", "kind": "house", "at": [-5.8, -4.6], "rotation": 0, "variant": 0},
-    {"id": "east_cottage", "kind": "house", "at": [4.4, -5.2], "rotation": 0, "variant": 1},
-    {"id": "pine_1", "kind": "tree", "at": [-9, -8], "scale": 1.15},
-    {"id": "pine_2", "kind": "tree", "at": [-7.7, -8.8], "scale": 0.85},
-    {"id": "pine_3", "kind": "tree", "at": [-3.8, -9.1]},
-    {"id": "pine_4", "kind": "tree", "at": [3.8, -9.3], "scale": 1.1},
-    {"id": "pine_5", "kind": "tree", "at": [6, -8.6], "scale": 0.8},
-    {"id": "pine_6", "kind": "tree", "at": [-9.2, 4], "scale": 1.2},
-    {"id": "pine_7", "kind": "tree", "at": [-7.5, 5.9], "scale": 0.9},
-    {"id": "pine_8", "kind": "tree", "at": [5.2, 4.7], "scale": 0.9},
-    {"id": "wall_west", "kind": "wall", "at": [-5.8, -1.4], "length": 3.7},
-    {"id": "wall_east", "kind": "wall", "at": [4.4, -1.4], "length": 2.8},
-    {"id": "rock_1", "kind": "rock", "at": [7, 4.1], "scale": 0.65},
-    {"id": "rock_2", "kind": "rock", "at": [-9, 6.8], "scale": 0.9},
-    {"id": "flower_1", "kind": "flowers", "at": [-3.8, 3.7]},
-    {"id": "flower_2", "kind": "flowers", "at": [3.3, 2.5]},
-    {"id": "flower_3", "kind": "flowers", "at": [-6.5, -1]},
-    {"id": "bench", "kind": "bench", "at": [3.8, 1.8]}
+    {
+      "id": "west_cottage",
+      "kind": "house",
+      "at": [
+        -5.8,
+        -4.6
+      ],
+      "rotation": 0,
+      "variant": 0,
+      "floors": 2
+    },
+    {
+      "id": "east_cottage",
+      "kind": "house",
+      "at": [
+        4.4,
+        -5.2
+      ],
+      "rotation": 0,
+      "variant": 1
+    },
+    {
+      "id": "pine_1",
+      "kind": "tree",
+      "at": [
+        -9,
+        -8
+      ],
+      "scale": 1.15
+    },
+    {
+      "id": "pine_2",
+      "kind": "tree",
+      "at": [
+        -7.7,
+        -8.8
+      ],
+      "scale": 0.85
+    },
+    {
+      "id": "pine_3",
+      "kind": "tree",
+      "at": [
+        -3.8,
+        -9.1
+      ]
+    },
+    {
+      "id": "pine_4",
+      "kind": "tree",
+      "at": [
+        3.8,
+        -9.3
+      ],
+      "scale": 1.1
+    },
+    {
+      "id": "pine_5",
+      "kind": "tree",
+      "at": [
+        6,
+        -8.6
+      ],
+      "scale": 0.8
+    },
+    {
+      "id": "pine_6",
+      "kind": "tree",
+      "at": [
+        -9.2,
+        4
+      ],
+      "scale": 1.2
+    },
+    {
+      "id": "pine_7",
+      "kind": "tree",
+      "at": [
+        -7.5,
+        5.9
+      ],
+      "scale": 0.9
+    },
+    {
+      "id": "pine_8",
+      "kind": "tree",
+      "at": [
+        5.2,
+        4.7
+      ],
+      "scale": 0.9
+    },
+    {
+      "id": "wall_west",
+      "kind": "wall",
+      "at": [
+        -5.8,
+        -1.4
+      ],
+      "length": 3.7
+    },
+    {
+      "id": "wall_east",
+      "kind": "wall",
+      "at": [
+        4.4,
+        -1.4
+      ],
+      "length": 2.8
+    },
+    {
+      "id": "rock_1",
+      "kind": "rock",
+      "at": [
+        7,
+        4.1
+      ],
+      "scale": 0.65
+    },
+    {
+      "id": "rock_2",
+      "kind": "rock",
+      "at": [
+        -9,
+        6.8
+      ],
+      "scale": 0.9
+    },
+    {
+      "id": "flower_1",
+      "kind": "flowers",
+      "at": [
+        -3.8,
+        3.7
+      ]
+    },
+    {
+      "id": "flower_2",
+      "kind": "flowers",
+      "at": [
+        3.3,
+        2.5
+      ]
+    },
+    {
+      "id": "flower_3",
+      "kind": "flowers",
+      "at": [
+        -6.5,
+        -1
+      ]
+    },
+    {
+      "id": "bench",
+      "kind": "bench",
+      "at": [
+        3.8,
+        1.8
+      ]
+    }
   ],
   "npcs": [
-    {"id": "keeper_coast", "character": "keeper", "at": [2.0, 0.2], "dialogue": ["The path north leads to the village green.", "Take your time. The coast will still be here when you return."]}
+    {
+      "id": "keeper_coast",
+      "character": "keeper",
+      "at": [
+        2.0,
+        0.2
+      ],
+      "dialogue": [
+        "The path north leads to the village green.",
+        "Take your time. The coast will still be here when you return."
+      ]
+    }
   ],
   "interactions": [
-    {"id": "coast_sign", "kind": "sign", "at": [-1.9, 4.7], "title": "Waymarker", "lines": ["NORTH  —  Village Green", "SOUTH  —  Shoreline"]},
-    {"id": "shore_marker", "kind": "sign", "at": [6.1, 6], "title": "Shoreline", "lines": ["A quiet place to watch the tide."]}
+    {
+      "id": "coast_sign",
+      "kind": "sign",
+      "at": [
+        -1.9,
+        4.7
+      ],
+      "title": "Waymarker",
+      "lines": [
+        "NORTH  \u00e2\u20ac\u201d  Village Green",
+        "SOUTH  \u00e2\u20ac\u201d  Slime Forest"
+      ]
+    },
+    {
+      "id": "shore_marker",
+      "kind": "sign",
+      "at": [
+        6.1,
+        6
+      ],
+      "title": "Shoreline",
+      "lines": [
+        "A quiet place to watch the tide."
+      ]
+    },
+    {
+      "id": "menagery_sign",
+      "kind": "sign",
+      "at": [
+        -10,
+        4.8
+      ],
+      "title": "West: Menagery",
+      "lines": [
+        "West - Menagery",
+        "A labeled woodland catalog and practice clearing."
+      ]
+    }
   ],
   "exits": [
-    {"id": "north_gate", "rect": [-1.7, -10.8, 3.4, 1.0], "target": "village_green", "spawn": [0, 7.8], "label": "Village Green"}
+    {
+      "id": "north_gate",
+      "rect": [
+        -1.7,
+        -10.8,
+        3.4,
+        1.0
+      ],
+      "target": "village_green",
+      "spawn": [
+        0,
+        7.8
+      ],
+      "label": "Village Green"
+    },
+    {
+      "id": "forest_gate",
+      "rect": [
+        -1.7,
+        9.8,
+        3.4,
+        1.0
+      ],
+      "target": "slime_forest",
+      "spawn": [
+        0,
+        -8.2
+      ],
+      "label": "Slime Forest"
+    },
+    {
+      "id": "home_door",
+      "rect": [
+        -6.35,
+        -3.05,
+        1.1,
+        0.45
+      ],
+      "target": "home_downstairs",
+      "spawn": [
+        0,
+        3.05
+      ],
+      "label": "Enter home",
+      "interact": true
+    },
+    {
+      "id": "west_menagery",
+      "rect": [
+        -11.8,
+        1.5,
+        0.9,
+        3
+      ],
+      "target": "menagery",
+      "spawn": [
+        16,
+        0
+      ],
+      "label": "Menagery"
+    }
   ]
 }

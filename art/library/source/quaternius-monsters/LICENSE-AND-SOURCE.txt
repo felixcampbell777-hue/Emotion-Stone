@@ -1,0 +1,7 @@
+Source: https://quaternius.com/packs/ultimatemonsters.html
+Author: Quaternius
+License: CC0-1.0 (supplied legacy license; current QAL conflict recorded)
+License reference: https://quaternius.com/license.html
+Checked: 2026-10-11
+User explicitly authorized Quaternius on 2026-10-11. Retain legacy declarations; conservatively comply with current QAL restrictions for new use; do not redistribute raw assets. This exception is separate from the open-license collection.
+Collected for later development; no gameplay integration approved by this intake.

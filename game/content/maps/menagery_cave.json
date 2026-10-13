@@ -1,0 +1,120 @@
+{
+  "id": "menagery_cave",
+  "display_name": "Menagery Cave",
+  "subtitle": "1G cave demo - winding passage, stone arch and crystal chamber",
+  "seed": 1508,
+  "bounds": [
+    -8,
+    -9,
+    8,
+    8
+  ],
+  "spawn": [
+    0,
+    5.5
+  ],
+  "sea": false,
+  "cave": true,
+  "terrain_regions": [
+    {
+      "rect": [
+        -8,
+        -9,
+        16,
+        17
+      ],
+      "kind": "path"
+    }
+  ],
+  "props": [
+    {
+      "id": "cave_arch",
+      "kind": "catalog_feature",
+      "catalog_code": "2G",
+      "at": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "cave_stalagmites",
+      "kind": "catalog_feature",
+      "catalog_code": "3G",
+      "at": [
+        -4,
+        -4
+      ]
+    },
+    {
+      "id": "cave_crystals",
+      "kind": "catalog_feature",
+      "catalog_code": "4G",
+      "at": [
+        4,
+        -5
+      ]
+    },
+    {
+      "id": "cave_crystals_2",
+      "kind": "catalog_feature",
+      "catalog_code": "4G",
+      "at": [
+        -4,
+        -7
+      ]
+    },
+    {
+      "id": "cave_mushrooms",
+      "kind": "catalog_feature",
+      "catalog_code": "4C",
+      "at": [
+        3,
+        -1
+      ]
+    },
+    {
+      "id": "cave_pool",
+      "kind": "catalog_feature",
+      "catalog_code": "8C",
+      "at": [
+        0,
+        -5
+      ]
+    }
+  ],
+  "npcs": [],
+  "interactions": [
+    {
+      "id": "cave_legend",
+      "kind": "sign",
+      "at": [
+        1,
+        5.5
+      ],
+      "title": "Cave demo",
+      "lines": [
+        "Follow the winding passage to the crystal chamber.",
+        "2G rock arch / 3G stalagmites / 4G glow crystals.",
+        "E at the southern mouth returns to the Menagery."
+      ]
+    }
+  ],
+  "exits": [
+    {
+      "id": "cave_return",
+      "rect": [
+        -1.2,
+        6.2,
+        2.4,
+        1.2
+      ],
+      "target": "menagery",
+      "spawn": [
+        15,
+        -31.5
+      ],
+      "label": "Return to Menagery",
+      "interact": true
+    }
+  ]
+}

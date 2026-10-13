@@ -8,3 +8,13 @@ output/build-cache.json
 output/verification/
 output/windows/
 *.partial
+output/*.log
+output/previews/
+art/source/history/
+**/__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+*.pem
+*.key

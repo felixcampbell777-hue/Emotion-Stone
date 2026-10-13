@@ -1,0 +1,19 @@
+{
+  "id": "farm_rowan",
+  "display_name": "Rowan Lark",
+  "rig_family": "humanoid_v1",
+  "modules": {
+    "hair": "crop",
+    "outfit": "tunic",
+    "equipment": "none"
+  },
+  "palette": {
+    "skin": "#CE9C72",
+    "hair": "#70523C",
+    "dress": "#8A7653",
+    "leather": "#5F4834",
+    "metal": "#BDC4CE",
+    "gem": "#247BCB",
+    "socks": "#D6D0BF"
+  }
+}

@@ -1,0 +1,316 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "features",
+    "monsters",
+    "arena",
+    "spawn_ring_radius",
+    "sticky_seconds",
+    "sticky_multiplier",
+    "max_specimens",
+    "resin_attack",
+    "queen_attack"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "features": {
+      "type": "array",
+      "minItems": 31,
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "name",
+          "style",
+          "description"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "style": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "monsters": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "name",
+          "style",
+          "ability",
+          "health",
+          "damage",
+          "speed",
+          "windup",
+          "attack_speed",
+          "recover",
+          "size",
+          "color"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "style": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ability": {
+            "type": "string",
+            "minLength": 1
+          },
+          "health": {
+            "type": "number",
+            "minimum": 0
+          },
+          "damage": {
+            "type": "number",
+            "minimum": 0
+          },
+          "speed": {
+            "type": "number",
+            "minimum": 0
+          },
+          "windup": {
+            "type": "number",
+            "minimum": 0
+          },
+          "attack_speed": {
+            "type": "number",
+            "minimum": 0
+          },
+          "recover": {
+            "type": "number",
+            "minimum": 0
+          },
+          "size": {
+            "type": "string",
+            "minLength": 1
+          },
+          "color": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "arena": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "spawn_ring_radius": {
+      "type": "number",
+      "minimum": 2,
+      "maximum": 5
+    },
+    "sticky_seconds": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 15
+    },
+    "sticky_multiplier": {
+      "type": "number",
+      "minimum": 0.2,
+      "maximum": 0.8
+    },
+    "max_specimens": {
+      "type": "integer",
+      "minimum": 8,
+      "maximum": 16
+    },
+    "resin_attack": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "flight_seconds",
+        "arc_height",
+        "puddle_radius",
+        "puddle_seconds",
+        "charge_seconds",
+        "aim_lock_remaining",
+        "dash_speed",
+        "max_dash_distance",
+        "recover_seconds"
+      ],
+      "properties": {
+        "flight_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 20
+        },
+        "arc_height": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 20
+        },
+        "puddle_radius": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 20
+        },
+        "puddle_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 20
+        },
+        "charge_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 20
+        },
+        "aim_lock_remaining": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 20
+        },
+        "dash_speed": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 20
+        },
+        "max_dash_distance": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 20
+        },
+        "recover_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 20
+        }
+      }
+    },
+    "queen_attack": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "core_seconds",
+        "core_health",
+        "splash_damage",
+        "splash_radius",
+        "max_brood",
+        "lob_seconds",
+        "jump_warning",
+        "jump_seconds",
+        "jump_height",
+        "jump_radius",
+        "jump_damage",
+        "charge_warning",
+        "charge_speed",
+        "charge_seconds",
+        "recover_seconds"
+      ],
+      "properties": {
+        "core_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50
+        },
+        "core_health": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50
+        },
+        "splash_damage": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50
+        },
+        "splash_radius": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50
+        },
+        "max_brood": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50
+        },
+        "lob_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50
+        },
+        "jump_warning": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50
+        },
+        "jump_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50
+        },
+        "jump_height": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50
+        },
+        "jump_radius": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50
+        },
+        "jump_damage": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50
+        },
+        "charge_warning": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50
+        },
+        "charge_speed": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50
+        },
+        "charge_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50
+        },
+        "recover_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 50
+        }
+      }
+    }
+  }
+}

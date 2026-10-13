@@ -1,0 +1,188 @@
+{
+  "id": "goblin_approach",
+  "display_name": "Goblin Palisade",
+  "subtitle": "Silence the alarm; open the winch gate",
+  "seed": 417,
+  "bounds": [
+    -8,
+    -12,
+    8,
+    12
+  ],
+  "spawn": [
+    0,
+    9.5
+  ],
+  "sea": false,
+  "terrain_regions": [
+    {
+      "kind": "cobble",
+      "rect": [
+        -2,
+        -12,
+        4,
+        24
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "tree_0",
+      "kind": "tree",
+      "at": [
+        -6,
+        8
+      ],
+      "scale": 1.1
+    },
+    {
+      "id": "tree_1",
+      "kind": "tree",
+      "at": [
+        6,
+        8
+      ],
+      "scale": 1.1
+    },
+    {
+      "id": "tree_2",
+      "kind": "tree",
+      "at": [
+        -6,
+        3
+      ],
+      "scale": 1.1
+    },
+    {
+      "id": "tree_3",
+      "kind": "tree",
+      "at": [
+        6,
+        3
+      ],
+      "scale": 1.1
+    },
+    {
+      "id": "tree_4",
+      "kind": "tree",
+      "at": [
+        -6,
+        -5
+      ],
+      "scale": 1.1
+    },
+    {
+      "id": "tree_5",
+      "kind": "tree",
+      "at": [
+        6,
+        -5
+      ],
+      "scale": 1.1
+    },
+    {
+      "id": "tree_6",
+      "kind": "tree",
+      "at": [
+        -6,
+        -9
+      ],
+      "scale": 1.1
+    },
+    {
+      "id": "tree_7",
+      "kind": "tree",
+      "at": [
+        6,
+        -9
+      ],
+      "scale": 1.1
+    },
+    {
+      "id": "mouth",
+      "kind": "catalog_feature",
+      "at": [
+        0,
+        -10
+      ],
+      "catalog_code": "2G"
+    },
+    {
+      "id": "rock",
+      "kind": "rock",
+      "at": [
+        -4,
+        -7
+      ]
+    }
+  ],
+  "npcs": [],
+  "interactions": [],
+  "exits": [
+    {
+      "id": "farm",
+      "rect": [
+        -1.7,
+        10.6,
+        3.4,
+        1
+      ],
+      "target": "lark_farm",
+      "spawn": [
+        0,
+        -9.5
+      ],
+      "label": "Lark Farm"
+    },
+    {
+      "id": "cave",
+      "rect": [
+        -1.1,
+        -10.6,
+        2.2,
+        1.2
+      ],
+      "target": "goblin_cave",
+      "spawn": [
+        0,
+        5.5
+      ],
+      "label": "Enter goblin caves",
+      "interact": true
+    }
+  ],
+  "enemies": [
+    {
+      "id": "sentry",
+      "kind": "goblin_raider",
+      "at": [
+        -2,
+        4
+      ]
+    },
+    {
+      "id": "lookout",
+      "kind": "goblin_slinger",
+      "at": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "rush_left",
+      "kind": "goblin_raider",
+      "at": [
+        -3,
+        -6
+      ]
+    },
+    {
+      "id": "rush_right",
+      "kind": "goblin_raider",
+      "at": [
+        3,
+        -6
+      ]
+    }
+  ]
+}

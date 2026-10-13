@@ -1,0 +1,54 @@
+{
+  "id": "ph-coast_sand_01",
+  "asset_id": "coast_sand_01",
+  "type": "pbr-texture",
+  "provider": "Poly Haven",
+  "license": "CC0-1.0",
+  "biomes": [
+    "beach"
+  ],
+  "source": "https://polyhaven.com/a/coast_sand_01",
+  "note": "2K albedo, OpenGL normal and roughness; no redundant 8K/16K maps.",
+  "polyhaven": true,
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:45:22.776429+00:00",
+  "downloads": [
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/coast_sand_01/coast_sand_01_diff_2k.jpg",
+      "bytes": 3552676,
+      "sha256": "e1c37ea8b4282fda612b0584d864ca4eef2da28c2fa9f3930cad9209414eb979",
+      "publisher_md5": "bde59bb3bcdd8d4e9d6fcadc19f038fa"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/coast_sand_01/coast_sand_01_nor_gl_2k.jpg",
+      "bytes": 4630126,
+      "sha256": "e5b1430c751727c8ab0332adfd8960c48342936146de258aa9b7736630cdbb62",
+      "publisher_md5": "2a9d793676562b38b5760b9147aa40ea"
+    },
+    {
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/coast_sand_01/coast_sand_01_rough_2k.jpg",
+      "bytes": 1389332,
+      "sha256": "93caeb7332d1593702d97a59040ce178a27c9d705b30c55413e0d2507e09a762",
+      "publisher_md5": "66e3bcd9f7158cd8919487afb51eabf2"
+    }
+  ],
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "ph-coast_sand_01\\albedo.jpg",
+      "bytes": 3552676,
+      "sha256": "e1c37ea8b4282fda612b0584d864ca4eef2da28c2fa9f3930cad9209414eb979"
+    },
+    {
+      "path": "ph-coast_sand_01\\normal.jpg",
+      "bytes": 4630126,
+      "sha256": "e5b1430c751727c8ab0332adfd8960c48342936146de258aa9b7736630cdbb62"
+    },
+    {
+      "path": "ph-coast_sand_01\\roughness.jpg",
+      "bytes": 1389332,
+      "sha256": "93caeb7332d1593702d97a59040ce178a27c9d705b30c55413e0d2507e09a762"
+    }
+  ]
+}

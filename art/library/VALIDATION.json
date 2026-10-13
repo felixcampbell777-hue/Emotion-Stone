@@ -1,0 +1,24 @@
+{
+  "asset_collections": 34,
+  "source_bytes": 515198332,
+  "source_files": 791,
+  "gltf_glb_models": 601,
+  "blender_files_checked": 73,
+  "fbx_files_checked": 1,
+  "original_file_hashes_verified": true,
+  "preserved_existing_game_sources_release_evidence": true,
+  "verified_concurrent_personal_review_updates": [
+    "C:\\Games\\CoastalFoundation\\output\\verification\\user-heroine-draft\\face-close.png",
+    "C:\\Games\\CoastalFoundation\\output\\verification\\user-heroine-draft\\front.png",
+    "C:\\Games\\CoastalFoundation\\output\\verification\\user-heroine-draft\\hair-fix-review.png",
+    "C:\\Games\\CoastalFoundation\\output\\verification\\user-heroine-draft\\hair-fix-three-quarter.png",
+    "C:\\Games\\CoastalFoundation\\output\\verification\\user-heroine-draft\\smile-review.png"
+  ],
+  "sole_release": [
+    "v0.23.3"
+  ],
+  "removed_duplicate_fbx_texture_extractions": [],
+  "download_archives_remaining": [],
+  "errors": [],
+  "limits": "Defender detected no threats. No antivirus can guarantee absence of all malware. GLTF structure/dependencies and Blender readability were checked, not gameplay behavior or visual suitability."
+}

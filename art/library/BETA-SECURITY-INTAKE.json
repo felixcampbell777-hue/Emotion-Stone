@@ -1,0 +1,14 @@
+{
+  "scan": "Windows Defender custom scan",
+  "paths": [
+    "game/assets/characters",
+    "game/assets/creatures"
+  ],
+  "completed": "2026-10-11T13:13:31.1750066-05:00",
+  "antivirus_enabled": true,
+  "real_time_protection": true,
+  "definitions_updated": "2026-10-11T01:18:18-05:00",
+  "new_project_detections": 0,
+  "downloaded_scripts_executed": false,
+  "new_remote_downloads": 0
+}

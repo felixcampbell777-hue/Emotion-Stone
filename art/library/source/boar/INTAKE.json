@@ -1,0 +1,31 @@
+{
+  "id": "boar",
+  "type": "creature",
+  "provider": "OpenGameArt",
+  "author": "Teh_Bucket",
+  "license": "CC0-1.0",
+  "biomes": [
+    "forest"
+  ],
+  "note": "Walk and attack; future art option for existing boar logic.",
+  "source": "https://opengameart.org/content/boar",
+  "downloads": [
+    {
+      "url": "https://opengameart.org/sites/default/files/boar_0.blend",
+      "bytes": 1780848,
+      "sha256": "c16625680d056f0402d1be209c41d16a63394aec94b082a63ad32f562e9f2d2d",
+      "publisher_md5": null
+    }
+  ],
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:44:34.724537+00:00",
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "boar\\boar_0.blend",
+      "bytes": 1780848,
+      "sha256": "c16625680d056f0402d1be209c41d16a63394aec94b082a63ad32f562e9f2d2d"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "asset": "fabric_pattern_07",
+    "source": "https://polyhaven.com/a/fabric_pattern_07",
+    "license": "CC0-1.0",
+    "files": [
+      {
+        "path": "fabric_pattern_07\\albedo.jpg",
+        "sha256": "1f4941638b890d4535b1078067be8a831ca302d1e696ed959b4e4512de893cba",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/fabric_pattern_07/fabric_pattern_07_col_1_2k.jpg"
+      },
+      {
+        "path": "fabric_pattern_07\\normal.jpg",
+        "sha256": "84f15ee5f6b63e7e224051a22426c751cc1fe15a794efd001ebfdb5f84828602",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/fabric_pattern_07/fabric_pattern_07_nor_gl_2k.jpg"
+      },
+      {
+        "path": "fabric_pattern_07\\roughness.jpg",
+        "sha256": "be3e311614ee6f31d4cb4a774ed678b7a64189d3e1a55ad71033142185da270a",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/fabric_pattern_07/fabric_pattern_07_rough_2k.jpg"
+      }
+    ]
+  },
+  {
+    "asset": "leather_white",
+    "source": "https://polyhaven.com/a/leather_white",
+    "license": "CC0-1.0",
+    "files": [
+      {
+        "path": "leather_white\\albedo.jpg",
+        "sha256": "5b2d3f7c2f6f10ea65a644353a9f4e0ce87a6737e09b4cb38c1e1ad3257c86a4",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/leather_white/leather_white_diff_2k.jpg"
+      },
+      {
+        "path": "leather_white\\normal.jpg",
+        "sha256": "f06e81389faf7c4bef47b8ed5a5c433b6e3b7d0ac77e4090f65ed9d964a589f6",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/leather_white/leather_white_nor_gl_2k.jpg"
+      },
+      {
+        "path": "leather_white\\roughness.jpg",
+        "sha256": "ccf43d38aadaf2b16bf10b587c082a81928cf63f028bd59d061181fb7967af8c",
+        "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/leather_white/leather_white_rough_2k.jpg"
+      }
+    ]
+  }
+]

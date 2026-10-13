@@ -1,0 +1,32 @@
+{
+  "id": "deer-female",
+  "type": "creature",
+  "provider": "OpenGameArt",
+  "author": "CDmir / TinyWorlds",
+  "license": "CC0-1.0",
+  "biomes": [
+    "forest",
+    "mountain"
+  ],
+  "note": "Ambient fauna first; packed textures.",
+  "source": "https://opengameart.org/content/deer-female",
+  "downloads": [
+    {
+      "url": "https://opengameart.org/sites/default/files/doe.blend",
+      "bytes": 5359688,
+      "sha256": "577b9e48ce7cee955c6dac1b0a70333eccdfcad3f11eaa1f96a15900b64ca25e",
+      "publisher_md5": null
+    }
+  ],
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:44:37.578643+00:00",
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "deer-female\\doe.blend",
+      "bytes": 5359688,
+      "sha256": "577b9e48ce7cee955c6dac1b0a70333eccdfcad3f11eaa1f96a15900b64ca25e"
+    }
+  ]
+}

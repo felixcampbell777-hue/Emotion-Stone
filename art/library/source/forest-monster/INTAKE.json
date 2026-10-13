@@ -1,0 +1,77 @@
+{
+  "id": "forest-monster",
+  "type": "creature",
+  "provider": "OpenGameArt",
+  "author": "CDmir / TinyWorlds",
+  "license": "CC0-1.0",
+  "biomes": [
+    "forest",
+    "mountain"
+  ],
+  "note": "Large forest creature/boss; textured and animated.",
+  "source": "https://opengameart.org/content/forest-monster",
+  "downloads": [
+    {
+      "url": "https://opengameart.org/sites/default/files/forest-monster_0.7z",
+      "bytes": 24888014,
+      "sha256": "3378edfe2441d1cee93feeeb6e045b9ff0c700d85b398dfa6c29c83f7e696a5e",
+      "publisher_md5": null
+    }
+  ],
+  "status": "collected_defender_no_threats_detected",
+  "utc": "2026-10-11T14:45:03.219020+00:00",
+  "excluded_files": [],
+  "gltf_checks": [],
+  "files": [
+    {
+      "path": "forest-monster\\texture\\forest-monster-AO.png",
+      "bytes": 2563258,
+      "sha256": "c7dfa8616a5b044ab48c00ad0256b9538c1266dd6733d4b24d4a94fdff5eef83"
+    },
+    {
+      "path": "forest-monster\\texture\\forest-monster-norm.png",
+      "bytes": 7943971,
+      "sha256": "98a90aaf5e6c08db2eec60a520fa4960b97753ff4a4d3ff8987d8b8d7652e439"
+    },
+    {
+      "path": "forest-monster\\texture\\forest-monster-skin.png",
+      "bytes": 4782464,
+      "sha256": "c9ee5742126fc64a6fade4014adcd73724b9ab2a9ab491baecf73128c835e555"
+    },
+    {
+      "path": "forest-monster\\texture\\forest-monster-skin1.png",
+      "bytes": 5408013,
+      "sha256": "8ecf0c8f4b70feefa40fdc6d61fde2b8327ce8bf40053977a4e6d6c995eccf2f"
+    },
+    {
+      "path": "forest-monster\\texture\\forest-monster-spec.png",
+      "bytes": 2979357,
+      "sha256": "2cf0f13a2e1b505453d70637b2fcec51ba2650504efafbecf24f2050fd763538"
+    },
+    {
+      "path": "forest-monster\\texture\\tree-norm.png",
+      "bytes": 364692,
+      "sha256": "6a178f5479a7401c8bf8ca994abf3b515bc9fc525afadee049b7d66e699e5c29"
+    },
+    {
+      "path": "forest-monster\\texture\\tree-spec.png",
+      "bytes": 372487,
+      "sha256": "722067474adb7b2e96f1719449e54db3854828a3fc8a43dff82789d03917da46"
+    },
+    {
+      "path": "forest-monster\\texture\\tree.png",
+      "bytes": 411676,
+      "sha256": "172dcdeb6ec402e0dfa12719aaee9e990cf815c91d2cf23873f9177134496940"
+    },
+    {
+      "path": "forest-monster\\Licenses.txt",
+      "bytes": 589,
+      "sha256": "ca2da5a49e55c4d0e0a809230b848bdfd9bb14140a4851682ca06504f88d14ea"
+    },
+    {
+      "path": "forest-monster\\forest-monster-final.blend",
+      "bytes": 21005156,
+      "sha256": "219394045298e14086b46cfcdb406e96073844891e3a601e91d3fc68c908a53b"
+    }
+  ]
+}
