@@ -22,6 +22,9 @@ const ForestEnemy=preload("res://scripts/forest_enemy.gd")
 const BetaEnemy=preload("res://scripts/beta_enemy.gd")
 const BetaHero=preload("res://scripts/beta_hero.gd")
 var game_mode="alpha"
+const MAGICNOW_KEYS=[KEY_M,KEY_A,KEY_G,KEY_I,KEY_C,KEY_N,KEY_O,KEY_W]
+var magicnow_index=0
+var magicnow_deadline=0
 const WaterWave=preload("res://scripts/water_wave.gd")
 const WaterLance=preload("res://scripts/water_lance.gd")
 const WardenRemains=preload("res://scripts/warden_remains.gd")
@@ -147,7 +150,7 @@ func _ready() -> void:
 	player.defeated.connect(_player_defeated)
 	_health_changed(player.health,player.max_health)
 	_stamina_changed(player.stamina,player.max_stamina)
-	get_window().focus_exited.connect(func(): _cancel_mouse_charge();player.clear_dash_attack())
+	get_window().focus_exited.connect(func(): _cancel_mouse_charge();player.clear_dash_attack();magicnow_index=0)
 	get_window().focus_exited.connect(func(): camera_driver.orbiting=false; camera_driver.refresh_pointer())
 	conversation=Conversation.new()
 	add_child(conversation)
@@ -219,6 +222,7 @@ func start_new_game(show_wakeup:bool=true) -> void:
 	home_intro_complete=false
 	quest_stage="not_started"
 	well_gift_stage="not_started"
+	magicnow_index=0
 	magic_items.reset()
 	monster_cores.reset()
 	goblin_campaign.reset()
@@ -1020,6 +1024,7 @@ func apply_save(data: Dictionary) -> bool:
 	conversation.close()
 	inventory.close()
 	skill_tree.close()
+	magicnow_index=0
 	well_gift_stage=data.get("well_gift_stage","not_started")
 	quest_stage=data.get("quest_stage","not_started")
 	defeated_enemies=data.get("defeated_enemies",[]).duplicate()
@@ -1074,7 +1079,34 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.button_index==MOUSE_BUTTON_RIGHT:
 			_request_parry()
 
+# Observe M normally (its Menagerie shortcut is unchanged), then swallow matching
+# prefix presses so I cannot open Inventory halfway through the code.
+func _magicnow_input(event: InputEvent) -> bool:
+	if not event is InputEventKey or not event.pressed or event.echo:
+		return false
+	if game_mode!="beta" or not player.input_enabled or event.ctrl_pressed or event.alt_pressed or event.meta_pressed:
+		magicnow_index=0
+		return false
+	var now=Time.get_ticks_msec()
+	if now>magicnow_deadline: magicnow_index=0
+	var code=event.keycode if event.keycode!=0 else event.physical_keycode
+	if code!=MAGICNOW_KEYS[magicnow_index]:
+		magicnow_index=0
+		if code!=KEY_M: return false
+	magicnow_index+=1
+	magicnow_deadline=now+4000
+	if magicnow_index==MAGICNOW_KEYS.size():
+		magicnow_index=0
+		well_gift_stage="potion_owned"
+		notify("MAGICNOW: Everfull Experience Potion added. Inventory [I] > Potions.")
+	return code!=KEY_M
+
 func _input(event: InputEvent) -> void:
+	if player!=null:
+		_refresh_simulation()
+		if _magicnow_input(event):
+			get_viewport().set_input_as_handled()
+			return
 	if monster_cores.warning!=null and monster_cores.warning.visible:
 		if event.is_action_pressed("pause") or event.is_action_pressed("inventory"): monster_cores.close_warning()
 		return
@@ -1125,6 +1157,7 @@ func _physics_process(delta: float) -> void:
 
 func _refresh_simulation() -> void:
 	player.input_enabled=not dialog.visible and not conversation.visible and not inventory.visible and not skill_tree.visible and not help_panel.visible and (pause_menu==null or not pause_menu.visible) and not recovering and (title_screen==null or not title_screen.visible) and (menagery==null or not menagery.opened) and (world_browser==null or not world_browser.visible) and (monster_cores.warning==null or not monster_cores.warning.visible)
+	if not player.input_enabled: magicnow_index=0
 	camera_driver.refresh_pointer()
 	for enemy in enemies:
 		enemy.simulation_enabled=player.input_enabled and not gallery_mode
