@@ -1702,6 +1702,7 @@ func apply_skill_stats() -> void:
 		player.combat[drain]*=1-progression.bonus("sprint_saving")
 	player.combat.water.stamina_cost*=1-progression.bonus("water_saving")
 	player.water_unlocked=progression.has("mana")
+	player.dash_water_unlocked=progression.has("mana") and progression.has("flowing_splash")
 	player.lance_unlocked=progression.has("mana_lance")
 	player.roll_unlocked=progression.has("belly_roll")
 	player.thrust_unlocked=progression.has("charge_thrust")

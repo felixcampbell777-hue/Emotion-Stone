@@ -186,7 +186,7 @@
       "id": "flowing_splash",
       "branch": "Mana",
       "name": "Flowing Splash",
-      "description": "60% less stamina for water slashes: 24 to 9.6. Equip in a passive slot. Each extra rank strengthens this bonus by 25% of its base; three ranks maximum.",
+      "description": "Unlocks an automatic mana slash after a dash swing. Equip this passive for 60% less Water Slash stamina (24 to 9.6). Each extra rank strengthens the saving by 25% of its base; three ranks maximum.",
       "effects": {
         "water_saving": 0.6
       },
