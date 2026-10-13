@@ -84,7 +84,7 @@ static func read(path: String = SAVE_PATH) -> Dictionary:
 	for key in ["sword_drawn","sword_equipped","mother_unwrapped","home_intro_complete"]:
 		if parsed.has(key) and not parsed[key] is bool:
 			return {}
-	if parsed.has("special_attack") and (not parsed.special_attack is String or parsed.special_attack not in ["water_sweep","water_lance"]):
+	if parsed.has("special_attack") and (not parsed.special_attack is String or parsed.special_attack not in ["water_sweep","water_lance","sea_dragon"]):
 		return {}
 	var world=parsed.get("world_id","")
 	if not world is String or (not world.is_empty() and not WorldPacks.valid_id(world)): return {}

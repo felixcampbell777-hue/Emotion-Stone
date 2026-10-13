@@ -183,6 +183,19 @@
       "category": "active"
     },
     {
+      "id": "sea_dragon",
+      "branch": "Mana",
+      "name": "Mana Sea Dragon",
+      "description": "Summon a sea dragon from the sword gem. Guide its first-person flight with the mouse for up to 10 seconds, then crash into a foe. Your body stays vulnerable. Equip on Q. Costs 45 stamina.",
+      "effects": {},
+      "requires": [
+        "mana_lance"
+      ],
+      "excludes": [],
+      "max_rank": 1,
+      "category": "active"
+    },
+    {
       "id": "flowing_splash",
       "branch": "Mana",
       "name": "Flowing Splash",
@@ -305,8 +318,12 @@
       "branch": "Form",
       "name": "Dash Reach",
       "description": "Each rank: +25% distance for every Dash, from a quick T press to a full charge. Three ranks; +75% maximum. Charge time and stamina cost stay the same.",
-      "effects": {"dash_distance": 0.25},
-      "requires": ["dash"],
+      "effects": {
+        "dash_distance": 0.25
+      },
+      "requires": [
+        "dash"
+      ],
       "excludes": [],
       "max_rank": 3,
       "category": "active"

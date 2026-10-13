@@ -493,6 +493,64 @@
           "exclusiveMinimum": 0
         }
       }
+    },
+    "sea_dragon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stamina_cost",
+        "seconds",
+        "formation_seconds",
+        "speed",
+        "turn_speed",
+        "radius",
+        "damage",
+        "splash_damage",
+        "blast_radius",
+        "impact_seconds"
+      ],
+      "properties": {
+        "stamina_cost": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "formation_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "speed": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "turn_speed": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "radius": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "damage": {
+          "type": "integer",
+          "exclusiveMinimum": 0
+        },
+        "splash_damage": {
+          "type": "integer",
+          "exclusiveMinimum": 0
+        },
+        "blast_radius": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "impact_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
     }
   },
   "$defs": {

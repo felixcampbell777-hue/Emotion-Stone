@@ -6,5 +6,6 @@ func run_checks() -> void:
 	await load("res://scripts/beta_checks.gd").new().run(test)
 	await load("res://scripts/magicnow_checks.gd").new().run(test)
 	await load("res://scripts/skill_upgrade_checks.gd").new().run(test)
+	await load("res://scripts/sea_dragon_checks.gd").new().run(test)
 	print("BETA_CHECKS ",test.checks.size()," checks; ",test.failures)
 	quit(0 if test.failures.is_empty() else 1)
