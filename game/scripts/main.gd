@@ -114,6 +114,10 @@ func read_data(path: String) -> Dictionary:
 	return {}
 
 func _ready() -> void:
+	# The Beta branch opens its own mode; private fixtures retain their Alpha starting point.
+	var startup_args=OS.get_cmdline_user_args()
+	if "--verify" not in startup_args and "--capture" not in startup_args:
+		game_mode="beta" if ProjectSettings.get_setting("coastal/default_game_mode","alpha")=="beta" else "alpha"
 	magic_items.game=self
 	monster_cores.game=self
 	DisplayServer.window_set_title("Coastal Foundation v"+str(read_data("res://content/release.json").version))
@@ -187,7 +191,7 @@ func _ready() -> void:
 	if DisplayServer.get_name()!="headless" and "--verify" not in launch_args and "--capture" not in launch_args:
 		environment_profile="darkwood"
 		set_resolution(0)
-	load_map("coastal_path" if "--verify" in launch_args or "--capture" in launch_args else config.start_map)
+	load_map("coastal_path" if "--verify" in launch_args or "--capture" in launch_args else "beta_meadow" if game_mode=="beta" else config.start_map)
 	resized.connect(_layout)
 	_layout()
 	var args=OS.get_cmdline_user_args()

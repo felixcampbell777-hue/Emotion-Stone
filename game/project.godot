@@ -1,6 +1,9 @@
 ; Coastal Foundation: pinned Godot 4.5.1
 config_version=5
 
+[coastal]
+default_game_mode="beta"
+
 [application]
 config/name="Coastal Foundation"
 config/icon="res://assets/ui/launcher-icon-v1.png"

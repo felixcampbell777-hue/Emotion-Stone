@@ -2,7 +2,7 @@
 
 Current source baseline: **v0.31.2**, first-person gameplay with the upright two-hand sword hold and upgradeable Mana Lance aim control.
 
-The GitHub repository has separate **`alpha`** and **`beta`** branches. This checkout is **Alpha**: the title selects the existing home/village/forest adventure by default. The Beta branch defaults to the meadow, wolf packs and castle town. Both retain the shared engine, map builder, other mode selector and separate saves.
+The GitHub repository has separate **`alpha`** and **`beta`** branches. This checkout is **Beta**: the title selects the meadow, wolf packs and castle town by default. The Alpha branch retains the existing home/village/forest adventure. Both retain the shared engine, map builder, other mode selector and separate saves.
 
 For cloning, Git LFS, Windows builds and branch editing, read [GitHub setup](docs/GITHUB.md). Large editable models and runtime art are stored through Git LFS; generated releases, player saves, caches and local toolchain paths are excluded. Third-party assets retain their credits and licences; see [asset credits](docs/ASSET-CREDITS.md).
 
