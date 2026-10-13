@@ -23,6 +23,7 @@ Open **MapBuilder.exe** or the **Coastal Map Builder** desktop shortcut. Drag ex
 | Control | Action |
 | --- | --- |
 | M (in Menagery) | Open creature spawn controls and scenery-code catalog |
+| magicnow (Beta gameplay) | Add the bottomless XP potion; find it in Inventory > Potions |
 | I | Open/close inventory: Equipment & Items, Skills, Level Up, Quests |
 | Esc | Pause/resume; close an open inventory or conversation first |
 | P | Open Level Up directly inside inventory |

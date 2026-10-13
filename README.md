@@ -1,6 +1,6 @@
 # Coastal Foundation
 
-Current source baseline: **v0.31.4**, first-person gameplay with the upright two-hand sword hold, Mana Lance aim control, Dash Reach upgrades and mana-empowered dash attacks.
+Current source baseline: **v0.31.5**, first-person gameplay with the upright two-hand sword hold, Mana Lance aim control, Dash Reach upgrades and mana-empowered dash attacks.
 
 The GitHub repository has separate **`alpha`** and **`beta`** branches. This checkout is **Beta**: the title selects the meadow, wolf packs and castle town by default. The Alpha branch retains the existing home/village/forest adventure. Both retain the shared engine, map builder, other mode selector and separate saves.
 
