@@ -147,7 +147,7 @@ func _ready() -> void:
 	player.defeated.connect(_player_defeated)
 	_health_changed(player.health,player.max_health)
 	_stamina_changed(player.stamina,player.max_stamina)
-	get_window().focus_exited.connect(_cancel_mouse_charge)
+	get_window().focus_exited.connect(func(): _cancel_mouse_charge();player.clear_dash_attack())
 	get_window().focus_exited.connect(func(): camera_driver.orbiting=false; camera_driver.refresh_pointer())
 	conversation=Conversation.new()
 	add_child(conversation)
@@ -1064,7 +1064,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event is InputEventMouseButton and event.pressed and world_rect.has_point(event.position):
 		if event.button_index==MOUSE_BUTTON_LEFT:
-			if player.begin_charge():
+			if player.state=="dash_charge":
+				if not player.queue_dash_attack() and player.input_enabled and not player.sword_drawn: notify("Draw the sword before queuing a dash attack.")
+			elif player.begin_charge():
 				mouse_attack_pending=true
 				mouse_hold_time=0
 			elif player.input_enabled and player.state=="free":
@@ -1157,7 +1159,7 @@ func _request_attack(kind: String) -> void:
 	if not player.sword_drawn:
 		notify("R to draw the sword first.")
 		return
-	if player.state in ["free","light","roll","stand"] and not player.begin_attack(kind):
+	if player.state in ["free","light","roll","stand","dash_charge"] and not player.begin_attack(kind):
 		notify("Not enough stamina for a "+kind+" swing.")
 
 func _make_health_bar(color: Color, width: int, height: int) -> ProgressBar:
@@ -1687,6 +1689,7 @@ func apply_skill_stats() -> void:
 	for key in ["release_windup_seconds","unprepared_windup_seconds","hold_base_seconds","recovery_seconds"]: player.combat.thrust_charge[key]*=1-control
 	player.combat.lance.charge_seconds*=1-progression.bonus("lance_control")
 	player.lance_stability=clampf(progression.bonus("lance_stability"),0,.75)
+	player.dash_distance_multiplier=1+progression.bonus("dash_distance")
 	var base_walk=float(JSON.parse_string(FileAccess.get_file_as_string("res://content/beta.json")).locomotion.walk_speed) if game_mode=="beta" else 2.4
 	player.walk_speed=base_walk*(1+progression.bonus("speed"))*(1+goblin_campaign.speed_bonus())
 	for speed in ["drawn_walk_speed","sprint_speed","drawn_sprint_speed"]:

@@ -291,13 +291,24 @@
       "id": "dash",
       "branch": "Form",
       "name": "Dash",
-      "description": "Hold T to build distance, release to dart straight forward. 2.5 to 7 metres over 1.5 seconds; 12 to 24 stamina. No invulnerability.",
+      "description": "Hold T to build distance, release to dash (2.5-7m; 12-24 stamina). With sword drawn, left-click or J while holding T queues an opening swing at the dash exit, costing normal swing stamina. No invulnerability.",
       "effects": {},
       "requires": [
         "form"
       ],
       "excludes": [],
       "max_rank": 1,
+      "category": "active"
+    },
+    {
+      "id": "dash_reach",
+      "branch": "Form",
+      "name": "Dash Reach",
+      "description": "Each rank: +25% distance for every Dash, from a quick T press to a full charge. Three ranks; +75% maximum. Charge time and stamina cost stay the same.",
+      "effects": {"dash_distance": 0.25},
+      "requires": ["dash"],
+      "excludes": [],
+      "max_rank": 3,
       "category": "active"
     },
     {

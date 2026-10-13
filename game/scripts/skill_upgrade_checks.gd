@@ -61,4 +61,5 @@ func run(test:RefCounted) -> void:
 	bad=save.duplicate(true);bad.skill_loadout={"dash":"yes"};game.Save.write(bad,path)
 	test.check(game.Save.read(path).is_empty() and not game.apply_save(bad),"Save and direct-load validation reject malformed active slots")
 	DirAccess.remove_absolute(path)
+	await load("res://scripts/dash_attack_checks.gd").new().run(test)
 	game.progression.restore({"tree_version":2,"xp":0,"learned":[]});game.apply_skill_stats();actor.set_sword_drawn(false)

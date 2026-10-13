@@ -30,6 +30,11 @@ var jump_equipped=false
 var thrust_charge_rate=1.0
 var lance_stability=0.0
 var dash_distance=0.0
+var dash_distance_multiplier=1.0
+var dash_attack_queued=false
+var dash_attack_blend=0.0
+const DASH_ATTACK_PHASE=.28
+const DASH_ATTACK_BLEND=.16
 var dash_release_queued=false
 var jump_active=false
 var jump_velocity=0.0
@@ -512,6 +517,9 @@ func set_sword_drawn(value: bool) -> void:
 	rush_credit=0
 	chain_blend=0
 	roll_attack_queued=false
+	dash_attack_queued=false
+	dash_attack_blend=0.0
+	dash_release_queued=false
 	chain_speed=0
 	movement_direction=Vector3.ZERO
 	sword_drawn=value
@@ -687,6 +695,7 @@ func queue_combo() -> bool:
 	return true
 
 func begin_attack(kind: String, charged:float=0.0, prepared:bool=false) -> bool:
+	if kind=="light" and state=="dash_charge": return queue_dash_attack()
 	if kind=="light" and state in ["roll","stand"]:
 		return queue_roll_light()
 	if kind=="heavy" and heavy_style=="charge_thrust" and thrust_unlocked: kind="thrust"
@@ -781,6 +790,9 @@ func begin_dash_charge() -> bool:
 	if not can_afford(12): return false
 	state="dash_charge";state_time=0;state_duration=1.5
 	dash_release_queued=false
+	dash_attack_queued=false;dash_attack_blend=0
+	combo_stage=0;combo_remaining=0;combo_queued=false
+	rush_credit=0;charge_rush=false
 	attack_direction=movement_vector(Vector2(0,-1)) if camera_relative else facing()
 	play_clip("drag_idle_loop" if sword_drawn else "idle_loop")
 	return true
@@ -791,9 +803,40 @@ func release_dash() -> bool:
 	dash_release_queued=false
 	var fraction=clampf(state_time/1.5,0,1)
 	var cost=lerpf(12,24,fraction)
-	if not spend_stamina(cost): state="free";return false
-	dash_distance=lerpf(2.5,7,fraction)
+	if not spend_stamina(cost):
+		state="free";dash_attack_queued=false;dash_attack_blend=0
+		return false
+	dash_distance=lerpf(2.5,7,fraction)*dash_distance_multiplier
 	state="dash";state_time=0;state_duration=.32+dash_distance*.03
+	return true
+
+func queue_dash_attack() -> bool:
+	if not input_enabled or health<=0 or state!="dash_charge" or not sword_drawn or dash_attack_queued: return false
+	var dash_cost=lerpf(12,24,clampf(state_time/1.5,0,1))
+	if not can_afford(dash_cost+float(combat.light.stamina_cost)): return false
+	dash_attack_queued=true
+	return true
+
+func clear_dash_attack() -> void:
+	dash_attack_queued=false
+
+func _exit_dash_attack() -> bool:
+	var weapon_pose=equipment.transform
+	var bones=[]
+	for index in range(skeleton.get_bone_count()): bones.append(skeleton.get_bone_pose(index))
+	dash_attack_queued=false;dash_attack_blend=0
+	state="free";state_time=0;combo_stage=0;combo_remaining=0
+	if not begin_attack("light"):
+		set_sword_drawn(sword_drawn)
+		return false
+	# The dash preloads this exact opener pose; never return to ready between them.
+	state_time=float(combat.light.duration)*DASH_ATTACK_PHASE
+	animator.seek(animator.get_animation(clips.attack_light).length*DASH_ATTACK_PHASE,true)
+	chain_bones=bones;chain_weapon=weapon_pose
+	chain_blend_duration=DASH_ATTACK_BLEND;chain_blend=chain_blend_duration
+	action_transition_remaining=0;action_transition_bones.clear()
+	equipment.transform=weapon_pose
+	for index in range(bones.size()): skeleton.set_bone_pose(index,bones[index])
 	return true
 
 func begin_jump() -> bool:
@@ -969,6 +1012,7 @@ func take_damage(amount: int, direction: Vector3) -> bool:
 		return false
 	if magic_gear!=null: amount=magic_gear.incoming_damage(amount)
 	health=maxi(0,health-amount)
+	if state in ["dash_charge","dash"]: clear_dash_attack()
 	invulnerability=float(combat.hurt_invulnerability)
 	knockback=direction*2.4*(1-clampf(magic_gear.bonus("hurt_recoil_saving"),0,.65) if magic_gear!=null else 1.0)
 	if state=="lance_charge" and health>0:
@@ -1237,12 +1281,15 @@ func _physics_process(delta: float) -> void:
 		var progress=attack_phase() if state in ["light","heavy","thrust"] else state_time/state_duration
 		velocity=Vector3.ZERO
 		if state in ["dash_charge","dash","jump"]:
+			dash_attack_blend=move_toward(dash_attack_blend,1.0 if dash_attack_queued else 0.0,delta/DASH_ATTACK_BLEND)
 			var desired=movement_vector(movement)
 			if state=="dash": velocity=attack_direction*dash_distance/state_duration/.8*smoothstep(0,.1,progress)*(1-smoothstep(.7,1,progress))
 			elif state=="jump": velocity=desired*(float(combat.drawn_walk_speed) if sword_drawn else walk_speed)
 			animator.advance(delta)
 			if sword_drawn: _pose_sword("drag",0)
-			if state=="dash" and state_time>=state_duration: state="free";state_time=0
+			if state=="dash" and state_time>=state_duration:
+				if dash_attack_queued: _exit_dash_attack()
+				else: state="free";state_time=0;dash_attack_blend=0
 		elif state in ["roll","stand"]:
 			var clip=("dodge_roll" if state=="roll" else "stand_up")+("" if roll_restore_drawn else "_sheathed")
 			var key="roll" if state=="roll" else "stand"

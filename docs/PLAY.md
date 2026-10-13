@@ -29,7 +29,8 @@ Open **MapBuilder.exe** or the **Coastal Map Builder** desktop shortcut. Drag ex
 | Middle mouse drag | Orbit the follow camera |
 | Mouse wheel | Zoom the follow camera |
 | V | Recenter behind the heroine |
-| T (hold / release) | Charge and launch Dash after learning and equipping it |
+| T (hold / release) | Charge and launch Dash; Dash Reach increases its distance |
+| Left-click / J while holding T, sword drawn | Queue an opening swing at the dash exit; release T to dash into it |
 | Mouse movement (first person) | Look around; Esc / I releases the pointer for menus |
 | WASD or arrow keys | Walk freely, including diagonals |
 | Hold Shift while moving | Sprint; sword drawn reaches normal walking pace |
