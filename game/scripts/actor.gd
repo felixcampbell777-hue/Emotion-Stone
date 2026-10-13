@@ -33,6 +33,8 @@ var dash_distance=0.0
 var dash_distance_multiplier=1.0
 var dash_attack_queued=false
 var dash_attack_blend=0.0
+var dash_water_unlocked=false
+var dash_water_pending=false
 const DASH_ATTACK_PHASE=.28
 const DASH_ATTACK_BLEND=.16
 var dash_release_queued=false
@@ -519,6 +521,7 @@ func set_sword_drawn(value: bool) -> void:
 	roll_attack_queued=false
 	dash_attack_queued=false
 	dash_attack_blend=0.0
+	dash_water_pending=false
 	dash_release_queued=false
 	chain_speed=0
 	movement_direction=Vector3.ZERO
@@ -791,6 +794,7 @@ func begin_dash_charge() -> bool:
 	state="dash_charge";state_time=0;state_duration=1.5
 	dash_release_queued=false
 	dash_attack_queued=false;dash_attack_blend=0
+	dash_water_pending=false
 	combo_stage=0;combo_remaining=0;combo_queued=false
 	rush_credit=0;charge_rush=false
 	attack_direction=movement_vector(Vector2(0,-1)) if camera_relative else facing()
@@ -819,6 +823,9 @@ func queue_dash_attack() -> bool:
 
 func clear_dash_attack() -> void:
 	dash_attack_queued=false
+	if dash_water_pending:
+		dash_water_pending=false
+		set_sword_glow(false)
 
 func _exit_dash_attack() -> bool:
 	var weapon_pose=equipment.transform
@@ -829,6 +836,7 @@ func _exit_dash_attack() -> bool:
 	if not begin_attack("light"):
 		set_sword_drawn(sword_drawn)
 		return false
+	dash_water_pending=dash_water_unlocked and water_unlocked
 	# The dash preloads this exact opener pose; never return to ready between them.
 	state_time=float(combat.light.duration)*DASH_ATTACK_PHASE
 	animator.seek(animator.get_animation(clips.attack_light).length*DASH_ATTACK_PHASE,true)
@@ -838,6 +846,23 @@ func _exit_dash_attack() -> bool:
 	equipment.transform=weapon_pose
 	for index in range(bones.size()): skeleton.set_bone_pose(index,bones[index])
 	return true
+
+func _dash_water_followthrough(progress:float) -> void:
+	if not dash_water_pending or state!="light" or combo_stage!=1: return
+	if progress<.72:
+		if progress>=.40:
+			set_sword_glow(true,2.2)
+			update_sword_energy(smoothstep(.40,.72,progress))
+		return
+	# Release after the melee cut, before its .74 combo join; one wave per dash attack.
+	dash_water_pending=false
+	set_sword_glow(false)
+	if not dash_water_unlocked or not water_unlocked or not spend_stamina(float(combat.water.stamina_cost)): return
+	var toward=attack_direction
+	if first_person_driver!=null:
+		var aim=-first_person_driver.sample_first_person(0,false).basis.z
+		toward=Vector3(aim.x,0,aim.z).normalized()
+	water_cast.emit(position,toward)
 
 func begin_jump() -> bool:
 	if not input_enabled or state!="free" or not jump_unlocked or not jump_equipped:
@@ -1012,6 +1037,7 @@ func take_damage(amount: int, direction: Vector3) -> bool:
 		return false
 	if magic_gear!=null: amount=magic_gear.incoming_damage(amount)
 	health=maxi(0,health-amount)
+	if dash_water_pending: clear_dash_attack()
 	if state in ["dash_charge","dash"]: clear_dash_attack()
 	invulnerability=float(combat.hurt_invulnerability)
 	knockback=direction*2.4*(1-clampf(magic_gear.bonus("hurt_recoil_saving"),0,.65) if magic_gear!=null else 1.0)
@@ -1431,6 +1457,7 @@ func _physics_process(delta: float) -> void:
 				blade_sweep_previous=blade_segment()
 			else:
 				blade_sweep_previous.clear()
+			_dash_water_followthrough(progress)
 
 		else:
 			var sword_phase=sword_action_phase(progress,state=="sheathe") if state in ["draw","sheathe"] else progress

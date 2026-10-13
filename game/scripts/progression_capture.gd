@@ -16,6 +16,8 @@ func run(game:Control,directory:String) -> void:
 	await picture(game,directory+"/skills-lance-control.png")
 	game.skill_tree.selected_id="dash_reach";game.skill_tree.refresh()
 	await picture(game,directory+"/skills-dash-reach.png")
+	game.skill_tree.category="passive";game.skill_tree.selected_id="flowing_splash";game.skill_tree.refresh()
+	await picture(game,directory+"/skills-mana-dash.png")
 	for category in ["active","passive","capacity"]:
 		game.skill_tree.category=category;game.skill_tree.refresh()
 		await picture(game,directory+"/skills-upgrades-"+category+".png")
@@ -31,6 +33,7 @@ func run(game:Control,directory:String) -> void:
 	await picture(game,directory+"/skills-first-person-dash.png")
 	for i in range(35): game.player._physics_process(1.0/60)
 	await load("res://scripts/dash_attack_capture.gd").new().run(game,directory)
+	await load("res://scripts/dash_attack_capture.gd").new().run(game,directory,true)
 	game.player.set_physics_process(true)
 	DisplayServer.window_set_size(Vector2i(960,540));game.toggle_inventory();game.inventory.show_page("level");game.skill_tree.category="active";game.skill_tree.refresh()
 	await picture(game,directory+"/skills-upgrades-small.png")
