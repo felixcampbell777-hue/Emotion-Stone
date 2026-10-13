@@ -12,6 +12,8 @@ var collision_query=PhysicsShapeQueryParameters3D.new()
 var first_pitch=0.0
 var owns_pointer=false
 var locomotion_camera_blend=0.0
+var remote_return=0.0
+var remote_last=Transform3D.IDENTITY
 var visuals=preload("res://scripts/first_person_visuals.gd").new()
 var crosshair:Label
 
@@ -58,6 +60,10 @@ func recenter() -> void:
 	game.player.movement_camera_yaw=yaw
 
 func handle_input(event:InputEvent) -> bool:
+	if is_instance_valid(game.sea_dragon) and game.sea_dragon.active and game.player.input_enabled:
+		if event is InputEventMouseMotion:
+			game.sea_dragon.steer(event.relative*float(tuning.sensitivity));return true
+		if event is InputEventMouseButton: return true
 	if game.camera_mode=="first_person" and game.player.input_enabled:
 		if event is InputEventMouseMotion:
 			yaw=wrapf(yaw-event.relative.x*float(tuning.sensitivity),-PI,PI)
@@ -126,8 +132,25 @@ func refresh_pointer() -> void:
 	elif not capture and owns_pointer:
 		Input.mouse_mode=Input.MOUSE_MODE_VISIBLE; owns_pointer=false
 
+func end_remote_view(immediate:bool=false) -> void:
+	remote_last=game.camera.global_transform;remote_return=0.0 if immediate else .3
+	game.camera.cull_mask=((1<<20)-1)&~visuals.BODY_LAYER
+	if is_instance_valid(visuals.root): visuals.root.visible=true
+	if immediate: update_first_person(0)
+
 func update_first_person(delta:float=0.0) -> void:
+	if is_instance_valid(game.sea_dragon) and game.sea_dragon.active:
+		game.camera.global_transform=game.sea_dragon.view_transform()
+		game.camera_target=game.camera.position-game.camera.basis.z
+		var entering=game.sea_dragon.elapsed<float(game.sea_dragon.tuning.formation_seconds)*.3
+		game.camera.cull_mask=((1<<20)-1)&~(visuals.BODY_LAYER if entering else visuals.ARMS_LAYER)
+		if entering: visuals.update(game.player,game.camera.global_transform)
+		if is_instance_valid(visuals.root): visuals.root.visible=entering
+		return
 	var view=sample_first_person(delta)
+	if remote_return>0:
+		if game.player.input_enabled: remote_return=maxf(0,remote_return-delta)
+		view=remote_last.interpolate_with(view,smoothstep(0,1,1-remote_return/.3))
 	game.camera.global_transform=view
 	game.camera_target=view.origin-view.basis.z
 	visuals.update(game.player,view)

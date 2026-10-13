@@ -235,9 +235,9 @@ func refresh_skills() -> void:
 	slots.add_child(game.label("Learn and upgrade in Level Up. Each active slot uses its own control.",16))
 	slots.add_child(game.label("MAGIC SLOT  /  Q",19,Color("#e9c894")))
 	var specials=HBoxContainer.new() if get_viewport_rect().size.x>=1100 else VBoxContainer.new(); slots.add_child(specials)
-	for id in ["water_sweep","water_lance"]:
-		var unlocked=game.special_unlocked(id); var title="Water Slash" if id=="water_sweep" else "Water Lance"; var caption="Moving, fading water fan" if id=="water_sweep" else "3 sec charge; hits interrupt"
-		var cell=game.button(("EQUIPPED\n" if game.selected_special_attack==id and unlocked else "")+title+"\n"+(caption if unlocked else "Locked: Mana "+("root" if id=="water_sweep" else "choice")),func(): game.select_special_attack(id))
+	for id in ["water_sweep","water_lance","sea_dragon"]:
+		var unlocked=game.special_unlocked(id); var title={"water_sweep":"Water Slash","water_lance":"Water Lance","sea_dragon":"Mana Sea Dragon"}[id]; var caption={"water_sweep":"Moving, fading water fan","water_lance":"3 sec charge; hits interrupt","sea_dragon":"Steer for 10 sec; body vulnerable"}[id]
+		var cell=game.button(("EQUIPPED\n" if game.selected_special_attack==id and unlocked else "")+title+"\n"+(caption if unlocked else "Locked: "+("Water Lance" if id=="sea_dragon" else "Mana root" if id=="water_sweep" else "Mana")),func(): game.select_special_attack(id))
 		cell.custom_minimum_size=Vector2(180,65); cell.size_flags_horizontal=Control.SIZE_EXPAND_FILL; cell.disabled=not unlocked; specials.add_child(cell)
 	slots.add_child(game.label("HEAVY ATTACK  /  HOLD LEFT CLICK",18,Color("#e9c894")))
 	var heavies=HBoxContainer.new() if get_viewport_rect().size.x>=1100 else VBoxContainer.new(); slots.add_child(heavies)

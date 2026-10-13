@@ -110,6 +110,7 @@ var chain_blend_duration=.12
 var chain_bones: Array=[]
 var chain_weapon=Transform3D.IDENTITY
 var water_released=false
+var dragon_unlocked=false
 var lance_charge_fx: Node3D
 var movement_direction=Vector3.ZERO
 var slow_sources:Dictionary={}
@@ -639,6 +640,32 @@ func begin_water() -> bool:
 	rush_credit=0
 	chain_speed=0
 	play_clip("attack_water",.08)
+	return true
+
+func sword_gem_position() -> Vector3:
+	for mesh in equipment.find_children("*","MeshInstance3D",true,false):
+		if mesh.mesh==null: continue
+		for surface in range(mesh.mesh.get_surface_count()):
+			var material=mesh.mesh.surface_get_material(surface)
+			if material==null or not "gem" in String(material.resource_name).to_lower(): continue
+			var vertices=mesh.mesh.surface_get_arrays(surface)[Mesh.ARRAY_VERTEX]
+			if vertices.is_empty(): continue
+			var bounds=AABB(vertices[0],Vector3.ZERO)
+			for vertex in vertices: bounds=bounds.expand(vertex)
+			return mesh.global_transform*bounds.get_center()
+	return equipment.global_transform*Vector3(0,.25 if equipment.get_meta("beta_sword",false) else .34,0)
+
+func begin_dragon_channel() -> bool:
+	if not dragon_unlocked or not input_enabled or state!="free" or health<=0 or not sword_drawn: return false
+	if not spend_stamina(float(combat.sea_dragon.stamina_cost)): return false
+	begin_action_transition(.2)
+	clear_dash_attack();clear_lance_charge()
+	state="dragon_channel";state_time=0;state_duration=100000
+	combo_queued=false;combo_remaining=0;combo_stage=0
+	shift_pending=false;rush_clock=0;rush_credit=0;chain_speed=0
+	velocity=Vector3.ZERO
+	play_clip("attack_lance",0)
+	set_sword_glow(true,2.2);update_sword_energy(0)
 	return true
 
 func begin_water_lance() -> bool:
@@ -1380,6 +1407,11 @@ func _physics_process(delta: float) -> void:
 					var aim=-first_person_driver.sample_first_person(0,false).basis.z
 					toward=Vector3(aim.x,0,aim.z).normalized()
 				water_cast.emit(position,toward)
+		elif state=="dragon_channel":
+			var hold=LANCE_HOLD_PHASE*smoothstep(0,.7,state_time)
+			animator.seek(hold*animator.get_animation(clips.attack_lance).length,true)
+			blend_action_transition(delta)
+			_pose_sword("lance",hold)
 		elif state=="lance_charge":
 			update_sword_energy(progress)
 			var lance_phase=progress*LANCE_HOLD_PHASE

@@ -489,7 +489,7 @@ def main():
     for name in ['validate','build','verify','verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-environment','verify-builder','capture','verify-windows','capture-windows','run','recipes-check']:
         command=commands.add_parser(name)
         if name in ['capture','capture-windows']:
-            command.add_argument('--view',choices=['beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
+            command.add_argument('--view',choices=['sea-dragon','beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
             command.add_argument('--renderer',choices=['forward_plus','gl_compatibility'])
             command.add_argument('--art-profile',choices=['original','darkwood'])
             if name=='capture':

@@ -181,6 +181,7 @@ func run(target: Node) -> void:
 	await load("res://scripts/beta_checks.gd").new().run(self)
 	await load("res://scripts/magicnow_checks.gd").new().run(self)
 	await load("res://scripts/skill_upgrade_checks.gd").new().run(self)
+	await load("res://scripts/sea_dragon_checks.gd").new().run(self)
 	var report={"passed":failures.is_empty(),"check_count":checks.size(),"checks":checks,"failures":failures,"godot":Engine.get_version_info().string}
 	var report_path=ProjectSettings.globalize_path("res://../output/verification/integration-report.json")
 	var arguments=OS.get_cmdline_user_args()

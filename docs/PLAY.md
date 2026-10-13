@@ -43,7 +43,8 @@ Open **MapBuilder.exe** or the **Coastal Map Builder** desktop shortcut. Drag ex
 | Tap left mouse click on the world, or J | Light combo on release |
 | Hold left mouse click for 0.42 seconds, or K | Heavy attack |
 | Right mouse click on the world, or F | Timed parry |
-| Q with the sword drawn | Equipped special: Water Slash or Water Lance |
+| Q with the sword drawn | Equipped special: Water Slash, Water Lance or Mana Sea Dragon |
+| Mouse during Sea Dragon | Steer its first-person flight for up to 10 seconds; your body remains vulnerable |
 | Click a conversation choice, or Tab then Enter | Choose a response to Mother |
 | F5 / Save button | Save your place |
 | F9 / Load button | Load your saved place |

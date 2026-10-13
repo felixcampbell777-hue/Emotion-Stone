@@ -246,5 +246,17 @@
     "gust_half_width": 2.2,
     "gust_seconds": 0.55,
     "gust_stun_seconds": 0.85
+  },
+  "sea_dragon": {
+    "stamina_cost": 45.0,
+    "seconds": 10.0,
+    "formation_seconds": 0.8,
+    "speed": 9.0,
+    "turn_speed": 2.8,
+    "radius": 0.32,
+    "damage": 140,
+    "splash_damage": 70,
+    "blast_radius": 2.6,
+    "impact_seconds": 0.55
   }
 }
