@@ -17,10 +17,15 @@ func apply(actor:Node3D,key:String,t:float) -> void:
 	var frame:Transform3D=actor.first_person_driver.sample_first_person(0,not actor.is_physics_processing())
 	var pose=sample(key,t)
 	if key=="drag":
+		if actor.dash_attack_blend>0:
+			var loaded=sample("light",actor.DASH_ATTACK_PHASE)
+			var weight=smoothstep(0,1,actor.dash_attack_blend)
+			pose.grip=pose.grip.lerp(loaded.grip,weight)
+			pose.direction=pose.direction.slerp(loaded.direction,weight)
 		var clock=actor.presentation_clock
 		var moving=actor.velocity.length_squared()>.05
 		var rate=10.5 if actor.sprinting else 7.0
-		pose.grip+=Vector3(sin(clock*rate)*.008,sin(clock*rate*2)*(.015 if moving else .004),cos(clock*rate)*(.015 if moving else .003))
+		pose.grip+=Vector3(sin(clock*rate)*.008,sin(clock*rate*2)*(.015 if moving else .004),cos(clock*rate)*(.015 if moving else .003))*(1-actor.dash_attack_blend)
 	var grip:Vector3=frame*pose.grip
 	var direction:Vector3=(frame.basis*pose.direction).normalized()
 	var reach=(actor.BetaSwordMotion.GRIP-actor.BetaSwordMotion.TIP)*float(actor.combat.sword_scale) if actor.equipment.get_meta("beta_sword",false) else 2.128

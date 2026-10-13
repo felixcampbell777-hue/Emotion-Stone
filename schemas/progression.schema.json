@@ -245,6 +245,10 @@
                 "type": "number",
                 "exclusiveMinimum": 0
               },
+              "dash_distance": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
               "stamina": {
                 "type": "number",
                 "exclusiveMinimum": 0

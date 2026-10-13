@@ -1,6 +1,6 @@
 # Coastal Foundation
 
-Current source baseline: **v0.31.2**, first-person gameplay with the upright two-hand sword hold and upgradeable Mana Lance aim control.
+Current source baseline: **v0.31.3**, first-person gameplay with the upright two-hand sword hold, Mana Lance aim control, Dash Reach upgrades and queued dash attacks.
 
 The GitHub repository has separate **`alpha`** and **`beta`** branches. This checkout is **Beta**: the title selects the meadow, wolf packs and castle town by default. The Alpha branch retains the existing home/village/forest adventure. Both retain the shared engine, map builder, other mode selector and separate saves.
 
@@ -75,7 +75,7 @@ Godot **4.5.1**, Blender **4.5.3 LTS**, jsonschema **4.25.1**, and Pillow **12.3
 
 To set up the toolchain again on a machine with Python, run `python tools/bootstrap_runtime.py`. It downloads the pinned official Godot release/template and Blender release from the Berkeley Blender distribution mirror and installs validation dependencies into that local cache. It does not change global PATH. Godot archive digests are checked against release metadata when supplied; archive digests are recorded locally.
 
-Use one writer at a time for Blender files in the OneDrive workspace. Preserve source assets and the known working Windows export when making larger changes.
+Use one writer at a time for Blender files in the local checkout. Preserve source assets and the known working Windows export when making larger changes.
 
 Northern goblin campaign and Windstep equipment: [docs/GOBLIN-CAMPAIGN.md](docs/GOBLIN-CAMPAIGN.md).
 
