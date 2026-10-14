@@ -40,6 +40,7 @@ def valid(kind,data):
 
 
 def validate():
+    valid('sea_dragon_pose',read(GAME/'content/sea_dragon_pose.json'))
     characters={}
     maps={}
     for kind,folder,collection in [('character','characters',characters),('map','maps',maps)]:
@@ -486,8 +487,9 @@ def identifier(value):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     commands=parser.add_subparsers(dest='command',required=True)
-    for name in ['validate','build','verify','verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-environment','verify-builder','capture','verify-windows','capture-windows','run','recipes-check']:
+    for name in ['validate','build','verify','verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-environment','verify-builder','capture','verify-windows','capture-windows','run','recipes-check']:
         command=commands.add_parser(name)
+        if name=='verify-windows': command.add_argument('--suite',choices=['all','sea-dragon'],default='all')
         if name in ['capture','capture-windows']:
             command.add_argument('--view',choices=['sea-dragon','beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
             command.add_argument('--renderer',choices=['forward_plus','gl_compatibility'])
@@ -522,14 +524,14 @@ def main():
         assets(args.regenerate)
     elif args.command=='build':
         build()
-    elif args.command in ['verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-environment']:
+    elif args.command in ['verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-environment']:
         validate()
         assets()
         audit_sword()
         import_game()
-        suite='beta' if args.command=='verify-beta' else 'environment' if args.command=='verify-environment' else 'core' if args.command=='verify-cores' else 'magic' if args.command=='verify-magic' else 'goblin' if args.command=='verify-goblins' else 'terrain' if args.command=='verify-terrain' else 'combat'
+        suite='sea_dragon' if args.command=='verify-sea-dragon' else 'beta' if args.command=='verify-beta' else 'environment' if args.command=='verify-environment' else 'core' if args.command=='verify-cores' else 'magic' if args.command=='verify-magic' else 'goblin' if args.command=='verify-goblins' else 'terrain' if args.command=='verify-terrain' else 'combat'
         output=run_process([toolchain()['godot'],'--headless','--path',str(GAME),'--script',f'res://scripts/focused_{suite}_checks.gd'],log=f'focused-{suite}.log')
-        prefix='BETA_CHECKS' if suite=='beta' else 'ENVIRONMENT_CHECKS' if suite=='environment' else 'CORE_CHECKS' if suite=='core' else 'MAGIC_CHECKS' if suite=='magic' else 'GOBLIN_CHECKS' if suite=='goblin' else 'TERRAIN_CHECKS' if suite=='terrain' else 'FOCUSED_COMBAT'
+        prefix='VERIFICATION_' if suite=='sea_dragon' else 'BETA_CHECKS' if suite=='beta' else 'ENVIRONMENT_CHECKS' if suite=='environment' else 'CORE_CHECKS' if suite=='core' else 'MAGIC_CHECKS' if suite=='magic' else 'GOBLIN_CHECKS' if suite=='goblin' else 'TERRAIN_CHECKS' if suite=='terrain' else 'FOCUSED_COMBAT'
         print(next(line for line in output.splitlines() if line.startswith(prefix)))
     elif args.command in ['verify','capture']:
         validate()
@@ -561,7 +563,7 @@ def main():
         print(next(line for line in output.splitlines() if line.startswith('MAP_BUILDER_CHECKS')))
     elif args.command=='verify-windows':
         executable=build()
-        output=run_process([str(executable),'--headless','--','--verify','--report',str(ROOT/'output/verification/export-integration-report.json')],rendered=True,log='export-integration.log')
+        output=run_process([str(executable),'--headless','--','--verify',*(['--suite',args.suite] if args.suite!='all' else []),'--report',str(ROOT/'output/verification/export-integration-report.json')],rendered=True,log='export-integration.log')
         print(next(line for line in output.splitlines() if line.startswith('VERIFICATION_')))
         run_process(['powershell','-NoProfile','-ExecutionPolicy','Bypass','-File',str(ROOT/'tools/clean_obsolete.ps1')],log='cleanup.log')
         print('PURGED: superseded releases, backups and stale previews')

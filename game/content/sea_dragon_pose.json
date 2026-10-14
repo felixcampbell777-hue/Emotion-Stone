@@ -1,0 +1,36 @@
+{
+  "entry_seconds": 0.8,
+  "pelvis_drop": 0.36,
+  "tip_offset": [
+    -0.36,
+    0.018,
+    0.7
+  ],
+  "blade_up": [
+    0,
+    0.94,
+    -0.342
+  ],
+  "middle_grip": [
+    -0.42,
+    1.24,
+    0.28
+  ],
+  "middle_up": [
+    0.98,
+    0.12,
+    -0.12
+  ],
+  "right_grip": 0.04,
+  "left_ankle": [
+    0.18,
+    0.09,
+    0.55
+  ],
+  "right_ankle": [
+    -0.18,
+    0.2,
+    -0.4
+  ],
+  "shoulder_lift": 0.11
+}

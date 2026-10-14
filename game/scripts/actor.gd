@@ -111,6 +111,7 @@ var chain_bones: Array=[]
 var chain_weapon=Transform3D.IDENTITY
 var water_released=false
 var dragon_unlocked=false
+var dragon_pose=preload("res://scripts/dragon_caster_pose.gd").new()
 var lance_charge_fx: Node3D
 var movement_direction=Vector3.ZERO
 var slow_sources:Dictionary={}
@@ -658,6 +659,7 @@ func sword_gem_position() -> Vector3:
 func begin_dragon_channel() -> bool:
 	if not dragon_unlocked or not input_enabled or state!="free" or health<=0 or not sword_drawn: return false
 	if not spend_stamina(float(combat.sea_dragon.stamina_cost)): return false
+	dragon_pose.start(self)
 	begin_action_transition(.2)
 	clear_dash_attack();clear_lance_charge()
 	state="dragon_channel";state_time=0;state_duration=100000
@@ -1407,11 +1409,11 @@ func _physics_process(delta: float) -> void:
 					var aim=-first_person_driver.sample_first_person(0,false).basis.z
 					toward=Vector3(aim.x,0,aim.z).normalized()
 				water_cast.emit(position,toward)
-		elif state=="dragon_channel":
-			var hold=LANCE_HOLD_PHASE*smoothstep(0,.7,state_time)
-			animator.seek(hold*animator.get_animation(clips.attack_lance).length,true)
-			blend_action_transition(delta)
-			_pose_sword("lance",hold)
+		elif state in ["dragon_channel","dragon_recover"]:
+			play_clip("drag_idle_loop",0)
+			animator.seek(0,true)
+			dragon_pose.weapon(self)
+			dragon_pose.apply_rig(skeleton,self,false)
 		elif state=="lance_charge":
 			update_sword_energy(progress)
 			var lance_phase=progress*LANCE_HOLD_PHASE

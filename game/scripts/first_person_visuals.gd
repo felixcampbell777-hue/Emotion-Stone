@@ -97,7 +97,9 @@ func update(actor:Node3D,frame:Transform3D) -> void:
 	for mesh in rig.get_children():
 		if mesh is MeshInstance3D: mesh.mesh=mesh.get_meta("gripped_mesh" if holding else "relaxed_mesh")
 	hand_targets={"R":right,"L":left}
-	root.visible=actor.first_person_driver!=null
+	# During the remote-to-body return, reaching for the planted hilt would put
+	# the separate view arms through the camera. Restore them once standing.
+	root.visible=actor.first_person_driver!=null and actor.state!="dragon_recover"
 
 func bone(key:String,side:String) -> int:
 	var index=rig.find_bone(key+"_"+side)
@@ -140,7 +142,7 @@ func fit(side:String,world_target:Vector3,world_axis:Vector3=Vector3.ZERO) -> vo
 		if goal.length_squared()>.00001 and current.length_squared()>.00001:
 			set_basis(lower,Basis(along_palm,current.normalized().signed_angle_to(goal.normalized(),along_palm))*pose.basis)
 
-func grip_mesh(source:ArrayMesh,skin:Skin,skeleton:Skeleton3D) -> ArrayMesh:
+func grip_mesh(source:ArrayMesh,skin:Skin,skeleton:Skeleton3D,only_side:String="",rebuild_normals:bool=true) -> ArrayMesh:
 	var result=ArrayMesh.new()
 	for surface in range(source.get_surface_count()):
 		var arrays=source.surface_get_arrays(surface)
@@ -153,6 +155,7 @@ func grip_mesh(source:ArrayMesh,skin:Skin,skeleton:Skeleton3D) -> ArrayMesh:
 				var bone_index=skin.get_bind_bone(bind)
 				var name=String(skeleton.get_bone_name(bone_index)) if bone_index>=0 else String(skin.get_bind_name(bind))
 				if not name.begins_with("forearm") or weights[index*influences+influence]<.85: continue
+				if not only_side.is_empty() and not name.ends_with(only_side): continue
 				var local=skin.get_bind_pose(bind)*vertices[index]
 				var original=local
 				var side=1.0 if name.ends_with("R") else -1.0
@@ -171,6 +174,7 @@ func grip_mesh(source:ArrayMesh,skin:Skin,skeleton:Skeleton3D) -> ArrayMesh:
 		arrays[Mesh.ARRAY_VERTEX]=vertices
 		result.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays)
 		result.surface_set_material(result.get_surface_count()-1,source.surface_get_material(surface))
+	if not rebuild_normals: return result
 	var shaded=ArrayMesh.new()
 	for surface in range(result.get_surface_count()):
 		var builder=SurfaceTool.new();builder.create_from(result,surface)

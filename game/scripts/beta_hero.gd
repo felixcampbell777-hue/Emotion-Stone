@@ -13,6 +13,7 @@ var source_weapon_id=0
 var carry_transition:Array[Transform3D]=[]
 var gait=preload("res://scripts/beta_gait.gd").new()
 var hands=preload("res://scripts/beta_hands.gd").new()
+var dragon_grips:Array=[]
 
 static func apply(target:Node3D,enabled:bool,beta_weapon:bool=true) -> void:
 	var weapon_changed=target.set_beta_sword(enabled and beta_weapon)
@@ -29,6 +30,7 @@ static func apply(target:Node3D,enabled:bool,beta_weapon:bool=true) -> void:
 		var scene=load("res://assets/characters/heroine-beta.glb").instantiate()
 		current.add_child(scene); target.add_child(current)
 		current.rig=scene.find_children("*","Skeleton3D",true,false)[0]
+		current.prepare_dragon_grip(scene)
 		for i in range(current.rig.get_bone_count()): current.rests.append(current.rig.get_bone_rest(i))
 		for i in range(current.rig.get_bone_count()):
 			var rest=current.rests[i]; var parent=current.rig.get_bone_parent(i)
@@ -103,6 +105,11 @@ func synchronize(delta:float=0.0) -> void:
 		for i in range(rig.get_bone_count()):rig.set_bone_pose(i,carry_transition[i].interpolate_with(rig.get_bone_pose(i),weight))
 		rig.force_update_all_bone_transforms()
 	hands.apply(self)
+	if actor.state in ["dragon_channel","dragon_recover"]: actor.dragon_pose.apply_rig(rig,actor,true)
+	var grip_weight=smoothstep(0,1,actor.dragon_pose.phase(actor)) if actor.state in ["dragon_channel","dragon_recover"] else 0.0
+	for item in dragon_grips:
+		item[0].mesh=item[2] if grip_weight>0 else item[1]
+		if grip_weight>0: item[0].set_blend_shape_value(0,grip_weight)
 	actor.sync_beta_back_carry(self)
 	sword.transform=global_transform.affine_inverse()*actor.equipment.global_transform
 	harness.transform=global_transform.affine_inverse()*actor.back_harness.global_transform
@@ -110,6 +117,21 @@ func synchronize(delta:float=0.0) -> void:
 func carry_delta() -> Transform3D:
 	var spine=rig.find_bone("spine")
 	return rig.global_transform*rig.get_bone_global_pose(spine)*global_rests[spine].affine_inverse()*rig.global_transform.affine_inverse()
+
+func prepare_dragon_grip(scene:Node) -> void:
+	# A local morph closes only the supporting hand; saved meshes and other actions stay intact.
+	var fitter=preload("res://scripts/first_person_visuals.gd").new()
+	for part in scene.find_children("*","MeshInstance3D",true,false):
+		if part.skin==null or not part.mesh is ArrayMesh or part.mesh.get_blend_shape_count()>0: continue
+		var source=part.mesh;var closed=fitter.grip_mesh(source,part.skin,rig,"R",false);var morph=ArrayMesh.new()
+		morph.blend_shape_mode=Mesh.BLEND_SHAPE_MODE_NORMALIZED
+		morph.add_blend_shape("dragon_grip")
+		for surface in range(source.get_surface_count()):
+			var shape=[];shape.resize(Mesh.ARRAY_MAX);var target=closed.surface_get_arrays(surface)
+			for field in [Mesh.ARRAY_VERTEX,Mesh.ARRAY_NORMAL,Mesh.ARRAY_TANGENT]: shape[field]=target[field]
+			morph.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,source.surface_get_arrays(surface),[shape])
+			morph.surface_set_material(surface,source.surface_get_material(surface))
+		dragon_grips.append([part,source,morph])
 
 func _process(delta:float) -> void:
 	if is_instance_valid(actor): synchronize(delta)

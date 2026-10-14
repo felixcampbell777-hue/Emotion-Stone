@@ -97,7 +97,10 @@ func finish(explode:bool,immediate:bool=false,collider:Object=null) -> void:
 	if game.sea_dragon==self: game.sea_dragon=null
 	var alive=game.player.health>0 and not game.recovering
 	game.player.set_sword_glow(false)
-	if game.player.state=="dragon_channel": game.player.set_sword_drawn(game.player.sword_drawn)
+	if game.player.state=="dragon_channel" and alive:
+		if immediate: game.player.set_sword_drawn(game.player.sword_drawn)
+		else:
+			game.player.state="dragon_recover";game.player.state_time=0;game.player.state_duration=.65
 	game.camera_driver.end_remote_view(immediate)
 	if explode and alive:
 		impact_count+=1;reason="impact"
