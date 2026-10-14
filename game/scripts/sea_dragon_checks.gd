@@ -39,7 +39,7 @@ func run(test:RefCounted) -> void:
 	test.check(game.enemies.all(func(enemy):return enemy.simulation_enabled),"Enemies remain simulated during remote dragon flight")
 	dragon.finish(false,true);await test.frames(2)
 	prepare(game);dragon=launch(game);dragon.tuning.speed=.05;dragon.global_position=Vector3(0,7,-12);dragon.elapsed=9.99;dragon.advance(.02)
-	test.check(not dragon.active and dragon.reason=="timeout" and game.sea_dragon==null and actor.state=="free","Flight ends at exactly ten simulated seconds and releases the caster")
+	test.check(not dragon.active and dragon.reason=="timeout" and game.sea_dragon==null and actor.state=="dragon_recover","Flight ends at exactly ten simulated seconds and begins the planted-sword recovery")
 	test.check(actor.sword_energy_materials.is_empty() and game.camera.cull_mask&game.camera_driver.visuals.ARMS_LAYER!=0,"Timeout restores steel and the human first-person rendering layers")
 	await test.frames(2);prepare(game);dragon=launch(game);dragon.global_position=Vector3(0,7,-12);dragon.elapsed=1;dragon.advance(.01)
 	test.check(actor.sword_energy_materials.is_empty(),"Gem emergence stops glowing once the water dragon has formed")

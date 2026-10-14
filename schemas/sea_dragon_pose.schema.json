@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "entry_seconds",
+    "pelvis_drop",
+    "tip_offset",
+    "blade_up",
+    "middle_grip",
+    "middle_up",
+    "right_grip",
+    "left_ankle",
+    "right_ankle",
+    "shoulder_lift"
+  ],
+  "properties": {
+    "entry_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "pelvis_drop": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "tip_offset": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number"
+      }
+    },
+    "blade_up": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number"
+      }
+    },
+    "middle_grip": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number"
+      }
+    },
+    "middle_up": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number"
+      }
+    },
+    "right_grip": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "left_ankle": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number"
+      }
+    },
+    "right_ankle": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number"
+      }
+    },
+    "shoulder_lift": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 0.15
+    }
+  }
+}

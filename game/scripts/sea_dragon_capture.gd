@@ -22,6 +22,22 @@ func run(game:Control,directory:String) -> void:
 	game.sea_dragon=dragon;dragon.position=dragon.birth_origin;dragon.elapsed=0;dragon.flight_yaw=PI/2;dragon.desired_yaw=PI/2;dragon.flight_pitch=0;dragon.desired_pitch=0
 	dragon.trail.clear()
 	for i in range(28): dragon.trail.append(dragon.birth_origin+Vector3.LEFT*.04*i)
+	game.player.set_physics_process(false);game.set_process(false)
+	var body_position_before=game.player.position;game.player.position=Vector3(12,0,-12)
+	dragon.dragon.visible=false;dragon.counter.visible=false
+	var view_before=game.camera.global_transform;var fov_before=game.camera.fov
+	for phase in [.25,.5,1.0]:
+		game.player.state_time=phase*.8
+		await game.get_tree().physics_frame
+		game.player._physics_process(0);game.player.get_node("BetaHero").synchronize()
+		var body_frame=game.player.dragon_pose.frame(game.player)
+		game.camera.fov=38;game.camera.cull_mask=((1<<20)-1)&~game.camera_driver.visuals.ARMS_LAYER
+		game.camera.position=body_frame*Vector3(-2.5,1.7,4.0);game.camera.look_at(body_frame*Vector3(-.1,.8,.15),Vector3.UP)
+		await picture(game,directory+"/sea-dragon-caster-front-%02d.png"%roundi(phase*100))
+		game.camera.position=body_frame*Vector3(-4,1.5,.4);game.camera.look_at(body_frame*Vector3(-.1,.8,.15),Vector3.UP)
+		await picture(game,directory+"/sea-dragon-caster-side-%02d.png"%roundi(phase*100))
+	game.player.position=body_position_before;dragon.dragon.visible=true;dragon.counter.visible=true
+	game.player.state_time=0;game.player._physics_process(0);game.player.set_physics_process(true);game.set_process(true);game.camera.fov=fov_before;game.camera.global_transform=view_before
 	var folder=directory+"/sea-dragon";DirAccess.make_dir_recursive_absolute(folder)
 	var records=[]
 	for frame in range(75):

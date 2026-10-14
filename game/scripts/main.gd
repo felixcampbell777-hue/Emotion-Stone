@@ -1439,6 +1439,9 @@ func notify(text: String) -> void:
 	toast_time=3.0
 
 func _verify() -> void:
+	var args=OS.get_cmdline_user_args()
+	if "--suite" in args and args[args.find("--suite")+1]=="sea-dragon":
+		await load("res://scripts/sea_dragon_verification.gd").new().run(self);return
 	var suite=load("res://scripts/verification.gd").new()
 	await suite.run(self)
 
