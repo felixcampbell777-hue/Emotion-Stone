@@ -199,7 +199,7 @@
       "id": "flowing_splash",
       "branch": "Mana",
       "name": "Flowing Splash",
-      "description": "Unlocks an automatic mana slash after a dash swing. Equip this passive for 60% less Water Slash stamina (24 to 9.6). Each extra rank strengthens the saving by 25% of its base; three ranks maximum.",
+      "description": "Unlocks a straight vertical water wave after the dash uppercut. Equip this passive for 60% less Water Slash stamina (24 to 9.6). Each extra rank strengthens the saving by 25% of its base; three ranks maximum.",
       "effects": {
         "water_saving": 0.6
       },
@@ -304,7 +304,7 @@
       "id": "dash",
       "branch": "Form",
       "name": "Dash",
-      "description": "Hold T to build distance, release to dash (2.5-7m; 12-24 stamina). With sword drawn, left-click or J while holding T queues an opening swing at the dash exit, costing normal swing stamina. No invulnerability.",
+      "description": "Hold T to build distance, release to dash (2.5-7m; 12-24 stamina). With sword drawn, left-click or J while holding T queues a rising uppercut at the dash exit, costing normal swing stamina. No invulnerability.",
       "effects": {},
       "requires": [
         "form"

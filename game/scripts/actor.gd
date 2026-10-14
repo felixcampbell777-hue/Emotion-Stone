@@ -13,6 +13,7 @@ signal stamina_denied
 signal stamina_changed(current: float, maximum: float)
 signal parry_succeeded(enemy: Node3D)
 signal water_cast(origin: Vector3, direction: Vector3)
+signal vertical_water_cast(origin:Vector3,direction:Vector3)
 signal lance_fired(origin: Vector3, direction: Vector3)
 const WaterLanceCharge=preload("res://scripts/water_lance_charge.gd")
 var visual: Node3D
@@ -34,6 +35,7 @@ var dash_distance_multiplier=1.0
 var dash_attack_queued=false
 var dash_attack_blend=0.0
 var dash_water_unlocked=false
+var dash_uppercut=false
 var dash_water_pending=false
 const DASH_ATTACK_PHASE=.28
 const DASH_ATTACK_BLEND=.16
@@ -535,6 +537,7 @@ func set_sword_drawn(value: bool) -> void:
 	roll_attack_queued=false
 	dash_attack_queued=false
 	dash_attack_blend=0.0
+	dash_uppercut=false
 	dash_water_pending=false
 	dash_release_queued=false
 	chain_speed=0
@@ -756,7 +759,7 @@ func begin_attack(kind: String, charged:float=0.0, prepared:bool=false) -> bool:
 	if not spend_stamina(float(tuning.stamina_cost)):
 		return false
 	begin_action_transition(.16)
-	counter_active=false;measured_triggered=false
+	counter_active=false;measured_triggered=false;dash_uppercut=false
 	state=kind
 	state_time=0
 	state_duration=float(tuning.duration)
@@ -878,14 +881,19 @@ func _exit_dash_attack() -> bool:
 	var bones=[]
 	for index in range(skeleton.get_bone_count()): bones.append(skeleton.get_bone_pose(index))
 	dash_attack_queued=false;dash_attack_blend=0
+	# The intentionally queued dash strike wins over an earlier parry follow-up.
+	counter_remaining=0;counter_target=null
 	state="free";state_time=0;combo_stage=0;combo_remaining=0
 	if not begin_attack("light"):
 		set_sword_drawn(sword_drawn)
 		return false
+	dash_uppercut=true
+	undertow_cast=false
 	dash_water_pending=dash_water_unlocked and water_unlocked
 	# The dash preloads this exact opener pose; never return to ready between them.
 	state_time=float(combat.light.duration)*DASH_ATTACK_PHASE
-	animator.seek(animator.get_animation(clips.attack_light).length*DASH_ATTACK_PHASE,true)
+	play_clip("attack_heavy",0)
+	animator.seek(animator.get_animation(clips.attack_heavy).length*.68,true)
 	chain_bones=bones;chain_weapon=weapon_pose
 	chain_blend_duration=DASH_ATTACK_BLEND;chain_blend=chain_blend_duration
 	action_transition_remaining=0;action_transition_bones.clear()
@@ -908,7 +916,7 @@ func _dash_water_followthrough(progress:float) -> void:
 	if first_person_driver!=null:
 		var aim=-first_person_driver.sample_first_person(0,false).basis.z
 		toward=Vector3(aim.x,0,aim.z).normalized()
-	water_cast.emit(position,toward)
+	vertical_water_cast.emit(position+toward*.9,toward)
 
 func begin_jump() -> bool:
 	if not input_enabled or state!="free" or not jump_unlocked or not jump_equipped:
@@ -1471,7 +1479,11 @@ func _physics_process(delta: float) -> void:
 			blend_action_transition(delta)
 			_pose_sword("parry",progress)
 		elif state in ["light","heavy","thrust"]:
-			animator.seek(progress*animator.get_animation(clips[current_clip]).length,true)
+			if dash_uppercut and state=="light" and combo_stage==1:
+				var lift=smoothstep(.28,.74,progress)
+				var body_phase=lerpf(.68,.42,lift) if progress<=.74 else lerpf(.42,0,smoothstep(.74,1,progress))
+				animator.seek(body_phase*animator.get_animation(clips.attack_heavy).length,true)
+			else: animator.seek(progress*animator.get_animation(clips[current_clip]).length,true)
 			blend_action_transition(delta)
 			if state=="light" and combo_stage==3:
 				visual.rotation.y=attack_yaw+spin_rotation(progress)

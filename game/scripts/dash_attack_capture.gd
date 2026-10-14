@@ -16,7 +16,7 @@ func run(game:Control,directory:String,empowered:bool=false) -> void:
 		driver.update_first_person()
 		await game.get_tree().create_timer(.02).timeout;await RenderingServer.frame_post_draw
 		game.get_viewport().get_texture().get_image().save_png(folder+"/frame-%02d.png"%index)
-		records.append({"frame":index,"state":actor.state,"phase":actor.attack_phase() if actor.state=="light" else actor.state_time/maxf(.001,actor.state_duration),"queued":actor.dash_attack_queued,"magic_pending":actor.dash_water_pending,"glowing":not actor.sword_material_backup.is_empty(),"waves":game.water_waves.filter(func(wave): return is_instance_valid(wave)).size(),"blend":actor.dash_attack_blend,"stamina":actor.stamina,"position":[actor.position.x,actor.position.y,actor.position.z]})
+		records.append({"frame":index,"state":actor.state,"phase":actor.attack_phase() if actor.state=="light" else actor.state_time/maxf(.001,actor.state_duration),"queued":actor.dash_attack_queued,"uppercut":actor.dash_uppercut,"magic_pending":actor.dash_water_pending,"glowing":not actor.sword_material_backup.is_empty(),"waves":game.water_waves.filter(func(wave): return is_instance_valid(wave)).size(),"blend":actor.dash_attack_blend,"stamina":actor.stamina,"position":[actor.position.x,actor.position.y,actor.position.z]})
 	var file=FileAccess.open(folder+"/motion.json",FileAccess.WRITE);file.store_string(JSON.stringify(records,"  "));file.close()
 	actor.set_sword_drawn(true);actor.set_physics_process(true)
 	actor.dash_water_unlocked=unlocked

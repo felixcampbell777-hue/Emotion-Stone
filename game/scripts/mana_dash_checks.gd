@@ -23,7 +23,7 @@ func run(test:RefCounted) -> void:
 	var listener=func(origin:Vector3,direction:Vector3):
 		var view=-game.camera_driver.sample_first_person(0,false).basis.z
 		casts.append({"origin":origin,"direction":direction,"aim":Vector3(view.x,0,view.z).normalized(),"stamina":actor.stamina,"wave":game.water_waves[-1]})
-	actor.water_cast.connect(listener)
+	actor.vertical_water_cast.connect(listener)
 	await launch(actor);var after_swing_cost=actor.stamina
 	test.check(actor.dash_water_pending and casts.is_empty(),"Mana enhancement waits for the physical dash swing instead of firing during charge or travel")
 	await advance(actor,.60)
@@ -48,5 +48,5 @@ func run(test:RefCounted) -> void:
 	test.check(actor.dash_water_unlocked and is_equal_approx(actor.combat.water.stamina_cost,24),"Learning owns the dash unlock; unequipping the passive removes only its stamina discount")
 	helper.prepare(actor);var path="user://mana-dash-private.json"
 	test.check(game.Save.write(game.save_data(),path)==OK and game.apply_save(game.Save.read(path)) and actor.dash_water_unlocked and not actor.dash_water_pending,"Mana dash eligibility rebuilds from learned skills through private saves; pending attacks never persist")
-	DirAccess.remove_absolute(path);actor.water_cast.disconnect(listener)
+	DirAccess.remove_absolute(path);actor.vertical_water_cast.disconnect(listener)
 	actor.set_sword_drawn(false);actor.set_physics_process(true)
