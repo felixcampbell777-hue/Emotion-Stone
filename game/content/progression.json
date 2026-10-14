@@ -399,6 +399,65 @@
       "excludes": [],
       "max_rank": 5,
       "category": "capacity"
+    },
+    {
+      "id": "flowing_counter",
+      "branch": "Form",
+      "name": "Flowing Counter",
+      "description": "After a successful parry, tap left-click or J within 1.25 seconds to sidestep into a quick backhand (normal return-cut stamina). Equip its active slot. Each rank adds 15% counter damage; extra ranks add 0.15 seconds to the window. Three ranks.",
+      "category": "active",
+      "requires": [
+        "form"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "effects": {
+        "counter_damage": 0.15,
+        "counter_window": 0.15
+      }
+    },
+    {
+      "id": "measured_recovery",
+      "branch": "Form",
+      "name": "Measured Recovery",
+      "description": "Landing the third combo strike grants +50% stamina recovery for 3 seconds. Equip in a passive slot. Further ranks add 25% of the base bonus. Three ranks.",
+      "category": "passive",
+      "requires": [
+        "form"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "effects": {
+        "measured_recovery": 0.5
+      }
+    },
+    {
+      "id": "breaker",
+      "branch": "Strength",
+      "name": "Breaker",
+      "description": "Accepted sword hits build stagger: +25% buildup, with heavier strikes adding more. Breaking interrupts the enemy and exposes it to +20% sword damage for 1.8 seconds. Larger enemies take more hits; armored giants require an open weakspot. Buildup fades after 4 seconds. Equip in a passive slot. Three ranks.",
+      "category": "passive",
+      "requires": [
+        "strength"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "effects": {
+        "breaker": 0.25
+      }
+    },
+    {
+      "id": "undertow",
+      "branch": "Mana",
+      "name": "Undertow",
+      "description": "Equip on Q: a low water surge reaches 6m, then pulls nearby enemies toward you for a sword slam. Costs 28 stamina. Each upgrade adds 0.75m reach and 20% pull strength. Large enemies resist; giants stay planted. Three ranks.",
+      "category": "active",
+      "requires": [
+        "mana"
+      ],
+      "excludes": [],
+      "max_rank": 3,
+      "effects": {}
     }
   ],
   "well_quest_xp": 40

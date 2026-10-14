@@ -140,6 +140,12 @@ func take_slam_shockwave(away:Vector3, strength:float, stun:float) -> void:
 	velocity=Vector3.ZERO
 	hit_flash=.18
 
+func breaker_expose(seconds:float) -> void:
+	parry_flash=seconds
+func take_undertow(toward:Vector3,strength:float) -> void:
+	if health<=0 or size_class=="giant": return
+	var force={"small":5.0,"medium":3.8,"large":1.8}[size_class]*strength
+	knockback=toward*force;state_time=maxf(state_time if state=="recover" else 0.0,.2);state="recover";lunge_hit=true;velocity=Vector3.ZERO
 func take_lance_damage(amount: int, from_direction: Vector3) -> void:
 	take_damage(amount,from_direction)
 

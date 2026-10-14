@@ -26,6 +26,7 @@ const MAGICNOW_KEYS=[KEY_M,KEY_A,KEY_G,KEY_I,KEY_C,KEY_N,KEY_O,KEY_W]
 var magicnow_index=0
 var magicnow_deadline=0
 const WaterWave=preload("res://scripts/water_wave.gd")
+var combat_skills=preload("res://scripts/combat_skills.gd").new()
 var sea_dragon:Node3D
 const SeaDragon=preload("res://scripts/mana_sea_dragon.gd")
 const WaterLance=preload("res://scripts/water_lance.gd")
@@ -153,6 +154,7 @@ func _ready() -> void:
 	player.health_changed.connect(_health_changed)
 	player.stamina_changed.connect(_stamina_changed)
 	player.parry_succeeded.connect(_parry_succeeded)
+	combat_skills.game=self
 	player.defeated.connect(_player_defeated)
 	_health_changed(player.health,player.max_health)
 	_stamina_changed(player.stamina,player.max_stamina)
@@ -776,7 +778,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		player.toggle_sword()
 	elif event.is_action_pressed("water_attack"):
 		if player.input_enabled:
-			var started=begin_sea_dragon() if selected_special_attack=="sea_dragon" else player.begin_water_lance() if selected_special_attack=="water_lance" else player.begin_water()
+			var started=player.begin_water(true) if selected_special_attack=="undertow" else begin_sea_dragon() if selected_special_attack=="sea_dragon" else player.begin_water_lance() if selected_special_attack=="water_lance" else player.begin_water()
 			if not started:
 				if not player.water_unlocked or not player.sword_drawn: notify("Learn the special in Skills and draw the sword.")
 	elif event.is_action_pressed("light_attack"):
@@ -985,7 +987,7 @@ func set_character_profile(profile:String) -> void:
 
 func save_data() -> Dictionary:
 	# Mode is serialized below and selects a separate Beta file.
-	return {"game_mode":game_mode,"environment_revision":1,"monster_cores":monster_cores.snapshot(),"magic_items":magic_items.snapshot(),"goblin_campaign":goblin_campaign.snapshot(),"respawn_timers":respawn_timers.duplicate(),"world_id":world_id,"world_defeats":world_defeats.duplicate(),"version":1,"home_layout":2,"home_intro_complete":home_intro_complete,"camera_mode":camera_mode,"first_person_pitch":camera_driver.first_pitch,"camera_yaw":camera_driver.yaw,"camera_pitch":camera_driver.pitch,"camera_distance":camera_driver.distance,"map":map_id,"ground_y":player.position.y,"position":[player.position.x,player.position.z],"facing":player.visual.rotation.y,"resolution":graphics_preset,"environment_profile":environment_profile,"character_profile":character_profile,"health":player.health,"stamina":player.stamina,"sword_drawn":player.sword_drawn,"sword_equipped":player.sword_equipped,"special_attack":selected_special_attack,"heavy_attack":player.heavy_style,"mother_unwrapped":mother_unwrapped,"well_gift_stage":well_gift_stage,"quest_stage":quest_stage,"defeated_enemies":defeated_enemies.duplicate(),"progression":progression.snapshot(),"skill_loadout":{"dash":player.dash_equipped,"jump":player.jump_equipped}}
+	return {"game_mode":game_mode,"environment_revision":1,"monster_cores":monster_cores.snapshot(),"magic_items":magic_items.snapshot(),"goblin_campaign":goblin_campaign.snapshot(),"respawn_timers":respawn_timers.duplicate(),"world_id":world_id,"world_defeats":world_defeats.duplicate(),"version":1,"home_layout":2,"home_intro_complete":home_intro_complete,"camera_mode":camera_mode,"first_person_pitch":camera_driver.first_pitch,"camera_yaw":camera_driver.yaw,"camera_pitch":camera_driver.pitch,"camera_distance":camera_driver.distance,"map":map_id,"ground_y":player.position.y,"position":[player.position.x,player.position.z],"facing":player.visual.rotation.y,"resolution":graphics_preset,"environment_profile":environment_profile,"character_profile":character_profile,"health":player.health,"stamina":player.stamina,"sword_drawn":player.sword_drawn,"sword_equipped":player.sword_equipped,"special_attack":selected_special_attack,"heavy_attack":player.heavy_style,"mother_unwrapped":mother_unwrapped,"well_gift_stage":well_gift_stage,"quest_stage":quest_stage,"defeated_enemies":defeated_enemies.duplicate(),"progression":progression.snapshot(),"skill_loadout":{"dash":player.dash_equipped,"jump":player.jump_equipped,"flowing_counter":player.counter_equipped}}
 
 func save_game() -> void:
 	if player.state!="free" or recovering:
@@ -997,7 +999,7 @@ func current_save_path() -> String:
 	return "user://beta-save-v1.json" if game_mode=="beta" else WorldPacks.save_path(world_id)
 
 func apply_save(data: Dictionary) -> bool:
-	if data.get("special_attack","water_sweep") not in ["water_sweep","water_lance","sea_dragon"]: return false
+	if data.get("special_attack","water_sweep") not in ["water_sweep","water_lance","sea_dragon","undertow"]: return false
 	var mode=String(data.get("game_mode","alpha"))
 	if mode not in ["alpha","beta"] or (mode=="beta")!=(data.get("map","")=="beta_meadow"): return false
 	if data.get("character_profile","game") not in ["game","standalone"]: return false
@@ -1050,6 +1052,7 @@ func apply_save(data: Dictionary) -> bool:
 	progression.restore(growth)
 	player.dash_equipped=bool(data.get("skill_loadout",{}).get("dash",false))
 	player.jump_equipped=bool(data.get("skill_loadout",{}).get("jump",false))
+	player.counter_equipped=bool(data.get("skill_loadout",{}).get("flowing_counter",false))
 	magic_items.restore(data.get("magic_items",{}))
 	monster_cores.restore(data.get("monster_cores",{}))
 	goblin_campaign.restore(data.get("goblin_campaign",{}))
@@ -1144,6 +1147,7 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	_refresh_simulation()
+	combat_skills.tick(delta)
 	wolf_packs.tick(delta)
 	if parry_after_draw:
 		if not player.input_enabled or player.state not in ["draw","free"]:
@@ -1199,6 +1203,8 @@ func _request_parry() -> void:
 func _request_attack(kind: String) -> void:
 	if not player.input_enabled:
 		return
+	if kind=="light" and player.counter_ready():
+		player.begin_counter();return
 	if not player.sword_drawn:
 		notify("R to draw the sword first.")
 		return
@@ -1233,6 +1239,7 @@ func _stamina_changed(value: float, maximum: float) -> void:
 	stamina_label.text="STAMINA  %d / %d" % [ceili(value),int(maximum)]
 
 func _parry_succeeded(enemy: Node3D) -> void:
+	combat_skills.parried(enemy)
 	magic_items.parried()
 	var away=enemy.position-player.position
 	away.y=0
@@ -1254,6 +1261,8 @@ func _update_combat_ui() -> void:
 	quest_label.text=quest_objective()
 
 func _water_cast(origin: Vector3, direction: Vector3) -> void:
+	if player.undertow_cast:
+		var pull=load("res://scripts/undertow.gd").new();world_root.add_child(pull);pull.configure(self,origin,direction);projectiles.append(pull);return
 	water_waves=water_waves.filter(func(wave): return is_instance_valid(wave))
 	var wave=WaterWave.new()
 	world_root.add_child(wave)
@@ -1277,10 +1286,12 @@ func begin_sea_dragon() -> bool:
 	return true
 
 func cancel_sea_dragon() -> void:
+	combat_skills.reset()
 	if is_instance_valid(sea_dragon): sea_dragon.finish(false,true)
 	sea_dragon=null
 
 func special_unlocked(id: String) -> bool:
+	if id=="undertow": return progression.has("undertow")
 	if id=="sea_dragon": return progression.has("sea_dragon")
 	return progression.has("mana_lance") if id=="water_lance" else progression.has("mana")
 
@@ -1291,14 +1302,14 @@ func select_heavy_attack(id: String) -> void:
 	notify("Equipped "+("Driving Thrust" if id=="charge_thrust" else "Overhead Heavy")+" as your heavy attack.")
 
 func select_special_attack(id: String) -> void:
-	if id not in ["water_sweep","water_lance","sea_dragon"] or not special_unlocked(id):
+	if id not in ["water_sweep","water_lance","sea_dragon","undertow"] or not special_unlocked(id):
 		return
 	selected_special_attack=id
 	if inventory.visible:
 		inventory.refresh()
 	if skill_tree.visible:
 		skill_tree.refresh()
-	notify("Equipped "+{"water_sweep":"Water Slash","water_lance":"Water Lance","sea_dragon":"Mana Sea Dragon"}[id]+" on Q.")
+	notify("Equipped "+{"water_sweep":"Water Slash","water_lance":"Water Lance","sea_dragon":"Mana Sea Dragon","undertow":"Undertow"}[id]+" on Q.")
 
 func _ground_slam(at:Vector3, heavy:bool) -> void:
 	var impact=load("res://scripts/ground_slam.gd").new()
@@ -1320,8 +1331,10 @@ func _attack_contact(kind: String, direction: Vector3, already_hit: Dictionary) 
 			continue
 		already_hit[enemy.get_instance_id()]=true
 		var previous_health=enemy.health
-		enemy.take_sword_damage(int(tuning.damage),toward.normalized(),kind in ["heavy","thrust"] or (kind=="light" and player.combo_stage==3 and player.attack_phase()>=.60),(float(player.combat.thrust_charge.recoil_multiplier) if kind=="thrust" else 1.0)*(1+magic_items.bonus("sword_recoil")))
+		var weakspot=enemy.sword_weakspot_open()
+		enemy.take_sword_damage(roundi(float(tuning.damage)*(1.2 if combat_skills.exposed.has(enemy.get_instance_id()) else 1.0)),toward.normalized(),kind in ["heavy","thrust"] or (kind=="light" and player.combo_stage==3 and player.attack_phase()>=.60),(float(player.combat.thrust_charge.recoil_multiplier) if kind=="thrust" else 1.0)*(1+magic_items.bonus("sword_recoil")))
 		magic_items.sword_hit(enemy,previous_health)
+		combat_skills.sword_hit(enemy,previous_health,weakspot,kind in ["heavy","thrust"] or (kind=="light" and player.combo_stage==3 and player.attack_phase()>=.60))
 
 func _thrust_stopped(at:Vector3,direction:Vector3) -> void:
 	var gust=load("res://scripts/thrust_gust.gd").new()
@@ -1440,6 +1453,8 @@ func notify(text: String) -> void:
 
 func _verify() -> void:
 	var args=OS.get_cmdline_user_args()
+	if "--suite" in args and args[args.find("--suite")+1]=="combat-skills":
+		await load("res://scripts/skills_verification.gd").new().run(self);return
 	if "--suite" in args and args[args.find("--suite")+1]=="sea-dragon":
 		await load("res://scripts/sea_dragon_verification.gd").new().run(self);return
 	var suite=load("res://scripts/verification.gd").new()
@@ -1501,6 +1516,9 @@ func _capture(directory: String) -> void:
 		await load("res://scripts/home_capture.gd").new().run(self,directory)
 		get_tree().quit()
 		return
+	if view=="combat-skills":
+		await load("res://scripts/skills_capture.gd").new().run(self,directory)
+		get_tree().quit();return
 	if view=="sea-dragon":
 		await load("res://scripts/sea_dragon_capture.gd").new().run(self,directory)
 		get_tree().quit();return
@@ -1717,15 +1735,18 @@ func learn_skill(id: String) -> void:
 	apply_skill_stats()
 	if id=="dash": player.dash_equipped=true
 	if id=="jump": player.jump_equipped=true
+	if id=="flowing_counter": player.counter_equipped=true
 	update_progression_ui()
 	skill_tree.refresh()
 	notify("Learned "+progression.skill(id).name+". F5 saves your progress.")
 
 func toggle_passive(id:String) -> void:
 	if not progression.toggle_passive(id): return
+	if id=="breaker": combat_skills.pressure.clear();combat_skills.exposed.clear()
 	apply_skill_stats();inventory.refresh()
 
 func toggle_movement_skill(id:String) -> void:
+	if id=="flowing_counter" and player.counter_unlocked: player.counter_equipped=not player.counter_equipped
 	if id=="dash" and player.dash_unlocked: player.dash_equipped=not player.dash_equipped
 	if id=="jump" and player.jump_unlocked: player.jump_equipped=not player.jump_equipped
 	inventory.refresh()
@@ -1764,6 +1785,12 @@ func apply_skill_stats() -> void:
 	player.water_unlocked=progression.has("mana")
 	player.dash_water_unlocked=progression.has("mana") and progression.has("flowing_splash")
 	player.lance_unlocked=progression.has("mana_lance")
+	player.counter_unlocked=progression.has("flowing_counter")
+	if not player.counter_unlocked: player.counter_equipped=false
+	player.counter_damage=progression.bonus("counter_damage")
+	player.measured_bonus=progression.bonus("measured_recovery")
+	if player.measured_bonus<=0: player.measured_remaining=0
+	player.undertow_unlocked=progression.has("undertow")
 	player.dragon_unlocked=progression.has("sea_dragon")
 	player.roll_unlocked=progression.has("belly_roll")
 	player.thrust_unlocked=progression.has("charge_thrust")
@@ -1771,7 +1798,7 @@ func apply_skill_stats() -> void:
 	player.jump_unlocked=progression.has("jump")
 	if not player.dash_unlocked: player.dash_equipped=false
 	if not player.jump_unlocked: player.jump_equipped=false
-	if selected_special_attack in ["water_lance","sea_dragon"] and not special_unlocked(selected_special_attack):
+	if selected_special_attack in ["water_lance","sea_dragon","undertow"] and not special_unlocked(selected_special_attack):
 		selected_special_attack="water_sweep"
 	if player.heavy_style=="charge_thrust" and not player.thrust_unlocked:
 		player.heavy_style="overhead"

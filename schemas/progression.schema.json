@@ -252,6 +252,22 @@
               "stamina": {
                 "type": "number",
                 "exclusiveMinimum": 0
+              },
+              "counter_damage": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "counter_window": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "measured_recovery": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "breaker": {
+                "type": "number",
+                "exclusiveMinimum": 0
               }
             }
           },

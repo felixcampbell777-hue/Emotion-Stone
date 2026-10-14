@@ -125,5 +125,5 @@ static func valid_loadout(growth:Dictionary,loadout:Variant) -> bool:
 	if not loadout is Dictionary: return false
 	var state=load("res://scripts/progression.gd").new();state.restore(growth)
 	for id in loadout:
-		if id not in ["dash","jump"] or not loadout[id] is bool or (loadout[id] and not state.has(id)): return false
+		if id not in ["dash","jump","flowing_counter"] or not loadout[id] is bool or (loadout[id] and not state.has(id)): return false
 	return true

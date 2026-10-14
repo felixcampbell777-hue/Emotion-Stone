@@ -110,6 +110,18 @@ var chain_blend_duration=.12
 var chain_bones: Array=[]
 var chain_weapon=Transform3D.IDENTITY
 var water_released=false
+var counter_unlocked=false
+var counter_equipped=false
+var counter_target:WeakRef
+var counter_remaining=0.0
+var counter_active=false
+var counter_step=Vector3.ZERO
+var counter_damage=0.0
+var measured_bonus=0.0
+var measured_remaining=0.0
+var measured_triggered=false
+var undertow_unlocked=false
+var undertow_cast=false
 var dragon_unlocked=false
 var dragon_pose=preload("res://scripts/dragon_caster_pose.gd").new()
 var lance_charge_fx: Node3D
@@ -588,6 +600,8 @@ func toggle_sword() -> bool:
 	return true
 
 func attack_tuning() -> Dictionary:
+	if counter_active and state=="light":
+		var counter=combat.combo[0].duplicate(true);counter.damage=roundi(counter.damage*(1+counter_damage));return counter
 	if state=="thrust":
 		var tuning=combat.thrust.duplicate()
 		tuning.damage=roundi(float(tuning.damage)*(1+float(combat.thrust_charge.damage_per_second)*thrust_charge_seconds))
@@ -624,13 +638,14 @@ func attack_phase() -> float:
 		return start*state_time/compressed_windup
 	return minf(1,start+(state_time-compressed_windup)/float(tuning.duration))
 
-func begin_water() -> bool:
-	if not water_unlocked or not input_enabled or state!="free" or health<=0 or not sword_drawn:
+func begin_water(pull:bool=false) -> bool:
+	if (not undertow_unlocked if pull else not water_unlocked) or not input_enabled or state!="free" or health<=0 or not sword_drawn:
 		return false
-	if not spend_stamina(float(combat.water.stamina_cost)):
+	if not spend_stamina(28.0 if pull else float(combat.water.stamina_cost)):
 		return false
 	begin_action_transition(.18)
 	state="water"
+	undertow_cast=pull
 	state_time=0
 	state_duration=float(combat.water.duration)
 	attack_direction=facing()
@@ -728,6 +743,7 @@ func queue_combo() -> bool:
 
 func begin_attack(kind: String, charged:float=0.0, prepared:bool=false) -> bool:
 	if kind=="light" and state=="dash_charge": return queue_dash_attack()
+	if kind=="light" and counter_ready(): return begin_counter()
 	if kind=="light" and state in ["roll","stand"]:
 		return queue_roll_light()
 	if kind=="heavy" and heavy_style=="charge_thrust" and thrust_unlocked: kind="thrust"
@@ -740,6 +756,7 @@ func begin_attack(kind: String, charged:float=0.0, prepared:bool=false) -> bool:
 	if not spend_stamina(float(tuning.stamina_cost)):
 		return false
 	begin_action_transition(.16)
+	counter_active=false;measured_triggered=false
 	state=kind
 	state_time=0
 	state_duration=float(tuning.duration)
@@ -938,6 +955,8 @@ func begin_roll() -> bool:
 	return true
 
 func begin_charge() -> bool:
+	if counter_ready():
+		begin_counter();return false
 	if state in ["roll","stand"]:
 		return input_enabled and sword_drawn and roll_restore_drawn and can_afford(float(combat.light.stamina_cost))
 	if state=="light":
@@ -1056,7 +1075,7 @@ func restore_stamina(value: float) -> void:
 func _recover_stamina(delta: float) -> void:
 	stamina_delay=maxf(0,stamina_delay-delta)
 	if state=="free" and not sprinting and stamina_delay<=0 and stamina<max_stamina:
-		stamina=minf(max_stamina,stamina+float(combat.stamina_regen)*delta)
+		stamina=minf(max_stamina,stamina+float(combat.stamina_regen)*delta*(1+measured_bonus if measured_remaining>0 else 1))
 		stamina_changed.emit(stamina,max_stamina)
 	if stamina>=float(combat.sprint_resume_stamina):
 		sprint_exhausted=false
@@ -1064,6 +1083,7 @@ func _recover_stamina(delta: float) -> void:
 func take_damage(amount: int, direction: Vector3) -> bool:
 	if amount<=0 or health<=0 or invulnerability>0 or not input_enabled:
 		return false
+	counter_remaining=0;counter_target=null
 	if magic_gear!=null: amount=magic_gear.incoming_damage(amount)
 	health=maxi(0,health-amount)
 	if dash_water_pending: clear_dash_attack()
@@ -1287,6 +1307,9 @@ func _physics_process(delta: float) -> void:
 		shift_pending=false
 		velocity=Vector3.ZERO
 		return
+	counter_remaining=maxf(0,counter_remaining-delta)
+	measured_remaining=maxf(0,measured_remaining-delta)
+	if state!="light": counter_active=false
 	if magic_gear!=null: magic_gear.tick(delta)
 	presentation_clock+=delta
 	if dash_release_queued: release_dash()
@@ -1462,6 +1485,7 @@ func _physics_process(delta: float) -> void:
 			if state=="thrust":
 				force=smoothstep(.14,.26,progress)*(1-smoothstep(.58,.94,progress))
 			velocity=attack_direction*(thrust_travel_speed() if state=="thrust" else maxf(float(tuning.momentum)*force,chain_speed*exp(-6*state_time)))
+			if counter_active: velocity+=counter_step*3.6*smoothstep(.02,.10,progress)*(1-smoothstep(.32,.44,progress))
 			if state=="light" and combo_stage==3:
 				var forward=maxf(0,movement_vector(movement).dot(attack_direction))
 				velocity+=attack_direction*float(combat.drawn_walk_speed)*forward*force
@@ -1532,3 +1556,19 @@ func terrain_speed_scale() -> float:
 	var scale=1.0
 	for source in slow_sources.values(): scale=minf(scale,float(source.factor))
 	return lerpf(scale,1,clampf(magic_gear.bonus("slow_resist"),0,1)) if magic_gear!=null else scale
+
+func counter_ready() -> bool:
+	return counter_unlocked and counter_equipped and input_enabled and health>0 and sword_drawn and state in ["parry","free"] and counter_remaining>0 and counter_target!=null and is_instance_valid(counter_target.get_ref()) and counter_target.get_ref().health>0 and global_position.distance_to(counter_target.get_ref().global_position)<=4.5
+func begin_counter() -> bool:
+	if not counter_ready() or not can_afford(float(combat.combo[0].stamina_cost)): return false
+	var toward=counter_target.get_ref().global_position-global_position;toward.y=0
+	var incoming=equipment.transform;var bones=[]
+	for index in range(skeleton.get_bone_count()): bones.append(skeleton.get_bone_pose(index))
+	var old=state
+	counter_remaining=0;state="free";combo_stage=1;combo_remaining=float(combat.combo_window)
+	if not begin_attack("light"): state=old;return false
+	counter_active=true;state_duration=.85
+	chain_weapon=incoming;chain_bones=bones;chain_blend=.16;chain_blend_duration=.16
+	action_transition_remaining=0;action_transition_bones.clear()
+	counter_step=toward.normalized()*.9+toward.normalized().cross(Vector3.UP)*.8
+	return true
