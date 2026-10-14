@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "idle",
+    "walk",
+    "sprint",
+    "walk_rate",
+    "sprint_rate",
+    "walk_forward",
+    "sprint_forward",
+    "walk_lift",
+    "sprint_lift",
+    "blend_seconds"
+  ],
+  "properties": {
+    "idle": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number"
+      }
+    },
+    "walk": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number"
+      }
+    },
+    "sprint": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number"
+      }
+    },
+    "walk_rate": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "sprint_rate": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "walk_forward": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "sprint_forward": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "walk_lift": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "sprint_lift": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "blend_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "idle": [
+    0.3,
+    -0.62,
+    -0.14
+  ],
+  "walk": [
+    0.3,
+    -0.42,
+    -0.37
+  ],
+  "sprint": [
+    0.32,
+    -0.36,
+    -0.38
+  ],
+  "walk_rate": 7.0,
+  "sprint_rate": 10.5,
+  "walk_forward": 0.17,
+  "sprint_forward": 0.23,
+  "walk_lift": 0.065,
+  "sprint_lift": 0.09,
+  "blend_seconds": 0.18
+}

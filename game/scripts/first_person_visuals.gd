@@ -13,6 +13,7 @@ var resting:Array[Transform3D]=[]
 var global_rests:Array[Transform3D]=[]
 var palms:Dictionary={}
 var personal_skin=false
+var unarmed=preload("res://scripts/unarmed_hands.gd").new()
 const PALM=Vector3(-.017,-.30,.012)
 
 func prepare(actor:Node3D) -> void:
@@ -51,31 +52,35 @@ func prepare(actor:Node3D) -> void:
 		if not source is MeshInstance3D or source.skin==null or source.mesh==null: continue
 		var source_rig=source.get_node_or_null(source.skeleton)
 		if source_rig!=skeleton: continue
+		var label=String(source.name).to_lower()
+		if ["hair","crown","eyebrow","eyelash","teeth","tongue","high-poly"].any(func(word): return word in label): continue
 		var filtered=arms_mesh(source,skeleton)
-		if filtered.get_surface_count()==0: continue
-		var arms=source.duplicate(); arms.name=String(source.name)+"FirstPersonArms"
-		arms.mesh=filtered; arms.layers=ARMS_LAYER; arms.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		arms.set_meta("relaxed_mesh",filtered)
-		arms.set_meta("gripped_mesh",grip_mesh(filtered,source.skin,skeleton) if actor.has_node("BetaHero") else filtered)
-		arms.set_meta("first_person_arms",true);rig.add_child(arms)
-		arms.transform=skeleton.global_transform.affine_inverse()*source.global_transform
-		arms.skeleton=NodePath("..")
-		arms.visible=true
+		if filtered.get_surface_count()>0:
+			var arms=source.duplicate(); arms.name=String(source.name)+"FirstPersonArms"
+			arms.mesh=filtered; arms.layers=ARMS_LAYER; arms.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			arms.set_meta("relaxed_mesh",filtered)
+			arms.set_meta("gripped_mesh",grip_mesh(filtered,source.skin,skeleton) if actor.has_node("BetaHero") else filtered)
+			arms.set_meta("first_person_arms",true);rig.add_child(arms)
+			arms.transform=skeleton.global_transform.affine_inverse()*source.global_transform
+			arms.skeleton=NodePath("..");arms.visible=true
 
 func update(actor:Node3D,frame:Transform3D) -> void:
 	if not is_instance_valid(root) or not is_instance_valid(source_rig): prepare(actor)
-	var basis=frame.basis*Basis(Vector3.UP,PI)*rig_basis
-	root.global_transform=Transform3D(basis,frame.origin-basis*bind_eye-frame.basis.z*.18)
+	var holding=actor.sword_equipped and actor.sword_drawn
+	var draw=actor.state in ["draw","sheathe"]
+	var arm_frame=frame
+	var basis=arm_frame.basis*Basis(Vector3.UP,PI)*rig_basis
+	root.global_transform=Transform3D(basis,arm_frame.origin-basis*bind_eye-arm_frame.basis.z*.18)
 	for index in range(rig.get_bone_count()):
 		# The view arms get their own stable shoulders, preserving the real skin.
-		rig.set_bone_pose(index,resting[index])
+		rig.set_bone_pose(index,source_rig.get_bone_pose(index) if not holding and not draw else resting[index])
 	rig.force_update_all_bone_transforms()
 	var clock=float(actor.presentation_clock)
 	var sway=Vector3(sin(clock*7)*.009,sin(clock*14)*.008,0) if actor.velocity.length_squared()>.05 else Vector3(0,sin(clock*2)*.004,0)
 	var right=frame*(Vector3(.24,-.14,-.50)+sway)
 	var left=frame*(Vector3(-.24,-.16,-.48)-sway)
-	var holding=actor.sword_equipped and actor.sword_drawn
-	var draw=actor.state in ["draw","sheathe"]
+	if not holding and not draw:
+		var relaxed=unarmed.targets(actor,arm_frame);right=relaxed.R;left=relaxed.L
 	var phase=float(actor.animator.current_animation_position)/actor.animator.get_animation(actor.clips[actor.current_clip]).length if draw else 1.0
 	if draw and actor.state=="sheathe": phase=1-phase
 	var grip=.065 if actor.equipment.get_meta("beta_sword",false) else .16
@@ -99,7 +104,7 @@ func update(actor:Node3D,frame:Transform3D) -> void:
 	hand_targets={"R":right,"L":left}
 	# During the remote-to-body return, reaching for the planted hilt would put
 	# the separate view arms through the camera. Restore them once standing.
-	root.visible=actor.first_person_driver!=null and actor.state!="dragon_recover"
+	root.visible=actor.first_person_driver!=null and actor.state!="dragon_recover" and (holding or actor.state not in ["roll","stand"])
 
 func bone(key:String,side:String) -> int:
 	var index=rig.find_bone(key+"_"+side)

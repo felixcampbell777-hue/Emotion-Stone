@@ -1459,6 +1459,8 @@ func notify(text: String) -> void:
 
 func _verify() -> void:
 	var args=OS.get_cmdline_user_args()
+	if "--suite" in args and args[args.find("--suite")+1]=="unarmed":
+		await load("res://scripts/unarmed_verification.gd").new().run(self);return
 	if "--suite" in args and args[args.find("--suite")+1]=="dash-uppercut":
 		await load("res://scripts/uppercut_verification.gd").new().run(self);return
 	if "--suite" in args and args[args.find("--suite")+1]=="combat-skills":
@@ -1524,6 +1526,9 @@ func _capture(directory: String) -> void:
 		await load("res://scripts/home_capture.gd").new().run(self,directory)
 		get_tree().quit()
 		return
+	if view=="unarmed":
+		await load("res://scripts/unarmed_capture.gd").new().run(self,directory)
+		get_tree().quit();return
 	if view=="dash-uppercut":
 		await load("res://scripts/uppercut_capture.gd").new().run(self,directory)
 		get_tree().quit();return
