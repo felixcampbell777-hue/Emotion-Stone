@@ -143,3 +143,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		move_and_slide()
 		position.y=0
+
+func breaker_expose(seconds:float) -> void:
+	super.breaker_expose(seconds)
+	if kind=="warden": armor_open=maxf(armor_open,seconds)

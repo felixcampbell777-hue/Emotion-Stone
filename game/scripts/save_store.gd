@@ -63,7 +63,7 @@ static func read(path: String = SAVE_PATH) -> Dictionary:
 	var loadout=parsed.get("skill_loadout",{})
 	if not loadout is Dictionary: return {}
 	for key in loadout:
-		if key not in ["dash","jump"] or not loadout[key] is bool or (loadout[key] and not state.has(key)): return {}
+		if key not in ["dash","jump","flowing_counter"] or not loadout[key] is bool or (loadout[key] and not state.has(key)): return {}
 	var equipment=parsed.get("magic_items",{})
 	var magic=preload("res://scripts/magic_items.gd").new()
 	if not magic.valid_save(equipment): return {}
@@ -84,7 +84,7 @@ static func read(path: String = SAVE_PATH) -> Dictionary:
 	for key in ["sword_drawn","sword_equipped","mother_unwrapped","home_intro_complete"]:
 		if parsed.has(key) and not parsed[key] is bool:
 			return {}
-	if parsed.has("special_attack") and (not parsed.special_attack is String or parsed.special_attack not in ["water_sweep","water_lance","sea_dragon"]):
+	if parsed.has("special_attack") and (not parsed.special_attack is String or parsed.special_attack not in ["water_sweep","water_lance","sea_dragon","undertow"]):
 		return {}
 	var world=parsed.get("world_id","")
 	if not world is String or (not world.is_empty() and not WorldPacks.valid_id(world)): return {}

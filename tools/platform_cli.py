@@ -487,11 +487,11 @@ def identifier(value):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     commands=parser.add_subparsers(dest='command',required=True)
-    for name in ['validate','build','verify','verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-environment','verify-builder','capture','verify-windows','capture-windows','run','recipes-check']:
+    for name in ['validate','build','verify','verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-environment','verify-builder','capture','verify-windows','capture-windows','run','recipes-check']:
         command=commands.add_parser(name)
-        if name=='verify-windows': command.add_argument('--suite',choices=['all','sea-dragon'],default='all')
+        if name=='verify-windows': command.add_argument('--suite',choices=['all','sea-dragon','combat-skills'],default='all')
         if name in ['capture','capture-windows']:
-            command.add_argument('--view',choices=['sea-dragon','beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
+            command.add_argument('--view',choices=['combat-skills','sea-dragon','beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
             command.add_argument('--renderer',choices=['forward_plus','gl_compatibility'])
             command.add_argument('--art-profile',choices=['original','darkwood'])
             if name=='capture':
@@ -524,14 +524,14 @@ def main():
         assets(args.regenerate)
     elif args.command=='build':
         build()
-    elif args.command in ['verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-environment']:
+    elif args.command in ['verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-environment']:
         validate()
         assets()
         audit_sword()
         import_game()
-        suite='sea_dragon' if args.command=='verify-sea-dragon' else 'beta' if args.command=='verify-beta' else 'environment' if args.command=='verify-environment' else 'core' if args.command=='verify-cores' else 'magic' if args.command=='verify-magic' else 'goblin' if args.command=='verify-goblins' else 'terrain' if args.command=='verify-terrain' else 'combat'
+        suite='skills' if args.command=='verify-skills' else 'sea_dragon' if args.command=='verify-sea-dragon' else 'beta' if args.command=='verify-beta' else 'environment' if args.command=='verify-environment' else 'core' if args.command=='verify-cores' else 'magic' if args.command=='verify-magic' else 'goblin' if args.command=='verify-goblins' else 'terrain' if args.command=='verify-terrain' else 'combat'
         output=run_process([toolchain()['godot'],'--headless','--path',str(GAME),'--script',f'res://scripts/focused_{suite}_checks.gd'],log=f'focused-{suite}.log')
-        prefix='VERIFICATION_' if suite=='sea_dragon' else 'BETA_CHECKS' if suite=='beta' else 'ENVIRONMENT_CHECKS' if suite=='environment' else 'CORE_CHECKS' if suite=='core' else 'MAGIC_CHECKS' if suite=='magic' else 'GOBLIN_CHECKS' if suite=='goblin' else 'TERRAIN_CHECKS' if suite=='terrain' else 'FOCUSED_COMBAT'
+        prefix='VERIFICATION_' if suite in ['sea_dragon','skills'] else 'BETA_CHECKS' if suite=='beta' else 'ENVIRONMENT_CHECKS' if suite=='environment' else 'CORE_CHECKS' if suite=='core' else 'MAGIC_CHECKS' if suite=='magic' else 'GOBLIN_CHECKS' if suite=='goblin' else 'TERRAIN_CHECKS' if suite=='terrain' else 'FOCUSED_COMBAT'
         print(next(line for line in output.splitlines() if line.startswith(prefix)))
     elif args.command in ['verify','capture']:
         validate()

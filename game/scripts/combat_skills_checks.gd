@@ -1,0 +1,98 @@
+extends RefCounted
+const Undertow=preload("res://scripts/undertow.gd")
+func mob(game:Control,at:Vector3,size:String="medium") -> Node3D:
+	var enemy=load("res://scripts/slime.gd").new();game.world_root.add_child(enemy)
+	enemy.configure({"id":"skill_fixture","kind":"slime","at":[at.x,at.z],"size":size},game.player)
+	enemy.health=1000;enemy.max_health=1000;enemy.ai_enabled=false;enemy.set_physics_process(false);game.enemies.append(enemy)
+	return enemy
+func run(test:RefCounted) -> void:
+	var game=test.game;game.game_mode="beta";game.start_new_game();game.camera_driver.set_mode("first_person")
+	var actor=game.player;actor.set_physics_process(false);actor.position=Vector3(12,0,-12)
+	for enemy in game.enemies: enemy.ai_enabled=false;enemy.position.x+=30
+	var growth=game.progression;growth.award(957383)
+	test.check(not growth.can_learn("flowing_counter") and not growth.can_learn("undertow"),"New actives require their Form or Mana root")
+	for id in ["form","strength","mana","flowing_counter","measured_recovery","breaker","undertow"]: game.learn_skill(id)
+	test.check(actor.counter_equipped and "measured_recovery" in growth.passives and "breaker" in growth.passives,"Learning equips the counter and available passive slots")
+	game.learn_skill("flowing_counter");game.learn_skill("flowing_counter");game.learn_skill("undertow");game.learn_skill("undertow")
+	test.check(is_equal_approx(actor.counter_damage,.45) and not growth.can_learn("undertow"),"Counter damage upgrades and Undertow's three-rank cap apply")
+	var bonus=actor.measured_bonus;game.apply_skill_stats();game.apply_skill_stats()
+	test.check(is_equal_approx(actor.measured_bonus,bonus),"Repeated stat rebuilds do not stack new skill bonuses")
+	actor.set_sword_drawn(true);actor.restore_stamina(100);actor.visual.rotation.y=0;game.camera_driver.yaw=PI;game.camera_driver.first_pitch=0
+	var target=mob(game,actor.position+Vector3(0,0,1.4))
+	actor.begin_parry();actor.state_time=.3
+	test.check(actor.try_parry(target) and actor.counter_ready(),"Actual timed parry arms a Flowing Counter against the attacker")
+	var event=InputEventMouseButton.new();event.button_index=MOUSE_BUTTON_LEFT;event.pressed=true;event.position=game.world_rect.get_center()
+	var stamina=actor.stamina;game._unhandled_input(event)
+	test.check(actor.counter_active and actor.combo_stage==2 and actor.state=="light" and not game.mouse_attack_pending,"Mouse light attack starts the quick counter directly from parry")
+	test.check(is_equal_approx(stamina-actor.stamina,float(actor.combat.combo[0].stamina_cost)) and actor.state_duration<1,"Counter pays normal return-cut stamina and uses a faster backhand")
+	var before=actor.position
+	for i in range(5): await test.frames(1);actor._physics_process(.04)
+	test.check(absf(actor.position.x-before.x)>.08,"Counter takes a real collision-aware sidestep")
+	var held=actor.state_time;game.toggle_pause();actor._physics_process(.3)
+	test.check(actor.state_time==held,"Counter pose and travel freeze in pause")
+	game.pause_menu.close();game._refresh_simulation();actor.set_sword_drawn(true);actor.counter_remaining=0
+	actor.restore_stamina(100);actor.begin_parry();actor.state_time=.3;target.position=actor.position+Vector3(0,0,1.4);actor.try_parry(target);game._request_attack("light")
+	test.check(actor.counter_active and actor.combo_stage==2,"Keyboard J also counters directly from an active parry")
+	actor.set_sword_drawn(true);actor.counter_remaining=0
+	test.check(not actor.begin_counter(),"A counter cannot be used without a recent successful parry")
+	game.combat_skills.parried(target);actor.restore_stamina(0)
+	test.check(not actor.begin_counter() and actor.state=="free","Insufficient stamina rejects the counter safely")
+	actor.restore_stamina(100);actor.invulnerability=0;actor.take_damage(1,Vector3.ZERO)
+	test.check(not actor.counter_ready(),"Taking damage cancels a pending counter")
+	actor.invulnerability=0;actor.counter_remaining=0;actor.set_sword_drawn(true);actor.combo_stage=2;actor.combo_remaining=1
+	actor.begin_attack("light");actor.state_time=.67*actor.state_duration;await test.frames(1);actor._physics_process(0)
+	var rails=actor.blade_segment();target.position=(rails[0]+rails[1])*.5;target.position.y=0
+	var hp=target.health;game._attack_contact("light",actor.attack_direction,{})
+	test.check(target.health<hp and actor.measured_remaining==3,"Actual third-strike steel contact grants Measured Recovery")
+	actor.set_sword_drawn(true);actor.restore_stamina(20);actor.measured_remaining=3;actor._recover_stamina(.2)
+	test.check(is_equal_approx(actor.stamina,20+float(actor.combat.stamina_regen)*.2*1.5),"Measured Recovery increases normal stamina regeneration by 50%")
+	game.toggle_pause();var remaining=actor.measured_remaining;actor._physics_process(.3)
+	test.check(actor.measured_remaining==remaining,"The recovery buff timer freezes in menus")
+	game.pause_menu.close();game._refresh_simulation();game.toggle_passive("measured_recovery")
+	test.check(actor.measured_bonus==0 and actor.measured_remaining==0,"Unequipping Measured Recovery removes the buff")
+	game.toggle_passive("measured_recovery");game.combat_skills.reset()
+	actor.combo_stage=2;actor.combo_remaining=1;actor.begin_attack("light");actor.state_time=actor.state_duration;actor._physics_process(0)
+	test.check(actor.measured_remaining==0,"A missed third strike never grants recovery")
+	game.combat_skills.reset();target.health=1000
+	for i in range(4):
+		var old=target.health;target.take_sword_damage(1,Vector3.ZERO);game.combat_skills.sword_hit(target,old,false,false)
+	test.check(target.state=="recover" and target.state_time>=1.1 and target.parry_flash>=1.8,"Repeated accepted hits trigger Breaker interruption and exposure")
+	test.check(game.combat_skills.exposed.has(target.get_instance_id()),"Breaker grants its bounded exposed-damage window")
+	var exposure=game.combat_skills.exposed.duplicate();game.toggle_pause();game.combat_skills.tick(2)
+	test.check(game.combat_skills.exposed==exposure,"Breaker exposure freezes in menus")
+	game.pause_menu.close();game._refresh_simulation()
+	var giant=mob(game,actor.position+Vector3(0,0,4),"giant")
+	for i in range(8):
+		var old=giant.health;giant.take_sword_damage(1,Vector3.ZERO);game.combat_skills.sword_hit(giant,old,false,true)
+	test.check(not game.combat_skills.pressure.has(giant.get_instance_id()) and giant.parry_flash==0,"Giant armor cannot accumulate Breaker without an exposed weakspot")
+	var old=target.health;target.take_sword_damage(1,Vector3.ZERO);game.combat_skills.sword_hit(target,old,false,false)
+	game.combat_skills.tick(5.5)
+	test.check(game.combat_skills.pressure.is_empty(),"Breaker pressure decays when attacks stop")
+	game.select_special_attack("undertow");actor.set_sword_drawn(true);actor.restore_stamina(100)
+	test.check(game.selected_special_attack=="undertow" and actor.begin_water(true) and actor.stamina==72,"Undertow equips on Q and costs 28 stamina")
+	actor.state_time=actor.state_duration*.7;await test.frames(1);actor._physics_process(0)
+	var waves=game.projectiles.filter(func(item): return is_instance_valid(item) and item is Undertow)
+	test.check(waves.size()==1,"The animated water swing releases exactly one Undertow")
+	var wave=waves[0];wave.set_physics_process(false);target.position=wave.position+wave.direction*3;giant.position=wave.position+wave.direction*4
+	wave.advance(.5);wave.advance(.1)
+	test.check(target.knockback.dot(wave.direction)<-3 and giant.knockback==Vector3.ZERO,"Undertow pulls Medium enemies inward and leaves Giants planted")
+	test.check(is_equal_approx(wave.reach,7.5) and is_equal_approx(wave.strength,1.4),"Upgrading Undertow increases reach and pull strength")
+	var small=mob(game,wave.position+wave.direction*3,"small");var large=mob(game,wave.position+wave.direction*4,"large")
+	wave.clock=.4;wave.advance(.1);wave.advance(.1)
+	test.check(small.knockback.length()>target.knockback.length() and large.knockback.length()<target.knockback.length(),"Undertow's pull scales down from Small through Medium to Large")
+	var wall=StaticBody3D.new();game.world_root.add_child(wall);wall.collision_layer=1;wall.position=wave.position+wave.direction*1.7+Vector3.UP
+	wall.rotation.y=atan2(wave.direction.x,wave.direction.z)
+	var collider=CollisionShape3D.new();var box=BoxShape3D.new();box.size=Vector3(4,3,.2);collider.shape=box;wall.add_child(collider)
+	await test.frames(2);target.knockback=Vector3.ZERO;wave.advance(.1)
+	test.check(target.knockback==Vector3.ZERO,"A solid wall blocks the inward Undertow pull")
+	wall.queue_free();await test.frames(2)
+	game.toggle_pause();var clock=wave.clock;wave._physics_process(.3)
+	test.check(wave.clock==clock,"Undertow freezes with the rest of combat in menus")
+	game.pause_menu.close();game._refresh_simulation();actor.set_sword_drawn(true)
+	var save=game.save_data();var path="user://combat_skills_verification.json"
+	game.Save.write(save,path);var restored=game.Save.read(path)
+	test.check(not restored.is_empty() and game.apply_save(restored) and game.selected_special_attack=="undertow" and actor.counter_equipped and growth.rank("undertow")==3,"Private save round trip restores ranks, passives, counter slot and Undertow selection")
+	test.check(actor.measured_remaining==0 and game.combat_skills.pressure.is_empty() and actor.counter_remaining==0,"Transient buffs and Breaker pressure never survive load")
+	var bad=save.duplicate(true);bad.progression.learned.erase("flowing_counter");bad.progression.learned.erase("flowing_counter");bad.progression.learned.erase("flowing_counter")
+	test.check(not game.apply_save(bad),"Load rejects an equipped counter without the learned skill")
+	DirAccess.remove_absolute(path);actor.set_physics_process(true)
