@@ -15,10 +15,11 @@ func sample(key:String,t:float) -> Dictionary:
 	return {"grip":vector(frames[-1].grip),"direction":vector(frames[-1].direction).normalized()}
 func apply(actor:Node3D,key:String,t:float) -> void:
 	var frame:Transform3D=actor.first_person_driver.sample_first_person(0,not actor.is_physics_processing())
+	if key=="light" and actor.dash_uppercut: key="dash_uppercut"
 	var pose=sample(key,t)
 	if key=="drag":
 		if actor.dash_attack_blend>0:
-			var loaded=sample("light",actor.DASH_ATTACK_PHASE)
+			var loaded=sample("dash_uppercut",actor.DASH_ATTACK_PHASE)
 			var weight=smoothstep(0,1,actor.dash_attack_blend)
 			pose.grip=pose.grip.lerp(loaded.grip,weight)
 			pose.direction=pose.direction.slerp(loaded.direction,weight)
@@ -29,6 +30,10 @@ func apply(actor:Node3D,key:String,t:float) -> void:
 	var grip:Vector3=frame*pose.grip
 	var direction:Vector3=(frame.basis*pose.direction).normalized()
 	var reach=(actor.BetaSwordMotion.GRIP-actor.BetaSwordMotion.TIP)*float(actor.combat.sword_scale) if actor.equipment.get_meta("beta_sword",false) else 2.128
+	if (key=="dash_uppercut" or (key=="drag" and actor.dash_attack_blend>0)) and direction.y<0:
+		var floor_y=actor.ground_world.ground_height(grip) if is_instance_valid(actor.ground_world) else actor.position.y
+		var down=clampf((floor_y+.035-grip.y)/reach,-.98,.98)
+		if direction.y<down: direction=Vector3(direction.x,0,direction.z).normalized()*sqrt(1-down*down)+Vector3.UP*down
 	if key in ["heavy","light3"]:
 		var weight=smoothstep(.58,.68,t)*(1-smoothstep(.82,.92,t))
 		var floor_y=actor.ground_world.ground_height(grip) if is_instance_valid(actor.ground_world) else actor.position.y

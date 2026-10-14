@@ -146,6 +146,7 @@ func _ready() -> void:
 	player.ground_slam.connect(_ground_slam)
 	player.thrust_stopped.connect(_thrust_stopped)
 	player.water_cast.connect(_water_cast)
+	player.vertical_water_cast.connect(_vertical_water_cast)
 	player.lance_fired.connect(_water_lance_fired)
 	player.health_changed.connect(_health_changed)
 	player.stamina_changed.connect(_stamina_changed)
@@ -1265,6 +1266,11 @@ func _water_cast(origin: Vector3, direction: Vector3) -> void:
 	wave.configure(self,origin,direction,player.combat.water)
 	water_waves.append(wave)
 
+func _vertical_water_cast(origin:Vector3,direction:Vector3) -> void:
+	water_waves=water_waves.filter(func(wave): return is_instance_valid(wave))
+	var wave=load("res://scripts/vertical_water_wave.gd").new();world_root.add_child(wave)
+	wave.configure(self,origin,direction,player.combat.water);water_waves.append(wave)
+
 func _water_lance_fired(origin: Vector3, direction: Vector3) -> void:
 	projectiles=projectiles.filter(func(item): return is_instance_valid(item))
 	var lance=WaterLance.new()
@@ -1449,6 +1455,8 @@ func notify(text: String) -> void:
 
 func _verify() -> void:
 	var args=OS.get_cmdline_user_args()
+	if "--suite" in args and args[args.find("--suite")+1]=="dash-uppercut":
+		await load("res://scripts/uppercut_verification.gd").new().run(self);return
 	if "--suite" in args and args[args.find("--suite")+1]=="combat-skills":
 		await load("res://scripts/skills_verification.gd").new().run(self);return
 	if "--suite" in args and args[args.find("--suite")+1]=="sea-dragon":
@@ -1512,6 +1520,9 @@ func _capture(directory: String) -> void:
 		await load("res://scripts/home_capture.gd").new().run(self,directory)
 		get_tree().quit()
 		return
+	if view=="dash-uppercut":
+		await load("res://scripts/uppercut_capture.gd").new().run(self,directory)
+		get_tree().quit();return
 	if view=="combat-skills":
 		await load("res://scripts/skills_capture.gd").new().run(self,directory)
 		get_tree().quit();return
