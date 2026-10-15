@@ -111,6 +111,13 @@
       "family": "boss",
       "healing_percent": 0.3,
       "color": "#e8b55b"
+    },
+    {
+      "id": "bellkeeper_core",
+      "name": "Bellkeeper Core",
+      "family": "boss",
+      "healing_percent": 0.7,
+      "color": "#8fe0d3"
     }
   ],
   "profiles": {
@@ -204,6 +211,13 @@
       "variant": "",
       "variant_chance": 0,
       "boss_bonus": 250
+    },
+    "bellkeeper": {
+      "drop_rate": 1,
+      "generic": "bellkeeper_core",
+      "variant": "",
+      "variant_chance": 0,
+      "boss_bonus": 900
     }
   },
   "beasts": [

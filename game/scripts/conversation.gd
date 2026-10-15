@@ -69,7 +69,7 @@ func clear_choices() -> void:
 	for child in choices.get_children():
 		choices.remove_child(child)
 		child.queue_free()
-	portrait.texture=load("res://assets/conversation/mother-revealed-cutout-v2.png" if game.mother_unwrapped else "res://assets/conversation/mother-wrapped-cutout-v2.png") if target.get("role","")=="mother" else load("res://assets/conversation/friendly-villager-v1.png")
+	portrait.texture=load("res://assets/conversation/mother-revealed-cutout-v2.png" if game.mother_unwrapped else "res://assets/conversation/mother-wrapped-cutout-v2.png") if target.get("role","") in ["mother","a2_mother"] else load("res://assets/conversation/friendly-villager-v1.png")
 	portrait_frame.visible=target.get("role","")!="well"
 	title.text=target.get("title","Mother").to_upper()
 
@@ -81,6 +81,8 @@ func say(line: String) -> void:
 
 func menu() -> void:
 	clear_choices()
+	if game.game_mode=="alpha2" and String(target.get("role","")).begins_with("a2_"):
+		game.alpha2.dialogue(self,target);return
 	if String(target.get("role","")).begins_with("farm_"):
 		game.goblin_campaign.dialogue(self,target)
 		return

@@ -16,6 +16,9 @@ const Inventory=preload("res://scripts/inventory.gd")
 const Conversation=preload("res://scripts/conversation.gd")
 var monster_cores=preload("res://scripts/monster_cores.gd").new()
 var magic_items=preload("res://scripts/magic_items.gd").new()
+var alpha2=preload("res://scripts/alpha2_campaign.gd").new()
+var alpha2_import_mode="alpha"
+var alpha2_import_path="" # Private fixture override; never populated by normal gameplay.
 var goblin_campaign=preload("res://scripts/goblin_campaign.gd").new()
 const GoblinEnemy=preload("res://scripts/goblin_enemy.gd")
 const ForestEnemy=preload("res://scripts/forest_enemy.gd")
@@ -120,6 +123,7 @@ func read_data(path: String) -> Dictionary:
 	return {}
 
 func _ready() -> void:
+	alpha2.game=self
 	magic_items.game=self
 	monster_cores.game=self
 	DisplayServer.window_set_title("Coastal Foundation v"+str(read_data("res://content/release.json").version))
@@ -206,12 +210,18 @@ func _ready() -> void:
 		camera_driver.set_mode("overhead")
 		call_deferred("_capture",args[args.find("--capture")+1])
 	else:
+		if game_mode=="alpha" and DisplayServer.get_name()!="headless": game_mode="alpha2"
 		title_screen.show_menu()
 	if "--play-world" in args and args.find("--play-world")+1<args.size(): start_world(args[args.find("--play-world")+1])
 
 func start_new_game(show_wakeup:bool=true) -> void:
+	var imported={}
+	if game_mode=="alpha2":
+		var source=alpha2_import_path if not alpha2_import_path.is_empty() else "user://beta-save-v1.json" if alpha2_import_mode=="beta" else "user://save-v1.json"
+		imported=Save.read(source)
+		if imported.get("game_mode","alpha")!=alpha2_import_mode: imported={}
 	cancel_sea_dragon()
-	if game_mode=="beta": environment_profile="darkwood"; character_profile="game"
+	if game_mode in ["beta","alpha2"]: environment_profile="darkwood"; character_profile="game"
 	world_id=""; world_defeats.clear(); respawn_timers.clear()
 	if world_browser!=null: world_browser.visible=false
 	set_resolution(0 if environment_profile=="darkwood" else int(config.world_resolution[0]))
@@ -232,6 +242,7 @@ func start_new_game(show_wakeup:bool=true) -> void:
 	magic_items.reset()
 	monster_cores.reset()
 	goblin_campaign.reset()
+	alpha2.reset()
 	defeated_enemies.clear()
 	progression.restore({"tree_version":2,"xp":0,"learned":[]})
 	selected_special_attack="water_sweep"
@@ -248,9 +259,14 @@ func start_new_game(show_wakeup:bool=true) -> void:
 	gallery_mode=false
 	pause_menu.visible=false
 	if camera_mode!="overhead": camera_driver.recenter()
-	load_map("beta_meadow" if game_mode=="beta" else config.start_map,Vector2(INF,INF),true)
+	if game_mode=="alpha2":
+		alpha2.start(imported)
+		camera_driver.set_mode("first_person")
+		player.restore_health(player.max_health);player.restore_stamina(player.max_stamina)
+	load_map("a2_haven" if game_mode=="alpha2" else "beta_meadow" if game_mode=="beta" else config.start_map,Vector2(INF,INF),true)
 	title_screen.visible=false
 	toast_time=0
+	if game_mode=="alpha2": notify("THE HOLLOW BELL · Character copied from "+alpha2_import_mode.capitalize()+" save. Speak to Mother." if not imported.is_empty() else "THE HOLLOW BELL · No usable import save found; starting with Dodge, Jump and three remedies. Speak to Mother.")
 	if show_wakeup and game_mode=="alpha":
 		dialog_title.text="A new morning"
 		dialog_lines=["You wake to gulls outside your upstairs window and the smell of bread from below. Mother is tending the hearth. Talk to her before heading out."]
@@ -587,6 +603,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 	player.combo_queued=false
 	camera_target=player.position+Vector3(0,float(config.follow_camera.focus_height),0) if camera_mode=="follow" else player.position
 	camera_driver.orbiting=false
+	alpha2.prepare_npcs()
 	for npc_data in current_world.npc_definitions:
 		var npc=Actor.new()
 		npc.name=npc_data.id
@@ -598,11 +615,11 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 		world_root.add_child(npc)
 		npcs.append(npc)
 		var role=npc_data.get("role","")
-		if role=="mother":
+		if role in ["mother","a2_mother"]:
 			npc.set_arm_wrapped(not mother_unwrapped)
 		current_world.interactions.append({"id":npc_data.id,"title":npc.definition.display_name,"lines":npc_data.dialogue,"position":npc.position,"actor":npc,"role":role})
 	for enemy_data in data.get("enemies",[]):
-		var enemy=BetaEnemy.new() if String(enemy_data.kind).begins_with("beta_") else GoblinEnemy.new() if String(enemy_data.kind).begins_with("goblin_") else Slime.new() if enemy_data.kind=="slime" else ForestEnemy.new()
+		var enemy=load("res://scripts/bellkeeper.gd").new() if enemy_data.kind=="bellkeeper" else BetaEnemy.new() if String(enemy_data.kind).begins_with("beta_") else GoblinEnemy.new() if String(enemy_data.kind).begins_with("goblin_") else Slime.new() if enemy_data.kind=="slime" else ForestEnemy.new()
 		enemy.name=enemy_data.id
 		var encounter_id=id+"/"+enemy_data.id
 		var saved_enemy={"health":0} if encounter_id in defeated_enemies else enemy_states.get(encounter_id,{})
@@ -634,6 +651,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 		)
 	wolf_packs.build(self)
 	goblin_campaign.build_map()
+	alpha2.build_map()
 	if environment_profile=="darkwood": EnvironmentArt._retexture(current_world)
 	monster_cores.build_map()
 	location_title.text=data.display_name
@@ -704,6 +722,7 @@ func _process(delta: float) -> void:
 				var coordinate=camera.position.dot(axis)
 				camera.position+=axis*(snappedf(coordinate,step)-coordinate)
 	goblin_campaign.tick()
+	alpha2.tick(delta)
 	current_world.update_interior_walls(camera.position,player.position,camera_mode)
 	if current_world.definition.get("cave",false):
 		for piece in current_world.get_children():
@@ -727,7 +746,7 @@ func _process(delta: float) -> void:
 		elif nearest.id=="warden_remains":
 			interaction_label.text="E  ·  Loot aether core" if warden_remains.component.visible else "E  ·  Search empty remains"
 		else:
-			interaction_label.text="E  ·  "+(nearest.title if nearest.has("campaign_action") else "Talk" if nearest.actor!=null else "Read")
+			interaction_label.text="E  ·  "+(nearest.title if nearest.has("campaign_action") or nearest.has("a2_action") else "Talk" if nearest.actor!=null else "Read")
 	hud_feedback.update(delta)
 	toast_time=maxf(0,toast_time-delta)
 	toast.visible=toast_time>0
@@ -745,6 +764,7 @@ func _process(delta: float) -> void:
 					notify("Defeat the forest slime before taking the deeper trail.")
 					exit_cooldown=2
 					break
+				if not alpha2.can_travel(exit): exit_cooldown=2;break
 				load_map(exit.target,Vector2(exit.spawn[0],exit.spawn[1]))
 				break
 	_update_combat_ui()
@@ -847,9 +867,11 @@ func open_nearest() -> void:
 	if nearest.is_empty() or player.state!="free" or recovering:
 		return
 	if nearest.has("loot_core"): monster_cores.collect(int(nearest.loot_core)); return
+	if alpha2.interact(nearest): return
 	if goblin_campaign.interact(nearest): return
 	if nearest.has("travel"):
 		var route=nearest.travel
+		if not alpha2.can_travel(route): return
 		if map_id=="home_downstairs" and route.id=="front_door" and not home_intro_complete:
 			notify("Say good morning to Mother before leaving.")
 			return
@@ -984,7 +1006,7 @@ func set_character_profile(profile:String) -> void:
 
 func save_data() -> Dictionary:
 	# Mode is serialized below and selects a separate Beta file.
-	return {"game_mode":game_mode,"environment_revision":1,"monster_cores":monster_cores.snapshot(),"magic_items":magic_items.snapshot(),"goblin_campaign":goblin_campaign.snapshot(),"respawn_timers":respawn_timers.duplicate(),"world_id":world_id,"world_defeats":world_defeats.duplicate(),"version":1,"home_layout":2,"home_intro_complete":home_intro_complete,"camera_mode":camera_mode,"first_person_pitch":camera_driver.first_pitch,"camera_yaw":camera_driver.yaw,"camera_pitch":camera_driver.pitch,"camera_distance":camera_driver.distance,"map":map_id,"ground_y":player.position.y,"position":[player.position.x,player.position.z],"facing":player.visual.rotation.y,"resolution":graphics_preset,"environment_profile":environment_profile,"character_profile":character_profile,"health":player.health,"stamina":player.stamina,"sword_drawn":player.sword_drawn,"sword_equipped":player.sword_equipped,"special_attack":selected_special_attack,"heavy_attack":player.heavy_style,"mother_unwrapped":mother_unwrapped,"well_gift_stage":well_gift_stage,"quest_stage":quest_stage,"defeated_enemies":defeated_enemies.duplicate(),"progression":progression.snapshot(),"skill_loadout":{"dash":player.dash_equipped,"jump":player.jump_equipped,"flowing_counter":player.counter_equipped}}
+	return {"alpha2":alpha2.snapshot(),"game_mode":game_mode,"environment_revision":1,"monster_cores":monster_cores.snapshot(),"magic_items":magic_items.snapshot(),"goblin_campaign":goblin_campaign.snapshot(),"respawn_timers":respawn_timers.duplicate(),"world_id":world_id,"world_defeats":world_defeats.duplicate(),"version":1,"home_layout":2,"home_intro_complete":home_intro_complete,"camera_mode":camera_mode,"first_person_pitch":camera_driver.first_pitch,"camera_yaw":camera_driver.yaw,"camera_pitch":camera_driver.pitch,"camera_distance":camera_driver.distance,"map":map_id,"ground_y":player.position.y,"position":[player.position.x,player.position.z],"facing":player.visual.rotation.y,"resolution":graphics_preset,"environment_profile":environment_profile,"character_profile":character_profile,"health":player.health,"stamina":player.stamina,"sword_drawn":player.sword_drawn,"sword_equipped":player.sword_equipped,"special_attack":selected_special_attack,"heavy_attack":player.heavy_style,"mother_unwrapped":mother_unwrapped,"well_gift_stage":well_gift_stage,"quest_stage":quest_stage,"defeated_enemies":defeated_enemies.duplicate(),"progression":progression.snapshot(),"skill_loadout":{"dash":player.dash_equipped,"jump":player.jump_equipped,"flowing_counter":player.counter_equipped}}
 
 func save_game() -> void:
 	if player.state!="free" or recovering:
@@ -993,12 +1015,13 @@ func save_game() -> void:
 	notify("Your place is saved." if Save.write(save_data(),current_save_path())==OK else "Could not save your place.")
 
 func current_save_path() -> String:
-	return "user://beta-save-v1.json" if game_mode=="beta" else WorldPacks.save_path(world_id)
+	return "user://alpha2-save-v1.json" if game_mode=="alpha2" else "user://beta-save-v1.json" if game_mode=="beta" else WorldPacks.save_path(world_id)
 
 func apply_save(data: Dictionary) -> bool:
 	if data.get("special_attack","water_sweep") not in ["water_sweep","water_lance","sea_dragon","undertow"]: return false
 	var mode=String(data.get("game_mode","alpha"))
-	if mode not in ["alpha","beta"] or (mode=="beta")!=(data.get("map","")=="beta_meadow"): return false
+	if not alpha2.valid_mode(mode,data.get("map",""),data.get("world_id","")): return false
+	if not alpha2.valid_save(data.get("alpha2",{}),data.get("defeated_enemies",[])): return false
 	if data.get("character_profile","game") not in ["game","standalone"]: return false
 	if data.is_empty() or data.get("well_gift_stage","not_started") not in ["not_started","coin_ready","potion_owned"]:
 		return false
@@ -1053,6 +1076,7 @@ func apply_save(data: Dictionary) -> bool:
 	magic_items.restore(data.get("magic_items",{}))
 	monster_cores.restore(data.get("monster_cores",{}))
 	goblin_campaign.restore(data.get("goblin_campaign",{}))
+	alpha2.restore(data.get("alpha2",{}))
 	magic_items.migrate_windstep(data.get("goblin_campaign",{}))
 	apply_skill_stats()
 	update_progression_ui()
@@ -1371,6 +1395,9 @@ func _player_defeated() -> void:
 	var death_layout=death_screen.get_child(0)
 	death_layout.get_child(1).text="You fell. Return to this world's starting area. Defeated creatures are kept." if not world_id.is_empty() else "You fell in the forest. Rest in the village square, then continue your journey.\n\nRecovered components and defeated creatures are kept."
 	death_layout.get_child(2).text="Return to world start" if not world_id.is_empty() else "Wake in the village square"
+	if game_mode=="alpha2":
+		death_layout.get_child(1).text="Return to your last pilgrim fire. Your discoveries, equipment and defeated enemies are kept."
+		death_layout.get_child(2).text="Return to pilgrim fire"
 	death_screen.visible=true
 	death_veil.visible=true
 	death_screen.get_child(0).get_child(2).grab_focus()
@@ -1379,7 +1406,8 @@ func respawn_player() -> void:
 	if not recovering:
 		return
 	player.set_sword_drawn(false)
-	if game_mode=="beta": load_map("beta_meadow")
+	if game_mode=="alpha2": load_map(alpha2.checkpoint,Vector2(alpha2.checkpoint_at[0],alpha2.checkpoint_at[1]))
+	elif game_mode=="beta": load_map("beta_meadow")
 	elif world_id.is_empty(): load_map("village_green",Vector2(0,3.5))
 	else:
 		var pack=WorldPacks.installed(world_id); load_map(WorldPacks.runtime_id(world_id,pack.start_map))
@@ -1389,13 +1417,14 @@ func respawn_player() -> void:
 	recovering=false
 	death_screen.visible=false
 	death_veil.visible=false
-	notify("You return to the meadow. Your journey continues." if game_mode=="beta" else "You return to the starting area. Your journey continues." if not world_id.is_empty() else "You wake in the village square. Your journey continues.")
+	notify("You return to the last pilgrim fire. Your discoveries are kept." if game_mode=="alpha2" else "You return to the meadow. Your journey continues." if game_mode=="beta" else "You return to the starting area. Your journey continues." if not world_id.is_empty() else "You wake in the village square. Your journey continues.")
 
 func _enemy_defeated(id: String, kind: String, slain_enemy:Node3D=null) -> void:
 	if id in defeated_enemies: return
 	defeated_enemies.append(id)
 	gain_xp(int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind))
 	if is_instance_valid(slain_enemy): monster_cores.defeated(kind,slain_enemy.position,kind=="warden" and map_id=="herb_glade")
+	if kind=="bellkeeper": alpha2.boss_fell()
 	if kind=="warden" and map_id=="herb_glade":
 		for enemy in enemies:
 			if enemy.definition.kind=="warden" and enemy.health<=0:
@@ -1406,6 +1435,7 @@ func _enemy_defeated(id: String, kind: String, slain_enemy:Node3D=null) -> void:
 		notify({"slime":"The deeper forest trail is clear.","boar":"Briar boar defeated.","wisp":"Thorn wisp defeated.","warden":"The stone warden falls. Search its remains for the alchemical core."}.get(kind,"Goblin defeated.")+" +%d XP · Level %d" % [int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind),progression.level()])
 
 func quest_objective(include_side:bool=true) -> String:
+	if game_mode=="alpha2": return alpha2.objective()
 	if game_mode=="beta": return "Explore the sparse woodland: slimes, sticky slimes, wolves and rats."
 	if include_side and world_id.is_empty() and map_id in ["lark_farm","goblin_approach","goblin_cave","goblin_depths"]: return goblin_campaign.objective()
 	if not world_id.is_empty(): return "Custom world - explore linked areas. F5 saves this world separately."
@@ -1455,6 +1485,8 @@ func notify(text: String) -> void:
 
 func _verify() -> void:
 	var args=OS.get_cmdline_user_args()
+	if "--suite" in args and args[args.find("--suite")+1]=="alpha2":
+		await load("res://scripts/alpha2_verification.gd").new().run(self);return
 	if "--suite" in args and args[args.find("--suite")+1]=="unarmed":
 		await load("res://scripts/unarmed_verification.gd").new().run(self);return
 	if "--suite" in args and args[args.find("--suite")+1]=="dash-uppercut":
@@ -1475,6 +1507,9 @@ func _capture(directory: String) -> void:
 	var view="all"
 	if "--capture-view" in arguments:
 		view=arguments[arguments.find("--capture-view")+1]
+	if view=="alpha2":
+		await load("res://scripts/alpha2_capture.gd").new().run(self,directory)
+		get_tree().quit();return
 	if view=="hero":
 		await load("res://scripts/hero_capture.gd").new().run(self,directory)
 		get_tree().quit(); return

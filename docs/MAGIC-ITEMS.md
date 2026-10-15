@@ -1,6 +1,6 @@
 # Magic item codex and equipment
 
-Menagerie [M] → Magic items lists 28 wearables plus three healing draughts. Filter by category, read the effect, and Claim specimen (or Claim all test specimens). Inventory [I] → Equipment & Items: click a slot, choose an owned item; Remove restores starter clothing/empty slot. Drag the live 3D preview to rotate it. Two rings may be worn, but a unique ring cannot occupy both slots. Save explicitly to retain claims/equipment.
+Menagerie [M] → Magic items lists 32 wearables plus three healing draughts. Filter by category, read the effect, and Claim specimen (or Claim all test specimens). Inventory [I] → Equipment & Items: click a slot, choose an owned item; Remove restores starter clothing/empty slot. Drag the live 3D preview to rotate it. Two rings may be worn, but a unique ring cannot occupy both slots. Save explicitly to retain claims/equipment.
 
 Wearable slots: Ring 1, Ring 2, torso, leggings, boots, headwear and necklace. The existing weapon slot still equips/unequips the greatsword. Each item has a visible bone-following cosmetic, including small ring jewels, necklace pendants, dress/armor palettes, greaves, boots and headgear. Lantern Headband provides a moving light. No new ability is unlocked by equipment alone.
 

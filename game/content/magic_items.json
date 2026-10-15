@@ -428,6 +428,62 @@
         "regen_seconds": 10,
         "burst_heal": 25
       }
+    },
+    {
+      "id": "lanternglass",
+      "code": "A2R1",
+      "category": "ring",
+      "name": "Lanternglass Ring",
+      "description": "A relic of the royal surveyors. +15 maximum HP and successful parries refund 5 stamina.",
+      "color": "#a68a52",
+      "accent": "#e6d895",
+      "variant": 2,
+      "effects": {
+        "health": 15,
+        "parry_refund": 5
+      }
+    },
+    {
+      "id": "wayfinder_boots",
+      "code": "A2B1",
+      "category": "boots",
+      "name": "Wayfinder Boots",
+      "description": "Boots made for lost roads: +12% movement speed and 50% resistance to sticky slows.",
+      "color": "#756448",
+      "accent": "#acd2a4",
+      "variant": 1,
+      "effects": {
+        "speed": 0.12,
+        "slow_resist": 0.5
+      }
+    },
+    {
+      "id": "royal_tide",
+      "code": "A2N1",
+      "category": "necklace",
+      "name": "Royal Tide Compass",
+      "description": "The first vault keepsake: water attacks deal 25% more damage and Mana Lance charges 10% faster.",
+      "color": "#477f8a",
+      "accent": "#9be8df",
+      "variant": 2,
+      "effects": {
+        "water_damage": 0.25,
+        "lance_haste": 0.1
+      }
+    },
+    {
+      "id": "bellward",
+      "code": "A2T1",
+      "category": "torso",
+      "name": "Bellward Explorer Coat",
+      "description": "A sturdy reward for the village explorer: +20 maximum HP and 12% damage reduction.",
+      "color": "#6c7c69",
+      "accent": "#d2ba72",
+      "variant": 2,
+      "effects": {
+        "health": 20,
+        "armor": 0.12
+      }
     }
   ],
   "sets": [

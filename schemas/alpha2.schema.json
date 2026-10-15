@@ -1,0 +1,206 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "title",
+    "maps",
+    "start",
+    "boss",
+    "target_minutes",
+    "actions",
+    "quest_rewards",
+    "boss_tuning"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "maps": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      },
+      "uniqueItems": true,
+      "minItems": 3,
+      "maxItems": 24
+    },
+    "start": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "boss": {
+      "type": "string"
+    },
+    "target_minutes": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 120
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "map",
+          "at",
+          "title",
+          "type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "map": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "at": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 100
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "enum": [
+              "rest",
+              "ward",
+              "quest",
+              "heart",
+              "loot",
+              "lore"
+            ]
+          },
+          "xp": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "requires": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "item": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "maxItems": 48
+    },
+    "quest_rewards": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "medicine",
+        "courier",
+        "ledger",
+        "memory",
+        "ending"
+      ],
+      "properties": {
+        "medicine": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2000
+        },
+        "courier": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2000
+        },
+        "ledger": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2000
+        },
+        "memory": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2000
+        },
+        "ending": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2000
+        }
+      }
+    },
+    "boss_tuning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "health",
+        "damage",
+        "ring_damage",
+        "windup",
+        "recovery",
+        "phase_threshold"
+      ],
+      "properties": {
+        "health": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 2000
+        },
+        "damage": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 2000
+        },
+        "ring_damage": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 2000
+        },
+        "windup": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 2000
+        },
+        "recovery": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 2000
+        },
+        "phase_threshold": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 2000
+        }
+      }
+    }
+  }
+}

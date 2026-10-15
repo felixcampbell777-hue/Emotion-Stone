@@ -88,7 +88,7 @@ func collect(key:int) -> bool:
 	game.nearest={}; game.notify("Collected "+item(drop.id).name+"."); return true
 func consume(id:String) -> bool:
 	if int(quantities.get(id,0))<=0 or game.player.health<=0: return false
-	if id=="golem_core" and game.quest_stage!="completed": show_warning(); return false
+	if id=="golem_core" and game.game_mode!="alpha2" and game.quest_stage!="completed": show_warning(); return false
 	var amount=maxi(1,roundi(game.player.max_health*float(item(id).healing_percent)))
 	remove(id); game.player.restore_health(game.player.health+amount); return true
 func remove(id:String) -> void:

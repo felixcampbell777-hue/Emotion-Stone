@@ -205,7 +205,7 @@ static func cave_faces(world:Node3D) -> void:
 
 static func ground_material(world:Node3D) -> ShaderMaterial:
 	var mat=ShaderMaterial.new(); mat.shader=load("res://shaders/realistic_ground.gdshader")
-	var soil="leafy_grass" if world.definition.id in ["village_green","coastal_path","lark_farm","beta_meadow"] else "forest_leaves_02"
+	var soil="leafy_grass" if world.definition.id in ["village_green","coastal_path","lark_farm","beta_meadow","a2_haven","a2_crossroads"] else "forest_leaves_02"
 	for pair in [["soil",soil],["trail","rocky_trail"],["stone","cobblestone_floor_08"]]:
 		for map in ["albedo","normal","roughness"]: mat.set_shader_parameter(pair[0]+"_"+map,load(ROOT+pair[1]+"/"+map+".jpg"))
 	var image=Image.create(int(world.bounds.size.x),int(world.bounds.size.y),false,Image.FORMAT_RGB8)
@@ -421,7 +421,7 @@ static func scanned_stone_parts(enemy:Node3D) -> void:
 static func creature_quality(enemy:Node3D,profile:String) -> void:
 	if profile!="darkwood": return
 	var slime=String(enemy.definition.kind)=="slime" or str(enemy.get("style")).ends_with("slime")
-	var warden=String(enemy.definition.kind)=="warden"
+	var warden=String(enemy.definition.kind) in ["warden","bellkeeper"]
 	if warden: scanned_stone_parts(enemy)
 	if enemy.has_node("Shadow"): enemy.get_node("Shadow").visible=false
 	var part_index=0

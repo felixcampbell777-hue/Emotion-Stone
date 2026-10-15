@@ -1,8 +1,10 @@
 # Coastal Foundation
 
-Current source baseline: **v0.31.10**, first-person gameplay with the upright two-hand sword hold, Mana Lance aim control, Dash Reach upgrades uppercut dash attacks with a vertical mana wave, a steerable first-person Mana Sea Dragon, and Flowing Counter, Measured Recovery, Breaker and Undertow.
+Current source baseline: **v0.32.0**, first-person gameplay with the upright two-hand sword hold, Mana Lance aim control, Dash Reach upgrades uppercut dash attacks with a vertical mana wave, a steerable first-person Mana Sea Dragon, and Flowing Counter, Measured Recovery, Breaker and Undertow.
 
-The GitHub repository has separate **`alpha`** and **`beta`** branches. This checkout is **Alpha**: the title selects the existing home/village/forest adventure by default. The Beta branch defaults to the meadow, wolf packs and castle town. Both retain the shared engine, map builder, other mode selector and separate saves.
+The GitHub repository has separate **`alpha`** and **`beta`** branches. This checkout is **Alpha**: the title selects Alpha 2 — The Hollow Bell by default; original Alpha remains available. The Beta branch defaults to the meadow, wolf packs and castle town. Both retain the shared engine, map builder, other mode selector and separate saves.
+
+**Alpha 2:** [The Hollow Bell](docs/ALPHA2.md) is a separate first-person Advanced exploration adventure: nine linked areas, companion quests, hidden equipment, checkpoints and a new Bellkeeper boss. Choose an Alpha or Beta save to copy your character into the campaign; the source save stays untouched. Target playtime is around an hour, depending on imported power and exploration.
 
 For cloning, Git LFS, Windows builds and branch editing, read [GitHub setup](docs/GITHUB.md). Large editable models and runtime art are stored through Git LFS; generated releases, player saves, caches and local toolchain paths are excluded. Third-party assets retain their credits and licences; see [asset credits](docs/ASSET-CREDITS.md).
 
@@ -79,7 +81,7 @@ Use one writer at a time for Blender files in the local checkout. Preserve sourc
 
 Northern goblin campaign and Windstep equipment: [docs/GOBLIN-CAMPAIGN.md](docs/GOBLIN-CAMPAIGN.md).
 
-Magic equipment: [catalog, slots and set bonuses](docs/MAGIC-ITEMS.md). Menagerie [M] > Magic items provides 28 test specimens; equip in Inventory [I].
+Magic equipment: [catalog, slots and set bonuses](docs/MAGIC-ITEMS.md). Menagerie [M] > Magic items provides 35 test specimens; equip in Inventory [I].
 
 
 Monster cores v0.22.0: see [drop/healing/quest rules](docs/MONSTER-CORES.md). Warden, Queen Slime and Goblin Foreman add 300, 800 and 250 XP boss bonuses respectively; prior base rewards remain. Mother now removes one canonical golem core from inventory; consumption is quest locked until completion.

@@ -179,7 +179,14 @@
               "mother",
               "farm_parent",
               "farm_partner",
-              "farm_child"
+              "farm_child",
+              "a2_mother",
+              "a2_mara",
+              "a2_ada",
+              "a2_oren",
+              "a2_jun",
+              "a2_sable",
+              "a2_sable_chapel"
             ]
           }
         }
@@ -278,7 +285,8 @@
               "goblin_slinger",
               "goblin_foreman",
               "beta_wolf",
-              "beta_rat"
+              "beta_rat",
+              "bellkeeper"
             ]
           },
           "at": {
