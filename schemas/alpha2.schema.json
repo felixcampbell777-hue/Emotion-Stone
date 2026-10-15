@@ -89,7 +89,8 @@
               "quest",
               "heart",
               "loot",
-              "lore"
+              "lore",
+              "mechanism"
             ]
           },
           "xp": {
@@ -115,6 +116,13 @@
           },
           "text": {
             "type": "string"
+          },
+          "requires_flags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
           }
         }
       },

@@ -15,14 +15,14 @@ Nine areas form a connected loop:
 | Area | Connections and purpose |
 | --- | --- |
 | Hearthmere | Village hub, Mother, Mara, Ada, Oren, returning Jun; north to crossroads |
-| Pilgrim Roads | West to mill, east to quarry, north to wood; concealed boots |
-| Drowned Mill | First ward, resin/moss slimes, medicine chest, waterwheel and millrace; north to fen |
-| Lantern Fen | Courier rescue, slime hazards and pools; east to wood |
-| Ashen Quarry | Second ward, goblin defenses and foreman; north to wood, south-east side cave |
-| Buried Watch | Optional cave, royal treasure ledger and equipment cache |
-| Witness Wood | Third ward and armored guardian, listening-root clue; connects fen/quarry/crossroads and chapel |
-| Chapel of the Unheard | Sable's advice, rest, final ward gate |
-| Rootbound Belfry | Aurek boss, compass-heart, return to village |
+| The Forked Pilgrim Road | Winding routes to the shore, bluffs and forest; concealed boots |
+| Saltwind Strand | Sand dunes, sea, scanned coastal cliffs and rocks; wreckshell crabs; work the salvage winch, recover the bronze chime, ring the northern ward; medicine cargo |
+| Reedwater Marsh | Willow islands, pools and weavers; rescue Jun; east to Heartwood |
+| Skyglass Bluffs | Walk-up bluff plateau, lookout tower; burrow sentinel guarding the sky chime; reflect its shell-stone to expose it; side cave |
+| Buried Watch | Optional cave, weavers/crabs, royal treasure ledger and equipment cache |
+| Heartwood | Dense forest and winding trails; timber wolves, bristlebacks, amberwood weavers; ring LOW → HIGH → MIDDLE from the carved verse/listening-root clue |
+| The Open-Sky Chapel | Roofless sanctuary, Sable's advice, rest, final ward gate |
+| The Living Bell Court | Textured forest-creature Bellkeeper, compass-heart, sea outlook and return to village |
 
 There are 46 persistent authored enemies, four optional companion quests, six equipment reliquaries, four remedy caches, lore clues and seven rest points. Optional quest objects appear in the Inventory quest category until returned. Early discoveries can be turned in after accepting their quests. Rewards and kill XP are deduplicated. Defeated enemies stay defeated; no quest requires waiting for respawns.
 
@@ -45,8 +45,27 @@ Amber pilgrim fires restore health/stamina only when nearby threats are clear an
 - `game/content/alpha2.json`: stable action IDs, quest rewards, guardians, map list, boss tuning.
 - `game/content/maps/a2_*.json`: authoritative editable maps. Edit directly or deliberately regenerate from `tools/create_alpha2_content.py`; regeneration resets these maps to its authored layout.
 - `alpha2_campaign.gd`: import, narrative/dialogue, quest flags, checkpoint, journal, discovery rewards and strict save validation.
-- `alpha2_scenery.gd`: reusable material-based mill wheel, water, quarry structures, belfry and atmosphere. Existing licensed assets only; no new downloads or executed external scripts.
-- `bellkeeper.gd`: new guardian behavior, tell and ring collisions. Existing heroine animations remain unchanged.
+- `alpha2_scenery.gd`: reusable region-specific scanned cliffs/rocks/foliage, wreck, ruins, blended terrain, sea and atmosphere. Existing licensed assets only; no new downloads or executed external scripts.
+- `library_enemy.gd` / `alpha2_creatures.json`: distinct lunge, skitter/pounce and burrow/reflect encounters.
+- `library_model.gd`: donor rigs/clips/materials; parent-only fitting and skin rest-space correction prevent FBX scale explosions.
+- `tools/prepare_alpha2_library.py`: derived runtime meshes from collected Blender/FBX/glTF, auto-execution disabled; source files never saved. Runtime provenance/hashes: `art/library/ALPHA2-RUNTIME-ASSETS.json`.
+- `bellkeeper.gd`: forest-monster art, guardian behavior, tell and ring collisions. Existing heroine animations remain unchanged.
 - `schemas/alpha2.schema.json` and CLI validation enforce references, action uniqueness, isolated maps, existing treasures and route connectivity.
 
 Run `tools/platform.cmd validate`, `verify-alpha2`, `capture-windows --view alpha2 --art-profile darkwood`, `capture-windows --view menus --art-profile darkwood`, then `verify-windows --suite alpha2`. The focused suite exercises real import, all map/arrival positions, collision-aware access to interactions, reward deduplication, companion branches, checkpoints, boss armor/parry/rings/phase/pause, endings, invalid saves and both legacy modes. It does not retest every unchanged animation. Retain current native evidence and only the manifest release; refresh desktop launchers after verification.
+
+## Save compatibility in layout revision 2
+
+All original encounter/action IDs remain valid. Earned shore/forest wards migrate to the corresponding new discovery flags without bonus XP. Old Alpha 2 locations outside Hearthmere move to their new authored arrival, retaining quests, defeated encounters, inventory and equipment. New saves validate discovery dependencies. The winch/chime and forest harmony cannot be repeatedly farmed. Original Alpha and Beta retain their own art/maps/saves.
+
+## Living guardian, water and skills
+
+Aurek uses the collected forest-monster donor with its own 2048px skin/normal maps, rough moss/bark tint and exposed blue heart. Its five-pattern cycle includes paired frontal claw sweeps, a thornseed growing from the soil and lifting before launch, marked delayed root eruptions, a shock-ring slam, and a committed rushing claw. Below half health tells tighten, roots add a fourth strike and slams emit a delayed second ring. Returned thornseeds and recovery openings expose the heart. Attack timing, roots, pods and rings freeze with overlays; ground markings precede damage. This replaces the old instant boulder throw in Alpha 2 only.
+
+The Beta wolf appears in woodland; Beta rats hide around the shipwreck cargo. Existing stable encounter IDs are retained. All use their own donor rigs, clips and textures; the original source assets stay untouched.
+
+Alpha 2 sea/marsh maps enable `wading: true`. Shelves descend smoothly from the shoreline; speed reduces with depth toward 25% of land speed. Water above the 1.35m shoulder threshold kills through armor/hurt invulnerability, using the existing death/checkpoint system. Jump height is respected; menus freeze drowning. Saves/spawns reject deep water. The on-screen water cue warns before the lethal depth. The original Alpha/Beta water policy is unchanged.
+
+Level Up now uses original star/constellation artwork over the blurred game, inspired by Skyrim's constellation layout (Bethesda official manual: https://assets.ctfassets.net/rporu91m20dc/2VLVwistnGywCKuO8CUwCE/12180919f2102d4253bb034b0bb4b632/manual_skyrim-le_pc_en-int.pdf ). Strength, Form and Mana remain the branches, with Active/Passive/Capacity filters. A later skill appears only after every prerequisite is learned; learned skills always remain discoverable for upgrades. The equip menu follows the same reveal rule. No Bethesda graphics were copied. Existing points, ranks, costs, active/passive slots and save IDs are unchanged.
+
+Imported action sampling advances the AnimationPlayer blend clock before seeking, so attack transitions cannot remain on the old idle. Zero-delta pose review uses no crossfade. Focused checks compare actual bone transforms at two attack phases and guard skin-rest scale across new actors.

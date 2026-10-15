@@ -36,7 +36,7 @@
         -6,
         0
       ],
-      "title": "Rest · The Pilgrim Roads",
+      "title": "Rest · The Forked Pilgrim Road",
       "type": "rest"
     },
     {
@@ -46,7 +46,7 @@
         17,
         17
       ],
-      "title": "Rest · The Drowned Mill",
+      "title": "Rest · Saltwind Strand",
       "type": "rest"
     },
     {
@@ -56,7 +56,7 @@
         -17,
         19
       ],
-      "title": "Rest · Lantern Fen",
+      "title": "Rest · Reedwater Marsh",
       "type": "rest"
     },
     {
@@ -66,7 +66,7 @@
         -21,
         19
       ],
-      "title": "Rest · Ashen Quarry",
+      "title": "Rest · Skyglass Bluffs",
       "type": "rest"
     },
     {
@@ -76,7 +76,7 @@
         4,
         24
       ],
-      "title": "Rest · The Witness Wood",
+      "title": "Rest · Heartwood",
       "type": "rest"
     },
     {
@@ -86,7 +86,7 @@
         4,
         4
       ],
-      "title": "Rest · Chapel of the Unheard",
+      "title": "Rest · The Open-Sky Chapel",
       "type": "rest"
     },
     {
@@ -96,15 +96,13 @@
         0,
         -21
       ],
-      "title": "Quiet the drowned ward-stone",
+      "title": "Ring the shore chime",
       "type": "ward",
-      "requires": [
-        "a2_mill/slime_0",
-        "a2_mill/slime_1",
-        "a2_mill/slime_2",
-        "a2_mill/slime_3"
-      ],
-      "xp": 180
+      "requires": [],
+      "xp": 180,
+      "requires_flags": [
+        "tide_chime"
+      ]
     },
     {
       "id": "quarry_ward",
@@ -113,7 +111,7 @@
         0,
         -23
       ],
-      "title": "Quiet the ashen ward-stone",
+      "title": "Claim the sky chime",
       "type": "ward",
       "requires": [
         "a2_quarry/quarry_captain"
@@ -127,11 +125,9 @@
         0,
         -19
       ],
-      "title": "Quiet the witness ward-stone",
+      "title": "Tune the Heartwood bells",
       "type": "ward",
-      "requires": [
-        "a2_wood/ward_guardian"
-      ],
+      "requires": [],
       "xp": 250
     },
     {
@@ -141,7 +137,7 @@
         -14,
         13
       ],
-      "title": "Search the abandoned medicine chest",
+      "title": "Recover Mara’s medicine from the stranded cargo",
       "type": "quest",
       "xp": 80
     },
@@ -304,7 +300,32 @@
       "title": "Listen to the names in the roots",
       "type": "lore",
       "xp": 100,
-      "text": "The roots repeat a cheerful message: Eli found a sea route to the old king’s islands. He asks Oren to bring a boat, two fishing rods, and absolutely no more turnip sandwiches."
+      "text": "The roots repeat a cheerful message: Eli found a sea route to the old king’s islands. He asks Oren to bring a boat, two fishing rods, and absolutely no more turnip sandwiches. The trees answer in three tones: LOW, HIGH, MIDDLE."
+    },
+    {
+      "id": "wreck_winch",
+      "map": "a2_mill",
+      "at": [
+        -13,
+        9
+      ],
+      "title": "Work the salvage winch",
+      "type": "mechanism",
+      "xp": 50
+    },
+    {
+      "id": "tide_chime",
+      "map": "a2_mill",
+      "at": [
+        -16,
+        -9
+      ],
+      "title": "Recover the bronze chime from the salvage net",
+      "type": "quest",
+      "requires_flags": [
+        "wreck_winch"
+      ],
+      "xp": 120
     }
   ],
   "quest_rewards": {

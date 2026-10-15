@@ -1,0 +1,136 @@
+[
+  {
+    "id": "boar",
+    "source": "boar/boar_0.blend",
+    "source_sha256": "c16625680d056f0402d1be209c41d16a63394aec94b082a63ad32f562e9f2d2d",
+    "source_unchanged": true,
+    "runtime": "game\\assets\\alpha2\\boar.glb",
+    "runtime_sha256": "66245035cb9fef6a9d1006950bf607c154fcbb969ddb14ddb99c4cbc9373c792",
+    "clips": {
+      "idle": "idle_still",
+      "walk": "walk",
+      "attack": "attack"
+    },
+    "materials": [
+      "Material"
+    ]
+  },
+  {
+    "id": "spider",
+    "source": "spider/Spider.blend",
+    "source_sha256": "df00b8879b12255651b852b3b4a257f4fca6228600760604ec141dbb2101be56",
+    "source_unchanged": true,
+    "runtime": "game\\assets\\alpha2\\spider.glb",
+    "runtime_sha256": "7dde13e389e02fce7ec2c09ac2de7e96f37a6266e2bba35ef00b24a5aa1d9cad",
+    "clips": {
+      "idle": "idle_still",
+      "walk": "SpiderWalk",
+      "attack": "SpiderWalk"
+    },
+    "materials": [
+      "Spider"
+    ]
+  },
+  {
+    "id": "forest_guardian",
+    "source": "forest-monster/forest-monster-final.blend",
+    "source_sha256": "219394045298e14086b46cfcdb406e96073844891e3a601e91d3fc68c908a53b",
+    "source_unchanged": true,
+    "runtime": "game\\assets\\alpha2\\forest_guardian.glb",
+    "runtime_sha256": "c1c12d67d44f4f105193fe0678d114d2f281e06385062b1b9eee993ff2782a24",
+    "clips": {
+      "idle": "Idle",
+      "walk": "Walk",
+      "attack": "Attack",
+      "brace": "Melee_Hold",
+      "death": "Dying"
+    },
+    "materials": [
+      "Monster",
+      "Tree"
+    ]
+  },
+  {
+    "id": "crab",
+    "source": "crab/source/minecrab.fbx",
+    "source_sha256": "a52d32f8210cb0f6e35933980b7674b2e4fff15e79744761fd8325c6bf3bba75",
+    "source_unchanged": true,
+    "runtime": "game\\assets\\alpha2\\crab.glb",
+    "runtime_sha256": "41d312d6364407aeca2de9b28d940e6890657b7156274f19f50eecb3c23c1a5b",
+    "clips": {
+      "idle": "Armature|idle|Baked frames",
+      "walk": "Armature|run_cache|Baked frames",
+      "attack": "Armature|attaque|Baked frames",
+      "burrow": "Armature|rentrer_sol|Baked frames",
+      "rise": "Armature|sortie_attaque|Baked frames",
+      "death": "Armature|mort|Baked frames"
+    },
+    "materials": [
+      "crab",
+      "crab.001",
+      "eyes",
+      "metal",
+      "woodPlank"
+    ]
+  },
+  {
+    "id": "coastal_cliff_01",
+    "source": "ph-coastal_cliff_01\\coastal_cliff_01_1k.gltf",
+    "runtime_sha256": "ca624899b18d0920e536ecb36eca9d5016131c0d7d316822f112a342d087c14f",
+    "source_faces": 461824
+  },
+  {
+    "id": "coast_rocks_01",
+    "source": "ph-coast_rocks_01\\coast_rocks_01_1k.gltf",
+    "runtime_sha256": "91e7ada775de7e6b2b190abadd2d21d5bf59f3ef7a06f5609ab740957a561214",
+    "source_faces": 679936
+  },
+  {
+    "id": "boulder_01",
+    "source": "ph-boulder_01\\boulder_01_1k.gltf",
+    "runtime_sha256": "bd4913041ddc14c2b9e74ba5c2872164b36b6de5de5fd76bfee475876cf9ca5a",
+    "source_faces": 66122
+  },
+  {
+    "id": "rock_moss_set_02",
+    "source": "ph-rock_moss_set_02\\rock_moss_set_02_1k.gltf",
+    "runtime_sha256": "c2fd5831792f410f4d254b1e02442c3e0ef44ab9b0c7bdd5eb90108155290b31",
+    "source_faces": 57647
+  },
+  {
+    "id": "nettle_plant",
+    "source": "ph-nettle_plant\\nettle_plant_1k.gltf",
+    "runtime_sha256": "5048836b54534b012a8fa349f512d0fbd7865d533d947f535192026ebcdc1702",
+    "source_faces": 31304
+  },
+  {
+    "id": "flower_heliophila",
+    "source": "ph-flower_heliophila\\flower_heliophila_1k.gltf",
+    "runtime_sha256": "96a281f5ccac0f78c155be6cfa658bc7a680565f8fab17355cc39deb32746d9b",
+    "source_faces": 101621
+  },
+  {
+    "id": "wreck",
+    "source": "kenney-pirate-kit/Models/GLB format/ship-wreck.glb",
+    "source_sha256": "0b2cac74f23ffdc3bf5020880126338287a0a0317d6a98ce4250123d8821ad2b",
+    "runtime_sha256": "0b2cac74f23ffdc3bf5020880126338287a0a0317d6a98ce4250123d8821ad2b"
+  },
+  {
+    "id": "dock",
+    "source": "kenney-pirate-kit/Models/GLB format/structure-platform-dock.glb",
+    "source_sha256": "bf64343d37b5570cb78cf0918e3eeb98f96f9b2c69b3f16d103c61ebc8f063f7",
+    "runtime_sha256": "bf64343d37b5570cb78cf0918e3eeb98f96f9b2c69b3f16d103c61ebc8f063f7"
+  },
+  {
+    "id": "watchtower",
+    "source": "kenney-pirate-kit/Models/GLB format/tower-watch.glb",
+    "source_sha256": "0cdba767016b9ee8831084f94357f6b6dd00e2f10c6db41d81f15352dff5c4b4",
+    "runtime_sha256": "0cdba767016b9ee8831084f94357f6b6dd00e2f10c6db41d81f15352dff5c4b4"
+  },
+  {
+    "id": "barrel",
+    "source": "kenney-pirate-kit/Models/GLB format/barrel.glb",
+    "source_sha256": "7616dedf7c1023afa6ecd3c52a4609460aae0e582dee14e60ec5e47c1174793b",
+    "runtime_sha256": "7616dedf7c1023afa6ecd3c52a4609460aae0e582dee14e60ec5e47c1174793b"
+  }
+]

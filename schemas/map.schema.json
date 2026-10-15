@@ -286,7 +286,13 @@
               "goblin_foreman",
               "beta_wolf",
               "beta_rat",
-              "bellkeeper"
+              "bellkeeper",
+              "library_crab",
+              "library_sentinel",
+              "library_spider",
+              "library_boar",
+              "library_wolf",
+              "library_rat"
             ]
           },
           "at": {
@@ -367,7 +373,9 @@
     "biome": {
       "enum": [
         "woodland",
-        "jungle"
+        "jungle",
+        "beach",
+        "highlands"
       ]
     },
     "sculpted_terrain": {
@@ -420,6 +428,9 @@
           }
         }
       }
+    },
+    "wading": {
+      "type": "boolean"
     }
   },
   "$defs": {

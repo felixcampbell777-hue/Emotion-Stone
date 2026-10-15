@@ -78,15 +78,27 @@
   "npcs": [],
   "interactions": [
     {
-      "id": "sign_0",
+      "id": "route_0",
+      "kind": "sign",
+      "at": [
+        2.1,
+        5.5
+      ],
+      "title": "Skyglass Bluffs",
+      "lines": [
+        "Skyglass Bluffs · follow the trail marker and press E."
+      ]
+    },
+    {
+      "id": "biome_story",
       "kind": "sign",
       "at": [
         -5,
         -6
       ],
-      "title": "Names in the dark",
+      "title": "The royal treasure ledger",
       "lines": [
-        "The royal treasure routes were hidden here. Sable’s notes show a key at each ward-stone. The oldest map points beyond this valley, toward the king’s islands."
+        "The old surveyors charted the coast before the roads were lost. Their ledger waits in the back chamber."
       ]
     }
   ],
@@ -94,24 +106,24 @@
     {
       "id": "to_quarry",
       "rect": [
-        -1.8,
-        4.4,
-        3.6,
-        2.2
+        -1.6,
+        4.5,
+        3.2,
+        2
       ],
       "target": "a2_quarry",
       "spawn": [
         23,
         14
       ],
-      "label": "Ashen Quarry",
+      "label": "Skyglass Bluffs",
       "interact": true
     }
   ],
   "enemies": [
     {
       "id": "foe_0",
-      "kind": "goblin_guard",
+      "kind": "library_spider",
       "at": [
         -4,
         0
@@ -119,7 +131,7 @@
     },
     {
       "id": "foe_1",
-      "kind": "goblin_slinger",
+      "kind": "library_crab",
       "at": [
         3,
         -4
@@ -127,7 +139,7 @@
     },
     {
       "id": "foe_2",
-      "kind": "goblin_raider",
+      "kind": "library_spider",
       "at": [
         -3,
         -5

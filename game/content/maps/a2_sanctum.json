@@ -1,80 +1,194 @@
 {
   "id": "a2_sanctum",
-  "display_name": "Chapel of the Unheard",
-  "subtitle": "The keepers wrote down the price of silence",
-  "seed": 827,
+  "display_name": "The Open-Sky Chapel",
+  "subtitle": "The bell road crosses a roofless royal sanctuary",
+  "seed": 1962,
   "bounds": [
-    -8,
-    -9,
-    8,
-    8
+    -14,
+    -20,
+    14,
+    20
   ],
   "spawn": [
     0,
     5
   ],
   "sea": false,
+  "biome": "highlands",
   "terrain_regions": [
     {
-      "kind": "path",
+      "kind": "grass",
       "rect": [
-        -8,
-        -8,
-        16,
-        16
+        -14,
+        -14,
+        28,
+        28
       ]
     },
     {
-      "kind": "cobble",
+      "kind": "path",
+      "rect": [
+        -1,
+        -9,
+        2,
+        1
+      ]
+    },
+    {
+      "kind": "path",
       "rect": [
         -2,
         -8,
         4,
-        16
+        1
       ]
     },
     {
-      "kind": "cobble",
+      "kind": "path",
       "rect": [
-        -8,
         -2,
-        16,
-        4
+        -7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -1,
+        -6,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -1,
+        -5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -1,
+        -4,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        0,
+        -3,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        0,
+        -2,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        0,
+        -1,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        1,
+        0,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        1,
+        1,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        1,
+        2,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        0,
+        3,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        0,
+        4,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -1,
+        5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
+        6,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
+        7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -1,
+        8,
+        2,
+        1
       ]
     }
   ],
-  "props": [
-    {
-      "id": "catalog_feature_0",
-      "kind": "catalog_feature",
-      "at": [
-        -5,
-        -4
-      ],
-      "catalog_code": "4G",
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_1",
-      "kind": "catalog_feature",
-      "at": [
-        5,
-        3
-      ],
-      "catalog_code": "4G",
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_2",
-      "kind": "catalog_feature",
-      "at": [
-        -5,
-        5
-      ],
-      "catalog_code": "4G",
-      "show_label": false
-    }
-  ],
+  "props": [],
   "npcs": [
     {
       "id": "sable_chapel",
@@ -91,15 +205,27 @@
   ],
   "interactions": [
     {
-      "id": "sign_0",
+      "id": "route_0",
       "kind": "sign",
       "at": [
-        5,
-        -5
+        2.1,
+        8
       ],
-      "title": "The keeper’s oath",
+      "title": "Heartwood",
       "lines": [
-        "The king left his compass-heart in the care of a living guardian. Attune the three wards, pass its test, and claim the lost roads."
+        "Heartwood · follow the trail marker and press E."
+      ]
+    },
+    {
+      "id": "route_1",
+      "kind": "sign",
+      "at": [
+        2.1,
+        -6.5
+      ],
+      "title": "The Living Bell Court",
+      "lines": [
+        "The Living Bell Court · follow the trail marker and press E."
       ]
     }
   ],
@@ -107,37 +233,37 @@
     {
       "id": "to_wood",
       "rect": [
-        -1.8,
-        4.4,
-        3.6,
-        2.2
+        -1.6,
+        7,
+        3.2,
+        2
       ],
       "target": "a2_wood",
       "spawn": [
         0,
         -26
       ],
-      "label": "The Witness Wood",
+      "label": "Heartwood",
       "interact": true
     },
     {
       "id": "to_belfry",
       "rect": [
-        -1.8,
-        -7.6,
-        3.6,
-        2.2
+        -1.6,
+        -7.5,
+        3.2,
+        2
       ],
       "target": "a2_belfry",
       "spawn": [
         0,
         16
       ],
-      "label": "The Rootbound Belfry",
+      "label": "The Living Bell Court",
       "interact": true
     }
   ],
   "enemies": [],
   "catalog_enemies": [],
-  "cave": true
+  "sculpted_terrain": []
 }

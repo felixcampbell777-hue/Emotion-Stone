@@ -1,8 +1,8 @@
 {
   "id": "a2_mill",
-  "display_name": "The Drowned Mill",
-  "subtitle": "Resin on the millstones; the first of three ward-stones",
-  "seed": 824,
+  "display_name": "Saltwind Strand",
+  "subtitle": "Shipwreck salvage, tidal pools and the shore chime",
+  "seed": 1959,
   "bounds": [
     -28,
     -28,
@@ -10,13 +10,14 @@
     28
   ],
   "spawn": [
-    0,
-    22
+    12,
+    20
   ],
-  "sea": false,
+  "sea": true,
+  "biome": "beach",
   "terrain_regions": [
     {
-      "kind": "grass",
+      "kind": "sand",
       "rect": [
         -28,
         -28,
@@ -25,498 +26,691 @@
       ]
     },
     {
-      "kind": "cobble",
+      "kind": "sand",
       "rect": [
-        -2,
-        -28,
+        -6,
+        -27,
+        2,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -7,
+        -26,
         4,
-        56
+        1
       ]
     },
     {
-      "kind": "cobble",
+      "kind": "sand",
       "rect": [
-        -28,
+        -7,
+        -25,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -6,
+        -24,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -5,
+        -23,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -5,
+        -22,
+        7,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -4,
+        -21,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -4,
+        -20,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -3,
+        -19,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
         -2,
-        56,
-        4
+        -18,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -2,
+        -17,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -1,
+        -16,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        0,
+        -15,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        1,
+        -14,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        2,
+        -13,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        3,
+        -12,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -17,
+        -11,
+        2,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        4,
+        -11,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -18,
+        -10,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        4,
+        -10,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -18,
+        -9,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        5,
+        -9,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -17,
+        -8,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        6,
+        -8,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -16,
+        -7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        5,
+        -7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -16,
+        -6,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        5,
+        -6,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -15,
+        -5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        4,
+        -5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -14,
+        -4,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        4,
+        -4,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -13,
+        -3,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        3,
+        -3,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -13,
+        -2,
+        10,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        3,
+        -2,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -12,
+        -1,
+        12,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        2,
+        -1,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -8,
+        0,
+        14,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -5,
+        1,
+        10,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -1,
+        2,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        2,
+        3,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        2,
+        4,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        3,
+        5,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        3,
+        6,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -14,
+        7,
+        2,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        3,
+        7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -15,
+        8,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        4,
+        8,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -15,
+        9,
+        8,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        4,
+        9,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -15,
+        10,
+        10,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        4,
+        10,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -15,
+        11,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -11,
+        11,
+        19,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -16,
+        12,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -9,
+        12,
+        18,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -16,
+        13,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -6,
+        13,
+        16,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -15,
+        14,
+        2,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -4,
+        14,
+        14,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        7,
+        15,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        8,
+        16,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        8,
+        17,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        9,
+        18,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        10,
+        19,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        11,
+        20,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        12,
+        21,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        12,
+        22,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        13,
+        23,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        14,
+        24,
+        2,
+        1
       ]
     },
     {
       "kind": "water",
       "rect": [
-        -19,
-        -16,
-        4,
-        8
+        20,
+        -28,
+        8,
+        56
       ]
     }
   ],
-  "props": [
-    {
-      "id": "catalog_feature_0",
-      "kind": "catalog_feature",
-      "at": [
-        7.24,
-        12.76
-      ],
-      "catalog_code": "1A",
-      "scale": 1.0953613136538705,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_1",
-      "kind": "catalog_feature",
-      "at": [
-        -22.91,
-        19.92
-      ],
-      "catalog_code": "3A",
-      "scale": 1.232996305767688,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_2",
-      "kind": "catalog_feature",
-      "at": [
-        15.14,
-        -21.7
-      ],
-      "catalog_code": "3A",
-      "scale": 0.9521037701844721,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_3",
-      "kind": "catalog_feature",
-      "at": [
-        19.9,
-        -12.14
-      ],
-      "catalog_code": "3A",
-      "scale": 1.206160946772299,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_4",
-      "kind": "catalog_feature",
-      "at": [
-        15.87,
-        -12.48
-      ],
-      "catalog_code": "2A",
-      "scale": 0.8801785690515072,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_5",
-      "kind": "catalog_feature",
-      "at": [
-        -12.13,
-        -5.46
-      ],
-      "catalog_code": "2A",
-      "scale": 1.1519448552340061,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_6",
-      "kind": "catalog_feature",
-      "at": [
-        14.11,
-        -19.9
-      ],
-      "catalog_code": "2A",
-      "scale": 1.1198146250231373,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_7",
-      "kind": "catalog_feature",
-      "at": [
-        -13.25,
-        -5.55
-      ],
-      "catalog_code": "2A",
-      "scale": 0.9163481913383671,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_8",
-      "kind": "catalog_feature",
-      "at": [
-        14.56,
-        6.04
-      ],
-      "catalog_code": "2A",
-      "scale": 0.9247163198209629,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_9",
-      "kind": "catalog_feature",
-      "at": [
-        15.07,
-        19.98
-      ],
-      "catalog_code": "3A",
-      "scale": 1.02675146210079,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_10",
-      "kind": "catalog_feature",
-      "at": [
-        -16.96,
-        -15.13
-      ],
-      "catalog_code": "3A",
-      "scale": 1.1116562074476777,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_11",
-      "kind": "catalog_feature",
-      "at": [
-        -6.66,
-        18.4
-      ],
-      "catalog_code": "1A",
-      "scale": 0.9336763735265049,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_12",
-      "kind": "catalog_feature",
-      "at": [
-        -15.9,
-        -22.88
-      ],
-      "catalog_code": "1A",
-      "scale": 1.0044944715994755,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_13",
-      "kind": "catalog_feature",
-      "at": [
-        -22.61,
-        23.32
-      ],
-      "catalog_code": "2A",
-      "scale": 1.2229636452707906,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_14",
-      "kind": "catalog_feature",
-      "at": [
-        -11.98,
-        -17.15
-      ],
-      "catalog_code": "3A",
-      "scale": 0.891394776852225,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_15",
-      "kind": "catalog_feature",
-      "at": [
-        -24.61,
-        18.44
-      ],
-      "catalog_code": "3A",
-      "scale": 0.8765658311529048,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_16",
-      "kind": "catalog_feature",
-      "at": [
-        9.55,
-        24.35
-      ],
-      "catalog_code": "2A",
-      "scale": 0.9060974207832888,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_17",
-      "kind": "catalog_feature",
-      "at": [
-        20.31,
-        19.22
-      ],
-      "catalog_code": "2A",
-      "scale": 1.1932215635071581,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_18",
-      "kind": "catalog_feature",
-      "at": [
-        9.57,
-        -15.19
-      ],
-      "catalog_code": "3A",
-      "scale": 1.1361413706611807,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_19",
-      "kind": "catalog_feature",
-      "at": [
-        -13.25,
-        5.98
-      ],
-      "catalog_code": "1A",
-      "scale": 1.1764154107460953,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_20",
-      "kind": "catalog_feature",
-      "at": [
-        15.75,
-        -8.01
-      ],
-      "catalog_code": "1A",
-      "scale": 0.8734945348153383,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_21",
-      "kind": "catalog_feature",
-      "at": [
-        5.52,
-        -20.57
-      ],
-      "catalog_code": "3A",
-      "scale": 1.0639028994889113,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_22",
-      "kind": "catalog_feature",
-      "at": [
-        20.86,
-        21.08
-      ],
-      "catalog_code": "2A",
-      "scale": 1.2252379604138188,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_23",
-      "kind": "catalog_feature",
-      "at": [
-        -7.67,
-        -10.19
-      ],
-      "catalog_code": "1A",
-      "scale": 1.1351140976641207,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_24",
-      "kind": "catalog_feature",
-      "at": [
-        -19.02,
-        8.69
-      ],
-      "catalog_code": "3A",
-      "scale": 1.152587370787259,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_25",
-      "kind": "catalog_feature",
-      "at": [
-        -20.17,
-        -15.91
-      ],
-      "catalog_code": "2A",
-      "scale": 1.2899057434624843,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_26",
-      "kind": "catalog_feature",
-      "at": [
-        -21.8,
-        -23.52
-      ],
-      "catalog_code": "2A",
-      "scale": 0.9123678844206049,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_27",
-      "kind": "catalog_feature",
-      "at": [
-        -5.88,
-        -13.38
-      ],
-      "catalog_code": "1A",
-      "scale": 1.0694325209058568,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_28",
-      "kind": "catalog_feature",
-      "at": [
-        23.15,
-        17.71
-      ],
-      "catalog_code": "1A",
-      "scale": 0.9099884494640619,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_29",
-      "kind": "catalog_feature",
-      "at": [
-        -8,
-        6
-      ],
-      "catalog_code": "3B",
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_30",
-      "kind": "catalog_feature",
-      "at": [
-        9,
-        -7
-      ],
-      "catalog_code": "3B",
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_31",
-      "kind": "catalog_feature",
-      "at": [
-        -12,
-        -14
-      ],
-      "catalog_code": "3B",
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_32",
-      "kind": "catalog_feature",
-      "at": [
-        15,
-        13
-      ],
-      "catalog_code": "3B",
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_33",
-      "kind": "catalog_feature",
-      "at": [
-        -6,
-        -18
-      ],
-      "catalog_code": "3C",
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_34",
-      "kind": "catalog_feature",
-      "at": [
-        16,
-        7
-      ],
-      "catalog_code": "3C",
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_35",
-      "kind": "catalog_feature",
-      "at": [
-        -17,
-        16
-      ],
-      "catalog_code": "3C",
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_36",
-      "kind": "catalog_feature",
-      "at": [
-        18,
-        -18
-      ],
-      "catalog_code": "1F",
-      "scale": 1.35,
-      "show_label": false
-    },
-    {
-      "id": "house_37",
-      "kind": "house",
-      "at": [
-        -12,
-        -7
-      ]
-    },
-    {
-      "id": "well_38",
-      "kind": "well",
-      "at": [
-        -7,
-        -8
-      ]
-    },
-    {
-      "id": "catalog_feature_39",
-      "kind": "catalog_feature",
-      "at": [
-        -13,
-        -12
-      ],
-      "catalog_code": "2G",
-      "scale": 1.5,
-      "show_label": false
-    }
-  ],
+  "props": [],
   "npcs": [],
   "interactions": [
     {
-      "id": "sign_0",
+      "id": "route_0",
       "kind": "sign",
       "at": [
-        27.2,
-        0.0
+        17.1,
+        23
       ],
-      "title": "The Pilgrim Roads",
+      "title": "The Forked Pilgrim Road",
       "lines": [
-        "The Pilgrim Roads · approach the trail marker and press E."
+        "The Forked Pilgrim Road · follow the trail marker and press E."
       ]
     },
     {
-      "id": "sign_1",
+      "id": "route_1",
       "kind": "sign",
       "at": [
-        2.2,
-        -25.0
+        -2.8999999999999995,
+        -25
       ],
-      "title": "Lantern Fen",
+      "title": "Reedwater Marsh",
       "lines": [
-        "Lantern Fen · approach the trail marker and press E."
+        "Reedwater Marsh · follow the trail marker and press E."
       ]
     },
     {
-      "id": "sign_2",
+      "id": "biome_story",
       "kind": "sign",
       "at": [
-        -8,
-        -4
+        1,
+        15
       ],
-      "title": "The miller’s tally",
+      "title": "The stranded bell",
       "lines": [
-        "The roots sealed the millrace when the royal compass woke. The ward-stone is glowing behind the old wheel. I have hidden the treasure ledger beneath the old watch. — Oren"
+        "A bronze chime went down with the survey ship. Work the salvage winch near the wreck, then recover its net. Ring the shore ward after finding it."
       ]
     }
   ],
@@ -524,40 +718,40 @@
     {
       "id": "to_crossroads",
       "rect": [
-        23.2,
-        -1.1,
-        3.6,
-        2.2
+        13.4,
+        22,
+        3.2,
+        2
       ],
       "target": "a2_crossroads",
       "spawn": [
         -29,
         -3
       ],
-      "label": "The Pilgrim Roads",
+      "label": "The Forked Pilgrim Road",
       "interact": true
     },
     {
       "id": "to_fen",
       "rect": [
-        -1.8,
-        -26.1,
-        3.6,
-        2.2
+        -6.6,
+        -26,
+        3.2,
+        2
       ],
       "target": "a2_fen",
       "spawn": [
         0,
         22
       ],
-      "label": "Lantern Fen",
+      "label": "Reedwater Marsh",
       "interact": true
     }
   ],
   "enemies": [
     {
       "id": "foe_0",
-      "kind": "goblin_slinger",
+      "kind": "library_crab",
       "at": [
         -5,
         9
@@ -565,17 +759,15 @@
     },
     {
       "id": "foe_1",
-      "kind": "goblin_guard",
+      "kind": "library_rat",
       "at": [
         -10,
-        11
+        8
       ]
-    }
-  ],
-  "catalog_enemies": [
+    },
     {
       "id": "slime_0",
-      "code": "2E",
+      "kind": "library_crab",
       "at": [
         12,
         2
@@ -583,15 +775,15 @@
     },
     {
       "id": "slime_1",
-      "code": "2E",
+      "kind": "library_rat",
       "at": [
-        5,
-        -4
+        -17,
+        4
       ]
     },
     {
       "id": "slime_2",
-      "code": "2E",
+      "kind": "library_crab",
       "at": [
         -4,
         -10
@@ -599,15 +791,15 @@
     },
     {
       "id": "slime_3",
-      "code": "2E",
+      "kind": "library_rat",
       "at": [
-        -2,
-        -17
+        -10,
+        -3
       ]
     },
     {
       "id": "slime_4",
-      "code": "1E",
+      "kind": "library_crab",
       "at": [
         10,
         -11
@@ -615,7 +807,7 @@
     },
     {
       "id": "slime_5",
-      "code": "1E",
+      "kind": "library_crab",
       "at": [
         14,
         -16
@@ -623,11 +815,45 @@
     },
     {
       "id": "slime_6",
-      "code": "1E",
+      "kind": "library_crab",
       "at": [
         -7,
         13
       ]
     }
-  ]
+  ],
+  "catalog_enemies": [],
+  "sculpted_terrain": [
+    {
+      "id": "dune_0",
+      "at": [
+        -5,
+        18
+      ],
+      "height": 0.65,
+      "radius": 6,
+      "profile": "smooth"
+    },
+    {
+      "id": "dune_1",
+      "at": [
+        12,
+        -17
+      ],
+      "height": 0.65,
+      "radius": 6,
+      "profile": "smooth"
+    },
+    {
+      "id": "dune_2",
+      "at": [
+        -10,
+        -17
+      ],
+      "height": 0.65,
+      "radius": 6,
+      "profile": "smooth"
+    }
+  ],
+  "wading": true
 }

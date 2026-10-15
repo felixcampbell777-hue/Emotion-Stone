@@ -238,25 +238,30 @@ func refresh_skills() -> void:
 	slots.add_child(game.label("MAGIC SLOT  /  Q",19,Color("#e9c894")))
 	var specials=HBoxContainer.new() if get_viewport_rect().size.x>=1100 else VBoxContainer.new(); slots.add_child(specials)
 	for id in ["water_sweep","water_lance","sea_dragon","undertow"]:
+		if not game.skill_tree.revealed({"water_sweep":"mana","water_lance":"mana_lance","sea_dragon":"sea_dragon","undertow":"undertow"}[id]):continue
 		var unlocked=game.special_unlocked(id); var title={"water_sweep":"Water Slash","water_lance":"Water Lance","sea_dragon":"Mana Sea Dragon","undertow":"Undertow"}[id]; var caption={"water_sweep":"Moving, fading water fan","water_lance":"3 sec charge; hits interrupt","sea_dragon":"Steer for 10 sec; body vulnerable","undertow":"Low surge pulls foes; 28 stamina"}[id]
 		var cell=game.button(("EQUIPPED\n" if game.selected_special_attack==id and unlocked else "")+title+"\n"+(caption if unlocked else "Locked: "+("Water Lance" if id=="sea_dragon" else "Mana root" if id=="water_sweep" else "Mana")),func(): game.select_special_attack(id))
 		cell.custom_minimum_size=Vector2(180,65); cell.size_flags_horizontal=Control.SIZE_EXPAND_FILL; cell.disabled=not unlocked; specials.add_child(cell)
 	slots.add_child(game.label("HEAVY ATTACK  /  HOLD LEFT CLICK",18,Color("#e9c894")))
 	var heavies=HBoxContainer.new() if get_viewport_rect().size.x>=1100 else VBoxContainer.new(); slots.add_child(heavies)
 	for id in ["overhead","charge_thrust"]:
+		if id!="overhead" and not game.skill_tree.revealed(id):continue
 		var cell=game.button(("EQUIPPED\n" if game.player.heavy_style==id else "")+("Overhead Heavy" if id=="overhead" else "Driving Thrust"),func(): game.select_heavy_attack(id))
 		cell.size_flags_horizontal=Control.SIZE_EXPAND_FILL; cell.custom_minimum_size.y=52; cell.disabled=id=="charge_thrust" and not game.progression.has(id); heavies.add_child(cell)
 	var movement=HBoxContainer.new();slots.add_child(movement)
 	for id in ["dash","jump"]:
+		if not game.skill_tree.revealed(id):continue
 		var unlocked=game.progression.has(id);var equipped=game.player.dash_equipped if id=="dash" else game.player.jump_equipped
 		var caption="Dash · hold/release T" if id=="dash" else "Jump · Space"
 		var cell=game.button(("EQUIPPED  " if equipped else "")+caption+("" if unlocked else " · Locked: Form"),func(): game.toggle_movement_skill(id))
 		cell.disabled=not unlocked;cell.custom_minimum_size.y=45;cell.size_flags_horizontal=Control.SIZE_EXPAND_FILL;movement.add_child(cell)
 	slots.add_child(game.label("Dodge · Ctrl / tap Shift; hold Shift to sprint" if game.progression.has("belly_roll") else "Dodge · Locked: Form",16))
 	var counter=game.button(("EQUIPPED  " if game.player.counter_equipped else "")+"Flowing Counter · light attack after parry",func(): game.toggle_movement_skill("flowing_counter"))
+	counter.visible=game.skill_tree.revealed("flowing_counter")
 	counter.disabled=not game.player.counter_unlocked;slots.add_child(counter)
 	slots.add_child(game.label("PASSIVE SLOTS  /  %d of %d"%[game.progression.passives.size(),game.progression.PASSIVE_SLOTS],20,Color("#e9c894")))
 	for id in ["efficient_swing","crushing_force","flowing_splash","measured_recovery","breaker"]:
+		if not game.skill_tree.revealed(id):continue
 		var item=game.progression.skill(id);var equipped=id in game.progression.passives
 		var cell=game.button(("EQUIPPED  " if equipped else "Equip  ")+item.name+" · Rank %d/%d"%[game.progression.rank(id),item.max_rank],func(): game.toggle_passive(id))
 		cell.disabled=not game.progression.has(id);slots.add_child(cell)

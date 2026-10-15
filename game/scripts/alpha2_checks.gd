@@ -74,6 +74,30 @@ func run(test:RefCounted) -> void:
 	for id in g.alpha2.definition.maps:
 		g.load_map(id,Vector2(INF,INF),true);disable_enemies(g);await test.frames(2)
 		test.check(g.current_world.safe_position(g.player.position),id+": map spawn is walkable")
+		if id in ["a2_mill","a2_wood","a2_quarry","a2_belfry"]:
+			test.check(g.enemies.all(func(e):return e.has_meta("library_creature") and e.art.animator!=null and e.art.clips.has("attack") and e.art.surfaces.any(func(m):return m[0].albedo_texture!=null)),id+": creatures retain imported rigs, attack clips and real texture maps")
+		if id in ["a2_mill","a2_wood","a2_quarry","a2_belfry"]:
+			var fitted=true
+			for e in g.enemies:
+				for clip in ["idle","attack"]:
+					for phase in [0.0,.5,1.0]:
+						e.art.pose(clip,phase)
+						for rig in e.art.find_children("*","Skeleton3D",true,false):
+							for bone in range(rig.get_bone_count()):
+								if (rig.global_transform*rig.get_bone_global_pose(bone).origin).distance_to(e.position)>float(e.definition.combat_height)*9:fitted=false
+			test.check(fitted,id+": sampled imported poses retain finite body-sized skeletons")
+			var moving=true
+			for e in g.enemies:
+				e.art.pose("attack",.2)
+				var rigs=e.art.find_children("*","Skeleton3D",true,false);var before=[]
+				for rig in rigs:
+					for bone in range(rig.get_bone_count()):before.append(rig.get_bone_pose(bone))
+				e.art.pose("attack",.7);var index=0;var motion=0.0
+				for rig in rigs:
+					for bone in range(rig.get_bone_count()):
+						var after=rig.get_bone_pose(bone);motion+=after.origin.distance_to(before[index].origin)+after.basis.get_rotation_quaternion().angle_to(before[index].basis.get_rotation_quaternion());index+=1
+				if motion<.02:moving=false
+			test.check(moving,id+": imported attacks actually change bone poses rather than freezing in idle")
 		var blocked=accessible_targets(g)
 		test.check(blocked.is_empty(),id+": collision-aware navigation reaches every interaction: "+str(blocked))
 		for exit in g.current_world.definition.exits:
@@ -84,7 +108,8 @@ func run(test:RefCounted) -> void:
 		g.inventory.close();g._refresh_simulation()
 	g.load_map("a2_mill",Vector2(17,17),true);disable_enemies(g)
 	var xp=g.progression.xp;use(g,"mill_ward");test.check("mill_ward" not in g.alpha2.flags and g.progression.xp==xp,"Ward cannot be claimed while its protectors live")
-	slay(g);use(g,"mill_ward");test.check("mill_ward" in g.alpha2.flags,"Drowned ward unlocks after its actual protectors die")
+	slay(g);use(g,"tide_chime");test.check("tide_chime" not in g.alpha2.flags,"Chime stays trapped until salvage winch is worked")
+	use(g,"wreck_winch");use(g,"tide_chime");use(g,"mill_ward");test.check("mill_ward" in g.alpha2.flags,"Shore ward unlocks through actual salvage and recovered chime")
 	use(g,"medicine");var loot_xp=g.progression.xp;use(g,"mill_cache");var after=g.progression.xp
 	test.check("lanternglass" in g.magic_items.owned and after==loot_xp+75 and not use(g,"mill_cache"),"Hidden reliquary grants a real magic item and discovery XP once")
 	use(g,"mill_fire");g.player.take_damage(99999,Vector3.ZERO);g.respawn_player();await test.frames(2)
@@ -98,7 +123,12 @@ func run(test:RefCounted) -> void:
 	test.check("courier_safe" in g.alpha2.flags,"Courier rescue checks threats and records the survivor")
 	g.load_map("a2_watch",Vector2(0,5),true);disable_enemies(g);slay(g);use(g,"ledger")
 	g.load_map("a2_quarry",Vector2(0,20),true);disable_enemies(g);slay(g);use(g,"quarry_ward")
-	g.load_map("a2_wood",Vector2(0,24),true);disable_enemies(g);slay(g);use(g,"wood_ward");use(g,"root_memory");g.dialog.visible=false;g._refresh_simulation()
+	g.load_map("a2_wood",Vector2(0,24),true);disable_enemies(g);slay(g);use(g,"wood_ward")
+	test.check(g.conversation.visible and not g.player.input_enabled,"Forest bell puzzle pauses gameplay over the blurred scene")
+	test.check(not g.alpha2.ring_note("HIGH") and g.alpha2.bell_notes.is_empty(),"Wrong forest note resets harmony without rewarding the ward")
+	for note in ["LOW","HIGH","MIDDLE"]:g.alpha2.ring_note(note)
+	test.check("forest_tuned" in g.alpha2.flags,"Distinct forest exploration puzzle resolves its carved clue")
+	g.conversation.close();g._refresh_simulation();use(g,"root_memory");g.dialog.visible=false;g._refresh_simulation()
 	test.check(g.alpha2.wards()==3 and g.alpha2.can_travel({"target":"a2_belfry"}),"Independent regions reconnect and all three attuned wards open final vault")
 	g.load_map("a2_haven",Vector2(0,5),true)
 	for pair in [["ada","courier_returned"],["ada","ledger_returned"],["oren","memory_returned"]]:
@@ -131,7 +161,10 @@ func run(test:RefCounted) -> void:
 	g.alpha2.finish("renew");test.check(g.alpha2.ending=="release" and g.progression.xp==xp+650,"Ending cannot be changed or farmed for duplicate rewards")
 	g.conversation.close();g._refresh_simulation();g.player.position=Vector3(0,0,5);g.player.state="free";g.player.restore_health(g.player.max_health)
 	test.check(g.Save.write(g.save_data(),path)==OK and not g.Save.read(path).is_empty(),"Completed campaign serializes into a private validated save")
-	var data=g.Save.read(path);g.alpha2.reset();test.check(g.apply_save(data) and g.alpha2.ending=="release" and "medicine_returned" in g.alpha2.flags,"Private save round trip restores ending, optional quests, equipment and checkpoint")
+	var data=g.Save.read(path)
+	var legacy=data.duplicate(true);legacy.alpha2.erase("layout_revision");legacy.alpha2.flags.erase("forest_tuned");legacy.alpha2.flags.erase("tide_chime");legacy.alpha2.flags.erase("wreck_winch");legacy.map="a2_mill";legacy.position=[25,10]
+	test.check(g.apply_save(legacy) and g.current_world.safe_position(g.player.position) and g.alpha2.wards()==3 and "tide_chime" in g.alpha2.flags,"Old campaign migrates earned wards and relocates obsolete positions safely")
+	g.alpha2.reset();test.check(g.apply_save(data) and g.alpha2.ending=="release" and "medicine_returned" in g.alpha2.flags,"Private save round trip restores ending, optional quests, equipment and checkpoint")
 	var bad=data.duplicate(true);bad.alpha2.flags.append("unknown_reward");test.check(not g.apply_save(bad),"Corrupt campaign flags are rejected")
 	bad=data.duplicate(true);bad.game_mode="alpha";test.check(not g.apply_save(bad),"Alpha 2 map cannot load as original Alpha")
 	bad=data.duplicate(true);bad.alpha2.checkpoint_at=[99,99];test.check(not g.apply_save(bad),"Only authored checkpoint destinations can be restored")
@@ -155,6 +188,7 @@ func run(test:RefCounted) -> void:
 	g.title_screen.visible=false;g._refresh_simulation()
 	g.game_mode="alpha"
 	await load("res://scripts/title_checks.gd").new().run(test)
+	await load("res://scripts/alpha2_region_checks.gd").new().run(test)
 	for real_path in originals:
 		test.check((FileAccess.get_file_as_bytes(real_path) if FileAccess.file_exists(real_path) else PackedByteArray())==originals[real_path],"Player save remains untouched: "+real_path)
 	DirAccess.remove_absolute(path);DirAccess.remove_absolute(import_path);g.alpha2_import_path=""

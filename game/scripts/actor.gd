@@ -1133,6 +1133,10 @@ func restore_health(value: int) -> void:
 	health=clampi(value,1,max_health)
 	health_changed.emit(health,max_health)
 
+func drown() -> void:
+	if health<=0 or not input_enabled:return
+	clear_lance_charge();health=0;health_changed.emit(health,max_health);defeated.emit()
+
 func _draw_value(index:int,key:String) -> Vector3:
 	var point=motion.draw[index]
 	var grip=Vector3(point.grip[0],point.grip[1],point.grip[2])

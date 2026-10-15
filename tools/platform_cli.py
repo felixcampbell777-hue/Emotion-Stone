@@ -77,6 +77,13 @@ def validate():
     for group in campaign['ambushes']:
         enemy_ids={e['id'] for e in maps[group['map']].get('enemies',[])}
         if any(e not in enemy_ids for e in group['enemies']): raise ValueError('Unknown goblin ambusher')
+    library=read(GAME/'content/alpha2_creatures.json'); valid('alpha2_creatures',library)
+    for entry in library.values():
+        if not (GAME/entry['model'].removeprefix('res://')).is_file(): raise ValueError('Missing collected creature model')
+    for entry in read(ROOT/'art/library/ALPHA2-RUNTIME-ASSETS.json'):
+        runtime=GAME/'assets/alpha2'/f"{entry['id']}.glb"
+        if hashlib.sha256(runtime.read_bytes()).hexdigest()!=entry['runtime_sha256']: raise ValueError('Collected runtime asset changed; prepare and inspect it again')
+        if 'source_sha256' in entry and hashlib.sha256((ROOT/'art/library/source'/entry['source']).read_bytes()).hexdigest()!=entry['source_sha256']: raise ValueError('Collected donor source changed')
     expedition=read(GAME/'content/alpha2.json'); valid('alpha2',expedition)
     expedition_maps=set(expedition['maps'])
     if expedition['start'] not in expedition_maps or not expedition_maps.issubset(maps): raise ValueError('Alpha 2 areas are missing')
@@ -90,6 +97,7 @@ def validate():
         b=maps[entry['map']]['bounds']; x,z=entry['at']
         if not b[0]<x<b[2] or not b[1]<z<b[3]: raise ValueError('Alpha 2 interaction outside bounds')
         if any(key not in encounters for key in entry.get('requires',[])): raise ValueError('Unknown Alpha 2 guardian')
+        if any(key not in action_ids for key in entry.get('requires_flags',[])): raise ValueError('Unknown Alpha 2 discovery requirement')
         if entry['type']=='loot' and entry.get('item') not in {e['id'] for e in magic['items']}: raise ValueError('Unknown Alpha 2 treasure')
     visited={expedition['start']}; pending=list(visited)
     while pending:
