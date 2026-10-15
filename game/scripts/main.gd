@@ -623,7 +623,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 			npc.set_arm_wrapped(not mother_unwrapped)
 		current_world.interactions.append({"id":npc_data.id,"title":npc.definition.display_name,"lines":npc_data.dialogue,"position":npc.position,"actor":npc,"role":role})
 	for enemy_data in data.get("enemies",[]):
-		var enemy=load("res://scripts/bellkeeper.gd").new() if enemy_data.kind=="bellkeeper" else BetaEnemy.new() if String(enemy_data.kind).begins_with("beta_") else GoblinEnemy.new() if String(enemy_data.kind).begins_with("goblin_") else Slime.new() if enemy_data.kind=="slime" else ForestEnemy.new()
+		var enemy=load("res://scripts/library_enemy.gd").new() if String(enemy_data.kind).begins_with("library_") else load("res://scripts/bellkeeper.gd").new() if enemy_data.kind=="bellkeeper" else BetaEnemy.new() if String(enemy_data.kind).begins_with("beta_") else GoblinEnemy.new() if String(enemy_data.kind).begins_with("goblin_") else Slime.new() if enemy_data.kind=="slime" else ForestEnemy.new()
 		enemy.name=enemy_data.id
 		var encounter_id=id+"/"+enemy_data.id
 		var saved_enemy={"health":0} if encounter_id in defeated_enemies else enemy_states.get(encounter_id,{})
@@ -1039,6 +1039,9 @@ func apply_save(data: Dictionary) -> bool:
 	var b=test_world.definition.bounds
 	test_world.bounds=Rect2(b[0],b[1],b[2]-b[0],b[3]-b[1])
 	var at=Vector3(data.position[0],float(data.get("ground_y",0)),data.position[1])
+	if mode=="alpha2" and int(data.get("alpha2",{}).get("layout_revision",1))<2 and data.map!="a2_haven":
+		var arrival=test_world.definition.spawn
+		at=Vector3(arrival[0],0,arrival[1])
 	if data.map in ["home_upstairs","home_downstairs"] and int(data.get("home_layout",1))<2:
 		var entrance=test_world.definition.spawn
 		at=Vector3(entrance[0],0,entrance[1])
@@ -1172,6 +1175,7 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	_refresh_simulation()
+	if is_instance_valid(current_world):load("res://scripts/wading.gd").tick(self)
 	combat_skills.tick(delta)
 	wolf_packs.tick(delta)
 	if parry_after_draw:

@@ -181,17 +181,17 @@
     {
       "id": "to_crossroads",
       "rect": [
-        -1.8,
-        -22.1,
-        3.6,
-        2.2
+        -1.6,
+        -22,
+        3.2,
+        2
       ],
       "target": "a2_crossroads",
       "spawn": [
         0,
         26
       ],
-      "label": "The Pilgrim Roads",
+      "label": "The Forked Pilgrim Road",
       "interact": true
     }
   ],

@@ -71,7 +71,13 @@
     "goblin_foreman": 100,
     "beta_wolf": 30,
     "beta_rat": 12,
-    "bellkeeper": 400
+    "bellkeeper": 400,
+    "library_crab": 55,
+    "library_sentinel": 180,
+    "library_spider": 45,
+    "library_boar": 65,
+    "library_wolf": 65,
+    "library_rat": 25
   },
   "quest_xp": 80,
   "skills": [

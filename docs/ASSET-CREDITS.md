@@ -57,3 +57,18 @@ Beta longsword: Quandtum, Long Sword – Knights Trust, CC0-1.0. https://opengam
 
 
 Beta v0.28.0 locomotion: Quaternius and Gonzalo Furnier, Universal Animation Library free Standard, creator upload 17958403; supplied CC0 License.txt and user-authorized Quaternius use. Walk_Loop/Jog_Fwd_Loop/Sprint_Loop sampled through native glTF parsing, fitted to the current rig. Provenance/hashes/two successful Defender scans: art/library/source/quaternius-human-motion/INTAKE.json. Creator: https://quaternius.itch.io/universal-animation-library . Raw mannequin/source pack is not shipped. Broad war sword blade is original CC0 geometry; scanned Quandtum-derived hilt retained.
+
+
+## Alpha 2 regional art (v0.32.1)
+
+Existing collected assets only; no new downloads. Donors are not modified. Blender runs with auto-execution disabled; embedded texts/drivers are removed only from the derived export session. Hash validation is recorded in art/library/ALPHA2-RUNTIME-ASSETS.json. Existing intake/security records remain under art/library.
+
+- **Animated Crab**, CoinCoin: https://opengameart.org/content/animated-crab — **CC-BY-4.0**, https://creativecommons.org/licenses/by/4.0/ . Runtime conversion from supplied FBX; repaired local texture paths, material tuning, renamed animation aliases, gameplay scale and crab/sentinel behaviors. Original wood/metal mining-crab design retained.
+- **Spider Animated**, Panther-One: https://opengameart.org/content/spider-animated — **CC-BY-3.0**, https://creativecommons.org/licenses/by/3.0/ . Repaired supplied texture, Principled conversion, subdivision/smooth normals, alias clips and game fitting/skitter behavior. This is not the CC0 TinyWorlds spider.
+- **Boar**, Teh_Bucket: https://opengameart.org/content/boar — CC0-1.0. Original texture and clips; subdivision/smooth normals, material conversion and fitting.
+- **Forest Monster**, CDmir / TinyWorlds: https://opengameart.org/content/forest-monster — CC0-1.0. Supplied skin/normal/tree maps and rig/clips; material conversion and Bellkeeper behavior/fitting.
+- **Pirate Kit**, Kenney: https://kenney.nl/assets/pirate-kit — CC0-1.0. Selected wreck, dock, watchtower and barrel; fitted and retextured with existing licensed wood/brick.
+- **Poly Haven**, CC0-1.0: coastal_cliff_01, coast_rocks_01, boulder_01, rock_moss_set_02, nettle_plant, flower_heliophila; coast_sand_01, damp_beach_sand, cliff_side, rock_face, castle_brick_01. Sources: https://polyhaven.com/a/ASSET_ID ; license https://polyhaven.com/license . Runtime mesh budgets/material fitting; photographed textures retained. Existing fir/fern/grass/forest-floor library supplies forest continuity.
+- Timber Wolf reuses the current customized Beta wolf and embedded-game license described above. No source kit redistributed as a standalone asset pack.
+
+Alpha 2 Wreck Rats reuse the existing CDmir / TinyWorlds CC0 Evil Giant Rat donor and runtime Beta skin/clips described above. Constellation graphics and thornseed/root effects are original procedural game artwork; no Skyrim assets are distributed.

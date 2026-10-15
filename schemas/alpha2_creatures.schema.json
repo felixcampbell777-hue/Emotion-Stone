@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "minProperties": 5,
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "model": {
+        "type": "string",
+        "pattern": "^res://assets/.*[.]glb$"
+      },
+      "style": {
+        "enum": [
+          "crab",
+          "sentinel",
+          "spider",
+          "boar",
+          "wolf",
+          "rat"
+        ]
+      },
+      "size": {
+        "enum": [
+          "small",
+          "medium",
+          "large",
+          "giant"
+        ]
+      },
+      "height": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "radius": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "health": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "damage": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "speed": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "windup": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "attack_speed": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "range": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "lunge_seconds": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "recovery": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "yaw": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "name",
+      "model",
+      "style",
+      "size",
+      "height",
+      "radius",
+      "health",
+      "damage",
+      "speed",
+      "windup",
+      "attack_speed",
+      "range",
+      "lunge_seconds",
+      "recovery"
+    ],
+    "additionalProperties": false
+  }
+}

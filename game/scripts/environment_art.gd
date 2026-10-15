@@ -237,7 +237,7 @@ static func apply(world:Node3D) -> void:
 	for data in world.definition.props+world.definition.interactions:
 		var node=world.get_node_or_null(NodePath(data.id))
 		if node!=null: dress_prop(node,data)
-	if not world.definition.has("interior") and not world.definition.get("cave",false): _scatter(root,world); _backdrop(root,world)
+	if not world.definition.has("interior") and not world.definition.get("cave",false) and world.definition.get("biome","") not in ["beach","highlands"]: _scatter(root,world); _backdrop(root,world)
 	if world.definition.id=="herb_glade":
 		for i in range(5):
 			var wall=model(VILLAGE+"glTF/Wall_UnevenBrick_Straight.gltf",Vector3(3.2,2+(i%2)*.8,.5),false)
@@ -419,6 +419,7 @@ static func scanned_stone_parts(enemy:Node3D) -> void:
 		enemy.remove_child(template); template.free()
 
 static func creature_quality(enemy:Node3D,profile:String) -> void:
+	if enemy.has_meta("library_creature"):return
 	if profile!="darkwood": return
 	var slime=String(enemy.definition.kind)=="slime" or str(enemy.get("style")).ends_with("slime")
 	var warden=String(enemy.definition.kind) in ["warden","bellkeeper"]

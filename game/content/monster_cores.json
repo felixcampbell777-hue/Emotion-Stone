@@ -118,6 +118,20 @@
       "family": "boss",
       "healing_percent": 0.7,
       "color": "#8fe0d3"
+    },
+    {
+      "id": "weaver_core",
+      "name": "Amber Weaver Core",
+      "family": "spore",
+      "healing_percent": 0.14,
+      "color": "#b9a062"
+    },
+    {
+      "id": "skyglass_core",
+      "name": "Skyglass Sentinel Core",
+      "family": "boss",
+      "healing_percent": 0.4,
+      "color": "#9bd7df"
     }
   ],
   "profiles": {
@@ -218,6 +232,20 @@
       "variant": "",
       "variant_chance": 0,
       "boss_bonus": 900
+    },
+    "library_spider": {
+      "drop_rate": 0.45,
+      "generic": "weaver_core",
+      "variant": "",
+      "variant_chance": 0,
+      "boss_bonus": 0
+    },
+    "library_sentinel": {
+      "drop_rate": 1,
+      "generic": "skyglass_core",
+      "variant": "",
+      "variant_chance": 0,
+      "boss_bonus": 250
     }
   },
   "beasts": [
@@ -227,6 +255,10 @@
     "hare",
     "squirrel",
     "beta_wolf",
-    "beta_rat"
+    "beta_rat",
+    "library_crab",
+    "library_boar",
+    "library_wolf",
+    "library_rat"
   ]
 }

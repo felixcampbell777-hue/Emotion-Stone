@@ -1,8 +1,8 @@
 {
   "id": "a2_fen",
-  "display_name": "Lantern Fen",
-  "subtitle": "Lost lanterns, a missing courier, and an older road",
-  "seed": 823,
+  "display_name": "Reedwater Marsh",
+  "subtitle": "A lantern trail among reed islands",
+  "seed": 1958,
   "bounds": [
     -28,
     -28,
@@ -14,6 +14,7 @@
     22
   ],
   "sea": false,
+  "biome": "woodland",
   "terrain_regions": [
     {
       "kind": "grass",
@@ -25,526 +26,1067 @@
       ]
     },
     {
-      "kind": "cobble",
+      "kind": "path",
       "rect": [
-        -2,
-        -28,
-        4,
-        56
+        -10,
+        -17,
+        2,
+        1
       ]
     },
     {
-      "kind": "cobble",
+      "kind": "path",
       "rect": [
-        -28,
+        -11,
+        -16,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -11,
+        -15,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -10,
+        -14,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -9,
+        -13,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -8,
+        -12,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -8,
+        -11,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -7,
+        -10,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -6,
+        -9,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -5,
+        -8,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -5,
+        -7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -4,
+        -6,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        11,
+        -6,
+        2,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -4,
+        -5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        7,
+        -5,
+        9,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -3,
+        -4,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        3,
+        -4,
+        16,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -3,
+        -3,
+        25,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
         -2,
-        56,
-        4
+        -2,
+        11,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        14,
+        -2,
+        11,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
+        -1,
+        7,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        17,
+        -1,
+        9,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -3,
+        0,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        20,
+        0,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -3,
+        1,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        23,
+        1,
+        2,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -4,
+        2,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -4,
+        3,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -5,
+        4,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -5,
+        5,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -6,
+        6,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -7,
+        7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -8,
+        8,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -9,
+        9,
+        9,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -10,
+        10,
+        11,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -11,
+        11,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -3,
+        11,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -12,
+        12,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
+        12,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -13,
+        13,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -1,
+        13,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -15,
+        14,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        0,
+        14,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -16,
+        15,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        2,
+        15,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -17,
+        16,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        3,
+        16,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -18,
+        17,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        2,
+        17,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -19,
+        18,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        2,
+        18,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -19,
+        19,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        1,
+        19,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -18,
+        20,
+        2,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        1,
+        20,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        0,
+        21,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        0,
+        22,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -1,
+        23,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
+        24,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
+        25,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -1,
+        26,
+        2,
+        1
       ]
     },
     {
       "kind": "water",
       "rect": [
-        -20,
+        -22,
         -6,
         10,
-        10
+        9
       ]
     },
     {
       "kind": "water",
       "rect": [
-        10,
-        7,
-        10,
+        9,
+        8,
+        12,
         9
       ]
     }
   ],
   "props": [
     {
-      "id": "catalog_feature_0",
+      "id": "biome_0",
       "kind": "catalog_feature",
       "at": [
-        -8.18,
-        18.53
-      ],
-      "catalog_code": "2A",
-      "scale": 1.2375244825416236,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_1",
-      "kind": "catalog_feature",
-      "at": [
-        15.08,
-        -15.16
-      ],
-      "catalog_code": "3A",
-      "scale": 1.1093201437070308,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_2",
-      "kind": "catalog_feature",
-      "at": [
-        -16.01,
-        -10.31
-      ],
-      "catalog_code": "1A",
-      "scale": 0.9665997743207189,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_3",
-      "kind": "catalog_feature",
-      "at": [
-        14.03,
-        22.23
-      ],
-      "catalog_code": "3A",
-      "scale": 1.2921100612352139,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_4",
-      "kind": "catalog_feature",
-      "at": [
-        -13.12,
-        -16.49
-      ],
-      "catalog_code": "1A",
-      "scale": 0.874249483326854,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_5",
-      "kind": "catalog_feature",
-      "at": [
-        20.84,
-        -17.07
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2783607062078994,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_6",
-      "kind": "catalog_feature",
-      "at": [
-        15.66,
-        16.18
-      ],
-      "catalog_code": "1A",
-      "scale": 1.0946003738451457,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_7",
-      "kind": "catalog_feature",
-      "at": [
-        -7.51,
-        21.1
-      ],
-      "catalog_code": "3A",
-      "scale": 0.8987204433954676,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_8",
-      "kind": "catalog_feature",
-      "at": [
-        6.65,
-        -14.47
+        7.86,
+        -12.58
       ],
       "catalog_code": "4A",
-      "scale": 1.2100825018299748,
+      "scale": 1.100142184165342,
       "show_label": false
     },
     {
-      "id": "catalog_feature_9",
+      "id": "biome_1",
       "kind": "catalog_feature",
       "at": [
-        -19.16,
-        -16.97
-      ],
-      "catalog_code": "3A",
-      "scale": 1.1031937110787284,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_10",
-      "kind": "catalog_feature",
-      "at": [
-        23.72,
-        -17.61
-      ],
-      "catalog_code": "3A",
-      "scale": 1.2123088733777398,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_11",
-      "kind": "catalog_feature",
-      "at": [
-        11.35,
-        19.7
-      ],
-      "catalog_code": "2A",
-      "scale": 1.2236526577707596,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_12",
-      "kind": "catalog_feature",
-      "at": [
-        -7.09,
-        -8.16
+        24.13,
+        18.71
       ],
       "catalog_code": "4A",
-      "scale": 0.959801517158144,
+      "scale": 1.028693921284575,
       "show_label": false
     },
     {
-      "id": "catalog_feature_13",
+      "id": "biome_2",
       "kind": "catalog_feature",
       "at": [
-        -7.97,
-        11.31
-      ],
-      "catalog_code": "2A",
-      "scale": 1.106524426716716,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_14",
-      "kind": "catalog_feature",
-      "at": [
-        23.97,
-        -5.64
+        22.99,
+        -17.7
       ],
       "catalog_code": "4A",
-      "scale": 1.1137324700119688,
+      "scale": 0.9715835671087867,
       "show_label": false
     },
     {
-      "id": "catalog_feature_15",
+      "id": "biome_3",
       "kind": "catalog_feature",
       "at": [
-        9.35,
-        24.23
-      ],
-      "catalog_code": "1A",
-      "scale": 0.917407305323084,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_16",
-      "kind": "catalog_feature",
-      "at": [
-        -17.85,
-        -14.34
-      ],
-      "catalog_code": "1A",
-      "scale": 1.1584732893873886,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_17",
-      "kind": "catalog_feature",
-      "at": [
-        -15.78,
-        -22.5
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2953024194842975,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_18",
-      "kind": "catalog_feature",
-      "at": [
-        19.6,
-        7.6
-      ],
-      "catalog_code": "2A",
-      "scale": 0.8598756761112964,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_19",
-      "kind": "catalog_feature",
-      "at": [
-        10.59,
-        -19.48
-      ],
-      "catalog_code": "2A",
-      "scale": 0.9041356804948076,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_20",
-      "kind": "catalog_feature",
-      "at": [
-        -14.73,
-        12.21
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2268433662802058,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_21",
-      "kind": "catalog_feature",
-      "at": [
-        -10.72,
-        18.23
+        17.63,
+        -22.75
       ],
       "catalog_code": "4A",
-      "scale": 0.9213189319800963,
+      "scale": 0.9887929148749447,
       "show_label": false
     },
     {
-      "id": "catalog_feature_22",
+      "id": "biome_4",
       "kind": "catalog_feature",
       "at": [
-        10.39,
-        -5.14
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2003990820339536,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_23",
-      "kind": "catalog_feature",
-      "at": [
-        -21.83,
-        -21.1
-      ],
-      "catalog_code": "2A",
-      "scale": 1.0290570975343405,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_24",
-      "kind": "catalog_feature",
-      "at": [
-        -5.37,
-        17.17
-      ],
-      "catalog_code": "2A",
-      "scale": 1.0716021115866048,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_25",
-      "kind": "catalog_feature",
-      "at": [
-        24.99,
-        -7.12
-      ],
-      "catalog_code": "3A",
-      "scale": 0.9481247985733019,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_26",
-      "kind": "catalog_feature",
-      "at": [
-        12.41,
-        18.26
-      ],
-      "catalog_code": "3A",
-      "scale": 0.85905662571073,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_27",
-      "kind": "catalog_feature",
-      "at": [
-        21.0,
-        11.49
+        11.93,
+        -9.82
       ],
       "catalog_code": "4A",
-      "scale": 1.2501188522572075,
+      "scale": 1.0150440844036723,
       "show_label": false
     },
     {
-      "id": "catalog_feature_28",
+      "id": "biome_5",
       "kind": "catalog_feature",
       "at": [
-        22.1,
-        11.51
-      ],
-      "catalog_code": "3A",
-      "scale": 1.259515006867816,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_29",
-      "kind": "catalog_feature",
-      "at": [
-        -13.74,
-        -8.39
-      ],
-      "catalog_code": "1A",
-      "scale": 0.8733175436570517,
-      "show_label": false
-    },
-    {
-      "id": "catalog_feature_30",
-      "kind": "catalog_feature",
-      "at": [
-        11.72,
-        7.98
+        24.9,
+        -9.03
       ],
       "catalog_code": "4A",
-      "scale": 1.1719874780802388,
+      "scale": 1.1139601605864997,
       "show_label": false
     },
     {
-      "id": "catalog_feature_31",
+      "id": "biome_6",
       "kind": "catalog_feature",
       "at": [
-        12.99,
-        -11.29
+        1.72,
+        -21.42
       ],
       "catalog_code": "4A",
-      "scale": 1.1791519904900012,
+      "scale": 1.209797672535813,
       "show_label": false
     },
     {
-      "id": "catalog_feature_32",
+      "id": "biome_7",
       "kind": "catalog_feature",
       "at": [
-        -12.14,
-        -20.89
+        -10.46,
+        2.05
       ],
-      "catalog_code": "2A",
-      "scale": 1.2027319825930964,
+      "catalog_code": "4A",
+      "scale": 0.9998479472848258,
       "show_label": false
     },
     {
-      "id": "catalog_feature_33",
+      "id": "biome_8",
       "kind": "catalog_feature",
       "at": [
-        -15.41,
-        5.68
+        -8.75,
+        4.15
       ],
-      "catalog_code": "1A",
-      "scale": 0.9528995694421611,
+      "catalog_code": "4A",
+      "scale": 1.017465484337862,
       "show_label": false
     },
     {
-      "id": "catalog_feature_34",
+      "id": "biome_9",
       "kind": "catalog_feature",
       "at": [
-        -8,
-        6
+        -24.8,
+        -13.45
       ],
-      "catalog_code": "3B",
+      "catalog_code": "4A",
+      "scale": 1.1812732433543374,
       "show_label": false
     },
     {
-      "id": "catalog_feature_35",
+      "id": "biome_10",
       "kind": "catalog_feature",
       "at": [
-        9,
-        -7
+        -6.73,
+        -20.8
       ],
-      "catalog_code": "3B",
+      "catalog_code": "4A",
+      "scale": 0.9450744383321612,
       "show_label": false
     },
     {
-      "id": "catalog_feature_36",
+      "id": "biome_11",
       "kind": "catalog_feature",
       "at": [
-        -12,
-        -14
+        -19.98,
+        7.06
       ],
-      "catalog_code": "3B",
+      "catalog_code": "4A",
+      "scale": 1.1106971688124083,
       "show_label": false
     },
     {
-      "id": "catalog_feature_37",
+      "id": "biome_12",
       "kind": "catalog_feature",
       "at": [
-        15,
-        13
+        -24.41,
+        -3.07
       ],
-      "catalog_code": "3B",
+      "catalog_code": "4A",
+      "scale": 0.9077535989989686,
       "show_label": false
     },
     {
-      "id": "catalog_feature_38",
+      "id": "biome_13",
       "kind": "catalog_feature",
       "at": [
-        -6,
-        -18
+        19.98,
+        -8.21
       ],
-      "catalog_code": "3C",
+      "catalog_code": "4A",
+      "scale": 1.034521280432528,
       "show_label": false
     },
     {
-      "id": "catalog_feature_39",
+      "id": "biome_14",
       "kind": "catalog_feature",
       "at": [
-        16,
-        7
+        20.17,
+        -8.17
       ],
-      "catalog_code": "3C",
+      "catalog_code": "4A",
+      "scale": 1.039234580278137,
       "show_label": false
     },
     {
-      "id": "catalog_feature_40",
+      "id": "biome_15",
       "kind": "catalog_feature",
       "at": [
-        -17,
-        16
+        -2.96,
+        24.62
       ],
-      "catalog_code": "3C",
+      "catalog_code": "4A",
+      "scale": 1.073043277154871,
       "show_label": false
     },
     {
-      "id": "catalog_feature_41",
+      "id": "biome_16",
       "kind": "catalog_feature",
       "at": [
-        18,
-        -18
+        -0.89,
+        15.82
       ],
-      "catalog_code": "1F",
-      "scale": 1.35,
+      "catalog_code": "4A",
+      "scale": 1.2548109284570317,
       "show_label": false
     },
     {
-      "id": "catalog_feature_42",
+      "id": "biome_17",
       "kind": "catalog_feature",
       "at": [
-        -14,
-        7
+        13.97,
+        1.65
       ],
-      "catalog_code": "4G",
+      "catalog_code": "4A",
+      "scale": 0.9420128565957784,
       "show_label": false
     },
     {
-      "id": "catalog_feature_43",
+      "id": "biome_18",
       "kind": "catalog_feature",
       "at": [
-        13,
-        -13
+        10.68,
+        1.73
       ],
-      "catalog_code": "4G",
+      "catalog_code": "4A",
+      "scale": 1.002889977268812,
       "show_label": false
     },
     {
-      "id": "catalog_feature_44",
+      "id": "biome_19",
       "kind": "catalog_feature",
       "at": [
-        -16,
-        -19
+        21.2,
+        -6.57
       ],
-      "catalog_code": "4G",
+      "catalog_code": "4A",
+      "scale": 1.0018685404341094,
+      "show_label": false
+    },
+    {
+      "id": "biome_20",
+      "kind": "catalog_feature",
+      "at": [
+        14.81,
+        4.52
+      ],
+      "catalog_code": "4A",
+      "scale": 1.1165060210507576,
+      "show_label": false
+    },
+    {
+      "id": "biome_21",
+      "kind": "catalog_feature",
+      "at": [
+        24.7,
+        -13.78
+      ],
+      "catalog_code": "4A",
+      "scale": 1.2788132531410787,
+      "show_label": false
+    },
+    {
+      "id": "biome_22",
+      "kind": "catalog_feature",
+      "at": [
+        -5.89,
+        18.95
+      ],
+      "catalog_code": "4A",
+      "scale": 1.2931585976617601,
+      "show_label": false
+    },
+    {
+      "id": "biome_23",
+      "kind": "catalog_feature",
+      "at": [
+        17.05,
+        -13.8
+      ],
+      "catalog_code": "4A",
+      "scale": 1.1553301934843525,
+      "show_label": false
+    },
+    {
+      "id": "biome_24",
+      "kind": "catalog_feature",
+      "at": [
+        1.87,
+        -14.23
+      ],
+      "catalog_code": "4A",
+      "scale": 1.0304004269526605,
+      "show_label": false
+    },
+    {
+      "id": "biome_25",
+      "kind": "catalog_feature",
+      "at": [
+        -23.94,
+        13.79
+      ],
+      "catalog_code": "4A",
+      "scale": 1.214114934350813,
+      "show_label": false
+    },
+    {
+      "id": "biome_26",
+      "kind": "catalog_feature",
+      "at": [
+        20.58,
+        -8.66
+      ],
+      "catalog_code": "4A",
+      "scale": 1.323891277914566,
+      "show_label": false
+    },
+    {
+      "id": "biome_27",
+      "kind": "catalog_feature",
+      "at": [
+        10.08,
+        7.4
+      ],
+      "catalog_code": "4A",
+      "scale": 1.0203166592358612,
+      "show_label": false
+    },
+    {
+      "id": "biome_28",
+      "kind": "catalog_feature",
+      "at": [
+        11.77,
+        -12.1
+      ],
+      "catalog_code": "4A",
+      "scale": 0.9042053817915536,
+      "show_label": false
+    },
+    {
+      "id": "biome_29",
+      "kind": "catalog_feature",
+      "at": [
+        -10.32,
+        1.59
+      ],
+      "catalog_code": "4A",
+      "scale": 1.2318759040312912,
+      "show_label": false
+    },
+    {
+      "id": "biome_30",
+      "kind": "catalog_feature",
+      "at": [
+        -5.89,
+        23.85
+      ],
+      "catalog_code": "4A",
+      "scale": 1.0127720810172465,
+      "show_label": false
+    },
+    {
+      "id": "biome_31",
+      "kind": "catalog_feature",
+      "at": [
+        17.11,
+        -13.98
+      ],
+      "catalog_code": "4A",
+      "scale": 1.286146014164135,
+      "show_label": false
+    },
+    {
+      "id": "biome_32",
+      "kind": "catalog_feature",
+      "at": [
+        -5.89,
+        21.9
+      ],
+      "catalog_code": "4A",
+      "scale": 0.9841919804772001,
+      "show_label": false
+    },
+    {
+      "id": "biome_33",
+      "kind": "catalog_feature",
+      "at": [
+        16.71,
+        -5.08
+      ],
+      "catalog_code": "4A",
+      "scale": 1.16576364035148,
+      "show_label": false
+    },
+    {
+      "id": "biome_34",
+      "kind": "catalog_feature",
+      "at": [
+        17.64,
+        17.14
+      ],
+      "catalog_code": "4A",
+      "scale": 1.0238927980963584,
+      "show_label": false
+    },
+    {
+      "id": "biome_35",
+      "kind": "catalog_feature",
+      "at": [
+        -8.75,
+        -22.82
+      ],
+      "catalog_code": "4A",
+      "scale": 0.9311418718675984,
+      "show_label": false
+    },
+    {
+      "id": "biome_36",
+      "kind": "catalog_feature",
+      "at": [
+        21.17,
+        -16.03
+      ],
+      "catalog_code": "4A",
+      "scale": 1.227299354260023,
+      "show_label": false
+    },
+    {
+      "id": "biome_37",
+      "kind": "catalog_feature",
+      "at": [
+        -14.59,
+        -18.63
+      ],
+      "catalog_code": "4A",
+      "scale": 1.2703933219490007,
+      "show_label": false
+    },
+    {
+      "id": "biome_38",
+      "kind": "catalog_feature",
+      "at": [
+        11.31,
+        -24.84
+      ],
+      "catalog_code": "4A",
+      "scale": 1.015029067304724,
+      "show_label": false
+    },
+    {
+      "id": "biome_39",
+      "kind": "catalog_feature",
+      "at": [
+        -20.98,
+        -20.19
+      ],
+      "catalog_code": "4A",
+      "scale": 1.3257064371879326,
+      "show_label": false
+    },
+    {
+      "id": "biome_40",
+      "kind": "catalog_feature",
+      "at": [
+        20.59,
+        -10.27
+      ],
+      "catalog_code": "4A",
+      "scale": 0.9943188643029907,
+      "show_label": false
+    },
+    {
+      "id": "biome_41",
+      "kind": "catalog_feature",
+      "at": [
+        23.73,
+        8.91
+      ],
+      "catalog_code": "4A",
+      "scale": 0.9475937478019199,
+      "show_label": false
+    },
+    {
+      "id": "biome_42",
+      "kind": "catalog_feature",
+      "at": [
+        22.59,
+        9.56
+      ],
+      "catalog_code": "4A",
+      "scale": 1.001889241451138,
+      "show_label": false
+    },
+    {
+      "id": "biome_43",
+      "kind": "catalog_feature",
+      "at": [
+        -21.59,
+        15.81
+      ],
+      "catalog_code": "4A",
+      "scale": 0.9337945718984884,
+      "show_label": false
+    },
+    {
+      "id": "biome_44",
+      "kind": "catalog_feature",
+      "at": [
+        -16.78,
+        -10.07
+      ],
+      "catalog_code": "4A",
+      "scale": 1.2403482195084177,
       "show_label": false
     }
   ],
@@ -564,39 +1106,27 @@
   ],
   "interactions": [
     {
-      "id": "sign_0",
+      "id": "route_0",
       "kind": "sign",
       "at": [
-        2.2,
-        25.0
+        2.1,
+        25
       ],
-      "title": "The Drowned Mill",
+      "title": "Saltwind Strand",
       "lines": [
-        "The Drowned Mill · approach the trail marker and press E."
+        "Saltwind Strand · follow the trail marker and press E."
       ]
     },
     {
-      "id": "sign_1",
+      "id": "route_1",
       "kind": "sign",
       "at": [
-        27.2,
-        0.0
+        27,
+        0
       ],
-      "title": "The Witness Wood",
+      "title": "Heartwood",
       "lines": [
-        "The Witness Wood · approach the trail marker and press E."
-      ]
-    },
-    {
-      "id": "sign_2",
-      "kind": "sign",
-      "at": [
-        -5,
-        -3
-      ],
-      "title": "Jun’s lantern marks",
-      "lines": [
-        "The courier followed the western edge of the fen. A warm light shines beside the old willow north-west of here."
+        "Heartwood · follow the trail marker and press E."
       ]
     }
   ],
@@ -604,40 +1134,40 @@
     {
       "id": "to_mill",
       "rect": [
-        -1.8,
-        23.9,
-        3.6,
-        2.2
+        -1.6,
+        24,
+        3.2,
+        2
       ],
       "target": "a2_mill",
       "spawn": [
-        0,
+        -5,
         -22
       ],
-      "label": "The Drowned Mill",
+      "label": "Saltwind Strand",
       "interact": true
     },
     {
       "id": "to_wood",
       "rect": [
-        23.2,
-        -1.1,
-        3.6,
-        2.2
+        23.4,
+        -1,
+        3.2,
+        2
       ],
       "target": "a2_wood",
       "spawn": [
         -29,
         -3
       ],
-      "label": "The Witness Wood",
+      "label": "Heartwood",
       "interact": true
     }
   ],
   "enemies": [
     {
       "id": "foe_0",
-      "kind": "goblin_raider",
+      "kind": "library_spider",
       "at": [
         -10,
         -9
@@ -645,17 +1175,15 @@
     },
     {
       "id": "foe_1",
-      "kind": "goblin_slinger",
+      "kind": "library_crab",
       "at": [
         -14,
         -12
       ]
-    }
-  ],
-  "catalog_enemies": [
+    },
     {
       "id": "slime_0",
-      "code": "2E",
+      "kind": "library_spider",
       "at": [
         0,
         13
@@ -663,7 +1191,7 @@
     },
     {
       "id": "slime_1",
-      "code": "3E",
+      "kind": "library_crab",
       "at": [
         4,
         8
@@ -671,7 +1199,7 @@
     },
     {
       "id": "slime_2",
-      "code": "1E",
+      "kind": "library_spider",
       "at": [
         -5,
         3
@@ -679,7 +1207,7 @@
     },
     {
       "id": "slime_3",
-      "code": "2E",
+      "kind": "library_crab",
       "at": [
         6,
         -6
@@ -687,7 +1215,7 @@
     },
     {
       "id": "slime_4",
-      "code": "3E",
+      "kind": "library_spider",
       "at": [
         0,
         -13
@@ -695,11 +1223,14 @@
     },
     {
       "id": "slime_5",
-      "code": "1E",
+      "kind": "library_crab",
       "at": [
         17,
         -1
       ]
     }
-  ]
+  ],
+  "catalog_enemies": [],
+  "sculpted_terrain": [],
+  "wading": true
 }

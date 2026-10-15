@@ -85,3 +85,5 @@ Magic equipment: [catalog, slots and set bonuses](docs/MAGIC-ITEMS.md). Menageri
 
 
 Monster cores v0.22.0: see [drop/healing/quest rules](docs/MONSTER-CORES.md). Warden, Queen Slime and Goblin Foreman add 300, 800 and 250 XP boss bonuses respectively; prior base rewards remain. Mother now removes one canonical golem core from inventory; consumption is quest locked until completion.
+
+Alpha 2 v0.32.1 has distinct shipwreck coast, marsh, winding forest and coastal bluff routes; salvage and a bell-note puzzle vary the three ward objectives. Collected animated wolves, rats, boars, spiders and crabs replace the old campaign goblins/wardens. The living Bellkeeper has new melee, roots and grown-thornseed patterns. Shore wading, drowning and progressively revealed constellation skills are documented in docs/ALPHA2.md.

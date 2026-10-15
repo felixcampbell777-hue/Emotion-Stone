@@ -7,6 +7,7 @@ var bounds: Rect2
 var shoreline: Array=[]
 var coast_time=0.0
 const Sculpt=preload("res://scripts/sculpt_terrain.gd")
+const Wading=preload("res://scripts/wading.gd")
 const Terrain=preload("res://scripts/terrain_kit.gd")
 var terrain_features:Array=[]
 var environment_profile="original"
@@ -49,7 +50,7 @@ func build(data: Dictionary) -> void:
 		for z in range(b[1],b[3]):
 			var kind = terrain_at(x,z)
 			if kind == "water":
-				Props.collider(self,Vector3(x+.5,.75,z+.5),Vector3(1,1.5,1))
+				if not Wading.enabled(self):Props.collider(self,Vector3(x+.5,.75,z+.5),Vector3(1,1.5,1))
 				continue
 			var tile = rng.randi_range(0,2) if kind=="grass" else 3 if kind=="path" else 5 if kind=="cobble" else 4
 			if not data.has("interior") and data.get("sculpted_terrain",[]).is_empty(): grid.set_cell_item(Vector3i(x,0,z),tile)
@@ -161,7 +162,7 @@ func safe_position(at: Vector3) -> bool:
 	if not bounds.grow(-.30).has_point(Vector2(at.x,at.z)):
 		return false
 	for offset in [Vector2(.23,0),Vector2(-.23,0),Vector2(0,.23),Vector2(0,-.23)]:
-		if terrain_at(int(floor(at.x+offset.x)),int(floor(at.z+offset.y)))=="water":
+		if terrain_at(int(floor(at.x+offset.x)),int(floor(at.z+offset.y)))=="water" and (not Wading.enabled(self) or Wading.depth(self,at)>Wading.SHOULDER):
 			return false
 	if definition.has("interior"):
 		if absf(at.x)>4.54 or at.z< -4.54 or (at.z>4.54 and (definition.interior=="bedroom" or absf(at.x)>.55)): return false
@@ -225,6 +226,7 @@ func raw_sculpt_height(at:Vector3) -> float:
 	return Sculpt.apply(definition.get("sculpted_terrain",[]).filter(func(p): return p.profile!="overhang"),at,base_height(at))
 
 func ground_height(at:Vector3) -> float:
+	if Wading.enabled(self) and terrain_at(floori(at.x),floori(at.z))=="water":return Wading.level(self)-Wading.depth(self,at)
 	if definition.get("sculpted_terrain",[]).is_empty(): return base_height(at)
 	var cell=Vector2(at.x,at.z).snapped(Vector2(.5,.5))
 	cell=(Vector2(at.x,at.z)/.5).floor()*.5
@@ -249,6 +251,7 @@ func safe_landing(at:Vector3) -> Vector3:
 	return result
 
 func move_grounded(body:CharacterBody3D,delta:float) -> void:
+	if body.get("controllable")==true:body.velocity*=Wading.speed(self,body.position)
 	if body.has_method("finish_jump") and body.jump_active:
 		# Jump uses the real actor capsule; walls and ceilings remain physical.
 		body.move_and_slide()
