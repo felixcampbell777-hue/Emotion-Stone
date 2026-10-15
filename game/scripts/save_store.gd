@@ -26,7 +26,7 @@ static func read(path: String = SAVE_PATH) -> Dictionary:
 	if parsed.get("version")!=1 or not parsed.get("map") is String or not parsed.get("position") is Array:
 		return {}
 	var mode=parsed.get("game_mode","alpha")
-	if mode not in ["alpha","beta"] or (mode=="beta")!=(parsed.map=="beta_meadow"): return {}
+	if not preload("res://scripts/alpha2_campaign.gd").valid_mode(mode,parsed.map,parsed.get("world_id","")): return {}
 	if parsed.has("heavy_attack") and parsed.heavy_attack not in ["overhead","charge_thrust"]:
 		return {}
 	if parsed.get("camera_mode","follow") not in ["follow","overhead","first_person"]: return {}
@@ -99,16 +99,17 @@ static func read(path: String = SAVE_PATH) -> Dictionary:
 	if parsed.get("well_gift_stage","not_started") not in ["not_started","coin_ready","potion_owned"]:
 		return {}
 	var defeated=parsed.get("defeated_enemies",[])
-	if not defeated is Array or defeated.size()>64:
+	if not defeated is Array or defeated.size()>128:
 		return {}
 	var allowed_story=["slime_forest/forest_slime","herb_glade/briar_boar","herb_glade/thorn_wisp","herb_glade/briar_boar_second","herb_glade/stone_warden"]
-	for map_name in ["jungle_approach","queen_arena","beta_meadow"]:
+	for map_name in ["jungle_approach","queen_arena","beta_meadow"]+JSON.parse_string(FileAccess.get_file_as_string("res://content/alpha2.json")).maps:
 		var area=WorldPacks.definition(map_name)
 		for mob in area.get("catalog_enemies",[]): allowed_story.append(map_name+"/"+mob.id)
 		for mob in area.get("enemies",[]): allowed_story.append(map_name+"/"+mob.id)
 	for map_name in ["goblin_approach","goblin_cave","goblin_depths"]:
 		for mob in WorldPacks.definition(map_name).get("enemies",[]): allowed_story.append(map_name+"/"+mob.id)
 	if not preload("res://scripts/goblin_campaign.gd").valid_save(parsed.get("goblin_campaign",{}),defeated): return {}
+	if not preload("res://scripts/alpha2_campaign.gd").valid_save(parsed.get("alpha2",{}),defeated): return {}
 	var seen=[]
 	for id in defeated:
 		if not id is String or id not in allowed_story or id in seen:

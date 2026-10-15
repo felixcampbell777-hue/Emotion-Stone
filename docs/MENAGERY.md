@@ -84,4 +84,4 @@ Current v0.18.17: all eight creature kills grant fixed XP (see PROGRESSION.md). 
 The western annex holds scenery samples. Spawn creatures tab scrolls to show all ten specimens. The main encounter is west of Slime Forest through Jungle Hollow.
 
 
-Magic items tab: browse/filter 28 item definitions and claim individual specimens or all for testing. Equipment changes live in Inventory [I], including two ring slots and necklace. Claims are session ownership saved only by explicit Save; this does not create campaign loot automatically. See MAGIC-ITEMS.md.
+Magic items tab: browse/filter 35 item definitions and claim individual specimens or all for testing. Equipment changes live in Inventory [I], including two ring slots and necklace. Claims are session ownership saved only by explicit Save; this does not create campaign loot automatically. See MAGIC-ITEMS.md.

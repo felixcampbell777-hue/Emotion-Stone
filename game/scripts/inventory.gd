@@ -49,7 +49,7 @@ func _process(_delta:float) -> void:
 	preview.position=portrait.position; preview.size=portrait.size
 	preview.visible=page=="equipment"; portrait.visible=page not in ["equipment","level"]
 	box.position=Vector2(screen.x*.245,75); box.size=Vector2(screen.x*.35,screen.y-94)
-	if page=="skills": box.size.x=screen.x*.72
+	if page in ["skills","quests"]: box.size.x=screen.x*.72
 	detail_box.position=Vector2(screen.x*.615,75); detail_box.size=Vector2(screen.x*.35,screen.y-94)
 	category_box.visible=page=="equipment"; detail_box.visible=page=="equipment"
 
@@ -108,7 +108,7 @@ func item_count(category:String) -> int:
 	if category=="apparel": return game.magic_items.owned.filter(func(id): return game.magic_items.item(id).category!="consumable").size()
 	if category=="potions": return game.magic_items.owned.filter(func(id): return game.magic_items.item(id).category=="consumable").size()+(1 if game.well_gift_stage=="potion_owned" else 0)
 	if category=="ingredients": return game.monster_cores.quantities.size()
-	if category=="quest": return (1 if game.well_gift_stage=="coin_ready" else 0)+(1 if game.goblin_campaign.stage=="goods_ready" else 0)+(1 if "heirloom" in game.goblin_campaign.flags else 0)+(1 if game.quest_stage=="component_ready" else 0)
+	if category=="quest": return game.alpha2.quest_items().size() if game.game_mode=="alpha2" else (1 if game.well_gift_stage=="coin_ready" else 0)+(1 if game.goblin_campaign.stage=="goods_ready" else 0)+(1 if "heirloom" in game.goblin_campaign.flags else 0)+(1 if game.quest_stage=="component_ready" else 0)
 	return 0
 
 func weapon_name() -> String:
@@ -134,6 +134,7 @@ func listed_items() -> Array:
 			var item=game.monster_cores.item(id)
 			list.append({"kind":"core","id":id,"name":item.name,"description":"Consume to restore %d%% of maximum health." % roundi(item.healing_percent*100),"count":int(game.monster_cores.quantities[id])})
 	if selected_category in ["all","quest"]:
+		if game.game_mode=="alpha2": list.append_array(game.alpha2.quest_items())
 		if game.quest_stage=="component_ready": list.append({"kind":"quest","id":"golem_core","name":"Calcified Aether Core","description":"Mother needs this for her remedy. Keep it safe."})
 		if game.well_gift_stage=="coin_ready": list.append({"kind":"quest","id":"wishing_coin","name":"Wishing Coin","description":"Throw it into the village well."})
 		if game.goblin_campaign.stage=="goods_ready": list.append({"kind":"quest","id":"lark_goods","name":"Larks' Harvest","description":"Seed chest and brass irrigation regulator."})
@@ -216,6 +217,7 @@ func refresh_apparel_detail(entry:Dictionary) -> void:
 
 func refresh_quests() -> void:
 	slots.add_child(game.label("QUEST JOURNAL",24,Color("#e9c894")))
+	if game.game_mode=="alpha2": game.alpha2.journal(self);wrap_labels();return
 	if game.game_mode=="beta":
 		slots.add_child(game.label("Beta: explore the meadow and woodland. No story quests in this first prototype.",17)); wrap_labels(); return
 	add_quest("Mother's Alchemical Remedy", "%d XP" % int(game.progression.definition.quest_xp), game.quest_objective(false), "Follow the old cobbled road, defeat the stone warden and return its calcified aether core to Mother.")

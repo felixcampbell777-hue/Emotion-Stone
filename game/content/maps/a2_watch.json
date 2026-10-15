@@ -1,0 +1,139 @@
+{
+  "id": "a2_watch",
+  "display_name": "The Buried Watch",
+  "subtitle": "A forgotten refuge beneath the quarry",
+  "seed": 825,
+  "bounds": [
+    -8,
+    -9,
+    8,
+    8
+  ],
+  "spawn": [
+    0,
+    5
+  ],
+  "sea": false,
+  "terrain_regions": [
+    {
+      "kind": "path",
+      "rect": [
+        -8,
+        -8,
+        16,
+        16
+      ]
+    },
+    {
+      "kind": "cobble",
+      "rect": [
+        -2,
+        -8,
+        4,
+        16
+      ]
+    },
+    {
+      "kind": "cobble",
+      "rect": [
+        -8,
+        -2,
+        16,
+        4
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "catalog_feature_0",
+      "kind": "catalog_feature",
+      "at": [
+        -5,
+        -4
+      ],
+      "catalog_code": "4G",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_1",
+      "kind": "catalog_feature",
+      "at": [
+        5,
+        3
+      ],
+      "catalog_code": "4G",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_2",
+      "kind": "catalog_feature",
+      "at": [
+        -5,
+        5
+      ],
+      "catalog_code": "4G",
+      "show_label": false
+    }
+  ],
+  "npcs": [],
+  "interactions": [
+    {
+      "id": "sign_0",
+      "kind": "sign",
+      "at": [
+        -5,
+        -6
+      ],
+      "title": "Names in the dark",
+      "lines": [
+        "The royal treasure routes were hidden here. Sable’s notes show a key at each ward-stone. The oldest map points beyond this valley, toward the king’s islands."
+      ]
+    }
+  ],
+  "exits": [
+    {
+      "id": "to_quarry",
+      "rect": [
+        -1.8,
+        4.4,
+        3.6,
+        2.2
+      ],
+      "target": "a2_quarry",
+      "spawn": [
+        23,
+        14
+      ],
+      "label": "Ashen Quarry",
+      "interact": true
+    }
+  ],
+  "enemies": [
+    {
+      "id": "foe_0",
+      "kind": "goblin_guard",
+      "at": [
+        -4,
+        0
+      ]
+    },
+    {
+      "id": "foe_1",
+      "kind": "goblin_slinger",
+      "at": [
+        3,
+        -4
+      ]
+    },
+    {
+      "id": "foe_2",
+      "kind": "goblin_raider",
+      "at": [
+        -3,
+        -5
+      ]
+    }
+  ],
+  "catalog_enemies": [],
+  "cave": true
+}

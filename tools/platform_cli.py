@@ -77,6 +77,26 @@ def validate():
     for group in campaign['ambushes']:
         enemy_ids={e['id'] for e in maps[group['map']].get('enemies',[])}
         if any(e not in enemy_ids for e in group['enemies']): raise ValueError('Unknown goblin ambusher')
+    expedition=read(GAME/'content/alpha2.json'); valid('alpha2',expedition)
+    expedition_maps=set(expedition['maps'])
+    if expedition['start'] not in expedition_maps or not expedition_maps.issubset(maps): raise ValueError('Alpha 2 areas are missing')
+    if any(not name.startswith('a2_') for name in expedition_maps): raise ValueError('Alpha 2 map IDs must stay isolated')
+    action_ids=[entry['id'] for entry in expedition['actions']]
+    if len(action_ids)!=len(set(action_ids)): raise ValueError('Duplicate Alpha 2 interaction ID')
+    encounters={name+'/'+mob['id'] for name in expedition_maps for mob in maps[name].get('enemies',[])+maps[name].get('catalog_enemies',[])}
+    if expedition['boss'] not in encounters: raise ValueError('Alpha 2 boss encounter is missing')
+    for entry in expedition['actions']:
+        if entry['map'] not in expedition_maps: raise ValueError('Alpha 2 action outside campaign')
+        b=maps[entry['map']]['bounds']; x,z=entry['at']
+        if not b[0]<x<b[2] or not b[1]<z<b[3]: raise ValueError('Alpha 2 interaction outside bounds')
+        if any(key not in encounters for key in entry.get('requires',[])): raise ValueError('Unknown Alpha 2 guardian')
+        if entry['type']=='loot' and entry.get('item') not in {e['id'] for e in magic['items']}: raise ValueError('Unknown Alpha 2 treasure')
+    visited={expedition['start']}; pending=list(visited)
+    while pending:
+        for route in maps[pending.pop()]['exits']:
+            if route['target'] not in expedition_maps: raise ValueError('Alpha 2 route leaks into another campaign')
+            if route['target'] not in visited: visited.add(route['target']); pending.append(route['target'])
+    if visited!=expedition_maps: raise ValueError('Unreachable Alpha 2 area')
     config=read(GAME/'content/platform.json')
     valid('platform',config)
     valid('forest_enemies',read(GAME/'content/forest_enemies.json'))
@@ -488,11 +508,11 @@ def identifier(value):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     commands=parser.add_subparsers(dest='command',required=True)
-    for name in ['validate','build','verify','verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-dash-uppercut','verify-unarmed','verify-environment','verify-builder','capture','verify-windows','capture-windows','run','recipes-check']:
+    for name in ['validate','build','verify','verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-dash-uppercut','verify-unarmed','verify-alpha2','verify-environment','verify-builder','capture','verify-windows','capture-windows','run','recipes-check']:
         command=commands.add_parser(name)
-        if name=='verify-windows': command.add_argument('--suite',choices=['all','sea-dragon','combat-skills','dash-uppercut','unarmed'],default='all')
+        if name=='verify-windows': command.add_argument('--suite',choices=['all','sea-dragon','combat-skills','dash-uppercut','unarmed','alpha2'],default='all')
         if name in ['capture','capture-windows']:
-            command.add_argument('--view',choices=['unarmed','dash-uppercut','combat-skills','sea-dragon','beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
+            command.add_argument('--view',choices=['alpha2','unarmed','dash-uppercut','combat-skills','sea-dragon','beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
             command.add_argument('--renderer',choices=['forward_plus','gl_compatibility'])
             command.add_argument('--art-profile',choices=['original','darkwood'])
             if name=='capture':
@@ -525,14 +545,14 @@ def main():
         assets(args.regenerate)
     elif args.command=='build':
         build()
-    elif args.command in ['verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-dash-uppercut','verify-unarmed','verify-environment']:
+    elif args.command in ['verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-dash-uppercut','verify-unarmed','verify-alpha2','verify-environment']:
         validate()
         assets()
         audit_sword()
         import_game()
-        suite='unarmed' if args.command=='verify-unarmed' else 'uppercut' if args.command=='verify-dash-uppercut' else 'skills' if args.command=='verify-skills' else 'sea_dragon' if args.command=='verify-sea-dragon' else 'beta' if args.command=='verify-beta' else 'environment' if args.command=='verify-environment' else 'core' if args.command=='verify-cores' else 'magic' if args.command=='verify-magic' else 'goblin' if args.command=='verify-goblins' else 'terrain' if args.command=='verify-terrain' else 'combat'
+        suite='alpha2' if args.command=='verify-alpha2' else 'unarmed' if args.command=='verify-unarmed' else 'uppercut' if args.command=='verify-dash-uppercut' else 'skills' if args.command=='verify-skills' else 'sea_dragon' if args.command=='verify-sea-dragon' else 'beta' if args.command=='verify-beta' else 'environment' if args.command=='verify-environment' else 'core' if args.command=='verify-cores' else 'magic' if args.command=='verify-magic' else 'goblin' if args.command=='verify-goblins' else 'terrain' if args.command=='verify-terrain' else 'combat'
         output=run_process([toolchain()['godot'],'--headless','--path',str(GAME),'--script',f'res://scripts/focused_{suite}_checks.gd'],log=f'focused-{suite}.log')
-        prefix='VERIFICATION_' if suite in ['sea_dragon','skills','uppercut','unarmed'] else 'BETA_CHECKS' if suite=='beta' else 'ENVIRONMENT_CHECKS' if suite=='environment' else 'CORE_CHECKS' if suite=='core' else 'MAGIC_CHECKS' if suite=='magic' else 'GOBLIN_CHECKS' if suite=='goblin' else 'TERRAIN_CHECKS' if suite=='terrain' else 'FOCUSED_COMBAT'
+        prefix='VERIFICATION_' if suite in ['sea_dragon','skills','uppercut','unarmed','alpha2'] else 'BETA_CHECKS' if suite=='beta' else 'ENVIRONMENT_CHECKS' if suite=='environment' else 'CORE_CHECKS' if suite=='core' else 'MAGIC_CHECKS' if suite=='magic' else 'GOBLIN_CHECKS' if suite=='goblin' else 'TERRAIN_CHECKS' if suite=='terrain' else 'FOCUSED_COMBAT'
         print(next(line for line in output.splitlines() if line.startswith(prefix)))
     elif args.command in ['verify','capture']:
         validate()

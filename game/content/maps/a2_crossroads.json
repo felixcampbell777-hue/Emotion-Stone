@@ -1,0 +1,600 @@
+{
+  "id": "a2_crossroads",
+  "display_name": "The Pilgrim Roads",
+  "subtitle": "West: mill and fen | East: quarry | North: old wood",
+  "seed": 830,
+  "bounds": [
+    -32,
+    -32,
+    32,
+    32
+  ],
+  "spawn": [
+    0,
+    26
+  ],
+  "sea": false,
+  "terrain_regions": [
+    {
+      "kind": "grass",
+      "rect": [
+        -32,
+        -32,
+        64,
+        64
+      ]
+    },
+    {
+      "kind": "cobble",
+      "rect": [
+        -2,
+        -32,
+        4,
+        64
+      ]
+    },
+    {
+      "kind": "cobble",
+      "rect": [
+        -32,
+        -2,
+        64,
+        4
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "catalog_feature_0",
+      "kind": "catalog_feature",
+      "at": [
+        -22.87,
+        15.19
+      ],
+      "catalog_code": "2A",
+      "scale": 1.2999371552329269,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_1",
+      "kind": "catalog_feature",
+      "at": [
+        8.41,
+        -27.99
+      ],
+      "catalog_code": "3A",
+      "scale": 1.287020878569626,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_2",
+      "kind": "catalog_feature",
+      "at": [
+        20.2,
+        -22.87
+      ],
+      "catalog_code": "3A",
+      "scale": 1.1510239834136846,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_3",
+      "kind": "catalog_feature",
+      "at": [
+        -5.08,
+        13.09
+      ],
+      "catalog_code": "2A",
+      "scale": 1.2465330696060157,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_4",
+      "kind": "catalog_feature",
+      "at": [
+        13.73,
+        25.28
+      ],
+      "catalog_code": "2A",
+      "scale": 1.0541751936076618,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_5",
+      "kind": "catalog_feature",
+      "at": [
+        18.82,
+        11.94
+      ],
+      "catalog_code": "1A",
+      "scale": 1.1002907789026755,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_6",
+      "kind": "catalog_feature",
+      "at": [
+        15.37,
+        26.0
+      ],
+      "catalog_code": "3A",
+      "scale": 1.1245866186182256,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_7",
+      "kind": "catalog_feature",
+      "at": [
+        -27.08,
+        10.12
+      ],
+      "catalog_code": "1A",
+      "scale": 0.928804362550655,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_8",
+      "kind": "catalog_feature",
+      "at": [
+        23.22,
+        13.3
+      ],
+      "catalog_code": "1A",
+      "scale": 0.9745293636683744,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_9",
+      "kind": "catalog_feature",
+      "at": [
+        -21.23,
+        -13.19
+      ],
+      "catalog_code": "1A",
+      "scale": 1.1614398030333686,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_10",
+      "kind": "catalog_feature",
+      "at": [
+        -26.59,
+        19.9
+      ],
+      "catalog_code": "3A",
+      "scale": 0.8543517158990929,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_11",
+      "kind": "catalog_feature",
+      "at": [
+        20.26,
+        23.64
+      ],
+      "catalog_code": "3A",
+      "scale": 0.9707769850046929,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_12",
+      "kind": "catalog_feature",
+      "at": [
+        11.94,
+        5.6
+      ],
+      "catalog_code": "2A",
+      "scale": 1.1218950393048615,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_13",
+      "kind": "catalog_feature",
+      "at": [
+        6.78,
+        -13.23
+      ],
+      "catalog_code": "1A",
+      "scale": 1.0081403714005979,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_14",
+      "kind": "catalog_feature",
+      "at": [
+        10.74,
+        14.76
+      ],
+      "catalog_code": "1A",
+      "scale": 1.2793244206165,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_15",
+      "kind": "catalog_feature",
+      "at": [
+        -6.98,
+        -21.96
+      ],
+      "catalog_code": "3A",
+      "scale": 1.1241390368547934,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_16",
+      "kind": "catalog_feature",
+      "at": [
+        -18.22,
+        -20.25
+      ],
+      "catalog_code": "2A",
+      "scale": 0.9578379870347906,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_17",
+      "kind": "catalog_feature",
+      "at": [
+        -18.98,
+        13.31
+      ],
+      "catalog_code": "3A",
+      "scale": 0.9171824802514641,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_18",
+      "kind": "catalog_feature",
+      "at": [
+        10.63,
+        13.17
+      ],
+      "catalog_code": "3A",
+      "scale": 1.0413986804554403,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_19",
+      "kind": "catalog_feature",
+      "at": [
+        5.52,
+        15.57
+      ],
+      "catalog_code": "2A",
+      "scale": 1.0606491722836398,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_20",
+      "kind": "catalog_feature",
+      "at": [
+        13.83,
+        -9.02
+      ],
+      "catalog_code": "3A",
+      "scale": 1.0220915897911935,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_21",
+      "kind": "catalog_feature",
+      "at": [
+        25.1,
+        -6.0
+      ],
+      "catalog_code": "3A",
+      "scale": 0.8599041432589519,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_22",
+      "kind": "catalog_feature",
+      "at": [
+        -28.45,
+        -21.92
+      ],
+      "catalog_code": "1A",
+      "scale": 1.0990983086731263,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_23",
+      "kind": "catalog_feature",
+      "at": [
+        23.75,
+        -27.21
+      ],
+      "catalog_code": "2A",
+      "scale": 1.1648730113195775,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_24",
+      "kind": "catalog_feature",
+      "at": [
+        -10.85,
+        -5.13
+      ],
+      "catalog_code": "2A",
+      "scale": 1.0527741010500271,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_25",
+      "kind": "catalog_feature",
+      "at": [
+        -8,
+        6
+      ],
+      "catalog_code": "3B",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_26",
+      "kind": "catalog_feature",
+      "at": [
+        9,
+        -7
+      ],
+      "catalog_code": "3B",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_27",
+      "kind": "catalog_feature",
+      "at": [
+        -12,
+        -14
+      ],
+      "catalog_code": "3B",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_28",
+      "kind": "catalog_feature",
+      "at": [
+        15,
+        13
+      ],
+      "catalog_code": "3B",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_29",
+      "kind": "catalog_feature",
+      "at": [
+        -6,
+        -18
+      ],
+      "catalog_code": "3C",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_30",
+      "kind": "catalog_feature",
+      "at": [
+        16,
+        7
+      ],
+      "catalog_code": "3C",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_31",
+      "kind": "catalog_feature",
+      "at": [
+        -17,
+        16
+      ],
+      "catalog_code": "3C",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_32",
+      "kind": "catalog_feature",
+      "at": [
+        22,
+        -22
+      ],
+      "catalog_code": "1F",
+      "scale": 1.35,
+      "show_label": false
+    },
+    {
+      "id": "well_33",
+      "kind": "well",
+      "at": [
+        -8,
+        0
+      ]
+    },
+    {
+      "id": "bench_34",
+      "kind": "bench",
+      "at": [
+        -6,
+        3
+      ]
+    }
+  ],
+  "npcs": [],
+  "interactions": [
+    {
+      "id": "sign_0",
+      "kind": "sign",
+      "at": [
+        2.2,
+        29.0
+      ],
+      "title": "Hearthmere",
+      "lines": [
+        "Hearthmere · approach the trail marker and press E."
+      ]
+    },
+    {
+      "id": "sign_1",
+      "kind": "sign",
+      "at": [
+        -26.8,
+        0.0
+      ],
+      "title": "The Drowned Mill",
+      "lines": [
+        "The Drowned Mill · approach the trail marker and press E."
+      ]
+    },
+    {
+      "id": "sign_2",
+      "kind": "sign",
+      "at": [
+        31.2,
+        0.0
+      ],
+      "title": "Ashen Quarry",
+      "lines": [
+        "Ashen Quarry · approach the trail marker and press E."
+      ]
+    },
+    {
+      "id": "sign_3",
+      "kind": "sign",
+      "at": [
+        2.2,
+        -29.0
+      ],
+      "title": "The Witness Wood",
+      "lines": [
+        "The Witness Wood · approach the trail marker and press E."
+      ]
+    },
+    {
+      "id": "sign_4",
+      "kind": "sign",
+      "at": [
+        2,
+        5
+      ],
+      "title": "The three wards",
+      "lines": [
+        "West: Drowned Mill, then Lantern Fen. East: Ashen Quarry. North: Witness Wood and the chapel. The routes reconnect; you may explore them in any order."
+      ]
+    }
+  ],
+  "exits": [
+    {
+      "id": "to_haven",
+      "rect": [
+        -1.8,
+        27.9,
+        3.6,
+        2.2
+      ],
+      "target": "a2_haven",
+      "spawn": [
+        0,
+        -18
+      ],
+      "label": "Hearthmere",
+      "interact": true
+    },
+    {
+      "id": "to_mill",
+      "rect": [
+        -30.8,
+        -1.1,
+        3.6,
+        2.2
+      ],
+      "target": "a2_mill",
+      "spawn": [
+        25,
+        -3
+      ],
+      "label": "The Drowned Mill",
+      "interact": true
+    },
+    {
+      "id": "to_quarry",
+      "rect": [
+        27.2,
+        -1.1,
+        3.6,
+        2.2
+      ],
+      "target": "a2_quarry",
+      "spawn": [
+        -27,
+        -3
+      ],
+      "label": "Ashen Quarry",
+      "interact": true
+    },
+    {
+      "id": "to_wood",
+      "rect": [
+        -1.8,
+        -30.1,
+        3.6,
+        2.2
+      ],
+      "target": "a2_wood",
+      "spawn": [
+        0,
+        26
+      ],
+      "label": "The Witness Wood",
+      "interact": true
+    }
+  ],
+  "enemies": [
+    {
+      "id": "foe_0",
+      "kind": "slime",
+      "at": [
+        -12,
+        1
+      ]
+    },
+    {
+      "id": "foe_1",
+      "kind": "slime",
+      "at": [
+        -17,
+        3
+      ]
+    },
+    {
+      "id": "foe_2",
+      "kind": "goblin_raider",
+      "at": [
+        14,
+        1
+      ]
+    },
+    {
+      "id": "foe_3",
+      "kind": "goblin_slinger",
+      "at": [
+        19,
+        -3
+      ]
+    },
+    {
+      "id": "foe_4",
+      "kind": "slime",
+      "at": [
+        -2,
+        -14
+      ]
+    },
+    {
+      "id": "foe_5",
+      "kind": "goblin_raider",
+      "at": [
+        3,
+        -21
+      ]
+    }
+  ],
+  "catalog_enemies": []
+}

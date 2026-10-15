@@ -52,7 +52,7 @@ func configure(owner_game:Control) -> void:
 	column.add_child(game.label("First-person view  ·  Mouse to look",16))
 	column.add_child(game.button("Toggle Fullscreen [F11]",game.toggle_fullscreen))
 	column.add_child(game.button("Controls & Help [H]",func(): close(); game.toggle_help()))
-	column.add_child(game.button("Alpha / Beta menu",func(): close(); game.title_screen.show_menu(game.current_save_path())))
+	column.add_child(game.button("Choose adventure",func(): close(); game.title_screen.show_menu(game.current_save_path())))
 	visible=false
 func _process(_delta:float) -> void:
 	if not visible: return

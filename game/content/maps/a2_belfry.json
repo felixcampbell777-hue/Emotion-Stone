@@ -1,0 +1,235 @@
+{
+  "id": "a2_belfry",
+  "display_name": "The Rootbound Belfry",
+  "subtitle": "The last bell is not made of bronze",
+  "seed": 826,
+  "bounds": [
+    -22,
+    -22,
+    22,
+    22
+  ],
+  "spawn": [
+    0,
+    16
+  ],
+  "sea": false,
+  "terrain_regions": [
+    {
+      "kind": "grass",
+      "rect": [
+        -22,
+        -22,
+        44,
+        44
+      ]
+    },
+    {
+      "kind": "cobble",
+      "rect": [
+        -2,
+        -22,
+        4,
+        44
+      ]
+    },
+    {
+      "kind": "cobble",
+      "rect": [
+        -22,
+        -2,
+        44,
+        4
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "catalog_feature_0",
+      "kind": "catalog_feature",
+      "at": [
+        0.0,
+        15.0
+      ],
+      "catalog_code": "2G",
+      "scale": 1.4,
+      "rotation": 0,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_1",
+      "kind": "catalog_feature",
+      "at": [
+        10.61,
+        10.61
+      ],
+      "catalog_code": "2G",
+      "scale": 1.4,
+      "rotation": -45,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_2",
+      "kind": "catalog_feature",
+      "at": [
+        15.0,
+        0.0
+      ],
+      "catalog_code": "2G",
+      "scale": 1.4,
+      "rotation": -90,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_3",
+      "kind": "catalog_feature",
+      "at": [
+        10.61,
+        -10.61
+      ],
+      "catalog_code": "2G",
+      "scale": 1.4,
+      "rotation": -135,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_4",
+      "kind": "catalog_feature",
+      "at": [
+        0.0,
+        -15.0
+      ],
+      "catalog_code": "2G",
+      "scale": 1.4,
+      "rotation": -180,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_5",
+      "kind": "catalog_feature",
+      "at": [
+        -10.61,
+        -10.61
+      ],
+      "catalog_code": "2G",
+      "scale": 1.4,
+      "rotation": -225,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_6",
+      "kind": "catalog_feature",
+      "at": [
+        -15.0,
+        -0.0
+      ],
+      "catalog_code": "2G",
+      "scale": 1.4,
+      "rotation": -270,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_7",
+      "kind": "catalog_feature",
+      "at": [
+        -10.61,
+        10.61
+      ],
+      "catalog_code": "2G",
+      "scale": 1.4,
+      "rotation": -315,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_8",
+      "kind": "catalog_feature",
+      "at": [
+        -18,
+        -15
+      ],
+      "catalog_code": "1A",
+      "scale": 1.7,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_9",
+      "kind": "catalog_feature",
+      "at": [
+        18,
+        -15
+      ],
+      "catalog_code": "1A",
+      "scale": 1.7,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_10",
+      "kind": "catalog_feature",
+      "at": [
+        -18,
+        15
+      ],
+      "catalog_code": "1A",
+      "scale": 1.7,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_11",
+      "kind": "catalog_feature",
+      "at": [
+        18,
+        15
+      ],
+      "catalog_code": "1A",
+      "scale": 1.7,
+      "show_label": false
+    }
+  ],
+  "npcs": [],
+  "interactions": [],
+  "exits": [
+    {
+      "id": "to_sanctum",
+      "rect": [
+        -1.8,
+        17.9,
+        3.6,
+        2.2
+      ],
+      "target": "a2_sanctum",
+      "spawn": [
+        0,
+        -3.5
+      ],
+      "label": "Chapel of the Unheard",
+      "interact": true
+    },
+    {
+      "id": "to_haven",
+      "rect": [
+        -1.8,
+        17.9,
+        3.6,
+        2.2
+      ],
+      "target": "a2_haven",
+      "spawn": [
+        0,
+        -17
+      ],
+      "label": "Pilgrim road to Hearthmere",
+      "interact": true
+    }
+  ],
+  "enemies": [
+    {
+      "id": "bellkeeper",
+      "kind": "bellkeeper",
+      "at": [
+        0,
+        -3
+      ]
+    }
+  ],
+  "catalog_enemies": []
+}

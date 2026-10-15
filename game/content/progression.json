@@ -70,7 +70,8 @@
     "goblin_slinger": 35,
     "goblin_foreman": 100,
     "beta_wolf": 30,
-    "beta_rat": 12
+    "beta_rat": 12,
+    "bellkeeper": 400
   },
   "quest_xp": 80,
   "skills": [

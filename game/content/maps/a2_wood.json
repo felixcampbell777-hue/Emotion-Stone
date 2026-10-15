@@ -1,0 +1,1048 @@
+{
+  "id": "a2_wood",
+  "display_name": "The Witness Wood",
+  "subtitle": "Three broken wards; one living witness",
+  "seed": 824,
+  "bounds": [
+    -32,
+    -32,
+    32,
+    32
+  ],
+  "spawn": [
+    0,
+    26
+  ],
+  "sea": false,
+  "terrain_regions": [
+    {
+      "kind": "grass",
+      "rect": [
+        -32,
+        -32,
+        64,
+        64
+      ]
+    },
+    {
+      "kind": "cobble",
+      "rect": [
+        -2,
+        -32,
+        4,
+        64
+      ]
+    },
+    {
+      "kind": "cobble",
+      "rect": [
+        -32,
+        -2,
+        64,
+        4
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "catalog_feature_0",
+      "kind": "catalog_feature",
+      "at": [
+        8.4,
+        14.8
+      ],
+      "catalog_code": "1A",
+      "scale": 1.0953613136538705,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_1",
+      "kind": "catalog_feature",
+      "at": [
+        -26.58,
+        23.1
+      ],
+      "catalog_code": "3A",
+      "scale": 1.232996305767688,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_2",
+      "kind": "catalog_feature",
+      "at": [
+        17.56,
+        -25.17
+      ],
+      "catalog_code": "3A",
+      "scale": 0.9521037701844721,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_3",
+      "kind": "catalog_feature",
+      "at": [
+        23.08,
+        -14.08
+      ],
+      "catalog_code": "3A",
+      "scale": 1.206160946772299,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_4",
+      "kind": "catalog_feature",
+      "at": [
+        18.41,
+        -14.48
+      ],
+      "catalog_code": "2A",
+      "scale": 0.8801785690515072,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_5",
+      "kind": "catalog_feature",
+      "at": [
+        -14.07,
+        -6.34
+      ],
+      "catalog_code": "2A",
+      "scale": 1.1519448552340061,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_6",
+      "kind": "catalog_feature",
+      "at": [
+        16.37,
+        -23.09
+      ],
+      "catalog_code": "2A",
+      "scale": 1.1198146250231373,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_7",
+      "kind": "catalog_feature",
+      "at": [
+        -15.37,
+        -6.44
+      ],
+      "catalog_code": "2A",
+      "scale": 0.9163481913383671,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_8",
+      "kind": "catalog_feature",
+      "at": [
+        16.89,
+        7.01
+      ],
+      "catalog_code": "2A",
+      "scale": 0.9247163198209629,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_9",
+      "kind": "catalog_feature",
+      "at": [
+        17.48,
+        23.17
+      ],
+      "catalog_code": "3A",
+      "scale": 1.02675146210079,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_10",
+      "kind": "catalog_feature",
+      "at": [
+        -19.68,
+        -17.55
+      ],
+      "catalog_code": "3A",
+      "scale": 1.1116562074476777,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_11",
+      "kind": "catalog_feature",
+      "at": [
+        -7.73,
+        21.34
+      ],
+      "catalog_code": "1A",
+      "scale": 0.9336763735265049,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_12",
+      "kind": "catalog_feature",
+      "at": [
+        10.96,
+        5.06
+      ],
+      "catalog_code": "2A",
+      "scale": 1.1887009556812504,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_13",
+      "kind": "catalog_feature",
+      "at": [
+        -13.18,
+        -9.09
+      ],
+      "catalog_code": "1A",
+      "scale": 0.9924081357929339,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_14",
+      "kind": "catalog_feature",
+      "at": [
+        -13.9,
+        -19.89
+      ],
+      "catalog_code": "3A",
+      "scale": 0.891394776852225,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_15",
+      "kind": "catalog_feature",
+      "at": [
+        -28.55,
+        21.39
+      ],
+      "catalog_code": "3A",
+      "scale": 0.8765658311529048,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_16",
+      "kind": "catalog_feature",
+      "at": [
+        11.08,
+        28.24
+      ],
+      "catalog_code": "2A",
+      "scale": 0.9060974207832888,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_17",
+      "kind": "catalog_feature",
+      "at": [
+        23.56,
+        22.3
+      ],
+      "catalog_code": "2A",
+      "scale": 1.1932215635071581,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_18",
+      "kind": "catalog_feature",
+      "at": [
+        11.1,
+        -17.63
+      ],
+      "catalog_code": "3A",
+      "scale": 1.1361413706611807,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_19",
+      "kind": "catalog_feature",
+      "at": [
+        -15.38,
+        6.94
+      ],
+      "catalog_code": "1A",
+      "scale": 1.1764154107460953,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_20",
+      "kind": "catalog_feature",
+      "at": [
+        18.27,
+        -9.29
+      ],
+      "catalog_code": "1A",
+      "scale": 0.8734945348153383,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_21",
+      "kind": "catalog_feature",
+      "at": [
+        6.4,
+        -23.86
+      ],
+      "catalog_code": "3A",
+      "scale": 1.0639028994889113,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_22",
+      "kind": "catalog_feature",
+      "at": [
+        24.2,
+        24.46
+      ],
+      "catalog_code": "2A",
+      "scale": 1.2252379604138188,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_23",
+      "kind": "catalog_feature",
+      "at": [
+        -8.89,
+        -11.82
+      ],
+      "catalog_code": "1A",
+      "scale": 1.1351140976641207,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_24",
+      "kind": "catalog_feature",
+      "at": [
+        -22.06,
+        10.08
+      ],
+      "catalog_code": "3A",
+      "scale": 1.152587370787259,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_25",
+      "kind": "catalog_feature",
+      "at": [
+        -5.21,
+        23.45
+      ],
+      "catalog_code": "1A",
+      "scale": 0.855652015148169,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_26",
+      "kind": "catalog_feature",
+      "at": [
+        -8.19,
+        27.7
+      ],
+      "catalog_code": "1A",
+      "scale": 1.111553375894829,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_27",
+      "kind": "catalog_feature",
+      "at": [
+        -5.19,
+        -20.96
+      ],
+      "catalog_code": "2A",
+      "scale": 0.8533469349486975,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_28",
+      "kind": "catalog_feature",
+      "at": [
+        26.86,
+        20.54
+      ],
+      "catalog_code": "1A",
+      "scale": 0.9099884494640619,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_29",
+      "kind": "catalog_feature",
+      "at": [
+        22.98,
+        -22.39
+      ],
+      "catalog_code": "2A",
+      "scale": 0.9214134780444572,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_30",
+      "kind": "catalog_feature",
+      "at": [
+        23.45,
+        12.18
+      ],
+      "catalog_code": "1A",
+      "scale": 0.9285020819763707,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_31",
+      "kind": "catalog_feature",
+      "at": [
+        8.87,
+        15.63
+      ],
+      "catalog_code": "3A",
+      "scale": 1.0273847026104705,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_32",
+      "kind": "catalog_feature",
+      "at": [
+        9.77,
+        -17.8
+      ],
+      "catalog_code": "1A",
+      "scale": 0.9928649566416601,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_33",
+      "kind": "catalog_feature",
+      "at": [
+        14.81,
+        -7.16
+      ],
+      "catalog_code": "3A",
+      "scale": 1.2346876718599402,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_34",
+      "kind": "catalog_feature",
+      "at": [
+        6.43,
+        -23.62
+      ],
+      "catalog_code": "2A",
+      "scale": 1.0059047407964097,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_35",
+      "kind": "catalog_feature",
+      "at": [
+        -5.04,
+        -26.65
+      ],
+      "catalog_code": "3A",
+      "scale": 1.226795548057383,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_36",
+      "kind": "catalog_feature",
+      "at": [
+        -16.28,
+        -14.26
+      ],
+      "catalog_code": "3A",
+      "scale": 1.1464411215078674,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_37",
+      "kind": "catalog_feature",
+      "at": [
+        -9.13,
+        -5.26
+      ],
+      "catalog_code": "1A",
+      "scale": 1.2974171784296133,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_38",
+      "kind": "catalog_feature",
+      "at": [
+        -17.36,
+        -23.85
+      ],
+      "catalog_code": "3A",
+      "scale": 1.0106547373295376,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_39",
+      "kind": "catalog_feature",
+      "at": [
+        16.0,
+        -7.7
+      ],
+      "catalog_code": "3A",
+      "scale": 1.2157241455812282,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_40",
+      "kind": "catalog_feature",
+      "at": [
+        25.1,
+        11.29
+      ],
+      "catalog_code": "3A",
+      "scale": 0.9384350903506956,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_41",
+      "kind": "catalog_feature",
+      "at": [
+        -9.29,
+        8.22
+      ],
+      "catalog_code": "2A",
+      "scale": 1.0756838844846708,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_42",
+      "kind": "catalog_feature",
+      "at": [
+        -17.49,
+        -18.19
+      ],
+      "catalog_code": "1A",
+      "scale": 1.0804922108447708,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_43",
+      "kind": "catalog_feature",
+      "at": [
+        19.86,
+        -26.91
+      ],
+      "catalog_code": "2A",
+      "scale": 1.2898660574691634,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_44",
+      "kind": "catalog_feature",
+      "at": [
+        22.16,
+        -12.62
+      ],
+      "catalog_code": "1A",
+      "scale": 0.9885582508500168,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_45",
+      "kind": "catalog_feature",
+      "at": [
+        -9.08,
+        -14.0
+      ],
+      "catalog_code": "2A",
+      "scale": 1.2735924441903033,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_46",
+      "kind": "catalog_feature",
+      "at": [
+        19.21,
+        26.0
+      ],
+      "catalog_code": "1A",
+      "scale": 0.8605749332843695,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_47",
+      "kind": "catalog_feature",
+      "at": [
+        -6.06,
+        -12.27
+      ],
+      "catalog_code": "3A",
+      "scale": 1.073760347706253,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_48",
+      "kind": "catalog_feature",
+      "at": [
+        -11.89,
+        11.32
+      ],
+      "catalog_code": "2A",
+      "scale": 1.1815158012596911,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_49",
+      "kind": "catalog_feature",
+      "at": [
+        -17.89,
+        -22.68
+      ],
+      "catalog_code": "2A",
+      "scale": 1.0396324011827303,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_50",
+      "kind": "catalog_feature",
+      "at": [
+        -28.12,
+        -21.82
+      ],
+      "catalog_code": "2A",
+      "scale": 1.1471154413283096,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_51",
+      "kind": "catalog_feature",
+      "at": [
+        14.25,
+        10.91
+      ],
+      "catalog_code": "1A",
+      "scale": 0.9319956545294656,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_52",
+      "kind": "catalog_feature",
+      "at": [
+        25.22,
+        -11.65
+      ],
+      "catalog_code": "1A",
+      "scale": 0.9469974766961183,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_53",
+      "kind": "catalog_feature",
+      "at": [
+        -16.71,
+        -17.63
+      ],
+      "catalog_code": "2A",
+      "scale": 0.9728090827991749,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_54",
+      "kind": "catalog_feature",
+      "at": [
+        27.71,
+        -11.48
+      ],
+      "catalog_code": "3A",
+      "scale": 1.2395627442172308,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_55",
+      "kind": "catalog_feature",
+      "at": [
+        23.88,
+        -10.82
+      ],
+      "catalog_code": "1A",
+      "scale": 1.2896111837775006,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_56",
+      "kind": "catalog_feature",
+      "at": [
+        -17.02,
+        -25.84
+      ],
+      "catalog_code": "1A",
+      "scale": 1.226818215139643,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_57",
+      "kind": "catalog_feature",
+      "at": [
+        11.91,
+        -23.05
+      ],
+      "catalog_code": "1A",
+      "scale": 1.2745057141006697,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_58",
+      "kind": "catalog_feature",
+      "at": [
+        23.67,
+        -6.76
+      ],
+      "catalog_code": "1A",
+      "scale": 1.0748699865536837,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_59",
+      "kind": "catalog_feature",
+      "at": [
+        19.25,
+        -17.88
+      ],
+      "catalog_code": "2A",
+      "scale": 1.0356687520024832,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_60",
+      "kind": "catalog_feature",
+      "at": [
+        -16.55,
+        -21.84
+      ],
+      "catalog_code": "2A",
+      "scale": 1.1073021339333422,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_61",
+      "kind": "catalog_feature",
+      "at": [
+        18.06,
+        -23.95
+      ],
+      "catalog_code": "3A",
+      "scale": 0.8788880455280956,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_62",
+      "kind": "catalog_feature",
+      "at": [
+        -18.35,
+        28.45
+      ],
+      "catalog_code": "3A",
+      "scale": 1.1524060230957935,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_63",
+      "kind": "catalog_feature",
+      "at": [
+        -8,
+        6
+      ],
+      "catalog_code": "3B",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_64",
+      "kind": "catalog_feature",
+      "at": [
+        9,
+        -7
+      ],
+      "catalog_code": "3B",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_65",
+      "kind": "catalog_feature",
+      "at": [
+        -12,
+        -14
+      ],
+      "catalog_code": "3B",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_66",
+      "kind": "catalog_feature",
+      "at": [
+        15,
+        13
+      ],
+      "catalog_code": "3B",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_67",
+      "kind": "catalog_feature",
+      "at": [
+        -6,
+        -18
+      ],
+      "catalog_code": "3C",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_68",
+      "kind": "catalog_feature",
+      "at": [
+        16,
+        7
+      ],
+      "catalog_code": "3C",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_69",
+      "kind": "catalog_feature",
+      "at": [
+        -17,
+        16
+      ],
+      "catalog_code": "3C",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_70",
+      "kind": "catalog_feature",
+      "at": [
+        22,
+        -22
+      ],
+      "catalog_code": "1F",
+      "scale": 1.35,
+      "show_label": false
+    }
+  ],
+  "npcs": [
+    {
+      "id": "sable",
+      "character": "keeper",
+      "role": "a2_sable",
+      "at": [
+        -9,
+        -20
+      ],
+      "dialogue": [
+        "The Hollow Bell"
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "id": "sign_0",
+      "kind": "sign",
+      "at": [
+        2.2,
+        29.0
+      ],
+      "title": "The Pilgrim Roads",
+      "lines": [
+        "The Pilgrim Roads · approach the trail marker and press E."
+      ]
+    },
+    {
+      "id": "sign_1",
+      "kind": "sign",
+      "at": [
+        -26.8,
+        0.0
+      ],
+      "title": "Lantern Fen",
+      "lines": [
+        "Lantern Fen · approach the trail marker and press E."
+      ]
+    },
+    {
+      "id": "sign_2",
+      "kind": "sign",
+      "at": [
+        31.2,
+        0.0
+      ],
+      "title": "Ashen Quarry",
+      "lines": [
+        "Ashen Quarry · approach the trail marker and press E."
+      ]
+    },
+    {
+      "id": "sign_3",
+      "kind": "sign",
+      "at": [
+        2.2,
+        -29.0
+      ],
+      "title": "Chapel of the Unheard",
+      "lines": [
+        "Chapel of the Unheard · approach the trail marker and press E."
+      ]
+    },
+    {
+      "id": "sign_4",
+      "kind": "sign",
+      "at": [
+        2,
+        -6
+      ],
+      "title": "The guardian’s rule",
+      "lines": [
+        "A thrown stone can open living stone. Face the guardian and right-click just before its rock arrives, then attack the glowing cracks. Water Lance can breach the shell too."
+      ]
+    }
+  ],
+  "exits": [
+    {
+      "id": "to_crossroads",
+      "rect": [
+        -1.8,
+        27.9,
+        3.6,
+        2.2
+      ],
+      "target": "a2_crossroads",
+      "spawn": [
+        0,
+        -26
+      ],
+      "label": "The Pilgrim Roads",
+      "interact": true
+    },
+    {
+      "id": "to_fen",
+      "rect": [
+        -30.8,
+        -1.1,
+        3.6,
+        2.2
+      ],
+      "target": "a2_fen",
+      "spawn": [
+        25,
+        -3
+      ],
+      "label": "Lantern Fen",
+      "interact": true
+    },
+    {
+      "id": "to_quarry",
+      "rect": [
+        27.2,
+        -1.1,
+        3.6,
+        2.2
+      ],
+      "target": "a2_quarry",
+      "spawn": [
+        0,
+        -24
+      ],
+      "label": "Ashen Quarry",
+      "interact": true
+    },
+    {
+      "id": "to_sanctum",
+      "rect": [
+        -1.8,
+        -30.1,
+        3.6,
+        2.2
+      ],
+      "target": "a2_sanctum",
+      "spawn": [
+        0,
+        2.5
+      ],
+      "label": "Chapel of the Unheard",
+      "interact": true
+    }
+  ],
+  "enemies": [
+    {
+      "id": "foe_0",
+      "kind": "goblin_raider",
+      "at": [
+        -4,
+        17
+      ]
+    },
+    {
+      "id": "foe_1",
+      "kind": "goblin_slinger",
+      "at": [
+        5,
+        12
+      ]
+    },
+    {
+      "id": "foe_2",
+      "kind": "boar",
+      "at": [
+        -14,
+        1
+      ]
+    },
+    {
+      "id": "foe_3",
+      "kind": "boar",
+      "at": [
+        -17,
+        4
+      ]
+    },
+    {
+      "id": "foe_4",
+      "kind": "goblin_guard",
+      "at": [
+        13,
+        0
+      ]
+    },
+    {
+      "id": "foe_5",
+      "kind": "goblin_slinger",
+      "at": [
+        19,
+        -4
+      ]
+    },
+    {
+      "id": "ward_guardian",
+      "kind": "warden",
+      "at": [
+        0,
+        -13
+      ]
+    }
+  ],
+  "catalog_enemies": [
+    {
+      "id": "slime_0",
+      "code": "3E",
+      "at": [
+        -1,
+        5
+      ]
+    },
+    {
+      "id": "slime_1",
+      "code": "2E",
+      "at": [
+        -10,
+        -7
+      ]
+    },
+    {
+      "id": "slime_2",
+      "code": "1E",
+      "at": [
+        8,
+        -18
+      ]
+    }
+  ]
+}

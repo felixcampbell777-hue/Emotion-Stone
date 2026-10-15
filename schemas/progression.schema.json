@@ -111,6 +111,10 @@
         "beta_rat": {
           "type": "integer",
           "minimum": 1
+        },
+        "bellkeeper": {
+          "type": "integer",
+          "minimum": 1
         }
       }
     },

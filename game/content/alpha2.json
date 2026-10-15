@@ -1,0 +1,325 @@
+{
+  "id": "hollow_bell",
+  "title": "The Hollow Bell",
+  "maps": [
+    "a2_haven",
+    "a2_crossroads",
+    "a2_mill",
+    "a2_fen",
+    "a2_quarry",
+    "a2_wood",
+    "a2_watch",
+    "a2_sanctum",
+    "a2_belfry"
+  ],
+  "start": "a2_haven",
+  "boss": "a2_belfry/bellkeeper",
+  "target_minutes": [
+    45,
+    75
+  ],
+  "actions": [
+    {
+      "id": "hearth",
+      "map": "a2_haven",
+      "at": [
+        0,
+        5
+      ],
+      "title": "Rest · Hearthmere",
+      "type": "rest"
+    },
+    {
+      "id": "pilgrim_fire",
+      "map": "a2_crossroads",
+      "at": [
+        -6,
+        0
+      ],
+      "title": "Rest · The Pilgrim Roads",
+      "type": "rest"
+    },
+    {
+      "id": "mill_fire",
+      "map": "a2_mill",
+      "at": [
+        17,
+        17
+      ],
+      "title": "Rest · The Drowned Mill",
+      "type": "rest"
+    },
+    {
+      "id": "fen_fire",
+      "map": "a2_fen",
+      "at": [
+        -17,
+        19
+      ],
+      "title": "Rest · Lantern Fen",
+      "type": "rest"
+    },
+    {
+      "id": "quarry_fire",
+      "map": "a2_quarry",
+      "at": [
+        -21,
+        19
+      ],
+      "title": "Rest · Ashen Quarry",
+      "type": "rest"
+    },
+    {
+      "id": "wood_fire",
+      "map": "a2_wood",
+      "at": [
+        4,
+        24
+      ],
+      "title": "Rest · The Witness Wood",
+      "type": "rest"
+    },
+    {
+      "id": "chapel_fire",
+      "map": "a2_sanctum",
+      "at": [
+        4,
+        4
+      ],
+      "title": "Rest · Chapel of the Unheard",
+      "type": "rest"
+    },
+    {
+      "id": "mill_ward",
+      "map": "a2_mill",
+      "at": [
+        0,
+        -21
+      ],
+      "title": "Quiet the drowned ward-stone",
+      "type": "ward",
+      "requires": [
+        "a2_mill/slime_0",
+        "a2_mill/slime_1",
+        "a2_mill/slime_2",
+        "a2_mill/slime_3"
+      ],
+      "xp": 180
+    },
+    {
+      "id": "quarry_ward",
+      "map": "a2_quarry",
+      "at": [
+        0,
+        -23
+      ],
+      "title": "Quiet the ashen ward-stone",
+      "type": "ward",
+      "requires": [
+        "a2_quarry/quarry_captain"
+      ],
+      "xp": 220
+    },
+    {
+      "id": "wood_ward",
+      "map": "a2_wood",
+      "at": [
+        0,
+        -19
+      ],
+      "title": "Quiet the witness ward-stone",
+      "type": "ward",
+      "requires": [
+        "a2_wood/ward_guardian"
+      ],
+      "xp": 250
+    },
+    {
+      "id": "medicine",
+      "map": "a2_mill",
+      "at": [
+        -14,
+        13
+      ],
+      "title": "Search the abandoned medicine chest",
+      "type": "quest",
+      "xp": 80
+    },
+    {
+      "id": "ledger",
+      "map": "a2_watch",
+      "at": [
+        0,
+        -5.5
+      ],
+      "title": "Recover the keeper’s ledger",
+      "type": "quest",
+      "xp": 140
+    },
+    {
+      "id": "bellheart",
+      "map": "a2_belfry",
+      "at": [
+        0,
+        -3
+      ],
+      "title": "Take the Bellkeeper’s heart",
+      "type": "heart",
+      "requires": [
+        "a2_belfry/bellkeeper"
+      ],
+      "xp": 300
+    },
+    {
+      "id": "mill_cache",
+      "map": "a2_mill",
+      "at": [
+        -18,
+        -19
+      ],
+      "title": "Open forgotten reliquary",
+      "type": "loot",
+      "item": "lanternglass",
+      "xp": 75
+    },
+    {
+      "id": "fen_cache",
+      "map": "a2_fen",
+      "at": [
+        17,
+        -19
+      ],
+      "title": "Open forgotten reliquary",
+      "type": "loot",
+      "item": "tidal_signet",
+      "xp": 75
+    },
+    {
+      "id": "quarry_cache",
+      "map": "a2_quarry",
+      "at": [
+        20,
+        -20
+      ],
+      "title": "Open forgotten reliquary",
+      "type": "loot",
+      "item": "starfall_band",
+      "xp": 75
+    },
+    {
+      "id": "watch_cache",
+      "map": "a2_watch",
+      "at": [
+        -5,
+        -5
+      ],
+      "title": "Open forgotten reliquary",
+      "type": "loot",
+      "item": "oakheart",
+      "xp": 75
+    },
+    {
+      "id": "wood_cache",
+      "map": "a2_wood",
+      "at": [
+        -23,
+        -23
+      ],
+      "title": "Open forgotten reliquary",
+      "type": "loot",
+      "item": "bloodbloom",
+      "xp": 75
+    },
+    {
+      "id": "pilgrim_cache",
+      "map": "a2_crossroads",
+      "at": [
+        20,
+        19
+      ],
+      "title": "Open forgotten reliquary",
+      "type": "loot",
+      "item": "wayfinder_boots",
+      "xp": 75
+    },
+    {
+      "id": "mill_supplies",
+      "map": "a2_mill",
+      "at": [
+        14,
+        12
+      ],
+      "title": "Gather surviving remedies",
+      "type": "loot",
+      "item": "spring_elixir",
+      "count": 2,
+      "xp": 20
+    },
+    {
+      "id": "quarry_supplies",
+      "map": "a2_quarry",
+      "at": [
+        15,
+        20
+      ],
+      "title": "Gather surviving remedies",
+      "type": "loot",
+      "item": "spring_elixir",
+      "count": 2,
+      "xp": 20
+    },
+    {
+      "id": "fen_supplies",
+      "map": "a2_fen",
+      "at": [
+        -18,
+        15
+      ],
+      "title": "Gather surviving remedies",
+      "type": "loot",
+      "item": "spring_elixir",
+      "count": 2,
+      "xp": 20
+    },
+    {
+      "id": "wood_supplies",
+      "map": "a2_wood",
+      "at": [
+        20,
+        20
+      ],
+      "title": "Gather surviving remedies",
+      "type": "loot",
+      "item": "spring_elixir",
+      "count": 2,
+      "xp": 20
+    },
+    {
+      "id": "root_memory",
+      "map": "a2_wood",
+      "at": [
+        -22,
+        -17
+      ],
+      "title": "Listen to the names in the roots",
+      "type": "lore",
+      "xp": 100,
+      "text": "The roots repeat a cheerful message: Eli found a sea route to the old king’s islands. He asks Oren to bring a boat, two fishing rods, and absolutely no more turnip sandwiches."
+    }
+  ],
+  "quest_rewards": {
+    "medicine": 240,
+    "courier": 250,
+    "ledger": 280,
+    "memory": 220,
+    "ending": 650
+  },
+  "boss_tuning": {
+    "health": 740,
+    "damage": 18,
+    "ring_damage": 16,
+    "windup": 1.25,
+    "recovery": 2.0,
+    "phase_threshold": 0.5
+  }
+}

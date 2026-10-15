@@ -1,0 +1,200 @@
+{
+  "id": "a2_haven",
+  "display_name": "Hearthmere",
+  "subtitle": "An old compass promises a route to the royal vault",
+  "seed": 825,
+  "bounds": [
+    -24,
+    -24,
+    24,
+    24
+  ],
+  "spawn": [
+    0,
+    9
+  ],
+  "sea": false,
+  "terrain_regions": [
+    {
+      "kind": "grass",
+      "rect": [
+        -24,
+        -24,
+        48,
+        48
+      ]
+    },
+    {
+      "kind": "cobble",
+      "rect": [
+        -2,
+        -24,
+        4,
+        48
+      ]
+    },
+    {
+      "kind": "cobble",
+      "rect": [
+        -24,
+        -2,
+        48,
+        4
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "house_0",
+      "kind": "house",
+      "at": [
+        -9,
+        8
+      ],
+      "rotation": 180
+    },
+    {
+      "id": "house_1",
+      "kind": "house",
+      "at": [
+        10,
+        8
+      ],
+      "rotation": 180
+    },
+    {
+      "id": "house_2",
+      "kind": "house",
+      "at": [
+        -10,
+        -8
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "house_3",
+      "kind": "house",
+      "at": [
+        10,
+        -8
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "well_4",
+      "kind": "well",
+      "at": [
+        5,
+        0
+      ]
+    },
+    {
+      "id": "bench_5",
+      "kind": "bench",
+      "at": [
+        -5,
+        3
+      ]
+    },
+    {
+      "id": "market_stall_6",
+      "kind": "market_stall",
+      "at": [
+        -9,
+        0
+      ]
+    },
+    {
+      "id": "market_stall_7",
+      "kind": "market_stall",
+      "at": [
+        9,
+        0
+      ]
+    }
+  ],
+  "npcs": [
+    {
+      "id": "mother",
+      "character": "mother",
+      "role": "a2_mother",
+      "at": [
+        -3,
+        7
+      ],
+      "dialogue": [
+        "The Hollow Bell"
+      ]
+    },
+    {
+      "id": "mara",
+      "character": "farm_tessa",
+      "role": "a2_mara",
+      "at": [
+        -5,
+        -4
+      ],
+      "dialogue": [
+        "The Hollow Bell"
+      ]
+    },
+    {
+      "id": "oren",
+      "character": "farm_rowan",
+      "role": "a2_oren",
+      "at": [
+        5,
+        5
+      ],
+      "dialogue": [
+        "The Hollow Bell"
+      ]
+    },
+    {
+      "id": "ada",
+      "character": "keeper",
+      "role": "a2_ada",
+      "at": [
+        5,
+        -11
+      ],
+      "dialogue": [
+        "The Hollow Bell"
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "id": "sign_0",
+      "kind": "sign",
+      "at": [
+        2,
+        -18
+      ],
+      "title": "North · Pilgrim Roads",
+      "lines": [
+        "Three roads leave the crossroads. Return here to speak with your companions, use the hearth, or save with F5. Quest journal: I → Quests. Draw sword: R. Parry: right mouse. Hold left mouse: heavy attack."
+      ]
+    }
+  ],
+  "exits": [
+    {
+      "id": "to_crossroads",
+      "rect": [
+        -1.8,
+        -22.1,
+        3.6,
+        2.2
+      ],
+      "target": "a2_crossroads",
+      "spawn": [
+        0,
+        26
+      ],
+      "label": "The Pilgrim Roads",
+      "interact": true
+    }
+  ],
+  "enemies": [],
+  "catalog_enemies": []
+}

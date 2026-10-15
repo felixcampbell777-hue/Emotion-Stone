@@ -1,0 +1,434 @@
+{
+  "id": "a2_quarry",
+  "display_name": "Ashen Quarry",
+  "subtitle": "The stonecutters heard something singing underground",
+  "seed": 826,
+  "bounds": [
+    -30,
+    -30,
+    30,
+    30
+  ],
+  "spawn": [
+    0,
+    24
+  ],
+  "sea": false,
+  "terrain_regions": [
+    {
+      "kind": "grass",
+      "rect": [
+        -30,
+        -30,
+        60,
+        60
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -30,
+        -30,
+        60,
+        60
+      ]
+    },
+    {
+      "kind": "cobble",
+      "rect": [
+        -2,
+        -30,
+        4,
+        60
+      ]
+    },
+    {
+      "kind": "cobble",
+      "rect": [
+        -30,
+        -2,
+        60,
+        4
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "catalog_feature_0",
+      "kind": "catalog_feature",
+      "at": [
+        -16.82,
+        -26.18
+      ],
+      "catalog_code": "3A",
+      "scale": 1.113913521894633,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_1",
+      "kind": "catalog_feature",
+      "at": [
+        -20.15,
+        -13.48
+      ],
+      "catalog_code": "1A",
+      "scale": 1.2418420211440853,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_2",
+      "kind": "catalog_feature",
+      "at": [
+        17.28,
+        8.33
+      ],
+      "catalog_code": "2A",
+      "scale": 1.0142931956631447,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_3",
+      "kind": "catalog_feature",
+      "at": [
+        -22.37,
+        -15.43
+      ],
+      "catalog_code": "1A",
+      "scale": 1.096676938994742,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_4",
+      "kind": "catalog_feature",
+      "at": [
+        19.47,
+        18.2
+      ],
+      "catalog_code": "2A",
+      "scale": 1.0700270344458451,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_5",
+      "kind": "catalog_feature",
+      "at": [
+        -25.7,
+        23.73
+      ],
+      "catalog_code": "2A",
+      "scale": 1.1870612757415513,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_6",
+      "kind": "catalog_feature",
+      "at": [
+        -8,
+        6
+      ],
+      "catalog_code": "3B",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_7",
+      "kind": "catalog_feature",
+      "at": [
+        9,
+        -7
+      ],
+      "catalog_code": "3B",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_8",
+      "kind": "catalog_feature",
+      "at": [
+        -12,
+        -14
+      ],
+      "catalog_code": "3B",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_9",
+      "kind": "catalog_feature",
+      "at": [
+        15,
+        13
+      ],
+      "catalog_code": "3B",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_10",
+      "kind": "catalog_feature",
+      "at": [
+        -6,
+        -18
+      ],
+      "catalog_code": "3C",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_11",
+      "kind": "catalog_feature",
+      "at": [
+        16,
+        7
+      ],
+      "catalog_code": "3C",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_12",
+      "kind": "catalog_feature",
+      "at": [
+        -17,
+        16
+      ],
+      "catalog_code": "3C",
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_13",
+      "kind": "catalog_feature",
+      "at": [
+        20,
+        -20
+      ],
+      "catalog_code": "1F",
+      "scale": 1.35,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_14",
+      "kind": "catalog_feature",
+      "at": [
+        -12,
+        -9
+      ],
+      "catalog_code": "4B",
+      "scale": 1.6,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_15",
+      "kind": "catalog_feature",
+      "at": [
+        13,
+        9
+      ],
+      "catalog_code": "4B",
+      "scale": 1.6,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_16",
+      "kind": "catalog_feature",
+      "at": [
+        -15,
+        14
+      ],
+      "catalog_code": "4B",
+      "scale": 1.6,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_17",
+      "kind": "catalog_feature",
+      "at": [
+        17,
+        -14
+      ],
+      "catalog_code": "4B",
+      "scale": 1.6,
+      "show_label": false
+    },
+    {
+      "id": "catalog_feature_18",
+      "kind": "catalog_feature",
+      "at": [
+        23,
+        17
+      ],
+      "catalog_code": "1G",
+      "show_label": false
+    }
+  ],
+  "npcs": [],
+  "interactions": [
+    {
+      "id": "sign_0",
+      "kind": "sign",
+      "at": [
+        -24.8,
+        0.0
+      ],
+      "title": "The Pilgrim Roads",
+      "lines": [
+        "The Pilgrim Roads · approach the trail marker and press E."
+      ]
+    },
+    {
+      "id": "sign_1",
+      "kind": "sign",
+      "at": [
+        2.2,
+        -27.0
+      ],
+      "title": "The Witness Wood",
+      "lines": [
+        "The Witness Wood · approach the trail marker and press E."
+      ]
+    },
+    {
+      "id": "sign_2",
+      "kind": "sign",
+      "at": [
+        25.2,
+        17.0
+      ],
+      "title": "The Buried Watch",
+      "lines": [
+        "The Buried Watch · approach the trail marker and press E."
+      ]
+    },
+    {
+      "id": "sign_3",
+      "kind": "sign",
+      "at": [
+        3,
+        1
+      ],
+      "title": "A warning scratched in slate",
+      "lines": [
+        "The guards brace their shields until they attack. Parry their rush, then punish the recovery. The buried watch is south-east. The northern path leads to the Witness Wood."
+      ]
+    }
+  ],
+  "exits": [
+    {
+      "id": "to_crossroads",
+      "rect": [
+        -28.8,
+        -1.1,
+        3.6,
+        2.2
+      ],
+      "target": "a2_crossroads",
+      "spawn": [
+        29,
+        -3
+      ],
+      "label": "The Pilgrim Roads",
+      "interact": true
+    },
+    {
+      "id": "to_wood",
+      "rect": [
+        -1.8,
+        -28.1,
+        3.6,
+        2.2
+      ],
+      "target": "a2_wood",
+      "spawn": [
+        29,
+        -3
+      ],
+      "label": "The Witness Wood",
+      "interact": true
+    },
+    {
+      "id": "to_watch",
+      "rect": [
+        21.2,
+        15.9,
+        3.6,
+        2.2
+      ],
+      "target": "a2_watch",
+      "spawn": [
+        0,
+        2.5
+      ],
+      "label": "The Buried Watch",
+      "interact": true
+    }
+  ],
+  "enemies": [
+    {
+      "id": "foe_0",
+      "kind": "goblin_raider",
+      "at": [
+        -16,
+        2
+      ]
+    },
+    {
+      "id": "foe_1",
+      "kind": "goblin_slinger",
+      "at": [
+        -11,
+        -4
+      ]
+    },
+    {
+      "id": "foe_2",
+      "kind": "goblin_guard",
+      "at": [
+        -3,
+        8
+      ]
+    },
+    {
+      "id": "foe_3",
+      "kind": "goblin_raider",
+      "at": [
+        3,
+        12
+      ]
+    },
+    {
+      "id": "foe_4",
+      "kind": "goblin_slinger",
+      "at": [
+        9,
+        6
+      ]
+    },
+    {
+      "id": "foe_5",
+      "kind": "goblin_guard",
+      "at": [
+        6,
+        -11
+      ]
+    },
+    {
+      "id": "quarry_captain",
+      "kind": "goblin_foreman",
+      "at": [
+        0,
+        -18
+      ]
+    },
+    {
+      "id": "foe_7",
+      "kind": "goblin_raider",
+      "at": [
+        14,
+        -15
+      ]
+    },
+    {
+      "id": "foe_8",
+      "kind": "goblin_slinger",
+      "at": [
+        17,
+        14
+      ]
+    }
+  ],
+  "catalog_enemies": []
+}
