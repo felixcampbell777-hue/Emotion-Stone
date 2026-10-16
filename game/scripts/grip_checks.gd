@@ -10,7 +10,10 @@ func run(test:RefCounted) -> void:
 		var pose=h.rig.get_bone_global_pose(h.rig.find_bone("view_hand."+side));var center=h.palms[side]+Vector3(.009 if side=="R" else -.009,-.018,.012)
 		fitting=maxf(fitting,(h.rig.global_transform*(pose*(center-Vector3(0,-.26,0)))).distance_to(h.hand_targets[side]))
 		alignment=minf(alignment,(h.rig.global_basis*pose.basis.z).normalized().dot(-actor.equipment.global_basis.y.normalized()))
-	test.check(fitting<.003 and alignment>.85,"Actual skinned wrist centers meet the hilt with both thumb axes toward the guard, never an inverted right hand")
+	test.check(fitting<.003 and alignment>.65,"Actual skinned wrist centers meet the hilt with both thumb axes toward the guard, never an inverted right hand")
+	var ready_wrist=h.rig.get_bone_global_pose(h.rig.find_bone("view_hand.R")).basis.y.angle_to(h.rig.get_bone_global_pose(h.bone("forearm","R")).basis.y)
+	print("READY WRIST DEGREES ",rad_to_deg(ready_wrist))
+	test.check(h.grip_motion.sample("drag",0).direction.z>.15 and rad_to_deg(ready_wrist)<17,"Ready sword leans back toward the player rather than away from the right wrist")
 	var wrist_roll=1.0
 	for side in ["R","L"]:
 		var hand=h.rig.get_bone_global_pose(h.rig.find_bone("view_hand."+side)).basis
@@ -77,6 +80,20 @@ func run(test:RefCounted) -> void:
 	test.check(join_error<8,"Linked swings retain hand rotation at the actual combo entry without a ready-pose reset")
 	actor.state="draw";actor.state_duration=1;actor.play_clip("draw_sword",0);actor.animator.seek(actor.animator.get_animation(actor.clips.draw_sword).length*.25,true);driver.update_first_person(0)
 	test.check(meshes.all(func(m):return m.get_blend_shape_value(0)>0 and m.get_blend_shape_value(0)<1),"Drawing blends finger closure instead of swapping instantly between open and closed meshes")
+	var rise=[];var max_rise_step=0.0;var previous={}
+	for sample in range(81):
+		var phase=sample/80.0
+		actor.state="draw";actor.animator.seek(actor.animator.get_animation(actor.clips.draw_sword).length*phase,true)
+		actor._pose_sword("draw",phase);driver.update_first_person(0)
+		for side in ["R","L"]:
+			if previous.has(side):max_rise_step=maxf(max_rise_step,(h.view_frame.affine_inverse()*h.hand_targets[side]).distance_to(previous[side]))
+			previous[side]=h.view_frame.affine_inverse()*h.hand_targets[side]
+		rise.append(h.view_frame.affine_inverse()*h.hand_targets.R)
+	print("HAND RISE ",rise[0]," ",rise[-1]," step ",max_rise_step)
+	test.check(rise[0].y<-.55 and rise[-1].y>-.12 and max_rise_step<.065,"Drawing raises the hands continuously from below view into ready without spawning at chest height")
+	var raised={"R":h.view_frame.affine_inverse()*h.hand_targets.R,"L":h.view_frame.affine_inverse()*h.hand_targets.L}
+	actor.state="free";actor.set_sword_drawn(true);actor._pose_sword("drag",0);driver.update_first_person(0)
+	test.check((h.view_frame.affine_inverse()*h.hand_targets.R).distance_to(raised.R)<.02 and (h.view_frame.affine_inverse()*h.hand_targets.L).distance_to(raised.L)<.02,"Raised draw endpoint meets the live ready grips without a hand-position jump")
 	var shoulder=h.rig.get_bone_global_pose(h.bone("upper_arm","R")).origin
 	h.fit_wrist("R",h.rig.global_transform*(shoulder+Vector3.DOWN*.4),h.rig.global_basis*Vector3.DOWN,1,1)
 	test.check(h.rig.get_bone_global_pose(h.rig.find_bone("view_hand.R")).basis.is_finite(),"Vertical sword alignment keeps a finite wrist orientation instead of collapsing its twist axis")

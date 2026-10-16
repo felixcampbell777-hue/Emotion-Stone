@@ -91,16 +91,16 @@ func update(actor:Node3D,frame:Transform3D) -> void:
 	var sway=Vector3(sin(clock*7)*.009,sin(clock*14)*.008,0) if actor.velocity.length_squared()>.05 else Vector3(0,sin(clock*2)*.004,0)
 	var right=frame*(Vector3(.24,-.14,-.50)+sway)
 	var left=frame*(Vector3(-.24,-.16,-.48)-sway)
-	if not holding and not draw:
+	if not holding or draw:
 		var relaxed=unarmed.targets(actor,arm_frame);right=relaxed.R;left=relaxed.L
 	var phase=float(actor.animator.current_animation_position)/actor.animator.get_animation(actor.clips[actor.current_clip]).length if draw else 1.0
 	if draw and actor.state=="sheathe": phase=1-phase
 	var right_weight=smoothstep(.10,.40,phase) if draw else 1.0 if holding else 0.0
 	var left_weight=0.0;var brace_weight=0.0
 	var grip=.065 if actor.equipment.get_meta("beta_sword",false) else .16
-	if holding or (draw and phase>.10):
+	if holding or draw:
 		var right_grip=actor.equipment.global_transform*Vector3(0,grip,0)
-		right=right.lerp(right_grip,smoothstep(.08,.44,phase)) if draw else right_grip
+		right=right.lerp(right_grip,smoothstep(.0,.35,phase)) if draw else right_grip
 		var two_hand=actor.state not in ["water","draw","sheathe","roll","stand"]
 		var action_phase=actor.state_time/actor.state_duration if actor.state!="free" and actor.state_duration>0 else 1.0
 		left_weight=1.0 if two_hand else 0.0
@@ -264,12 +264,16 @@ func fit_wrist(side:String,world_target:Vector3,world_axis:Vector3,grasp:float,t
 		rig.force_update_all_bone_transforms()
 	wrist_solve_pole=desired.y
 	fit(side,rig.global_transform*wrist_target,Vector3.ZERO)
-	for iteration in range(10):
+	var action_phase=float(grip_sample.phase)
+	var action_bend=0.0 if String(grip_sample.key) in ["drag","draw"] else smoothstep(0,.15,action_phase)*(1-smoothstep(.85,1,action_phase))
+	if String(grip_sample.key) in ["light2","light3"]:action_bend=1-smoothstep(.85,1,action_phase)
+	var wrist_limit=lerpf(16,36,action_bend)
+	for iteration in range(14):
 		var incoming=rig.get_bone_global_pose(lower).basis.y.normalized()
 		var bend=desired.y.angle_to(incoming)
-		if bend<deg_to_rad(36):break
+		if bend<deg_to_rad(wrist_limit):break
 		var correction=Quaternion(desired.y,incoming)
-		var amount=(bend-deg_to_rad(34))/maxf(bend,.0001)
+		var amount=(bend-deg_to_rad(wrist_limit-2))/maxf(bend,.0001)
 		desired=Basis(Quaternion.IDENTITY.slerp(correction,amount*.65))*desired
 		wrist_solve_pole=desired.y
 		wrist_target=target-desired*(center-wrist_local)
