@@ -34,6 +34,9 @@ func prepare(actor:Node3D) -> void:
 		rig.add_bone(skeleton.get_bone_name(index));rig.set_bone_rest(index,skeleton.get_bone_rest(index))
 		rig.set_bone_parent(index,skeleton.get_bone_parent(index));resting.append(skeleton.get_bone_rest(index))
 		global_rests.append(skeleton.get_bone_global_rest(index))
+	if personal_skin:
+		for side in ["L","R"]:
+			var wrist=rig.get_bone_count();rig.add_bone("view_hand."+side);rig.set_bone_parent(wrist,bone("forearm",side));rig.set_bone_rest(wrist,Transform3D(Basis.IDENTITY,Vector3(0,-.26,0)))
 	var relative=Basis(Vector3.UP,actor.visual.global_rotation.y).inverse()*skeleton.global_basis
 	rig_basis=relative
 	var eye=1.52 if actor.has_node("BetaHero") else 1.65
@@ -53,13 +56,12 @@ func prepare(actor:Node3D) -> void:
 		var source_rig=source.get_node_or_null(source.skeleton)
 		if source_rig!=skeleton: continue
 		var label=String(source.name).to_lower()
-		if ["hair","crown","eyebrow","eyelash","teeth","tongue","high-poly"].any(func(word): return word in label): continue
+		if ["hair","crown","eyebrow","eyelash","teeth","tongue","high-poly","denim"].any(func(word): return word in label): continue
 		var filtered=arms_mesh(source,skeleton)
 		if filtered.get_surface_count()>0:
 			var arms=source.duplicate(); arms.name=String(source.name)+"FirstPersonArms"
-			arms.mesh=filtered; arms.layers=ARMS_LAYER; arms.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-			arms.set_meta("relaxed_mesh",filtered)
-			arms.set_meta("gripped_mesh",grip_mesh(filtered,source.skin,skeleton) if actor.has_node("BetaHero") else filtered)
+			var view_skin=wrist_skin(source.skin) if personal_skin else source.skin
+			arms.mesh=grip_blends(filtered,source.skin,skeleton,view_skin) if personal_skin else filtered; arms.skin=view_skin; arms.layers=ARMS_LAYER; arms.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 			arms.set_meta("first_person_arms",true);rig.add_child(arms)
 			arms.transform=skeleton.global_transform.affine_inverse()*source.global_transform
 			arms.skeleton=NodePath("..");arms.visible=true
@@ -71,9 +73,12 @@ func update(actor:Node3D,frame:Transform3D) -> void:
 	var arm_frame=frame
 	var basis=arm_frame.basis*Basis(Vector3.UP,PI)*rig_basis
 	root.global_transform=Transform3D(basis,arm_frame.origin-basis*bind_eye-arm_frame.basis.z*.18)
-	for index in range(rig.get_bone_count()):
+	for index in range(source_rig.get_bone_count()):
 		# The view arms get their own stable shoulders, preserving the real skin.
 		rig.set_bone_pose(index,source_rig.get_bone_pose(index) if not holding and not draw else resting[index])
+	for side in ["L","R"]:
+		var wrist=rig.find_bone("view_hand."+side)
+		if wrist>=0:rig.set_bone_pose(wrist,rig.get_bone_rest(wrist))
 	rig.force_update_all_bone_transforms()
 	var clock=float(actor.presentation_clock)
 	var sway=Vector3(sin(clock*7)*.009,sin(clock*14)*.008,0) if actor.velocity.length_squared()>.05 else Vector3(0,sin(clock*2)*.004,0)
@@ -83,24 +88,30 @@ func update(actor:Node3D,frame:Transform3D) -> void:
 		var relaxed=unarmed.targets(actor,arm_frame);right=relaxed.R;left=relaxed.L
 	var phase=float(actor.animator.current_animation_position)/actor.animator.get_animation(actor.clips[actor.current_clip]).length if draw else 1.0
 	if draw and actor.state=="sheathe": phase=1-phase
+	var right_weight=smoothstep(.10,.40,phase) if draw else 1.0 if holding else 0.0
+	var left_weight=0.0;var brace_weight=0.0
 	var grip=.065 if actor.equipment.get_meta("beta_sword",false) else .16
 	if holding or (draw and phase>.10):
 		var right_grip=actor.equipment.global_transform*Vector3(0,grip,0)
 		right=right.lerp(right_grip,smoothstep(.08,.44,phase)) if draw else right_grip
 		var two_hand=actor.state not in ["water","draw","sheathe","roll","stand"]
 		var action_phase=actor.state_time/actor.state_duration if actor.state!="free" and actor.state_duration>0 else 1.0
-		var left_weight=1.0 if two_hand else 0.0
+		left_weight=1.0 if two_hand else 0.0
 		if actor.state=="water": left_weight=maxf(1-smoothstep(0,.14,action_phase),smoothstep(.80,1,action_phase))
 		if draw: left_weight=smoothstep(.35,.75,phase)
 		var left_grip=actor.equipment.global_transform*Vector3(0,.20 if actor.equipment.get_meta("beta_sword",false) else .08,0)
 		left=left.lerp(left_grip,left_weight)
 		if actor.state=="parry":
 			var brace=smoothstep(.10,.30,actor.state_time/actor.state_duration)*(1-smoothstep(.65,.90,actor.state_time/actor.state_duration))
-			left=left.lerp(actor.equipment.global_transform*Vector3(0,-.24,.03),brace)
-	fit("R",right,actor.equipment.global_basis.y if holding else Vector3.ZERO)
-	fit("L",left,-actor.equipment.global_basis.y if holding else Vector3.ZERO)
+			brace_weight=brace
+			left=left.lerp(actor.equipment.global_transform*Vector3(0,-.34,.045),brace)
+			left_weight*=1-brace
+	fit("R",right,actor.equipment.global_basis.y if holding or draw else Vector3.ZERO,right_weight,smoothstep(.10,.50,phase) if draw else 1.0)
+	var left_axis=(-actor.equipment.global_basis.y.normalized()).slerp(actor.equipment.global_basis.x.normalized(),brace_weight)
+	fit("L",left,left_axis if holding or draw else Vector3.ZERO,left_weight,smoothstep(.35,.75,phase) if draw else 1.0)
 	for mesh in rig.get_children():
-		if mesh is MeshInstance3D: mesh.mesh=mesh.get_meta("gripped_mesh" if holding else "relaxed_mesh")
+		if mesh is MeshInstance3D and mesh.mesh.get_blend_shape_count()==2:
+			mesh.set_blend_shape_value(0,right_weight);mesh.set_blend_shape_value(1,left_weight)
 	hand_targets={"R":right,"L":left}
 	# During the remote-to-body return, reaching for the planted hilt would put
 	# the separate view arms through the camera. Restore them once standing.
@@ -113,9 +124,11 @@ func bone(key:String,side:String) -> int:
 func set_basis(index:int,basis:Basis) -> void:
 	var parent=rig.get_bone_parent(index)
 	if parent>=0: basis=rig.get_bone_global_pose(parent).basis.inverse()*basis
-	rig.set_bone_pose_rotation(index,basis.get_rotation_quaternion());rig.force_update_all_bone_transforms()
+	rig.set_bone_pose_rotation(index,basis.orthonormalized().get_rotation_quaternion());rig.force_update_all_bone_transforms()
 
-func fit(side:String,world_target:Vector3,world_axis:Vector3=Vector3.ZERO) -> void:
+func fit(side:String,world_target:Vector3,world_axis:Vector3=Vector3.ZERO,grasp:float=1.0,twist:float=1.0) -> void:
+	if personal_skin and not world_axis.is_zero_approx():
+		fit_wrist(side,world_target,world_axis,grasp,twist);return
 	var upper=bone("upper_arm",side);var lower=bone("forearm",side)
 	var shoulder=rig.get_bone_global_pose(upper).origin
 	var target=rig.global_transform.affine_inverse()*world_target
@@ -123,8 +136,7 @@ func fit(side:String,world_target:Vector3,world_axis:Vector3=Vector3.ZERO) -> vo
 	if not world_axis.is_zero_approx():
 		# Imported palms lie in local Y/Z; X points through the palm.
 		if personal_skin:
-			palm.x+=.026 if side=="R" else -.026
-			palm.y-=.012;palm.z+=.012
+			palm+=Vector3(.009 if side=="R" else -.009,-.018,.012)*grasp
 		else: palm.z-=.026
 	var a=global_rests[upper].origin.distance_to(global_rests[lower].origin);var b=palm.length()
 	var direction=(target-shoulder).normalized();var distance=clampf(shoulder.distance_to(target),.02,a+b-.001)
@@ -147,6 +159,52 @@ func fit(side:String,world_target:Vector3,world_axis:Vector3=Vector3.ZERO) -> vo
 		if goal.length_squared()>.00001 and current.length_squared()>.00001:
 			set_basis(lower,Basis(along_palm,current.normalized().signed_angle_to(goal.normalized(),along_palm))*pose.basis)
 
+func wrist_skin(source:Skin) -> Skin:
+	var skin:Skin=source.duplicate();var binds={}
+	for side in ["R","L"]:
+		for i in range(source.get_bind_count()):
+			var bone_index=source.get_bind_bone(i);var name=String(rig.get_bone_name(bone_index)) if bone_index>=0 else String(source.get_bind_name(i))
+			if name not in ["forearm."+side,"forearm_"+side]:continue
+			binds[side]=skin.get_bind_count();skin.add_bind(rig.find_bone("view_hand."+side),Transform3D(Basis.IDENTITY,Vector3(0,.26,0))*source.get_bind_pose(i));break
+	skin.set_meta("hand_binds",binds);return skin
+
+func wrist_weights(arrays:Array,source:Skin,skin:Skin) -> void:
+	var bones:PackedInt32Array=arrays[Mesh.ARRAY_BONES].duplicate();var weights:PackedFloat32Array=arrays[Mesh.ARRAY_WEIGHTS].duplicate();var vertices:PackedVector3Array=arrays[Mesh.ARRAY_VERTEX]
+	for v in range(vertices.size()):
+		for j in range(4):
+			var index=v*4+j;var bind=bones[index]
+			if weights[index]<.01:continue
+			var bone_index=source.get_bind_bone(bind);var name=String(rig.get_bone_name(bone_index)) if bone_index>=0 else String(source.get_bind_name(bind))
+			if not name.begins_with("forearm"):continue
+			# Blend on the forearm side of the wrist, keeping the complete thumb
+			# and palm on the same joint so a wrist turn cannot tear their web.
+			var local=source.get_bind_pose(bind)*vertices[v];var amount=1-smoothstep(-.25,-.21,local.y)
+			if amount<=0:continue
+			var hand_bind=int(skin.get_meta("hand_binds")["R" if name.ends_with("R") else "L"])
+			if amount>.999:bones[index]=hand_bind
+			else:
+				for k in range(4):
+					if weights[v*4+k]>.00001:continue
+					bones[v*4+k]=hand_bind;weights[v*4+k]=weights[index]*amount;weights[index]*=1-amount;break
+			break
+	arrays[Mesh.ARRAY_BONES]=bones;arrays[Mesh.ARRAY_WEIGHTS]=weights
+
+func fit_wrist(side:String,world_target:Vector3,world_axis:Vector3,grasp:float,twist:float) -> void:
+	var upper=bone("upper_arm",side);var lower=bone("forearm",side);var wrist=rig.find_bone("view_hand."+side)
+	var target=rig.global_transform.affine_inverse()*world_target;var axis=(rig.global_basis.inverse()*world_axis).normalized()
+	var toward=rig.get_bone_global_pose(upper).origin-target;toward-=axis*toward.dot(axis)
+	if toward.length_squared()<.00001:
+		toward=Vector3.RIGHT if absf(axis.x)<.9 else Vector3.FORWARD
+		toward-=axis*toward.dot(axis)
+	var y=toward.normalized();var desired=Basis(y.cross(axis).normalized(),y,axis)
+	var existing=rig.get_bone_global_pose(lower).basis.orthonormalized()
+	desired=Basis(existing.get_rotation_quaternion().slerp(desired.get_rotation_quaternion(),twist))
+	var center:Vector3=palms[side]+Vector3(.009 if side=="R" else -.009,-.018,.012)*grasp
+	var wrist_local=Vector3(0,-.26,0);var wrist_target=target-desired*(center-wrist_local)
+	var old:Vector3=palms[side];palms[side]=wrist_local
+	fit(side,rig.global_transform*wrist_target,Vector3.ZERO);palms[side]=old
+	set_basis(wrist,desired)
+
 func grip_mesh(source:ArrayMesh,skin:Skin,skeleton:Skeleton3D,only_side:String="",rebuild_normals:bool=true) -> ArrayMesh:
 	var result=ArrayMesh.new()
 	for surface in range(source.get_surface_count()):
@@ -164,16 +222,19 @@ func grip_mesh(source:ArrayMesh,skin:Skin,skeleton:Skeleton3D,only_side:String="
 				var local=skin.get_bind_pose(bind)*vertices[index]
 				var original=local
 				var side=1.0 if name.ends_with("R") else -1.0
-				# Preserve the four fingers' spread along Z, folding each finger
-				# into the palm along X/Y rather than collapsing their separation.
-				var extension=clampf(-local.y-.315,0,.12)
+				# Four fingers curl around the oval handle in the palm's X/Y plane.
+				# Thumb vertices occupy the separate high-Z web above the knuckles;
+				# never drag the index finger into that web.
+				var extension=clampf(-original.y-.318,0,.12)
 				if extension>0:
-					var angle=minf(3.25,extension/.025)
-					local.y=-.315-.025*sin(angle)
-					local.x+=side*.025*(1-cos(angle))
-				if original.y<-.245:
-					var thumb=smoothstep(.025,.085,original.z)*smoothstep(-.018,.012,side*original.x)
-					local=local.lerp(Vector3(side*.028,-.305,.028+original.z*.25),thumb)
+					var angle=minf(3.1,extension/.025)
+					local.y=-.318-.022*sin(angle)
+					local.x+=side*.022*(1-cos(angle))
+				var thumb=smoothstep(.055,.082,original.z)*(1-smoothstep(.310,.332,-original.y))*smoothstep(-.006,.014,side*original.x)
+				var thumb_base=Vector3(side*.005,-.265,.052)
+				var tucked=thumb_base+Basis(Vector3.RIGHT,1.35)*(original-thumb_base)
+				tucked.x-=side*.015
+				local=local.lerp(tucked,thumb)
 				vertices[index]=skin.get_bind_pose(bind).affine_inverse()*local
 				break
 		arrays[Mesh.ARRAY_VERTEX]=vertices
@@ -187,6 +248,35 @@ func grip_mesh(source:ArrayMesh,skin:Skin,skeleton:Skeleton3D,only_side:String="
 		shaded.surface_set_material(shaded.get_surface_count()-1,result.surface_get_material(surface))
 	return shaded
 
+func grip_blends(source:ArrayMesh,skin:Skin,skeleton:Skeleton3D,view_skin:Skin) -> ArrayMesh:
+	var right=grip_mesh(source,skin,skeleton,"R",false);var left=grip_mesh(source,skin,skeleton,"L",false)
+	var result=ArrayMesh.new();result.blend_shape_mode=Mesh.BLEND_SHAPE_MODE_RELATIVE;result.add_blend_shape("GripR");result.add_blend_shape("GripL")
+	for surface in range(source.get_surface_count()):
+		var base=source.surface_get_arrays(surface);var shapes=[]
+		for closed in [right,left]:
+			var full=closed.surface_get_arrays(surface);var shape=[];shape.resize(Mesh.ARRAY_MAX)
+			var delta:PackedVector3Array=full[Mesh.ARRAY_VERTEX].duplicate()
+			for i in range(delta.size()):delta[i]-=base[Mesh.ARRAY_VERTEX][i]
+			shape[Mesh.ARRAY_VERTEX]=delta
+			var normals=PackedVector3Array();normals.resize(full[Mesh.ARRAY_VERTEX].size())
+			var vertices:PackedVector3Array=full[Mesh.ARRAY_VERTEX];var indices:PackedInt32Array=full[Mesh.ARRAY_INDEX]
+			for i in range(0,indices.size(),3):
+				var a=indices[i];var b=indices[i+1];var c=indices[i+2];var normal=(vertices[c]-vertices[a]).cross(vertices[b]-vertices[a])
+				normals[a]+=normal;normals[b]+=normal;normals[c]+=normal
+			for i in range(normals.size()):normals[i]=normals[i].normalized() if normals[i].length_squared()>.0000001 else base[Mesh.ARRAY_NORMAL][i]
+			for i in range(normals.size()):
+				if delta[i].length_squared()<.0000000001:normals[i]=Vector3.ZERO;continue
+				if normals[i].dot(base[Mesh.ARRAY_NORMAL][i])<0:normals[i]=-normals[i]
+				normals[i]-=base[Mesh.ARRAY_NORMAL][i]
+			shape[Mesh.ARRAY_NORMAL]=normals
+			if base[Mesh.ARRAY_TANGENT]!=null:
+				var tangents=PackedFloat32Array();tangents.resize(base[Mesh.ARRAY_TANGENT].size());shape[Mesh.ARRAY_TANGENT]=tangents
+			shapes.append(shape)
+		wrist_weights(base,skin,view_skin)
+		result.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,base,shapes);result.surface_set_material(surface,source.surface_get_material(surface))
+	result.set_meta("closed_shapes",[right,left]);result.set_meta("source_mesh",source);result.set_meta("source_skin",skin)
+	return result
+
 func arms_mesh(source:MeshInstance3D,rig:Skeleton3D) -> ArrayMesh:
 	var mesh=ArrayMesh.new()
 	for surface in range(source.mesh.get_surface_count()):
@@ -199,7 +289,10 @@ func arms_mesh(source:MeshInstance3D,rig:Skeleton3D) -> ArrayMesh:
 			for i in range(influences):
 				var bone_index=source.skin.get_bind_bone(bones[v*influences+i])
 				var name=String(rig.get_bone_name(bone_index)) if bone_index>=0 else String(source.skin.get_bind_name(bones[v*influences+i]))
-				if name.begins_with("upper_arm") or name.begins_with("forearm"): arm_weight+=weights[v*influences+i]
+				if name.begins_with("upper_arm") or name.begins_with("forearm"):
+					var local=source.skin.get_bind_pose(bones[v*influences+i])*vertices[v]
+					if personal_skin and name.begins_with("upper_arm") and local.y>-.065:continue
+					arm_weight+=weights[v*influences+i]
 			selected[v]=1 if arm_weight>.55 else 0
 		var indices=PackedInt32Array(); var original=arrays[Mesh.ARRAY_INDEX]
 		for t in range(0,original.size(),3):
