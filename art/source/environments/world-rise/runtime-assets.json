@@ -1,0 +1,37 @@
+{
+  "origin": "Original locally authored 3D mountain terrain and vertex colors. No downloads.",
+  "unit_angle_degrees": 45,
+  "repeat_count": 8,
+  "triangles_per_unit": 9216,
+  "triangles_full_ring": 73728,
+  "layers": 3,
+  "radii_m": [
+    1800,
+    2800,
+    3900
+  ],
+  "seam_checks": [
+    {
+      "layer": "Near",
+      "position_error_m": 0.0002729575167846423,
+      "normal_error": 3.450202905319178e-05
+    },
+    {
+      "layer": "Middle",
+      "position_error_m": 0.00044013077093066273,
+      "normal_error": 8.828365960280248e-05
+    },
+    {
+      "layer": "Far",
+      "position_error_m": 0.0006103515625,
+      "normal_error": 0.00014712038622720429
+    }
+  ],
+  "embedded_scripts": 0,
+  "drivers": 0,
+  "recipe": "tools/create_world_rise_backdrop.py",
+  "files": {
+    "art/source/environments/world-rise/world-rise-backdrop.blend": "8d2cf944ba3a5a62d92b048b212d14a302087730e339dfead16358e8d03b6db9",
+    "game/assets/environment/world_rise_backdrop/mountain-unit.glb": "eed59041812c616634e29644a717d9576dcb774d326e24244ae8a15330aa2485"
+  }
+}

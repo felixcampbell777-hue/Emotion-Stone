@@ -106,3 +106,6 @@ Keep render distance and quality controls in the existing pause graphics menu. T
 Walk the actual lowland, ridge, forest and rim routes without debug travel. Verify that hills create route choices, pack territories cannot all chain aggro, wolf flanking works around tree collision, and the forest occupies roughly one eighth of the floor. Check every chunk border during walk/sprint/dash/jump/knockback and while saving/loading. Validate falling from multiple rim angles, resource/encounter persistence, floor completion, and menu gating. Run only changed-system checks plus necessary shared integration coverage; do not re-audit every unchanged heroine animation.
 
 As of this plan, all World Rise runtime, performance and full-playthrough acceptance checks are pending. No new assets downloaded and no game runtime changed.
+
+
+Backdrop asset progress: the reusable 45° mountain unit, full eight-unit panorama and independent preview are now authored. See WORLD-RISE-BACKDROP.md. The floor itself remains planned.

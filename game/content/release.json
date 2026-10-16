@@ -1,4 +1,4 @@
 {
-  "version": "0.34.3",
-  "baseline": "Remove green enemy ground plates; retain natural rendered shadows"
+  "version": "0.34.4",
+  "baseline": "Reusable World Rise mountain backdrop sector, 360-degree ring and standalone preview"
 }

@@ -1516,6 +1516,9 @@ func _capture(directory: String) -> void:
 	var view="all"
 	if "--capture-view" in arguments:
 		view=arguments[arguments.find("--capture-view")+1]
+	if view=="world-rise-backdrop":
+		await load("res://scripts/world_rise_backdrop_capture.gd").new().run(self,directory)
+		get_tree().quit();return
 	if view=="mob-facing":
 		await load("res://scripts/mob_facing_capture.gd").new().run(self,directory)
 		get_tree().quit();return
