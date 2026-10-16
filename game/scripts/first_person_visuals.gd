@@ -133,6 +133,12 @@ func set_basis(index:int,basis:Basis) -> void:
 	if parent>=0: basis=rig.get_bone_global_pose(parent).basis.inverse()*basis
 	rig.set_bone_pose_rotation(index,basis.orthonormalized().get_rotation_quaternion());rig.force_update_all_bone_transforms()
 
+func support_elbow_weight() -> float:
+	var phase=float(grip_sample.phase)
+	if String(grip_sample.key)=="light":return smoothstep(0,.12,phase)*(1-smoothstep(.74,1,phase))
+	if String(grip_sample.key)=="light2":return 1-smoothstep(0,.20,phase)
+	return 0.0
+
 func fit(side:String,world_target:Vector3,world_axis:Vector3=Vector3.ZERO,grasp:float=1.0,twist:float=1.0) -> void:
 	if personal_skin and not world_axis.is_zero_approx():
 		fit_wrist(side,world_target,world_axis,grasp,twist);return
@@ -149,6 +155,11 @@ func fit(side:String,world_target:Vector3,world_axis:Vector3=Vector3.ZERO,grasp:
 	var direction=(target-shoulder).normalized();var distance=clampf(shoulder.distance_to(target),.02,a+b-.001)
 	var along=(a*a-b*b+distance*distance)/(2*distance)
 	var pole=Vector3(-.65 if side=="R" else .65,-.7,.2)
+	var support=support_elbow_weight() if side=="L" and personal_skin else 0.0
+	if support>0:
+		# The support elbow remains below/outside its wrist in view space.
+		# A shoulder-seeking pole rolls it over when the hilt crosses the chest.
+		pole=pole.lerp(rig.global_basis.inverse()*view_frame.basis*Vector3(-.55,-1.0,.15),support)
 	pole-=direction*pole.dot(direction)
 	if pole.length_squared()<.00001: pole=Vector3.DOWN
 	pole=pole.normalized()
@@ -157,7 +168,7 @@ func fit(side:String,world_target:Vector3,world_axis:Vector3=Vector3.ZERO,grasp:
 		var preferred=wrist_solve_pole-direction*wrist_solve_pole.dot(direction)
 		if preferred.length_squared()>.00001:
 			var turn=pole.signed_angle_to(preferred.normalized(),direction)
-			pole=Basis(direction, .55*sin(turn))*pole
+			pole=Basis(direction, .55*sin(turn)*(1-support))*pole
 
 	var elbow=shoulder+direction*along+pole*radius
 	var old=rig.get_bone_global_pose(lower).origin-shoulder
@@ -221,6 +232,10 @@ func grip_track(key:String,side:String) -> Array:
 		var next:Vector3=pose.direction
 		y=Basis(Quaternion(z,next))*y;z=next
 		var toward:Vector3=shoulder-pose.grip
+		if side=="L" and key=="light":
+			var phase=i/240.0
+			var support=smoothstep(.0,.18,phase)*(1-smoothstep(.74,1,phase))
+			toward=toward.lerp(Vector3(-.45,-.85,.35),support)
 		toward-=z*toward.dot(z)
 		if toward.length_squared()>.00001:
 			# Parallel transport retains roll through axial alignments. A bounded
@@ -285,19 +300,18 @@ func fit_wrist(side:String,world_target:Vector3,world_axis:Vector3,grasp:float,t
 	if roll_goal.length_squared()>.00001:
 		set_basis(lower,Basis(forearm_axis,forearm.z.signed_angle_to(roll_goal.normalized(),forearm_axis))*forearm)
 
-	# Upper-arm axial rotation follows pronation as well: an elbow is a hinge,
-	# not a place to concentrate a full forearm corkscrew.
 	var lower_basis=rig.get_bone_global_pose(lower).basis
 	var upper_basis=rig.get_bone_global_pose(upper).basis.orthonormalized()
 	var upper_axis=(rig.get_bone_global_pose(lower).origin-rig.get_bone_global_pose(upper).origin).normalized()
-	var hinge=lower_basis.z-upper_axis*lower_basis.z.dot(upper_axis)
+	var forearm_direction=-lower_basis.y.normalized()
+	var hinge=upper_axis.cross(forearm_direction)
 	if hinge.length_squared()>.00001:
-		# Scaling a wrapped +/-PI angle makes the upper arm jump when the
-		# forearm rolls through the back of the shoulder. Use a continuous,
-		# bounded shoulder response; the forearm carries the remaining roll.
-		var roll=upper_basis.z.signed_angle_to(hinge.normalized(),upper_axis)
-		set_basis(upper,Basis(upper_axis,.35*sin(roll))*upper_basis)
+		hinge=hinge.normalized()
+		if hinge.dot(upper_basis.x)<0:hinge=-hinge
+		var turn=upper_basis.x.signed_angle_to(hinge,upper_axis)
+		set_basis(upper,Basis(upper_axis,.35*sin(turn))*upper_basis)
 		set_basis(lower,lower_basis)
+
 	set_basis(wrist,desired)
 
 func grip_mesh(source:ArrayMesh,skin:Skin,skeleton:Skeleton3D,only_side:String="",rebuild_normals:bool=true) -> ArrayMesh:
