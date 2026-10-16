@@ -13,6 +13,7 @@ var objects:Dictionary={}
 var compass:Label
 var water_status:Label
 var bell_notes:Array=[]
+var encounters=preload("res://scripts/alpha2_encounters.gd").new()
 const STORY_FLAGS=["begun","medicine_asked","medicine_returned","courier_asked","courier_safe","courier_returned","ledger_asked","ledger_returned","memory_asked","memory_returned","completed","forest_tuned"]
 
 static func valid_mode(mode:Variant,map_id:Variant,world:Variant="") -> bool:
@@ -57,7 +58,7 @@ func active() -> bool: return is_instance_valid(game) and game.game_mode=="alpha
 func reset() -> void:
 	flags.clear();bell_notes.clear();checkpoint="a2_haven";checkpoint_at=[0,5];ending="";played_seconds=0;objects.clear()
 func snapshot() -> Dictionary:
-	return {"layout_revision":2,"flags":flags.duplicate(),"checkpoint":checkpoint,"checkpoint_at":checkpoint_at.duplicate(),"ending":ending,"played_seconds":played_seconds}
+	return {"layout_revision":3,"flags":flags.duplicate(),"checkpoint":checkpoint,"checkpoint_at":checkpoint_at.duplicate(),"ending":ending,"played_seconds":played_seconds}
 func restore(data:Dictionary) -> void:
 	flags=data.get("flags",[]).duplicate();checkpoint=data.get("checkpoint","a2_haven");checkpoint_at=data.get("checkpoint_at",[0,5]).duplicate();ending=data.get("ending","");played_seconds=float(data.get("played_seconds",0))
 	bell_notes.clear()
@@ -90,6 +91,7 @@ func start(imported:Dictionary={}) -> void:
 		game.mother_unwrapped=bool(imported.get("mother_unwrapped",false));game.well_gift_stage="potion_owned" if imported.get("well_gift_stage","")=="potion_owned" else "not_started"
 	grant("spring_elixir",3);game.apply_skill_stats();game.update_progression_ui()
 func tick(delta:float) -> void:
+	if active():encounters.tick(delta)
 	if active() and game.player.input_enabled: played_seconds+=delta
 	if compass==null:
 		compass=game.label("",18,Color("#e2d3ac"));compass.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;compass.mouse_filter=Control.MOUSE_FILTER_IGNORE;game.add_child(compass)
@@ -152,6 +154,7 @@ func build_map() -> void:
 	game.current_world.interactions=game.current_world.interactions.filter(func(t):return not t.has("a2_action"))
 	if not game.current_world.has_meta("alpha2_scenery"):
 		load("res://scripts/alpha2_scenery.gd").build(game);game.current_world.set_meta("alpha2_scenery",true)
+		encounters.build(game)
 	for npc in game.current_world.interactions:
 		if String(npc.get("role","")).begins_with("a2_"):
 			npc.title={"mother":"Mother","mara":"Mara, the apothecary","oren":"Oren, the millwright","ada":"Ada, the lantern keeper","jun":"Jun, the lost courier","sable":"Sable, the former keeper","sable_chapel":"Sable, the former keeper"}.get(String(npc.id),npc.title)

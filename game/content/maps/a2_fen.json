@@ -1,7 +1,7 @@
 {
   "id": "a2_fen",
   "display_name": "Reedwater Marsh",
-  "subtitle": "A lantern trail among reed islands",
+  "subtitle": "An old dry embankment crosses drowned willow beds. Reed nests watch the shortcut; a sheltered spur leads to the stranded courier.",
   "seed": 1958,
   "bounds": [
     -28,
@@ -26,11 +26,74 @@
       ]
     },
     {
+      "kind": "water",
+      "rect": [
+        -26,
+        -20,
+        13,
+        30
+      ]
+    },
+    {
+      "kind": "water",
+      "rect": [
+        6,
+        -14,
+        20,
+        35
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        16,
+        -21,
+        2,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        15,
+        -20,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        15,
+        -19,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        15,
+        -18,
+        4,
+        1
+      ]
+    },
+    {
       "kind": "path",
       "rect": [
         -10,
         -17,
         2,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        15,
+        -17,
+        4,
         1
       ]
     },
@@ -46,16 +109,34 @@
     {
       "kind": "path",
       "rect": [
-        -11,
-        -15,
-        5,
+        15,
+        -16,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -10,
+        -11,
+        -15,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        15,
+        -15,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -11,
         -14,
         4,
         1
@@ -64,7 +145,16 @@
     {
       "kind": "path",
       "rect": [
-        -9,
+        15,
+        -14,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -11,
         -13,
         4,
         1
@@ -73,7 +163,16 @@
     {
       "kind": "path",
       "rect": [
-        -8,
+        15,
+        -13,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -11,
         -12,
         4,
         1
@@ -82,16 +181,34 @@
     {
       "kind": "path",
       "rect": [
-        -8,
-        -11,
-        5,
+        15,
+        -12,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -7,
+        -11,
+        -11,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        14,
+        -11,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -11,
         -10,
         4,
         1
@@ -100,7 +217,16 @@
     {
       "kind": "path",
       "rect": [
-        -6,
+        13,
+        -10,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -11,
         -9,
         4,
         1
@@ -109,16 +235,52 @@
     {
       "kind": "path",
       "rect": [
-        -5,
-        -8,
-        3,
+        1,
+        -9,
+        2,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -5,
+        13,
+        -9,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -10,
+        -8,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        0,
+        -8,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        12,
+        -8,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -10,
         -7,
         4,
         1
@@ -127,7 +289,25 @@
     {
       "kind": "path",
       "rect": [
-        -4,
+        -1,
+        -7,
+        11,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        12,
+        -7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -9,
         -6,
         3,
         1
@@ -136,16 +316,16 @@
     {
       "kind": "path",
       "rect": [
-        11,
+        -2,
         -6,
-        2,
+        17,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -4,
+        -9,
         -5,
         4,
         1
@@ -154,16 +334,25 @@
     {
       "kind": "path",
       "rect": [
-        7,
+        -3,
         -5,
-        9,
+        5,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -3,
+        4,
+        -5,
+        12,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -8,
         -4,
         3,
         1
@@ -172,27 +361,45 @@
     {
       "kind": "path",
       "rect": [
-        3,
         -4,
-        16,
+        -4,
+        5,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -3,
-        -3,
-        25,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -2,
-        -2,
+        8,
+        -4,
         11,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -8,
+        -3,
+        8,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        11,
+        -3,
+        11,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -8,
+        -2,
+        7,
         1
       ]
     },
@@ -208,9 +415,9 @@
     {
       "kind": "path",
       "rect": [
-        -2,
+        -7,
         -1,
-        7,
+        5,
         1
       ]
     },
@@ -226,7 +433,7 @@
     {
       "kind": "path",
       "rect": [
-        -3,
+        -7,
         0,
         4,
         1
@@ -244,9 +451,9 @@
     {
       "kind": "path",
       "rect": [
-        -3,
+        -7,
         1,
-        3,
+        4,
         1
       ]
     },
@@ -262,16 +469,16 @@
     {
       "kind": "path",
       "rect": [
-        -4,
+        -7,
         2,
-        4,
+        3,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -4,
+        -7,
         3,
         3,
         1
@@ -280,16 +487,16 @@
     {
       "kind": "path",
       "rect": [
-        -5,
+        -7,
         4,
-        4,
+        3,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -5,
+        -7,
         5,
         3,
         1
@@ -298,16 +505,16 @@
     {
       "kind": "path",
       "rect": [
-        -6,
+        -7,
         6,
-        4,
+        3,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -7,
+        -8,
         7,
         4,
         1
@@ -318,7 +525,7 @@
       "rect": [
         -8,
         8,
-        6,
+        4,
         1
       ]
     },
@@ -327,7 +534,7 @@
       "rect": [
         -9,
         9,
-        9,
+        5,
         1
       ]
     },
@@ -336,7 +543,7 @@
       "rect": [
         -10,
         10,
-        11,
+        7,
         1
       ]
     },
@@ -345,16 +552,7 @@
       "rect": [
         -11,
         11,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -3,
-        11,
-        5,
+        9,
         1
       ]
     },
@@ -370,9 +568,18 @@
     {
       "kind": "path",
       "rect": [
-        -2,
+        -6,
         12,
-        5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -19,
+        13,
+        2,
         1
       ]
     },
@@ -381,6 +588,15 @@
       "rect": [
         -13,
         13,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -5,
+        13,
         4,
         1
       ]
@@ -388,9 +604,9 @@
     {
       "kind": "path",
       "rect": [
-        -1,
-        13,
-        6,
+        -20,
+        14,
+        4,
         1
       ]
     },
@@ -406,8 +622,53 @@
     {
       "kind": "path",
       "rect": [
-        0,
+        -4,
         14,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -20,
+        15,
+        9,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -4,
+        15,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -19,
+        16,
+        7,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -3,
+        16,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -19,
+        17,
         6,
         1
       ]
@@ -415,52 +676,7 @@
     {
       "kind": "path",
       "rect": [
-        -16,
-        15,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        2,
-        15,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -17,
-        16,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        3,
-        16,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -18,
-        17,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        2,
+        -2,
         17,
         4,
         1
@@ -478,9 +694,9 @@
     {
       "kind": "path",
       "rect": [
-        2,
+        -2,
         18,
-        3,
+        4,
         1
       ]
     },
@@ -496,7 +712,7 @@
     {
       "kind": "path",
       "rect": [
-        1,
+        -2,
         19,
         4,
         1
@@ -514,16 +730,16 @@
     {
       "kind": "path",
       "rect": [
-        1,
+        -2,
         20,
-        3,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        0,
+        -2,
         21,
         4,
         1
@@ -532,16 +748,16 @@
     {
       "kind": "path",
       "rect": [
-        0,
+        -2,
         22,
-        3,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -1,
+        -2,
         23,
         4,
         1
@@ -573,520 +789,95 @@
         2,
         1
       ]
-    },
-    {
-      "kind": "water",
-      "rect": [
-        -22,
-        -6,
-        10,
-        9
-      ]
-    },
-    {
-      "kind": "water",
-      "rect": [
-        9,
-        8,
-        12,
-        9
-      ]
     }
   ],
   "props": [
     {
-      "id": "biome_0",
+      "id": "bank_tree_0",
       "kind": "catalog_feature",
       "at": [
-        7.86,
-        -12.58
+        -21.13,
+        22.75
       ],
       "catalog_code": "4A",
-      "scale": 1.100142184165342,
+      "scale": 1.42,
       "show_label": false
     },
     {
-      "id": "biome_1",
+      "id": "bank_tree_1",
       "kind": "catalog_feature",
       "at": [
-        24.13,
-        18.71
+        -20.65,
+        25.57
       ],
       "catalog_code": "4A",
-      "scale": 1.028693921284575,
+      "scale": 1.32,
       "show_label": false
     },
     {
-      "id": "biome_2",
+      "id": "bank_tree_2",
       "kind": "catalog_feature",
       "at": [
-        22.99,
-        -17.7
+        -18.28,
+        22.7
       ],
       "catalog_code": "4A",
-      "scale": 0.9715835671087867,
+      "scale": 1.39,
       "show_label": false
     },
     {
-      "id": "biome_3",
+      "id": "bank_tree_3",
       "kind": "catalog_feature",
       "at": [
-        17.63,
-        -22.75
+        -18.45,
+        25.73
       ],
       "catalog_code": "4A",
-      "scale": 0.9887929148749447,
+      "scale": 1.23,
       "show_label": false
     },
     {
-      "id": "biome_4",
+      "id": "bank_tree_4",
       "kind": "catalog_feature",
       "at": [
-        11.93,
-        -9.82
+        3.88,
+        -21.94
       ],
       "catalog_code": "4A",
-      "scale": 1.0150440844036723,
+      "scale": 1.24,
       "show_label": false
     },
     {
-      "id": "biome_5",
+      "id": "bank_tree_5",
       "kind": "catalog_feature",
       "at": [
-        24.9,
-        -9.03
+        3.92,
+        -19.44
       ],
       "catalog_code": "4A",
-      "scale": 1.1139601605864997,
+      "scale": 1.15,
       "show_label": false
     },
     {
-      "id": "biome_6",
+      "id": "bank_tree_6",
       "kind": "catalog_feature",
       "at": [
-        1.72,
-        -21.42
+        6.51,
+        -21.91
       ],
       "catalog_code": "4A",
-      "scale": 1.209797672535813,
+      "scale": 1.28,
       "show_label": false
     },
     {
-      "id": "biome_7",
+      "id": "bank_tree_7",
       "kind": "catalog_feature",
       "at": [
-        -10.46,
-        2.05
+        6.41,
+        -19.58
       ],
       "catalog_code": "4A",
-      "scale": 0.9998479472848258,
-      "show_label": false
-    },
-    {
-      "id": "biome_8",
-      "kind": "catalog_feature",
-      "at": [
-        -8.75,
-        4.15
-      ],
-      "catalog_code": "4A",
-      "scale": 1.017465484337862,
-      "show_label": false
-    },
-    {
-      "id": "biome_9",
-      "kind": "catalog_feature",
-      "at": [
-        -24.8,
-        -13.45
-      ],
-      "catalog_code": "4A",
-      "scale": 1.1812732433543374,
-      "show_label": false
-    },
-    {
-      "id": "biome_10",
-      "kind": "catalog_feature",
-      "at": [
-        -6.73,
-        -20.8
-      ],
-      "catalog_code": "4A",
-      "scale": 0.9450744383321612,
-      "show_label": false
-    },
-    {
-      "id": "biome_11",
-      "kind": "catalog_feature",
-      "at": [
-        -19.98,
-        7.06
-      ],
-      "catalog_code": "4A",
-      "scale": 1.1106971688124083,
-      "show_label": false
-    },
-    {
-      "id": "biome_12",
-      "kind": "catalog_feature",
-      "at": [
-        -24.41,
-        -3.07
-      ],
-      "catalog_code": "4A",
-      "scale": 0.9077535989989686,
-      "show_label": false
-    },
-    {
-      "id": "biome_13",
-      "kind": "catalog_feature",
-      "at": [
-        19.98,
-        -8.21
-      ],
-      "catalog_code": "4A",
-      "scale": 1.034521280432528,
-      "show_label": false
-    },
-    {
-      "id": "biome_14",
-      "kind": "catalog_feature",
-      "at": [
-        20.17,
-        -8.17
-      ],
-      "catalog_code": "4A",
-      "scale": 1.039234580278137,
-      "show_label": false
-    },
-    {
-      "id": "biome_15",
-      "kind": "catalog_feature",
-      "at": [
-        -2.96,
-        24.62
-      ],
-      "catalog_code": "4A",
-      "scale": 1.073043277154871,
-      "show_label": false
-    },
-    {
-      "id": "biome_16",
-      "kind": "catalog_feature",
-      "at": [
-        -0.89,
-        15.82
-      ],
-      "catalog_code": "4A",
-      "scale": 1.2548109284570317,
-      "show_label": false
-    },
-    {
-      "id": "biome_17",
-      "kind": "catalog_feature",
-      "at": [
-        13.97,
-        1.65
-      ],
-      "catalog_code": "4A",
-      "scale": 0.9420128565957784,
-      "show_label": false
-    },
-    {
-      "id": "biome_18",
-      "kind": "catalog_feature",
-      "at": [
-        10.68,
-        1.73
-      ],
-      "catalog_code": "4A",
-      "scale": 1.002889977268812,
-      "show_label": false
-    },
-    {
-      "id": "biome_19",
-      "kind": "catalog_feature",
-      "at": [
-        21.2,
-        -6.57
-      ],
-      "catalog_code": "4A",
-      "scale": 1.0018685404341094,
-      "show_label": false
-    },
-    {
-      "id": "biome_20",
-      "kind": "catalog_feature",
-      "at": [
-        14.81,
-        4.52
-      ],
-      "catalog_code": "4A",
-      "scale": 1.1165060210507576,
-      "show_label": false
-    },
-    {
-      "id": "biome_21",
-      "kind": "catalog_feature",
-      "at": [
-        24.7,
-        -13.78
-      ],
-      "catalog_code": "4A",
-      "scale": 1.2788132531410787,
-      "show_label": false
-    },
-    {
-      "id": "biome_22",
-      "kind": "catalog_feature",
-      "at": [
-        -5.89,
-        18.95
-      ],
-      "catalog_code": "4A",
-      "scale": 1.2931585976617601,
-      "show_label": false
-    },
-    {
-      "id": "biome_23",
-      "kind": "catalog_feature",
-      "at": [
-        17.05,
-        -13.8
-      ],
-      "catalog_code": "4A",
-      "scale": 1.1553301934843525,
-      "show_label": false
-    },
-    {
-      "id": "biome_24",
-      "kind": "catalog_feature",
-      "at": [
-        1.87,
-        -14.23
-      ],
-      "catalog_code": "4A",
-      "scale": 1.0304004269526605,
-      "show_label": false
-    },
-    {
-      "id": "biome_25",
-      "kind": "catalog_feature",
-      "at": [
-        -23.94,
-        13.79
-      ],
-      "catalog_code": "4A",
-      "scale": 1.214114934350813,
-      "show_label": false
-    },
-    {
-      "id": "biome_26",
-      "kind": "catalog_feature",
-      "at": [
-        20.58,
-        -8.66
-      ],
-      "catalog_code": "4A",
-      "scale": 1.323891277914566,
-      "show_label": false
-    },
-    {
-      "id": "biome_27",
-      "kind": "catalog_feature",
-      "at": [
-        10.08,
-        7.4
-      ],
-      "catalog_code": "4A",
-      "scale": 1.0203166592358612,
-      "show_label": false
-    },
-    {
-      "id": "biome_28",
-      "kind": "catalog_feature",
-      "at": [
-        11.77,
-        -12.1
-      ],
-      "catalog_code": "4A",
-      "scale": 0.9042053817915536,
-      "show_label": false
-    },
-    {
-      "id": "biome_29",
-      "kind": "catalog_feature",
-      "at": [
-        -10.32,
-        1.59
-      ],
-      "catalog_code": "4A",
-      "scale": 1.2318759040312912,
-      "show_label": false
-    },
-    {
-      "id": "biome_30",
-      "kind": "catalog_feature",
-      "at": [
-        -5.89,
-        23.85
-      ],
-      "catalog_code": "4A",
-      "scale": 1.0127720810172465,
-      "show_label": false
-    },
-    {
-      "id": "biome_31",
-      "kind": "catalog_feature",
-      "at": [
-        17.11,
-        -13.98
-      ],
-      "catalog_code": "4A",
-      "scale": 1.286146014164135,
-      "show_label": false
-    },
-    {
-      "id": "biome_32",
-      "kind": "catalog_feature",
-      "at": [
-        -5.89,
-        21.9
-      ],
-      "catalog_code": "4A",
-      "scale": 0.9841919804772001,
-      "show_label": false
-    },
-    {
-      "id": "biome_33",
-      "kind": "catalog_feature",
-      "at": [
-        16.71,
-        -5.08
-      ],
-      "catalog_code": "4A",
-      "scale": 1.16576364035148,
-      "show_label": false
-    },
-    {
-      "id": "biome_34",
-      "kind": "catalog_feature",
-      "at": [
-        17.64,
-        17.14
-      ],
-      "catalog_code": "4A",
-      "scale": 1.0238927980963584,
-      "show_label": false
-    },
-    {
-      "id": "biome_35",
-      "kind": "catalog_feature",
-      "at": [
-        -8.75,
-        -22.82
-      ],
-      "catalog_code": "4A",
-      "scale": 0.9311418718675984,
-      "show_label": false
-    },
-    {
-      "id": "biome_36",
-      "kind": "catalog_feature",
-      "at": [
-        21.17,
-        -16.03
-      ],
-      "catalog_code": "4A",
-      "scale": 1.227299354260023,
-      "show_label": false
-    },
-    {
-      "id": "biome_37",
-      "kind": "catalog_feature",
-      "at": [
-        -14.59,
-        -18.63
-      ],
-      "catalog_code": "4A",
-      "scale": 1.2703933219490007,
-      "show_label": false
-    },
-    {
-      "id": "biome_38",
-      "kind": "catalog_feature",
-      "at": [
-        11.31,
-        -24.84
-      ],
-      "catalog_code": "4A",
-      "scale": 1.015029067304724,
-      "show_label": false
-    },
-    {
-      "id": "biome_39",
-      "kind": "catalog_feature",
-      "at": [
-        -20.98,
-        -20.19
-      ],
-      "catalog_code": "4A",
-      "scale": 1.3257064371879326,
-      "show_label": false
-    },
-    {
-      "id": "biome_40",
-      "kind": "catalog_feature",
-      "at": [
-        20.59,
-        -10.27
-      ],
-      "catalog_code": "4A",
-      "scale": 0.9943188643029907,
-      "show_label": false
-    },
-    {
-      "id": "biome_41",
-      "kind": "catalog_feature",
-      "at": [
-        23.73,
-        8.91
-      ],
-      "catalog_code": "4A",
-      "scale": 0.9475937478019199,
-      "show_label": false
-    },
-    {
-      "id": "biome_42",
-      "kind": "catalog_feature",
-      "at": [
-        22.59,
-        9.56
-      ],
-      "catalog_code": "4A",
-      "scale": 1.001889241451138,
-      "show_label": false
-    },
-    {
-      "id": "biome_43",
-      "kind": "catalog_feature",
-      "at": [
-        -21.59,
-        15.81
-      ],
-      "catalog_code": "4A",
-      "scale": 0.9337945718984884,
-      "show_label": false
-    },
-    {
-      "id": "biome_44",
-      "kind": "catalog_feature",
-      "at": [
-        -16.78,
-        -10.07
-      ],
-      "catalog_code": "4A",
-      "scale": 1.2403482195084177,
+      "scale": 1.19,
       "show_label": false
     }
   ],
@@ -1106,27 +897,39 @@
   ],
   "interactions": [
     {
-      "id": "route_0",
+      "id": "local_clue_0",
       "kind": "sign",
       "at": [
-        2.1,
-        25
+        -2.2,
+        0.0
       ],
-      "title": "Saltwind Strand",
+      "title": "Reed Ambush",
       "lines": [
-        "Saltwind Strand · follow the trail marker and press E."
+        "Silk and ripples betray a reed nest beside the causeway. Firm ground keeps your movement quick."
       ]
     },
     {
-      "id": "route_1",
+      "id": "local_clue_1",
       "kind": "sign",
       "at": [
-        27,
-        0
+        -2.2,
+        0.0
       ],
-      "title": "Heartwood",
+      "title": "Courier Blockade",
       "lines": [
-        "Heartwood · follow the trail marker and press E."
+        "Jun’s lantern shines from a willow island. Clear its approach; the courier will return home once it is safe."
+      ]
+    },
+    {
+      "id": "local_clue_2",
+      "kind": "sign",
+      "at": [
+        19.8,
+        -12.0
+      ],
+      "title": "Sunken Cargo",
+      "lines": [
+        "Shells cluster around sunken cargo. The cache is optional; the dry causeway continues west."
       ]
     }
   ],
@@ -1166,59 +969,59 @@
   ],
   "enemies": [
     {
-      "id": "foe_0",
-      "kind": "library_spider",
-      "at": [
-        -10,
-        -9
-      ]
-    },
-    {
-      "id": "foe_1",
-      "kind": "library_crab",
-      "at": [
-        -14,
-        -12
-      ]
-    },
-    {
       "id": "slime_0",
       "kind": "library_spider",
       "at": [
-        0,
-        13
+        -8,
+        7
       ]
     },
     {
       "id": "slime_1",
-      "kind": "library_crab",
+      "kind": "library_spider",
       "at": [
-        4,
+        -2,
         8
       ]
     },
     {
-      "id": "slime_2",
+      "id": "foe_0",
       "kind": "library_spider",
       "at": [
-        -5,
-        3
+        -13,
+        -10
+      ]
+    },
+    {
+      "id": "foe_1",
+      "kind": "library_spider",
+      "at": [
+        -7,
+        -13
+      ]
+    },
+    {
+      "id": "slime_4",
+      "kind": "library_crab",
+      "at": [
+        -10,
+        -16
+      ]
+    },
+    {
+      "id": "slime_2",
+      "kind": "library_crab",
+      "at": [
+        8,
+        -6
       ]
     },
     {
       "id": "slime_3",
       "kind": "library_crab",
       "at": [
-        6,
-        -6
-      ]
-    },
-    {
-      "id": "slime_4",
-      "kind": "library_spider",
-      "at": [
-        0,
-        -13
+        14,
+        -8
       ]
     },
     {
@@ -1226,11 +1029,32 @@
       "kind": "library_crab",
       "at": [
         17,
-        -1
+        -12
       ]
     }
   ],
   "catalog_enemies": [],
-  "sculpted_terrain": [],
+  "sculpted_terrain": [
+    {
+      "id": "willow_bank",
+      "at": [
+        -6,
+        -9
+      ],
+      "height": 1.0,
+      "radius": 6,
+      "profile": "smooth"
+    },
+    {
+      "id": "refuge_bank",
+      "at": [
+        -17,
+        19
+      ],
+      "height": 0.6,
+      "radius": 5,
+      "profile": "smooth"
+    }
+  ],
   "wading": true
 }

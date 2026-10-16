@@ -1,7 +1,7 @@
 {
   "id": "a2_sanctum",
   "display_name": "The Open-Sky Chapel",
-  "subtitle": "The bell road crosses a roofless royal sanctuary",
+  "subtitle": "A small roofless pilgrim chapel offers shelter between forest and final trial.",
   "seed": 1962,
   "bounds": [
     -14,
@@ -20,16 +20,16 @@
       "kind": "grass",
       "rect": [
         -14,
-        -14,
+        -20,
         28,
-        28
+        40
       ]
     },
     {
       "kind": "path",
       "rect": [
         -1,
-        -9,
+        -8,
         2,
         1
       ]
@@ -37,9 +37,9 @@
     {
       "kind": "path",
       "rect": [
-        -2,
-        -8,
-        4,
+        -5,
+        -7,
+        2,
         1
       ]
     },
@@ -55,16 +55,16 @@
     {
       "kind": "path",
       "rect": [
-        -1,
         -6,
-        3,
+        -6,
+        8,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -1,
+        -6,
         -5,
         4,
         1
@@ -74,51 +74,60 @@
       "kind": "path",
       "rect": [
         -1,
+        -5,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -5,
         -4,
-        4,
+        7,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        0,
+        -4,
         -3,
-        3,
+        7,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        0,
+        -3,
         -2,
-        4,
+        6,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        0,
+        -3,
         -1,
-        4,
+        6,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        1,
+        -2,
         0,
-        3,
+        5,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        1,
+        -1,
         1,
         4,
         1
@@ -127,9 +136,9 @@
     {
       "kind": "path",
       "rect": [
-        1,
+        0,
         2,
-        4,
+        5,
         1
       ]
     },
@@ -138,7 +147,7 @@
       "rect": [
         0,
         3,
-        4,
+        6,
         1
       ]
     },
@@ -147,7 +156,7 @@
       "rect": [
         0,
         4,
-        3,
+        6,
         1
       ]
     },
@@ -156,16 +165,16 @@
       "rect": [
         -1,
         5,
-        4,
+        6,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -2,
+        -1,
         6,
-        4,
+        3,
         1
       ]
     },
@@ -181,8 +190,17 @@
     {
       "kind": "path",
       "rect": [
-        -1,
+        -2,
         8,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -1,
+        9,
         2,
         1
       ]
@@ -203,32 +221,7 @@
       ]
     }
   ],
-  "interactions": [
-    {
-      "id": "route_0",
-      "kind": "sign",
-      "at": [
-        2.1,
-        8
-      ],
-      "title": "Heartwood",
-      "lines": [
-        "Heartwood · follow the trail marker and press E."
-      ]
-    },
-    {
-      "id": "route_1",
-      "kind": "sign",
-      "at": [
-        2.1,
-        -6.5
-      ],
-      "title": "The Living Bell Court",
-      "lines": [
-        "The Living Bell Court · follow the trail marker and press E."
-      ]
-    }
-  ],
+  "interactions": [],
   "exits": [
     {
       "id": "to_wood",

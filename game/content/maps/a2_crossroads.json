@@ -1,7 +1,7 @@
 {
   "id": "a2_crossroads",
   "display_name": "The Forked Pilgrim Road",
-  "subtitle": "Saltwind Strand west · Skyglass Bluffs east · Heartwood north",
+  "subtitle": "A sheltered waystation beneath a split ridge; choose a quiet north road or investigate feeding grounds.",
   "seed": 1965,
   "bounds": [
     -32,
@@ -29,8 +29,17 @@
       "kind": "path",
       "rect": [
         -1,
-        -30,
+        -31,
         2,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
+        -30,
+        4,
         1
       ]
     },
@@ -46,9 +55,9 @@
     {
       "kind": "path",
       "rect": [
-        -2,
+        -1,
         -28,
-        4,
+        3,
         1
       ]
     },
@@ -75,7 +84,7 @@
       "rect": [
         0,
         -25,
-        4,
+        3,
         1
       ]
     },
@@ -91,7 +100,7 @@
     {
       "kind": "path",
       "rect": [
-        1,
+        0,
         -23,
         4,
         1
@@ -100,16 +109,16 @@
     {
       "kind": "path",
       "rect": [
-        0,
+        1,
         -22,
-        5,
+        3,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        0,
+        1,
         -21,
         4,
         1
@@ -118,7 +127,7 @@
     {
       "kind": "path",
       "rect": [
-        -1,
+        1,
         -20,
         4,
         1
@@ -127,8 +136,17 @@
     {
       "kind": "path",
       "rect": [
-        -2,
+        1,
         -19,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        0,
+        -18,
         4,
         1
       ]
@@ -136,25 +154,16 @@
     {
       "kind": "path",
       "rect": [
-        -3,
-        -18,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -4,
+        0,
         -17,
-        5,
+        3,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -4,
+        -1,
         -16,
         4,
         1
@@ -163,7 +172,7 @@
     {
       "kind": "path",
       "rect": [
-        -5,
+        -1,
         -15,
         4,
         1
@@ -172,35 +181,8 @@
     {
       "kind": "path",
       "rect": [
-        -6,
+        -1,
         -14,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -7,
-        -13,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -7,
-        -12,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -6,
-        -11,
         3,
         1
       ]
@@ -208,7 +190,34 @@
     {
       "kind": "path",
       "rect": [
-        -6,
+        -2,
+        -13,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
+        -12,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -3,
+        -11,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -3,
         -10,
         4,
         1
@@ -217,17 +226,8 @@
     {
       "kind": "path",
       "rect": [
-        -5,
+        -3,
         -9,
-        3,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -5,
-        -8,
         4,
         1
       ]
@@ -235,7 +235,16 @@
     {
       "kind": "path",
       "rect": [
-        -4,
+        -3,
+        -8,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -3,
         -7,
         3,
         1
@@ -244,7 +253,7 @@
     {
       "kind": "path",
       "rect": [
-        -4,
+        -3,
         -6,
         3,
         1
@@ -253,36 +262,9 @@
     {
       "kind": "path",
       "rect": [
-        -13,
+        -3,
         -5,
-        2,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -4,
-        -5,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        21,
-        -5,
-        2,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -14,
-        -4,
-        7,
+        3,
         1
       ]
     },
@@ -298,34 +280,34 @@
     {
       "kind": "path",
       "rect": [
-        20,
+        18,
         -4,
-        5,
+        2,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -15,
         -3,
+        -3,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
         16,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        19,
         -3,
-        8,
+        9,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -29,
+        -30,
         -2,
         2,
         1
@@ -334,54 +316,81 @@
     {
       "kind": "path",
       "rect": [
-        -17,
+        -7,
         -2,
-        18,
+        2,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        17,
+        -3,
         -2,
-        12,
+        3,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -30,
-        -1,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -18,
-        -1,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -9,
-        -1,
-        12,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
+        14,
+        -2,
         16,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -31,
         -1,
-        6,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -8,
+        -1,
+        8,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        12,
+        -1,
+        19,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -31,
+        0,
+        7,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -8,
+        0,
+        8,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        10,
+        0,
+        8,
         1
       ]
     },
@@ -389,8 +398,8 @@
       "kind": "path",
       "rect": [
         23,
-        -1,
-        7,
+        0,
+        8,
         1
       ]
     },
@@ -398,78 +407,24 @@
       "kind": "path",
       "rect": [
         -30,
-        0,
-        8,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -19,
-        0,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -5,
-        0,
-        10,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        15,
-        0,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        25,
-        0,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -29,
         1,
-        14,
+        9,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -2,
+        -7,
         1,
-        10,
+        23,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        14,
-        1,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        27,
+        28,
         1,
         2,
         1
@@ -478,7 +433,7 @@
     {
       "kind": "path",
       "rect": [
-        -26,
+        -27,
         2,
         9,
         1
@@ -487,27 +442,27 @@
     {
       "kind": "path",
       "rect": [
-        -3,
+        -8,
         2,
-        4,
+        22,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        2,
-        2,
-        8,
+        -25,
+        3,
+        11,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        12,
-        2,
-        6,
+        -10,
+        3,
+        23,
         1
       ]
     },
@@ -515,35 +470,8 @@
       "kind": "path",
       "rect": [
         -23,
-        3,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -3,
-        3,
         4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        4,
-        3,
-        13,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -21,
-        4,
-        2,
+        19,
         1
       ]
     },
@@ -561,14 +489,23 @@
       "rect": [
         7,
         4,
-        8,
+        7,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -4,
+        -20,
+        5,
+        14,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -3,
         5,
         4,
         1
@@ -577,16 +514,25 @@
     {
       "kind": "path",
       "rect": [
-        9,
+        10,
         5,
-        5,
+        6,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -4,
+        -16,
+        6,
+        7,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -3,
         6,
         4,
         1
@@ -597,6 +543,15 @@
       "rect": [
         11,
         6,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -13,
+        7,
         2,
         1
       ]
@@ -604,7 +559,7 @@
     {
       "kind": "path",
       "rect": [
-        -4,
+        -2,
         7,
         3,
         1
@@ -613,8 +568,35 @@
     {
       "kind": "path",
       "rect": [
-        -5,
+        13,
+        7,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         8,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        14,
+        8,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
+        9,
         4,
         1
       ]
@@ -622,16 +604,16 @@
     {
       "kind": "path",
       "rect": [
-        -5,
+        16,
         9,
-        5,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -4,
+        -2,
         10,
         4,
         1
@@ -640,16 +622,34 @@
     {
       "kind": "path",
       "rect": [
-        -3,
-        11,
-        4,
+        17,
+        10,
+        3,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -2,
+        -1,
+        11,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        17,
+        11,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -1,
         12,
         4,
         1
@@ -658,18 +658,45 @@
     {
       "kind": "path",
       "rect": [
-        -2,
-        13,
-        5,
+        17,
+        12,
+        3,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -1,
+        0,
+        13,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        17,
+        13,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        0,
         14,
-        5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        17,
+        14,
+        4,
         1
       ]
     },
@@ -679,6 +706,15 @@
         0,
         15,
         4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        18,
+        15,
+        3,
         1
       ]
     },
@@ -687,14 +723,23 @@
       "rect": [
         1,
         16,
-        4,
+        3,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        2,
+        18,
+        16,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        1,
         17,
         4,
         1
@@ -703,16 +748,43 @@
     {
       "kind": "path",
       "rect": [
-        2,
         18,
-        5,
+        17,
+        3,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
+        2,
+        18,
         3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        18,
+        18,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        2,
+        19,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        18,
         19,
         4,
         1
@@ -730,9 +802,18 @@
     {
       "kind": "path",
       "rect": [
+        19,
+        20,
         2,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        1,
         21,
-        3,
+        4,
         1
       ]
     },
@@ -784,7 +865,7 @@
     {
       "kind": "path",
       "rect": [
-        -2,
+        -1,
         27,
         4,
         1
@@ -802,8 +883,17 @@
     {
       "kind": "path",
       "rect": [
-        -1,
+        -2,
         29,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -1,
+        30,
         2,
         1
       ]
@@ -811,439 +901,339 @@
   ],
   "props": [
     {
-      "id": "biome_0",
+      "id": "bank_tree_0",
       "kind": "catalog_feature",
       "at": [
-        7.92,
-        -9.89
+        -25.9,
+        14.88
       ],
       "catalog_code": "3A",
-      "scale": 1.0565750768904936,
+      "scale": 1.27,
       "show_label": false
     },
     {
-      "id": "biome_1",
+      "id": "bank_tree_1",
       "kind": "catalog_feature",
       "at": [
-        22.31,
-        18.62
+        -25.73,
+        17.92
       ],
       "catalog_code": "1A",
-      "scale": 0.9795970858024878,
+      "scale": 1.21,
       "show_label": false
     },
     {
-      "id": "biome_2",
+      "id": "bank_tree_2",
       "kind": "catalog_feature",
       "at": [
-        -18.1,
-        18.27
+        -25.81,
+        20.42
       ],
       "catalog_code": "1A",
-      "scale": 1.1313118991789164,
+      "scale": 1.28,
       "show_label": false
     },
     {
-      "id": "biome_3",
+      "id": "bank_tree_3",
       "kind": "catalog_feature",
       "at": [
-        17.18,
-        -23.5
+        -23.34,
+        14.78
+      ],
+      "catalog_code": "1A",
+      "scale": 1.44,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_4",
+      "kind": "catalog_feature",
+      "at": [
+        -23.29,
+        17.86
+      ],
+      "catalog_code": "1A",
+      "scale": 1.33,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_5",
+      "kind": "catalog_feature",
+      "at": [
+        -23.09,
+        20.12
       ],
       "catalog_code": "3A",
-      "scale": 1.0063830619675787,
+      "scale": 1.23,
       "show_label": false
     },
     {
-      "id": "biome_4",
+      "id": "bank_tree_6",
       "kind": "catalog_feature",
       "at": [
-        11.21,
-        -26.86
-      ],
-      "catalog_code": "1A",
-      "scale": 1.1630243863807532,
-      "show_label": false
-    },
-    {
-      "id": "biome_5",
-      "kind": "catalog_feature",
-      "at": [
-        5.5,
-        25.44
-      ],
-      "catalog_code": "1A",
-      "scale": 0.9254435927315829,
-      "show_label": false
-    },
-    {
-      "id": "biome_6",
-      "kind": "catalog_feature",
-      "at": [
-        25.39,
-        4.88
+        18.14,
+        24.68
       ],
       "catalog_code": "3A",
-      "scale": 0.9813800535816549,
+      "scale": 1.35,
       "show_label": false
     },
     {
-      "id": "biome_7",
+      "id": "bank_tree_7",
       "kind": "catalog_feature",
       "at": [
-        10.2,
-        -26.06
+        18.07,
+        28.01
       ],
       "catalog_code": "1A",
-      "scale": 1.229510466373703,
+      "scale": 1.17,
       "show_label": false
     },
     {
-      "id": "biome_8",
+      "id": "bank_tree_8",
       "kind": "catalog_feature",
       "at": [
-        28.08,
-        -25.49
+        21.01,
+        25.06
       ],
       "catalog_code": "1A",
-      "scale": 0.9556655488212804,
+      "scale": 1.21,
       "show_label": false
     },
     {
-      "id": "biome_9",
+      "id": "bank_tree_9",
       "kind": "catalog_feature",
       "at": [
-        -25.11,
-        6.93
+        20.82,
+        27.39
+      ],
+      "catalog_code": "1A",
+      "scale": 1.41,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_10",
+      "kind": "catalog_feature",
+      "at": [
+        23.74,
+        24.69
+      ],
+      "catalog_code": "1A",
+      "scale": 1.19,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_11",
+      "kind": "catalog_feature",
+      "at": [
+        23.1,
+        27.78
       ],
       "catalog_code": "3A",
-      "scale": 0.9651149585940987,
+      "scale": 1.2,
       "show_label": false
     },
     {
-      "id": "biome_10",
+      "id": "bank_tree_12",
       "kind": "catalog_feature",
       "at": [
-        -14.26,
-        23.41
-      ],
-      "catalog_code": "1A",
-      "scale": 1.3224886007011547,
-      "show_label": false
-    },
-    {
-      "id": "biome_11",
-      "kind": "catalog_feature",
-      "at": [
-        -10.03,
-        17.76
+        -20.17,
+        -24.72
       ],
       "catalog_code": "3A",
-      "scale": 0.9552627906533584,
+      "scale": 1.48,
       "show_label": false
     },
     {
-      "id": "biome_12",
+      "id": "bank_tree_13",
       "kind": "catalog_feature",
       "at": [
-        -9.5,
-        -21.25
+        -19.88,
+        -22.24
       ],
       "catalog_code": "1A",
-      "scale": 0.9833069075553359,
+      "scale": 1.26,
       "show_label": false
     },
     {
-      "id": "biome_13",
+      "id": "bank_tree_14",
       "kind": "catalog_feature",
       "at": [
-        18.8,
-        10.54
+        -17.09,
+        -25.26
+      ],
+      "catalog_code": "1A",
+      "scale": 1.32,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_15",
+      "kind": "catalog_feature",
+      "at": [
+        -17.34,
+        -22.41
+      ],
+      "catalog_code": "1A",
+      "scale": 1.2,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_16",
+      "kind": "catalog_feature",
+      "at": [
+        -14.82,
+        -24.77
+      ],
+      "catalog_code": "1A",
+      "scale": 1.39,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_17",
+      "kind": "catalog_feature",
+      "at": [
+        -14.91,
+        -22.6
       ],
       "catalog_code": "3A",
-      "scale": 0.9266432858977536,
+      "scale": 1.47,
       "show_label": false
     },
     {
-      "id": "biome_14",
+      "id": "bank_tree_18",
       "kind": "catalog_feature",
       "at": [
-        -25.1,
-        23.35
-      ],
-      "catalog_code": "1A",
-      "scale": 1.1762745373867076,
-      "show_label": false
-    },
-    {
-      "id": "biome_15",
-      "kind": "catalog_feature",
-      "at": [
-        9.37,
-        -19.85
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2560410460452873,
-      "show_label": false
-    },
-    {
-      "id": "biome_16",
-      "kind": "catalog_feature",
-      "at": [
-        -12.69,
-        13.16
+        18.08,
+        -19.89
       ],
       "catalog_code": "3A",
-      "scale": 1.031838422478021,
+      "scale": 1.21,
       "show_label": false
     },
     {
-      "id": "biome_17",
+      "id": "bank_tree_19",
       "kind": "catalog_feature",
       "at": [
-        20.18,
-        -8.76
+        18.2,
+        -17.45
       ],
       "catalog_code": "1A",
-      "scale": 1.1196834021190731,
+      "scale": 1.4,
       "show_label": false
     },
     {
-      "id": "biome_18",
+      "id": "bank_tree_20",
       "kind": "catalog_feature",
       "at": [
-        7.29,
-        15.88
+        17.86,
+        -14.36
       ],
       "catalog_code": "1A",
-      "scale": 1.1137363833276546,
+      "scale": 1.27,
       "show_label": false
     },
     {
-      "id": "biome_19",
+      "id": "bank_tree_21",
       "kind": "catalog_feature",
       "at": [
-        23.19,
-        -6.57
+        20.69,
+        -19.91
+      ],
+      "catalog_code": "1A",
+      "scale": 1.42,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_22",
+      "kind": "catalog_feature",
+      "at": [
+        20.68,
+        -17.02
+      ],
+      "catalog_code": "1A",
+      "scale": 1.29,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_23",
+      "kind": "catalog_feature",
+      "at": [
+        20.73,
+        -14.36
       ],
       "catalog_code": "3A",
-      "scale": 1.1444844402208647,
+      "scale": 1.32,
       "show_label": false
     },
     {
-      "id": "biome_20",
+      "id": "bank_tree_24",
       "kind": "catalog_feature",
       "at": [
-        -25.59,
-        11.77
+        23.09,
+        -19.86
       ],
       "catalog_code": "1A",
-      "scale": 0.9219853559558805,
+      "scale": 1.17,
       "show_label": false
     },
     {
-      "id": "biome_21",
+      "id": "bank_tree_25",
       "kind": "catalog_feature",
       "at": [
-        25.93,
-        20.86
+        23.71,
+        -17.05
       ],
       "catalog_code": "3A",
-      "scale": 1.2054902120896225,
+      "scale": 1.39,
       "show_label": false
     },
     {
-      "id": "biome_22",
+      "id": "bank_tree_26",
       "kind": "catalog_feature",
       "at": [
-        26.43,
-        1.93
+        23.72,
+        -14.58
       ],
       "catalog_code": "1A",
-      "scale": 1.1463092469729468,
-      "show_label": false
-    },
-    {
-      "id": "biome_23",
-      "kind": "catalog_feature",
-      "at": [
-        -8.06,
-        14.92
-      ],
-      "catalog_code": "1A",
-      "scale": 1.0593672743251012,
-      "show_label": false
-    },
-    {
-      "id": "biome_24",
-      "kind": "catalog_feature",
-      "at": [
-        13.73,
-        -15.53
-      ],
-      "catalog_code": "3A",
-      "scale": 1.3241302536631108,
-      "show_label": false
-    },
-    {
-      "id": "biome_25",
-      "kind": "catalog_feature",
-      "at": [
-        12.43,
-        -5.31
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2290074360599528,
-      "show_label": false
-    },
-    {
-      "id": "biome_26",
-      "kind": "catalog_feature",
-      "at": [
-        -10.09,
-        11.75
-      ],
-      "catalog_code": "1A",
-      "scale": 0.9168868290457964,
-      "show_label": false
-    },
-    {
-      "id": "biome_27",
-      "kind": "catalog_feature",
-      "at": [
-        8.02,
-        -20.35
-      ],
-      "catalog_code": "3A",
-      "scale": 1.2701729843206384,
-      "show_label": false
-    },
-    {
-      "id": "biome_28",
-      "kind": "catalog_feature",
-      "at": [
-        7.36,
-        9.58
-      ],
-      "catalog_code": "1A",
-      "scale": 1.1088024593306587,
-      "show_label": false
-    },
-    {
-      "id": "biome_29",
-      "kind": "catalog_feature",
-      "at": [
-        -2.61,
-        19.91
-      ],
-      "catalog_code": "3A",
-      "scale": 1.3270525952042094,
-      "show_label": false
-    },
-    {
-      "id": "biome_30",
-      "kind": "catalog_feature",
-      "at": [
-        24.15,
-        12.46
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2770136175704487,
-      "show_label": false
-    },
-    {
-      "id": "biome_31",
-      "kind": "catalog_feature",
-      "at": [
-        19.35,
-        6.39
-      ],
-      "catalog_code": "1A",
-      "scale": 1.3338195846246337,
-      "show_label": false
-    },
-    {
-      "id": "biome_32",
-      "kind": "catalog_feature",
-      "at": [
-        -22.82,
-        -10.19
-      ],
-      "catalog_code": "3A",
-      "scale": 1.2961206542460615,
-      "show_label": false
-    },
-    {
-      "id": "biome_33",
-      "kind": "catalog_feature",
-      "at": [
-        25.53,
-        25.99
-      ],
-      "catalog_code": "1A",
-      "scale": 1.276219253734855,
-      "show_label": false
-    },
-    {
-      "id": "biome_34",
-      "kind": "catalog_feature",
-      "at": [
-        24.97,
-        22.74
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2020064191677269,
+      "scale": 1.34,
       "show_label": false
     }
   ],
   "npcs": [],
   "interactions": [
     {
-      "id": "route_0",
+      "id": "local_clue_0",
       "kind": "sign",
       "at": [
-        2.1,
-        29
+        -10.020101012677667,
+        7.979898987322333
       ],
-      "title": "Hearthmere",
+      "title": "Road Scavengers",
       "lines": [
-        "Hearthmere · follow the trail marker and press E."
+        "Freshly turned earth and snapped branches mark a feeding patch. The beasts defend it; the north road avoids them."
       ]
     },
     {
-      "id": "route_1",
+      "id": "local_clue_1",
       "kind": "sign",
       "at": [
-        -26.900000000000002,
-        0
+        20.8,
+        9.0
       ],
-      "title": "Saltwind Strand",
+      "title": "Road Hunt",
       "lines": [
-        "Saltwind Strand · follow the trail marker and press E."
+        "A pair of wolves feeds beyond the east bend. They circle and take turns lunging; the ridge can cover your back."
       ]
     },
     {
-      "id": "route_2",
+      "id": "local_clue_2",
       "kind": "sign",
       "at": [
-        31,
-        0
+        1.7999999999999998,
+        -10.0
       ],
-      "title": "Skyglass Bluffs",
+      "title": "Root Cut",
       "lines": [
-        "Skyglass Bluffs · follow the trail marker and press E."
-      ]
-    },
-    {
-      "id": "route_3",
-      "kind": "sign",
-      "at": [
-        2.1,
-        -29
-      ],
-      "title": "Heartwood",
-      "lines": [
-        "Heartwood · follow the trail marker and press E."
+        "Silk stretches between the roots ahead. Step into the marked hollow to disturb its nest."
       ]
     }
   ],
@@ -1316,25 +1306,25 @@
   "enemies": [
     {
       "id": "foe_0",
-      "kind": "library_wolf",
+      "kind": "library_boar",
       "at": [
-        -12,
-        1
+        -15,
+        4
       ]
     },
     {
       "id": "foe_1",
       "kind": "library_boar",
       "at": [
-        -17,
-        3
+        -19,
+        6
       ]
     },
     {
       "id": "foe_2",
-      "kind": "library_spider",
+      "kind": "library_wolf",
       "at": [
-        14,
+        15,
         1
       ]
     },
@@ -1343,26 +1333,51 @@
       "kind": "library_wolf",
       "at": [
         19,
-        -3
+        -2
       ]
     },
     {
       "id": "foe_4",
-      "kind": "library_boar",
+      "kind": "library_spider",
       "at": [
-        -2,
-        -14
+        -1,
+        -17
       ]
     },
     {
       "id": "foe_5",
       "kind": "library_spider",
       "at": [
-        3,
-        -21
+        4,
+        -20
       ]
     }
   ],
   "catalog_enemies": [],
-  "sculpted_terrain": []
+  "sculpted_terrain": [
+    {
+      "id": "west_spur",
+      "at": [
+        -15,
+        -9
+      ],
+      "height": 4.4,
+      "radius": 9,
+      "profile": "bluff",
+      "plateau_width": 9,
+      "plateau_depth": 12,
+      "rotation": 0,
+      "edge_roughness": 0.5
+    },
+    {
+      "id": "eastern_knoll",
+      "at": [
+        10,
+        17
+      ],
+      "height": 2.7,
+      "radius": 9,
+      "profile": "smooth"
+    }
+  ]
 }

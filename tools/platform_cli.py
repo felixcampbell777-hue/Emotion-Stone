@@ -3,6 +3,7 @@ import argparse
 import copy
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -51,6 +52,20 @@ def validate():
             if path.stem!=data['id']:
                 raise ValueError(f'{path.name}: id must match filename')
             collection[data['id']]=data
+    regions=read(GAME/'content/alpha2_regions.json')
+    for area,plan in regions.items():
+        if area not in maps: raise ValueError('Unknown Alpha 2 region: '+area)
+        bounds=maps[area]['bounds']; members=[]; groups=set()
+        for route in plan['routes']:
+            if len(route)<2: raise ValueError(area+': route needs connected points')
+            for point in route:
+                if len(point)!=2 or not all(isinstance(n,(int,float)) and math.isfinite(n) for n in point) or not bounds[0]<=point[0]<=bounds[2] or not bounds[1]<=point[1]<=bounds[3]: raise ValueError(area+': invalid route point')
+        for group in plan['groups']:
+            if group['id'] in groups or group['behavior'] not in ['pack','ambush','scavenge','guard','territory'] or not 0<group['trigger_radius']<=group['leash_radius'] or not group['warning'] or not group['members']: raise ValueError(area+': invalid encounter situation')
+            groups.add(group['id']); members.extend(group['members'])
+        expected=[e for e in maps[area]['enemies'] if e['kind']!='bellkeeper']
+        if sorted(members,key=lambda e:e['id'])!=sorted(expected,key=lambda e:e['id']) or len({e['id'] for e in members})!=len(members): raise ValueError(area+': encounter plan/map mismatch; regenerate content')
+        if plan['hills']!=maps[area].get('sculpted_terrain',[]): raise ValueError(area+': landforms differ from recipe')
     cores=read(GAME/'content/monster_cores.json'); valid('monster_cores',cores)
     ids={item['id'] for item in cores['cores']}
     if len(ids)!=len(cores['cores']): raise ValueError('Duplicate monster core IDs')

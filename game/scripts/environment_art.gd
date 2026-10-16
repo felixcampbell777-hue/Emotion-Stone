@@ -237,7 +237,11 @@ static func apply(world:Node3D) -> void:
 	for data in world.definition.props+world.definition.interactions:
 		var node=world.get_node_or_null(NodePath(data.id))
 		if node!=null: dress_prop(node,data)
-	if not world.definition.has("interior") and not world.definition.get("cave",false) and world.definition.get("biome","") not in ["beach","highlands"]: _scatter(root,world); _backdrop(root,world)
+	if not world.definition.has("interior") and not world.definition.get("cave",false) and world.definition.get("biome","") not in ["beach","highlands"]:
+		if not String(world.definition.id).begins_with("a2_"):_scatter(root,world)
+		_backdrop(root,world)
+	# Generic dressing must not replace the region's slope-aware material.
+	if String(world.definition.id).begins_with("a2_") and not world.definition.get("cave",false):load("res://scripts/alpha2_scenery.gd").ground(world)
 	if world.definition.id=="herb_glade":
 		for i in range(5):
 			var wall=model(VILLAGE+"glTF/Wall_UnevenBrick_Straight.gltf",Vector3(3.2,2+(i%2)*.8,.5),false)

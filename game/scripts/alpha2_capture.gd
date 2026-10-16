@@ -17,13 +17,18 @@ func view(game:Control,id:String,at:Vector2,yaw:float,pitch:float=0) -> void:
 func run(game:Control,directory:String) -> void:
 	game.game_mode="alpha2";game.alpha2_import_path="user://alpha2-no-import-capture.json";game.start_new_game(false);game.alpha2.mark("begun");game.set_resolution(0);game.camera_driver.set_mode("first_person");game.player.set_sword_drawn(true);game.toast_time=0
 	view(game,"a2_haven",Vector2(0,13),0,.02);await measure(game,"a2_haven");await picture(game,directory+"/alpha2-haven.png")
-	for fixture in [["a2_crossroads",Vector2(1,12),0],["a2_mill",Vector2(12,16),-1.0],["a2_fen",Vector2(-5,12),0],["a2_quarry",Vector2(5,9),0],["a2_wood",Vector2(4,15),.3],["a2_watch",Vector2(0,5),0],["a2_sanctum",Vector2(0,4),0],["a2_belfry",Vector2(0,7),0]]:
+	for fixture in [["a2_crossroads",Vector2(1,12),0],["a2_mill",Vector2(7,16),.9],["a2_fen",Vector2(-5,12),0],["a2_quarry",Vector2(0,12),0],["a2_wood",Vector2(-8,9),0],["a2_watch",Vector2(0,5),0],["a2_sanctum",Vector2(0,4),0],["a2_belfry",Vector2(0,7),0]]:
 		view(game,fixture[0],fixture[1],fixture[2]);await measure(game,fixture[0]);await picture(game,directory+"/alpha2-"+String(fixture[0]).trim_prefix("a2_")+".png");print("ALPHA2_CAPTURE ",fixture[0])
 		if fixture[0]=="a2_belfry":
 			var boss=game.enemies[0];boss.health=boss.max_health-1;boss.state="slam_tell";boss.state_time=.8;boss._physics_process(.01);boss.set_physics_process(false);game.camera_driver.first_pitch=.12;await picture(game,directory+"/alpha2-boss-warning.png")
 			boss.tell.visible=false;boss.begin_ring();boss.update_ring(.7);await picture(game,directory+"/alpha2-boss-wave.png")
 	view(game,"a2_mill",Vector2(-5,13),.85,.05);await picture(game,directory+"/alpha2-wreck-salvage.png")
 	view(game,"a2_fen",Vector2(-6,2),PI/2,.12);await picture(game,directory+"/alpha2-fen-water.png")
+	view(game,"a2_wood",Vector2(22,-5),PI/2,.1);await picture(game,directory+"/alpha2-nest-warning.png")
+	game.player.position=Vector3(20,0,-5);game.player.position.y=game.current_world.ground_height(game.player.position);game.camera_driver.update_first_person();game.alpha2.encounters.tick(.01)
+	await game.get_tree().create_timer(.9).timeout;await picture(game,directory+"/alpha2-nest-emergence.png")
+	view(game,"a2_quarry",Vector2(23,15),.05);await picture(game,directory+"/alpha2-seaward-route.png")
+	view(game,"a2_wood",Vector2(-23,-22),-.8);await picture(game,directory+"/alpha2-root-discovery.png")
 	for fixture in [["a2_mill","library_crab"],["a2_mill","library_rat"],["a2_wood","library_boar"],["a2_wood","library_spider"],["a2_wood","library_wolf"],["a2_quarry","library_sentinel"],["a2_belfry","bellkeeper"]]:
 		view(game,fixture[0],Vector2(0,10),0,.12)
 		for e in game.enemies:
