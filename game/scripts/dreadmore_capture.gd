@@ -22,6 +22,22 @@ func run(g:Node,directory:String) -> void:
 	boss.ai_enabled=true;boss.simulation_enabled=true;boss._physics_process(.01);await picture(g,directory+"/dreadmore-drop-tell.png")
 	boss._physics_process(1.5);boss._physics_process(.8);boss.animate();g.player.position=Vector3(18,0,-21);g.player.health=g.player.max_health;g.player.state="free";g.player.play_clip("drag_idle_loop",0);g.player.animator.seek(0,true);g.player._pose_sword("drag",0);g.camera_driver.first_pitch=-.08;g.camera_driver.update_first_person();g.toast_time=0;await picture(g,directory+"/dreadmore-fiend-ground.png")
 	boss.state="cleave";boss.state_time=.35;boss.animate();await picture(g,directory+"/dreadmore-fiend-cleave.png")
+	g.player.set_sword_drawn(false);g.player.health=g.player.max_health;g.player.state="free"
+	for effect in g.get_tree().get_nodes_in_group("fiend_impact"):effect.queue_free()
+	for fixture in [["hunt",0,.1,"skitter-a"],["hunt",0,.3,"skitter-b"],["cleave_tell",.15,.4,"cleave-windup"],["cleave",.3,.6,"cleave-sweep"],["drop_tell",.15,.8,"slam-raised"],["drop",.25,1.0,"slam-reaching"],["recover",1.75,1.2,"slam-impact"],["recover",.65,1.4,"slam-rise"]]:
+		boss.state=fixture[0];boss.state_time=fixture[1];boss.phase=fixture[2];boss.recovery_kind="slam";boss.position=Vector3(18,0,-35);boss.velocity=Vector3(2,0,2) if fixture[0]=="hunt" else Vector3.ZERO;boss.face(Vector3.BACK);boss.animate()
+		g.player.position=Vector3(18,0,-27);g.camera_driver.yaw=0;g.camera_driver.first_pitch=-.1;g.camera_driver.update_first_person()
+		if fixture[3]=="slam-impact":boss.landing=boss.position;boss.slam_effect()
+		await picture(g,directory+"/dreadmore-fiend-"+fixture[3]+".png")
+	boss.position=Vector3(18,0,-35);boss.begin_climb();boss._physics_process(1.2);boss._physics_process(.4);boss.animate()
+	g.player.position=Vector3(18,0,-35);aim_at(g,boss);await picture(g,directory+"/dreadmore-fiend-wall-scramble.png")
+	boss._physics_process(.5)
+	for dt in [.9,.3,.3,.2]:boss._physics_process(dt)
+	boss._physics_process(.4);boss.animate();aim_at(g,boss);await picture(g,directory+"/dreadmore-fiend-wall-leap.png")
 	boss.take_lance_damage(100000,Vector3.ZERO);g.dreadmore.tick()
 	view(g,"a2_grove",Vector2(0,11),0,-.05);await picture(g,directory+"/dreadmore-attunement-grove.png")
 	g.player.position=Vector3(0,0,1);g.camera_driver.update_first_person();await picture(g,directory+"/dreadmore-attunement-stone.png")
+
+func aim_at(g:Node,boss:Node3D) -> void:
+	var toward=boss.position+Vector3.UP*1.5-(g.player.position+Vector3.UP*1.6)
+	g.camera_driver.yaw=atan2(-toward.x,-toward.z);g.camera_driver.first_pitch=-atan2(toward.y,Vector2(toward.x,toward.z).length());g.camera_driver.update_first_person()
