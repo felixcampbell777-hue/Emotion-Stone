@@ -1,4 +1,4 @@
 {
-  "version": "0.33.1",
-  "baseline": "Equipped armor/accessory skin overlays and item recolors removed pending Blender fitting; slots, stats, effects and weapons retained"
+  "version": "0.33.2",
+  "baseline": "First-person independent finger grip blending, handle-centered palms, open parry brace and clean arm-only skin"
 }
