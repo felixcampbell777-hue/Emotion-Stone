@@ -50,7 +50,6 @@ func apply(actor:Node3D,key:String,t:float) -> void:
 	var hilt=actor.BetaSwordMotion.GRIP if actor.equipment.get_meta("beta_sword",false) else .16
 	var desired=Transform3D(basis*float(actor.combat.sword_scale),grip-basis*Vector3(0,hilt*float(actor.combat.sword_scale),0))
 	var weight=1.0
-	if key=="draw": weight=smoothstep(.48,.80,t)
-	elif key=="roll": weight=1-smoothstep(0,.10,t)
+	if key=="roll": weight=1-smoothstep(0,.10,t)
 	elif key=="stand": weight=smoothstep(.72,1,t)
 	actor.equipment.global_transform=actor.equipment.global_transform.interpolate_with(desired,weight)
