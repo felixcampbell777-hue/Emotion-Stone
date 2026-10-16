@@ -1,0 +1,6 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="PackedScene" path="res://assets/environment/world_rise_backdrop/mountain-unit.glb" id="1"]
+[ext_resource type="Script" path="res://assets/environment/world_rise_backdrop/unit.gd" id="2"]
+[node name="MountainBackdropUnit45" type="Node3D"]
+script = ExtResource("2")
+[node name="Mountains" parent="." instance=ExtResource("1")]

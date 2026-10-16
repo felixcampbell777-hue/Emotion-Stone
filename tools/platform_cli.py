@@ -535,7 +535,7 @@ def main():
         command=commands.add_parser(name)
         if name=='verify-windows': command.add_argument('--suite',choices=['all','sea-dragon','combat-skills','dash-uppercut','unarmed','dreadmore','alpha2'],default='all')
         if name in ['capture','capture-windows']:
-            command.add_argument('--view',choices=['dreadmore','mob-facing','alpha2','unarmed','dash-uppercut','combat-skills','sea-dragon','beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
+            command.add_argument('--view',choices=['world-rise-backdrop','dreadmore','mob-facing','alpha2','unarmed','dash-uppercut','combat-skills','sea-dragon','beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
             command.add_argument('--renderer',choices=['forward_plus','gl_compatibility'])
             command.add_argument('--art-profile',choices=['original','darkwood'])
             if name=='capture':

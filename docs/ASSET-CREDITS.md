@@ -77,3 +77,8 @@ Alpha 2 Wreck Rats reuse the existing CDmir / TinyWorlds CC0 Evil Giant Rat dono
 ## Original Dreadmore assets
 
 Orchid Stalker geometry, articulated part hierarchy and chitin image are locally authored original assets, guided by the user-selected concept C. Editable source and hashes: art/source/environments/dreadmore/runtime-assets.json. No third-party scripts or downloads were used. Canyon walls reuse the existing credited CC0 rock-face textures; existing licensed trees and ferns are reused. The AI-generated concept board is a design reference, not an imported gameplay mesh.
+
+
+## World Rise backdrop
+
+Mountain geometry and vertex colors, repeat/ring scenes and cloud shaders are original locally authored assets. Source/export hashes are recorded in art/source/environments/world-rise/runtime-assets.json. The mountain shader reuses the existing Poly Haven CC0 rock_face albedo credited above. No new downloads or third-party executable scripts.
