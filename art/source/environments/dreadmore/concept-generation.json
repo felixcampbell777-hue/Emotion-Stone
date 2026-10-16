@@ -1,0 +1,6 @@
+{
+  "tool": "built-in image_gen",
+  "purpose": "Boss appearance choice; concept art, not runtime mesh",
+  "prompt": "Use case: stylized-concept. Create ONE polished landscape game creature design comparison board with THREE clearly separated equal-width panels. Title at top: CANYON FIEND — DESIGN OPTIONS. Grounded high-resolution dark-fantasy jungle canyon, damp layered sandstone bluffs, roots, ferns and mist. Each panel shows full-body creature on floor and same creature clinging high behind it. A — ROOTCLAW: lean feral simian quadruped with long climbing arms, grasping hooked claws, mossy bark plates and dark leathery skin. B — THORNBACK: broad low reptilian predator with overlapping stone-colored plates, huge hooked foreclaws and heavy tail. C — ORCHID STALKER: tall four-armed insectoid with two digitigrade legs, dark jade chitin and fern/orchid-shaped crest. Boss scale 3–4 metres. Coherent green-brown materials and readable silhouettes; no weapons, humans, gore, watermarks or franchise copies. Large option labels, no winner chosen.",
+  "saved_image": "canyon-fiend-options.png"
+}
