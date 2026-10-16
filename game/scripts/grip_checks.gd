@@ -9,8 +9,15 @@ func run(test:RefCounted) -> void:
 	for side in ["R","L"]:
 		var pose=h.rig.get_bone_global_pose(h.rig.find_bone("view_hand."+side));var center=h.palms[side]+Vector3(.009 if side=="R" else -.009,-.018,.012)
 		fitting=maxf(fitting,(h.rig.global_transform*(pose*(center-Vector3(0,-.26,0)))).distance_to(h.hand_targets[side]))
-		alignment=minf(alignment,absf((h.rig.global_basis*pose.basis.z).normalized().dot(actor.equipment.global_basis.y.normalized())))
-	test.check(fitting<.003 and alignment>.999,"Actual skinned wrist centers meet the hilt and the fingers align along its axis instead of twisting the whole forearm")
+		alignment=minf(alignment,(h.rig.global_basis*pose.basis.z).normalized().dot(-actor.equipment.global_basis.y.normalized()))
+	test.check(fitting<.003 and alignment>.999,"Actual skinned wrist centers meet the hilt with both thumb axes toward the guard, never an inverted right hand")
+	var wrist_roll=1.0
+	for side in ["R","L"]:
+		var hand=h.rig.get_bone_global_pose(h.rig.find_bone("view_hand."+side)).basis
+		var arm=h.rig.get_bone_global_pose(h.bone("forearm",side)).basis
+		var projected=hand.z-arm.y*hand.z.dot(arm.y)
+		wrist_roll=minf(wrist_roll,arm.z.normalized().dot(projected.normalized()))
+	test.check(wrist_roll>.999,"Forearms carry grip pronation so neither wrist contains a concentrated axial twist")
 	var separation=true;var curled=0;var finite=true
 	for m in meshes:
 		for surface in range(m.mesh.get_surface_count()):
