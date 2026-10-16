@@ -1,7 +1,7 @@
 {
   "id": "a2_belfry",
   "display_name": "The Living Bell Court",
-  "subtitle": "Ancient roots overlook the sea",
+  "subtitle": "The last bell stands in a sunken court. Broken buttresses provide limited ranged cover around an open melee floor.",
   "seed": 1961,
   "bounds": [
     -22,
@@ -26,74 +26,20 @@
       ]
     },
     {
+      "kind": "water",
+      "rect": [
+        19,
+        -22,
+        3,
+        44
+      ]
+    },
+    {
       "kind": "path",
       "rect": [
         -1,
-        -12,
-        2,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -2,
-        -11,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -2,
-        -10,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -2,
-        -9,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -2,
-        -8,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -2,
-        -7,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -2,
-        -6,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -2,
         -5,
-        4,
+        2,
         1
       ]
     },
@@ -163,16 +109,16 @@
     {
       "kind": "path",
       "rect": [
-        -1,
+        -2,
         3,
-        3,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -1,
+        -2,
         4,
         4,
         1
@@ -181,16 +127,16 @@
     {
       "kind": "path",
       "rect": [
-        0,
+        -2,
         5,
-        3,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        0,
+        -2,
         6,
         4,
         1
@@ -199,7 +145,7 @@
     {
       "kind": "path",
       "rect": [
-        0,
+        -2,
         7,
         4,
         1
@@ -208,16 +154,16 @@
     {
       "kind": "path",
       "rect": [
-        1,
+        -2,
         8,
-        3,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        1,
+        -2,
         9,
         4,
         1
@@ -226,16 +172,16 @@
     {
       "kind": "path",
       "rect": [
-        2,
+        -2,
         10,
-        3,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        2,
+        -2,
         11,
         4,
         1
@@ -244,7 +190,7 @@
     {
       "kind": "path",
       "rect": [
-        2,
+        -2,
         12,
         4,
         1
@@ -253,7 +199,7 @@
     {
       "kind": "path",
       "rect": [
-        1,
+        -2,
         13,
         4,
         1
@@ -262,16 +208,16 @@
     {
       "kind": "path",
       "rect": [
-        1,
+        -2,
         14,
-        3,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        0,
+        -2,
         15,
         4,
         1
@@ -280,16 +226,16 @@
     {
       "kind": "path",
       "rect": [
-        0,
+        -2,
         16,
-        3,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -1,
+        -2,
         17,
         4,
         1
@@ -321,45 +267,11 @@
         2,
         1
       ]
-    },
-    {
-      "kind": "water",
-      "rect": [
-        19,
-        -22,
-        3,
-        44
-      ]
     }
   ],
   "props": [],
   "npcs": [],
-  "interactions": [
-    {
-      "id": "route_0",
-      "kind": "sign",
-      "at": [
-        2.1,
-        19
-      ],
-      "title": "The Open-Sky Chapel",
-      "lines": [
-        "The Open-Sky Chapel · follow the trail marker and press E."
-      ]
-    },
-    {
-      "id": "route_1",
-      "kind": "sign",
-      "at": [
-        2.1,
-        19
-      ],
-      "title": "Return to Hearthmere",
-      "lines": [
-        "Return to Hearthmere · follow the trail marker and press E."
-      ]
-    }
-  ],
+  "interactions": [],
   "exits": [
     {
       "id": "to_sanctum",
@@ -407,14 +319,32 @@
   "catalog_enemies": [],
   "sculpted_terrain": [
     {
-      "id": "court",
+      "id": "court_shoulders_west",
       "at": [
-        0,
-        -10
+        -17,
+        -8
       ],
-      "height": 1.0,
-      "radius": 8,
-      "profile": "smooth"
+      "height": 4.5,
+      "radius": 10,
+      "profile": "bluff",
+      "plateau_width": 6,
+      "plateau_depth": 12,
+      "rotation": 0,
+      "edge_roughness": 0.5
+    },
+    {
+      "id": "court_shoulders_east",
+      "at": [
+        16,
+        -9
+      ],
+      "height": 4.5,
+      "radius": 10,
+      "profile": "bluff",
+      "plateau_width": 5,
+      "plateau_depth": 11,
+      "rotation": 0,
+      "edge_roughness": 0.5
     }
   ],
   "wading": true

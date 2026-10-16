@@ -162,6 +162,8 @@ func run(test:RefCounted) -> void:
 	g.conversation.close();g._refresh_simulation();g.player.position=Vector3(0,0,5);g.player.state="free";g.player.restore_health(g.player.max_health)
 	test.check(g.Save.write(g.save_data(),path)==OK and not g.Save.read(path).is_empty(),"Completed campaign serializes into a private validated save")
 	var data=g.Save.read(path)
+	var old_layout=data.duplicate(true);old_layout.alpha2.layout_revision=2;old_layout.map="a2_wood";old_layout.position=[7,2]
+	test.check(g.apply_save(old_layout) and g.current_world.safe_position(g.player.position) and g.player.position.distance_to(Vector3(7,0,2))>3 and g.alpha2.ending=="release","Revision 2 save preserves progress while relocating a position occupied by the new forest ridge")
 	var legacy=data.duplicate(true);legacy.alpha2.erase("layout_revision");legacy.alpha2.flags.erase("forest_tuned");legacy.alpha2.flags.erase("tide_chime");legacy.alpha2.flags.erase("wreck_winch");legacy.map="a2_mill";legacy.position=[25,10]
 	test.check(g.apply_save(legacy) and g.current_world.safe_position(g.player.position) and g.alpha2.wards()==3 and "tide_chime" in g.alpha2.flags,"Old campaign migrates earned wards and relocates obsolete positions safely")
 	g.alpha2.reset();test.check(g.apply_save(data) and g.alpha2.ending=="release" and "medicine_returned" in g.alpha2.flags,"Private save round trip restores ending, optional quests, equipment and checkpoint")
@@ -189,6 +191,7 @@ func run(test:RefCounted) -> void:
 	g.game_mode="alpha"
 	await load("res://scripts/title_checks.gd").new().run(test)
 	await load("res://scripts/alpha2_region_checks.gd").new().run(test)
+	await load("res://scripts/alpha2_layout_checks.gd").new().run(test)
 	for real_path in originals:
 		test.check((FileAccess.get_file_as_bytes(real_path) if FileAccess.file_exists(real_path) else PackedByteArray())==originals[real_path],"Player save remains untouched: "+real_path)
 	DirAccess.remove_absolute(path);DirAccess.remove_absolute(import_path);g.alpha2_import_path=""

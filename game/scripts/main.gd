@@ -1035,7 +1035,7 @@ func apply_save(data: Dictionary) -> bool:
 	var b=test_world.definition.bounds
 	test_world.bounds=Rect2(b[0],b[1],b[2]-b[0],b[3]-b[1])
 	var at=Vector3(data.position[0],float(data.get("ground_y",0)),data.position[1])
-	if mode=="alpha2" and int(data.get("alpha2",{}).get("layout_revision",1))<2 and data.map!="a2_haven":
+	if mode=="alpha2" and int(data.get("alpha2",{}).get("layout_revision",1))<3 and data.map!="a2_haven":
 		var arrival=test_world.definition.spawn
 		at=Vector3(arrival[0],0,arrival[1])
 	if data.map in ["home_upstairs","home_downstairs"] and int(data.get("home_layout",1))<2:

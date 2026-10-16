@@ -1,3 +1,5 @@
+Current region authoring and encounter behavior: [ALPHA2-REGIONS.md](ALPHA2-REGIONS.md).
+
 # Alpha 2 — The Hollow Bell
 
 An exploration and treasure adventure in advanced first person, separate from original Alpha and Beta. Select **Alpha 2 — The Hollow Bell** on the title screen. Choose an Alpha or Beta save as the character source, then Start New Game. Load Saved Game resumes the existing Alpha 2 expedition instead.

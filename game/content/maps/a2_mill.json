@@ -1,7 +1,7 @@
 {
   "id": "a2_mill",
   "display_name": "Saltwind Strand",
-  "subtitle": "Shipwreck salvage, tidal pools and the shore chime",
+  "subtitle": "A storm-broken survey ship lies behind a central dune spine. A high shoulder overlooks the wreck; a shore route loops around it.",
   "seed": 1959,
   "bounds": [
     -28,
@@ -22,6 +22,15 @@
         -28,
         -28,
         56,
+        56
+      ]
+    },
+    {
+      "kind": "water",
+      "rect": [
+        20,
+        -28,
+        8,
         56
       ]
     },
@@ -64,17 +73,8 @@
     {
       "kind": "sand",
       "rect": [
-        -5,
+        -6,
         -23,
-        6,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -5,
-        -22,
         7,
         1
       ]
@@ -82,18 +82,36 @@
     {
       "kind": "sand",
       "rect": [
-        -4,
-        -21,
-        6,
+        -11,
+        -22,
+        13,
         1
       ]
     },
     {
       "kind": "sand",
       "rect": [
-        -4,
+        -19,
+        -21,
+        21,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
         -20,
-        6,
+        -20,
+        21,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        -19,
+        13,
         1
       ]
     },
@@ -102,14 +120,14 @@
       "rect": [
         -3,
         -19,
-        5,
+        4,
         1
       ]
     },
     {
       "kind": "sand",
       "rect": [
-        -2,
+        -20,
         -18,
         4,
         1
@@ -118,25 +136,52 @@
     {
       "kind": "sand",
       "rect": [
-        -2,
+        -3,
+        -18,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
         -17,
-        5,
+        4,
         1
       ]
     },
     {
       "kind": "sand",
       "rect": [
-        -1,
+        -4,
+        -17,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
         -16,
-        5,
+        4,
         1
       ]
     },
     {
       "kind": "sand",
       "rect": [
-        0,
+        -7,
+        -16,
+        9,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
         -15,
         4,
         1
@@ -145,206 +190,17 @@
     {
       "kind": "sand",
       "rect": [
-        1,
-        -14,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        2,
-        -13,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        3,
-        -12,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -17,
-        -11,
-        2,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        4,
-        -11,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -18,
         -10,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        4,
-        -10,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -18,
-        -9,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        5,
-        -9,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -17,
-        -8,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        6,
-        -8,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -16,
-        -7,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        5,
-        -7,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -16,
-        -6,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        5,
-        -6,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
         -15,
-        -5,
-        4,
+        13,
         1
       ]
     },
     {
       "kind": "sand",
       "rect": [
-        4,
-        -5,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
+        -20,
         -14,
-        -4,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        4,
-        -4,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -13,
-        -3,
-        6,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        3,
-        -3,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -13,
-        -2,
-        10,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        3,
-        -2,
         4,
         1
       ]
@@ -353,34 +209,7 @@
       "kind": "sand",
       "rect": [
         -12,
-        -1,
-        12,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        2,
-        -1,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -8,
-        0,
-        14,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -5,
-        1,
+        -14,
         10,
         1
       ]
@@ -388,26 +217,8 @@
     {
       "kind": "sand",
       "rect": [
-        -1,
-        2,
-        6,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        2,
-        3,
-        3,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        2,
-        4,
+        0,
+        -14,
         4,
         1
       ]
@@ -415,9 +226,90 @@
     {
       "kind": "sand",
       "rect": [
-        3,
+        -20,
+        -13,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -14,
+        -13,
+        9,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        0,
+        -13,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        -12,
+        12,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        1,
+        -12,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        -11,
+        10,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        2,
+        -11,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        -10,
+        7,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        2,
+        -10,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        -9,
         5,
-        3,
         1
       ]
     },
@@ -425,8 +317,287 @@
       "kind": "sand",
       "rect": [
         3,
+        -9,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        -8,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        4,
+        -8,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        -7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        4,
+        -7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        -6,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        5,
+        -6,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        -5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        6,
+        -5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        -4,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        6,
+        -4,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        -3,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        7,
+        -3,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        -2,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        7,
+        -2,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        -1,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        8,
+        -1,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        0,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        9,
+        0,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        1,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        9,
+        1,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        2,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        10,
+        2,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        3,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        10,
+        3,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        4,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        10,
+        4,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        10,
+        5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        6,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        11,
         6,
         3,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -20,
+        7,
+        4,
         1
       ]
     },
@@ -442,8 +613,26 @@
     {
       "kind": "sand",
       "rect": [
-        3,
+        11,
         7,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -19,
+        8,
+        8,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        11,
+        8,
         4,
         1
       ]
@@ -451,8 +640,17 @@
     {
       "kind": "sand",
       "rect": [
-        -15,
-        8,
+        -18,
+        9,
+        7,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        10,
+        9,
         5,
         1
       ]
@@ -460,63 +658,36 @@
     {
       "kind": "sand",
       "rect": [
-        4,
-        8,
-        3,
+        -18,
+        10,
+        6,
         1
       ]
     },
     {
       "kind": "sand",
       "rect": [
-        -15,
         9,
-        8,
+        10,
+        6,
         1
       ]
     },
     {
       "kind": "sand",
       "rect": [
-        4,
+        -17,
+        11,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
         9,
-        3,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -15,
-        10,
-        10,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        4,
-        10,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -15,
         11,
-        3,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -11,
-        11,
-        19,
+        7,
         1
       ]
     },
@@ -525,16 +696,16 @@
       "rect": [
         -16,
         12,
-        4,
+        5,
         1
       ]
     },
     {
       "kind": "sand",
       "rect": [
-        -9,
+        8,
         12,
-        18,
+        8,
         1
       ]
     },
@@ -543,34 +714,7 @@
       "rect": [
         -16,
         13,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -6,
-        13,
-        16,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -15,
-        14,
-        2,
-        1
-      ]
-    },
-    {
-      "kind": "sand",
-      "rect": [
-        -4,
-        14,
-        14,
+        7,
         1
       ]
     },
@@ -578,15 +722,69 @@
       "kind": "sand",
       "rect": [
         7,
+        13,
+        10,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -15,
+        14,
+        8,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        4,
+        14,
+        13,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -13,
         15,
-        4,
+        23,
         1
       ]
     },
     {
       "kind": "sand",
       "rect": [
-        8,
+        11,
+        15,
+        7,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -11,
+        16,
+        20,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        11,
+        16,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        15,
         16,
         4,
         1
@@ -595,18 +793,54 @@
     {
       "kind": "sand",
       "rect": [
-        8,
+        -9,
         17,
-        5,
+        17,
         1
       ]
     },
     {
       "kind": "sand",
       "rect": [
-        9,
+        11,
+        17,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        15,
+        17,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        -7,
         18,
-        5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        10,
+        18,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "sand",
+      "rect": [
+        16,
+        18,
+        2,
         1
       ]
     },
@@ -622,18 +856,18 @@
     {
       "kind": "sand",
       "rect": [
-        11,
+        10,
         20,
-        4,
+        5,
         1
       ]
     },
     {
       "kind": "sand",
       "rect": [
-        12,
+        11,
         21,
-        4,
+        5,
         1
       ]
     },
@@ -663,54 +897,45 @@
         2,
         1
       ]
-    },
-    {
-      "kind": "water",
-      "rect": [
-        20,
-        -28,
-        8,
-        56
-      ]
     }
   ],
   "props": [],
   "npcs": [],
   "interactions": [
     {
-      "id": "route_0",
+      "id": "local_clue_0",
       "kind": "sign",
       "at": [
-        17.1,
-        23
+        -14.0,
+        15.8
       ],
-      "title": "The Forked Pilgrim Road",
+      "title": "Wreck Scavengers",
       "lines": [
-        "The Forked Pilgrim Road · follow the trail marker and press E."
+        "Gnawed cargo and a trail of torn sacks lead around the hull. Rats scatter out of cover when you disturb the supplies."
       ]
     },
     {
-      "id": "route_1",
+      "id": "local_clue_1",
       "kind": "sign",
       "at": [
-        -2.8999999999999995,
-        -25
+        8.8,
+        -7.0
       ],
-      "title": "Reedwater Marsh",
+      "title": "Tidal Claws",
       "lines": [
-        "Reedwater Marsh · follow the trail marker and press E."
+        "Discarded shells mark the tidal feeding ground. Keep to the sheltered wreck loop, or fight across the open shore."
       ]
     },
     {
-      "id": "biome_story",
+      "id": "local_clue_2",
       "kind": "sign",
       "at": [
-        1,
-        15
+        -16.020101012677667,
+        -17.020101012677667
       ],
-      "title": "The stranded bell",
+      "title": "Chime Nest",
       "lines": [
-        "A bronze chime went down with the survey ship. Work the salvage winch near the wreck, then recover its net. Ring the shore ward after finding it."
+        "Three fresh sand mounds surround the salvage net. The chime is not the only thing the tide uncovered."
       ]
     }
   ],
@@ -750,14 +975,6 @@
   ],
   "enemies": [
     {
-      "id": "foe_0",
-      "kind": "library_crab",
-      "at": [
-        -5,
-        9
-      ]
-    },
-    {
       "id": "foe_1",
       "kind": "library_rat",
       "at": [
@@ -766,27 +983,11 @@
       ]
     },
     {
-      "id": "slime_0",
-      "kind": "library_crab",
-      "at": [
-        12,
-        2
-      ]
-    },
-    {
       "id": "slime_1",
       "kind": "library_rat",
       "at": [
-        -17,
-        4
-      ]
-    },
-    {
-      "id": "slime_2",
-      "kind": "library_crab",
-      "at": [
-        -4,
-        -10
+        -18,
+        5
       ]
     },
     {
@@ -798,60 +999,92 @@
       ]
     },
     {
-      "id": "slime_4",
+      "id": "foe_0",
       "kind": "library_crab",
       "at": [
         10,
-        -11
+        2
       ]
     },
     {
-      "id": "slime_5",
+      "id": "slime_0",
       "kind": "library_crab",
       "at": [
         14,
-        -16
+        -1
       ]
     },
     {
       "id": "slime_6",
       "kind": "library_crab",
       "at": [
-        -7,
-        13
+        8,
+        -4
+      ]
+    },
+    {
+      "id": "slime_2",
+      "kind": "library_crab",
+      "at": [
+        -18,
+        -10
+      ]
+    },
+    {
+      "id": "slime_4",
+      "kind": "library_crab",
+      "at": [
+        -14,
+        -13
+      ]
+    },
+    {
+      "id": "slime_5",
+      "kind": "library_crab",
+      "at": [
+        -9,
+        -11
       ]
     }
   ],
   "catalog_enemies": [],
   "sculpted_terrain": [
     {
-      "id": "dune_0",
+      "id": "western_headland",
       "at": [
-        -5,
-        18
+        -25,
+        -5
       ],
-      "height": 0.65,
-      "radius": 6,
-      "profile": "smooth"
+      "height": 5.5,
+      "radius": 9,
+      "profile": "bluff",
+      "plateau_width": 6,
+      "plateau_depth": 18,
+      "rotation": 0,
+      "edge_roughness": 0.5
     },
     {
-      "id": "dune_1",
+      "id": "dune_spine",
       "at": [
-        12,
-        -17
+        0,
+        3
       ],
-      "height": 0.65,
-      "radius": 6,
-      "profile": "smooth"
+      "height": 3.8,
+      "radius": 11,
+      "profile": "bluff",
+      "plateau_width": 8,
+      "plateau_depth": 10,
+      "rotation": 0,
+      "edge_roughness": 0.5
     },
     {
-      "id": "dune_2",
+      "id": "dune_shoulder",
       "at": [
-        -10,
-        -17
+        5,
+        11
       ],
-      "height": 0.65,
-      "radius": 6,
+      "height": 1.2,
+      "radius": 7,
       "profile": "smooth"
     }
   ],

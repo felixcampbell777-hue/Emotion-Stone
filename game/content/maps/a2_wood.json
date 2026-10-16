@@ -1,7 +1,7 @@
 {
   "id": "a2_wood",
   "display_name": "Heartwood",
-  "subtitle": "Follow the winding roots; listen before ringing",
+  "subtitle": "A rocky spine separates a hunting bowl from a silk hollow. An outer root trail rewards exploration and rejoins the quiet bell grove.",
   "seed": 1959,
   "bounds": [
     -32,
@@ -64,6 +64,15 @@
     {
       "kind": "path",
       "rect": [
+        -13,
+        -27,
+        2,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
         -2,
         -27,
         4,
@@ -73,9 +82,27 @@
     {
       "kind": "path",
       "rect": [
+        -19,
+        -26,
+        10,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
         -2,
         -26,
         4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -24,
+        -25,
+        17,
         1
       ]
     },
@@ -91,6 +118,15 @@
     {
       "kind": "path",
       "rect": [
+        -25,
+        -24,
+        20,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
         -2,
         -24,
         4,
@@ -100,161 +136,8 @@
     {
       "kind": "path",
       "rect": [
-        -2,
+        -25,
         -23,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -2,
-        -22,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -2,
-        -21,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -2,
-        -20,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -23,
-        -19,
-        2,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -2,
-        -19,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -24,
-        -18,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -1,
-        -18,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -24,
-        -17,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -1,
-        -17,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -23,
-        -16,
-        3,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        0,
-        -16,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -23,
-        -15,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        0,
-        -15,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -22,
-        -14,
-        3,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        1,
-        -14,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -22,
-        -13,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -1,
-        -13,
         9,
         1
       ]
@@ -262,9 +145,9 @@
     {
       "kind": "path",
       "rect": [
-        -21,
-        -12,
-        3,
+        -11,
+        -23,
+        8,
         1
       ]
     },
@@ -272,16 +155,106 @@
       "kind": "path",
       "rect": [
         -2,
-        -12,
-        12,
+        -23,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
+        -24,
+        -22,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -9,
+        -22,
+        11,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -24,
         -21,
-        -11,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -7,
+        -21,
+        9,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -24,
+        -20,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -5,
+        -20,
+        7,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -24,
+        -19,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -3,
+        -19,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -24,
+        -18,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -3,
+        -18,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -24,
+        -17,
         4,
         1
       ]
@@ -290,24 +263,132 @@
       "kind": "path",
       "rect": [
         -4,
-        -11,
-        6,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
+        -17,
         4,
-        -11,
-        8,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -20,
+        -25,
+        -16,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -4,
+        -16,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -25,
+        -15,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -5,
+        -15,
+        12,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -26,
+        -14,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -6,
+        -14,
+        20,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -26,
+        -13,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -6,
+        -13,
+        21,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -26,
+        -12,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -7,
+        -12,
+        22,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -26,
+        -11,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -7,
+        -11,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        11,
+        -11,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -25,
         -10,
         3,
         1
@@ -316,54 +397,63 @@
     {
       "kind": "path",
       "rect": [
-        -6,
-        -10,
-        7,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        7,
-        -10,
-        7,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -20,
-        -9,
-        8,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -7,
-        -9,
-        6,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        9,
-        -9,
-        7,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -20,
         -8,
-        17,
+        -10,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        11,
+        -10,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -25,
+        -9,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -9,
+        -9,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        11,
+        -9,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -25,
+        -8,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -9,
+        -8,
+        4,
         1
       ]
     },
@@ -372,42 +462,33 @@
       "rect": [
         11,
         -8,
-        8,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -19,
+        -25,
         -7,
-        15,
+        3,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        13,
+        -10,
         -7,
-        8,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -14,
-        -6,
-        8,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        15,
-        -6,
+        11,
+        -7,
         7,
         1
       ]
@@ -415,7 +496,43 @@
     {
       "kind": "path",
       "rect": [
-        -9,
+        -25,
+        -6,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -10,
+        -6,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        11,
+        -6,
+        11,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -25,
+        -5,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -10,
         -5,
         4,
         1
@@ -424,16 +541,16 @@
     {
       "kind": "path",
       "rect": [
-        17,
+        12,
         -5,
-        7,
+        12,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -8,
+        -25,
         -4,
         3,
         1
@@ -442,16 +559,34 @@
     {
       "kind": "path",
       "rect": [
-        19,
+        -10,
         -4,
-        7,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -8,
+        16,
+        -4,
+        10,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -25,
+        -3,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -10,
         -3,
         4,
         1
@@ -460,9 +595,9 @@
     {
       "kind": "path",
       "rect": [
-        21,
+        20,
         -3,
-        7,
+        8,
         1
       ]
     },
@@ -478,7 +613,7 @@
     {
       "kind": "path",
       "rect": [
-        -7,
+        -25,
         -2,
         4,
         1
@@ -487,8 +622,35 @@
     {
       "kind": "path",
       "rect": [
-        23,
+        -10,
         -2,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        22,
+        -2,
+        8,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -31,
+        -1,
+        25,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        24,
+        -1,
         7,
         1
       ]
@@ -497,53 +659,17 @@
       "kind": "path",
       "rect": [
         -31,
-        -1,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -7,
-        -1,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
+        0,
         25,
-        -1,
-        6,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -31,
+        26,
         0,
-        6,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -6,
-        0,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        27,
-        0,
-        4,
+        5,
         1
       ]
     },
@@ -552,16 +678,7 @@
       "rect": [
         -30,
         1,
-        7,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -5,
-        1,
-        3,
+        24,
         1
       ]
     },
@@ -577,36 +694,18 @@
     {
       "kind": "path",
       "rect": [
-        -28,
+        -27,
         2,
-        7,
+        21,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -5,
-        2,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -26,
+        -25,
         3,
-        26,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -24,
-        4,
-        25,
+        20,
         1
       ]
     },
@@ -614,16 +713,88 @@
       "kind": "path",
       "rect": [
         -22,
-        5,
-        24,
+        4,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -21,
+        -8,
+        4,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -8,
+        5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -7,
         6,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -6,
+        7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -6,
+        8,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -5,
+        9,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -4,
+        10,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -4,
+        11,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -3,
+        12,
         4,
         1
       ]
@@ -632,80 +803,17 @@
       "kind": "path",
       "rect": [
         -2,
-        6,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -1,
-        7,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        0,
-        8,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        1,
-        9,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        2,
-        10,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        3,
-        11,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        3,
-        12,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        1,
         13,
-        6,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        0,
+        -2,
         14,
-        6,
+        4,
         1
       ]
     },
@@ -714,50 +822,68 @@
       "rect": [
         -1,
         15,
-        5,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -2,
+        0,
         16,
-        5,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -4,
+        0,
         17,
-        6,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -5,
+        1,
         18,
-        6,
+        3,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -6,
         19,
-        5,
+        18,
+        2,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -6,
+        1,
+        19,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        18,
+        19,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        1,
         20,
         4,
         1
@@ -766,7 +892,16 @@
     {
       "kind": "path",
       "rect": [
-        -5,
+        16,
+        20,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        2,
         21,
         3,
         1
@@ -775,43 +910,52 @@
     {
       "kind": "path",
       "rect": [
-        -5,
+        15,
+        21,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        2,
         22,
-        4,
+        17,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -4,
+        2,
         23,
-        3,
+        16,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -4,
+        1,
         24,
-        4,
+        15,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -3,
+        1,
         25,
-        3,
+        14,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -3,
+        0,
         26,
         4,
         1
@@ -820,9 +964,9 @@
     {
       "kind": "path",
       "rect": [
-        -2,
+        -1,
         27,
-        3,
+        4,
         1
       ]
     },
@@ -831,7 +975,7 @@
       "rect": [
         -2,
         28,
-        4,
+        5,
         1
       ]
     },
@@ -856,1290 +1000,509 @@
   ],
   "props": [
     {
-      "id": "biome_0",
+      "id": "bank_tree_0",
       "kind": "catalog_feature",
       "at": [
-        9.39,
-        4.6
+        -25.89,
+        19.06
       ],
       "catalog_code": "3A",
-      "scale": 1.6426885755414173,
+      "scale": 1.41,
       "show_label": false
     },
     {
-      "id": "biome_1",
+      "id": "bank_tree_1",
       "kind": "catalog_feature",
       "at": [
-        -27.92,
-        6.85
+        -25.97,
+        21.77
       ],
       "catalog_code": "1A",
-      "scale": 1.5145878341535133,
+      "scale": 1.16,
       "show_label": false
     },
     {
-      "id": "biome_2",
+      "id": "bank_tree_2",
       "kind": "catalog_feature",
       "at": [
-        6.12,
-        18.22
+        -25.92,
+        24.42
       ],
       "catalog_code": "1A",
-      "scale": 1.2085434491602656,
+      "scale": 1.29,
       "show_label": false
     },
     {
-      "id": "biome_3",
+      "id": "bank_tree_3",
       "kind": "catalog_feature",
       "at": [
-        21.0,
-        -7.8
+        -23.08,
+        19.07
       ],
       "catalog_code": "1A",
-      "scale": 1.3914645460022514,
+      "scale": 1.43,
       "show_label": false
     },
     {
-      "id": "biome_4",
+      "id": "bank_tree_4",
       "kind": "catalog_feature",
       "at": [
-        20.25,
-        -16.35
+        -23.64,
+        21.95
+      ],
+      "catalog_code": "1A",
+      "scale": 1.28,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_5",
+      "kind": "catalog_feature",
+      "at": [
+        -23.43,
+        24.64
       ],
       "catalog_code": "3A",
-      "scale": 1.7413508140192049,
+      "scale": 1.23,
       "show_label": false
     },
     {
-      "id": "biome_5",
+      "id": "bank_tree_6",
       "kind": "catalog_feature",
       "at": [
-        16.94,
-        15.82
-      ],
-      "catalog_code": "1A",
-      "scale": 1.3423109819724697,
-      "show_label": false
-    },
-    {
-      "id": "biome_6",
-      "kind": "catalog_feature",
-      "at": [
-        22.13,
-        -9.56
+        20.28,
+        15.73
       ],
       "catalog_code": "3A",
-      "scale": 1.4350083523449844,
+      "scale": 1.19,
       "show_label": false
     },
     {
-      "id": "biome_7",
+      "id": "bank_tree_7",
       "kind": "catalog_feature",
       "at": [
-        0.82,
-        -3.87
+        22.58,
+        15.92
       ],
       "catalog_code": "1A",
-      "scale": 1.6864093836940681,
+      "scale": 1.33,
       "show_label": false
     },
     {
-      "id": "biome_8",
+      "id": "bank_tree_8",
       "kind": "catalog_feature",
       "at": [
-        12.44,
-        -26.41
-      ],
-      "catalog_code": "1A",
-      "scale": 1.487531219483732,
-      "show_label": false
-    },
-    {
-      "id": "biome_9",
-      "kind": "catalog_feature",
-      "at": [
-        -5.0,
-        10.64
+        22.95,
+        21.34
       ],
       "catalog_code": "3A",
-      "scale": 1.4862191231290756,
+      "scale": 1.18,
       "show_label": false
     },
     {
-      "id": "biome_10",
+      "id": "bank_tree_9",
       "kind": "catalog_feature",
       "at": [
-        11.62,
-        24.43
+        -21.18,
+        10.91
       ],
       "catalog_code": "3A",
-      "scale": 1.426209452201349,
+      "scale": 1.29,
       "show_label": false
     },
     {
-      "id": "biome_11",
+      "id": "bank_tree_10",
       "kind": "catalog_feature",
       "at": [
-        28.51,
-        -20.97
+        -20.85,
+        13.38
       ],
       "catalog_code": "1A",
-      "scale": 1.2303256166874237,
+      "scale": 1.32,
       "show_label": false
     },
     {
-      "id": "biome_12",
+      "id": "bank_tree_11",
       "kind": "catalog_feature",
       "at": [
-        -7.07,
-        23.82
+        -18.36,
+        11.13
+      ],
+      "catalog_code": "1A",
+      "scale": 1.32,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_12",
+      "kind": "catalog_feature",
+      "at": [
+        -18.11,
+        13.62
+      ],
+      "catalog_code": "1A",
+      "scale": 1.19,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_13",
+      "kind": "catalog_feature",
+      "at": [
+        -15.83,
+        11.14
+      ],
+      "catalog_code": "1A",
+      "scale": 1.47,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_14",
+      "kind": "catalog_feature",
+      "at": [
+        -15.69,
+        14.04
       ],
       "catalog_code": "3A",
-      "scale": 1.4905565428661318,
+      "scale": 1.2,
       "show_label": false
     },
     {
-      "id": "biome_13",
-      "kind": "catalog_feature",
-      "at": [
-        -17.21,
-        -20.29
-      ],
-      "catalog_code": "1A",
-      "scale": 1.4825147991284653,
-      "show_label": false
-    },
-    {
-      "id": "biome_14",
-      "kind": "catalog_feature",
-      "at": [
-        -26.28,
-        -19.52
-      ],
-      "catalog_code": "1A",
-      "scale": 1.497814420769139,
-      "show_label": false
-    },
-    {
-      "id": "biome_15",
-      "kind": "catalog_feature",
-      "at": [
-        -25.07,
-        -8.71
-      ],
-      "catalog_code": "1A",
-      "scale": 1.631670320130537,
-      "show_label": false
-    },
-    {
-      "id": "biome_16",
-      "kind": "catalog_feature",
-      "at": [
-        24.43,
-        20.63
-      ],
-      "catalog_code": "3A",
-      "scale": 1.5228850150561541,
-      "show_label": false
-    },
-    {
-      "id": "biome_17",
-      "kind": "catalog_feature",
-      "at": [
-        -17.39,
-        8.53
-      ],
-      "catalog_code": "1A",
-      "scale": 1.3204547803630857,
-      "show_label": false
-    },
-    {
-      "id": "biome_18",
-      "kind": "catalog_feature",
-      "at": [
-        -19.79,
-        -1.35
-      ],
-      "catalog_code": "1A",
-      "scale": 1.4777262926991706,
-      "show_label": false
-    },
-    {
-      "id": "biome_19",
-      "kind": "catalog_feature",
-      "at": [
-        -18.31,
-        -23.34
-      ],
-      "catalog_code": "1A",
-      "scale": 1.5002638572578482,
-      "show_label": false
-    },
-    {
-      "id": "biome_20",
-      "kind": "catalog_feature",
-      "at": [
-        9.47,
-        -13.58
-      ],
-      "catalog_code": "3A",
-      "scale": 1.650156259314578,
-      "show_label": false
-    },
-    {
-      "id": "biome_21",
-      "kind": "catalog_feature",
-      "at": [
-        5.88,
-        -6.66
-      ],
-      "catalog_code": "1A",
-      "scale": 1.7518699138159732,
-      "show_label": false
-    },
-    {
-      "id": "biome_22",
-      "kind": "catalog_feature",
-      "at": [
-        -26.86,
-        -18.46
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2105803911724058,
-      "show_label": false
-    },
-    {
-      "id": "biome_23",
-      "kind": "catalog_feature",
-      "at": [
-        -12.34,
-        -18.0
-      ],
-      "catalog_code": "3A",
-      "scale": 1.757389154564978,
-      "show_label": false
-    },
-    {
-      "id": "biome_24",
-      "kind": "catalog_feature",
-      "at": [
-        22.27,
-        25.85
-      ],
-      "catalog_code": "1A",
-      "scale": 1.5302902209292149,
-      "show_label": false
-    },
-    {
-      "id": "biome_25",
-      "kind": "catalog_feature",
-      "at": [
-        21.95,
-        -0.43
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2588474745537332,
-      "show_label": false
-    },
-    {
-      "id": "biome_26",
-      "kind": "catalog_feature",
-      "at": [
-        24.82,
-        -22.31
-      ],
-      "catalog_code": "3A",
-      "scale": 1.53483963904936,
-      "show_label": false
-    },
-    {
-      "id": "biome_27",
-      "kind": "catalog_feature",
-      "at": [
-        -5.62,
-        -17.83
-      ],
-      "catalog_code": "1A",
-      "scale": 1.6789579655032165,
-      "show_label": false
-    },
-    {
-      "id": "biome_28",
-      "kind": "catalog_feature",
-      "at": [
-        15.64,
-        -27.39
-      ],
-      "catalog_code": "3A",
-      "scale": 1.2698699449343949,
-      "show_label": false
-    },
-    {
-      "id": "biome_29",
-      "kind": "catalog_feature",
-      "at": [
-        13.05,
-        28.46
-      ],
-      "catalog_code": "1A",
-      "scale": 1.7474952165896993,
-      "show_label": false
-    },
-    {
-      "id": "biome_30",
-      "kind": "catalog_feature",
-      "at": [
-        -24.42,
-        -18.62
-      ],
-      "catalog_code": "1A",
-      "scale": 1.569459854910042,
-      "show_label": false
-    },
-    {
-      "id": "biome_31",
-      "kind": "catalog_feature",
-      "at": [
-        -6.73,
-        13.7
-      ],
-      "catalog_code": "3A",
-      "scale": 1.576849227926621,
-      "show_label": false
-    },
-    {
-      "id": "biome_32",
-      "kind": "catalog_feature",
-      "at": [
-        -12.01,
-        14.09
-      ],
-      "catalog_code": "1A",
-      "scale": 1.339238371611833,
-      "show_label": false
-    },
-    {
-      "id": "biome_33",
-      "kind": "catalog_feature",
-      "at": [
-        -12.02,
-        18.04
-      ],
-      "catalog_code": "1A",
-      "scale": 1.4019867140911522,
-      "show_label": false
-    },
-    {
-      "id": "biome_34",
-      "kind": "catalog_feature",
-      "at": [
-        -28.31,
-        -13.73
-      ],
-      "catalog_code": "3A",
-      "scale": 1.2991682120494348,
-      "show_label": false
-    },
-    {
-      "id": "biome_35",
-      "kind": "catalog_feature",
-      "at": [
-        -28.4,
-        -3.19
-      ],
-      "catalog_code": "1A",
-      "scale": 1.5012436108437885,
-      "show_label": false
-    },
-    {
-      "id": "biome_36",
-      "kind": "catalog_feature",
-      "at": [
-        -19.0,
-        9.37
-      ],
-      "catalog_code": "1A",
-      "scale": 1.4746275952117713,
-      "show_label": false
-    },
-    {
-      "id": "biome_37",
-      "kind": "catalog_feature",
-      "at": [
-        -16.84,
-        -26.46
-      ],
-      "catalog_code": "3A",
-      "scale": 1.244700287897912,
-      "show_label": false
-    },
-    {
-      "id": "biome_38",
-      "kind": "catalog_feature",
-      "at": [
-        19.59,
-        -11.35
-      ],
-      "catalog_code": "1A",
-      "scale": 1.4020821260744263,
-      "show_label": false
-    },
-    {
-      "id": "biome_39",
-      "kind": "catalog_feature",
-      "at": [
-        -10.99,
-        -12.4
-      ],
-      "catalog_code": "1A",
-      "scale": 1.4066904386650056,
-      "show_label": false
-    },
-    {
-      "id": "biome_40",
-      "kind": "catalog_feature",
-      "at": [
-        -5.39,
-        23.06
-      ],
-      "catalog_code": "1A",
-      "scale": 1.7182970349967621,
-      "show_label": false
-    },
-    {
-      "id": "biome_41",
-      "kind": "catalog_feature",
-      "at": [
-        27.52,
-        -8.35
-      ],
-      "catalog_code": "1A",
-      "scale": 1.4329223495980388,
-      "show_label": false
-    },
-    {
-      "id": "biome_42",
-      "kind": "catalog_feature",
-      "at": [
-        15.47,
-        23.16
-      ],
-      "catalog_code": "3A",
-      "scale": 1.2969448287701741,
-      "show_label": false
-    },
-    {
-      "id": "biome_43",
+      "id": "bank_tree_15",
       "kind": "catalog_feature",
       "at": [
         19.69,
-        12.75
-      ],
-      "catalog_code": "1A",
-      "scale": 1.6804527732963366,
-      "show_label": false
-    },
-    {
-      "id": "biome_44",
-      "kind": "catalog_feature",
-      "at": [
-        -7.4,
-        -25.89
+        -17.92
       ],
       "catalog_code": "3A",
-      "scale": 1.3696322276682076,
+      "scale": 1.4,
       "show_label": false
     },
     {
-      "id": "biome_45",
+      "id": "bank_tree_16",
       "kind": "catalog_feature",
       "at": [
-        -27.68,
-        -26.22
+        19.91,
+        -15.01
       ],
       "catalog_code": "1A",
-      "scale": 1.2521623649511786,
+      "scale": 1.32,
       "show_label": false
     },
     {
-      "id": "biome_46",
+      "id": "bank_tree_17",
       "kind": "catalog_feature",
       "at": [
-        -17.7,
-        -4.21
+        19.79,
+        -12.84
       ],
       "catalog_code": "1A",
-      "scale": 1.7752587654979222,
+      "scale": 1.31,
       "show_label": false
     },
     {
-      "id": "biome_47",
+      "id": "bank_tree_18",
       "kind": "catalog_feature",
       "at": [
-        -16.28,
-        20.87
+        22.44,
+        -18.13
+      ],
+      "catalog_code": "1A",
+      "scale": 1.34,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_19",
+      "kind": "catalog_feature",
+      "at": [
+        23.0,
+        -15.62
+      ],
+      "catalog_code": "1A",
+      "scale": 1.21,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_20",
+      "kind": "catalog_feature",
+      "at": [
+        22.7,
+        -12.9
       ],
       "catalog_code": "3A",
-      "scale": 1.248101296710695,
+      "scale": 1.27,
       "show_label": false
     },
     {
-      "id": "biome_48",
+      "id": "bank_tree_21",
       "kind": "catalog_feature",
       "at": [
-        -22.13,
-        -8.8
+        25.55,
+        -17.71
       ],
       "catalog_code": "1A",
-      "scale": 1.6239465016926222,
+      "scale": 1.45,
       "show_label": false
     },
     {
-      "id": "biome_49",
+      "id": "bank_tree_22",
       "kind": "catalog_feature",
       "at": [
-        25.68,
-        3.92
-      ],
-      "catalog_code": "1A",
-      "scale": 1.7467680030382107,
-      "show_label": false
-    },
-    {
-      "id": "biome_50",
-      "kind": "catalog_feature",
-      "at": [
-        20.11,
-        -15.04
+        25.43,
+        -15.51
       ],
       "catalog_code": "3A",
-      "scale": 1.2895690819373011,
+      "scale": 1.38,
       "show_label": false
     },
     {
-      "id": "biome_51",
+      "id": "bank_tree_23",
       "kind": "catalog_feature",
       "at": [
-        -21.16,
-        15.68
+        25.19,
+        -12.84
       ],
       "catalog_code": "1A",
-      "scale": 1.5687413811195294,
+      "scale": 1.32,
       "show_label": false
     },
     {
-      "id": "biome_52",
+      "id": "bank_tree_24",
       "kind": "catalog_feature",
       "at": [
-        -23.11,
-        20.34
+        -5.03,
+        -27.7
       ],
       "catalog_code": "3A",
-      "scale": 1.5791555244186455,
+      "scale": 1.32,
       "show_label": false
     },
     {
-      "id": "biome_53",
+      "id": "bank_tree_25",
       "kind": "catalog_feature",
       "at": [
-        -7.53,
-        -28.62
-      ],
-      "catalog_code": "1A",
-      "scale": 1.6516487331399636,
-      "show_label": false
-    },
-    {
-      "id": "biome_54",
-      "kind": "catalog_feature",
-      "at": [
-        -11.25,
-        10.74
-      ],
-      "catalog_code": "1A",
-      "scale": 1.3153701636169426,
-      "show_label": false
-    },
-    {
-      "id": "biome_55",
-      "kind": "catalog_feature",
-      "at": [
-        -28.65,
-        -28.91
+        -29.08,
+        -15.89
       ],
       "catalog_code": "3A",
-      "scale": 1.6831734903419646,
+      "scale": 1.24,
       "show_label": false
     },
     {
-      "id": "biome_56",
+      "id": "bank_tree_26",
       "kind": "catalog_feature",
       "at": [
-        -9.06,
-        17.64
+        -28.82,
+        -13.23
       ],
       "catalog_code": "1A",
-      "scale": 1.6897005844353123,
+      "scale": 1.28,
       "show_label": false
     },
     {
-      "id": "biome_57",
+      "id": "bank_tree_27",
       "kind": "catalog_feature",
       "at": [
-        10.87,
-        -21.05
+        -28.71,
+        -10.92
       ],
       "catalog_code": "1A",
-      "scale": 1.2990364384564956,
+      "scale": 1.21,
       "show_label": false
     },
     {
-      "id": "biome_58",
+      "id": "bank_tree_28",
       "kind": "catalog_feature",
       "at": [
-        -7.29,
-        15.68
+        3.66,
+        -9.15
       ],
       "catalog_code": "3A",
-      "scale": 1.444949769328885,
+      "scale": 1.22,
       "show_label": false
     },
     {
-      "id": "biome_59",
+      "id": "bank_tree_29",
       "kind": "catalog_feature",
       "at": [
-        28.85,
-        25.66
+        4.3,
+        -6.03
       ],
       "catalog_code": "1A",
-      "scale": 1.6349706701748696,
+      "scale": 1.48,
       "show_label": false
     },
     {
-      "id": "biome_60",
+      "id": "bank_tree_30",
       "kind": "catalog_feature",
       "at": [
-        -1.86,
-        14.99
+        4.04,
+        -3.34
       ],
       "catalog_code": "1A",
-      "scale": 1.7544274975851817,
+      "scale": 1.32,
       "show_label": false
     },
     {
-      "id": "biome_61",
+      "id": "bank_tree_31",
       "kind": "catalog_feature",
       "at": [
-        15.78,
-        -3.86
-      ],
-      "catalog_code": "1A",
-      "scale": 1.4242791896760614,
-      "show_label": false
-    },
-    {
-      "id": "biome_62",
-      "kind": "catalog_feature",
-      "at": [
-        13.07,
-        22.28
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2274669749044296,
-      "show_label": false
-    },
-    {
-      "id": "biome_63",
-      "kind": "catalog_feature",
-      "at": [
-        19.0,
-        -21.9
-      ],
-      "catalog_code": "1A",
-      "scale": 1.3016730898522082,
-      "show_label": false
-    },
-    {
-      "id": "biome_64",
-      "kind": "catalog_feature",
-      "at": [
-        13.51,
-        -2.11
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2511991004913705,
-      "show_label": false
-    },
-    {
-      "id": "biome_65",
-      "kind": "catalog_feature",
-      "at": [
-        -20.13,
-        16.91
+        3.72,
+        -0.6
       ],
       "catalog_code": "3A",
-      "scale": 1.6399428762860158,
+      "scale": 1.19,
       "show_label": false
     },
     {
-      "id": "biome_66",
+      "id": "bank_tree_32",
       "kind": "catalog_feature",
       "at": [
-        -28.03,
-        -8.08
+        6.74,
+        -9.0
       ],
       "catalog_code": "1A",
-      "scale": 1.5595691135724608,
+      "scale": 1.46,
       "show_label": false
     },
     {
-      "id": "biome_67",
+      "id": "bank_tree_33",
       "kind": "catalog_feature",
       "at": [
-        -16.69,
-        -12.73
+        6.63,
+        -6.52
       ],
       "catalog_code": "1A",
-      "scale": 1.6954653642725512,
+      "scale": 1.43,
       "show_label": false
     },
     {
-      "id": "biome_68",
+      "id": "bank_tree_34",
       "kind": "catalog_feature",
       "at": [
-        17.86,
-        10.15
+        6.89,
+        -3.93
       ],
       "catalog_code": "3A",
-      "scale": 1.6943785327158845,
+      "scale": 1.19,
       "show_label": false
     },
     {
-      "id": "biome_69",
+      "id": "bank_tree_35",
       "kind": "catalog_feature",
       "at": [
-        9.06,
-        -4.91
+        6.86,
+        -0.56
       ],
       "catalog_code": "1A",
-      "scale": 1.459530203288041,
+      "scale": 1.47,
       "show_label": false
     },
     {
-      "id": "biome_70",
+      "id": "bank_tree_36",
       "kind": "catalog_feature",
       "at": [
-        -13.54,
-        -26.26
+        9.11,
+        -9.22
       ],
       "catalog_code": "1A",
-      "scale": 1.2636689670565646,
+      "scale": 1.37,
       "show_label": false
     },
     {
-      "id": "biome_71",
+      "id": "bank_tree_37",
       "kind": "catalog_feature",
       "at": [
-        15.57,
-        19.38
+        9.32,
+        -6.13
       ],
       "catalog_code": "3A",
-      "scale": 1.381392074391401,
+      "scale": 1.37,
       "show_label": false
     },
     {
-      "id": "biome_72",
+      "id": "bank_tree_38",
       "kind": "catalog_feature",
       "at": [
-        -24.78,
-        24.91
+        9.26,
+        -3.43
       ],
       "catalog_code": "1A",
-      "scale": 1.7719145181356601,
+      "scale": 1.23,
       "show_label": false
     },
     {
-      "id": "biome_73",
+      "id": "bank_tree_39",
       "kind": "catalog_feature",
       "at": [
-        14.21,
-        13.27
+        9.25,
+        -0.68
       ],
       "catalog_code": "1A",
-      "scale": 1.3559950762367106,
+      "scale": 1.27,
       "show_label": false
     },
     {
-      "id": "biome_74",
+      "id": "bank_tree_40",
       "kind": "catalog_feature",
       "at": [
-        1.72,
-        4.15
+        -17.84,
+        -17.67
       ],
       "catalog_code": "3A",
-      "scale": 1.6887453627822424,
+      "scale": 1.21,
       "show_label": false
     },
     {
-      "id": "biome_75",
+      "id": "bank_tree_41",
       "kind": "catalog_feature",
       "at": [
-        -4.75,
-        -18.46
+        -17.84,
+        -14.84
       ],
       "catalog_code": "1A",
-      "scale": 1.565146305652163,
+      "scale": 1.33,
       "show_label": false
     },
     {
-      "id": "biome_76",
+      "id": "bank_tree_42",
       "kind": "catalog_feature",
       "at": [
-        10.48,
-        -24.01
+        -17.73,
+        -11.99
       ],
       "catalog_code": "1A",
-      "scale": 1.717625815374258,
+      "scale": 1.31,
       "show_label": false
     },
     {
-      "id": "biome_77",
+      "id": "bank_tree_43",
       "kind": "catalog_feature",
       "at": [
-        10.07,
-        26.53
+        -15.0,
+        -17.82
+      ],
+      "catalog_code": "1A",
+      "scale": 1.18,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_44",
+      "kind": "catalog_feature",
+      "at": [
+        -14.56,
+        -14.94
+      ],
+      "catalog_code": "1A",
+      "scale": 1.27,
+      "show_label": false
+    },
+    {
+      "id": "bank_tree_45",
+      "kind": "catalog_feature",
+      "at": [
+        -14.93,
+        -12.25
       ],
       "catalog_code": "3A",
-      "scale": 1.7818332524703222,
-      "show_label": false
-    },
-    {
-      "id": "biome_78",
-      "kind": "catalog_feature",
-      "at": [
-        -10.46,
-        -2.65
-      ],
-      "catalog_code": "1A",
-      "scale": 1.7942216287395496,
-      "show_label": false
-    },
-    {
-      "id": "biome_79",
-      "kind": "catalog_feature",
-      "at": [
-        16.08,
-        11.65
-      ],
-      "catalog_code": "1A",
-      "scale": 1.5616999729754406,
-      "show_label": false
-    },
-    {
-      "id": "biome_80",
-      "kind": "catalog_feature",
-      "at": [
-        14.59,
-        8.09
-      ],
-      "catalog_code": "3A",
-      "scale": 1.6343223537729084,
-      "show_label": false
-    },
-    {
-      "id": "biome_81",
-      "kind": "catalog_feature",
-      "at": [
-        -4.07,
-        -15.28
-      ],
-      "catalog_code": "1A",
-      "scale": 1.3254036378330774,
-      "show_label": false
-    },
-    {
-      "id": "biome_82",
-      "kind": "catalog_feature",
-      "at": [
-        10.52,
-        -24.88
-      ],
-      "catalog_code": "3A",
-      "scale": 1.5129993637617307,
-      "show_label": false
-    },
-    {
-      "id": "biome_83",
-      "kind": "catalog_feature",
-      "at": [
-        23.89,
-        28.18
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2624576261266425,
-      "show_label": false
-    },
-    {
-      "id": "biome_84",
-      "kind": "catalog_feature",
-      "at": [
-        19.65,
-        25.58
-      ],
-      "catalog_code": "1A",
-      "scale": 1.355548826856575,
-      "show_label": false
-    },
-    {
-      "id": "biome_85",
-      "kind": "catalog_feature",
-      "at": [
-        26.42,
-        26.76
-      ],
-      "catalog_code": "3A",
-      "scale": 1.737828605278563,
-      "show_label": false
-    },
-    {
-      "id": "biome_86",
-      "kind": "catalog_feature",
-      "at": [
-        14.3,
-        -14.05
-      ],
-      "catalog_code": "1A",
-      "scale": 1.3946897215321898,
-      "show_label": false
-    },
-    {
-      "id": "biome_87",
-      "kind": "catalog_feature",
-      "at": [
-        -11.55,
-        -28.11
-      ],
-      "catalog_code": "1A",
-      "scale": 1.3640647489237483,
-      "show_label": false
-    },
-    {
-      "id": "biome_88",
-      "kind": "catalog_feature",
-      "at": [
-        14.08,
-        -4.89
-      ],
-      "catalog_code": "3A",
-      "scale": 1.4759627820458165,
-      "show_label": false
-    },
-    {
-      "id": "biome_89",
-      "kind": "catalog_feature",
-      "at": [
-        -17.8,
-        21.72
-      ],
-      "catalog_code": "1A",
-      "scale": 1.3908385943696886,
-      "show_label": false
-    },
-    {
-      "id": "biome_90",
-      "kind": "catalog_feature",
-      "at": [
-        22.97,
-        -15.93
-      ],
-      "catalog_code": "1A",
-      "scale": 1.6353559525894987,
-      "show_label": false
-    },
-    {
-      "id": "biome_91",
-      "kind": "catalog_feature",
-      "at": [
-        -15.75,
-        -10.41
-      ],
-      "catalog_code": "1A",
-      "scale": 1.337518566447602,
-      "show_label": false
-    },
-    {
-      "id": "biome_92",
-      "kind": "catalog_feature",
-      "at": [
-        -10.77,
-        -24.52
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2372547240267597,
-      "show_label": false
-    },
-    {
-      "id": "biome_93",
-      "kind": "catalog_feature",
-      "at": [
-        28.68,
-        -8.5
-      ],
-      "catalog_code": "3A",
-      "scale": 1.2197012829826255,
-      "show_label": false
-    },
-    {
-      "id": "biome_94",
-      "kind": "catalog_feature",
-      "at": [
-        23.37,
-        3.44
-      ],
-      "catalog_code": "1A",
-      "scale": 1.538423900327933,
-      "show_label": false
-    },
-    {
-      "id": "biome_95",
-      "kind": "catalog_feature",
-      "at": [
-        16.49,
-        19.81
-      ],
-      "catalog_code": "1A",
-      "scale": 1.5033420006049278,
-      "show_label": false
-    },
-    {
-      "id": "biome_96",
-      "kind": "catalog_feature",
-      "at": [
-        -11.63,
-        -23.83
-      ],
-      "catalog_code": "3A",
-      "scale": 1.3786496403118387,
-      "show_label": false
-    },
-    {
-      "id": "biome_97",
-      "kind": "catalog_feature",
-      "at": [
-        10.56,
-        -19.49
-      ],
-      "catalog_code": "1A",
-      "scale": 1.7525821782214874,
-      "show_label": false
-    },
-    {
-      "id": "biome_98",
-      "kind": "catalog_feature",
-      "at": [
-        11.51,
-        -20.04
-      ],
-      "catalog_code": "1A",
-      "scale": 1.3054601857472297,
-      "show_label": false
-    },
-    {
-      "id": "biome_99",
-      "kind": "catalog_feature",
-      "at": [
-        -18.24,
-        -1.98
-      ],
-      "catalog_code": "3A",
-      "scale": 1.4599607127077818,
-      "show_label": false
-    },
-    {
-      "id": "biome_100",
-      "kind": "catalog_feature",
-      "at": [
-        27.93,
-        9.39
-      ],
-      "catalog_code": "1A",
-      "scale": 1.7283462800518423,
-      "show_label": false
-    },
-    {
-      "id": "biome_101",
-      "kind": "catalog_feature",
-      "at": [
-        -12.68,
-        -16.6
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2309426393719967,
-      "show_label": false
-    },
-    {
-      "id": "biome_102",
-      "kind": "catalog_feature",
-      "at": [
-        -2.31,
-        -5.82
-      ],
-      "catalog_code": "3A",
-      "scale": 1.3562446083824835,
-      "show_label": false
-    },
-    {
-      "id": "biome_103",
-      "kind": "catalog_feature",
-      "at": [
-        -28.02,
-        5.38
-      ],
-      "catalog_code": "1A",
-      "scale": 1.7344341353180457,
-      "show_label": false
-    },
-    {
-      "id": "biome_104",
-      "kind": "catalog_feature",
-      "at": [
-        -3.61,
-        -20.79
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2414631852046403,
-      "show_label": false
-    },
-    {
-      "id": "biome_105",
-      "kind": "catalog_feature",
-      "at": [
-        11.73,
-        3.59
-      ],
-      "catalog_code": "3A",
-      "scale": 1.3981670298350266,
-      "show_label": false
-    },
-    {
-      "id": "biome_106",
-      "kind": "catalog_feature",
-      "at": [
-        -14.61,
-        9.21
-      ],
-      "catalog_code": "1A",
-      "scale": 1.4357290894715524,
-      "show_label": false
-    },
-    {
-      "id": "biome_107",
-      "kind": "catalog_feature",
-      "at": [
-        20.45,
-        -14.28
-      ],
-      "catalog_code": "1A",
-      "scale": 1.4796026908973299,
-      "show_label": false
-    },
-    {
-      "id": "biome_108",
-      "kind": "catalog_feature",
-      "at": [
-        26.37,
-        17.88
-      ],
-      "catalog_code": "3A",
-      "scale": 1.5123576823916782,
-      "show_label": false
-    },
-    {
-      "id": "biome_109",
-      "kind": "catalog_feature",
-      "at": [
-        -11.38,
-        -1.16
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2328131643283953,
-      "show_label": false
-    },
-    {
-      "id": "biome_110",
-      "kind": "catalog_feature",
-      "at": [
-        -5.29,
-        12.4
-      ],
-      "catalog_code": "1A",
-      "scale": 1.5064692597869285,
-      "show_label": false
-    },
-    {
-      "id": "biome_111",
-      "kind": "catalog_feature",
-      "at": [
-        -20.66,
-        -0.84
-      ],
-      "catalog_code": "3A",
-      "scale": 1.4680781048124518,
-      "show_label": false
-    },
-    {
-      "id": "biome_112",
-      "kind": "catalog_feature",
-      "at": [
-        -27.53,
-        -14.76
-      ],
-      "catalog_code": "1A",
-      "scale": 1.2393733663504365,
-      "show_label": false
-    },
-    {
-      "id": "biome_113",
-      "kind": "catalog_feature",
-      "at": [
-        3.99,
-        -1.25
-      ],
-      "catalog_code": "3A",
-      "scale": 1.2463153707394685,
-      "show_label": false
-    },
-    {
-      "id": "biome_114",
-      "kind": "catalog_feature",
-      "at": [
-        10.99,
-        9.48
-      ],
-      "catalog_code": "1A",
-      "scale": 1.3547971542647006,
-      "show_label": false
-    },
-    {
-      "id": "biome_115",
-      "kind": "catalog_feature",
-      "at": [
-        -9.45,
-        -10.16
-      ],
-      "catalog_code": "1A",
-      "scale": 1.3314733456730123,
-      "show_label": false
-    },
-    {
-      "id": "biome_116",
-      "kind": "catalog_feature",
-      "at": [
-        -27.95,
-        -14.78
-      ],
-      "catalog_code": "3A",
-      "scale": 1.7071280122957142,
+      "scale": 1.27,
       "show_label": false
     }
   ],
@@ -2149,8 +1512,8 @@
       "character": "keeper",
       "role": "a2_sable",
       "at": [
-        -9,
-        -20
+        -6,
+        -22
       ],
       "dialogue": [
         "The Hollow Bell"
@@ -2159,63 +1522,51 @@
   ],
   "interactions": [
     {
-      "id": "route_0",
+      "id": "local_clue_0",
       "kind": "sign",
       "at": [
-        2.1,
-        29
+        0.7999999999999998,
+        11.0
       ],
-      "title": "The Forked Pilgrim Road",
+      "title": "Hunting Bowl",
       "lines": [
-        "The Forked Pilgrim Road · follow the trail marker and press E."
+        "Wolves feed in the bowl beyond the split rock. They spread to your flanks and take turns attacking. Retreat through the southern narrows to limit them."
       ]
     },
     {
-      "id": "route_1",
+      "id": "local_clue_1",
       "kind": "sign",
       "at": [
-        -26.900000000000002,
-        0
+        15.8,
+        -12.0
       ],
-      "title": "Reedwater Marsh",
+      "title": "Silk Hollow",
       "lines": [
-        "Reedwater Marsh · follow the trail marker and press E."
+        "Silk hangs across the eastern hollow. Three weavers emerge when the nest is disturbed; the western ridge route avoids them."
       ]
     },
     {
-      "id": "route_2",
+      "id": "local_clue_2",
       "kind": "sign",
       "at": [
-        31,
-        0
+        -21.020101012677667,
+        -21.020101012677667
       ],
-      "title": "Skyglass Bluffs",
+      "title": "Listening Roots",
       "lines": [
-        "Skyglass Bluffs · follow the trail marker and press E."
+        "Two bristlebacks feed among the listening roots. Oren’s clue and the old cache reward a detour."
       ]
     },
     {
-      "id": "route_3",
+      "id": "local_clue_3",
       "kind": "sign",
       "at": [
-        2.1,
-        -29
+        -5.2,
+        -6.0
       ],
-      "title": "The Open-Sky Chapel",
+      "title": "Grove Watch",
       "lines": [
-        "The Open-Sky Chapel · follow the trail marker and press E."
-      ]
-    },
-    {
-      "id": "biome_story",
-      "kind": "sign",
-      "at": [
-        3,
-        14
-      ],
-      "title": "The three forest voices",
-      "lines": [
-        "The listening roots remember the bells: deep earth, high bird, middle river. Ring those three notes at the Heartwood ward. Oren’s message lies beyond the western roots."
+        "A lone pair watches the approach to the bell grove. Beyond them is a quiet refuge, not another wave."
       ]
     }
   ],
@@ -2290,124 +1641,126 @@
       "id": "foe_0",
       "kind": "library_wolf",
       "at": [
-        -4,
-        17
+        -12,
+        3
       ]
     },
     {
       "id": "foe_1",
-      "kind": "library_boar",
+      "kind": "library_wolf",
       "at": [
-        5,
-        12
-      ]
-    },
-    {
-      "id": "foe_2",
-      "kind": "library_spider",
-      "at": [
-        -14,
+        -7,
         1
       ]
     },
     {
-      "id": "foe_3",
+      "id": "foe_2",
       "kind": "library_wolf",
       "at": [
-        -17,
-        4
+        -10,
+        -2
       ]
     },
     {
       "id": "foe_4",
-      "kind": "library_boar",
+      "kind": "library_spider",
       "at": [
-        13,
-        0
+        19,
+        -3
       ]
     },
     {
       "id": "foe_5",
       "kind": "library_spider",
       "at": [
-        19,
-        -4
+        15,
+        -7
+      ]
+    },
+    {
+      "id": "slime_2",
+      "kind": "library_spider",
+      "at": [
+        12,
+        -5
+      ]
+    },
+    {
+      "id": "foe_3",
+      "kind": "library_boar",
+      "at": [
+        -24,
+        -14
+      ]
+    },
+    {
+      "id": "slime_1",
+      "kind": "library_boar",
+      "at": [
+        -21,
+        -18
       ]
     },
     {
       "id": "ward_guardian",
       "kind": "library_wolf",
       "at": [
-        0,
+        -2,
         -13
       ]
     },
     {
       "id": "slime_0",
-      "kind": "library_boar",
-      "at": [
-        -1,
-        5
-      ]
-    },
-    {
-      "id": "slime_1",
-      "kind": "library_spider",
-      "at": [
-        -10,
-        -7
-      ]
-    },
-    {
-      "id": "slime_2",
       "kind": "library_wolf",
       "at": [
-        8,
-        -18
+        2,
+        -14
       ]
     }
   ],
   "catalog_enemies": [],
   "sculpted_terrain": [
     {
-      "id": "forest_hill_0",
+      "id": "dividing_spine",
       "at": [
-        12,
-        20
+        7,
+        2
       ],
-      "height": 1.1,
-      "radius": 7,
-      "profile": "smooth"
+      "height": 4.5,
+      "radius": 12,
+      "profile": "bluff",
+      "plateau_width": 8,
+      "plateau_depth": 12,
+      "rotation": 0,
+      "edge_roughness": 0.5
     },
     {
-      "id": "forest_hill_1",
-      "at": [
-        -16,
-        15
-      ],
-      "height": 1.1,
-      "radius": 7,
-      "profile": "smooth"
-    },
-    {
-      "id": "forest_hill_2",
-      "at": [
-        14,
-        -14
-      ],
-      "height": 1.1,
-      "radius": 7,
-      "profile": "smooth"
-    },
-    {
-      "id": "forest_hill_3",
+      "id": "root_escarpment",
       "at": [
         -15,
-        -20
+        -10
       ],
-      "height": 1.1,
-      "radius": 7,
-      "profile": "smooth"
+      "height": 4.5,
+      "radius": 9,
+      "profile": "bluff",
+      "plateau_width": 7,
+      "plateau_depth": 9,
+      "rotation": 0,
+      "edge_roughness": 0.5
+    },
+    {
+      "id": "northern_rootwall",
+      "at": [
+        -12,
+        -15
+      ],
+      "height": 4.2,
+      "radius": 8,
+      "profile": "bluff",
+      "plateau_width": 7,
+      "plateau_depth": 5,
+      "rotation": 0,
+      "edge_roughness": 0.5
     }
   ]
 }

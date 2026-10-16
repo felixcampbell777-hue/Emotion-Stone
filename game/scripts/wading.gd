@@ -5,6 +5,7 @@ static func enabled(world:Node3D) -> bool:return world.definition.get("wading",f
 static func level(world:Node3D) -> float:return -.115 if world.definition.sea else -.035
 static func depth(world:Node3D,at:Vector3) -> float:
 	if not enabled(world):return 0
+	if world.terrain_at(int(floor(at.x)),int(floor(at.z)))!="water":return 0
 	var point=Vector2(at.x,at.z)
 	for region in world.definition.terrain_regions:
 		if region.kind!="water":continue

@@ -1,0 +1,1608 @@
+{
+  "a2_crossroads": {
+    "identity": "A sheltered waystation beneath a split ridge; choose a quiet north road or investigate feeding grounds.",
+    "routes": [
+      [
+        [
+          0,
+          29
+        ],
+        [
+          4,
+          20
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          -2,
+          2
+        ],
+        [
+          -6,
+          0
+        ]
+      ],
+      [
+        [
+          -2,
+          2
+        ],
+        [
+          -12,
+          6
+        ],
+        [
+          -22,
+          3
+        ],
+        [
+          -29,
+          0
+        ]
+      ],
+      [
+        [
+          -2,
+          2
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          19,
+          -2
+        ],
+        [
+          29,
+          0
+        ]
+      ],
+      [
+        [
+          -2,
+          2
+        ],
+        [
+          -1,
+          -10
+        ],
+        [
+          3,
+          -20
+        ],
+        [
+          0,
+          -29
+        ]
+      ],
+      [
+        [
+          9,
+          3
+        ],
+        [
+          18,
+          9
+        ],
+        [
+          20,
+          19
+        ]
+      ]
+    ],
+    "hills": [
+      {
+        "id": "west_spur",
+        "at": [
+          -15,
+          -9
+        ],
+        "height": 4.4,
+        "radius": 9,
+        "profile": "bluff",
+        "plateau_width": 9,
+        "plateau_depth": 12,
+        "rotation": 0,
+        "edge_roughness": 0.5
+      },
+      {
+        "id": "eastern_knoll",
+        "at": [
+          10,
+          17
+        ],
+        "height": 2.7,
+        "radius": 9,
+        "profile": "smooth"
+      }
+    ],
+    "groups": [
+      {
+        "id": "road_scavengers",
+        "behavior": "territory",
+        "center": [
+          -17,
+          4
+        ],
+        "trigger_radius": 5,
+        "leash_radius": 9,
+        "members": [
+          {
+            "id": "foe_0",
+            "kind": "library_boar",
+            "at": [
+              -15,
+              4
+            ]
+          },
+          {
+            "id": "foe_1",
+            "kind": "library_boar",
+            "at": [
+              -19,
+              6
+            ]
+          }
+        ],
+        "warning": "Freshly turned earth and snapped branches mark a feeding patch. The beasts defend it; the north road avoids them."
+      },
+      {
+        "id": "road_hunt",
+        "behavior": "pack",
+        "center": [
+          16,
+          0
+        ],
+        "trigger_radius": 7,
+        "leash_radius": 10,
+        "members": [
+          {
+            "id": "foe_2",
+            "kind": "library_wolf",
+            "at": [
+              15,
+              1
+            ]
+          },
+          {
+            "id": "foe_3",
+            "kind": "library_wolf",
+            "at": [
+              19,
+              -2
+            ]
+          }
+        ],
+        "warning": "A pair of wolves feeds beyond the east bend. They circle and take turns lunging; the ridge can cover your back."
+      },
+      {
+        "id": "root_cut",
+        "behavior": "ambush",
+        "center": [
+          1,
+          -18
+        ],
+        "trigger_radius": 4.5,
+        "leash_radius": 8,
+        "members": [
+          {
+            "id": "foe_4",
+            "kind": "library_spider",
+            "at": [
+              -1,
+              -17
+            ]
+          },
+          {
+            "id": "foe_5",
+            "kind": "library_spider",
+            "at": [
+              4,
+              -20
+            ]
+          }
+        ],
+        "warning": "Silk stretches between the roots ahead. Step into the marked hollow to disturb its nest."
+      }
+    ],
+    "tree_banks": [
+      [
+        -26,
+        15,
+        5,
+        6
+      ],
+      [
+        18,
+        25,
+        6,
+        4
+      ],
+      [
+        -20,
+        -25,
+        6,
+        5
+      ],
+      [
+        18,
+        -20,
+        7,
+        6
+      ]
+    ],
+    "landmarks": []
+  },
+  "a2_mill": {
+    "identity": "A storm-broken survey ship lies behind a central dune spine. A high shoulder overlooks the wreck; a shore route loops around it.",
+    "routes": [
+      [
+        [
+          15,
+          23
+        ],
+        [
+          12,
+          20
+        ],
+        [
+          13,
+          9
+        ],
+        [
+          11,
+          1
+        ],
+        [
+          6,
+          -7
+        ],
+        [
+          0,
+          -16
+        ],
+        [
+          -5,
+          -25
+        ]
+      ],
+      [
+        [
+          13,
+          9
+        ],
+        [
+          7,
+          16
+        ],
+        [
+          -6,
+          17
+        ],
+        [
+          -14,
+          13
+        ],
+        [
+          -18,
+          7
+        ],
+        [
+          -18,
+          -9
+        ],
+        [
+          -9,
+          -13
+        ],
+        [
+          0,
+          -16
+        ]
+      ],
+      [
+        [
+          -18,
+          -9
+        ],
+        [
+          -18,
+          -19
+        ],
+        [
+          0,
+          -21
+        ]
+      ],
+      [
+        [
+          13,
+          9
+        ],
+        [
+          14,
+          12
+        ],
+        [
+          17,
+          17
+        ]
+      ]
+    ],
+    "hills": [
+      {
+        "id": "western_headland",
+        "at": [
+          -25,
+          -5
+        ],
+        "height": 5.5,
+        "radius": 9,
+        "profile": "bluff",
+        "plateau_width": 6,
+        "plateau_depth": 18,
+        "rotation": 0,
+        "edge_roughness": 0.5
+      },
+      {
+        "id": "dune_spine",
+        "at": [
+          0,
+          3
+        ],
+        "height": 3.8,
+        "radius": 11,
+        "profile": "bluff",
+        "plateau_width": 8,
+        "plateau_depth": 10,
+        "rotation": 0,
+        "edge_roughness": 0.5
+      },
+      {
+        "id": "dune_shoulder",
+        "at": [
+          5,
+          11
+        ],
+        "height": 1.2,
+        "radius": 7,
+        "profile": "smooth"
+      }
+    ],
+    "groups": [
+      {
+        "id": "wreck_scavengers",
+        "behavior": "scavenge",
+        "center": [
+          -13,
+          6
+        ],
+        "trigger_radius": 6,
+        "leash_radius": 10,
+        "members": [
+          {
+            "id": "foe_1",
+            "kind": "library_rat",
+            "at": [
+              -10,
+              8
+            ]
+          },
+          {
+            "id": "slime_1",
+            "kind": "library_rat",
+            "at": [
+              -18,
+              5
+            ]
+          },
+          {
+            "id": "slime_3",
+            "kind": "library_rat",
+            "at": [
+              -10,
+              -3
+            ]
+          }
+        ],
+        "warning": "Gnawed cargo and a trail of torn sacks lead around the hull. Rats scatter out of cover when you disturb the supplies."
+      },
+      {
+        "id": "tidal_claws",
+        "behavior": "territory",
+        "center": [
+          11,
+          -1
+        ],
+        "trigger_radius": 6,
+        "leash_radius": 10,
+        "members": [
+          {
+            "id": "foe_0",
+            "kind": "library_crab",
+            "at": [
+              10,
+              2
+            ]
+          },
+          {
+            "id": "slime_0",
+            "kind": "library_crab",
+            "at": [
+              14,
+              -1
+            ]
+          },
+          {
+            "id": "slime_6",
+            "kind": "library_crab",
+            "at": [
+              8,
+              -4
+            ]
+          }
+        ],
+        "warning": "Discarded shells mark the tidal feeding ground. Keep to the sheltered wreck loop, or fight across the open shore."
+      },
+      {
+        "id": "chime_nest",
+        "behavior": "ambush",
+        "center": [
+          -15,
+          -11
+        ],
+        "trigger_radius": 5,
+        "leash_radius": 9,
+        "members": [
+          {
+            "id": "slime_2",
+            "kind": "library_crab",
+            "at": [
+              -18,
+              -10
+            ]
+          },
+          {
+            "id": "slime_4",
+            "kind": "library_crab",
+            "at": [
+              -14,
+              -13
+            ]
+          },
+          {
+            "id": "slime_5",
+            "kind": "library_crab",
+            "at": [
+              -9,
+              -11
+            ]
+          }
+        ],
+        "warning": "Three fresh sand mounds surround the salvage net. The chime is not the only thing the tide uncovered."
+      }
+    ],
+    "tree_banks": [],
+    "landmarks": [
+      {
+        "kind": "wreck",
+        "at": [
+          -14,
+          3
+        ],
+        "size": [
+          6,
+          3,
+          10
+        ],
+        "yaw": -0.22,
+        "solid": true
+      },
+      {
+        "kind": "dock",
+        "at": [
+          -16,
+          -6
+        ],
+        "size": [
+          2,
+          0.2,
+          6
+        ],
+        "yaw": 0
+      }
+    ]
+  },
+  "a2_fen": {
+    "identity": "An old dry embankment crosses drowned willow beds. Reed nests watch the shortcut; a sheltered spur leads to the stranded courier.",
+    "routes": [
+      [
+        [
+          0,
+          25
+        ],
+        [
+          0,
+          18
+        ],
+        [
+          -6,
+          9
+        ],
+        [
+          -5,
+          0
+        ],
+        [
+          -9,
+          -9
+        ],
+        [
+          -9,
+          -15
+        ]
+      ],
+      [
+        [
+          -5,
+          0
+        ],
+        [
+          2,
+          -7
+        ],
+        [
+          12,
+          -4
+        ],
+        [
+          24,
+          0
+        ]
+      ],
+      [
+        [
+          -6,
+          9
+        ],
+        [
+          -17,
+          19
+        ],
+        [
+          -18,
+          15
+        ]
+      ],
+      [
+        [
+          12,
+          -4
+        ],
+        [
+          17,
+          -12
+        ],
+        [
+          17,
+          -19
+        ]
+      ]
+    ],
+    "hills": [
+      {
+        "id": "willow_bank",
+        "at": [
+          -6,
+          -9
+        ],
+        "height": 1.0,
+        "radius": 6,
+        "profile": "smooth"
+      },
+      {
+        "id": "refuge_bank",
+        "at": [
+          -17,
+          19
+        ],
+        "height": 0.6,
+        "radius": 5,
+        "profile": "smooth"
+      }
+    ],
+    "groups": [
+      {
+        "id": "reed_ambush",
+        "behavior": "ambush",
+        "center": [
+          -4,
+          7
+        ],
+        "trigger_radius": 4.5,
+        "leash_radius": 8,
+        "members": [
+          {
+            "id": "slime_0",
+            "kind": "library_spider",
+            "at": [
+              -8,
+              7
+            ]
+          },
+          {
+            "id": "slime_1",
+            "kind": "library_spider",
+            "at": [
+              -2,
+              8
+            ]
+          }
+        ],
+        "warning": "Silk and ripples betray a reed nest beside the causeway. Firm ground keeps your movement quick."
+      },
+      {
+        "id": "courier_blockade",
+        "behavior": "guard",
+        "center": [
+          -10,
+          -12
+        ],
+        "trigger_radius": 7,
+        "leash_radius": 11,
+        "members": [
+          {
+            "id": "foe_0",
+            "kind": "library_spider",
+            "at": [
+              -13,
+              -10
+            ]
+          },
+          {
+            "id": "foe_1",
+            "kind": "library_spider",
+            "at": [
+              -7,
+              -13
+            ]
+          },
+          {
+            "id": "slime_4",
+            "kind": "library_crab",
+            "at": [
+              -10,
+              -16
+            ]
+          }
+        ],
+        "warning": "Jun\u2019s lantern shines from a willow island. Clear its approach; the courier will return home once it is safe."
+      },
+      {
+        "id": "sunken_cargo",
+        "behavior": "territory",
+        "center": [
+          13,
+          -7
+        ],
+        "trigger_radius": 5,
+        "leash_radius": 9,
+        "members": [
+          {
+            "id": "slime_2",
+            "kind": "library_crab",
+            "at": [
+              8,
+              -6
+            ]
+          },
+          {
+            "id": "slime_3",
+            "kind": "library_crab",
+            "at": [
+              14,
+              -8
+            ]
+          },
+          {
+            "id": "slime_5",
+            "kind": "library_crab",
+            "at": [
+              17,
+              -12
+            ]
+          }
+        ],
+        "warning": "Shells cluster around sunken cargo. The cache is optional; the dry causeway continues west."
+      }
+    ],
+    "tree_banks": [
+      [
+        -23,
+        -9,
+        3,
+        8
+      ],
+      [
+        20,
+        12,
+        5,
+        8
+      ],
+      [
+        -21,
+        23,
+        3,
+        3
+      ],
+      [
+        4,
+        -22,
+        5,
+        3
+      ]
+    ],
+    "landmarks": []
+  },
+  "a2_quarry": {
+    "identity": "A switchback climbs to the sentinel court. A second, exposed seaward ledge leads past the survey cave and a forgotten cache.",
+    "routes": [
+      [
+        [
+          -27,
+          0
+        ],
+        [
+          -20,
+          0
+        ],
+        [
+          -14,
+          5
+        ],
+        [
+          -8,
+          12
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          0,
+          -6
+        ],
+        [
+          0,
+          -18
+        ],
+        [
+          0,
+          -23
+        ],
+        [
+          0,
+          -27
+        ]
+      ],
+      [
+        [
+          0,
+          12
+        ],
+        [
+          15,
+          20
+        ],
+        [
+          23,
+          17
+        ],
+        [
+          23,
+          5
+        ],
+        [
+          22,
+          -9
+        ],
+        [
+          20,
+          -20
+        ],
+        [
+          8,
+          -25
+        ],
+        [
+          0,
+          -27
+        ]
+      ],
+      [
+        [
+          -20,
+          0
+        ],
+        [
+          -21,
+          19
+        ]
+      ],
+      [
+        [
+          5,
+          4
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          15,
+          10
+        ],
+        [
+          16,
+          -8
+        ]
+      ]
+    ],
+    "hills": [
+      {
+        "id": "sentinel_table",
+        "at": [
+          0,
+          -6
+        ],
+        "height": 3.2,
+        "radius": 12,
+        "profile": "bluff",
+        "plateau_width": 14,
+        "plateau_depth": 16,
+        "rotation": 0,
+        "edge_roughness": 0.5
+      },
+      {
+        "id": "northern_ramp",
+        "at": [
+          0,
+          -22
+        ],
+        "height": 3.2,
+        "radius": 6,
+        "profile": "smooth"
+      },
+      {
+        "id": "watch_spine",
+        "at": [
+          15,
+          -2
+        ],
+        "height": 5.0,
+        "radius": 10,
+        "profile": "bluff",
+        "plateau_width": 8,
+        "plateau_depth": 16,
+        "rotation": 0,
+        "edge_roughness": 0.5
+      },
+      {
+        "id": "western_scarp",
+        "at": [
+          -17,
+          -12
+        ],
+        "height": 4.8,
+        "radius": 9,
+        "profile": "bluff",
+        "plateau_width": 8,
+        "plateau_depth": 12,
+        "rotation": 0,
+        "edge_roughness": 0.5
+      }
+    ],
+    "groups": [
+      {
+        "id": "switchback_pair",
+        "behavior": "guard",
+        "center": [
+          -11,
+          8
+        ],
+        "trigger_radius": 6,
+        "leash_radius": 9,
+        "members": [
+          {
+            "id": "foe_0",
+            "kind": "library_crab",
+            "at": [
+              -13,
+              8
+            ]
+          },
+          {
+            "id": "foe_1",
+            "kind": "library_crab",
+            "at": [
+              -9,
+              10
+            ]
+          }
+        ],
+        "warning": "Claw marks score the narrow switchback. Use its boulder shoulder to keep the pair in front of you."
+      },
+      {
+        "id": "seaward_nest",
+        "behavior": "ambush",
+        "center": [
+          22,
+          7
+        ],
+        "trigger_radius": 4.5,
+        "leash_radius": 9,
+        "members": [
+          {
+            "id": "foe_2",
+            "kind": "library_spider",
+            "at": [
+              21,
+              10
+            ]
+          },
+          {
+            "id": "foe_3",
+            "kind": "library_spider",
+            "at": [
+              24,
+              4
+            ]
+          },
+          {
+            "id": "foe_8",
+            "kind": "library_spider",
+            "at": [
+              21,
+              1
+            ]
+          }
+        ],
+        "warning": "Silk drapes the seaward ledge. Its warning mounds leave room to turn back toward the cave."
+      },
+      {
+        "id": "sentinel_court",
+        "behavior": "guard",
+        "center": [
+          0,
+          -18
+        ],
+        "trigger_radius": 9,
+        "leash_radius": 11,
+        "members": [
+          {
+            "id": "quarry_captain",
+            "kind": "library_sentinel",
+            "at": [
+              0,
+              -18
+            ]
+          },
+          {
+            "id": "foe_4",
+            "kind": "library_crab",
+            "at": [
+              -4,
+              -14
+            ]
+          },
+          {
+            "id": "foe_5",
+            "kind": "library_crab",
+            "at": [
+              4,
+              -17
+            ]
+          }
+        ],
+        "warning": "The burrow sentinel patrols the ward court with two shell guards. Rock cover breaks its ranged line; return its shot to expose it."
+      },
+      {
+        "id": "watch_loner",
+        "behavior": "territory",
+        "center": [
+          16,
+          -9
+        ],
+        "trigger_radius": 4.5,
+        "leash_radius": 7,
+        "members": [
+          {
+            "id": "foe_7",
+            "kind": "library_boar",
+            "at": [
+              16,
+              -9
+            ]
+          }
+        ],
+        "warning": "A bristleback roots around the abandoned lookout. Give it space, or clear the overlook."
+      }
+    ],
+    "tree_banks": [],
+    "landmarks": [
+      {
+        "kind": "watchtower",
+        "at": [
+          15,
+          -12
+        ],
+        "size": [
+          4,
+          6,
+          4
+        ],
+        "yaw": 0.1,
+        "solid": true
+      }
+    ]
+  },
+  "a2_wood": {
+    "identity": "A rocky spine separates a hunting bowl from a silk hollow. An outer root trail rewards exploration and rejoins the quiet bell grove.",
+    "routes": [
+      [
+        [
+          0,
+          29
+        ],
+        [
+          4,
+          24
+        ],
+        [
+          2,
+          17
+        ],
+        [
+          -2,
+          11
+        ],
+        [
+          -8,
+          2
+        ],
+        [
+          -8,
+          -6
+        ],
+        [
+          -4,
+          -13
+        ],
+        [
+          0,
+          -19
+        ],
+        [
+          0,
+          -29
+        ]
+      ],
+      [
+        [
+          -29,
+          0
+        ],
+        [
+          -21,
+          3
+        ],
+        [
+          -8,
+          2
+        ]
+      ],
+      [
+        [
+          29,
+          0
+        ],
+        [
+          21,
+          -4
+        ],
+        [
+          13,
+          -6
+        ],
+        [
+          13,
+          -12
+        ],
+        [
+          5,
+          -13
+        ],
+        [
+          -4,
+          -13
+        ]
+      ],
+      [
+        [
+          -8,
+          -6
+        ],
+        [
+          -9,
+          1
+        ],
+        [
+          -23,
+          1
+        ],
+        [
+          -24,
+          -13
+        ],
+        [
+          -22,
+          -17
+        ],
+        [
+          -23,
+          -23
+        ],
+        [
+          -12,
+          -25
+        ],
+        [
+          0,
+          -19
+        ]
+      ],
+      [
+        [
+          4,
+          24
+        ],
+        [
+          14,
+          24
+        ],
+        [
+          20,
+          20
+        ]
+      ],
+      [
+        [
+          0,
+          -19
+        ],
+        [
+          -6,
+          -22
+        ]
+      ]
+    ],
+    "hills": [
+      {
+        "id": "dividing_spine",
+        "at": [
+          7,
+          2
+        ],
+        "height": 4.5,
+        "radius": 12,
+        "profile": "bluff",
+        "plateau_width": 8,
+        "plateau_depth": 12,
+        "rotation": 0,
+        "edge_roughness": 0.5
+      },
+      {
+        "id": "root_escarpment",
+        "at": [
+          -15,
+          -10
+        ],
+        "height": 4.5,
+        "radius": 9,
+        "profile": "bluff",
+        "plateau_width": 7,
+        "plateau_depth": 9,
+        "rotation": 0,
+        "edge_roughness": 0.5
+      },
+      {
+        "id": "northern_rootwall",
+        "at": [
+          -12,
+          -15
+        ],
+        "height": 4.2,
+        "radius": 8,
+        "profile": "bluff",
+        "plateau_width": 7,
+        "plateau_depth": 5,
+        "rotation": 0,
+        "edge_roughness": 0.5
+      }
+    ],
+    "groups": [
+      {
+        "id": "hunting_bowl",
+        "behavior": "pack",
+        "center": [
+          -9,
+          2
+        ],
+        "trigger_radius": 8,
+        "leash_radius": 11,
+        "members": [
+          {
+            "id": "foe_0",
+            "kind": "library_wolf",
+            "at": [
+              -12,
+              3
+            ]
+          },
+          {
+            "id": "foe_1",
+            "kind": "library_wolf",
+            "at": [
+              -7,
+              1
+            ]
+          },
+          {
+            "id": "foe_2",
+            "kind": "library_wolf",
+            "at": [
+              -10,
+              -2
+            ]
+          }
+        ],
+        "warning": "Wolves feed in the bowl beyond the split rock. They spread to your flanks and take turns attacking. Retreat through the southern narrows to limit them."
+      },
+      {
+        "id": "silk_hollow",
+        "behavior": "ambush",
+        "center": [
+          16,
+          -5
+        ],
+        "trigger_radius": 5,
+        "leash_radius": 10,
+        "members": [
+          {
+            "id": "foe_4",
+            "kind": "library_spider",
+            "at": [
+              19,
+              -3
+            ]
+          },
+          {
+            "id": "foe_5",
+            "kind": "library_spider",
+            "at": [
+              15,
+              -7
+            ]
+          },
+          {
+            "id": "slime_2",
+            "kind": "library_spider",
+            "at": [
+              12,
+              -5
+            ]
+          }
+        ],
+        "warning": "Silk hangs across the eastern hollow. Three weavers emerge when the nest is disturbed; the western ridge route avoids them."
+      },
+      {
+        "id": "listening_roots",
+        "behavior": "territory",
+        "center": [
+          -23,
+          -16
+        ],
+        "trigger_radius": 5,
+        "leash_radius": 8,
+        "members": [
+          {
+            "id": "foe_3",
+            "kind": "library_boar",
+            "at": [
+              -24,
+              -14
+            ]
+          },
+          {
+            "id": "slime_1",
+            "kind": "library_boar",
+            "at": [
+              -21,
+              -18
+            ]
+          }
+        ],
+        "warning": "Two bristlebacks feed among the listening roots. Oren\u2019s clue and the old cache reward a detour."
+      },
+      {
+        "id": "grove_watch",
+        "behavior": "guard",
+        "center": [
+          0,
+          -13
+        ],
+        "trigger_radius": 6,
+        "leash_radius": 7,
+        "members": [
+          {
+            "id": "ward_guardian",
+            "kind": "library_wolf",
+            "at": [
+              -2,
+              -13
+            ]
+          },
+          {
+            "id": "slime_0",
+            "kind": "library_wolf",
+            "at": [
+              2,
+              -14
+            ]
+          }
+        ],
+        "warning": "A lone pair watches the approach to the bell grove. Beyond them is a quiet refuge, not another wave."
+      }
+    ],
+    "tree_banks": [
+      [
+        -26,
+        19,
+        4,
+        8
+      ],
+      [
+        20,
+        16,
+        5,
+        8
+      ],
+      [
+        -21,
+        11,
+        6,
+        4
+      ],
+      [
+        20,
+        -18,
+        7,
+        7
+      ],
+      [
+        -5,
+        -28,
+        7,
+        2
+      ],
+      [
+        -29,
+        -16,
+        2,
+        7
+      ],
+      [
+        4,
+        -9,
+        6,
+        10
+      ],
+      [
+        -17.5,
+        -17.5,
+        4,
+        6
+      ]
+    ],
+    "landmarks": []
+  },
+  "a2_watch": {
+    "identity": "A survey vault has become a rat nest; a broken supply trail leads through its two rooms.",
+    "routes": [
+      [
+        [
+          0,
+          5.5
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          0.4
+        ],
+        [
+          -2,
+          -0.5
+        ],
+        [
+          -2,
+          -2.5
+        ],
+        [
+          0,
+          -5.5
+        ]
+      ],
+      [
+        [
+          -2,
+          -2.5
+        ],
+        [
+          -5,
+          -5
+        ]
+      ]
+    ],
+    "hills": [],
+    "groups": [
+      {
+        "id": "vault_nest",
+        "behavior": "ambush",
+        "center": [
+          -1,
+          -2
+        ],
+        "trigger_radius": 4,
+        "leash_radius": 8,
+        "members": [
+          {
+            "id": "foe_0",
+            "kind": "library_rat",
+            "at": [
+              -4,
+              -0.3
+            ]
+          },
+          {
+            "id": "foe_1",
+            "kind": "library_rat",
+            "at": [
+              3,
+              -4
+            ]
+          },
+          {
+            "id": "foe_2",
+            "kind": "library_rat",
+            "at": [
+              -3,
+              -5
+            ]
+          }
+        ],
+        "warning": "Gnawed survey cases lead to the back chamber. Rats hide among the abandoned supplies."
+      }
+    ],
+    "tree_banks": [],
+    "landmarks": []
+  },
+  "a2_sanctum": {
+    "identity": "A small roofless pilgrim chapel offers shelter between forest and final trial.",
+    "routes": [
+      [
+        [
+          0,
+          8
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          0,
+          -6.5
+        ]
+      ],
+      [
+        [
+          2,
+          3
+        ],
+        [
+          -4,
+          -5
+        ]
+      ],
+      [
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          4
+        ]
+      ]
+    ],
+    "hills": [],
+    "groups": [],
+    "tree_banks": [],
+    "landmarks": []
+  },
+  "a2_belfry": {
+    "identity": "The last bell stands in a sunken court. Broken buttresses provide limited ranged cover around an open melee floor.",
+    "routes": [
+      [
+        [
+          0,
+          19
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          -3
+        ]
+      ]
+    ],
+    "hills": [
+      {
+        "id": "court_shoulders_west",
+        "at": [
+          -17,
+          -8
+        ],
+        "height": 4.5,
+        "radius": 10,
+        "profile": "bluff",
+        "plateau_width": 6,
+        "plateau_depth": 12,
+        "rotation": 0,
+        "edge_roughness": 0.5
+      },
+      {
+        "id": "court_shoulders_east",
+        "at": [
+          16,
+          -9
+        ],
+        "height": 4.5,
+        "radius": 10,
+        "profile": "bluff",
+        "plateau_width": 5,
+        "plateau_depth": 11,
+        "rotation": 0,
+        "edge_roughness": 0.5
+      }
+    ],
+    "groups": [],
+    "tree_banks": [],
+    "landmarks": []
+  }
+}

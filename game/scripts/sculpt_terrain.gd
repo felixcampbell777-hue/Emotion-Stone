@@ -6,9 +6,16 @@ static func local_point(piece:Dictionary,at:Vector3) -> Vector2:
 static func raw(piece:Dictionary,p:Vector2) -> float:
  var r=float(piece.radius); var h=float(piece.height)
  if piece.profile=="smooth": return h*(1-smoothstep(0,1,p.length()/r))
- if absf(p.x)>float(piece.get("plateau_width",r*2))*.5 or p.y< -float(piece.get("plateau_depth",r)) or p.y>r: return 0
+ var rough=float(piece.get("edge_roughness",0))
+ var width=float(piece.get("plateau_width",r*2))*.5+(sin(p.y*.45)+sin(p.y*1.17)*.35)*rough
+ var depth=float(piece.get("plateau_depth",r))+sin(p.x*.58)*rough
+ if absf(p.x)>width or p.y< -depth or p.y>r: return 0
  # South side is a continuous walk-up; other sides are sharp escarpments.
- return h*clampf(1-p.y/r,0,1)
+ var result=h*clampf(1-p.y/r,0,1)
+ if rough>0:
+  result*=smoothstep(0,.7,width-absf(p.x))*smoothstep(0,.7,p.y+depth)
+  result*=1+sin(p.x*.8)*sin(p.y*.65)*.025
+ return result
 static func height(piece:Dictionary,at:Vector3,top_only:bool=false) -> float:
  var p=local_point(piece,at)
  if piece.profile=="overhang" and p.y< -float(piece.get("plateau_depth",piece.radius))*.35 and not top_only and at.y<float(piece.height)-.45: return 0
@@ -46,6 +53,17 @@ static func build_ground(world:Node3D) -> void:
  var material=Props.mat("#ffffff").duplicate(); material.vertex_color_use_as_albedo=true; visual.material_override=material
  var body=StaticBody3D.new(); body.set_meta("terrain_surface",true); body.collision_layer=8; body.collision_mask=0
  var collision=CollisionShape3D.new(); collision.shape=geometry.create_trimesh_shape(); body.add_child(collision); world.add_child(body)
+ # Alpha 2 escarpments are physical walls even during jumps. Walkable ground
+ # keeps its existing virtual-height contract and camera-only surface collider.
+ if String(world.definition.id).begins_with("a2_"):
+  var faces=geometry.get_faces();var steep=PackedVector3Array()
+  for i in range(0,faces.size(),3):
+   var normal=(faces[i+1]-faces[i]).cross(faces[i+2]-faces[i]).normalized()
+   if absf(normal.y)<.65:steep.append_array([faces[i],faces[i+1],faces[i+2]])
+  if not steep.is_empty():
+   var cliff=StaticBody3D.new();cliff.name="ImpassableEscarpments";cliff.collision_layer=1;cliff.collision_mask=0
+   var shape=ConcavePolygonShape3D.new();shape.set_faces(steep);shape.backface_collision=true
+   var wall=CollisionShape3D.new();wall.shape=shape;cliff.add_child(wall);world.add_child(cliff)
  for piece in world.definition.get("sculpted_terrain",[]):
   if piece.profile=="overhang": build_ledge(world,piece)
 static func build_ledge(world:Node3D,piece:Dictionary) -> void:

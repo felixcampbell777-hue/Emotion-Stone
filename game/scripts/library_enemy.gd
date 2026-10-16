@@ -7,6 +7,13 @@ var spec:Dictionary
 var armor_open=0.0
 var count=0
 var warning:MeshInstance3D
+var encounter_owned=false
+var encounter_hidden=false
+var encounter_emerge=0.0
+var encounter_goal=Vector3.ZERO
+var encounter_speed=1.0
+var encounter_engaged=false
+var encounter_attack_allowed=false
 func configure(data:Dictionary,target:Node3D,saved:Dictionary={}) -> void:
 	super.configure(data,target,saved);set_meta("library_creature",true)
 	spec=JSON.parse_string(FileAccess.get_file_as_string("res://content/alpha2_creatures.json"))[data.kind]
@@ -25,17 +32,28 @@ func configure(data:Dictionary,target:Node3D,saved:Dictionary={}) -> void:
 func sword_weakspot_open() -> bool:return armor_open>0
 func open_armor() -> void:armor_open=4;repel(Vector3.ZERO,0,2.0)
 func take_damage(amount:int,away:Vector3) -> void:
+	if encounter_hidden and health>0:
+		encounter_hidden=false;visible=true;collision_layer=4;encounter_emerge=0
 	if definition.kind=="library_sentinel" and armor_open<=0 and state not in ["recover"]:amount=maxi(1,roundi(amount*.35))
 	super.take_damage(amount,away)
 func take_lance_damage(amount:int,away:Vector3) -> void:armor_open=3;take_damage(amount,away)
 func _physics_process(delta:float) -> void:
 	if not simulation_enabled or health<=0:return
+	if encounter_hidden:return
+	if encounter_emerge>0:
+		encounter_emerge=maxf(0,encounter_emerge-delta);visual.position.y=-float(spec.height)*encounter_emerge/.75;art.pose("idle",-1,delta);return
 	phase+=delta;hit_flash=maxf(0,hit_flash-delta);parry_flash=maxf(0,parry_flash-delta);armor_open=maxf(0,armor_open-delta)
 	velocity=Vector3.ZERO;warning.visible=state=="burrow";visual.position.y=0
 	var toward=(player.position-position)*Vector3(1,0,1);var distance=toward.length();var style=String(spec.style)
 	if ai_enabled and player.health>0:
 		if state=="idle":
-			if distance<12:
+			if encounter_owned:
+				var goal=(encounter_goal-position)*Vector3(1,0,1)
+				if goal.length()>.35:
+					velocity=goal.normalized()*minf(float(spec.speed)*encounter_speed,goal.length()/maxf(delta,.001));visual.rotation.y=lerp_angle(visual.rotation.y,atan2(goal.x,goal.z),minf(1,delta*6))
+				if encounter_engaged and encounter_attack_allowed and distance<float(spec.range) and not game.impact_blocked(position+Vector3.UP*.6,player.position+Vector3.UP*.6):
+					count+=1;direction=toward.normalized();state="windup";state_time=float(spec.windup);lunge_hit=false;visual.rotation.y=atan2(direction.x,direction.z);velocity=Vector3.ZERO
+			elif distance<12:
 				visual.rotation.y=lerp_angle(visual.rotation.y,atan2(toward.x,toward.z),minf(1,delta*6))
 				if distance<float(spec.range):
 					count+=1;direction=toward.normalized();state="windup";state_time=float(spec.windup);lunge_hit=false

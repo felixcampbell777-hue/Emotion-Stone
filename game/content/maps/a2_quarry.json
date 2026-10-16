@@ -1,7 +1,7 @@
 {
   "id": "a2_quarry",
   "display_name": "Skyglass Bluffs",
-  "subtitle": "Climb the old watch road to the burrowing sentinel",
+  "subtitle": "A switchback climbs to the sentinel court. A second, exposed seaward ledge leads past the survey cave and a forgotten cache.",
   "seed": 1961,
   "bounds": [
     -30,
@@ -26,6 +26,15 @@
       ]
     },
     {
+      "kind": "water",
+      "rect": [
+        27,
+        -30,
+        3,
+        60
+      ]
+    },
+    {
       "kind": "path",
       "rect": [
         -1,
@@ -39,7 +48,7 @@
       "rect": [
         -2,
         -28,
-        4,
+        7,
         1
       ]
     },
@@ -48,7 +57,7 @@
       "rect": [
         -2,
         -27,
-        4,
+        11,
         1
       ]
     },
@@ -57,7 +66,7 @@
       "rect": [
         -2,
         -26,
-        4,
+        13,
         1
       ]
     },
@@ -67,6 +76,15 @@
         -2,
         -25,
         4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        3,
+        -25,
+        11,
         1
       ]
     },
@@ -82,6 +100,15 @@
     {
       "kind": "path",
       "rect": [
+        7,
+        -24,
+        9,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
         -2,
         -23,
         4,
@@ -91,7 +118,16 @@
     {
       "kind": "path",
       "rect": [
-        -3,
+        10,
+        -23,
+        8,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -22,
         4,
         1
@@ -100,7 +136,16 @@
     {
       "kind": "path",
       "rect": [
-        -4,
+        12,
+        -22,
+        9,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -21,
         4,
         1
@@ -109,7 +154,16 @@
     {
       "kind": "path",
       "rect": [
-        -4,
+        14,
+        -21,
+        8,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -20,
         4,
         1
@@ -118,7 +172,16 @@
     {
       "kind": "path",
       "rect": [
-        -5,
+        17,
+        -20,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -19,
         4,
         1
@@ -127,7 +190,16 @@
     {
       "kind": "path",
       "rect": [
-        -5,
+        19,
+        -19,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -18,
         4,
         1
@@ -136,7 +208,16 @@
     {
       "kind": "path",
       "rect": [
-        -6,
+        19,
+        -18,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -17,
         4,
         1
@@ -145,7 +226,16 @@
     {
       "kind": "path",
       "rect": [
-        -7,
+        19,
+        -17,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -16,
         4,
         1
@@ -154,7 +244,16 @@
     {
       "kind": "path",
       "rect": [
-        -7,
+        19,
+        -16,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -15,
         4,
         1
@@ -163,7 +262,16 @@
     {
       "kind": "path",
       "rect": [
-        -6,
+        19,
+        -15,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -14,
         4,
         1
@@ -172,7 +280,16 @@
     {
       "kind": "path",
       "rect": [
-        -6,
+        19,
+        -14,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -13,
         4,
         1
@@ -181,7 +298,16 @@
     {
       "kind": "path",
       "rect": [
-        -5,
+        20,
+        -13,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -12,
         4,
         1
@@ -190,7 +316,16 @@
     {
       "kind": "path",
       "rect": [
-        -5,
+        20,
+        -12,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -11,
         4,
         1
@@ -199,7 +334,16 @@
     {
       "kind": "path",
       "rect": [
-        -4,
+        20,
+        -11,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -10,
         4,
         1
@@ -208,7 +352,25 @@
     {
       "kind": "path",
       "rect": [
-        -4,
+        15,
+        -10,
+        2,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        20,
+        -10,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -9,
         4,
         1
@@ -217,7 +379,25 @@
     {
       "kind": "path",
       "rect": [
-        -3,
+        14,
+        -9,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        20,
+        -9,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -8,
         4,
         1
@@ -226,16 +406,25 @@
     {
       "kind": "path",
       "rect": [
-        -16,
-        -7,
-        2,
+        14,
+        -8,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -3,
+        20,
+        -8,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -2,
         -7,
         4,
         1
@@ -244,9 +433,18 @@
     {
       "kind": "path",
       "rect": [
-        -18,
-        -6,
-        5,
+        14,
+        -7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        20,
+        -7,
+        4,
         1
       ]
     },
@@ -262,27 +460,45 @@
     {
       "kind": "path",
       "rect": [
-        -20,
-        -5,
-        7,
+        14,
+        -6,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -2,
-        -5,
-        5,
+        21,
+        -6,
+        3,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -23,
-        -4,
-        11,
+        -1,
+        -5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        14,
+        -5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        -5,
+        3,
         1
       ]
     },
@@ -298,9 +514,18 @@
     {
       "kind": "path",
       "rect": [
-        -25,
-        -3,
         14,
+        -4,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        -4,
+        3,
         1
       ]
     },
@@ -310,6 +535,24 @@
         0,
         -3,
         4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        14,
+        -3,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        -3,
+        3,
         1
       ]
     },
@@ -325,9 +568,36 @@
     {
       "kind": "path",
       "rect": [
-        -18,
+        0,
         -2,
-        7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        14,
+        -2,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        -2,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -29,
+        -1,
+        11,
         1
       ]
     },
@@ -335,35 +605,26 @@
       "kind": "path",
       "rect": [
         1,
-        -2,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -29,
-        -1,
-        7,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -18,
-        -1,
-        8,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        2,
         -1,
         4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        14,
+        -1,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        -1,
+        3,
         1
       ]
     },
@@ -372,23 +633,14 @@
       "rect": [
         -29,
         0,
-        5,
+        12,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -18,
-        0,
-        3,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -13,
+        1,
         0,
         4,
         1
@@ -397,9 +649,18 @@
     {
       "kind": "path",
       "rect": [
-        3,
+        14,
         0,
-        4,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        0,
+        3,
         1
       ]
     },
@@ -408,15 +669,303 @@
       "rect": [
         -28,
         1,
-        2,
+        12,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -18,
+        2,
         1,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        14,
+        1,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        1,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -22,
+        2,
+        8,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        2,
+        2,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        14,
+        2,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        2,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -22,
+        3,
+        9,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        3,
+        3,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        14,
+        3,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        3,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -22,
+        4,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -17,
+        4,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        3,
+        4,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        14,
+        4,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        4,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -22,
+        5,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -16,
+        5,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        2,
+        5,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        14,
+        5,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        5,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -22,
+        6,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -15,
+        6,
+        5,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        1,
+        6,
+        8,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        13,
+        6,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        6,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -22,
+        7,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -14,
+        7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        1,
+        7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        6,
+        7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        13,
+        7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        7,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -22,
+        8,
         3,
         1
       ]
@@ -425,7 +974,7 @@
       "kind": "path",
       "rect": [
         -13,
-        1,
+        8,
         4,
         1
       ]
@@ -433,18 +982,36 @@
     {
       "kind": "path",
       "rect": [
+        0,
+        8,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        7,
+        8,
+        10,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        8,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -22,
+        9,
         3,
-        1,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -19,
-        2,
-        4,
         1
       ]
     },
@@ -452,7 +1019,7 @@
       "kind": "path",
       "rect": [
         -12,
-        2,
+        9,
         4,
         1
       ]
@@ -460,18 +1027,72 @@
     {
       "kind": "path",
       "rect": [
-        3,
-        2,
-        5,
+        0,
+        9,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -19,
-        3,
+        7,
+        9,
+        10,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        9,
         4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -22,
+        10,
+        3,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -12,
+        10,
+        15,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        8,
+        10,
+        9,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        10,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -22,
+        11,
+        3,
         1
       ]
     },
@@ -479,34 +1100,16 @@
       "kind": "path",
       "rect": [
         -11,
-        3,
-        5,
+        11,
+        14,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        2,
-        3,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -19,
-        4,
-        3,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -11,
-        4,
+        9,
+        11,
         7,
         1
       ]
@@ -514,17 +1117,17 @@
     {
       "kind": "path",
       "rect": [
-        1,
+        21,
+        11,
         4,
-        5,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -19,
-        5,
+        -22,
+        12,
         3,
         1
       ]
@@ -533,150 +1136,24 @@
       "kind": "path",
       "rect": [
         -10,
-        5,
-        8,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        0,
-        5,
-        5,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -20,
-        6,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -7,
-        6,
-        11,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -20,
-        7,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -5,
-        7,
-        9,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -20,
-        8,
-        3,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -3,
-        8,
-        10,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -20,
-        9,
-        3,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -1,
-        9,
-        11,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -21,
-        10,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        2,
-        10,
-        11,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -21,
-        11,
-        4,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        5,
-        11,
-        10,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -21,
         12,
-        3,
+        15,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        8,
+        21,
         12,
-        9,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        -21,
+        -22,
         13,
         3,
         1
@@ -685,9 +1162,18 @@
     {
       "kind": "path",
       "rect": [
-        11,
+        -9,
         13,
-        8,
+        15,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        21,
+        13,
+        4,
         1
       ]
     },
@@ -696,14 +1182,14 @@
       "rect": [
         -22,
         14,
-        4,
+        3,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        14,
+        1,
         14,
         7,
         1
@@ -712,7 +1198,16 @@
     {
       "kind": "path",
       "rect": [
-        -22,
+        21,
+        14,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -23,
         15,
         4,
         1
@@ -721,26 +1216,8 @@
     {
       "kind": "path",
       "rect": [
-        16,
-        15,
-        8,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        -22,
-        16,
         3,
-        1
-      ]
-    },
-    {
-      "kind": "path",
-      "rect": [
-        18,
-        16,
+        15,
         7,
         1
       ]
@@ -748,18 +1225,63 @@
     {
       "kind": "path",
       "rect": [
-        -22,
-        17,
-        3,
+        21,
+        15,
+        4,
         1
       ]
     },
     {
       "kind": "path",
       "rect": [
-        20,
-        17,
+        -23,
+        16,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
         5,
+        16,
+        7,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        19,
+        16,
+        6,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -23,
+        17,
+        4,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        7,
+        17,
+        7,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        17,
+        17,
+        8,
         1
       ]
     },
@@ -775,9 +1297,9 @@
     {
       "kind": "path",
       "rect": [
-        22,
+        9,
         18,
-        2,
+        15,
         1
       ]
     },
@@ -793,6 +1315,15 @@
     {
       "kind": "path",
       "rect": [
+        10,
+        19,
+        11,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
         -22,
         20,
         2,
@@ -800,12 +1331,21 @@
       ]
     },
     {
-      "kind": "water",
+      "kind": "path",
       "rect": [
-        27,
-        -30,
-        3,
-        60
+        12,
+        20,
+        7,
+        1
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        14,
+        21,
+        2,
+        1
       ]
     }
   ],
@@ -813,51 +1353,51 @@
   "npcs": [],
   "interactions": [
     {
-      "id": "route_0",
+      "id": "local_clue_0",
       "kind": "sign",
       "at": [
-        -24.900000000000002,
-        0
+        1.7145055188062944e-16,
+        14.8
       ],
-      "title": "The Forked Pilgrim Road",
+      "title": "Switchback Pair",
       "lines": [
-        "The Forked Pilgrim Road · follow the trail marker and press E."
+        "Claw marks score the narrow switchback. Use its boulder shoulder to keep the pair in front of you."
       ]
     },
     {
-      "id": "route_1",
+      "id": "local_clue_1",
       "kind": "sign",
       "at": [
-        2.1,
-        -27
+        17.8,
+        10.0
       ],
-      "title": "Heartwood",
+      "title": "Seaward Nest",
       "lines": [
-        "Heartwood · follow the trail marker and press E."
+        "Silk drapes the seaward ledge. Its warning mounds leave room to turn back toward the cave."
       ]
     },
     {
-      "id": "route_2",
+      "id": "local_clue_2",
       "kind": "sign",
       "at": [
-        25.099999999999998,
-        17
+        2.8,
+        -6.0
       ],
-      "title": "The Buried Watch",
+      "title": "Sentinel Court",
       "lines": [
-        "The Buried Watch · follow the trail marker and press E."
+        "The burrow sentinel patrols the ward court with two shell guards. Rock cover breaks its ranged line; return its shot to expose it."
       ]
     },
     {
-      "id": "biome_story",
+      "id": "local_clue_3",
       "kind": "sign",
       "at": [
-        -9,
-        3
+        24.8,
+        -9.0
       ],
-      "title": "The watch-road trial",
+      "title": "Watch Loner",
       "lines": [
-        "Follow the switchback up the bluffs. The burrowing sentinel guards the sky chime. Parry its thrown shell-stone or punish it after it emerges."
+        "A bristleback roots around the abandoned lookout. Give it space, or clear the overlook."
       ]
     }
   ],
@@ -916,48 +1456,40 @@
       "id": "foe_0",
       "kind": "library_crab",
       "at": [
-        -16,
-        2
-      ]
-    },
-    {
-      "id": "foe_1",
-      "kind": "library_boar",
-      "at": [
-        -11,
-        -4
-      ]
-    },
-    {
-      "id": "foe_2",
-      "kind": "library_crab",
-      "at": [
-        -3,
+        -13,
         8
       ]
     },
     {
-      "id": "foe_3",
-      "kind": "library_boar",
-      "at": [
-        3,
-        12
-      ]
-    },
-    {
-      "id": "foe_4",
+      "id": "foe_1",
       "kind": "library_crab",
       "at": [
-        9,
-        6
+        -9,
+        10
       ]
     },
     {
-      "id": "foe_5",
-      "kind": "library_boar",
+      "id": "foe_2",
+      "kind": "library_spider",
       "at": [
-        6,
-        -11
+        21,
+        10
+      ]
+    },
+    {
+      "id": "foe_3",
+      "kind": "library_spider",
+      "at": [
+        24,
+        4
+      ]
+    },
+    {
+      "id": "foe_8",
+      "kind": "library_spider",
+      "at": [
+        21,
+        1
       ]
     },
     {
@@ -969,55 +1501,83 @@
       ]
     },
     {
-      "id": "foe_7",
-      "kind": "library_boar",
+      "id": "foe_4",
+      "kind": "library_crab",
       "at": [
-        14,
-        -15
+        -4,
+        -14
       ]
     },
     {
-      "id": "foe_8",
+      "id": "foe_5",
       "kind": "library_crab",
       "at": [
-        17,
-        14
+        4,
+        -17
+      ]
+    },
+    {
+      "id": "foe_7",
+      "kind": "library_boar",
+      "at": [
+        16,
+        -9
       ]
     }
   ],
   "catalog_enemies": [],
   "sculpted_terrain": [
     {
-      "id": "ascent",
+      "id": "sentinel_table",
       "at": [
         0,
-        -7
+        -6
       ],
-      "height": 2.2,
-      "radius": 8,
+      "height": 3.2,
+      "radius": 12,
       "profile": "bluff",
       "plateau_width": 14,
-      "plateau_depth": 8
+      "plateau_depth": 16,
+      "rotation": 0,
+      "edge_roughness": 0.5
     },
     {
-      "id": "north_descent",
+      "id": "northern_ramp",
       "at": [
         0,
-        -15
+        -22
       ],
-      "height": 2.2,
-      "radius": 8,
+      "height": 3.2,
+      "radius": 6,
       "profile": "smooth"
     },
     {
-      "id": "west_shoulder",
+      "id": "watch_spine",
+      "at": [
+        15,
+        -2
+      ],
+      "height": 5.0,
+      "radius": 10,
+      "profile": "bluff",
+      "plateau_width": 8,
+      "plateau_depth": 16,
+      "rotation": 0,
+      "edge_roughness": 0.5
+    },
+    {
+      "id": "western_scarp",
       "at": [
         -17,
-        -13
+        -12
       ],
-      "height": 1.5,
-      "radius": 7,
-      "profile": "smooth"
+      "height": 4.8,
+      "radius": 9,
+      "profile": "bluff",
+      "plateau_width": 8,
+      "plateau_depth": 12,
+      "rotation": 0,
+      "edge_roughness": 0.5
     }
   ],
   "wading": true

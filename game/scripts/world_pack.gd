@@ -55,7 +55,7 @@ static func validate(pack:Variant,allow_incomplete:bool=false) -> Array:
 		for piece in sculpt:
 			if not piece is Dictionary or not valid_id(piece.get("id")) or terrain_ids.has(piece.get("id")) or not point(piece.get("at")) or piece.get("profile") not in ["smooth","bluff","overhang"]: errors.append(error_at("Invalid terrain patch.",id)); continue
 			terrain_ids[piece.id]=true
-			if not finite_number(piece.get("radius")) or piece.radius<1 or piece.radius>8 or not finite_number(piece.get("height")) or piece.height< -6 or piece.height>10 or not finite_number(piece.get("rotation",0)): errors.append(error_at("Terrain height/radius/rotation is out of range.",id)); continue
+			if not finite_number(piece.get("radius")) or piece.radius<1 or piece.radius>16 or not finite_number(piece.get("height")) or piece.height< -6 or piece.height>10 or not finite_number(piece.get("rotation",0)): errors.append(error_at("Terrain height/radius/rotation is out of range.",id)); continue
 			if area.get("cave",false): errors.append(error_at("Sculpting is supported in outdoor areas.",id))
 			if piece.profile=="overhang" and piece.height<2.6: errors.append(error_at("Overhang height must be at least 2.6m.",id))
 			var dimensions_valid=true

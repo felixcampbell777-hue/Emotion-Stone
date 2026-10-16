@@ -60,6 +60,7 @@ func build(data: Dictionary) -> void:
 	_build_cobbles(rng)
 	if data.sea:
 		var ocean = Props.box(self,Vector3(bounds.get_center().x,-.18,bounds.get_center().y),Vector3(bounds.size.x+60,.08,bounds.size.y+60),"#719da4")
+		ocean.name="LegacyOcean"
 		var shader = Shader.new()
 		shader.code = "shader_type spatial; varying vec3 water_position; void vertex(){ water_position=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz; } render_mode unshaded; void fragment(){ float stripe=step(0.94,sin((water_position.x+water_position.z)*4.0+TIME*0.8)); ALBEDO=mix(vec3(0.39,0.57,0.61),vec3(0.60,0.73,0.72),stripe*0.27); }"
 		var water = ShaderMaterial.new()

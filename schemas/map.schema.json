@@ -406,7 +406,7 @@
           "radius": {
             "type": "number",
             "minimum": 1,
-            "maximum": 8
+            "maximum": 16
           },
           "rotation": {
             "type": "number"
@@ -425,6 +425,11 @@
           "plateau_depth": {
             "type": "number",
             "minimum": 1
+          },
+          "edge_roughness": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 0.7
           }
         }
       }
