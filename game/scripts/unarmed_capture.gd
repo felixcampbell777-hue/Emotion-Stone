@@ -23,4 +23,11 @@ func run(game:Control,directory:String) -> void:
 	for fixture in [["parry","parry_guard",.4],["water","attack_water",.45],["lance_charge","attack_lance",.45]]:
 		actor.state=fixture[0];actor.state_duration=3;actor.state_time=3*fixture[2];actor.play_clip(fixture[1],0);actor.animator.seek(actor.animator.get_animation(actor.clips[fixture[1]]).length*fixture[2],true)
 		actor._pose_sword("parry" if fixture[0]=="parry" else "water" if fixture[0]=="water" else "lance",fixture[2]);game.camera_driver.update_first_person(0);await picture(game,directory+"/hands-"+fixture[0]+".png")
+	for stage in range(1,4):
+		for phase in [.14,.35,.55,.74]:
+			var clip="attack_light"+(str(stage) if stage>1 else "")
+			actor.state="light";actor.combo_stage=stage;actor.state_duration=2;actor.state_time=2*phase;actor.play_clip(clip,0)
+			actor.animator.seek(actor.animator.get_animation(actor.clips[clip]).length*phase,true)
+			actor._pose_sword("light"+(str(stage) if stage>1 else ""),phase);game.camera_driver.update_first_person(0)
+			await picture(game,directory+"/hands-swing-%d-%02d.png"%[stage,roundi(phase*100)])
 	actor.set_physics_process(true)

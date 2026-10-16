@@ -14,6 +14,11 @@ var global_rests:Array[Transform3D]=[]
 var palms:Dictionary={}
 var personal_skin=false
 var unarmed=preload("res://scripts/unarmed_hands.gd").new()
+var wrist_solve_pole=Vector3.ZERO
+var view_frame=Transform3D.IDENTITY
+var grip_frames={}
+var grip_motion=preload("res://scripts/first_person_sword.gd").new()
+var grip_sample={"key":"drag","phase":0.0}
 const PALM=Vector3(-.017,-.30,.012)
 
 func prepare(actor:Node3D) -> void:
@@ -68,6 +73,8 @@ func prepare(actor:Node3D) -> void:
 
 func update(actor:Node3D,frame:Transform3D) -> void:
 	if not is_instance_valid(root) or not is_instance_valid(source_rig): prepare(actor)
+	view_frame=frame
+	grip_sample=actor.get_meta("view_sword_sample",{"key":"drag","phase":0.0})
 	var holding=actor.sword_equipped and actor.sword_drawn
 	var draw=actor.state in ["draw","sheathe"]
 	var arm_frame=frame
@@ -144,7 +151,15 @@ func fit(side:String,world_target:Vector3,world_axis:Vector3=Vector3.ZERO,grasp:
 	var pole=Vector3(-.65 if side=="R" else .65,-.7,.2)
 	pole-=direction*pole.dot(direction)
 	if pole.length_squared()<.00001: pole=Vector3.DOWN
-	var elbow=shoulder+direction*along+pole.normalized()*sqrt(maxf(0,a*a-along*along))
+	pole=pole.normalized()
+	var radius=sqrt(maxf(0,a*a-along*along))
+	if personal_skin and not wrist_solve_pole.is_zero_approx():
+		var preferred=wrist_solve_pole-direction*wrist_solve_pole.dot(direction)
+		if preferred.length_squared()>.00001:
+			var turn=pole.signed_angle_to(preferred.normalized(),direction)
+			pole=Basis(direction, .55*sin(turn))*pole
+
+	var elbow=shoulder+direction*along+pole*radius
 	var old=rig.get_bone_global_pose(lower).origin-shoulder
 	set_basis(upper,Basis(Quaternion(old.normalized(),(elbow-shoulder).normalized()))*rig.get_bone_global_pose(upper).basis)
 	var pose=rig.get_bone_global_pose(lower)
@@ -189,28 +204,92 @@ func wrist_weights(arrays:Array,source:Skin,skin:Skin) -> void:
 			break
 	arrays[Mesh.ARRAY_BONES]=bones;arrays[Mesh.ARRAY_WEIGHTS]=weights
 
+func grip_track(key:String,side:String) -> Array:
+	var cache_key=key+side
+	if grip_frames.has(cache_key):return grip_frames[cache_key]
+	var ready=grip_motion.sample("drag",0)
+	var z:Vector3=ready.direction
+	var shoulder=Vector3(.17625 if side=="R" else -.17625,-.24265,-.20165)
+	var y=(shoulder-ready.grip);y=(y-z*y.dot(z)).normalized()
+	if key in ["light2","light3"]:
+		var previous=grip_track("light" if key=="light2" else "light2",side)
+		var join:Basis=previous[roundi(.74*240)]
+		y=join.y;z=join.z
+	var frames=[]
+	for i in range(241):
+		var pose=grip_motion.sample(key,i/240.0)
+		var next:Vector3=pose.direction
+		y=Basis(Quaternion(z,next))*y;z=next
+		var toward:Vector3=shoulder-pose.grip
+		toward-=z*toward.dot(z)
+		if toward.length_squared()>.00001:
+			# Parallel transport retains roll through axial alignments. A bounded
+			# shoulder preference adds natural pronation without a wrist flip.
+			var turn=y.signed_angle_to(toward.normalized(),z)
+			y=Basis(z,clampf(turn,-.08,.08))*y
+		y=(y-z*y.dot(z)).normalized()
+		frames.append(Basis(y.cross(z).normalized(),y,z))
+	grip_frames[cache_key]=frames
+	return frames
+
+func transported_grip(side:String,axis:Vector3) -> Basis:
+	var key=String(grip_sample.key)
+	var frames=grip_track(key,side)
+	var at=clampf(float(grip_sample.phase),0,1)*240
+	var a:Basis=frames[floori(at)];var b:Basis=frames[mini(240,floori(at)+1)]
+	var basis=Basis(a.get_rotation_quaternion().slerp(b.get_rotation_quaternion(),at-floor(at)))
+	basis=rig.global_basis.inverse()*view_frame.basis*basis
+	basis=Basis(Quaternion(basis.z.normalized(),axis))*basis
+	return basis.orthonormalized()
+
 func fit_wrist(side:String,world_target:Vector3,world_axis:Vector3,grasp:float,twist:float) -> void:
 	var upper=bone("upper_arm",side);var lower=bone("forearm",side);var wrist=rig.find_bone("view_hand."+side)
 	var target=rig.global_transform.affine_inverse()*world_target;var axis=(rig.global_basis.inverse()*world_axis).normalized()
-	var toward=rig.get_bone_global_pose(upper).origin-target;toward-=axis*toward.dot(axis)
-	if toward.length_squared()<.00001:
-		toward=Vector3.RIGHT if absf(axis.x)<.9 else Vector3.FORWARD
-		toward-=axis*toward.dot(axis)
-	var y=toward.normalized();var desired=Basis(y.cross(axis).normalized(),y,axis)
+	var center:Vector3=palms[side]+Vector3(.009 if side=="R" else -.009,-.018,.012)*grasp
+	var wrist_local=Vector3(0,-.26,0)
+	var old:Vector3=palms[side]
+	var desired=transported_grip(side,axis)
 	var existing=rig.get_bone_global_pose(lower).basis.orthonormalized()
 	desired=Basis(existing.get_rotation_quaternion().slerp(desired.get_rotation_quaternion(),twist))
-	var center:Vector3=palms[side]+Vector3(.009 if side=="R" else -.009,-.018,.012)*grasp
-	var wrist_local=Vector3(0,-.26,0);var wrist_target=target-desired*(center-wrist_local)
-	var old:Vector3=palms[side];palms[side]=wrist_local
-	fit(side,rig.global_transform*wrist_target,Vector3.ZERO);palms[side]=old
-	# Carry the hand roll through the forearm instead of putting the entire
-	# pronation into a short wrist skin transition.
+	palms[side]=wrist_local
+	var shoulder=rig.get_bone_global_pose(upper).origin
+	var wrist_target=target-desired*(center-wrist_local)
+	var arm_length=global_rests[upper].origin.distance_to(global_rests[lower].origin)+wrist_local.length()
+	var reach=wrist_target-shoulder
+	var advance=maxf(0,reach.length()+.035-arm_length)
+	if advance>0:
+		var parent=rig.get_bone_parent(upper)
+		var origin=shoulder+reach.normalized()*minf(advance,.24)
+		rig.set_bone_pose_position(upper,rig.get_bone_global_pose(parent).affine_inverse()*origin)
+		rig.force_update_all_bone_transforms()
+	wrist_solve_pole=desired.y
+	fit(side,rig.global_transform*wrist_target,Vector3.ZERO)
+	for iteration in range(10):
+		var incoming=rig.get_bone_global_pose(lower).basis.y.normalized()
+		var bend=desired.y.angle_to(incoming)
+		if bend<deg_to_rad(36):break
+		var correction=Quaternion(desired.y,incoming)
+		var amount=(bend-deg_to_rad(34))/maxf(bend,.0001)
+		desired=Basis(Quaternion.IDENTITY.slerp(correction,amount*.65))*desired
+		wrist_solve_pole=desired.y
+		wrist_target=target-desired*(center-wrist_local)
+		fit(side,rig.global_transform*wrist_target,Vector3.ZERO)
+	palms[side]=old;wrist_solve_pole=Vector3.ZERO
 	var forearm=rig.get_bone_global_pose(lower).basis.orthonormalized()
 	var forearm_axis=forearm.y.normalized()
 	var roll_goal=desired.z-forearm_axis*desired.z.dot(forearm_axis)
-	var roll_now=forearm.z-forearm_axis*forearm.z.dot(forearm_axis)
-	if roll_goal.length_squared()>.00001 and roll_now.length_squared()>.00001:
-		set_basis(lower,Basis(forearm_axis,roll_now.normalized().signed_angle_to(roll_goal.normalized(),forearm_axis))*forearm)
+	if roll_goal.length_squared()>.00001:
+		set_basis(lower,Basis(forearm_axis,forearm.z.signed_angle_to(roll_goal.normalized(),forearm_axis))*forearm)
+
+	# Upper-arm axial rotation follows pronation as well: an elbow is a hinge,
+	# not a place to concentrate a full forearm corkscrew.
+	var lower_basis=rig.get_bone_global_pose(lower).basis
+	var upper_basis=rig.get_bone_global_pose(upper).basis.orthonormalized()
+	var upper_axis=(rig.get_bone_global_pose(lower).origin-rig.get_bone_global_pose(upper).origin).normalized()
+	var hinge=lower_basis.z-upper_axis*lower_basis.z.dot(upper_axis)
+	if hinge.length_squared()>.00001:
+		set_basis(upper,Basis(upper_axis,upper_basis.z.signed_angle_to(hinge.normalized(),upper_axis)*.65)*upper_basis)
+		set_basis(lower,lower_basis)
 	set_basis(wrist,desired)
 
 func grip_mesh(source:ArrayMesh,skin:Skin,skeleton:Skeleton3D,only_side:String="",rebuild_normals:bool=true) -> ArrayMesh:
