@@ -40,7 +40,7 @@ func run(test:RefCounted) -> void:
 		actor.state=fixture[0];actor.state_duration=3;actor.state_time=3*fixture[2];actor.play_clip(fixture[1],0)
 		actor._pose_sword("water" if fixture[0]=="water" else "parry" if fixture[0]=="parry" else "lance",fixture[2]);driver.update_first_person(0)
 		test.check(meshes.all(func(m):return m.get_blend_shape_value(0)>.99 and absf(m.get_blend_shape_value(1)-fixture[3])<.01),fixture[0]+": gripping hand stays closed while the supporting or bracing palm uses its own pose")
-	var max_bend=0.0;var max_step=0.0;var max_gap=0.0;var max_upper_step=0.0;var opener_left_step=0.0
+	var max_bend=0.0;var max_step=0.0;var max_gap=0.0;var max_upper_step=0.0;var opener_left_step=0.0;var elbow_above=-100.0
 	for stage in range(1,4):
 		var previous={}
 		for sample in range(121):
@@ -51,6 +51,10 @@ func run(test:RefCounted) -> void:
 			for side in ["R","L"]:
 				var hand=h.rig.get_bone_global_pose(h.rig.find_bone("view_hand."+side))
 				var arm=h.rig.get_bone_global_pose(h.bone("forearm",side))
+				if stage==1 and side=="L" and phase>=.12 and phase<=.74:
+					var elbow=h.view_frame.affine_inverse()*(h.rig.global_transform*arm.origin)
+					var wrist=h.view_frame.affine_inverse()*(h.rig.global_transform*hand.origin)
+					elbow_above=maxf(elbow_above,elbow.y-wrist.y)
 				var bend=rad_to_deg(hand.basis.y.angle_to(arm.basis.y))
 				max_bend=maxf(max_bend,bend)
 				var center=h.palms[side]+Vector3(.009 if side=="R" else -.009,-.018,.012)
@@ -73,6 +77,8 @@ func run(test:RefCounted) -> void:
 	test.check(max_gap<.018,"Both skinned grip centers stay on the moving hilt throughout the combo")
 	print("UPPER ARM MAX STEP ",max_upper_step," LEFT OPENER ",opener_left_step)
 	test.check(opener_left_step<25,"Upper arms stay continuous as forearm roll crosses the signed-angle seam; no left-arm inversion during the opener")
+	print("LEFT ELBOW ABOVE WRIST ",elbow_above)
+	test.check(elbow_above<-.015,"Opening cut keeps the support elbow below the wrist rather than rolling over above the hand")
 	var join_error=0.0
 	for stage in [1,2]:
 		var poses={}
