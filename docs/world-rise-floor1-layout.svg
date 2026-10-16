@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 760"><defs><clipPath id="disk"><circle cx="385" cy="365" r="285"/></clipPath><radialGradient id="sky"><stop stop-color="#fbf7d5"/><stop offset="1" stop-color="#d9e7e8"/></radialGradient></defs><rect width="1040" height="760" fill="#12252a"/><text x="34" y="40" fill="#fff2d4" font-size="26" font-family="sans-serif">WORLD RISE · Floor 1 — The Verdant Reach</text><text x="34" y="68" fill="#b9ccca" font-size="15" font-family="sans-serif">Concept layout · 480m diameter · fresh progression · positions and encounter counts provisional</text><circle cx="385" cy="365" r="302" fill="url(#sky)"/><circle cx="385" cy="365" r="291" fill="#8e9897"/><circle cx="385" cy="365" r="285" fill="#819b68"/><g clip-path="url(#disk)">
+<ellipse cx="390" cy="395" rx="190" ry="55" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="390" cy="395" rx="142.5" ry="41.25" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="390" cy="395" rx="95.0" ry="27.5" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="458" cy="285" rx="155" ry="65" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="458" cy="285" rx="116.25" ry="48.75" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="458" cy="285" rx="77.5" ry="32.5" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="350" cy="480" rx="140" ry="48" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="350" cy="480" rx="105.0" ry="36.0" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="350" cy="480" rx="70.0" ry="24.0" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="480" cy="530" rx="110" ry="55" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="480" cy="530" rx="82.5" ry="41.25" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="480" cy="530" rx="55.0" ry="27.5" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="390" cy="190" rx="140" ry="45" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="390" cy="190" rx="105.0" ry="33.75" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="390" cy="190" rx="70.0" ry="22.5" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="220" cy="410" rx="120" ry="55" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="220" cy="410" rx="90.0" ry="41.25" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<ellipse cx="220" cy="410" rx="60.0" ry="27.5" fill="none" stroke="#5c7c55" stroke-width="2" opacity=".7"/>
+<path d="M192 163 Q260 130 350 175 L365 245 Q348 280 369 326 L325 357 255 345 Q208 356 190 300 L173 228 Z" fill="#355c43" stroke="#244c37" stroke-width="4"/>
+<path d="M192 189 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M239 220 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M286 251 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M333 282 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M230 313 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M277 202 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M324 233 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M221 264 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M268 295 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M315 326 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M212 215 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M259 246 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M306 277 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M203 308 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M250 197 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M297 228 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M194 259 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M241 290 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M288 321 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M335 210 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M232 241 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M279 272 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M326 303 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M223 192 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M270 223 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M317 254 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M214 285 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M261 316 l-7 -12 h14 Z" fill="#1e4234"/>
+<path d="M385 550 Q330 465 370 405 Q475 395 483 305 Q420 260 512 178 M367 403 Q280 370 295 320 M470 393 Q570 430 644 377" fill="none" stroke="#cbbb8c" stroke-width="8" opacity=".85"/>
+<circle cx="360" cy="490" r="3.2" fill="#714b35"/>
+<circle cx="369" cy="490" r="3.2" fill="#714b35"/>
+<circle cx="445" cy="464" r="3.2" fill="#714b35"/>
+<circle cx="454" cy="464" r="3.2" fill="#714b35"/>
+<circle cx="280" cy="450" r="3.2" fill="#714b35"/>
+<circle cx="289" cy="450" r="3.2" fill="#714b35"/>
+<circle cx="280" cy="459" r="3.2" fill="#714b35"/>
+<circle cx="500" cy="440" r="3.2" fill="#714b35"/>
+<circle cx="509" cy="440" r="3.2" fill="#714b35"/>
+<circle cx="500" cy="449" r="3.2" fill="#714b35"/>
+<circle cx="540" cy="340" r="3.2" fill="#714b35"/>
+<circle cx="549" cy="340" r="3.2" fill="#714b35"/>
+<circle cx="540" cy="349" r="3.2" fill="#714b35"/>
+<circle cx="549" cy="349" r="3.2" fill="#714b35"/>
+<circle cx="383" cy="319" r="3.2" fill="#714b35"/>
+<circle cx="392" cy="319" r="3.2" fill="#714b35"/>
+<circle cx="383" cy="328" r="3.2" fill="#714b35"/>
+<circle cx="467" cy="245" r="3.2" fill="#714b35"/>
+<circle cx="476" cy="245" r="3.2" fill="#714b35"/>
+<circle cx="467" cy="254" r="3.2" fill="#714b35"/>
+<circle cx="476" cy="254" r="3.2" fill="#714b35"/>
+<circle cx="320" cy="381" r="3.2" fill="#714b35"/>
+<circle cx="329" cy="381" r="3.2" fill="#714b35"/>
+<circle cx="565" cy="300" r="3.2" fill="#714b35"/>
+<circle cx="574" cy="300" r="3.2" fill="#714b35"/>
+<circle cx="565" cy="309" r="3.2" fill="#714b35"/>
+<circle cx="415" cy="210" r="3.2" fill="#714b35"/>
+<circle cx="424" cy="210" r="3.2" fill="#714b35"/>
+<circle cx="415" cy="219" r="3.2" fill="#714b35"/>
+<circle cx="230" cy="390" r="3.2" fill="#714b35"/>
+<circle cx="239" cy="390" r="3.2" fill="#714b35"/>
+<circle cx="230" cy="399" r="3.2" fill="#714b35"/>
+<circle cx="505" cy="505" r="3.2" fill="#714b35"/>
+<circle cx="514" cy="505" r="3.2" fill="#714b35"/>
+<circle cx="505" cy="514" r="3.2" fill="#714b35"/>
+<circle cx="514" cy="514" r="3.2" fill="#714b35"/>
+<path d="M235 235 l6 10 h-12 Z" fill="#c4d8d6"/>
+<path d="M312 213 l6 10 h-12 Z" fill="#c4d8d6"/>
+<path d="M302 290 l6 10 h-12 Z" fill="#c4d8d6"/>
+<path d="M230 299 l6 10 h-12 Z" fill="#c4d8d6"/>
+</g>
+<circle cx="385" cy="552" r="6" fill="#f0d78a" stroke="#193d34" stroke-width="2"/><text x="317" y="579" fill="#f0d78a" stroke="#20372d" stroke-width="3" paint-order="stroke" font-size="16" font-family="sans-serif">Arrival Commons</text>
+<circle cx="416" cy="391" r="6" fill="#f2edcd" stroke="#193d34" stroke-width="2"/><text x="392" y="374" fill="#f2edcd" stroke="#20372d" stroke-width="3" paint-order="stroke" font-size="16" font-family="sans-serif">Longback Hills</text>
+<circle cx="270" cy="263" r="6" fill="#e3f0ce" stroke="#193d34" stroke-width="2"/><text x="235" y="278" fill="#e3f0ce" stroke="#20372d" stroke-width="3" paint-order="stroke" font-size="16" font-family="sans-serif">Elderwood</text>
+<circle cx="644" cy="377" r="6" fill="#e6f2ef" stroke="#193d34" stroke-width="2"/><text x="572" y="404" fill="#e6f2ef" stroke="#20372d" stroke-width="3" paint-order="stroke" font-size="16" font-family="sans-serif">Silver Verge</text>
+<circle cx="489" cy="239" r="6" fill="#f0e6be" stroke="#193d34" stroke-width="2"/><text x="439" y="227" fill="#f0e6be" stroke="#20372d" stroke-width="3" paint-order="stroke" font-size="16" font-family="sans-serif">Broken aqueduct</text>
+<circle cx="512" cy="178" r="6" fill="#f6d292" stroke="#193d34" stroke-width="2"/><text x="484" y="161" fill="#f6d292" stroke="#20372d" stroke-width="3" paint-order="stroke" font-size="16" font-family="sans-serif">Ascent gate</text>
+<circle cx="296" cy="334" r="6" fill="#e3efdc" stroke="#193d34" stroke-width="2"/><text x="254" y="365" fill="#e3efdc" stroke="#20372d" stroke-width="3" paint-order="stroke" font-size="16" font-family="sans-serif">Forest refuge</text>
+<text x="380" y="111" fill="#20372d" font-size="18" font-family="sans-serif">N</text><path d="M385 120 v20 m-5 -13 5 -7 5 7" stroke="#20372d" stroke-width="2" fill="none"/><g font-family="sans-serif" fill="#dae8dd"><text x="730" y="150" font-size="21" fill="#f3e6c2">Route and encounter intent</text><text x="730" y="190" font-size="16">16–20 boar groups, 2–4 each</text><text x="730" y="220" font-size="16">4–5 coordinated wolf packs</text><text x="730" y="250" font-size="16">Forest: about 1/8 of land</text><text x="730" y="280" font-size="16">Ridges overlook sheltered valleys</text><text x="730" y="310" font-size="16">Optional ruin and treasure loops</text><text x="730" y="370" font-size="21" fill="#f3e6c2">Edge of the floor</text><text x="730" y="410" font-size="16">Walkable rise into worn metal</text><text x="730" y="440" font-size="16">Outer lip falls into sunny abyss</text><text x="730" y="470" font-size="16">Distant mountain backdrop</text><text x="730" y="530" font-size="21" fill="#f3e6c2">Schematic only</text><text x="730" y="570" font-size="16">Contours suggest broad hills.</text><text x="730" y="600" font-size="16">Dots illustrate group spacing;</text><text x="730" y="625" font-size="16">they are not all final spawns.</text></g><path d="M140 705 h119 m-119 -5 v10 m119 -10 v10" stroke="#d8e3d6" stroke-width="2"/><text x="170" y="730" fill="#d8e3d6" font-size="15" font-family="sans-serif">100m</text></svg>
