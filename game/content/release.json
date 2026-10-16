@@ -1,4 +1,4 @@
 {
-  "version": "0.33.2",
-  "baseline": "First-person independent finger grip blending, handle-centered palms, open parry brace and clean arm-only skin"
+  "version": "0.33.3",
+  "baseline": "Reference-facing right grip, reduced thumb tuck and distributed forearm wrist rotation"
 }

@@ -106,7 +106,7 @@ func update(actor:Node3D,frame:Transform3D) -> void:
 			brace_weight=brace
 			left=left.lerp(actor.equipment.global_transform*Vector3(0,-.34,.045),brace)
 			left_weight*=1-brace
-	fit("R",right,actor.equipment.global_basis.y if holding or draw else Vector3.ZERO,right_weight,smoothstep(.10,.50,phase) if draw else 1.0)
+	fit("R",right,-actor.equipment.global_basis.y if holding or draw else Vector3.ZERO,right_weight,smoothstep(.10,.50,phase) if draw else 1.0)
 	var left_axis=(-actor.equipment.global_basis.y.normalized()).slerp(actor.equipment.global_basis.x.normalized(),brace_weight)
 	fit("L",left,left_axis if holding or draw else Vector3.ZERO,left_weight,smoothstep(.35,.75,phase) if draw else 1.0)
 	for mesh in rig.get_children():
@@ -203,6 +203,14 @@ func fit_wrist(side:String,world_target:Vector3,world_axis:Vector3,grasp:float,t
 	var wrist_local=Vector3(0,-.26,0);var wrist_target=target-desired*(center-wrist_local)
 	var old:Vector3=palms[side];palms[side]=wrist_local
 	fit(side,rig.global_transform*wrist_target,Vector3.ZERO);palms[side]=old
+	# Carry the hand roll through the forearm instead of putting the entire
+	# pronation into a short wrist skin transition.
+	var forearm=rig.get_bone_global_pose(lower).basis.orthonormalized()
+	var forearm_axis=forearm.y.normalized()
+	var roll_goal=desired.z-forearm_axis*desired.z.dot(forearm_axis)
+	var roll_now=forearm.z-forearm_axis*forearm.z.dot(forearm_axis)
+	if roll_goal.length_squared()>.00001 and roll_now.length_squared()>.00001:
+		set_basis(lower,Basis(forearm_axis,roll_now.normalized().signed_angle_to(roll_goal.normalized(),forearm_axis))*forearm)
 	set_basis(wrist,desired)
 
 func grip_mesh(source:ArrayMesh,skin:Skin,skeleton:Skeleton3D,only_side:String="",rebuild_normals:bool=true) -> ArrayMesh:
@@ -232,8 +240,8 @@ func grip_mesh(source:ArrayMesh,skin:Skin,skeleton:Skeleton3D,only_side:String="
 					local.x+=side*.022*(1-cos(angle))
 				var thumb=smoothstep(.055,.082,original.z)*(1-smoothstep(.310,.332,-original.y))*smoothstep(-.006,.014,side*original.x)
 				var thumb_base=Vector3(side*.005,-.265,.052)
-				var tucked=thumb_base+Basis(Vector3.RIGHT,1.35)*(original-thumb_base)
-				tucked.x-=side*.015
+				var tucked=thumb_base+Basis(Vector3.RIGHT,.65)*(original-thumb_base)
+				tucked.x-=side*.008
 				local=local.lerp(tucked,thumb)
 				vertices[index]=skin.get_bind_pose(bind).affine_inverse()*local
 				break
