@@ -110,11 +110,14 @@ func _physics_process(delta:float) -> void:
 			visual.rotation.y=lerp_angle(visual.rotation.y,atan2(toward.x,toward.z),delta*3)
 			if distance<16:
 				attacks+=1;direction=toward.normalized();lunge_hit=false
+				visual.rotation.y=atan2(direction.x,direction.z)
 				state=["cleave_tell","rock_tell","roots_tell","slam_tell","rush_tell"][(attacks-1)%5];state_time=float(spec.windup)*( .88 if health<max_health*.5 else 1.0)
 				if state=="roots_tell":prepare_roots()
 				game.notify({"rock_tell":"A thornseed grows from the earth · parry it back.","roots_tell":"Roots mark your footing · leave the circles before they erupt.","cleave_tell":"Aurek coils for two sweeping claws · back away or parry.","slam_tell":"The bell tolls · leave the amber circle. Jump the low ring.","rush_tell":"Aurek lowers his crown · sidestep or parry the charge."}[state])
 			else: velocity=toward.normalized()*1.25
 		elif state.ends_with("tell"):
+			if state_time>.25 and distance>.001:direction=toward.normalized()
+			visual.rotation.y=atan2(direction.x,direction.z)
 			state_time-=delta
 			if state_time<=0:
 				if state=="rock_tell":
@@ -126,6 +129,7 @@ func _physics_process(delta:float) -> void:
 					begin_ring();ring_second=health<max_health*float(spec.phase_threshold);armor_open=3.4;state="recover";state_time=3.0
 				else: state="lunge";state_time=.85
 		elif state=="cleave":
+			visual.rotation.y=atan2(direction.x,direction.z)
 			state_time-=delta;velocity=direction*.6
 			var elapsed=.85-state_time
 			if (melee_step==0 and elapsed>=.24) or (melee_step==1 and elapsed>=.62):
@@ -137,6 +141,7 @@ func _physics_process(delta:float) -> void:
 			state_time-=delta;update_roots(1.8-state_time)
 			if state_time<=0:clear_roots();state="recover";state_time=2.2;armor_open=2
 		elif state=="lunge":
+			visual.rotation.y=atan2(direction.x,direction.z)
 			state_time-=delta;velocity=direction*8.0
 			if not lunge_hit and distance<float(player.combat.parry.contact_range)+.5 and player.try_parry(self): lunge_hit=true
 			elif not lunge_hit and distance<1.4: player.take_damage(int(spec.damage),direction);lunge_hit=true

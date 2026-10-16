@@ -43,5 +43,17 @@ func run(test:RefCounted) -> void:
 	test.check(g.projectiles.size()==count+1 and not g.projectiles[-1].stone.visible and not boss.seed.visible,"Guardian fires the grown thornseed instead of an instant visible boulder")
 	var shot=g.projectiles[-1];shot.repel(Vector3.ZERO,0,0);shot.position=boss.position+Vector3(0,.7,.1);shot._physics_process(.001)
 	test.check(boss.armor_open>0,"Returned thornseed exposes the living guardian")
+	for kind in JSON.parse_string(FileAccess.get_file_as_string("res://content/alpha2_creatures.json")):
+		var enemy=load("res://scripts/library_enemy.gd").new();enemy.configure({"id":"facing_check","kind":kind,"at":[0,10]},g.player);enemy.game=g;g.world_root.add_child(enemy);enemy.set_physics_process(false);enemy.simulation_enabled=true
+		g.player.position=enemy.position+Vector3(1,0,0);enemy.visual.rotation.y=PI;enemy._physics_process(.001)
+		test.check(enemy.state=="windup" and enemy.visual.basis.z.dot(enemy.direction)>.999,kind+": attack entry immediately faces its actual aim")
+		g.player.position=enemy.position+Vector3(-1,0,0);enemy.state_time=float(enemy.spec.windup)*.8;enemy._physics_process(.001)
+		var nose=Vector3.RIGHT if kind=="library_spider" else Vector3.FORWARD if kind=="library_boar" else Vector3.BACK
+		test.check(enemy.direction.x<-.99 and (enemy.art.global_basis*nose).normalized().dot(enemy.direction)>.999,kind+": early windup tracks player with calibrated model front")
+		var committed=enemy.direction;g.player.position=enemy.position+Vector3(1,0,0);enemy.state_time=.1;enemy._physics_process(.001);enemy.state="lunge";enemy.state_time=.4;enemy.visual.rotation.y=0;enemy._physics_process(.001)
+		test.check(enemy.direction.dot(committed)>.999 and enemy.visual.basis.z.dot(committed)>.999,kind+": released attack stays aligned without homing after commitment")
+		enemy.free()
+	boss.simulation_enabled=true;boss.ai_enabled=true;boss.state="cleave_tell";boss.state_time=1;g.player.position=boss.position+Vector3(2,0,0);boss._physics_process(.001)
+	test.check(boss.direction.x>.99 and boss.visual.basis.z.dot(boss.direction)>.999,"Bellkeeper turns its melee/ranged preparation toward the player")
 	g.player.set_physics_process(true);g.alpha2_import_path=""
 	g.game_mode="alpha";await load("res://scripts/menu_checks.gd").new().run(test)

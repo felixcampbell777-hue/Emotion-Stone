@@ -45,7 +45,8 @@
     "range": 4,
     "lunge_seconds": 0.65,
     "recovery": 1.6,
-    "size": "small"
+    "size": "small",
+    "yaw": -1.5707963267948966
   },
   "library_boar": {
     "name": "Bristleback",
