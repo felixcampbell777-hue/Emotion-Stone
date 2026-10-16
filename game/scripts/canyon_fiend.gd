@@ -26,7 +26,7 @@ func configure(data:Dictionary,target:Node3D,saved:Dictionary={}) -> void:
 	body=MeshInstance3D.new();body.visible=false;visual.add_child(body)
 	var shape=CapsuleShape3D.new();shape.radius=.75;shape.height=3.5;collision.shape=shape;collision.position.y=1.75
 	state="perched";state_time=0;position=Vector3(30.8,8,-36);visual.rotation.y=PI/2
-	collision.disabled=true;collision_layer=0;visible=health>0
+	collision.disabled=true;collision_layer=0;visible=health>0;art.visible=false
 	var ring=TorusMesh.new();ring.inner_radius=2.8;ring.outer_radius=3.0;ring.rings=48;ring.ring_segments=6
 	tell=Props.mesh_node(self,ring,Vector3.ZERO,"#dba76d");tell.visible=false
 	var material=StandardMaterial3D.new();material.albedo_color=Color("#e4b87d");material.emission_enabled=true;material.emission=Color("#b97a40");material.emission_energy_multiplier=1.2;tell.material_override=material
@@ -48,6 +48,7 @@ func animate() -> void:
 		elif key=="Head":n.rotation.z=.04*sin(phase*2);n.rotation.x=.15 if wall else -.08
 	visual.position.y=.04*sin(phase*2)
 func prepare_drop() -> void:
+	art.visible=true
 	landing=Vector3(clampf(player.position.x,10,26),0,clampf(player.position.z,-44,-28))
 	leap_start=position;state="drop_tell";state_time=1.4;tell.visible=true;tell.global_position=landing+Vector3.UP*.06
 func open_armor() -> void:

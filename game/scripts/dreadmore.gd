@@ -20,32 +20,52 @@ static func rock_material() -> StandardMaterial3D:
 	material.uv1_triplanar=true;material.uv1_world_triplanar=true;material.uv1_scale=Vector3.ONE*.24;material.albedo_color=Color("#a5b69b")
 	return material
 
-static func bluff(parent:Node3D,r:Array) -> void:
-	var x=float(r[0]);var z=float(r[1]);var w=float(r[2]);var d=float(r[3]);var h=float(r[4])
-	var material=rock_material()
+static func cliff_mesh(parent:Node3D,rects:Array,combined:bool=false) -> MeshInstance3D:
+	# One welded grid surface. Interior faces are omitted; adjacent cells share
+	# exact corner coordinates and a single level rim. No independently bent slabs.
+	var cells:Dictionary={};var step=4.0
+	if combined:
+		for r in rects:
+			for x in range(int(r[0]/step),int((r[0]+r[2])/step)):
+				for z in range(int(r[1]/step),int((r[1]+r[3])/step)):cells[Vector2i(x,z)]=true
 	var st=SurfaceTool.new();st.begin(Mesh.PRIMITIVE_TRIANGLES)
-	# Tessellated rock ribs and eroded shoulders retain solid vertical barriers.
-	var corners=[Vector2(x-.10,z-.10),Vector2(x+w+.10,z-.10),Vector2(x+w+.10,z+d+.10),Vector2(x-.10,z+d+.10)]
-	for side in range(4):
-		var a:Vector2=corners[side];var b:Vector2=corners[(side+1)%4]
-		var normal=Vector2((b-a).y,-(b-a).x).normalized()
-		var count=maxi(2,ceili(a.distance_to(b)/1.7))
-		for col in range(count):
-			for row in range(9):
-				var points=[]
-				for uv in [Vector2(0,0),Vector2(1,0),Vector2(0,1),Vector2(1,1)]:
-					var along=(col+uv.x)/count;var rise=(row+uv.y)/9
-					var q=a.lerp(b,along)
-					var rib=.18+.22*pow(sin(q.x*1.1+q.y*.9),2)+.16*sin(rise*19+q.x*.8)
-					q+=normal*rib
-					var top=h+sin(q.x*.4+q.y*.7)*.65
-					points.append(Vector3(q.x,lerpf(-.35,top,rise),q.y))
-				for index in [0,2,1,1,2,3]:st.add_vertex(points[index])
-	var cap=[Vector3(x-.4,h,z-.4),Vector3(x+w+.4,h,z-.4),Vector3(x+w+.4,h,z+d+.4),Vector3(x-.4,h,z+d+.4)]
-	for index in [0,2,1,0,3,2]:st.add_vertex(cap[index])
-
-	st.generate_normals();var mesh=MeshInstance3D.new();mesh.name="InaccessibleBluff";mesh.mesh=st.commit();mesh.material_override=material;parent.add_child(mesh)
-	Props.collider(parent,Vector3(x+w/2,h/2-.15,z+d/2),Vector3(w+.12,h+.3,d+.12))
+	if combined:
+		for cell in cells:
+			var x=cell.x*step;var z=cell.y*step;var h=16.0
+			quad(st,Vector3(x,h,z),Vector3(x+step,h,z),Vector3(x+step,h,z+step),Vector3(x,h,z+step),Vector3.UP)
+			for side in [Vector2i(0,-1),Vector2i(1,0),Vector2i(0,1),Vector2i(-1,0)]:
+				if cells.has(cell+side):continue
+				var a=Vector3(x,0,z);var b=Vector3(x+step,0,z)
+				if side.x==1:a=Vector3(x+step,0,z);b=Vector3(x+step,0,z+step)
+				elif side.y==1:a=Vector3(x+step,0,z+step);b=Vector3(x,0,z+step)
+				elif side.x==-1:a=Vector3(x,0,z+step);b=Vector3(x,0,z)
+				quad(st,a-Vector3.UP*.35,b-Vector3.UP*.35,b+Vector3.UP*h,a+Vector3.UP*h,Vector3(side.x,0,side.y))
+	else:
+		for r in rects:
+			var x=float(r[0]);var z=float(r[1]);var w=float(r[2]);var d=float(r[3]);var h=float(r[4])
+			var a=Vector3(x,-.35,z);var b=Vector3(x+w,-.35,z);var c=Vector3(x+w,-.35,z+d);var e=Vector3(x,-.35,z+d);var up=Vector3.UP*(h+.35)
+			quad(st,a,b,b+up,a+up,Vector3.FORWARD);quad(st,b,c,c+up,b+up,Vector3.RIGHT);quad(st,c,e,e+up,c+up,Vector3.BACK);quad(st,e,a,a+up,e+up,Vector3.LEFT);quad(st,a+up,b+up,c+up,e+up,Vector3.UP)
+	var mesh=MeshInstance3D.new();mesh.name="ContinuousCanyonCliffs" if combined else "InaccessibleBluff";mesh.mesh=st.commit();var material=rock_material();material.cull_mode=BaseMaterial3D.CULL_DISABLED;mesh.material_override=material;parent.add_child(mesh)
+	return mesh
+static func quad(st:SurfaceTool,a:Vector3,b:Vector3,c:Vector3,d:Vector3,normal:Vector3) -> void:
+	for p in [a,c,b,a,d,c]:st.set_normal(normal);st.add_vertex(p)
+static func bluff(parent:Node3D,r:Array) -> void:
+	cliff_mesh(parent,[r]);Props.collider(parent,Vector3(r[0]+r[2]/2,r[4]/2-.15,r[1]+r[3]/2),Vector3(r[2]+.12,r[4]+.3,r[3]+.12))
+func reset_ambushes_after_death() -> void:
+	if game.game_mode!="alpha2":return
+	var data=game.read_data("res://content/maps/a2_canyon.json")
+	for entry in data.catalog_enemies:
+		var key="a2_canyon/"+entry.id;game.defeated_enemies.erase(key);game.enemy_states.erase(key)
+func nest(world:Node3D,at:Vector3,size:Vector3) -> void:
+	var shelf=Props.box(world,at-Vector3.UP*.3,size,"#61705b");shelf.material_override=rock_material();Props.collider(world,at-Vector3.UP*.3,size)
+	for offset in [-.8,0,.8]:plant(world,at+Vector3(offset,.1,0),2.1)
+func boss_ledge(world:Node3D) -> void:
+	nest(world,Vector3(30,7.8,-36),Vector3(4,.6,7))
+	if RenderingServer.get_current_rendering_method()=="forward_plus":
+		var volume=FogVolume.new();volume.name="StalkerLedgeFog";volume.size=Vector3(8,7,12);world.add_child(volume);volume.position=Vector3(29,10,-36)
+		var fog=FogMaterial.new();fog.density=1.1;fog.albedo=Color("#293e34");volume.material=fog
+	# The resting creature is hidden behind the shelf lip until its drop tell.
+	# Local volumetric fog softens the ledge without any flat opaque veil.
 func is_open() -> bool:return is_instance_valid(confirmation) and confirmation.visible
 func request(route:Dictionary) -> bool:
 	if route.target!="a2_canyon" or game.map_id!="a2_crossroads":return false
@@ -91,7 +111,9 @@ func build() -> void:
 		Props.collider(world,Vector3(0,9,-30.8),Vector3(8.4,6,3.8))
 		return
 	if id=="a2_canyon":
-		for r in spec.walls:bluff(world,r)
+		cliff_mesh(world,spec.walls,true)
+		for r in spec.walls:Props.collider(world,Vector3(r[0]+r[2]/2,7.85,r[1]+r[3]/2),Vector3(r[2],16.3,r[3]))
+		boss_ledge(world)
 		for i in range(spec.walls.size()):
 			var r=spec.walls[i]
 			if i%2==0:tree(world,Vector3(r[0]+r[2]/2,r[4],r[1]+r[3]/2),i,2.0)
@@ -115,10 +137,10 @@ func build() -> void:
 			var thorn=Props.cone(gate,Vector3(-4+i,1.5,0),.21,3.0,"#405638",.04);thorn.rotation.z=sin(i)*.5
 		Props.collider(gate,Vector3(0,2,0),Vector3(9,4,1))
 		gate_open="a2_canyon/orchid_stalker" in game.defeated_enemies;update_gate()
-		game.environment_settings.fog_density=.026;game.environment_settings.fog_light_color=Color("#253e35");game.environment_settings.ambient_light_energy=.42;game.environment_settings.tonemap_exposure=1.02
+		game.environment_settings.fog_density=.065;game.environment_settings.fog_light_color=Color("#43564c");game.environment_settings.ambient_light_energy=.42;game.environment_settings.tonemap_exposure=1.02
 		game.world_root.get_node("WorldSun").light_energy=.8
 		if game.environment_settings.sky!=null and game.environment_settings.sky.sky_material is ProceduralSkyMaterial:game.environment_settings.sky.sky_material.sky_energy_multiplier=.17
-		game.environment_settings.volumetric_fog_enabled=RenderingServer.get_current_rendering_method()=="forward_plus";game.environment_settings.volumetric_fog_density=.025;game.environment_settings.volumetric_fog_albedo=Color("#344f42")
+		game.environment_settings.volumetric_fog_enabled=RenderingServer.get_current_rendering_method()=="forward_plus";game.environment_settings.volumetric_fog_density=.055;game.environment_settings.volumetric_fog_albedo=Color("#455e50")
 		atmosphere(world)
 	elif id=="a2_grove":
 		# Overlapping visible vegetation and solid root banks form a real ring.

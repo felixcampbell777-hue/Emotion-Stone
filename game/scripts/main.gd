@@ -1402,7 +1402,7 @@ func _player_defeated() -> void:
 	death_layout.get_child(1).text="You fell. Return to this world's starting area. Defeated creatures are kept." if not world_id.is_empty() else "You fell in the forest. Rest in the village square, then continue your journey.\n\nRecovered components and defeated creatures are kept."
 	death_layout.get_child(2).text="Return to world start" if not world_id.is_empty() else "Wake in the village square"
 	if game_mode=="alpha2":
-		death_layout.get_child(1).text="Return to your last pilgrim fire. Your discoveries, equipment and defeated enemies are kept."
+		death_layout.get_child(1).text="Return to your last pilgrim fire. Your discoveries, equipment and bosses are kept. Canyon slime ambushes return after death."
 		death_layout.get_child(2).text="Return to pilgrim fire"
 	death_screen.visible=true
 	death_veil.visible=true
@@ -1412,6 +1412,7 @@ func respawn_player() -> void:
 	if not recovering:
 		return
 	player.set_sword_drawn(false)
+	dreadmore.reset_ambushes_after_death()
 	if game_mode=="alpha2": load_map(alpha2.checkpoint,Vector2(alpha2.checkpoint_at[0],alpha2.checkpoint_at[1]))
 	elif game_mode=="beta": load_map("beta_meadow")
 	elif world_id.is_empty(): load_map("village_green",Vector2(0,3.5))

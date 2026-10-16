@@ -1452,25 +1452,25 @@
     },
     {
       "id": "sluice_0",
-      "code": "1E",
+      "code": "9E",
       "at": [
         -18.0,
-        -5.0
+        -3.0
       ],
       "spawn_mode": "tree_drop",
-      "drop_height": 5.5,
+      "drop_height": 6.5,
       "trigger_radius": 5,
       "ambush_group": "dreadmore_sluice"
     },
     {
       "id": "sluice_1",
-      "code": "3E",
+      "code": "9E",
       "at": [
         -16.7,
-        -4.2
+        -2.2
       ],
       "spawn_mode": "tree_drop",
-      "drop_height": 6.0,
+      "drop_height": 6.5,
       "trigger_radius": 5,
       "ambush_group": "dreadmore_sluice"
     },
@@ -1479,12 +1479,60 @@
       "code": "9E",
       "at": [
         -18.0,
-        -3.4
+        -1.4
       ],
       "spawn_mode": "tree_drop",
       "drop_height": 6.5,
       "trigger_radius": 5,
       "ambush_group": "dreadmore_sluice"
+    },
+    {
+      "id": "sluice_3",
+      "code": "9E",
+      "at": [
+        -16.7,
+        -0.5999999999999996
+      ],
+      "spawn_mode": "tree_drop",
+      "drop_height": 6.5,
+      "trigger_radius": 5,
+      "ambush_group": "dreadmore_sluice"
+    },
+    {
+      "id": "sluice_rear_0",
+      "code": "2E",
+      "at": [
+        -19.3,
+        4
+      ],
+      "spawn_mode": "ground"
+    },
+    {
+      "id": "sluice_rear_1",
+      "code": "1E",
+      "at": [
+        -16.7,
+        4
+      ],
+      "spawn_mode": "ground"
+    },
+    {
+      "id": "sluice_front_0",
+      "code": "2E",
+      "at": [
+        -19.3,
+        -10
+      ],
+      "spawn_mode": "ground"
+    },
+    {
+      "id": "sluice_front_1",
+      "code": "1E",
+      "at": [
+        -16.7,
+        -10
+      ],
+      "spawn_mode": "ground"
     }
   ]
 }

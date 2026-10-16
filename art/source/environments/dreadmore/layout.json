@@ -1,5 +1,5 @@
 {
-  "status": "Integrated into Alpha 2; runtime walls/routes in game/content/dreadmore.json",
+  "status": "Integrated: one continuous opaque cliff union; concealed death-reset slime ambushes",
   "entry_from": "a2_crossroads north approach",
   "entry_prompt": "Enter Dreadmore Canyon?",
   "canyon_bounds": [
@@ -135,7 +135,7 @@
         -18,
         -5
       ],
-      "situation": "three staggered slime drops into a widened damp pocket; small warning splashes precede landing"
+      "situation": "four concealed green melee drops; sticky and moss ranged pairs 7m ahead and behind reveal together; sheltered spring branch follows"
     },
     {
       "id": "canyon_fiend",
@@ -143,7 +143,7 @@
         18,
         -35
       ],
-      "situation": "visible silhouette clings high across arena; marked drop on approach; defeat opens right-hand grove route",
+      "situation": "concealed on a physical fog-covered ledge; marked drop on approach; defeat opens grove route",
       "visual": "C \u2014 Orchid Stalker"
     }
   ]

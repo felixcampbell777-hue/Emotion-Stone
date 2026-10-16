@@ -12,6 +12,11 @@ func run(g:Node,directory:String) -> void:
 	var route=g.current_world.definition.exits.filter(func(e):return e.target=="a2_canyon")[0];g.dreadmore.request(route);await picture(g,directory+"/dreadmore-confirmation.png");g.dreadmore.confirmation.hide();g._refresh_simulation()
 	for fixture in [[Vector2(0,49),0,-.15,"mouth"],[Vector2(-18,39),0,-.08,"ambush"],[Vector2(-14,24),-PI/2,-.08,"switchback"],[Vector2(12,-25),-.7,-.7,"clinging"]]:
 		view(g,"a2_canyon",fixture[0],fixture[1],fixture[2]);await picture(g,directory+"/dreadmore-"+fixture[3]+".png")
+	view(g,"a2_canyon",Vector2(-18,1),0,-.1);g.player.set_sword_drawn(false);await picture(g,directory+"/dreadmore-campfire-hidden.png")
+	var pack=g.enemies.filter(func(e):return e.has_method("begin_tree_drop") and e.ambush_group=="dreadmore_sluice" and not e.canyon_support)
+	pack[0].ai_enabled=true;pack[0]._drop_tick(.01);await picture(g,directory+"/dreadmore-campfire-warning.png")
+	for e in pack:e.ai_enabled=true;e._drop_tick(.66);e._drop_tick(.4)
+	g.camera_driver.first_pitch=-.9;g.camera_driver.update_first_person();await picture(g,directory+"/dreadmore-campfire-drop.png");g.player.set_sword_drawn(true)
 	view(g,"a2_canyon",Vector2(18,-26),0,-.1)
 	var boss=g.enemies.filter(func(e):return e.definition.kind=="canyon_fiend")[0]
 	boss.ai_enabled=true;boss.simulation_enabled=true;boss._physics_process(.01);await picture(g,directory+"/dreadmore-drop-tell.png")

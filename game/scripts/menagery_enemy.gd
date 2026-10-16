@@ -18,6 +18,7 @@ var drop_target=Vector3.ZERO
 var drop_clock=0.0
 var drop_warning:Node3D
 var ambush_group=""
+var canyon_support=false
 func setup(owner:Node,entry:Dictionary,at:Vector3) -> void:
 	game=owner; specimen=entry; style=entry.style
 	configure({"id":"practice_"+entry.code.to_lower(),"kind":"practice","at":[at.x,at.z],"size":entry.size,"display_name":entry.code+" "+entry.name},game.player)
@@ -65,14 +66,21 @@ func setup(owner:Node,entry:Dictionary,at:Vector3) -> void:
 	for x in [-.14,.14]: Props.box(visual,Vector3(x,.67 if style!="bat" else 1.15,.4 if style!="bat" else .15),Vector3(.065,.085,.05),"#283631")
 
 func configure_placement(data:Dictionary) -> void:
+	canyon_support=game.map_id=="a2_canyon" and String(data.get("id","")).begins_with("sluice_") and data.get("spawn_mode","ground")=="ground"
+	if canyon_support:
+		ambush_group="dreadmore_sluice";state="canyon_wait";visual.visible=false;get_node("Shadow").visible=false;collision.set_deferred("disabled",true)
 	if data.get("spawn_mode","ground")!="tree_drop" or style not in ["green_slime","moss_slime","resin_slime","bramble_slime"]: return
 	drop_height=float(data.get("drop_height",3.8)); trigger_radius=float(data.get("trigger_radius",6))
 	ambush_group=data.get("ambush_group","")
 	state="tree_wait"; position.y=game.current_world.ground_height(position)+drop_height
 	drop_origin=position; collision.set_deferred("disabled",true)
+	if game.map_id=="a2_canyon":visual.visible=false;get_node("Shadow").visible=false
 
 func begin_tree_drop(offset:Vector3=Vector3.ZERO,caption:String="SLIME DROP") -> void:
 	if state!="tree_wait" or health<=0: return
+	if ambush_group=="dreadmore_sluice":
+		var slot=clampi(String(definition.id).get_slice("_",1).to_int(),0,3)
+		offset=[Vector3(-1.25,0,-1),Vector3(1.25,0,-1),Vector3(-1.25,0,1),Vector3(1.25,0,1)][slot]
 	drop_target=game.current_world.safe_landing(player.position+offset)
 	drop_warning=load("res://scripts/slime_warning.gd").new(); game.current_world.add_child(drop_warning); drop_warning.configure(drop_target,1.15,caption)
 	state="tree_warn"; drop_clock=0
@@ -89,11 +97,13 @@ func _drop_tick(delta:float) -> bool:
 				var index=0
 				for ally in game.enemies:
 					if ally==self or not ally.has_method("begin_tree_drop") or ally.ambush_group!=ambush_group: continue
+					if ally.canyon_support:
+						ally.state="idle";ally.visual.visible=true;ally.get_node("Shadow").visible=true;ally.collision.set_deferred("disabled",false);continue
 					var angle=index*TAU/3; ally.begin_tree_drop(Vector3(sin(angle),0,cos(angle))*.65,""); index+=1
 	elif state=="tree_warn":
 		drop_clock+=delta
 		visual.position.y=sin(drop_clock*25)*.06
-		if drop_clock>=.65: state="tree_fall"; drop_clock=0; visual.position.y=0
+		if drop_clock>=.65: state="tree_fall"; drop_clock=0; visual.position.y=0;visual.visible=true;get_node("Shadow").visible=true
 	else:
 		drop_clock+=delta; var t=clampf(drop_clock/.85,0,1)
 		position=drop_origin.lerp(drop_target,t)+Vector3.UP*(sin(t*PI)*.65)
@@ -109,6 +119,7 @@ func _drop_tick(delta:float) -> bool:
 
 func take_damage(amount:int,from_direction:Vector3) -> void:
 	if state in ["tree_wait","tree_warn","tree_fall"]:
+		visual.visible=true;get_node("Shadow").visible=true
 		position.y=game.current_world.ground_height(position); collision.set_deferred("disabled",false); visual.position.y=0
 		get_node("Shadow").position.y=.008
 		if is_instance_valid(drop_warning): drop_warning.queue_free()
@@ -122,11 +133,11 @@ func _release_ability() -> void:
 		var gloop=load("res://scripts/resin_gloop.gd").new(); game.current_world.add_child(gloop)
 		gloop.configure(game,self,player.position+player.velocity*.15); game.projectiles.append(gloop)
 		state="recover"; state_time=float(specimen.recover); return
-	elif style in ["bramble_slime","squirrel"]:
+	elif style in ["bramble_slime","squirrel"] or (canyon_support and style=="moss_slime"):
 		game.projectiles=game.projectiles.filter(func(item): return is_instance_valid(item))
 		for angle in [-.25,0,.25] if style=="bramble_slime" else [0.0]:
 			var shot=Shot.new(); game.current_world.add_child(shot)
-			shot.configure(game,self,direction.rotated(Vector3.UP,angle),style=="bramble_slime")
+			shot.configure(game,self,direction.rotated(Vector3.UP,angle),style=="bramble_slime" or style=="moss_slime")
 			game.projectiles.append(shot)
 		state="recover"; state_time=float(specimen.recover); return
 	elif style=="puffcap":
@@ -144,6 +155,7 @@ func notice_trapped_target() -> bool:
 
 func _physics_process(delta:float) -> void:
 	if not simulation_enabled or health<=0: return
+	if state=="canyon_wait":return
 	if _drop_tick(delta): return
 	phase+=delta
 	hit_flash=maxf(0,hit_flash-delta); parry_flash=maxf(0,parry_flash-delta)
@@ -157,14 +169,14 @@ func _physics_process(delta:float) -> void:
 		var toward=(player.position-position)*Vector3(1,0,1)
 		var distance=toward.length()
 		if state=="idle":
-			if distance<12:
+			if distance<(16 if canyon_support else 12):
 				visual.rotation.y=atan2(toward.x,toward.z)
-				var range=6.0 if style in ["bramble_slime","resin_slime","squirrel"] else 3.5 if style=="bat" else 2.4
+				var range=12.0 if canyon_support else 6.0 if style in ["bramble_slime","resin_slime","squirrel"] else 3.5 if style=="bat" else 2.4
 				if style=="squirrel" and distance<2.8: velocity=-toward.normalized()*float(specimen.speed)
-				elif distance<range:
+				elif distance<range and (not canyon_support or not game.impact_blocked(position,player.position)):
 					state="windup"; state_time=float(specimen.windup); direction=toward.normalized(); bounce_count=0
 				else:
-					velocity=toward.normalized()*float(specimen.speed)
+					velocity=toward.normalized()*float(specimen.speed) if not canyon_support else Vector3.ZERO
 					if style=="bat": velocity+=toward.normalized().rotated(Vector3.UP,PI/2)*.7
 			else: velocity=(home-position).normalized()*float(specimen.speed) if position.distance_to(home)>.3 else Vector3.ZERO
 			if style=="moss_slime" and distance>4:
