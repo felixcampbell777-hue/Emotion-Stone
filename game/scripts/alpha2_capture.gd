@@ -41,7 +41,7 @@ func run(game:Control,directory:String) -> void:
 	view(game,"a2_belfry",Vector2(0,5),0,.08)
 	var guardian=game.enemies[0];guardian.ai_enabled=true;guardian.state="rock_tell";guardian.state_time=.25;guardian.direction=Vector3.BACK;guardian._physics_process(.001);guardian.set_physics_process(false);await picture(game,directory+"/alpha2-seed-windup.png")
 	guardian.state="roots_tell";guardian.seed.visible=false;guardian.prepare_roots();game.player.position+=Vector3(3,0,3);game.player.position.y=game.current_world.ground_height(game.player.position);game.camera_driver.yaw=.6;game.camera_driver.update_first_person();await picture(game,directory+"/alpha2-root-warning.png");guardian.update_roots(.5);await picture(game,directory+"/alpha2-root-eruption.png")
-	view(game,"a2_wood",Vector2(0,-16),0,.08)
+	view(game,"a2_grove",Vector2(0,5),0,.08)
 	game.conversation.show_character({"role":"a2_forest_chime","title":"The listening bells"});game._refresh_simulation();await picture(game,directory+"/alpha2-forest-puzzle.png");game.conversation.close();game._refresh_simulation()
 	view(game,"a2_haven",Vector2(0,9),0)
 	for target in game.current_world.interactions:

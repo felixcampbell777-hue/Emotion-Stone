@@ -1,0 +1,19 @@
+{
+  "origin": "Original locally authored geometry and chitin image; no downloads or external scripts",
+  "recipe": "tools/create_orchid_stalker.py",
+  "design": "C \u2014 Orchid Stalker, selected by user",
+  "files": {
+    "art/source/environments/dreadmore/orchid-stalker.blend": {
+      "sha256": "5266177179706b66c15f823b041de50d1ddba07fb8aa3a2706b7958aa8237f03",
+      "bytes": 2246833
+    },
+    "game/assets/dreadmore/orchid-stalker.glb": {
+      "sha256": "1ef024b0cdb3f0ab2a1dab91a5377fcf180f0ab697278052a6629623f1139305",
+      "bytes": 1191596
+    },
+    "game/assets/dreadmore/orchid-chitin.png": {
+      "sha256": "e9ea1b54bf496190c10adc4b44b2d4904c8b76a41c724f3d2ec4ff7019e0756c",
+      "bytes": 159967
+    }
+  }
+}

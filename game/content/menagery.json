@@ -216,6 +216,12 @@
       "name": "Sloped slime arena",
       "style": "sloped_arena",
       "description": "Walkable bowl with a shallow floor and gently rolling raised rim"
+    },
+    {
+      "code": "1H",
+      "name": "Inaccessible raised bluff",
+      "style": "inaccessible_bluff",
+      "description": "Tall solid rock wall; no walk-up slope. Rotate and scale to enclose paths."
     }
   ],
   "monsters": [

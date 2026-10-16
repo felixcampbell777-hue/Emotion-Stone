@@ -14,7 +14,7 @@ var compass:Label
 var water_status:Label
 var bell_notes:Array=[]
 var encounters=preload("res://scripts/alpha2_encounters.gd").new()
-const STORY_FLAGS=["begun","medicine_asked","medicine_returned","courier_asked","courier_safe","courier_returned","ledger_asked","ledger_returned","memory_asked","memory_returned","completed","forest_tuned"]
+const STORY_FLAGS=["begun","medicine_asked","medicine_returned","courier_asked","courier_safe","courier_returned","ledger_asked","ledger_returned","memory_asked","memory_returned","completed","forest_tuned","wood_ward_legacy"]
 
 static func valid_mode(mode:Variant,map_id:Variant,world:Variant="") -> bool:
 	if not mode is String or not map_id is String: return false
@@ -35,7 +35,7 @@ static func valid_save(data:Variant,defeated:Array) -> bool:
 	for action in spec.actions:
 		if action.id in found:
 			for enemy in action.get("requires",[]):
-				if enemy not in defeated: return false
+				if enemy not in defeated and not (action.id=="wood_ward" and (int(data.get("layout_revision",1))<4 or "wood_ward_legacy" in found)): return false
 			if int(data.get("layout_revision",1))>=2:
 				for needed in action.get("requires_flags",[]):
 					if needed not in found:return false
@@ -58,10 +58,11 @@ func active() -> bool: return is_instance_valid(game) and game.game_mode=="alpha
 func reset() -> void:
 	flags.clear();bell_notes.clear();checkpoint="a2_haven";checkpoint_at=[0,5];ending="";played_seconds=0;objects.clear()
 func snapshot() -> Dictionary:
-	return {"layout_revision":3,"flags":flags.duplicate(),"checkpoint":checkpoint,"checkpoint_at":checkpoint_at.duplicate(),"ending":ending,"played_seconds":played_seconds}
+	return {"layout_revision":4,"flags":flags.duplicate(),"checkpoint":checkpoint,"checkpoint_at":checkpoint_at.duplicate(),"ending":ending,"played_seconds":played_seconds}
 func restore(data:Dictionary) -> void:
 	flags=data.get("flags",[]).duplicate();checkpoint=data.get("checkpoint","a2_haven");checkpoint_at=data.get("checkpoint_at",[0,5]).duplicate();ending=data.get("ending","");played_seconds=float(data.get("played_seconds",0))
 	bell_notes.clear()
+	if int(data.get("layout_revision",1))<4 and "wood_ward" in flags and "wood_ward_legacy" not in flags:flags.append("wood_ward_legacy")
 	if int(data.get("layout_revision",1))<2:
 		if "mill_ward" in flags:mark("wreck_winch");mark("tide_chime")
 		if "wood_ward" in flags:mark("forest_tuned")
@@ -91,7 +92,7 @@ func start(imported:Dictionary={}) -> void:
 		game.mother_unwrapped=bool(imported.get("mother_unwrapped",false));game.well_gift_stage="potion_owned" if imported.get("well_gift_stage","")=="potion_owned" else "not_started"
 	grant("spring_elixir",3);game.apply_skill_stats();game.update_progression_ui()
 func tick(delta:float) -> void:
-	if active():encounters.tick(delta)
+	if active():encounters.tick(delta);game.dreadmore.tick()
 	if active() and game.player.input_enabled: played_seconds+=delta
 	if compass==null:
 		compass=game.label("",18,Color("#e2d3ac"));compass.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;compass.mouse_filter=Control.MOUSE_FILTER_IGNORE;game.add_child(compass)
@@ -129,7 +130,7 @@ func objective() -> String:
 	if "begun" not in flags: return "Speak to Mother beside Hearthmere's hearth."
 	if wards()<3:
 		var missing=[]
-		for pair in [["mill_ward","Saltwind Strand (west)"],["quarry_ward","Skyglass Bluffs (east)"],["wood_ward","Heartwood (north)"]]:
+		for pair in [["mill_ward","Saltwind Strand (west)"],["quarry_ward","Skyglass Bluffs (east)"],["wood_ward","Stillroot Grove through Dreadmore Canyon (north)"]]:
 			if pair[0] not in flags: missing.append(pair[1])
 		return "Quiet the wards (%d/3): "%wards()+", ".join(missing)+". I → Quests for leads."
 	if "a2_belfry/bellkeeper" not in game.defeated_enemies: return "All three wards are quiet. Meet Sable in the northern chapel; face the Bellkeeper beyond."
@@ -138,6 +139,8 @@ func objective() -> String:
 func can_travel(route:Dictionary) -> bool:
 	if not active(): return true
 	var target=String(route.target)
+	if target=="a2_grove" and "a2_canyon/orchid_stalker" not in game.defeated_enemies:
+		game.notify("The Orchid Stalker still guards the grove passage.");return false
 	if target=="a2_crossroads" and "begun" not in flags:
 		game.notify("Mother is waiting by the hearth. Speak to her before taking the pilgrim roads.");return false
 	if target=="a2_belfry" and wards()<3:
@@ -155,6 +158,7 @@ func build_map() -> void:
 	if not game.current_world.has_meta("alpha2_scenery"):
 		load("res://scripts/alpha2_scenery.gd").build(game);game.current_world.set_meta("alpha2_scenery",true)
 		encounters.build(game)
+	game.dreadmore.build()
 	for npc in game.current_world.interactions:
 		if String(npc.get("role","")).begins_with("a2_"):
 			npc.title={"mother":"Mother","mara":"Mara, the apothecary","oren":"Oren, the millwright","ada":"Ada, the lantern keeper","jun":"Jun, the lost courier","sable":"Sable, the former keeper","sable_chapel":"Sable, the former keeper"}.get(String(npc.id),npc.title)
@@ -187,7 +191,13 @@ func build_map() -> void:
 				Props.box(node,Vector3(0,.12,0),Vector3(1.5,.24,1.5),"#636e66")
 				var stone=Props.cone(node,Vector3(0,.8,0),.36,1.4,"#6faeae",.16)
 				var magic=StandardMaterial3D.new();magic.albedo_color=Color("#6faeae");magic.emission_enabled=true;magic.emission=Color("#458981");magic.emission_energy_multiplier=.5;stone.material_override=magic
-				if action.id=="wood_ward":
+				if action.id=="wood_ward" and game.map_id=="a2_grove":
+					stone.visible=false
+					var relic=load("res://scripts/environment_art.gd").model("res://assets/alpha2/rock_moss_set_02.glb",Vector3(1.4,2.3,1.1),false);node.add_child(relic)
+					Props.collider(node,Vector3(0,1,0),Vector3(.8,2,.7))
+					for i in range(4):
+						var rune=Props.box(node,Vector3(sin(i*.8)*.14,.65+i*.27,.53),Vector3(.035,.19,.025),"#76c5c1");rune.material_override=magic;rune.rotation.z=sin(i)*.6
+				if action.id=="wood_ward" and game.map_id!="a2_grove":
 					for i in range(3):Props.cone(node,Vector3(-.75+i*.75,1.6,.15),.19,.38+i*.12,"#b2a074",.10)
 			"heart":
 				Props.cone(node,Vector3(0,.65,0),.33,1.0,"#82e2cb",.08)
@@ -200,7 +210,9 @@ func build_map() -> void:
 		game.current_world.interactions.append({"id":"alpha2_"+action.id,"a2_action":action.id,"title":action.title,"position":node.position,"actor":null,"lines":[]})
 
 func interact(target:Dictionary) -> bool:
-	if not active() or not target.has("a2_action"): return false
+	if not active():return false
+	if target.has("travel") and game.dreadmore.request(target.travel):return true
+	if not target.has("a2_action"):return false
 	var matches=definition.actions.filter(func(a): return a.id==target.a2_action and a.map==game.map_id)
 	if matches.is_empty(): return true
 	var a=matches[0]
@@ -211,6 +223,8 @@ func interact(target:Dictionary) -> bool:
 		game.notify("Recover the bronze chime from the wreck first." if a.id=="mill_ward" else "Use the salvage winch beside the wreck to lift the fallen mast first.");return true
 	if a.type in ["ward","rest","quest","heart","mechanism"] and not safe(target.position,7):
 		game.notify("Clear the nearby threats before stopping here.");return true
+	if a.id=="wood_ward" and game.map_id=="a2_grove":
+		mark("forest_tuned");mark("wood_ward",int(a.xp));remove_action("wood_ward");game.notify("The woodland stone attunes. A warm note carries beyond the canyon. +250 XP");return true
 	if a.id=="wood_ward":
 		bell_notes.clear();game.conversation.show_character({"role":"a2_forest_chime","title":"The listening bells"});game._refresh_simulation();return true
 	if a.type=="rest":
@@ -272,7 +286,7 @@ func dialogue(ui:Control,target:Dictionary) -> void:
 		"mother":
 			ui.text.text="The old bell rang on its own at dawn, and a map appeared inside my brass compass! Three ward-stones point toward a lost royal vault. Your sword gem is humming too. I think we have finally found a real adventure."
 			if "begun" not in flags:
-				ui.choices.add_child(game.button("What do I need to do?",func(): mark("begun",250);ui.say("The map marks three ward-stones: Saltwind Strand to the west, Skyglass Bluffs to the east, and Heartwood to the north. Salvage a bronze chime from the wreck, defeat the bluff sentinel, and solve the forest bell harmony. The roads join up, so choose your own route. Sable knows the northern chapel. Ask the others about hidden treasures before you leave!")))
+				ui.choices.add_child(game.button("What do I need to do?",func(): mark("begun",250);ui.say("The map marks three ward-stones: Saltwind Strand to the west, Skyglass Bluffs to the east, and Heartwood to the north. Salvage a bronze chime from the wreck, defeat the bluff sentinel, and cross Dreadmore Canyon, defeat the Orchid Stalker, and attune the woodland stone. The roads join up, so choose your own route. Sable knows the northern chapel. Ask the others about hidden treasures before you leave!")))
 			elif "completed" in flags: ui.text.text="A royal vault, a living bell, and you home before supper! The village will be telling this story for years. There are still caches to find and friends to help if you feel like another expedition."
 			elif "bellheart" in flags:
 				ui.text.text="You found the living compass-heart! It can light our village roads, or reveal the lost routes beyond the valley. Sable says we must choose where to use its magic. What shall our next adventure be?"
@@ -317,8 +331,8 @@ func quest_choice(ui:Control,id:String,title:String,needed:String,done:String,as
 func quest_text(id:String) -> String:
 	return {"medicine":"Mara's chest lies on the western beach, south of the wreck. Return it to Mara in Hearthmere.","courier":"Find Jun in the north-west Reedwater Marsh, north of the mill. Clear the nearby creatures, then speak to Jun and return to Ada.","ledger":"Search the Buried Watch, through the cave mouth in the south-east Skyglass Bluffs. Bring its ledger to Ada.","memory":"Listen at the roots in the north-west Heartwood. Bring Eli's last words to Oren in Hearthmere."}[id]
 func journal(ui:Control) -> void:
-	ui.add_quest("The pilgrim roads","Explore in any order","Hearthmere → Crossroads → West: Strand → Marsh → Heartwood. East: Bluffs → Heartwood. North: Heartwood → Open-Sky Chapel → Bell Court.","The Buried Watch is a side cave in the south-east Quarry. Amber fires set your respawn. Trail markers use E. Compass: N points toward the northern wood. F5 saves; Alpha and Beta saves stay separate.")
-	ui.add_quest("The Hollow Bell","650 XP + ending keepsake",objective(),"Explore the three interconnected roads in any order. Salvage the shore chime, defeat the bluff sentinel, and ring the forest notes LOW → HIGH → MIDDLE. Meet Sable; defeat the Bellkeeper; bring its heart home.")
+	ui.add_quest("The pilgrim roads","Explore in any order","Hearthmere → Crossroads → West: Strand → Marsh → Heartwood. East: Bluffs → Heartwood. North: Heartwood → Open-Sky Chapel → Bell Court.","The Buried Watch is a side cave in the south-east Quarry. Amber fires set your respawn. Trail markers use E. North from the Pilgrim Road leads through Dreadmore Canyon to Stillroot Grove. F5 saves; Alpha and Beta saves stay separate.")
+	ui.add_quest("The Hollow Bell","650 XP + ending keepsake",objective(),"Explore the three interconnected roads in any order. Salvage the shore chime, defeat the bluff sentinel, and defeat the Orchid Stalker in Dreadmore Canyon and attune the stone in Stillroot Grove. Meet Sable; defeat the Bellkeeper; bring its heart home.")
 	for entry in [["medicine","A remedy for the living","medicine_asked","medicine_returned"],["courier","The last lantern","courier_asked","courier_returned"],["ledger","The royal treasure ledger","ledger_asked","ledger_returned"],["memory","A brother's voice","memory_asked","memory_returned"]]:
 		ui.add_quest(entry[1],"%d XP + equipment or remedies"%definition.quest_rewards[entry[0]],"Complete" if entry[3] in flags else quest_text(entry[0]) if entry[2] in flags else "Speak to "+{"medicine":"Mara","courier":"Ada","ledger":"Ada","memory":"Oren"}[entry[0]]+" in Hearthmere.","Optional. Rewards are given once; all progress survives death.")
 	ui.add_quest("Forgotten reliquaries","Magic equipment + discovery XP","Six equipment caches are hidden off the pilgrim roads.","Look beyond the main paths. Equip finds in Inventory; active skills and passive bonuses use the existing skill system.")

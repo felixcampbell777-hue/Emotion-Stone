@@ -1294,12 +1294,12 @@
         3.2,
         2
       ],
-      "target": "a2_wood",
+      "target": "a2_canyon",
       "spawn": [
         0,
-        26
+        54
       ],
-      "label": "Heartwood",
+      "label": "Enter Dreadmore Canyon?",
       "interact": true
     }
   ],

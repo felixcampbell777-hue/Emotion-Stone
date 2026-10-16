@@ -72,3 +72,8 @@ Existing collected assets only; no new downloads. Donors are not modified. Blend
 - Timber Wolf reuses the current customized Beta wolf and embedded-game license described above. No source kit redistributed as a standalone asset pack.
 
 Alpha 2 Wreck Rats reuse the existing CDmir / TinyWorlds CC0 Evil Giant Rat donor and runtime Beta skin/clips described above. Constellation graphics and thornseed/root effects are original procedural game artwork; no Skyrim assets are distributed.
+
+
+## Original Dreadmore assets
+
+Orchid Stalker geometry, articulated part hierarchy and chitin image are locally authored original assets, guided by the user-selected concept C. Editable source and hashes: art/source/environments/dreadmore/runtime-assets.json. No third-party scripts or downloads were used. Canyon walls reuse the existing credited CC0 rock-face textures; existing licensed trees and ferns are reused. The AI-generated concept board is a design reference, not an imported gameplay mesh.

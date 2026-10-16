@@ -1,5 +1,5 @@
 {
-  "status": "staged; boss appearance awaiting user choice; not installed into live campaign",
+  "status": "Integrated into Alpha 2; runtime walls/routes in game/content/dreadmore.json",
   "entry_from": "a2_crossroads north approach",
   "entry_prompt": "Enter Dreadmore Canyon?",
   "canyon_bounds": [
@@ -144,7 +144,7 @@
         -35
       ],
       "situation": "visible silhouette clings high across arena; marked drop on approach; defeat opens right-hand grove route",
-      "visual": "await user selection A/B/C"
+      "visual": "C \u2014 Orchid Stalker"
     }
   ]
 }

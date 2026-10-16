@@ -38,6 +38,7 @@ func accessible_targets(g:Node) -> Array:
 			cells[next]=true;queue.append(next)
 	var blocked=[]
 	for target in g.current_world.interactions:
+		if target.get("travel",{}).get("target","")=="a2_grove" and "a2_canyon/orchid_stalker" not in g.defeated_enemies:continue
 		var point=Vector2(target.position.x,target.position.z);var found=false
 		for x in range(floori(point.x)-2,ceili(point.x)+3):
 			for z in range(floori(point.y)-2,ceili(point.y)+3):
@@ -123,12 +124,10 @@ func run(test:RefCounted) -> void:
 	test.check("courier_safe" in g.alpha2.flags,"Courier rescue checks threats and records the survivor")
 	g.load_map("a2_watch",Vector2(0,5),true);disable_enemies(g);slay(g);use(g,"ledger")
 	g.load_map("a2_quarry",Vector2(0,20),true);disable_enemies(g);slay(g);use(g,"quarry_ward")
-	g.load_map("a2_wood",Vector2(0,24),true);disable_enemies(g);slay(g);use(g,"wood_ward")
-	test.check(g.conversation.visible and not g.player.input_enabled,"Forest bell puzzle pauses gameplay over the blurred scene")
-	test.check(not g.alpha2.ring_note("HIGH") and g.alpha2.bell_notes.is_empty(),"Wrong forest note resets harmony without rewarding the ward")
-	for note in ["LOW","HIGH","MIDDLE"]:g.alpha2.ring_note(note)
-	test.check("forest_tuned" in g.alpha2.flags,"Distinct forest exploration puzzle resolves its carved clue")
-	g.conversation.close();g._refresh_simulation();use(g,"root_memory");g.dialog.visible=false;g._refresh_simulation()
+	g.load_map("a2_canyon",Vector2(18,-35),true);disable_enemies(g);slay(g)
+	g.load_map("a2_grove",Vector2(0,13),true);use(g,"wood_ward")
+	test.check("wood_ward" in g.alpha2.flags and "forest_tuned" in g.alpha2.flags,"Woodland stone attunes in the protected grove after the Canyon Fiend falls")
+	g.load_map("a2_wood",Vector2(0,24),true);disable_enemies(g);slay(g);use(g,"root_memory");g.dialog.visible=false;g._refresh_simulation()
 	test.check(g.alpha2.wards()==3 and g.alpha2.can_travel({"target":"a2_belfry"}),"Independent regions reconnect and all three attuned wards open final vault")
 	g.load_map("a2_haven",Vector2(0,5),true)
 	for pair in [["ada","courier_returned"],["ada","ledger_returned"],["oren","memory_returned"]]:

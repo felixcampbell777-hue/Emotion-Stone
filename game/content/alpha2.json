@@ -10,7 +10,9 @@
     "a2_wood",
     "a2_watch",
     "a2_sanctum",
-    "a2_belfry"
+    "a2_belfry",
+    "a2_canyon",
+    "a2_grove"
   ],
   "start": "a2_haven",
   "boss": "a2_belfry/bellkeeper",
@@ -120,14 +122,16 @@
     },
     {
       "id": "wood_ward",
-      "map": "a2_wood",
+      "map": "a2_grove",
       "at": [
         0,
-        -19
+        -3
       ],
-      "title": "Tune the Heartwood bells",
+      "title": "Attune the woodland stone",
       "type": "ward",
-      "requires": [],
+      "requires": [
+        "a2_canyon/orchid_stalker"
+      ],
       "xp": 250
     },
     {
@@ -326,6 +330,49 @@
         "wreck_winch"
       ],
       "xp": 120
+    },
+    {
+      "id": "canyon_fire",
+      "map": "a2_canyon",
+      "at": [
+        0,
+        51
+      ],
+      "title": "Rest · Dreadmore approach",
+      "type": "rest"
+    },
+    {
+      "id": "canyon_cache",
+      "map": "a2_canyon",
+      "at": [
+        24,
+        12
+      ],
+      "title": "Open the surveyor’s cache",
+      "type": "loot",
+      "item": "spring_elixir",
+      "count": 2,
+      "xp": 70
+    },
+    {
+      "id": "canyon_spring",
+      "map": "a2_canyon",
+      "at": [
+        -30,
+        -30
+      ],
+      "title": "Rest · The sheltered spring",
+      "type": "rest"
+    },
+    {
+      "id": "grove_fire",
+      "map": "a2_grove",
+      "at": [
+        -5,
+        6
+      ],
+      "title": "Rest · Stillroot Grove",
+      "type": "rest"
     }
   ],
   "quest_rewards": {
