@@ -1,4 +1,4 @@
 {
-  "version": "0.32.1",
-  "baseline": "Alpha 2: Saltwind shipwreck coast, Heartwood bell puzzle, Skyglass bluffs; collected skinned creatures and living Bellkeeper"
+  "version": "0.32.2",
+  "baseline": "Alpha 2 creature attack facing, early windup tracking and committed strike direction; spider donor forward-axis calibration"
 }

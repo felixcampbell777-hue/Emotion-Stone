@@ -39,19 +39,25 @@ func _physics_process(delta:float) -> void:
 				visual.rotation.y=lerp_angle(visual.rotation.y,atan2(toward.x,toward.z),minf(1,delta*6))
 				if distance<float(spec.range):
 					count+=1;direction=toward.normalized();state="windup";state_time=float(spec.windup);lunge_hit=false
+					visual.rotation.y=atan2(direction.x,direction.z)
 				else:
 					velocity=toward.normalized()*float(spec.speed)
 					if style=="spider":velocity+=Vector3(toward.z,0,-toward.x).normalized()*sin(phase*3)*.8
 		elif state=="windup":
+			# Follow the target during preparation, then commit before the strike.
+			if state_time>.18 and distance>.001:direction=toward.normalized()
+			visual.rotation.y=atan2(direction.x,direction.z)
 			state_time-=delta
 			if state_time<=0:
 				if style=="sentinel" and count%2==0:
 					var rock=Rock.new();game.world_root.add_child(rock);rock.configure(game,self,direction);game.projectiles.append(rock);state="recover";state_time=2
 				else:state="burrow" if style in ["crab","sentinel"] else "lunge";state_time=.9 if state=="burrow" else float(spec.lunge_seconds)
 		elif state=="burrow":
+			visual.rotation.y=atan2(direction.x,direction.z)
 			state_time-=delta;visual.position.y=-.45*sin((1-state_time/.9)*PI);velocity=direction*float(spec.attack_speed)*.5
 			if state_time<=0:state="lunge";state_time=float(spec.lunge_seconds);armor_open=2.4
 		elif state=="lunge":
+			visual.rotation.y=atan2(direction.x,direction.z)
 			state_time-=delta;velocity=direction*float(spec.attack_speed)
 			if style=="spider":visual.position.y=sin(clampf(1-state_time/float(spec.lunge_seconds),0,1)*PI)*.4
 			if not lunge_hit and not game.impact_blocked(position,player.position):
