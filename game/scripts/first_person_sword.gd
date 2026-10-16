@@ -16,6 +16,7 @@ func sample(key:String,t:float) -> Dictionary:
 func apply(actor:Node3D,key:String,t:float) -> void:
 	var frame:Transform3D=actor.first_person_driver.sample_first_person(0,not actor.is_physics_processing())
 	if key=="light" and actor.dash_uppercut: key="dash_uppercut"
+	actor.set_meta("view_sword_sample",{"key":key,"phase":t})
 	var pose=sample(key,t)
 	if key=="drag":
 		if actor.dash_attack_blend>0:
