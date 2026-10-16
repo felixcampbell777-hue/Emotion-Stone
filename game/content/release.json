@@ -1,4 +1,4 @@
 {
-  "version": "0.34.2",
-  "baseline": "Orchid Stalker skitter, wall leaps and articulated heavy slam"
+  "version": "0.34.3",
+  "baseline": "Remove green enemy ground plates; retain natural rendered shadows"
 }

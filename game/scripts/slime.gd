@@ -61,7 +61,8 @@ func configure(data: Dictionary, target: Node3D, saved: Dictionary={}) -> void:
 	Props.box(visual,Vector3(.17,.56,.47),Vector3(.08,.14,.06),"#1b3429")
 	Props.box(visual,Vector3(0,.37,.515),Vector3(.15,.025,.04),"#36512d")
 	Props.box(visual,Vector3(-.20,.75,.34),Vector3(.15,.045,.055),"#bed690")
-	var shadow=Props.box(self,Vector3(0,.008,0),Vector3(.78,.008,.67),"#536c42")
+	# Retain the legacy anchor for drop/queen positioning, without a ground mesh.
+	var shadow=Node3D.new();add_child(shadow);shadow.position.y=.008
 	shadow.name="Shadow"
 	visible=health>0
 	collision.disabled=health<=0
