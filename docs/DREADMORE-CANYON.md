@@ -6,7 +6,7 @@ Integrated in v0.34.0 for the latest Alpha 2 campaign. The user selected C — O
 
 Forked Pilgrim Road north → two raised bluff shoulders around a dark cleft → **Enter Dreadmore Canyon?** confirmation with Enter / Stay → root-hung canyon switchbacks → Fiend’s wall-clinging arena on the right-hand route → enclosed woodland grove → woodland attunement stone.
 
-The canyon floor remains near level. Fourteen-to-eighteen-metre near-vertical bluffs physically divide adjacent paths. Rounded dressing must stay outside collision faces so jumps and T dash cannot cut between corridors. Tops are inaccessible; no climb mechanic or hidden invisible maze walls. Long panels, corners and end caps share the same rock material and can be reused by the map builder after integration.
+The canyon floor remains near level. Sixteen-metre near-vertical bluffs physically divide adjacent paths. Rounded dressing must stay outside collision faces so jumps and T dash cannot cut between corridors. Tops are inaccessible; no climb mechanic or hidden invisible maze walls. Long panels, corners and end caps share the same rock material and can be reused by the map builder after integration.
 
 The maze has a readable main route and two purposeful dead ends: a weathered survey cache and a sheltered spring pocket. An old stone trail and occasional root markings indicate progress without a quest-arrow maze. The final right-hand branch opens into a 24m Fiend court; no side branch bypasses it. Daylight through foliage beyond its exit reveals the grove.
 
@@ -14,8 +14,8 @@ The maze has a readable main route and two purposeful dead ends: a weathered sur
 
 1. Dripping Bend: two ledge slimes, wet root drips as warning, landing tells and room to retreat.
 2. Resin Fork: sticky projectile across one branch followed by a rear drop; a dry shoulder prevents unavoidable slow-lock.
-3. Fern Sluice: three staggered drops into a wider pocket, then a quiet approach with wall claw marks.
-4. Canyon Fiend: visible clinging silhouette overhead, dust before a marked drop; climbing reposition, ground melee recovery and a ranged wall attack. Player body remains vulnerable during remote magic. Boss XP/core and persistent defeat must use existing reward/save systems.
+3. Fern Sluice: four concealed melee drops with sticky/moss pairs firing from ahead and behind, followed by the sheltered spring branch.
+4. Canyon Fiend: concealed fog-covered ledge overhead, dust before a marked drop; climbing reposition, ground melee recovery and a ranged wall attack. Player body remains vulnerable during remote magic. Boss XP/core and persistent defeat must use existing reward/save systems.
 
 Slimes must use actual landing damage and collision-aware navigation, not simply appear at floor level. The selected boss has its own articulated four-arm model and dedicated behavior; no recycled Warden.
 
@@ -40,3 +40,10 @@ The boss grants 350 base + 700 bonus XP and always drops an Orchid Stalker Core 
 The canyon uses reduced sunlight, dark overlapping upper-rim mist, faint moving floor wisps and Forward+ fog banks near the ground. Compatibility rendering retains the transparent atmospheric sheets. The grove remains brighter. Threat tells and floor paths must stay readable; inspect first-person captures when adjusting lighting.
 
 Run `verify-dreadmore` for focused travel/physical-wall/ambush/boss/reward/save cases; `verify-alpha2` and exported `verify-windows --suite alpha2` retain campaign coverage. Capture `--view dreadmore --art-profile darkwood` and `--view builder`. Automated route traversal does not establish a measured human playthrough or final difficulty balance.
+
+
+### v0.34.1 corrections
+
+The canyon now uses a single opaque, double-sided union surface: only exposed grid edges are extruded to a continuous 16m rim, with shared coordinates and no warped independent slabs or internal faces. Collision retains the existing route footprints. The boss waits hidden on a physical ledge in dense local fog, emerging for its marked drop. All drop-slimes and their shadows remain hidden until falling. Before the sheltered spring, four green slimes drop while sticky/moss pairs at about 7m ahead and behind reveal together and fire real projectiles. Canyon slimes reset after player death, while boss defeat, loot and attunement persist. Other regions retain their existing persistence.
+
+Canyon distance fog density .065 / Forward+ volume .055 fades long corridor ends into gray-green mist while retaining the existing stone albedo and normal textures.

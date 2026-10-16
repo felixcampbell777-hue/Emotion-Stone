@@ -10,9 +10,33 @@ func run(test:RefCounted) -> void:
 	g.load_map("a2_canyon",Vector2(0,54),true);g.player.set_physics_process(false)
 	for e in g.enemies:e.ai_enabled=false
 	await test.frames(2)
-	test.check(g.enemies.filter(func(e):return e.has_method("begin_tree_drop")).size()==7,"Three authored ledge ambushes contain seven real dropping slime variants")
+	test.check(g.enemies.filter(func(e):return e.has_method("begin_tree_drop")).size()==12,"Canyon contains eight dropping slimes plus four ranged support slimes")
+	var waiting=g.enemies.filter(func(e):return e.has_method("begin_tree_drop") and e.state=="tree_wait")
+	test.check(waiting.size()==8 and waiting.all(func(e):return not e.visual.visible and not e.get_node("Shadow").visible),"All eight drop-slimes and shadows are invisible before their ambush")
+	var support=g.enemies.filter(func(e):return e.has_method("begin_tree_drop") and e.canyon_support)
+	test.check(support.size()==4 and support.filter(func(e):return e.style=="resin_slime").size()==2 and support.filter(func(e):return e.style=="moss_slime").size()==2,"Campfire approach has four melee drops and sticky/moss ranged pairs ahead and behind")
+	test.check(support.all(func(e):return e.state=="canyon_wait" and not e.visual.visible),"Ranged reinforcements stay concealed until the melee pack triggers")
+	g.player.position=Vector3(-18,0,-3)
+	var pack=waiting.filter(func(e):return e.ambush_group=="dreadmore_sluice")
+	pack[0].ai_enabled=true;pack[0]._drop_tick(.01)
+	test.check(pack.size()==4 and pack.all(func(e):return e.state=="tree_warn") and support.all(func(e):return e.state=="idle" and e.visual.visible),"One real proximity trigger warns all four melee drops and reveals both ranged pairs together")
+	var separated=true
+	for i in range(pack.size()):
+		for j in range(i):
+			if pack[i].drop_target.distance_to(pack[j].drop_target)<1.8:separated=false
+	test.check(separated,"Four melee slimes have separate landing spots instead of overlapping into one blob")
+	for e in pack:e.ai_enabled=true;e._drop_tick(.66)
+	test.check(pack.all(func(e):return e.state=="tree_fall" and e.visual.visible),"Drop-slimes become visible only as the falling attack begins")
+	var shots=g.projectiles.size()
+	for e in support:e.direction=(g.player.position-e.position).normalized();e._release_ability()
+	test.check(g.projectiles.size()==shots+4,"Both moss shooters and sticky shooters release actual ranged projectiles")
+	g.load_map("a2_canyon",Vector2(0,54),true);g.player.set_physics_process(false)
+	for e in g.enemies:e.ai_enabled=false
+	var cliffs=g.current_world.get_node("ContinuousCanyonCliffs")
+	test.check(cliffs.mesh.get_surface_count()==1 and cliffs.material_override.transparency==BaseMaterial3D.TRANSPARENCY_DISABLED and cliffs.material_override.cull_mode==BaseMaterial3D.CULL_DISABLED,"Canyon uses one continuous opaque two-sided cliff surface without separate slab seams")
+	test.check(cliffs.material_override.albedo_texture!=null and cliffs.material_override.normal_enabled and g.environment_settings.fog_density>=.06,"Stone albedo/normal textures remain while thick distance fog obscures corridor ends")
 	var boss=g.enemies.filter(func(e):return e.definition.kind=="canyon_fiend")[0]
-	test.check(boss.state=="perched" and boss.position.y>7 and boss.joints.size()>=10,"Orchid Stalker has four articulated arms and visibly begins clinging high on the wall")
+	test.check(boss.state=="perched" and boss.position.y>7 and boss.joints.size()>=10 and not boss.art.visible,"Orchid Stalker has four articulated arms and waits concealed on a high ledge")
 	test.check(not g.alpha2.can_travel({"target":"a2_grove"}),"Living Fiend prevents entry into the attunement grove")
 	var clear=true
 	for line in g.dreadmore.spec.routes:
@@ -58,4 +82,12 @@ func run(test:RefCounted) -> void:
 	wall_world.definition.props=[{"id":"test_bluff","kind":"catalog_feature","catalog_code":"1H","at":[0,0],"rotation":45,"scale":1.0}]
 	test.check(not wall_world.safe_position(Vector3(0,0,0)),"Reusable builder bluff rejects a start/save inside its rotated solid footprint")
 	wall_world.free()
+	g.load_map("a2_canyon",Vector2(0,54),true)
+	var slime=g.enemies.filter(func(e):return e.has_method("begin_tree_drop"))[0];var id="a2_canyon/"+slime.definition.id
+	slime.take_damage(99999,Vector3.ZERO)
+	test.check(id in g.defeated_enemies,"Canyon slain slime stays defeated during the current run")
+	g.enemies.filter(func(e):return e.definition.kind=="canyon_fiend")[0].take_lance_damage(99999,Vector3.ZERO)
+	g._player_defeated();g.respawn_player();g.load_map("a2_canyon",Vector2(0,54),true)
+	test.check(id not in g.defeated_enemies and g.enemies.filter(func(e):return e.has_method("begin_tree_drop") and e.state=="tree_wait" and e.health>0).size()==8,"Actual death/respawn resets all canyon ambushes to concealed living drop-slimes")
+	test.check("a2_canyon/orchid_stalker" in g.defeated_enemies and g.enemies.filter(func(e):return e.definition.kind=="canyon_fiend")[0].health==0,"Death reset never revives a defeated boss")
 	g.player.set_physics_process(true)

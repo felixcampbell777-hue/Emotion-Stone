@@ -30,8 +30,10 @@ for z in range(-58,58):
   if selected and start is None:start=x
   if not selected and start is not None:m['terrain_regions'].append(dict(kind='path',rect=[start,z,x-start,1]));start=None
 m['enemies']=[dict(id='orchid_stalker',kind='canyon_fiend',at=[18,-35],size='giant')]
-for group,at,codes in [('dripping',[-18,34],['9E','1E']),('resin',[6,17],['2E','9E']),('sluice',[-18,-5],['1E','3E','9E'])]:
+for group,at,codes in [('dripping',[-18,34],['9E','1E']),('resin',[6,17],['2E','9E']),('sluice',[-18,-3],['9E','9E','9E','9E'])]:
  for i,code in enumerate(codes):m['catalog_enemies'].append(dict(id=group+'_'+str(i),code=code,at=[at[0]+(i%2)*1.3,at[1]+i*.8],spawn_mode='tree_drop',drop_height=5.5+i*.5,trigger_radius=5,ambush_group='dreadmore_'+group))
+for side,z in [('rear',4),('front',-10)]:
+ for i,code in enumerate(['2E','1E']):m['catalog_enemies'].append(dict(id='sluice_'+side+'_'+str(i),code=code,at=[-19.3+i*2.6,z],spawn_mode='ground'))
 m['interactions']=[dict(id='claw_warning',kind='sign',at=[7,-21],title='Fresh marks in the stone',lines=['Four hooked scores climb the cliff. Petals cling to wet stone. Above the right-hand passage, something moves.'])]
 m['exits']=[dict(id='to_road',rect=[-2,55,4,2],target='a2_crossroads',spawn=[0,-26],label='Return to the Pilgrim Road',interact=True),dict(id='to_grove',rect=[-2,-57,4,2],target='a2_grove',spawn=[0,13],label='The woodland grove',interact=True)]
 write(C/'maps/a2_canyon.json',m)
@@ -63,4 +65,4 @@ cores['profiles']['canyon_fiend']=dict(drop_rate=1,generic='orchid_core',variant
 catalog=read(C/'menagery.json')
 if not any(f['code']=='1H' for f in catalog['features']):catalog['features'].append(dict(code='1H',name='Inaccessible raised bluff',style='inaccessible_bluff',description='Tall solid rock wall; no walk-up slope. Rotate and scale to enclose paths.'))
 write(C/'menagery.json',catalog)
-print('AUTHORED DREADMORE:',len(walls),'solid wall runs, 7 ledge slimes, Orchid Stalker and attunement grove; stable woodland ward retained')
+print('AUTHORED DREADMORE:',len(walls),'union footprint runs, 8 concealed drop slimes plus 4 ranged supports, Orchid Stalker and attunement grove; stable woodland ward retained')
