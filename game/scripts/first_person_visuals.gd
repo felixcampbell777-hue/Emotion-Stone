@@ -292,7 +292,11 @@ func fit_wrist(side:String,world_target:Vector3,world_axis:Vector3,grasp:float,t
 	var upper_axis=(rig.get_bone_global_pose(lower).origin-rig.get_bone_global_pose(upper).origin).normalized()
 	var hinge=lower_basis.z-upper_axis*lower_basis.z.dot(upper_axis)
 	if hinge.length_squared()>.00001:
-		set_basis(upper,Basis(upper_axis,upper_basis.z.signed_angle_to(hinge.normalized(),upper_axis)*.65)*upper_basis)
+		# Scaling a wrapped +/-PI angle makes the upper arm jump when the
+		# forearm rolls through the back of the shoulder. Use a continuous,
+		# bounded shoulder response; the forearm carries the remaining roll.
+		var roll=upper_basis.z.signed_angle_to(hinge.normalized(),upper_axis)
+		set_basis(upper,Basis(upper_axis,.35*sin(roll))*upper_basis)
 		set_basis(lower,lower_basis)
 	set_basis(wrist,desired)
 

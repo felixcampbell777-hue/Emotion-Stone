@@ -40,7 +40,7 @@ func run(test:RefCounted) -> void:
 		actor.state=fixture[0];actor.state_duration=3;actor.state_time=3*fixture[2];actor.play_clip(fixture[1],0)
 		actor._pose_sword("water" if fixture[0]=="water" else "parry" if fixture[0]=="parry" else "lance",fixture[2]);driver.update_first_person(0)
 		test.check(meshes.all(func(m):return m.get_blend_shape_value(0)>.99 and absf(m.get_blend_shape_value(1)-fixture[3])<.01),fixture[0]+": gripping hand stays closed while the supporting or bracing palm uses its own pose")
-	var max_bend=0.0;var max_step=0.0;var max_gap=0.0
+	var max_bend=0.0;var max_step=0.0;var max_gap=0.0;var max_upper_step=0.0;var opener_left_step=0.0
 	for stage in range(1,4):
 		var previous={}
 		for sample in range(121):
@@ -60,10 +60,19 @@ func run(test:RefCounted) -> void:
 					var step=rad_to_deg(previous[side].angle_to(rotation))
 					max_step=maxf(max_step,step)
 				previous[side]=rotation
+				var upper_rotation=h.rig.get_bone_global_pose(h.bone("upper_arm",side)).basis.get_rotation_quaternion()
+				var upper_key=side+"upper"
+				if previous.has(upper_key):
+					var step=rad_to_deg(previous[upper_key].angle_to(upper_rotation))
+					if stage==1 and side=="L":opener_left_step=maxf(opener_left_step,step)
+					max_upper_step=maxf(max_upper_step,step)
+				previous[upper_key]=upper_rotation
 	print("SWING LIMBS bend=",max_bend," step=",max_step," gap=",max_gap)
 	test.check(max_bend<38,"Three swing paths keep wrist deviation within a human bend envelope")
 	test.check(max_step<25,"Swing wrists rotate continuously without sudden inversion between adjacent samples")
 	test.check(max_gap<.018,"Both skinned grip centers stay on the moving hilt throughout the combo")
+	print("UPPER ARM MAX STEP ",max_upper_step," LEFT OPENER ",opener_left_step)
+	test.check(opener_left_step<25,"Upper arms stay continuous as forearm roll crosses the signed-angle seam; no left-arm inversion during the opener")
 	var join_error=0.0
 	for stage in [1,2]:
 		var poses={}
