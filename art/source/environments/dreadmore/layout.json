@@ -1,0 +1,150 @@
+{
+  "status": "staged; boss appearance awaiting user choice; not installed into live campaign",
+  "entry_from": "a2_crossroads north approach",
+  "entry_prompt": "Enter Dreadmore Canyon?",
+  "canyon_bounds": [
+    -36,
+    -60,
+    36,
+    60
+  ],
+  "wall_height_m": [
+    14,
+    18
+  ],
+  "minimum_corridor_m": 4.8,
+  "routes": [
+    [
+      [
+        0,
+        54
+      ],
+      [
+        0,
+        42
+      ],
+      [
+        -18,
+        42
+      ],
+      [
+        -18,
+        24
+      ],
+      [
+        6,
+        24
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        -18,
+        6
+      ],
+      [
+        -18,
+        -12
+      ],
+      [
+        6,
+        -12
+      ],
+      [
+        6,
+        -24
+      ],
+      [
+        18,
+        -24
+      ],
+      [
+        18,
+        -42
+      ],
+      [
+        0,
+        -42
+      ],
+      [
+        0,
+        -54
+      ]
+    ],
+    [
+      [
+        6,
+        24
+      ],
+      [
+        24,
+        24
+      ],
+      [
+        24,
+        12
+      ]
+    ],
+    [
+      [
+        -18,
+        -12
+      ],
+      [
+        -30,
+        -12
+      ],
+      [
+        -30,
+        -30
+      ]
+    ]
+  ],
+  "arena_rect": [
+    6,
+    -48,
+    24,
+    24
+  ],
+  "grove": {
+    "radius_m": 15,
+    "boundary": "continuous colliding interlocked trees, roots and dense bushes; only canyon entry open",
+    "stone": "woodland attunement stone; preserve earned woodland ward and legacy IDs"
+  },
+  "encounters": [
+    {
+      "id": "dripping_bend",
+      "at": [
+        -18,
+        34
+      ],
+      "situation": "two slimes drop from root ledges after visible droplets; retreat pocket before bend"
+    },
+    {
+      "id": "resin_fork",
+      "at": [
+        6,
+        18
+      ],
+      "situation": "resin slime lobs puddle across short branch, second slime drops behind; dry rock shoulder provides an escape"
+    },
+    {
+      "id": "fern_sluice",
+      "at": [
+        -18,
+        -5
+      ],
+      "situation": "three staggered slime drops into a widened damp pocket; small warning splashes precede landing"
+    },
+    {
+      "id": "canyon_fiend",
+      "at": [
+        18,
+        -35
+      ],
+      "situation": "visible silhouette clings high across arena; marked drop on approach; defeat opens right-hand grove route",
+      "visual": "await user selection A/B/C"
+    }
+  ]
+}
