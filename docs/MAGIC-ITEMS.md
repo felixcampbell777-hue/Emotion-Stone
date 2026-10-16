@@ -1,3 +1,5 @@
+Current v0.33.1 presentation: equipped armor, rings, necklaces and headwear have no temporary mesh overlays or item recolors on the character or inventory preview. Fitting is deferred to Blender. Slots, stats, set effects, saves and lantern illumination remain active; weapons retain their existing visuals.
+
 # Magic item codex and equipment
 
 Menagerie [M] → Magic items lists 32 wearables plus three healing draughts. Filter by category, read the effect, and Claim specimen (or Claim all test specimens). Inventory [I] → Equipment & Items: click a slot, choose an owned item; Remove restores starter clothing/empty slot. Drag the live 3D preview to rotate it. Two rings may be worn, but a unique ring cannot occupy both slots. Save explicitly to retain claims/equipment.

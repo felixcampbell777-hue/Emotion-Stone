@@ -50,7 +50,7 @@ func run(test:RefCounted) -> void:
 	var cooldown=gear.phoenix_cooldown
 	await test.frames(6)
 	test.check(gear.phoenix_cooldown==cooldown,"Equipment menu pauses magic-item cooldowns")
-	test.check(game.inventory.preview.visible and game.inventory.preview.actor.skeleton.find_children("MagicGear_*","BoneAttachment3D",false,false).size()>=8,"Inventory live 3D model displays the actual equipped accessories")
+	test.check(game.inventory.preview.visible and game.inventory.preview.actor.find_children("MagicGear_*","BoneAttachment3D",true,false).is_empty() and game.player.find_children("MagicGear_*","BoneAttachment3D",true,false).is_empty(),"Equipped items keep their effects and slots without accessories on the player or inventory skin")
 	var grid=game.inventory.slots.get_child(2)
 	for button in grid.get_children():
 		if button is Button and button.text.begins_with("RING 2"): button.pressed.emit(); break
