@@ -139,6 +139,10 @@
         "library_rat": {
           "type": "integer",
           "minimum": 0
+        },
+        "canyon_fiend": {
+          "type": "integer",
+          "minimum": 1
         }
       }
     },

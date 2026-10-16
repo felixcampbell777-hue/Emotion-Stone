@@ -160,6 +160,7 @@ func _build_cobbles(rng: RandomNumberGenerator) -> void:
 	add_child(batch)
 
 func safe_position(at: Vector3) -> bool:
+	if load("res://scripts/dreadmore.gd").blocked(String(definition.id),at):return false
 	if not bounds.grow(-.30).has_point(Vector2(at.x,at.z)):
 		return false
 	for offset in [Vector2(.23,0),Vector2(-.23,0),Vector2(0,.23),Vector2(0,-.23)]:
@@ -174,6 +175,10 @@ func safe_position(at: Vector3) -> bool:
 	for offset in [Vector3(.24,0,0),Vector3(-.24,0,0),Vector3(0,0,.24),Vector3(0,0,-.24)]:
 		if absf(ground_height(at)-ground_height(at+offset))>.45: return false
 	for prop in definition.props+definition.interactions:
+		if prop.get("catalog_code","")=="1H":
+			var scale=float(prop.get("scale",1))
+			var local=Basis(Vector3.UP,deg_to_rad(float(prop.get("rotation",0)))).inverse()*(at-Vector3(prop.at[0],0,prop.at[1]))/scale
+			if absf(local.x)<4+.25/scale and absf(local.z)<3+.25/scale:return false
 		if prop.kind in ["castle_wall","castle_tower","castle_gate","castle_keep","market_stall"]:
 			var point=(Vector2(at.x,at.z)-Vector2(prop.at[0],prop.at[1])).rotated(deg_to_rad(float(prop.get("rotation",0))))/float(prop.get("scale",1))
 			for rect in load("res://scripts/castle_kit.gd").solid_rects(prop):

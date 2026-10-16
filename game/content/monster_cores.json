@@ -132,6 +132,13 @@
       "family": "boss",
       "healing_percent": 0.4,
       "color": "#9bd7df"
+    },
+    {
+      "id": "orchid_core",
+      "name": "Orchid Stalker Core",
+      "family": "boss",
+      "healing_percent": 0.65,
+      "color": "#7e9d82"
     }
   ],
   "profiles": {
@@ -246,6 +253,13 @@
       "variant": "",
       "variant_chance": 0,
       "boss_bonus": 250
+    },
+    "canyon_fiend": {
+      "drop_rate": 1,
+      "generic": "orchid_core",
+      "variant": "",
+      "variant_chance": 0,
+      "boss_bonus": 700
     }
   },
   "beasts": [

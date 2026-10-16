@@ -104,7 +104,7 @@ func _ready() -> void :
 	var palette = VBoxContainer.new();palette.size_flags_horizontal = SIZE_EXPAND_FILL;palette_scroll.add_child(palette)
 	var label = Label.new();label.text = "PIECES - click or drag";palette.add_child(label)
 	var search = LineEdit.new();search.placeholder_text = "Find name or code...";palette.add_child(search)
-	var names={"terrain":"Terrain surfaces", "A":"Trees", "B":"Rocks", "C":"Wilderness", "D":"Paths", "E":"Creatures", "F":"Hills & bluffs", "G":"Caves", "tools":"Area tools & paint"}
+	var names={"terrain":"Terrain surfaces", "A":"Trees", "B":"Rocks", "C":"Wilderness", "D":"Paths", "E":"Creatures", "F":"Hills & bluffs", "G":"Caves", "H":"Impassable bluffs", "tools":"Area tools & paint"}
 	var groups=[]
 	for category in names:
 		var header=Button.new(); header.text="- "+names[category]; header.alignment=HORIZONTAL_ALIGNMENT_LEFT; palette.add_child(header)
@@ -202,6 +202,7 @@ func fit_camera() -> void:
 	var b=area().bounds; var low=0.0; var high=0.0
 	for patch in area().get("sculpted_terrain",[]): low=minf(low,patch.height); high=maxf(high,patch.height)
 	for prop in area().props:
+		if prop.get("catalog_code","")=="1H": high=maxf(high,16*float(prop.get("scale",1)))
 		if prop.get("catalog_code","").ends_with("F"): high=maxf(high,3*float(prop.get("scale",1)))
 	focus=Vector3((b[0]+b[2])*.5,(low+high)*.5,(b[1]+b[3])*.5); position_camera()
 	var horizontal=0.0; var vertical=0.0

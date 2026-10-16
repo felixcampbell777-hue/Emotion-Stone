@@ -17,6 +17,7 @@ const Conversation=preload("res://scripts/conversation.gd")
 var monster_cores=preload("res://scripts/monster_cores.gd").new()
 var magic_items=preload("res://scripts/magic_items.gd").new()
 var alpha2=preload("res://scripts/alpha2_campaign.gd").new()
+var dreadmore=preload("res://scripts/dreadmore.gd").new()
 var alpha2_import_mode="alpha"
 var alpha2_import_path="" # Private fixture override; never populated by normal gameplay.
 var goblin_campaign=preload("res://scripts/goblin_campaign.gd").new()
@@ -124,6 +125,7 @@ func read_data(path: String) -> Dictionary:
 
 func _ready() -> void:
 	alpha2.game=self
+	dreadmore.game=self
 	magic_items.game=self
 	monster_cores.game=self
 	DisplayServer.window_set_title("Coastal Foundation v"+str(read_data("res://content/release.json").version))
@@ -619,7 +621,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 			npc.set_arm_wrapped(not mother_unwrapped)
 		current_world.interactions.append({"id":npc_data.id,"title":npc.definition.display_name,"lines":npc_data.dialogue,"position":npc.position,"actor":npc,"role":role})
 	for enemy_data in data.get("enemies",[]):
-		var enemy=load("res://scripts/library_enemy.gd").new() if String(enemy_data.kind).begins_with("library_") else load("res://scripts/bellkeeper.gd").new() if enemy_data.kind=="bellkeeper" else BetaEnemy.new() if String(enemy_data.kind).begins_with("beta_") else GoblinEnemy.new() if String(enemy_data.kind).begins_with("goblin_") else Slime.new() if enemy_data.kind=="slime" else ForestEnemy.new()
+		var enemy=load("res://scripts/canyon_fiend.gd").new() if enemy_data.kind=="canyon_fiend" else load("res://scripts/library_enemy.gd").new() if String(enemy_data.kind).begins_with("library_") else load("res://scripts/bellkeeper.gd").new() if enemy_data.kind=="bellkeeper" else BetaEnemy.new() if String(enemy_data.kind).begins_with("beta_") else GoblinEnemy.new() if String(enemy_data.kind).begins_with("goblin_") else Slime.new() if enemy_data.kind=="slime" else ForestEnemy.new()
 		enemy.name=enemy_data.id
 		var encounter_id=id+"/"+enemy_data.id
 		var saved_enemy={"health":0} if encounter_id in defeated_enemies else enemy_states.get(encounter_id,{})
@@ -699,7 +701,7 @@ func add_enemy_bar(enemy:Node3D) -> void:
 func _process(delta: float) -> void:
 	if player==null:
 		return
-	player.input_enabled=not dialog.visible and not conversation.visible and not inventory.visible and not skill_tree.visible and not help_panel.visible and (pause_menu==null or not pause_menu.visible) and not recovering and (title_screen==null or not title_screen.visible) and (menagery==null or not menagery.opened) and (world_browser==null or not world_browser.visible) and (monster_cores.warning==null or not monster_cores.warning.visible)
+	player.input_enabled=not dreadmore.is_open() and not dialog.visible and not conversation.visible and not inventory.visible and not skill_tree.visible and not help_panel.visible and (pause_menu==null or not pause_menu.visible) and not recovering and (title_screen==null or not title_screen.visible) and (menagery==null or not menagery.opened) and (world_browser==null or not world_browser.visible) and (monster_cores.warning==null or not monster_cores.warning.visible)
 	if not player.input_enabled:
 		_cancel_mouse_charge()
 	for enemy in enemies:
@@ -1035,7 +1037,7 @@ func apply_save(data: Dictionary) -> bool:
 	var b=test_world.definition.bounds
 	test_world.bounds=Rect2(b[0],b[1],b[2]-b[0],b[3]-b[1])
 	var at=Vector3(data.position[0],float(data.get("ground_y",0)),data.position[1])
-	if mode=="alpha2" and int(data.get("alpha2",{}).get("layout_revision",1))<3 and data.map!="a2_haven":
+	if mode=="alpha2" and int(data.get("alpha2",{}).get("layout_revision",1))<4 and data.map!="a2_haven":
 		var arrival=test_world.definition.spawn
 		at=Vector3(arrival[0],0,arrival[1])
 	if data.map in ["home_upstairs","home_downstairs"] and int(data.get("home_layout",1))<2:
@@ -1195,7 +1197,7 @@ func _physics_process(delta: float) -> void:
 			notify("Not enough stamina for a heavy swing.")
 
 func _refresh_simulation() -> void:
-	player.input_enabled=not dialog.visible and not conversation.visible and not inventory.visible and not skill_tree.visible and not help_panel.visible and (pause_menu==null or not pause_menu.visible) and not recovering and (title_screen==null or not title_screen.visible) and (menagery==null or not menagery.opened) and (world_browser==null or not world_browser.visible) and (monster_cores.warning==null or not monster_cores.warning.visible)
+	player.input_enabled=not dreadmore.is_open() and not dialog.visible and not conversation.visible and not inventory.visible and not skill_tree.visible and not help_panel.visible and (pause_menu==null or not pause_menu.visible) and not recovering and (title_screen==null or not title_screen.visible) and (menagery==null or not menagery.opened) and (world_browser==null or not world_browser.visible) and (monster_cores.warning==null or not monster_cores.warning.visible)
 	if not player.input_enabled: magicnow_index=0
 	camera_driver.refresh_pointer()
 	for enemy in enemies:
@@ -1489,6 +1491,8 @@ func notify(text: String) -> void:
 
 func _verify() -> void:
 	var args=OS.get_cmdline_user_args()
+	if "--suite" in args and args[args.find("--suite")+1]=="dreadmore":
+		await load("res://scripts/dreadmore_verification.gd").new().run(self);return
 	if "--suite" in args and args[args.find("--suite")+1]=="alpha2":
 		await load("res://scripts/alpha2_verification.gd").new().run(self);return
 	if "--suite" in args and args[args.find("--suite")+1]=="unarmed":
@@ -1513,6 +1517,9 @@ func _capture(directory: String) -> void:
 		view=arguments[arguments.find("--capture-view")+1]
 	if view=="mob-facing":
 		await load("res://scripts/mob_facing_capture.gd").new().run(self,directory)
+		get_tree().quit();return
+	if view=="dreadmore":
+		await load("res://scripts/dreadmore_capture.gd").new().run(self,directory)
 		get_tree().quit();return
 	if view=="alpha2":
 		await load("res://scripts/alpha2_capture.gd").new().run(self,directory)

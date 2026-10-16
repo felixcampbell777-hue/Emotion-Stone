@@ -1,3 +1,5 @@
+Current addition: [Dreadmore Canyon and Stillroot Grove](DREADMORE-CANYON.md) (v0.34.0). The woodland ward now lives beyond the Orchid Stalker; prior earned wards remain valid.
+
 Current region authoring and encounter behavior: [ALPHA2-REGIONS.md](ALPHA2-REGIONS.md).
 
 # Alpha 2 — The Hollow Bell

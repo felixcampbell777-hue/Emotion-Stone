@@ -1,6 +1,6 @@
-# Dreadmore Canyon — staged design
+# Dreadmore Canyon and Stillroot Grove
 
-The current playable release remains v0.33.7. These are editable terrain and route precursors, not an installed or playtested campaign update. The Canyon Fiend appearance is awaiting the user’s requested choice.
+Integrated in v0.34.0 for the latest Alpha 2 campaign. The user selected C — Orchid Stalker. The runtime model is original locally authored geometry with custom chitin, not the concept painting itself. No heroine model/animation changes or new external downloads.
 
 ## Route
 
@@ -17,7 +17,7 @@ The maze has a readable main route and two purposeful dead ends: a weathered sur
 3. Fern Sluice: three staggered drops into a wider pocket, then a quiet approach with wall claw marks.
 4. Canyon Fiend: visible clinging silhouette overhead, dust before a marked drop; climbing reposition, ground melee recovery and a ranged wall attack. Player body remains vulnerable during remote magic. Boss XP/core and persistent defeat must use existing reward/save systems.
 
-Slimes must use actual landing damage and collision-aware navigation, not simply appear at floor level. The new boss will be authored after its visual choice; there is no placeholder recycled Warden.
+Slimes must use actual landing damage and collision-aware navigation, not simply appear at floor level. The selected boss has its own articulated four-arm model and dedicated behavior; no recycled Warden.
 
 ## Grove
 
@@ -29,8 +29,14 @@ A roughly 30m clearing framed by overlapping colliding trunks, roots and dense b
 - **B — Thornback:** broad stone-plated lizard, powerful digging foreclaws, low weighty stance and whipping tail. Rockier and heavier.
 - **C — Orchid Stalker:** tall four-armed insectoid with hooked climbing limbs and a fern/flower-shaped head crest. More alien and agile.
 
-All options fit the same canyon court and drop reveal. Final rig, attack reach, tells and collision will be sized to the chosen creature.
+C is implemented at approximately four metres including its petal crest, with articulated shoulder/elbow groups, compound eyes, hooked claws and digitigrade legs. A/B remain concept alternatives only.
 
-## Integration and verification still required
+## Authoring and verification
 
-Register canyon/grove maps, confirmation modal and pause gating; place slime triggers; implement the selected boss; preserve woodland ward migration; add the reusable bluff palette entry; traverse with the actual capsule/jump/dash and enemy navigation; inspect first-person native captures; verify rewards, saves, menus and Windows release; purge the superseded release only after success. Concept art is direction, not a promise of an already matching runtime mesh.
+`game/content/dreadmore.json` owns the solid cliff runs and route sketch; `tools/create_dreadmore_content.py` regenerates these maps and their campaign references without changing existing ward IDs. `dreadmore.gd` owns reusable eroded cliff geometry, canopy/ferns, physical gate, entry confirmation and atmosphere. `canyon_fiend.gd` owns the new boss state machine; `orchid_thorn.gd` owns real claw-origin 3D shots and reflections. Builder category **Impassable bluffs**, code **1H**, places the same solid wall geometry with normal rotation/scale controls.
+
+The boss grants 350 base + 700 bonus XP and always drops an Orchid Stalker Core (65% maximum-HP healing). Landing warnings last 1.4 seconds; drop recovery, melee recoveries and reflected-thorn knockdowns expose it. Defeat persists and removes the thorn gate. The grove stone grants the existing woodland ward and its 250 XP exactly once. Earlier earned woodland wards are retained via layout revision 4 and `wood_ward_legacy`, without requiring a retroactive boss kill. Earlier world positions relocate safely on layout migration; original Alpha/Beta save files are read only during tests.
+
+The canyon uses reduced sunlight, dark overlapping upper-rim mist, faint moving floor wisps and Forward+ fog banks near the ground. Compatibility rendering retains the transparent atmospheric sheets. The grove remains brighter. Threat tells and floor paths must stay readable; inspect first-person captures when adjusting lighting.
+
+Run `verify-dreadmore` for focused travel/physical-wall/ambush/boss/reward/save cases; `verify-alpha2` and exported `verify-windows --suite alpha2` retain campaign coverage. Capture `--view dreadmore --art-profile darkwood` and `--view builder`. Automated route traversal does not establish a measured human playthrough or final difficulty balance.

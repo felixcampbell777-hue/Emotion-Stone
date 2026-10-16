@@ -1,0 +1,61 @@
+{
+  "id": "a2_grove",
+  "display_name": "The Stillroot Grove",
+  "subtitle": "A quiet circle of trees shelters the woodland attunement stone.",
+  "seed": 20261016,
+  "bounds": [
+    -22,
+    -22,
+    22,
+    22
+  ],
+  "spawn": [
+    0,
+    13
+  ],
+  "sea": false,
+  "biome": "woodland",
+  "terrain_regions": [
+    {
+      "kind": "grass",
+      "rect": [
+        -22,
+        -22,
+        44,
+        44
+      ]
+    },
+    {
+      "kind": "path",
+      "rect": [
+        -1.5,
+        -6,
+        3,
+        22
+      ]
+    }
+  ],
+  "props": [],
+  "npcs": [],
+  "interactions": [],
+  "exits": [
+    {
+      "id": "to_canyon",
+      "rect": [
+        -2,
+        17,
+        4,
+        2
+      ],
+      "target": "a2_canyon",
+      "spawn": [
+        0,
+        -54
+      ],
+      "label": "Return to Dreadmore Canyon",
+      "interact": true
+    }
+  ],
+  "enemies": [],
+  "catalog_enemies": []
+}

@@ -9,7 +9,9 @@ static func create(definition:Dictionary) -> Node3D:
 	var catalog=JSON.parse_string(FileAccess.get_file_as_string("res://content/menagery.json"))
 	var entry=catalog.features.filter(func(item): return item.code==definition.catalog_code)[0]
 	var style=entry.style
-	if entry.code.ends_with("F"):
+	if style=="inaccessible_bluff":
+		load("res://scripts/dreadmore.gd").bluff(node,[-4,-3,8,6,16])
+	elif entry.code.ends_with("F"):
 		load("res://scripts/terrain_kit.gd").create(node,entry.code)
 	elif entry.code.ends_with("G"):
 		load("res://scripts/cave_kit.gd").feature(node,style)
