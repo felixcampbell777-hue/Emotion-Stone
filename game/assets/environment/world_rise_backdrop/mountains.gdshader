@@ -2,6 +2,7 @@ shader_type spatial;
 render_mode unshaded, cull_disabled, fog_disabled;
 uniform sampler2D stone : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform vec3 haze_color : source_color = vec3(0.69,0.79,0.84);
+uniform float daylight = 1.0;
 varying vec3 world_at;
 varying vec3 world_normal;
 varying float local_height;
@@ -13,5 +14,5 @@ void fragment(){
  float sun=0.72+0.28*max(0.0,dot(n,normalize(vec3(-0.45,0.75,0.3))));
  vec3 color=COLOR.rgb*(vec3(0.7)+rock*0.7)*sun;
  float low_haze=1.0-smoothstep(-350.0,-130.0,local_height);
- ALBEDO=mix(color,haze_color,low_haze*0.86);ROUGHNESS=1.0;
+ ALBEDO=mix(color,haze_color,low_haze*0.86)*mix(vec3(.055,.09,.18),vec3(1.0),daylight);ROUGHNESS=1.0;
 }

@@ -100,13 +100,15 @@ static func read(path: String = SAVE_PATH) -> Dictionary:
 	if parsed.get("well_gift_stage","not_started") not in ["not_started","coin_ready","potion_owned"]:
 		return {}
 	var defeated=parsed.get("defeated_enemies",[])
-	if not defeated is Array or defeated.size()>128:
+	if not defeated is Array or defeated.size()>(256 if mode=="world_rise" else 128):
 		return {}
 	var allowed_story=["slime_forest/forest_slime","herb_glade/briar_boar","herb_glade/thorn_wisp","herb_glade/briar_boar_second","herb_glade/stone_warden"]
 	for map_name in ["wr_floor_01","wr_boss_chamber","jungle_approach","queen_arena","beta_meadow"]+JSON.parse_string(FileAccess.get_file_as_string("res://content/alpha2.json")).maps:
 		var area=WorldPacks.definition(map_name)
 		for mob in area.get("catalog_enemies",[]): allowed_story.append(map_name+"/"+mob.id)
-		for mob in area.get("enemies",[]): allowed_story.append(map_name+"/"+mob.id)
+		for mob in area.get("enemies",[]):
+			allowed_story.append(map_name+"/"+mob.id)
+			if map_name=="wr_floor_01":allowed_story.append(map_name+"/"+mob.id+"_night")
 	for map_name in ["goblin_approach","goblin_cave","goblin_depths"]:
 		for mob in WorldPacks.definition(map_name).get("enemies",[]): allowed_story.append(map_name+"/"+mob.id)
 	if not preload("res://scripts/goblin_campaign.gd").valid_save(parsed.get("goblin_campaign",{}),defeated): return {}

@@ -91,6 +91,7 @@ func icon(col:int,row:int) -> AtlasTexture:
 	var texture=AtlasTexture.new(); texture.atlas=ICON_ATLAS; texture.region=Rect2(col*443.5,row*443.5,443.5,443.5); return texture
 
 func icon_for(entry:Dictionary) -> Texture2D:
+	if entry.get("id","")=="leaf_shield":return load("res://assets/ui/inventory/leaf-shield.svg")
 	match String(entry.get("kind","")):
 		"weapon": return load("res://assets/ui/inventory/beta-longsword.png") if game.personal_character_enabled() else icon(0,1)
 		"potion": return icon(0,0)
@@ -207,6 +208,8 @@ func refresh_detail() -> void:
 	detail.add_child(game.label("\nI closes inventory · equipment and items pause the world.",13,Color("#c9c0a2")))
 
 func refresh_apparel_detail(entry:Dictionary) -> void:
+	if entry.category=="shield":
+		detail.add_child(game.label("Crafted shield · equipment and blocking mechanics coming later.",15,Color("#c9c0a2")));return
 	var target=selected_slot
 	if target.is_empty():
 		detail.add_child(game.label("Select an equipment slot on the left to equip this item.",15,Color("#c9c0a2"))); return

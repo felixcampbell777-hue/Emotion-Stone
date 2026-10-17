@@ -1,5 +1,6 @@
 {
   "materials": {
+    "elder_leaves": {"name":"Elder Leaves","chance":0.2,"value":0,"beast":"vault_elder"},
     "boar_hide": {
       "name": "Boar Hide",
       "chance": 0.35,
@@ -26,6 +27,7 @@
     }
   },
   "coins": {
+    "vault_elder": [45,130],
     "library_boar": [
       2,
       4
@@ -36,6 +38,7 @@
     ]
   },
   "recipes": {
+    "leaf_shield": {"level":1,"copper":1000,"materials":{"elder_leaves":5},"requires_elder":true},
     "boar_hide_armor": {
       "level": 5,
       "copper": 100,

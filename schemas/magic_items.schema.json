@@ -39,6 +39,7 @@
               "boots",
               "headwear",
               "necklace",
+              "shield",
               "consumable"
             ]
           },
@@ -68,6 +69,7 @@
             "minProperties": 1,
             "additionalProperties": false,
             "properties": {
+              "elder_regen":{"type":"number","minimum":0,"maximum":1},
               "armor": {
                 "type": "number",
                 "minimum": -0.5,

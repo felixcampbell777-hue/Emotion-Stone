@@ -1,5 +1,7 @@
 {
   "items": [
+    {"id":"elder_heart_necklace","code":"WRE","category":"necklace","name":"Elder Heart Necklace","description":"While equipped, restore 1 HP every 10 seconds of gameplay, including during combat. A rare Elder drop.","color":"#538d78","accent":"#8cddc7","variant":0,"effects":{"elder_regen":1}},
+    {"id":"leaf_shield","code":"WRL","category":"shield","name":"Leaf Shield","description":"Crafted from five Elder Leaves and 1,000 copper after defeating the Elder. Kept in inventory; shield equipment and combat mechanics will be added later.","color":"#52794d","accent":"#abc581","variant":0,"effects":{"armor":0}},
     {
       "id": "tidal_signet",
       "code": "R1",
