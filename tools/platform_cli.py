@@ -1,6 +1,7 @@
 """Local editing/build CLI. Routine content edits never invoke image generation."""
 import argparse
 import copy
+import contextlib
 import hashlib
 import json
 import math
@@ -10,6 +11,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 import zipfile
 
@@ -262,6 +264,19 @@ def digest(paths,extra=''):
     return result.hexdigest()
 
 
+def prune_test_output():
+    """Keep current visual evidence and cheap audit caches, never fixture history."""
+    directory=ROOT/'output/verification'
+    keep={'windows-render','current-render-evidence.json','user-heroine-draft','user-heroine-anime-draft',
+          'sword-clearance.json','walk-skirt.json','advanced-sword-clearance.json','advanced-walk-skirt.json',
+          'icon-source.sha256','icon-report.json','latest-test-result.json','latest-test.log'}
+    if directory.exists():
+        for path in directory.iterdir():
+            if path.name not in keep:
+                if path.is_dir(): shutil.rmtree(path)
+                else: path.unlink()
+
+
 def run_process(arguments,timeout=240,log='last-build.log',rendered=False):
     started=time.perf_counter()
     options={}
@@ -270,11 +285,23 @@ def run_process(arguments,timeout=240,log='last-build.log',rendered=False):
         info.dwFlags|=subprocess.STARTF_USESHOWWINDOW
         info.wShowWindow=0
         options['startupinfo']=info
-    result=subprocess.run(arguments,cwd=ROOT,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=timeout,**options)
+    disposable=any(flag in arguments for flag in ['--verify','--capture','--builder-checks','--builder-capture']) or any('focused_' in str(arg) and str(arg).endswith('_checks.gd') for arg in arguments)
+    # Godot resolves user:// from APPDATA on Windows. Isolate both saves and
+    # shader/log caches; TemporaryDirectory also cleans on errors/timeouts.
+    with tempfile.TemporaryDirectory(prefix='coastal-test-') if disposable else contextlib.nullcontext() as scratch:
+        if disposable:
+            options['env']={**os.environ,'APPDATA':scratch,'LOCALAPPDATA':scratch}
+        result=subprocess.run(arguments,cwd=ROOT,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=timeout,**options)
     log_path=ROOT/'output/verification'/log
     log_path.parent.mkdir(parents=True,exist_ok=True)
-    log_path.write_text(result.stdout+result.stderr,encoding='utf-8')
-    if result.returncode or 'SCRIPT ERROR:' in result.stderr or '\nERROR:' in result.stderr:
+    failed=bool(result.returncode or 'SCRIPT ERROR:' in result.stderr or '\nERROR:' in result.stderr)
+    if disposable:
+        log_path=log_path.parent/'latest-test.log'
+        write(log_path.parent/'latest-test-result.json',{'passed':not failed,'command':[str(arg) for arg in arguments],
+              'summary':[line for line in result.stdout.splitlines() if line.startswith(('VERIFICATION_','BETA_CHECKS','MAP_BUILDER_CHECKS','CAPTURE_OK'))]})
+        if not failed: log_path.unlink(missing_ok=True)
+    if not disposable or failed: log_path.write_text(result.stdout+result.stderr,encoding='utf-8')
+    if failed:
         print((result.stdout+result.stderr)[-8000:])
         raise RuntimeError(f'Command failed; see {log_path}')
     print(f'OK: {Path(arguments[0]).name} ({time.perf_counter()-started:.2f}s)')
@@ -670,3 +697,6 @@ if __name__=='__main__':
     except (ValueError,RuntimeError,FileNotFoundError,subprocess.TimeoutExpired) as error:
         print(f'ERROR: {error}',file=sys.stderr)
         sys.exit(1)
+    finally:
+        if len(sys.argv)>1 and sys.argv[1].startswith(('verify','capture')):
+            prune_test_output()

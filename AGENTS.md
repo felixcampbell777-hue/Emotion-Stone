@@ -242,3 +242,4 @@ Monster cores v0.22.0: monster_cores.json explicitly profiles monsters and exclu
 
 
 Canyon distance fog density .065 / Forward+ volume .055 fades long corridor ends into gray-green mist while retaining the existing stone albedo and normal textures.
+Standing test retention policy: verification/capture runs through platform.cmd use disposable APPDATA/LOCALAPPDATA directories, removed on success, failure or timeout. Never leave test saves in the player's Godot data folder. Keep only one latest compact test result (failure log only when needed), current accepted rendered evidence, and small hash/audit caches. Do not retain historical suite reports, successful logs or fixture folders. User-authored Blender drafts, player saves and map fragments are not test artifacts. Tooling-only changes do not require a game release or repeat animation captures.

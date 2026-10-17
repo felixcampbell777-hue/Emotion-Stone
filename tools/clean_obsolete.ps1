@@ -9,16 +9,9 @@ $taskTargets += Get-ChildItem -LiteralPath $taskWindows -Force | Where-Object { 
 $taskTargets += Get-Item -LiteralPath (Join-Path $taskRoot 'art/source/history') -ErrorAction SilentlyContinue
 $taskTargets += Get-ChildItem -LiteralPath (Join-Path $taskRoot 'art/source') -File | Where-Object { $_.Extension -match '^\.blend\d+$' }
 $taskTargets += Get-Item -LiteralPath (Join-Path $taskRoot 'output/previews') -ErrorAction SilentlyContinue
-$taskKeepVerification = @('windows-render','integration-report.json','export-integration-report.json','integration.log','builder-checks.log','export-integration.log','windows-capture.log','windows-export.log','asset-build.log','import.log','icon-report.json','icon-source.sha256','sword-clearance.json','sword-clearance.log','walk-skirt.json','walk-skirt.log')
+$taskKeepVerification = @('windows-render','current-render-evidence.json','latest-test-result.json','latest-test.log','icon-report.json','icon-source.sha256','sword-clearance.json','walk-skirt.json','advanced-sword-clearance.json','advanced-walk-skirt.json','user-heroine-draft','user-heroine-anime-draft')
 $taskVerification = Join-Path $taskRoot 'output/verification'
-$taskKeepVerification += @('current-render-evidence.json','advanced-sword-clearance.json','advanced-sword-clearance.log','advanced-walk-skirt.json','advanced-walk-skirt.log','character-detail.log','focused-environment.log')
-$taskKeepVerification += @('user-heroine-draft','user-heroine-anime-draft')
-$taskKeepVerification += @('sea-dragon-source-report.json','focused-sea_dragon.log','combat-skills-source-report.json','focused-skills.log','dash-uppercut-source-report.json','focused-uppercut.log','unarmed-source-report.json','focused-unarmed.log','alpha2-source-report.json','focused-alpha2.log','dreadmore-source-report.json','focused-dreadmore.log','orchid-model.log')
-$taskKeepVerification += @('rise-source-report.json','focused-rise.log','beta-baseline-comparison.log')
-$taskKeepVerification += @('focused-beta.log','beta-heroine-export.log','beta-rat-export.log')
 $taskTargets += Get-ChildItem -LiteralPath $taskVerification -Force | Where-Object { $_.Name -notin $taskKeepVerification }
-$taskCaptureLog = Get-Item -LiteralPath (Join-Path $taskVerification 'windows-capture.log')
-$taskCaptureCutoff = $taskCaptureLog.LastWriteTime.AddMinutes(-2)
 $taskAcceptedFrames = @()
 $taskEvidencePath = Join-Path $taskVerification 'current-render-evidence.json'
 if (Test-Path -LiteralPath $taskEvidencePath) {
@@ -30,13 +23,7 @@ if (Test-Path -LiteralPath $taskEvidencePath) {
 }
 foreach ($taskCaptureItem in (Get-ChildItem -LiteralPath (Join-Path $taskVerification 'windows-render') -Force)) {
     if ($taskCaptureItem.Name -in $taskAcceptedFrames) { continue }
-    $taskCaptureDate = $taskCaptureItem.LastWriteTime
-    if ($taskCaptureItem.PSIsContainer) {
-        # Overwriting frames doesn't refresh the directory timestamp.
-        $taskNewestFrame = Get-ChildItem -LiteralPath $taskCaptureItem.FullName -Recurse -File | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-        if ($taskNewestFrame) { $taskCaptureDate = $taskNewestFrame.LastWriteTime }
-    }
-    if ($taskCaptureDate -lt $taskCaptureCutoff) { $taskTargets += $taskCaptureItem }
+    $taskTargets += $taskCaptureItem
 }
 $taskRemoved = @()
 foreach ($taskItem in $taskTargets) {
