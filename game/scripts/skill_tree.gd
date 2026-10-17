@@ -19,6 +19,7 @@ var branches:HBoxContainer
 var scroll:ScrollContainer
 var canvas:Control
 var shown:Array=[]
+var rise_menu:Control
 func configure(owner_game:Control) -> void:
 	game=owner_game;set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);mouse_filter=Control.MOUSE_FILTER_STOP
 	var frost=Frost.new();add_child(frost);frost.configure(game)
@@ -43,8 +44,14 @@ func configure(owner_game:Control) -> void:
 	close_button=game.button("Return / Escape",close);add_child(close_button);visible=false
 func revealed(id:String) -> bool:
 	var item=game.progression.skill(id)
+	if item.is_empty():return false
 	return game.progression.has(id) or item.requires.all(func(parent):return game.progression.has(parent))
 func refresh() -> void:
+	if game.game_mode=="world_rise":
+		if rise_menu==null:rise_menu=load("res://scripts/world_rise_skill_menu.gd").new();add_child(rise_menu);rise_menu.configure(game)
+		for child in get_children():child.visible=child==rise_menu
+		rise_menu.refresh();return
+	for child in get_children():child.visible=child!=rise_menu and child.get_script()!=Frost
 	var state=game.progression;shown.clear()
 	status.text="Level %d   ·   %d XP   ·   %d perk points"%[state.level(),state.xp,state.points()]
 	for id in nodes:
@@ -68,7 +75,7 @@ func depth(id:String) -> int:
 	for parent in game.progression.skill(id).requires:result=maxi(result,depth(parent)+1)
 	return result
 func _process(_delta:float) -> void:
-	if visible:_layout()
+	if visible and game.game_mode!="world_rise":_layout()
 func _layout() -> void:
 	heading.position=Vector2(12,2);status.position=Vector2(12,36);branches.position=Vector2(12,65);filters.position=Vector2(12,108)
 	var side=clampf(size.x*.29,230,345);var width=maxf(270,size.x-side-38)

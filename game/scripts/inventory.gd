@@ -246,6 +246,21 @@ func wrap_labels() -> void:
 		if child is Label: child.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 
 func refresh_skills() -> void:
+	if game.game_mode=="world_rise":
+		slots.add_child(game.label("WORLD RISE · ABILITIES",24,Color("#c4efff")))
+		slots.add_child(game.label("Learn and upgrade in Level Up. Every learned passive is always active.",16))
+		for id in ["dash","belly_roll","charge_thrust"]:
+			var item=game.progression.skill(id)
+			var enabled=game.player.dash_equipped if id=="dash" else game.player.heavy_style=="charge_thrust" if id=="charge_thrust" else true
+			var button=game.button(item.name+(" · Equipped" if enabled else " · Select to equip") if game.progression.has(id) else item.name+" · Locked",func():
+				if id=="dash":game.toggle_movement_skill(id)
+				elif id=="charge_thrust":game.select_heavy_attack("charge_thrust"))
+			button.disabled=not game.progression.has(id);slots.add_child(button)
+		slots.add_child(game.button("Equip standard Overhead Heavy",func():game.select_heavy_attack("overhead")))
+		slots.add_child(game.label("Jump · Space · Always available",16))
+		for item in game.progression.definition.skills:
+			if item.category=="passive" and game.progression.has(item.id):slots.add_child(game.label("%s · Lv %d · Active"%[item.name,game.progression.rank(item.id)],17))
+		return
 	slots.add_child(game.label("ACTIVE SLOTS",24,Color("#e9c894")))
 	slots.add_child(game.label("Learn and upgrade in Level Up. Each active slot uses its own control.",16))
 	slots.add_child(game.label("MAGIC SLOT  /  Q",19,Color("#e9c894")))

@@ -156,7 +156,10 @@ func apply_stats() -> void:
 		visual_key=key; Visuals.apply(p,self)
 func incoming_damage(amount:int) -> int:
 	quiet_seconds=0; heal_clock=0
+	# The abyss remains lethal even when stacked body skills absorb ordinary hits.
+	if amount>=999999 and game.player.has_meta("rise_fall"):return amount
 	amount=maxi(1,roundi(amount*(1-clampf(bonus("armor"),-.5,.6))))
+	if game.game_mode=="world_rise":amount=maxi(0,roundi(amount*(1-preload("res://scripts/world_rise_stats.gd").reduction(game))))
 	if amount>=game.player.health and bonus("phoenix")>0 and phoenix_cooldown<=0:
 		phoenix_cooldown=60; game.notify("Phoenix Diadem ignites! You survive at 1 HP. Recharge: 60 seconds.")
 		return game.player.health-1

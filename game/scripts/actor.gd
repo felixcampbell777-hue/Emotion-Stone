@@ -74,6 +74,8 @@ var motion: Dictionary
 var health = 100
 var max_health = 100
 var sword_equipped=true
+var dash_stamina_multiplier=1.0
+var jump_stamina_multiplier=1.0
 var sword_drawn = false
 var state = "free"
 var state_time = 0.0
@@ -852,7 +854,7 @@ func begin_dash_charge() -> bool:
 	if not input_enabled or state!="free" or not dash_unlocked or not dash_equipped:
 		if input_enabled and not dash_equipped: dodge_rejected.emit("Learn and equip Dash in Skills.")
 		return false
-	if not can_afford(12): return false
+	if not can_afford(12*dash_stamina_multiplier): return false
 	state="dash_charge";state_time=0;state_duration=1.5
 	dash_release_queued=false
 	dash_attack_queued=false;dash_attack_blend=0
@@ -868,7 +870,7 @@ func release_dash() -> bool:
 	if not input_enabled: dash_release_queued=true;return false
 	dash_release_queued=false
 	var fraction=clampf(state_time/1.5,0,1)
-	var cost=lerpf(12,24,fraction)
+	var cost=lerpf(12,24,fraction)*dash_stamina_multiplier
 	if not spend_stamina(cost):
 		state="free";dash_attack_queued=false;dash_attack_blend=0
 		return false
@@ -878,7 +880,7 @@ func release_dash() -> bool:
 
 func queue_dash_attack() -> bool:
 	if not input_enabled or health<=0 or state!="dash_charge" or not sword_drawn or dash_attack_queued: return false
-	var dash_cost=lerpf(12,24,clampf(state_time/1.5,0,1))
+	var dash_cost=lerpf(12,24,clampf(state_time/1.5,0,1))*dash_stamina_multiplier
 	if not can_afford(dash_cost+float(combat.light.stamina_cost)): return false
 	dash_attack_queued=true
 	return true
@@ -934,7 +936,7 @@ func _dash_water_followthrough(progress:float) -> void:
 func begin_jump() -> bool:
 	if not input_enabled or state!="free":
 		return false
-	if not spend_stamina(12): return false
+	if not spend_stamina(12*jump_stamina_multiplier): return false
 	jump_active=true;jump_velocity=6.0
 	state="jump";state_time=0;state_duration=2.0
 	return true
@@ -1105,6 +1107,7 @@ func take_damage(amount: int, direction: Vector3) -> bool:
 		return false
 	counter_remaining=0;counter_target=null
 	if magic_gear!=null: amount=magic_gear.incoming_damage(amount)
+	if amount<=0:return false
 	var previous_health=health
 	health=maxi(0,health-amount)
 	damaged.emit(previous_health-health)

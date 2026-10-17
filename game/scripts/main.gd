@@ -255,6 +255,7 @@ func start_new_game(show_wakeup:bool=true) -> void:
 	alpha2.reset()
 	worldrise.reset()
 	defeated_enemies.clear()
+	progression.set_profile(game_mode=="world_rise")
 	progression.restore({"tree_version":2,"xp":0,"learned":[]})
 	selected_special_attack="water_sweep"
 	player.heavy_style="overhead"
@@ -1095,7 +1096,9 @@ func apply_save(data: Dictionary) -> bool:
 		growth={"xp":legacy_xp,"learned":[]}
 	if not Progression.valid(growth):
 		return false
+	if mode!="world_rise" and growth.get("profile","")=="world_rise":return false
 	if not Progression.valid_loadout(growth,data.get("skill_loadout",{})): return false
+	progression.set_profile(mode=="world_rise")
 	progression.restore(growth)
 	player.dash_equipped=bool(data.get("skill_loadout",{}).get("dash",false))
 	player.jump_equipped=true
@@ -1410,6 +1413,7 @@ func _attack_contact(kind: String, direction: Vector3, already_hit: Dictionary) 
 		if enemy.mob_category=="canine":weapon_mult*=1.0+magic_items.weapon_bonus_against("canine")
 		enemy.take_sword_damage(roundi(float(tuning.damage)*weapon_mult*(1.2 if combat_skills.exposed.has(enemy.get_instance_id()) else 1.0)),toward.normalized(),kind in ["heavy","thrust"] or (kind=="light" and player.combo_stage==3 and player.attack_phase()>=.60),(float(player.combat.thrust_charge.recoil_multiplier) if kind=="thrust" else 1.0)*(1+magic_items.bonus("sword_recoil")))
 		magic_items.sword_hit(enemy,previous_health)
+		if game_mode=="world_rise" and previous_health>0 and enemy.health<=0:progression.greatsword_kills=mini(Progression.MAX_XP,progression.greatsword_kills+1)
 		combat_skills.sword_hit(enemy,previous_health,weakspot,kind in ["heavy","thrust"] or (kind=="light" and player.combo_stage==3 and player.attack_phase()>=.60))
 
 func _thrust_stopped(at:Vector3,direction:Vector3) -> void:
@@ -1877,6 +1881,8 @@ func toggle_movement_skill(id:String) -> void:
 	inventory.refresh()
 
 func apply_skill_stats() -> void:
+	player.dash_stamina_multiplier=1.0
+	player.jump_stamina_multiplier=1.0
 	player.combat=read_data("res://content/combat.json")
 	player.max_health=int(player.combat.max_health+progression.bonus("health"))
 	player.max_stamina=float(player.combat.max_stamina)+progression.bonus("stamina")
@@ -1928,6 +1934,7 @@ func apply_skill_stats() -> void:
 	if player.heavy_style=="charge_thrust" and not player.thrust_unlocked:
 		player.heavy_style="overhead"
 	magic_items.apply_stats()
+	if game_mode=="world_rise":preload("res://scripts/world_rise_stats.gd").apply(self)
 	player.restore_health(mini(player.health,player.max_health))
 	player.restore_stamina(minf(player.stamina,player.max_stamina))
 

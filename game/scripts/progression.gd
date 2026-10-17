@@ -5,7 +5,21 @@ var definition=JSON.parse_string(FileAccess.get_file_as_string("res://content/pr
 var xp=0
 var learned:Array=[]
 var passives:Array=[]
+var world_rise=false
+var greatsword_kills=0
 const PASSIVE_SLOTS=3
+func set_profile(enabled:bool) -> void:
+	world_rise=enabled;definition=JSON.parse_string(FileAccess.get_file_as_string("res://content/progression.json"))
+	if enabled:definition.skills=JSON.parse_string(FileAccess.get_file_as_string("res://content/world_rise/skills.json")).skills
+func kill_requirement(id:String) -> int:
+	var item=skill(id)
+	return maxi(int(item.get("kills",0)),int(item.get("kill_step",0))*(rank(id)+1))
+func requirements_met(id:String) -> bool:
+	var item=skill(id)
+	if not item.requires.all(func(parent):return has(parent)):return false
+	for parent in item.get("requires_ranks",{}):
+		if rank(parent)<int(item.requires_ranks[parent]):return false
+	return not world_rise or greatsword_kills>=kill_requirement(id)
 
 func level() -> int:
 	var result=0
@@ -37,12 +51,12 @@ func excluded(id: String) -> bool:
 
 func can_learn(id: String) -> bool:
 	var item=skill(id)
-	return not item.is_empty() and id!="jump" and rank(id)<int(item.max_rank) and points()>0 and not excluded(id) and item.requires.all(func(parent): return has(parent))
+	return not item.is_empty() and id!="jump" and rank(id)<int(item.max_rank) and points()>0 and not excluded(id) and requirements_met(id)
 
 func learn(id: String) -> bool:
 	if not can_learn(id): return false
 	learned.append(id)
-	if skill(id).get("category","")=="passive" and id not in passives and passives.size()<PASSIVE_SLOTS: passives.append(id)
+	if not world_rise and skill(id).get("category","")=="passive" and id not in passives and passives.size()<PASSIVE_SLOTS: passives.append(id)
 	return true
 
 func toggle_passive(id:String) -> bool:
@@ -58,10 +72,15 @@ func award(amount: int) -> int:
 	return level()-before
 
 func snapshot() -> Dictionary:
+	if world_rise:return {"tree_version":4,"profile":"world_rise","xp":xp,"learned":learned.duplicate(),"passives":[],"greatsword_kills":greatsword_kills}
 	return {"tree_version":3,"xp":xp,"learned":learned.duplicate(),"passives":passives.duplicate()}
 
 func restore(data: Dictionary) -> void:
+	if data.get("profile","")=="world_rise" and int(data.get("tree_version",1))==4:set_profile(true)
 	xp=int(data.get("xp",0))
+	if world_rise:
+		learned=data.get("learned",[]).duplicate() if int(data.get("tree_version",1))==4 else []
+		greatsword_kills=int(data.get("greatsword_kills",0));passives=[];return
 	# Retire the old tree and refund its allocations, preserving earned XP.
 	learned=data.get("learned",[]).duplicate() if int(data.get("tree_version",1)) in [2,3] else []
 	passives=data.get("passives",[]).duplicate() if int(data.get("tree_version",1))==3 else []
@@ -71,6 +90,7 @@ func restore(data: Dictionary) -> void:
 
 static func valid(data: Variant) -> bool:
 	if not data is Dictionary: return false
+	if data.get("tree_version",1)==4:return valid_world_rise(data)
 	var amount=data.get("xp",0)
 	var entries=data.get("learned",[])
 	var version=data.get("tree_version",1)
@@ -111,6 +131,7 @@ static func valid(data: Variant) -> bool:
 	return true
 
 func bonus(effect: String) -> float:
+	if world_rise:return .25*(1+.25*(rank("breaker")-1)) if effect=="breaker" and has("breaker") else 0.0
 	var total=0.0
 	var seen=[]
 	for id in learned:
@@ -121,6 +142,19 @@ func bonus(effect: String) -> float:
 			if id in passives: total+=float(item.effects.get(effect,0))*(1+.25*(rank(id)-1))
 		else: total+=float(item.effects.get(effect,0))*rank(id)
 	return total
+
+static func valid_world_rise(data:Dictionary) -> bool:
+	if data.get("profile","")!="world_rise":return false
+	for key in ["xp","greatsword_kills"]:
+		var value=data.get(key,0)
+		if not (value is int or value is float) or not is_finite(value) or value!=int(value) or value<0 or value>MAX_XP:return false
+	var entries=data.get("learned",[])
+	if not entries is Array or entries.size()>49:return false
+	var state=load("res://scripts/progression.gd").new();state.set_profile(true);state.xp=int(data.get("xp",0));state.greatsword_kills=int(data.get("greatsword_kills",0))
+	for id in entries:
+		if not id is String or not state.can_learn(id):return false
+		state.learned.append(id)
+	return data.get("passives",[])==[]
 
 static func valid_loadout(growth:Dictionary,loadout:Variant) -> bool:
 	if not loadout is Dictionary: return false

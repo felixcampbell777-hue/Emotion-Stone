@@ -36,4 +36,15 @@ func run(game:Control,directory:String) -> void:
 	for enemy in game.enemies: enemy.ai_enabled=false
 	await picture(game,directory+"/custom-world-playable.png")
 	DirAccess.remove_absolute(Packs.file_path(pack.id)); DirAccess.remove_absolute(Packs.directory); Packs.directory=old_directory
+	game.game_mode="world_rise";game.start_new_game(false);game.set_resolution(0)
+	for e in game.enemies:e.ai_enabled=false;e.set_physics_process(false)
+	game.progression.xp=int(game.progression.definition.level_thresholds[49]);game.progression.greatsword_kills=400
+	for id in ["iron_body","iron_body","iron_body","swiftfoot","dash","belly_roll","great_greatsword","basher","basher","basher"]:game.progression.learn(id)
+	game.apply_skill_stats();game.toggle_inventory();game.inventory.show_page("level")
+	var menu=game.skill_tree.rise_menu;menu.selected="";menu.refresh();await picture(game,directory+"/world-rise-system-categories.png")
+	for category in ["Strength","Agility","Greatsword"]:
+		menu.selected=category;menu.refresh();await picture(game,directory+"/world-rise-system-"+category.to_lower()+".png")
+	DisplayServer.window_set_size(Vector2i(960,540));menu.selected="Strength";menu.refresh();await picture(game,directory+"/world-rise-system-small.png")
+	game.inventory.show_page("skills");await picture(game,directory+"/world-rise-system-abilities.png")
+	game.inventory.close();DisplayServer.window_set_size(Vector2i(1366,768))
 	print("CAPTURE_OK "+directory)
