@@ -5,11 +5,17 @@ var tuning:Dictionary
 var packs:Array=[]
 
 func build(owner_game:Control) -> void:
-	game=owner_game; packs.clear()
+	game=owner_game;var old=packs.duplicate();packs.clear()
 	tuning=JSON.parse_string(FileAccess.get_file_as_string("res://content/beta.json")).wolf_packs
+	if game.game_mode=="world_rise":
+		tuning.territories={}
+		for p in preload("res://scripts/rise_shape.gd").spec.packs:
+			if p.kind=="beta_wolf":tuning.territories[p.id]={"center":p.at,"radius":14}
 	for id in tuning.territories:
 		var members=game.enemies.filter(func(e): return e.definition.kind=="beta_wolf" and e.definition.get("pack","")==id)
 		if members.is_empty(): continue
+		var previous=old.filter(func(p):return p.id==id and p.members.any(func(e):return is_instance_valid(e) and e in members))
+		if not previous.is_empty():previous[0].members=members;packs.append(previous[0]);continue
 		var territory=tuning.territories[id]
 		packs.append({"id":id,"members":members,"home":Vector3(territory.center[0],0,territory.center[1]),"radius":float(territory.radius),"route":0,"route_clock":0.0,"hold":0.0,"engaged":false,"angle":0.0,"wave":0,"next_attack":float(tuning.first_attack_delay),"cursor":0,"lost_sight":0.0})
 
@@ -45,7 +51,7 @@ func can_see(wolf:Node3D) -> bool:
 	return not game.impact_blocked(wolf.position,game.player.position)
 
 func tick(delta:float) -> void:
-	if not is_instance_valid(game) or game.game_mode!="beta" or not game.player.input_enabled or game.gallery_mode: return
+	if not is_instance_valid(game) or game.game_mode not in ["beta","world_rise"] or not game.player.input_enabled or game.gallery_mode: return
 	for pack in packs:
 		var members=active_members(pack)
 		if members.is_empty(): continue

@@ -16,6 +16,7 @@ const Inventory=preload("res://scripts/inventory.gd")
 const Conversation=preload("res://scripts/conversation.gd")
 var monster_cores=preload("res://scripts/monster_cores.gd").new()
 var magic_items=preload("res://scripts/magic_items.gd").new()
+var worldrise=preload("res://scripts/world_rise.gd").new()
 var alpha2=preload("res://scripts/alpha2_campaign.gd").new()
 var dreadmore=preload("res://scripts/dreadmore.gd").new()
 var alpha2_import_mode="alpha"
@@ -125,6 +126,7 @@ func read_data(path: String) -> Dictionary:
 
 func _ready() -> void:
 	alpha2.game=self
+	worldrise.game=self
 	dreadmore.game=self
 	magic_items.game=self
 	monster_cores.game=self
@@ -223,7 +225,7 @@ func start_new_game(show_wakeup:bool=true) -> void:
 		imported=Save.read(source)
 		if imported.get("game_mode","alpha")!=alpha2_import_mode: imported={}
 	cancel_sea_dragon()
-	if game_mode in ["beta","alpha2"]: environment_profile="darkwood"; character_profile="game"
+	if game_mode in ["beta","alpha2","world_rise"]: environment_profile="darkwood"; character_profile="game"
 	world_id=""; world_defeats.clear(); respawn_timers.clear()
 	if world_browser!=null: world_browser.visible=false
 	set_resolution(0 if environment_profile=="darkwood" else int(config.world_resolution[0]))
@@ -245,6 +247,7 @@ func start_new_game(show_wakeup:bool=true) -> void:
 	monster_cores.reset()
 	goblin_campaign.reset()
 	alpha2.reset()
+	worldrise.reset()
 	defeated_enemies.clear()
 	progression.restore({"tree_version":2,"xp":0,"learned":[]})
 	selected_special_attack="water_sweep"
@@ -265,10 +268,13 @@ func start_new_game(show_wakeup:bool=true) -> void:
 		alpha2.start(imported)
 		camera_driver.set_mode("first_person")
 		player.restore_health(player.max_health);player.restore_stamina(player.max_stamina)
-	load_map("a2_haven" if game_mode=="alpha2" else "beta_meadow" if game_mode=="beta" else config.start_map,Vector2(INF,INF),true)
+	if game_mode=="world_rise":
+		home_intro_complete=true;camera_driver.set_mode("first_person");alpha2.grant("spring_elixir",3)
+	load_map("wr_floor_01" if game_mode=="world_rise" else "a2_haven" if game_mode=="alpha2" else "beta_meadow" if game_mode=="beta" else config.start_map,Vector2(INF,INF),true)
 	title_screen.visible=false
 	toast_time=0
 	if game_mode=="alpha2": notify("THE HOLLOW BELL · Character copied from "+alpha2_import_mode.capitalize()+" save. Speak to Mother." if not imported.is_empty() else "THE HOLLOW BELL · No usable import save found; starting with Dodge, Jump and three remedies. Speak to Mother.")
+	if game_mode=="world_rise":notify("WORLD RISE · Floor 1. A fresh journey begins at the central arrival platform.")
 	if show_wakeup and game_mode=="alpha":
 		dialog_title.text="A new morning"
 		dialog_lines=["You wake to gulls outside your upstairs window and the smell of bread from below. Mother is tending the hearth. Talk to her before heading out."]
@@ -576,11 +582,12 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 		world_root.remove_child(npc)
 		npc.queue_free()
 	npcs.clear()
-	current_world=World.new()
+	current_world=load("res://scripts/rise_floor.gd").new() if id=="wr_floor_01" else World.new()
 	current_world.environment_profile=environment_profile
 	world_root.add_child(current_world)
 	current_world.build(data)
 	map_id=id
+	if id!="wr_floor_01":camera.far=160 if camera_mode=="overhead" else 90 if camera_mode=="first_person" else 55
 	environment_settings.ambient_light_energy=.16 if data.get("cave",false) else .32
 	environment_settings.background_color=Color("#223638" if data.get("cave",false) else "#819a87" if data.get("biome","")=="jungle" else "#a1b8b7")
 	environment_settings.fog_light_color=environment_settings.background_color
@@ -592,6 +599,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 	camera.size=5.0 if data.has("interior") else float(config.camera_size)
 	var spawn=Vector2(data.spawn[0],data.spawn[1]) if not is_finite(at.x) else at
 	player.ground_world=current_world
+	if player.has_meta("rise_fall"):player.remove_meta("rise_fall")
 	player.position=Vector3(spawn.x,0,spawn.y)
 	player.position.y=current_world.ground_height(player.position)
 	player.velocity=Vector3.ZERO
@@ -620,7 +628,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 		if role in ["mother","a2_mother"]:
 			npc.set_arm_wrapped(not mother_unwrapped)
 		current_world.interactions.append({"id":npc_data.id,"title":npc.definition.display_name,"lines":npc_data.dialogue,"position":npc.position,"actor":npc,"role":role})
-	for enemy_data in data.get("enemies",[]):
+	for enemy_data in ([] if id=="wr_floor_01" else data.get("enemies",[])):
 		var enemy=load("res://scripts/canyon_fiend.gd").new() if enemy_data.kind=="canyon_fiend" else load("res://scripts/library_enemy.gd").new() if String(enemy_data.kind).begins_with("library_") else load("res://scripts/bellkeeper.gd").new() if enemy_data.kind=="bellkeeper" else BetaEnemy.new() if String(enemy_data.kind).begins_with("beta_") else GoblinEnemy.new() if String(enemy_data.kind).begins_with("goblin_") else Slime.new() if enemy_data.kind=="slime" else ForestEnemy.new()
 		enemy.name=enemy_data.id
 		var encounter_id=id+"/"+enemy_data.id
@@ -654,7 +662,8 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 	wolf_packs.build(self)
 	goblin_campaign.build_map()
 	alpha2.build_map()
-	if environment_profile=="darkwood": EnvironmentArt._retexture(current_world)
+	worldrise.build_map()
+	if environment_profile=="darkwood" and id!="wr_floor_01": EnvironmentArt._retexture(current_world)
 	monster_cores.build_map()
 	location_title.text=data.display_name
 	location_subtitle.text=data.subtitle
@@ -725,6 +734,7 @@ func _process(delta: float) -> void:
 				camera.position+=axis*(snappedf(coordinate,step)-coordinate)
 	goblin_campaign.tick()
 	alpha2.tick(delta)
+	worldrise.tick(delta)
 	current_world.update_interior_walls(camera.position,player.position,camera_mode)
 	if current_world.definition.get("cave",false):
 		for piece in current_world.get_children():
@@ -869,6 +879,7 @@ func open_nearest() -> void:
 	if nearest.is_empty() or player.state!="free" or recovering:
 		return
 	if nearest.has("loot_core"): monster_cores.collect(int(nearest.loot_core)); return
+	if worldrise.interact(nearest):return
 	if alpha2.interact(nearest): return
 	if goblin_campaign.interact(nearest): return
 	if nearest.has("travel"):
@@ -1008,22 +1019,24 @@ func set_character_profile(profile:String) -> void:
 
 func save_data() -> Dictionary:
 	# Mode is serialized below and selects a separate Beta file.
-	return {"alpha2":alpha2.snapshot(),"game_mode":game_mode,"environment_revision":1,"monster_cores":monster_cores.snapshot(),"magic_items":magic_items.snapshot(),"goblin_campaign":goblin_campaign.snapshot(),"respawn_timers":respawn_timers.duplicate(),"world_id":world_id,"world_defeats":world_defeats.duplicate(),"version":1,"home_layout":2,"home_intro_complete":home_intro_complete,"camera_mode":camera_mode,"first_person_pitch":camera_driver.first_pitch,"camera_yaw":camera_driver.yaw,"camera_pitch":camera_driver.pitch,"camera_distance":camera_driver.distance,"map":map_id,"ground_y":player.position.y,"position":[player.position.x,player.position.z],"facing":player.visual.rotation.y,"resolution":graphics_preset,"environment_profile":environment_profile,"character_profile":character_profile,"health":player.health,"stamina":player.stamina,"sword_drawn":player.sword_drawn,"sword_equipped":player.sword_equipped,"special_attack":selected_special_attack,"heavy_attack":player.heavy_style,"mother_unwrapped":mother_unwrapped,"well_gift_stage":well_gift_stage,"quest_stage":quest_stage,"defeated_enemies":defeated_enemies.duplicate(),"progression":progression.snapshot(),"skill_loadout":{"dash":player.dash_equipped,"jump":player.jump_equipped,"flowing_counter":player.counter_equipped}}
+	return {"world_rise":worldrise.snapshot(),"alpha2":alpha2.snapshot(),"game_mode":game_mode,"environment_revision":1,"monster_cores":monster_cores.snapshot(),"magic_items":magic_items.snapshot(),"goblin_campaign":goblin_campaign.snapshot(),"respawn_timers":respawn_timers.duplicate(),"world_id":world_id,"world_defeats":world_defeats.duplicate(),"version":1,"home_layout":2,"home_intro_complete":home_intro_complete,"camera_mode":camera_mode,"first_person_pitch":camera_driver.first_pitch,"camera_yaw":camera_driver.yaw,"camera_pitch":camera_driver.pitch,"camera_distance":camera_driver.distance,"map":map_id,"ground_y":player.position.y,"position":[player.position.x,player.position.z],"facing":player.visual.rotation.y,"resolution":graphics_preset,"environment_profile":environment_profile,"character_profile":character_profile,"health":player.health,"stamina":player.stamina,"sword_drawn":player.sword_drawn,"sword_equipped":player.sword_equipped,"special_attack":selected_special_attack,"heavy_attack":player.heavy_style,"mother_unwrapped":mother_unwrapped,"well_gift_stage":well_gift_stage,"quest_stage":quest_stage,"defeated_enemies":defeated_enemies.duplicate(),"progression":progression.snapshot(),"skill_loadout":{"dash":player.dash_equipped,"jump":player.jump_equipped,"flowing_counter":player.counter_equipped}}
 
 func save_game() -> void:
+	if game_mode=="world_rise" and not current_world.safe_position(player.position):notify("Return to solid ground before saving.");return
 	if player.state!="free" or recovering:
 		notify("Finish the swing before saving.")
 		return
 	notify("Your place is saved." if Save.write(save_data(),current_save_path())==OK else "Could not save your place.")
 
 func current_save_path() -> String:
-	return "user://alpha2-save-v1.json" if game_mode=="alpha2" else "user://beta-save-v1.json" if game_mode=="beta" else WorldPacks.save_path(world_id)
+	return "user://world-rise-save-v1.json" if game_mode=="world_rise" else "user://alpha2-save-v1.json" if game_mode=="alpha2" else "user://beta-save-v1.json" if game_mode=="beta" else WorldPacks.save_path(world_id)
 
 func apply_save(data: Dictionary) -> bool:
 	if data.get("special_attack","water_sweep") not in ["water_sweep","water_lance","sea_dragon","undertow"]: return false
 	var mode=String(data.get("game_mode","alpha"))
 	if not alpha2.valid_mode(mode,data.get("map",""),data.get("world_id","")): return false
 	if not alpha2.valid_save(data.get("alpha2",{}),data.get("defeated_enemies",[])): return false
+	if mode=="world_rise" and not worldrise.valid(data.get("world_rise",{})):return false
 	if data.get("character_profile","game") not in ["game","standalone"]: return false
 	if data.is_empty() or data.get("well_gift_stage","not_started") not in ["not_started","coin_ready","potion_owned"]:
 		return false
@@ -1043,6 +1056,8 @@ func apply_save(data: Dictionary) -> bool:
 	if data.map in ["home_upstairs","home_downstairs"] and int(data.get("home_layout",1))<2:
 		var entrance=test_world.definition.spawn
 		at=Vector3(entrance[0],0,entrance[1])
+	if mode=="world_rise" and (not test_world.safe_position(at) or at.y< -5):
+		var rest=data.get("world_rise",{}).get("checkpoint",[0,0]);at=Vector3(rest[0],0,rest[1])
 	var safe=test_world.safe_position(at)
 	test_world.free()
 	if not safe:
@@ -1082,6 +1097,7 @@ func apply_save(data: Dictionary) -> bool:
 	monster_cores.restore(data.get("monster_cores",{}))
 	goblin_campaign.restore(data.get("goblin_campaign",{}))
 	alpha2.restore(data.get("alpha2",{}))
+	worldrise.restore(data.get("world_rise",{}))
 	magic_items.migrate_windstep(data.get("goblin_campaign",{}))
 	apply_skill_stats()
 	update_progression_ui()
@@ -1404,6 +1420,7 @@ func _player_defeated() -> void:
 	if game_mode=="alpha2":
 		death_layout.get_child(1).text="Return to your last pilgrim fire. Your discoveries, equipment and bosses are kept. Canyon slime ambushes return after death."
 		death_layout.get_child(2).text="Return to pilgrim fire"
+	if game_mode=="world_rise":death_layout.get_child(1).text="Return to your last rest crystal. Experience, equipment and discoveries are kept; regular packs return.";death_layout.get_child(2).text="Return to World Rise"
 	death_screen.visible=true
 	death_veil.visible=true
 	death_screen.get_child(0).get_child(2).grab_focus()
@@ -1413,7 +1430,9 @@ func respawn_player() -> void:
 		return
 	player.set_sword_drawn(false)
 	dreadmore.reset_ambushes_after_death()
-	if game_mode=="alpha2": load_map(alpha2.checkpoint,Vector2(alpha2.checkpoint_at[0],alpha2.checkpoint_at[1]))
+	if game_mode=="world_rise":worldrise.respawn_reset()
+	if game_mode=="world_rise":load_map("wr_floor_01",Vector2(worldrise.checkpoint[0],worldrise.checkpoint[1]))
+	elif game_mode=="alpha2": load_map(alpha2.checkpoint,Vector2(alpha2.checkpoint_at[0],alpha2.checkpoint_at[1]))
 	elif game_mode=="beta": load_map("beta_meadow")
 	elif world_id.is_empty(): load_map("village_green",Vector2(0,3.5))
 	else:
@@ -1424,7 +1443,7 @@ func respawn_player() -> void:
 	recovering=false
 	death_screen.visible=false
 	death_veil.visible=false
-	notify("You return to the last pilgrim fire. Your discoveries are kept." if game_mode=="alpha2" else "You return to the meadow. Your journey continues." if game_mode=="beta" else "You return to the starting area. Your journey continues." if not world_id.is_empty() else "You wake in the village square. Your journey continues.")
+	notify("You return to your rest crystal. Experience and discoveries are kept." if game_mode=="world_rise" else "You return to the last pilgrim fire. Your discoveries are kept." if game_mode=="alpha2" else "You return to the meadow. Your journey continues." if game_mode=="beta" else "You return to the starting area. Your journey continues." if not world_id.is_empty() else "You wake in the village square. Your journey continues.")
 
 func _enemy_defeated(id: String, kind: String, slain_enemy:Node3D=null) -> void:
 	if id in defeated_enemies: return
@@ -1439,9 +1458,10 @@ func _enemy_defeated(id: String, kind: String, slain_enemy:Node3D=null) -> void:
 	if monster_cores.boss_bonus(kind)>0:
 		notify(kind.capitalize()+" defeated · +%d XP (%d boss bonus)" % [int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind),monster_cores.boss_bonus(kind)])
 	else:
-		notify({"slime":"The deeper forest trail is clear.","boar":"Briar boar defeated.","wisp":"Thorn wisp defeated.","warden":"The stone warden falls. Search its remains for the alchemical core."}.get(kind,"Goblin defeated.")+" +%d XP · Level %d" % [int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind),progression.level()])
+		notify("Beast defeated. +%d XP · Level %d"%[int(progression.definition.enemy_xp.get(kind,0)),progression.level()] if game_mode=="world_rise" else {"slime":"The deeper forest trail is clear.","boar":"Briar boar defeated.","wisp":"Thorn wisp defeated.","warden":"The stone warden falls. Search its remains for the alchemical core."}.get(kind,"Goblin defeated.")+" +%d XP · Level %d" % [int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind),progression.level()])
 
 func quest_objective(include_side:bool=true) -> String:
+	if game_mode=="world_rise":return "Explore the Verdant Reach. Elderwood lies northwest; the silver rim lies beyond the hills."
 	if game_mode=="alpha2": return alpha2.objective()
 	if game_mode=="beta": return "Explore the sparse woodland: slimes, sticky slimes, wolves and rats."
 	if include_side and world_id.is_empty() and map_id in ["lark_farm","goblin_approach","goblin_cave","goblin_depths"]: return goblin_campaign.objective()
@@ -1492,6 +1512,8 @@ func notify(text: String) -> void:
 
 func _verify() -> void:
 	var args=OS.get_cmdline_user_args()
+	if "--suite" in args and args[args.find("--suite")+1]=="world-rise":
+		await load("res://scripts/rise_verification.gd").new().run(self);return
 	if "--suite" in args and args[args.find("--suite")+1]=="dreadmore":
 		await load("res://scripts/dreadmore_verification.gd").new().run(self);return
 	if "--suite" in args and args[args.find("--suite")+1]=="alpha2":
@@ -1516,6 +1538,9 @@ func _capture(directory: String) -> void:
 	var view="all"
 	if "--capture-view" in arguments:
 		view=arguments[arguments.find("--capture-view")+1]
+	if view=="world-rise":
+		await load("res://scripts/rise_capture.gd").new().run(self,directory)
+		get_tree().quit();return
 	if view=="world-rise-backdrop":
 		await load("res://scripts/world_rise_backdrop_capture.gd").new().run(self,directory)
 		get_tree().quit();return

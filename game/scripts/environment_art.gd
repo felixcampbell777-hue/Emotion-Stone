@@ -300,6 +300,7 @@ static func configure_lighting(game:Control,data:Dictionary) -> void:
 	if game.environment_profile=="original": env.fog_enabled=game.camera_mode!="overhead"; env.fog_density=.035; env.fog_light_color=env.background_color
 
 static func configure_scene(env:Environment,sun:DirectionalLight3D,data:Dictionary,profile:String) -> void:
+	env.fog_sky_affect=1.0
 	var advanced=profile=="darkwood"; var forward=RenderingServer.get_current_rendering_method()=="forward_plus"
 	env.ssao_enabled=advanced and forward; env.ssil_enabled=false; env.glow_enabled=advanced and forward; env.glow_intensity=.45
 	env.tonemap_mode=Environment.TONE_MAPPER_FILMIC if advanced else Environment.TONE_MAPPER_LINEAR; env.tonemap_exposure=.9 if advanced else 1.0; env.tonemap_white=6.0 if advanced else 1.0

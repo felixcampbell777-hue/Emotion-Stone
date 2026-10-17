@@ -217,6 +217,7 @@ func refresh_apparel_detail(entry:Dictionary) -> void:
 
 func refresh_quests() -> void:
 	slots.add_child(game.label("QUEST JOURNAL",24,Color("#e9c894")))
+	if game.game_mode=="world_rise":game.worldrise.journal(self);wrap_labels();return
 	if game.game_mode=="alpha2": game.alpha2.journal(self);wrap_labels();return
 	if game.game_mode=="beta":
 		slots.add_child(game.label("Beta: explore the meadow and woodland. No story quests in this first prototype.",17)); wrap_labels(); return

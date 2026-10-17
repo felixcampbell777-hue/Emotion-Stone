@@ -1,0 +1,647 @@
+{
+  "id": "wr_floor_01",
+  "display_name": "World Rise \u00b7 Floor 1 \u2014 The Verdant Reach",
+  "subtitle": "Begin at the central arrival platform. Explore the valleys, Elderwood and the silver rim.",
+  "seed": 51620,
+  "bounds": [
+    -240,
+    -240,
+    240,
+    240
+  ],
+  "spawn": [
+    0,
+    0
+  ],
+  "sea": false,
+  "biome": "woodland",
+  "terrain_regions": [
+    {
+      "kind": "grass",
+      "rect": [
+        -240,
+        -240,
+        480,
+        480
+      ]
+    }
+  ],
+  "props": [],
+  "npcs": [],
+  "interactions": [],
+  "exits": [],
+  "enemies": [
+    {
+      "id": "boars_00_0",
+      "kind": "library_boar",
+      "at": [
+        45.0,
+        37.0
+      ],
+      "pack": "boars_00"
+    },
+    {
+      "id": "boars_00_1",
+      "kind": "library_boar",
+      "at": [
+        46.3509263611023,
+        33.52521256891751
+      ],
+      "pack": "boars_00"
+    },
+    {
+      "id": "boars_01_0",
+      "kind": "library_boar",
+      "at": [
+        -45.0,
+        42.0
+      ],
+      "pack": "boars_01"
+    },
+    {
+      "id": "boars_01_1",
+      "kind": "library_boar",
+      "at": [
+        -43.6490736388977,
+        38.52521256891751
+      ],
+      "pack": "boars_01"
+    },
+    {
+      "id": "boars_01_2",
+      "kind": "library_boar",
+      "at": [
+        -46.99232921767168,
+        40.17499796687889
+      ],
+      "pack": "boars_01"
+    },
+    {
+      "id": "boars_02_0",
+      "kind": "library_boar",
+      "at": [
+        20.0,
+        82.0
+      ],
+      "pack": "boars_02"
+    },
+    {
+      "id": "boars_02_1",
+      "kind": "library_boar",
+      "at": [
+        21.350926361102303,
+        78.52521256891751
+      ],
+      "pack": "boars_02"
+    },
+    {
+      "id": "boars_03_0",
+      "kind": "library_boar",
+      "at": [
+        85.0,
+        67.0
+      ],
+      "pack": "boars_03"
+    },
+    {
+      "id": "boars_03_1",
+      "kind": "library_boar",
+      "at": [
+        86.3509263611023,
+        63.52521256891751
+      ],
+      "pack": "boars_03"
+    },
+    {
+      "id": "boars_03_2",
+      "kind": "library_boar",
+      "at": [
+        83.00767078232832,
+        65.17499796687889
+      ],
+      "pack": "boars_03"
+    },
+    {
+      "id": "boars_04_0",
+      "kind": "library_boar",
+      "at": [
+        -100.0,
+        37.0
+      ],
+      "pack": "boars_04"
+    },
+    {
+      "id": "boars_04_1",
+      "kind": "library_boar",
+      "at": [
+        -98.6490736388977,
+        33.52521256891751
+      ],
+      "pack": "boars_04"
+    },
+    {
+      "id": "boars_04_2",
+      "kind": "library_boar",
+      "at": [
+        -101.99232921767168,
+        35.17499796687889
+      ],
+      "pack": "boars_04"
+    },
+    {
+      "id": "boars_04_3",
+      "kind": "library_boar",
+      "at": [
+        -98.4126642723017,
+        36.216702629064514
+      ],
+      "pack": "boars_04"
+    },
+    {
+      "id": "boars_05_0",
+      "kind": "library_boar",
+      "at": [
+        -60.0,
+        97.0
+      ],
+      "pack": "boars_05"
+    },
+    {
+      "id": "boars_05_1",
+      "kind": "library_boar",
+      "at": [
+        -58.6490736388977,
+        93.52521256891751
+      ],
+      "pack": "boars_05"
+    },
+    {
+      "id": "boars_05_2",
+      "kind": "library_boar",
+      "at": [
+        -61.99232921767168,
+        95.17499796687889
+      ],
+      "pack": "boars_05"
+    },
+    {
+      "id": "boars_06_0",
+      "kind": "library_boar",
+      "at": [
+        40.0,
+        137.0
+      ],
+      "pack": "boars_06"
+    },
+    {
+      "id": "boars_06_1",
+      "kind": "library_boar",
+      "at": [
+        41.3509263611023,
+        133.5252125689175
+      ],
+      "pack": "boars_06"
+    },
+    {
+      "id": "boars_07_0",
+      "kind": "library_boar",
+      "at": [
+        130.0,
+        22.0
+      ],
+      "pack": "boars_07"
+    },
+    {
+      "id": "boars_07_1",
+      "kind": "library_boar",
+      "at": [
+        131.3509263611023,
+        18.52521256891751
+      ],
+      "pack": "boars_07"
+    },
+    {
+      "id": "boars_07_2",
+      "kind": "library_boar",
+      "at": [
+        128.00767078232832,
+        20.17499796687889
+      ],
+      "pack": "boars_07"
+    },
+    {
+      "id": "boars_08_0",
+      "kind": "library_boar",
+      "at": [
+        150.0,
+        -53.0
+      ],
+      "pack": "boars_08"
+    },
+    {
+      "id": "boars_08_1",
+      "kind": "library_boar",
+      "at": [
+        151.3509263611023,
+        -56.47478743108249
+      ],
+      "pack": "boars_08"
+    },
+    {
+      "id": "boars_09_0",
+      "kind": "library_boar",
+      "at": [
+        95.0,
+        -103.0
+      ],
+      "pack": "boars_09"
+    },
+    {
+      "id": "boars_09_1",
+      "kind": "library_boar",
+      "at": [
+        96.3509263611023,
+        -106.47478743108249
+      ],
+      "pack": "boars_09"
+    },
+    {
+      "id": "boars_09_2",
+      "kind": "library_boar",
+      "at": [
+        93.00767078232832,
+        -104.82500203312111
+      ],
+      "pack": "boars_09"
+    },
+    {
+      "id": "boars_10_0",
+      "kind": "library_boar",
+      "at": [
+        45.0,
+        -153.0
+      ],
+      "pack": "boars_10"
+    },
+    {
+      "id": "boars_10_1",
+      "kind": "library_boar",
+      "at": [
+        46.3509263611023,
+        -156.4747874310825
+      ],
+      "pack": "boars_10"
+    },
+    {
+      "id": "boars_10_2",
+      "kind": "library_boar",
+      "at": [
+        43.00767078232832,
+        -154.8250020331211
+      ],
+      "pack": "boars_10"
+    },
+    {
+      "id": "boars_10_3",
+      "kind": "library_boar",
+      "at": [
+        46.5873357276983,
+        -153.7832973709355
+      ],
+      "pack": "boars_10"
+    },
+    {
+      "id": "boars_11_0",
+      "kind": "library_boar",
+      "at": [
+        -20.0,
+        -163.0
+      ],
+      "pack": "boars_11"
+    },
+    {
+      "id": "boars_11_1",
+      "kind": "library_boar",
+      "at": [
+        -18.649073638897697,
+        -166.4747874310825
+      ],
+      "pack": "boars_11"
+    },
+    {
+      "id": "boars_11_2",
+      "kind": "library_boar",
+      "at": [
+        -21.99232921767168,
+        -164.8250020331211
+      ],
+      "pack": "boars_11"
+    },
+    {
+      "id": "boars_12_0",
+      "kind": "library_boar",
+      "at": [
+        -75.0,
+        -183.0
+      ],
+      "pack": "boars_12"
+    },
+    {
+      "id": "boars_12_1",
+      "kind": "library_boar",
+      "at": [
+        -73.6490736388977,
+        -186.4747874310825
+      ],
+      "pack": "boars_12"
+    },
+    {
+      "id": "boars_13_0",
+      "kind": "library_boar",
+      "at": [
+        -155.0,
+        62.0
+      ],
+      "pack": "boars_13"
+    },
+    {
+      "id": "boars_13_1",
+      "kind": "library_boar",
+      "at": [
+        -153.6490736388977,
+        58.52521256891751
+      ],
+      "pack": "boars_13"
+    },
+    {
+      "id": "boars_13_2",
+      "kind": "library_boar",
+      "at": [
+        -156.99232921767168,
+        60.17499796687889
+      ],
+      "pack": "boars_13"
+    },
+    {
+      "id": "boars_14_0",
+      "kind": "library_boar",
+      "at": [
+        -175.0,
+        107.0
+      ],
+      "pack": "boars_14"
+    },
+    {
+      "id": "boars_14_1",
+      "kind": "library_boar",
+      "at": [
+        -173.6490736388977,
+        103.52521256891751
+      ],
+      "pack": "boars_14"
+    },
+    {
+      "id": "boars_15_0",
+      "kind": "library_boar",
+      "at": [
+        -80.0,
+        162.0
+      ],
+      "pack": "boars_15"
+    },
+    {
+      "id": "boars_15_1",
+      "kind": "library_boar",
+      "at": [
+        -78.6490736388977,
+        158.5252125689175
+      ],
+      "pack": "boars_15"
+    },
+    {
+      "id": "boars_15_2",
+      "kind": "library_boar",
+      "at": [
+        -81.99232921767168,
+        160.1749979668789
+      ],
+      "pack": "boars_15"
+    },
+    {
+      "id": "boars_16_0",
+      "kind": "library_boar",
+      "at": [
+        115.0,
+        152.0
+      ],
+      "pack": "boars_16"
+    },
+    {
+      "id": "boars_16_1",
+      "kind": "library_boar",
+      "at": [
+        116.3509263611023,
+        148.5252125689175
+      ],
+      "pack": "boars_16"
+    },
+    {
+      "id": "boars_16_2",
+      "kind": "library_boar",
+      "at": [
+        113.00767078232832,
+        150.1749979668789
+      ],
+      "pack": "boars_16"
+    },
+    {
+      "id": "boars_16_3",
+      "kind": "library_boar",
+      "at": [
+        116.5873357276983,
+        151.2167026290645
+      ],
+      "pack": "boars_16"
+    },
+    {
+      "id": "boars_17_0",
+      "kind": "library_boar",
+      "at": [
+        185.0,
+        7.0
+      ],
+      "pack": "boars_17"
+    },
+    {
+      "id": "boars_17_1",
+      "kind": "library_boar",
+      "at": [
+        186.3509263611023,
+        3.5252125689175093
+      ],
+      "pack": "boars_17"
+    },
+    {
+      "id": "boars_17_2",
+      "kind": "library_boar",
+      "at": [
+        183.00767078232832,
+        5.174997966878893
+      ],
+      "pack": "boars_17"
+    },
+    {
+      "id": "wolves_00_0",
+      "kind": "beta_wolf",
+      "at": [
+        -65.0,
+        -63.0
+      ],
+      "pack": "wolves_00"
+    },
+    {
+      "id": "wolves_00_1",
+      "kind": "beta_wolf",
+      "at": [
+        -63.6490736388977,
+        -66.47478743108249
+      ],
+      "pack": "wolves_00"
+    },
+    {
+      "id": "wolves_00_2",
+      "kind": "beta_wolf",
+      "at": [
+        -66.99232921767168,
+        -64.82500203312111
+      ],
+      "pack": "wolves_00"
+    },
+    {
+      "id": "wolves_01_0",
+      "kind": "beta_wolf",
+      "at": [
+        -140.0,
+        -63.0
+      ],
+      "pack": "wolves_01"
+    },
+    {
+      "id": "wolves_01_1",
+      "kind": "beta_wolf",
+      "at": [
+        -138.6490736388977,
+        -66.47478743108249
+      ],
+      "pack": "wolves_01"
+    },
+    {
+      "id": "wolves_01_2",
+      "kind": "beta_wolf",
+      "at": [
+        -141.99232921767168,
+        -64.82500203312111
+      ],
+      "pack": "wolves_01"
+    },
+    {
+      "id": "wolves_01_3",
+      "kind": "beta_wolf",
+      "at": [
+        -138.4126642723017,
+        -63.783297370935486
+      ],
+      "pack": "wolves_01"
+    },
+    {
+      "id": "wolves_02_0",
+      "kind": "beta_wolf",
+      "at": [
+        -90.0,
+        -128.0
+      ],
+      "pack": "wolves_02"
+    },
+    {
+      "id": "wolves_02_1",
+      "kind": "beta_wolf",
+      "at": [
+        -88.6490736388977,
+        -131.4747874310825
+      ],
+      "pack": "wolves_02"
+    },
+    {
+      "id": "wolves_02_2",
+      "kind": "beta_wolf",
+      "at": [
+        -91.99232921767168,
+        -129.8250020331211
+      ],
+      "pack": "wolves_02"
+    },
+    {
+      "id": "wolves_03_0",
+      "kind": "beta_wolf",
+      "at": [
+        -150.0,
+        -128.0
+      ],
+      "pack": "wolves_03"
+    },
+    {
+      "id": "wolves_03_1",
+      "kind": "beta_wolf",
+      "at": [
+        -148.6490736388977,
+        -131.4747874310825
+      ],
+      "pack": "wolves_03"
+    },
+    {
+      "id": "wolves_03_2",
+      "kind": "beta_wolf",
+      "at": [
+        -151.99232921767168,
+        -129.8250020331211
+      ],
+      "pack": "wolves_03"
+    },
+    {
+      "id": "wolves_03_3",
+      "kind": "beta_wolf",
+      "at": [
+        -148.4126642723017,
+        -128.7832973709355
+      ],
+      "pack": "wolves_03"
+    },
+    {
+      "id": "wolves_04_0",
+      "kind": "beta_wolf",
+      "at": [
+        -60.0,
+        -148.0
+      ],
+      "pack": "wolves_04"
+    },
+    {
+      "id": "wolves_04_1",
+      "kind": "beta_wolf",
+      "at": [
+        -58.6490736388977,
+        -151.4747874310825
+      ],
+      "pack": "wolves_04"
+    },
+    {
+      "id": "wolves_04_2",
+      "kind": "beta_wolf",
+      "at": [
+        -61.99232921767168,
+        -149.8250020331211
+      ],
+      "pack": "wolves_04"
+    }
+  ]
+}

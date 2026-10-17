@@ -44,6 +44,7 @@ func set_mode(mode:String) -> void:
 	game.environment_settings.fog_density=.035
 	if game.environment_profile=="darkwood" and game.current_world!=null:
 		game.EnvironmentArt.configure_lighting(game,game.current_world.definition)
+	if game.game_mode=="world_rise":game.worldrise.lighting()
 	if game.player!=null:
 		game.player.camera_relative=mode!="overhead"
 		game.player.movement_camera_yaw=yaw

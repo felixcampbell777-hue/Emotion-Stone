@@ -39,7 +39,8 @@ static func read(path: String = SAVE_PATH) -> Dictionary:
 	if parsed.has("first_person_pitch") and absf(parsed.first_person_pitch)>1.15: return {}
 	if parsed.has("camera_distance") and (parsed.camera_distance<3 or parsed.camera_distance>8): return {}
 	if parsed.has("home_layout") and (not (parsed.home_layout is int or parsed.home_layout is float) or int(parsed.home_layout) not in [1,2] or float(parsed.home_layout)!=int(parsed.home_layout)): return {}
-	if parsed.has("ground_y") and (not WorldPacks.finite_number(parsed.ground_y) or parsed.ground_y< -6 or parsed.ground_y>12): return {}
+	if parsed.has("ground_y") and (not WorldPacks.finite_number(parsed.ground_y) or parsed.ground_y< -6 or parsed.ground_y>(140 if mode=="world_rise" else 12)): return {}
+	if mode=="world_rise" and not preload("res://scripts/world_rise.gd").valid(parsed.get("world_rise",{})):return {}
 	var at = parsed.position
 	if at.size()!=2:
 		return {}
@@ -102,7 +103,7 @@ static func read(path: String = SAVE_PATH) -> Dictionary:
 	if not defeated is Array or defeated.size()>128:
 		return {}
 	var allowed_story=["slime_forest/forest_slime","herb_glade/briar_boar","herb_glade/thorn_wisp","herb_glade/briar_boar_second","herb_glade/stone_warden"]
-	for map_name in ["jungle_approach","queen_arena","beta_meadow"]+JSON.parse_string(FileAccess.get_file_as_string("res://content/alpha2.json")).maps:
+	for map_name in ["wr_floor_01","jungle_approach","queen_arena","beta_meadow"]+JSON.parse_string(FileAccess.get_file_as_string("res://content/alpha2.json")).maps:
 		var area=WorldPacks.definition(map_name)
 		for mob in area.get("catalog_enemies",[]): allowed_story.append(map_name+"/"+mob.id)
 		for mob in area.get("enemies",[]): allowed_story.append(map_name+"/"+mob.id)

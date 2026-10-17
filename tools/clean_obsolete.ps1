@@ -14,6 +14,7 @@ $taskVerification = Join-Path $taskRoot 'output/verification'
 $taskKeepVerification += @('current-render-evidence.json','advanced-sword-clearance.json','advanced-sword-clearance.log','advanced-walk-skirt.json','advanced-walk-skirt.log','character-detail.log','focused-environment.log')
 $taskKeepVerification += @('user-heroine-draft','user-heroine-anime-draft')
 $taskKeepVerification += @('sea-dragon-source-report.json','focused-sea_dragon.log','combat-skills-source-report.json','focused-skills.log','dash-uppercut-source-report.json','focused-uppercut.log','unarmed-source-report.json','focused-unarmed.log','alpha2-source-report.json','focused-alpha2.log','dreadmore-source-report.json','focused-dreadmore.log','orchid-model.log')
+$taskKeepVerification += @('rise-source-report.json','focused-rise.log','beta-baseline-comparison.log')
 $taskKeepVerification += @('focused-beta.log','beta-heroine-export.log','beta-rat-export.log')
 $taskTargets += Get-ChildItem -LiteralPath $taskVerification -Force | Where-Object { $_.Name -notin $taskKeepVerification }
 $taskCaptureLog = Get-Item -LiteralPath (Join-Path $taskVerification 'windows-capture.log')
