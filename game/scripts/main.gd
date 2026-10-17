@@ -160,6 +160,7 @@ func _ready() -> void:
 	player.water_cast.connect(_water_cast)
 	player.vertical_water_cast.connect(_vertical_water_cast)
 	player.lance_fired.connect(_water_lance_fired)
+	player.damaged.connect(hud_feedback.damaged)
 	player.health_changed.connect(_health_changed)
 	player.stamina_changed.connect(_stamina_changed)
 	player.parry_succeeded.connect(_parry_succeeded)

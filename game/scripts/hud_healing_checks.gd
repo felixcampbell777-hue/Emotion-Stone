@@ -4,6 +4,13 @@ func run(test:RefCounted) -> void:
 	game.start_new_game(false); game.load_map("menagery",Vector2(10,0),true); p.set_physics_process(false)
 	test.check(game.health_bar.custom_minimum_size.y>=30 and game.stamina_bar.custom_minimum_size.y>=24,"Resource HUD uses thicker high-contrast bars")
 	test.check(not game.weapon_label.visible and not game.quest_label.visible,"Action-state and quest prose are removed from resource HUD")
+	p.health=100; hud.damage_flash_remaining=0; hud.damage_flash_strength=0
+	hud.damaged(6); hud.update(0)
+	var light_flash=hud.damage_veil.color.a
+	hud.damaged(30); hud.update(0)
+	test.check(light_flash>0 and hud.damage_veil.color.a>light_flash,"Damage flash scales with incoming damage")
+	hud.damage_flash_remaining=0; hud.update(0)
+	test.check(not hud.damage_veil.visible,"Damage flash clears after its brief duration")
 	for value in [100,25,12,1]:
 		p.restore_health(value); hud.update(0)
 		test.check(is_equal_approx(hud.intensity,clampf((25-value)/25.0,0,1)),"Low-health edge tint uses progressive 25%% threshold at HP %d" % value)
