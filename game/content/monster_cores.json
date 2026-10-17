@@ -134,6 +134,13 @@
       "color": "#9bd7df"
     },
     {
+      "id": "elder_core",
+      "name": "Veiled Elder Core",
+      "family": "boss",
+      "healing_percent": 0.6,
+      "color": "#80c4df"
+    },
+    {
       "id": "orchid_core",
       "name": "Orchid Stalker Core",
       "family": "boss",
@@ -253,6 +260,13 @@
       "variant": "",
       "variant_chance": 0,
       "boss_bonus": 250
+    },
+    "vault_elder": {
+      "drop_rate": 1,
+      "generic": "elder_core",
+      "variant": "",
+      "variant_chance": 0,
+      "boss_bonus": 650
     },
     "canyon_fiend": {
       "drop_rate": 1,

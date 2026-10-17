@@ -103,7 +103,7 @@ static func read(path: String = SAVE_PATH) -> Dictionary:
 	if not defeated is Array or defeated.size()>128:
 		return {}
 	var allowed_story=["slime_forest/forest_slime","herb_glade/briar_boar","herb_glade/thorn_wisp","herb_glade/briar_boar_second","herb_glade/stone_warden"]
-	for map_name in ["wr_floor_01","jungle_approach","queen_arena","beta_meadow"]+JSON.parse_string(FileAccess.get_file_as_string("res://content/alpha2.json")).maps:
+	for map_name in ["wr_floor_01","wr_boss_chamber","jungle_approach","queen_arena","beta_meadow"]+JSON.parse_string(FileAccess.get_file_as_string("res://content/alpha2.json")).maps:
 		var area=WorldPacks.definition(map_name)
 		for mob in area.get("catalog_enemies",[]): allowed_story.append(map_name+"/"+mob.id)
 		for mob in area.get("enemies",[]): allowed_story.append(map_name+"/"+mob.id)

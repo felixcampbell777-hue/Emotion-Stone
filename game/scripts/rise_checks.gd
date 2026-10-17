@@ -99,6 +99,7 @@ func run(test:RefCounted) -> void:
 	test.check(g.defeated_enemies.filter(func(e):return String(e).begins_with("wr_floor_01/")).is_empty() and not g.player.has_meta("rise_fall"),"Death resets regular pack defeats and clears falling state")
 	await load("res://scripts/rise_beast_checks.gd").new().run(test)
 	await load("res://scripts/rise_chamber_checks.gd").new().run(test)
+	await load("res://scripts/elder_checks.gd").new().run(test)
 	g.title_screen.fixture_path="user://world-rise-title-verification.json";g.title_screen.show_menu(g.title_screen.fixture_path);g.title_screen.select_mode(3)
 	test.check(g.title_screen.mode_choice.selected==3 and not g.title_screen.import_choice.visible and g.title_screen.load_button.disabled and not g.player.input_enabled,"Title exposes fresh-only World Rise and pauses gameplay")
 	var untouched=true

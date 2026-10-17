@@ -143,6 +143,10 @@
         "canyon_fiend": {
           "type": "integer",
           "minimum": 1
+        },
+        "vault_elder": {
+          "type": "integer",
+          "minimum": 1
         }
       }
     },

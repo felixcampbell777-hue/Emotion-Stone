@@ -52,7 +52,7 @@ func lighting() -> void:
 	var sun=game.world_root.get_node("WorldSun");sun.light_energy=1.2;sun.rotation_degrees=Vector3(-42,-30,0);sun.directional_shadow_max_distance=90
 func build_map() -> void:
 	packs.clear();clock=0
-	if game.game_mode=="world_rise" and game.map_id=="wr_boss_chamber":lighting();return
+	if game.game_mode=="world_rise" and game.map_id=="wr_boss_chamber":game.current_world.activate(game);lighting();return
 	if not active():return
 	lighting()
 	for p in Shape.spec.packs:packs[p.id]={"spec":p,"active":false,"members":[],"engaged":false,"attack":0.0,"cursor":0}
@@ -141,6 +141,7 @@ func interact(target:Dictionary) -> bool:
 			remember_all()
 			game.load_map("wr_boss_chamber",Vector2(0,36),true);game.camera_driver.yaw=0
 		else:
+			if game.map_id=="wr_boss_chamber" and game.current_world.combat_locked():return true
 			game.load_map("wr_floor_01",chamber.return_point(),true);game.camera_driver.yaw=chamber.ENTRANCE_YAW
 		game.camera_driver.first_pitch=0;game.camera_driver.update_first_person();return true
 	if target.has("beast_loot"):guild.collect(target.beast_loot);return true

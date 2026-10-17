@@ -8,5 +8,6 @@
   "sea": false,
   "biome": "highlands",
   "terrain_regions": [{"kind": "cobble", "rect": [-64,-64,128,128]}],
-  "props": [], "npcs": [], "interactions": [], "exits": [], "enemies": []
+  "props": [], "npcs": [], "interactions": [], "exits": [],
+  "enemies": [{"id":"vault_elder","kind":"vault_elder","at":[0,-5],"size":"giant"}]
 }

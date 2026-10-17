@@ -2,6 +2,7 @@ extends RefCounted
 func picture(g:Node,directory:String,label:String,at:Vector3,target:Vector3) -> void:
 	g.player.position=at;g.camera_driver.yaw=atan2(-(target-at).x,-(target-at).z)
 	var eye=at+Vector3.UP*1.6;var toward=target-eye;g.camera_driver.first_pitch=-atan2(toward.y,Vector2(toward.x,toward.z).length());g.camera_driver.update_first_person()
+	g._update_combat_ui()
 	g.toast.hide();g.toast_time=0
 	await g.get_tree().create_timer(.5).timeout;await RenderingServer.frame_post_draw
 	g.get_viewport().get_texture().get_image().save_png(directory+"/vault-"+label+".png")
@@ -16,7 +17,16 @@ func run(g:Node,directory:String) -> void:
 	await picture(g,directory,"hidden-entrance",approach,entry.global_position+Vector3.UP*3)
 	g.worldrise.interact({"wr_chamber":"enter"})
 	await picture(g,directory,"arrival",Vector3(0,0,35),Vector3(0,3,0))
+	var vault=g.current_world;vault.set_physics_process(false);g.player.position=Vector3(0,0,22);vault.tick(.016)
+	var boss=vault.boss;boss.set_physics_process(false)
+	for i in range(75):boss._physics_process(1.0/60)
+	await picture(g,directory,"elder-forming",Vector3(0,0,20),Vector3(0,2,-5))
+	for i in range(110):boss._physics_process(1.0/60)
+	vault.tick(.016)
 	await picture(g,directory,"arena",Vector3(0,0,16),Vector3(0,5,-20))
+	await picture(g,directory,"elder-ready",Vector3(0,0,8),boss.position+Vector3.UP*2.8)
+	await picture(g,directory,"ramp-gone",Vector3(0,0,20),Vector3(0,1,36))
 	await picture(g,directory,"ceiling",Vector3(-10,0,5),Vector3(6,20,-16))
 	await picture(g,directory,"edge",Vector3(20,0,0),Vector3(38,-5,0))
+	boss.take_damage(99999,Vector3.ZERO)
 	await picture(g,directory,"return",Vector3(0,0,20),Vector3(0,3,38))
