@@ -86,9 +86,9 @@ func ceiling(ring:int,angle:float) -> Vector3:
 	var radius=ring*5.7
 	var y=27.0-18.0*pow(radius/57,1.35)+(.5*sin(angle*7)+.35*cos(angle*13))*radius/57
 	return Vector3(sin(angle)*radius,y,cos(angle)*radius)
-func tri(st:SurfaceTool,a:Vector3,b:Vector3,c:Vector3) -> void:
+static func tri(st:SurfaceTool,a:Vector3,b:Vector3,c:Vector3) -> void:
 	for p in [a,b,c]:st.set_uv(Vector2(p.x,p.z)*.18);st.add_vertex(p)
-func quad(st:SurfaceTool,a:Vector3,b:Vector3,c:Vector3,d:Vector3) -> void:
+static func quad(st:SurfaceTool,a:Vector3,b:Vector3,c:Vector3,d:Vector3) -> void:
 	tri(st,a,b,c);tri(st,a,c,d)
 func surface(st:SurfaceTool,label:String,solid:bool) -> void:
 	st.generate_normals();var mesh=st.commit();var node=MeshInstance3D.new();node.name=label;node.mesh=mesh;node.material_override=rock;add_child(node)
@@ -128,16 +128,23 @@ func move_grounded(body:CharacterBody3D,delta:float) -> void:
 static func build_entrance(world:Node) -> void:
 	var root=Node3D.new();root.name="HiddenVaultEntrance";world.add_child(root);root.position=Vector3(ENTRANCE.x,world.ground_height(Vector3(ENTRANCE.x,0,ENTRANCE.y)),ENTRANCE.y);root.rotation.y=ENTRANCE_YAW
 	var mat=stone_material();var st=SurfaceTool.new();st.begin(Mesh.PRIMITIVE_TRIANGLES)
-	for i in range(24):
-		var a=i*PI/24;var b=(i+1)*PI/24
-		var inner_a=Vector3(cos(a)*3.2,1.0+sin(a)*4.8,0);var inner_b=Vector3(cos(b)*3.2,1.0+sin(b)*4.8,0)
-		var outer_a=Vector3(cos(a)*(6.5+.4*sin(a*13)),.5+sin(a)*(8+.5*sin(a*9)),0);var outer_b=Vector3(cos(b)*(6.5+.4*sin(b*13)),.5+sin(b)*(8+.5*sin(b*9)),0)
-		for p in [inner_a,outer_a,outer_b,inner_a,outer_b,inner_b,inner_a,inner_b,inner_b+Vector3(0,0,-6),inner_a,inner_b+Vector3(0,0,-6),inner_a+Vector3(0,0,-6)]:st.set_uv(Vector2(p.x,p.y)*.15);st.add_vertex(p)
-	st.generate_normals();var mesh=st.commit();var arch=MeshInstance3D.new();arch.mesh=mesh;arch.material_override=mat;root.add_child(arch)
-	arch.create_trimesh_collision()
+	# A single extruded arched shelf: the ground rises over the opening instead of ending in a thin, cut-off arch.
+	for i in range(32):
+		var a=i*PI/32.0;var b=(i+1)*PI/32.0
+		var ia=Vector3(cos(a)*3.25,1.0+sin(a)*4.7,1.5);var ib=Vector3(cos(b)*3.25,1.0+sin(b)*4.7,1.5)
+		var oa=Vector3(cos(a)*(6.8+.18*sin(a*7)),.35+sin(a)*(8.0+.22*sin(a*5)),1.5);var ob=Vector3(cos(b)*(6.8+.18*sin(b*7)),.35+sin(b)*(8.0+.22*sin(b*5)),1.5)
+		var ia_back=ia+Vector3(0,0,-6.5);var ib_back=ib+Vector3(0,0,-6.5);var oa_back=oa+Vector3(0,0,-6.5);var ob_back=ob+Vector3(0,0,-6.5)
+		quad(st,ia,oa,ob,ib);quad(st,ia_back,ib_back,ob_back,oa_back)
+		quad(st,oa,oa_back,ob_back,ob);quad(st,ia,ib,ib_back,ia_back)
+	# Close the two feet of the shelf, leaving the cave mouth open between them.
+	quad(st,Vector3(-6.8,.35,1.5),Vector3(-3.25,1,1.5),Vector3(-3.25,1,-5),Vector3(-6.8,.35,-5))
+	quad(st,Vector3(3.25,1,1.5),Vector3(6.8,.35,1.5),Vector3(6.8,.35,-5),Vector3(3.25,1,-5))
+	st.generate_normals();var mesh=st.commit();var arch=MeshInstance3D.new();arch.mesh=mesh;arch.material_override=mat;root.add_child(arch);arch.create_trimesh_collision()
+	# Moss and soil sit on the broad upper shelf, softening the silhouette into the surrounding terrain.
 	for side in [-1,1]:
 		var boulder=Art.model(Art.ROOT+"models/rock_moss_set_01_a.glb",Vector3(4,5.5,5),false)
-		if boulder!=null:root.add_child(boulder);boulder.position=Vector3(side*5,-.8,0);boulder.rotation.y=side*.8
+		if boulder!=null:root.add_child(boulder);boulder.position=Vector3(side*5.2,5.7,-.8);boulder.rotation.y=side*.8
+		var moss=Props.box(root,Vector3(side*4.7,7.15,-1.5),Vector3(3.4,.18,3.8),"#43583b");moss.rotation.z=side*.08
 	var dark=Props.box(root,Vector3(0,2.8,-3.5),Vector3(6.4,5.6,.3),"#010207");dark.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;Props.collider(root,dark.position,Vector3(6.4,5.6,.3))
 	for x in [-4.8,4.8]:Props.collider(root,Vector3(x,2.4,-2),Vector3(3,4.8,8))
 	var mat_dark=StandardMaterial3D.new();mat_dark.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED;mat_dark.albedo_color=Color("#010207");dark.material_override=mat_dark
