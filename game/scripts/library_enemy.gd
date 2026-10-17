@@ -78,7 +78,7 @@ func _physics_process(delta:float) -> void:
 			visual.rotation.y=atan2(direction.x,direction.z)
 			state_time-=delta;velocity=direction*float(spec.attack_speed)
 			if style=="spider":visual.position.y=sin(clampf(1-state_time/float(spec.lunge_seconds),0,1)*PI)*.4
-			if not lunge_hit and not game.impact_blocked(position,player.position):
+			if not lunge_hit and not game.impact_blocked(position+Vector3.UP*.6,player.position+Vector3.UP*.6):
 				if distance<=float(player.combat.parry.contact_range) and player.try_parry(self):lunge_hit=true
 				elif distance<float(spec.radius)+.6:player.take_damage(int(spec.damage),direction);lunge_hit=true
 			if state_time<=0:state="recover";state_time=float(spec.recovery)

@@ -10,10 +10,12 @@ var proxies:Dictionary={}
 func build(data:Dictionary) -> void:
 	definition=data;bounds=Rect2(-240,-240,480,480);npc_definitions=[]
 	grass_material=ShaderMaterial.new();grass_material.shader=preload("res://shaders/rise_ground.gdshader");grass_material.set_shader_parameter("grass",load(Art.ROOT+"leafy_grass/albedo.jpg"));grass_material.set_shader_parameter("stone",load("res://assets/alpha2/rock_face/albedo.jpg"))
+	grass_material.set_shader_parameter("cobbles",load(Art.ROOT+"cobblestone_floor_08/albedo.jpg"))
 	for cx in range(-4,4):
 		for cz in range(-4,4):terrain_chunk(cx,cz)
 	var backdrop=preload("res://assets/environment/world_rise_backdrop/ring.tscn").instantiate();add_child(backdrop)
 	arrival()
+	preload("res://scripts/rise_guild_house.gd").build(self)
 	for cx in range(-8,8):
 		for cz in range(-8,8):
 			if Vector2(cx*32+16,cz*32+16).length()<261:decoration[Vector2i(cx,cz)]=[]
@@ -54,13 +56,13 @@ func terrain_chunk(cx:int,cz:int) -> void:
 	var mesh=st.commit();var node=MeshInstance3D.new();node.name="TerrainChunk_%d_%d"%[cx,cz];node.mesh=mesh;node.material_override=grass_material;add_child(node)
 	var body=StaticBody3D.new();body.collision_layer=1;body.collision_mask=0;var shape=CollisionShape3D.new();shape.shape=mesh.create_trimesh_shape();shape.shape.backface_collision=true;body.add_child(shape);add_child(body)
 func arrival() -> void:
-	for radius in [6,15,17.5]:
+	for radius in [3,7.5,8.75]:
 		var mesh=TorusMesh.new();mesh.inner_radius=radius-.06;mesh.outer_radius=radius+.06;mesh.rings=96;mesh.ring_segments=4
 		var ring=Props.mesh_node(self,mesh,Vector3(0,26.04,0),"#c8c99d");ring.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	for i in range(4):
-		var at=Vector3(sin(i*PI/2)*14,26,cos(i*PI/2)*14);Props.box(self,at+Vector3.UP*1.1,Vector3(.6,2.2,.6),"#adb7b2")
+		var at=Vector3(sin(i*PI/2)*7,26,cos(i*PI/2)*7);Props.box(self,at+Vector3.UP*1.1,Vector3(.6,2.2,.6),"#adb7b2")
 		var crystal=Props.cone(self,at+Vector3.UP*2.6,.25,.8,"#69c2d1",.08);var mat=Props.mat("#69c2d1");mat.emission_enabled=true;mat.emission=Color("#69c2d1");crystal.material_override=mat
-	var label=Label3D.new();label.text="WORLD RISE\nFLOOR 1 · THE VERDANT REACH";label.font_size=48;label.pixel_size=.012;label.position=Vector3(0,29,-12);add_child(label)
+	var label=Label3D.new();label.text="WORLD RISE\nFLOOR 1 · THE VERDANT REACH";label.font_size=48;label.pixel_size=.012;label.position=Vector3(0,29,-6);add_child(label)
 func update_details(at:Vector3) -> void:
 	for key in decoration:
 		var distance=Vector2(at.x-key.x*32-16,at.z-key.y*32-16).length()
@@ -80,7 +82,7 @@ func update_details(at:Vector3) -> void:
 	var placements:Array[Transform3D]=[]
 	for i in range(180):
 		var pos=Vector3(key.x*32+rng.randf()*32,0,key.y*32+rng.randf()*32);var radius=Vector2(pos.x,pos.z).length()
-		if radius<20 or radius>225 or Shape.normal(pos.x,pos.z).y<.68:continue
+		if radius<10 or radius>225 or Shape.normal(pos.x,pos.z).y<.68 or Vector2(pos.x-146,pos.z-146).length()<18 or Shape.trail_distance(pos)<3.2:continue
 		pos.y=ground_height(pos);placements.append(Transform3D(Basis(Vector3.UP,rng.randf()*TAU).scaled(Vector3.ONE*rng.randf_range(.7,1.6)),pos))
 	for mesh in grass_template.find_children("*","MeshInstance3D",true,false):
 		var batch=MultiMesh.new();batch.transform_format=MultiMesh.TRANSFORM_3D;batch.mesh=mesh.mesh;batch.instance_count=placements.size()
@@ -90,7 +92,7 @@ func update_details(at:Vector3) -> void:
 	# Sparse low outcrops emphasize hill shoulders without blocking the open valleys.
 	if Vector2(key.x*32+16,key.y*32+16).length()>45:
 		var pos=Vector3(key.x*32+12,0,key.y*32+10)
-		if Vector2(pos.x,pos.z).length()<220:
+		if Vector2(pos.x,pos.z).length()<220 and Vector2(pos.x-146,pos.z-146).length()>20:
 			pos.y=ground_height(pos)-.9;var rock=Art.model(Art.ROOT+"models/rock_moss_set_01_a.glb",Vector3(3.5,1.3,2.8),false)
 			if rock!=null:root.add_child(rock);rock.position=pos;rock.rotation.y=rng.randf()*TAU
 func ground_height(at:Vector3) -> float:return Shape.height(at)

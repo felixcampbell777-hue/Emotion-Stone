@@ -1,6 +1,8 @@
 extends RefCounted
 const Shape=preload("res://scripts/rise_shape.gd")
 const Props=preload("res://scripts/props.gd")
+const Guild=preload("res://scripts/rise_guild.gd")
+var guild=Guild.new()
 var game:Node
 var states:Dictionary={}
 var flags:Array=[]
@@ -9,9 +11,10 @@ var packs:Dictionary={}
 var clock=0.0
 var elapsed=0.0
 func active() -> bool:return game.game_mode=="world_rise" and game.map_id=="wr_floor_01"
-func reset() -> void:states.clear();flags.clear();checkpoint=[0,0];packs.clear();clock=0;elapsed=0
+func reset() -> void:states.clear();flags.clear();checkpoint=[0,0];packs.clear();clock=0;elapsed=0;guild.reset()
 static func valid(data:Variant) -> bool:
 	if not data is Dictionary:return false
+	if not Guild.valid(data.get("economy",{})):return false
 	var cp=data.get("checkpoint",[0,0]);var marks=data.get("flags",[]);var records=data.get("states",{})
 	if not cp is Array or cp.size()!=2 or not marks is Array or marks.size()>8 or not records is Dictionary or records.size()>80:return false
 	for v in cp:
@@ -31,8 +34,8 @@ static func valid(data:Variant) -> bool:
 	return true
 func snapshot() -> Dictionary:
 	if active():remember_all()
-	return {"states":states.duplicate(true),"flags":flags.duplicate(),"checkpoint":checkpoint.duplicate()}
-func restore(data:Dictionary) -> void:states=data.get("states",{}).duplicate(true);flags=data.get("flags",[]).duplicate();checkpoint=data.get("checkpoint",[0,0]).duplicate()
+	return {"states":states.duplicate(true),"flags":flags.duplicate(),"checkpoint":checkpoint.duplicate(),"economy":guild.snapshot()}
+func restore(data:Dictionary) -> void:states=data.get("states",{}).duplicate(true);flags=data.get("flags",[]).duplicate();checkpoint=data.get("checkpoint",[0,0]).duplicate();guild.restore(data.get("economy",{}))
 func remember_all() -> void:
 	for enemy in game.enemies:
 		if String(enemy.definition.id).begins_with("boars_") or String(enemy.definition.id).begins_with("wolves_"):remember(enemy)
@@ -66,6 +69,7 @@ func build_map() -> void:
 	for i in range(7):
 		var at=Vector3(45+i*8,0,-150);at.y=game.current_world.ground_height(at);Props.box(game.current_world,at+Vector3.UP*4,Vector3(1.4,8,1.8),"#959e87");Props.box(game.current_world,at+Vector3(3.5,8,0),Vector3(8,1,2.4),"#a0a88e");Props.collider(game.current_world,at+Vector3.UP*4,Vector3(1.4,8,1.8))
 	game.current_world.update_details(game.player.position)
+	guild.game=game;guild.build()
 	update_packs()
 func spawn_pack(record:Dictionary) -> void:
 	record.active=true;record.members=[]
@@ -76,7 +80,8 @@ func spawn_pack(record:Dictionary) -> void:
 		var saved=states.get(entry.id,{})
 		var enemy=load("res://scripts/beta_enemy.gd").new() if p.kind=="beta_wolf" else load("res://scripts/library_enemy.gd").new()
 		enemy.name=entry.id;enemy.configure(entry.duplicate(true),game.player,saved);enemy.game=game
-		if p.kind=="library_boar":enemy.spec=enemy.spec.duplicate(true);enemy.spec.damage=9+int(p.tier)*4;enemy.max_health=65+int(p.tier)*25;enemy.health=int(saved.get("health",enemy.max_health));enemy.encounter_owned=true
+		if p.kind=="library_boar":enemy.spec=enemy.spec.duplicate(true);enemy.spec.damage=9+int(p.tier)*4;enemy.spec.range=5.5;enemy.spec.windup=.8;enemy.spec.lunge_seconds=.8;enemy.spec.recovery=1.1;enemy.max_health=65+int(p.tier)*25;enemy.health=int(saved.get("health",enemy.max_health));enemy.encounter_owned=true
+		if p.kind=="beta_wolf":enemy.tuning.windup=.7;enemy.tuning.recovery=1.0
 		game.world_root.add_child(enemy);game.enemies.append(enemy);record.members.append(enemy)
 		var pos=saved.get("at",entry.at);enemy.position=Vector3(pos[0],0,pos[1]);enemy.position.y=game.current_world.ground_height(enemy.position);enemy.home=Vector3(p.at[0],game.current_world.ground_height(Vector3(p.at[0],0,p.at[1])),p.at[1])
 		enemy.defeated.connect(func():game._enemy_defeated(key,p.kind,enemy));game.add_enemy_bar(enemy)
@@ -98,30 +103,46 @@ func tick(delta:float) -> void:
 	for record in packs.values():
 		if not record.active or record.spec.kind!="library_boar":continue
 		var center=Vector3(record.spec.at[0],0,record.spec.at[1]);var distance=Vector2(game.player.position.x-center.x,game.player.position.z-center.z).length()
-		var members=record.members.filter(func(e):return is_instance_valid(e) and e.health>0)
+		var members=record.members.filter(func(e):return is_instance_valid(e) and e.health>0 and e.ai_enabled and e.simulation_enabled)
 		if members.is_empty():continue
-		if (distance<17 and members.any(func(e):return not game.impact_blocked(e.position,game.player.position))) or (distance<36 and members.any(func(e):return e.health<e.max_health)):record.engaged=true
-		if distance>36:record.engaged=false
+		if (distance<20 and members.any(func(e):return can_see(e))) or (distance<42 and members.any(func(e):return e.health<e.max_health)):record.engaged=true
+		if distance>42:record.engaged=false
 		record.attack=maxf(0,record.attack-delta)
 		var busy=members.any(func(e):return e.state in ["windup","lunge"])
+		# Consume the turn only after an animal actually enters its attack.
+		# Permission remains available across physics frames until then.
+		if busy:
+			record.attack=.75
+			for i in range(members.size()):
+				if members[i].state in ["windup","lunge"]:record.cursor=(i+1)%members.size()
+		var chosen=null
+		if record.engaged and not busy and record.attack<=0:
+			for offset in range(members.size()):
+				var e=members[(int(record.cursor)+offset)%members.size()]
+				if e.state=="idle" and Vector2(e.position.x-game.player.position.x,e.position.z-game.player.position.z).length()<float(e.spec.range) and can_see(e):chosen=e;break
 		for i in range(members.size()):
-			var e=members[i];var angle=elapsed*.2+i*TAU/members.size();e.encounter_engaged=record.engaged;e.encounter_attack_allowed=false
-			e.encounter_goal=game.player.position+Vector3(sin(angle),0,cos(angle))*3.8 if record.engaged else center+Vector3(sin(angle),0,cos(angle))*3.0
-			if record.engaged and not busy and record.attack<=0 and i==int(record.cursor)%members.size():e.encounter_attack_allowed=true;record.attack=1.8;record.cursor+=1
+			var e=members[i];var angle=elapsed*.2+i*TAU/members.size();e.encounter_engaged=record.engaged;e.encounter_attack_allowed=e==chosen
+			e.encounter_speed=1.5 if record.engaged else 1.0
+			e.encounter_goal=game.player.position+Vector3(sin(angle),0,cos(angle))*2.6 if record.engaged else center+Vector3(sin(angle),0,cos(angle))*3.0
+func can_see(enemy:Node3D) -> bool:
+	return not game.impact_blocked(enemy.position+Vector3.UP*.6,game.player.position+Vector3.UP*.6)
+
 func respawn_reset() -> void:
 	states.clear()
 	game.defeated_enemies=game.defeated_enemies.filter(func(id):return not String(id).begins_with("wr_floor_01/"))
 func interact(target:Dictionary) -> bool:
+	if target.has("beast_loot"):guild.collect(target.beast_loot);return true
 	if not active() or not target.has("wr_action"):return false
 	var entry=target.wr_action
 	if entry.type=="rest":
 		if game.enemies.any(func(e):return e.health>0 and e.position.distance_to(game.player.position)<12):game.notify("Clear nearby enemies before resting.");return true
 		checkpoint=entry.at.duplicate();respawn_reset();game.load_map("wr_floor_01",Vector2(checkpoint[0],checkpoint[1]),true);game.player.restore_health(game.player.max_health);game.player.restore_stamina(game.player.max_stamina);game.notify("Rested. Valley herds and wolf packs return.")
-	elif entry.type=="cache":
-		if entry.id in flags:game.notify("This cache is empty.");return true
-		flags.append(entry.id);game.alpha2.grant("windstep" if entry.id=="rim_watch" else "spring_elixir",1 if entry.id=="rim_watch" else 3);game.gain_xp(100);game.notify("Treasure recovered · +100 XP. Open Inventory to inspect it.")
+	elif entry.type=="view":game.notify("The Silver Verge overlooks the sunny abyss." if entry.id=="rim_watch" else "An old hollow tree marks this quiet forest clearing.")
 	else:game.notify("The ascent gate is dormant. Floor Two is not available yet.")
 	return true
 func journal(ui:Node) -> void:
 	ui.add_quest("The Verdant Reach","Exploration + combat XP","Explore from the central arrival platform.","Boar herds occupy the valleys. Elderwood lies northwest; follow its clear paths to avoid encirclement. The eastern silver rim overlooks the abyss. Rest crystals set your respawn and restore regular packs.")
-	ui.add_quest("Hidden treasures","Magic equipment and remedies","%d/2 caches discovered"%flags.size(),"Search the eastern rim lookout and a hollow clearing deep in Elderwood. Levels and skills are earned fresh in World Rise.")
+	ui.add_quest("The Adventurers' Guild","Sell spoils · craft equipment","Follow the trail southeast, opposite Elderwood.","Copper is credited on kills; pick up material sacks from fallen boars and wolves. Sell at the front desk; craft hide armor or the Cruel Charm with Bram at the back. The sword merchant's shop opens later. 100 copper = 1 gold.")
+	for id in Guild.catalog.contracts:
+		var entry=Guild.catalog.contracts[id];var state=guild.contracts.get(id,{"active":false,"count":0})
+		ui.add_quest(entry.name,"%d copper + %d XP"%[entry.reward,guild.contract_xp(id)],"Complete · reward collected." if state.get("completed",false) else "%d/10 defeated · return to the front desk"%state.count if state.active else "Accept at the guild front desk.","One-time contract. Only kills after acceptance count; ordinary packs return when you rest.")

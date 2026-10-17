@@ -8,6 +8,7 @@ func build(owner_game:Control) -> void:
 	game=owner_game;var old=packs.duplicate();packs.clear()
 	tuning=JSON.parse_string(FileAccess.get_file_as_string("res://content/beta.json")).wolf_packs
 	if game.game_mode=="world_rise":
+		tuning.first_attack_delay=.7;tuning.wave_interval=2.2;tuning.leash_radius=32.0;tuning.circle_radius=2.8;tuning.attack_distance=4.5
 		tuning.territories={}
 		for p in preload("res://scripts/rise_shape.gd").spec.packs:
 			if p.kind=="beta_wolf":tuning.territories[p.id]={"center":p.at,"radius":14}
@@ -48,7 +49,7 @@ static func horizontal(value:Vector3) -> Vector3:
 	return value*Vector3(1,0,1)
 
 func can_see(wolf:Node3D) -> bool:
-	return not game.impact_blocked(wolf.position,game.player.position)
+	return not game.impact_blocked(wolf.position+Vector3.UP*.45,game.player.position+Vector3.UP*.45)
 
 func tick(delta:float) -> void:
 	if not is_instance_valid(game) or game.game_mode not in ["beta","world_rise"] or not game.player.input_enabled or game.gallery_mode: return
@@ -58,7 +59,7 @@ func tick(delta:float) -> void:
 		if game.player.health<=0:
 			disengage(pack); patrol(pack,members,delta); continue
 		var inside=horizontal(game.player.position-pack.home).length()<=float(tuning.leash_radius)
-		var visible_target=members.any(func(w): return horizontal(game.player.position-w.position).length()<float(w.tuning.notice_range) and can_see(w))
+		var visible_target=members.any(func(w): return horizontal(game.player.position-w.position).length()<(12.0 if game.game_mode=="world_rise" else float(w.tuning.notice_range)) and can_see(w))
 		if not pack.engaged and inside and visible_target: engage(pack)
 		if pack.engaged:
 			var line_of_sight=members.any(func(w): return can_see(w))
@@ -106,7 +107,7 @@ func surround(pack:Dictionary,members:Array,delta:float) -> void:
 		var index=(int(pack.cursor)+offset)%members.size()
 		var wolf=members[index]
 		var distance=horizontal(game.player.position-wolf.position).length()
-		if wolf.state=="circle" and distance<=float(tuning.attack_distance) and distance>=1.25 and can_see(wolf): candidates.append(wolf)
+		if wolf.state=="circle" and distance<=float(tuning.attack_distance) and can_see(wolf): candidates.append(wolf)
 	if candidates.is_empty(): return
 	var count=mini(1 if int(pack.wave)%2==0 else 2,candidates.size())
 	for i in range(count):

@@ -484,6 +484,45 @@
         "health": 20,
         "armor": 0.12
       }
+    },
+    {
+      "id": "boar_hide_armor",
+      "code": "WRB",
+      "category": "torso",
+      "name": "Boar Hide Armor",
+      "description": "Guild-crafted torso armor. Reduces incoming damage by 2%. Requires level 5, five boar hides and 100 copper to craft.",
+      "color": "#805c3d",
+      "accent": "#bdac85",
+      "variant": 0,
+      "effects": {
+        "armor": 0.02
+      }
+    },
+    {
+      "id": "wolf_hide_armor",
+      "code": "WRW",
+      "category": "torso",
+      "name": "Wolf Hide Armor",
+      "description": "Guild-crafted torso armor. Reduces incoming damage by 3%. Requires level 10, eight wolf hides and 200 copper to craft.",
+      "color": "#7f8587",
+      "accent": "#bdac85",
+      "variant": 0,
+      "effects": {
+        "armor": 0.03
+      }
+    },
+    {
+      "id": "cruel_charm",
+      "code": "WRC",
+      "category": "necklace",
+      "name": "Cruel Charm",
+      "description": "A fang-and-tusk necklace. Increases attack damage by 2%. Crafted from two wolf fangs, one boar tusk and 300 copper at the guild.",
+      "color": "#a99d81",
+      "accent": "#dfcf9b",
+      "variant": 0,
+      "effects": {
+        "all_damage": 0.02
+      }
     }
   ],
   "sets": [

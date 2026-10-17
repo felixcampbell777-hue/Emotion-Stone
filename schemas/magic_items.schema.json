@@ -202,6 +202,11 @@
                 "type": "number",
                 "minimum": 0,
                 "maximum": 30
+              },
+              "all_damage": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
               }
             }
           }
@@ -363,6 +368,11 @@
                 "type": "number",
                 "minimum": -0.5,
                 "maximum": 50
+              },
+              "all_damage": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
               }
             }
           }

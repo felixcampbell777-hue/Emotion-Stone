@@ -1,0 +1,78 @@
+{
+  "materials": {
+    "boar_hide": {
+      "name": "Boar Hide",
+      "chance": 0.35,
+      "value": 5,
+      "beast": "library_boar"
+    },
+    "boar_tusk": {
+      "name": "Boar Tusk",
+      "chance": 0.08,
+      "value": 22,
+      "beast": "library_boar"
+    },
+    "wolf_hide": {
+      "name": "Wolf Hide",
+      "chance": 0.35,
+      "value": 5,
+      "beast": "beta_wolf"
+    },
+    "wolf_fang": {
+      "name": "Wolf Fang",
+      "chance": 0.08,
+      "value": 22,
+      "beast": "beta_wolf"
+    }
+  },
+  "coins": {
+    "library_boar": [
+      2,
+      4
+    ],
+    "beta_wolf": [
+      1,
+      5
+    ]
+  },
+  "recipes": {
+    "boar_hide_armor": {
+      "level": 5,
+      "copper": 100,
+      "materials": {
+        "boar_hide": 5
+      }
+    },
+    "wolf_hide_armor": {
+      "level": 10,
+      "copper": 200,
+      "materials": {
+        "wolf_hide": 8
+      }
+    },
+    "cruel_charm": {
+      "level": 1,
+      "materials": {
+        "wolf_fang": 2,
+        "boar_tusk": 1
+      },
+      "copper": 300
+    }
+  },
+  "contracts": {
+    "boar": {
+      "name": "Valley Boar Hunt",
+      "kind": "library_boar",
+      "target": 10,
+      "reward": 75,
+      "xp_level": 5
+    },
+    "wolf": {
+      "name": "Elderwood Wolf Hunt",
+      "kind": "beta_wolf",
+      "target": 10,
+      "reward": 125,
+      "xp_level": 6
+    }
+  }
+}

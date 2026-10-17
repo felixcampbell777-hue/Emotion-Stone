@@ -1,6 +1,7 @@
 extends RefCounted
 const Shape=preload("res://scripts/rise_shape.gd")
 func freeze(g:Node) -> void:
+	g.set_physics_process(false)
 	g.player.set_physics_process(false)
 	for e in g.enemies:e.set_physics_process(false);e.ai_enabled=false
 func move_to(g:Node,at:Vector2) -> void:
@@ -51,8 +52,9 @@ func run(test:RefCounted) -> void:
 	var boar=boars[0];var id=boar.definition.id;boar.health=31;move_to(g,Vector2(180,-120));move_to(g,Vector2(45,35))
 	boar=g.enemies.filter(func(e):return e.definition.id==id)[0]
 	test.check(boar.health==31,"Unloading and revisiting a herd retains its damage")
-	var xp=g.progression.xp;boar.take_damage(1000,Vector3.ZERO);var awarded=g.progression.xp-xp;g._enemy_defeated("wr_floor_01/"+id,"library_boar",boar)
+	var purse_before=g.worldrise.guild.copper;var xp=g.progression.xp;boar.take_damage(1000,Vector3.ZERO);var awarded=g.progression.xp-xp;var paid=g.worldrise.guild.copper;g._enemy_defeated("wr_floor_01/"+id,"library_boar",boar)
 	test.check(awarded>0 and g.progression.xp==xp+awarded,"Boar defeat awards XP exactly once")
+	test.check(paid-purse_before>=2 and paid-purse_before<=4 and g.worldrise.guild.copper==paid,"Boar copper is paid immediately and duplicate defeat callbacks cannot pay twice")
 	test.check(g.monster_cores.pending.is_empty() and g.monster_cores.nodes.is_empty(),"Beasts do not produce monster cores")
 	move_to(g,Vector2(-65,-65));await test.frames(2)
 	var wolves=g.enemies.filter(func(e):return e.definition.kind=="beta_wolf")
@@ -66,11 +68,15 @@ func run(test:RefCounted) -> void:
 	var elapsed=g.worldrise.elapsed;g.player.input_enabled=false;g.worldrise.tick(1)
 	test.check(g.worldrise.elapsed==elapsed,"Overlay gating freezes pack and landscape simulation clocks")
 	g.player.input_enabled=true
-	move_to(g,Vector2(205,25));g.worldrise.interact({"wr_action":Shape.spec.landmarks.filter(func(e):return e.id=="rim_watch")[0]});var treasure_xp=g.progression.xp;g.worldrise.interact({"wr_action":Shape.spec.landmarks.filter(func(e):return e.id=="rim_watch")[0]})
-	test.check("windstep" in g.magic_items.owned and g.progression.xp==treasure_xp,"Eastern rim cache grants its speed charm and XP only once")
-	move_to(g,Vector2(120,110));var path="user://world-rise-verification.json";var saved=g.save_data();var result=g.Save.write(saved,path);var readback=g.Save.read(path)
+	move_to(g,Vector2(205,25));var treasure_xp=g.progression.xp;g.worldrise.interact({"wr_action":Shape.spec.landmarks.filter(func(e):return e.id=="rim_watch")[0]})
+	test.check("windstep" not in g.magic_items.owned and g.progression.xp==treasure_xp and Shape.spec.landmarks.all(func(e):return e.type!="cache"),"Hidden magic-item caches are removed from World Rise")
+	g.worldrise.flags=["rim_watch"] # Preserve discovery flags in older saves without restoring rewards.
+	await load("res://scripts/rise_guild_checks.gd").new().run(test)
+
+	move_to(g,Vector2(120,110));var path="user://world-rise-verification.json";var economy=g.worldrise.guild.snapshot();var saved=g.save_data();var result=g.Save.write(saved,path);var readback=g.Save.read(path)
 	test.check(result==OK and not readback.is_empty() and readback.ground_y>12,"Private save round trip supports high hills and streamed enemy state")
 	test.check(g.apply_save(readback) and g.worldrise.flags==["rim_watch"] and g.player.position.y>60,"Loading restores World Rise elevation, treasure and fresh-mode progress")
+	test.check(JSON.parse_string(JSON.stringify(g.worldrise.guild.snapshot()))==JSON.parse_string(JSON.stringify(economy)),"Save/load preserves purse, counted materials, pending loot and completed one-time contracts")
 	freeze(g);g.set_process(false)
 	var invalid=saved.duplicate(true);invalid.world_rise.states={"bad_id":{"health":5,"at":[0,0]}}
 	test.check(not g.worldrise.valid(invalid.world_rise),"Streamed state rejects unknown enemy IDs")
@@ -89,7 +95,9 @@ func run(test:RefCounted) -> void:
 	test.check(g.player.health<=0 and g.death_screen.visible,"Falling into the sunny abyss reaches the death screen")
 	g.worldrise.checkpoint=[0,8];xp=g.progression.xp;g.respawn_player();freeze(g)
 	test.check(g.player.health>0 and g.player.position.distance_to(Vector3(0,26,8))<.1 and g.progression.xp==xp and g.worldrise.flags==["rim_watch"],"Respawn returns to the rest crystal and retains XP and discoveries")
+	test.check(JSON.parse_string(JSON.stringify(g.worldrise.guild.snapshot()))==JSON.parse_string(JSON.stringify(economy)),"Death respawn retains currency, materials, uncollected sacks and completed contracts")
 	test.check(g.defeated_enemies.filter(func(e):return String(e).begins_with("wr_floor_01/")).is_empty() and not g.player.has_meta("rise_fall"),"Death resets regular pack defeats and clears falling state")
+	await load("res://scripts/rise_beast_checks.gd").new().run(test)
 	g.title_screen.fixture_path="user://world-rise-title-verification.json";g.title_screen.show_menu(g.title_screen.fixture_path);g.title_screen.select_mode(3)
 	test.check(g.title_screen.mode_choice.selected==3 and not g.title_screen.import_choice.visible and g.title_screen.load_button.disabled and not g.player.input_enabled,"Title exposes fresh-only World Rise and pauses gameplay")
 	var untouched=true

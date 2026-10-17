@@ -115,7 +115,7 @@ func _wolf_tick(delta:float) -> void:
 			velocity=direction*float(tuning.lunge_speed); state_time-=delta
 			var progress=clampf(1-state_time/float(tuning.lunge_seconds),0,1)
 			visual.position.y=sin(progress*PI)*.32
-			if not lunge_hit and (not is_instance_valid(game) or not game.impact_blocked(position,player.position)):
+			if not lunge_hit and (not is_instance_valid(game) or game.wolf_packs.can_see(self)):
 				if distance<=float(player.combat.parry.contact_range) and player.try_parry(self): lunge_hit=true
 				elif distance<.9:
 					player.take_damage(int(tuning.damage),direction); lunge_hit=true
