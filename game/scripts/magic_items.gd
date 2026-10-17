@@ -11,6 +11,7 @@ var heal_clock=0.0
 var visual_key=""
 var healing:Array=[]
 var quantities:Dictionary={}
+var elder_clock=0.0
 
 func item(id:String) -> Dictionary:
 	for entry in catalog.items:
@@ -55,10 +56,12 @@ static func valid_save(data:Variant) -> bool:
 	var cooldown=data.get("phoenix_cooldown",0)
 	return (cooldown is int or cooldown is float) and is_finite(float(cooldown)) and cooldown>=0 and cooldown<=60
 func reset() -> void:
+	elder_clock=0
 	owned.clear(); slots.clear(); phoenix_cooldown=0; quiet_seconds=0; heal_clock=0; visual_key="!"; healing.clear(); quantities.clear()
 func snapshot() -> Dictionary:
 	return {"owned":owned.duplicate(),"slots":slots.duplicate(),"phoenix_cooldown":phoenix_cooldown,"healing":healing.duplicate(true),"quantities":quantities.duplicate()}
 func restore(data:Dictionary) -> void:
+	elder_clock=0
 	owned=data.get("owned",[]).duplicate(); slots=data.get("slots",{}).duplicate(); phoenix_cooldown=float(data.get("phoenix_cooldown",0)); visual_key="!"; quiet_seconds=0; heal_clock=0
 	var buffs=data.get("healing",[])
 	healing=([buffs.duplicate()] if not buffs.is_empty() else []) if buffs is Dictionary else buffs.duplicate(true)
@@ -106,6 +109,7 @@ func equip(slot:String,id:String) -> bool:
 	for other in SLOTS:
 		if not id.is_empty() and slots.get(other,"")==id: slots[other]=""
 	slots[slot]=id
+	if slot=="necklace":elder_clock=0
 	if slot=="necklace": game.goblin_campaign.charm_equipped=id=="windstep" and "windstep" in game.goblin_campaign.flags
 	game.apply_skill_stats()
 	return true
@@ -157,6 +161,11 @@ func sword_hit(enemy:Node,previous:int) -> void:
 	if heal>0 and game.player.health>0: game.player.restore_health(game.player.health+heal)
 func tick(delta:float) -> void:
 	if not game.player.input_enabled or game.player.health<=0 or game.gallery_mode: return
+	if bonus("elder_regen")>0:
+		elder_clock+=delta
+		while elder_clock>=10:
+			elder_clock-=10;game.player.restore_health(game.player.health+1)
+	else:elder_clock=0
 	phoenix_cooldown=maxf(0,phoenix_cooldown-delta); quiet_seconds+=delta
 	for buff in healing:
 		var active=minf(delta,buff.remaining); buff.remaining=maxf(0,buff.remaining-delta); buff.clock+=active

@@ -224,6 +224,7 @@ func _ready() -> void:
 	if "--play-world" in args and args.find("--play-world")+1<args.size(): start_world(args[args.find("--play-world")+1])
 
 func start_new_game(show_wakeup:bool=true) -> void:
+	hud_feedback.victory_remaining=0
 	var imported={}
 	if game_mode=="alpha2":
 		var source=alpha2_import_path if not alpha2_import_path.is_empty() else "user://beta-save-v1.json" if alpha2_import_mode=="beta" else "user://save-v1.json"
@@ -1455,6 +1456,7 @@ func respawn_player() -> void:
 func _enemy_defeated(id: String, kind: String, slain_enemy:Node3D=null) -> void:
 	if id in defeated_enemies: return
 	defeated_enemies.append(id)
+	if kind=="vault_elder":worldrise.elder_fell()
 	var earned_copper=0
 	if game_mode=="world_rise" and is_instance_valid(slain_enemy):
 		var purse_before=worldrise.guild.copper;worldrise.guild.defeated(id,kind,slain_enemy.position);earned_copper=worldrise.guild.copper-purse_before

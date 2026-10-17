@@ -13,6 +13,8 @@ var boss:Node3D
 const BOSS_ID="wr_boss_chamber/vault_elder"
 func activate(owner_game:Node) -> void:
 	game=owner_game
+	game.worldrise.guild.game=game
+	for key in game.worldrise.guild.drops:game.worldrise.guild.build_drop(key)
 	if BOSS_ID in game.defeated_enemies:encounter="cleared"
 func set_bridge(open:bool) -> void:
 	bridge_open=open;bridge_mesh.visible=open;bridge_body.collision_layer=1 if open else 0
@@ -21,6 +23,7 @@ func set_bridge(open:bool) -> void:
 func combat_locked() -> bool:return encounter in ["forming","fighting"]
 func start_encounter() -> void:
 	if encounter!="waiting" or game==null:return
+	if is_instance_valid(boss):game.retire_transient(boss)
 	encounter="forming";set_bridge(false)
 	boss=load("res://scripts/elder_boss.gd").new();boss.name="VaultElder";boss.game=game
 	boss.configure({"id":"vault_elder","kind":"vault_elder","at":[0,-5],"size":"giant"},game.player)

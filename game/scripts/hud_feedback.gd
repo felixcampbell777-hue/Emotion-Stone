@@ -8,6 +8,10 @@ var intensity=0.0
 var damage_flash_remaining=0.0
 var damage_flash_strength=0.0
 const DAMAGE_FLASH_SECONDS=0.24
+var victory:PanelContainer
+var victory_label:Label
+var victory_remaining=0.0
+func boss_victory() -> void:victory_remaining=4.5
 func configure(owner:Node) -> void:
 	game=owner
 	veil=ColorRect.new(); veil.mouse_filter=Control.MOUSE_FILTER_IGNORE
@@ -18,6 +22,9 @@ func configure(owner:Node) -> void:
 	damage_veil.color=Color(1.0,.04,.04,0.0)
 	damage_veil.z_index=4
 	game.add_child(damage_veil)
+	victory=PanelContainer.new();victory.mouse_filter=Control.MOUSE_FILTER_IGNORE;victory.z_index=5
+	var style=StyleBoxFlat.new();style.bg_color=Color("#101a22ee");style.border_color=Color("#c8ae71");style.set_border_width_all(2);style.set_corner_radius_all(8);victory.add_theme_stylebox_override("panel",style)
+	victory_label=Label.new();victory_label.text="Floor 1 Boss Defeated!";victory_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;victory_label.vertical_alignment=VERTICAL_ALIGNMENT_CENTER;victory_label.add_theme_color_override("font_color",Color("#f0d39b"));victory_label.mouse_filter=Control.MOUSE_FILTER_IGNORE;victory.add_child(victory_label);game.add_child(victory);victory.hide()
 func denied() -> void:
 	pulse_remaining=.85
 func damaged(amount:int) -> void:
@@ -28,6 +35,10 @@ func damaged(amount:int) -> void:
 	damage_flash_strength=maxf(damage_flash_strength,clampf(.045+fraction*.82,.06,.30))
 	damage_flash_remaining=DAMAGE_FLASH_SECONDS
 func update(delta:float) -> void:
+	if game.player.input_enabled:victory_remaining=maxf(0,victory_remaining-delta)
+	victory.visible=victory_remaining>0 and game.player.input_enabled
+	if victory.visible:
+		var rect=game.world_rect;victory.size=Vector2(rect.size.x*.9,rect.size.y*.25);victory.position=rect.position+(rect.size-victory.size)*.5;victory_label.add_theme_font_size_override("font_size",clampi(int(rect.size.x/24),24,64));victory.modulate.a=minf(smoothstep(0,.25,4.5-victory_remaining),smoothstep(0,.8,victory_remaining))
 	veil.position=game.world_rect.position; veil.size=game.world_rect.size
 	damage_veil.position=game.world_rect.position; damage_veil.size=game.world_rect.size
 	intensity=clampf((.25-float(game.player.health)/maxi(1,game.player.max_health))/.25,0,1)
