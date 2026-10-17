@@ -12,6 +12,7 @@ var visual_key=""
 var healing:Array=[]
 var quantities:Dictionary={}
 var elder_clock=0.0
+var weapon_id:String="standard_greatsword"
 
 func item(id:String) -> Dictionary:
 	for entry in catalog.items:
@@ -57,17 +58,25 @@ static func valid_save(data:Variant) -> bool:
 	return (cooldown is int or cooldown is float) and is_finite(float(cooldown)) and cooldown>=0 and cooldown<=60
 func reset() -> void:
 	elder_clock=0
-	owned.clear(); slots.clear(); phoenix_cooldown=0; quiet_seconds=0; heal_clock=0; visual_key="!"; healing.clear(); quantities.clear()
+	owned.clear(); owned.append("standard_greatsword"); weapon_id="standard_greatsword"; slots.clear(); phoenix_cooldown=0; quiet_seconds=0; heal_clock=0; visual_key="!"; healing.clear(); quantities.clear()
 func snapshot() -> Dictionary:
-	return {"owned":owned.duplicate(),"slots":slots.duplicate(),"phoenix_cooldown":phoenix_cooldown,"healing":healing.duplicate(true),"quantities":quantities.duplicate()}
+	return {"owned":owned.duplicate(),"weapon_id":weapon_id,"slots":slots.duplicate(),"phoenix_cooldown":phoenix_cooldown,"healing":healing.duplicate(true),"quantities":quantities.duplicate()}
 func restore(data:Dictionary) -> void:
 	elder_clock=0
-	owned=data.get("owned",[]).duplicate(); slots=data.get("slots",{}).duplicate(); phoenix_cooldown=float(data.get("phoenix_cooldown",0)); visual_key="!"; quiet_seconds=0; heal_clock=0
+	owned=data.get("owned",[]).duplicate(); if "standard_greatsword" not in owned: owned.append("standard_greatsword")
+	weapon_id=String(data.get("weapon_id","standard_greatsword")); if weapon_id not in owned or item(weapon_id).category!="weapon":weapon_id="standard_greatsword"
+	slots=data.get("slots",{}).duplicate(); phoenix_cooldown=float(data.get("phoenix_cooldown",0)); visual_key="!"; quiet_seconds=0; heal_clock=0
 	var buffs=data.get("healing",[])
 	healing=([buffs.duplicate()] if not buffs.is_empty() else []) if buffs is Dictionary else buffs.duplicate(true)
 	quantities=data.get("quantities",{}).duplicate()
 	for id in owned:
 		if item(id).category=="consumable" and not quantities.has(id): quantities[id]=1
+func weapon_base() -> float:return float(item(weapon_id).get("effects",{}).get("weapon_base",1.0))
+func weapon_bonus_against(category:String) -> float:return float(item(weapon_id).get("effects",{}).get(category+"_damage",0.0))
+func equip_weapon(id:String) -> bool:
+	if id not in owned or item(id).get("category","")!="weapon":return false
+	var required=int(item(id).get("effects",{}).get("level",1));if game.progression.level()<required:return false
+	weapon_id=id;return true
 func drink(id:String) -> bool:
 	var entry=item(id)
 	if id not in owned or entry.get("category","")!="consumable" or game.player.health<=0 or healing.size()>=297: return false

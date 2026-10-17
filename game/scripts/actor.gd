@@ -523,6 +523,18 @@ func set_sword_equipped(value: bool) -> void:
 	equipment.visible=sword_equipped
 	back_harness.visible=sword_equipped
 
+func set_weapon_visual(id:String) -> void:
+	if equipment==null:return
+	for mesh in equipment.find_children("*","MeshInstance3D",true,false):
+		if id=="standard_greatsword" and "gem" in String(mesh.name).to_lower():mesh.visible=false;continue
+		for surface in range(mesh.mesh.get_surface_count()):
+			var base=mesh.mesh.surface_get_material(surface)
+			if base==null:continue
+			var name=String(base.resource_name).to_lower();var copy=base.duplicate()
+			if id=="wolfs_bane_greatsword" and ("blade" in name or "steel" in name):copy.albedo_color=Color("#030406")
+			elif id=="improved_standard_greatsword" and ("pommel" in name or "hilt" in name):copy.albedo_color=Color("#c17c32")
+			mesh.set_surface_override_material(surface,copy)
+
 func set_sword_drawn(value: bool) -> void:
 	blade_sweep_previous.clear()
 	clear_lance_charge()

@@ -108,6 +108,10 @@
           "type": "integer",
           "minimum": 1
         },
+        "ashfang": {
+          "type": "integer",
+          "minimum": 1
+        },
         "beta_rat": {
           "type": "integer",
           "minimum": 1

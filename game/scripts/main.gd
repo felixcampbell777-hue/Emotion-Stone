@@ -30,6 +30,9 @@ var game_mode="alpha"
 const MAGICNOW_KEYS=[KEY_M,KEY_A,KEY_G,KEY_I,KEY_C,KEY_N,KEY_O,KEY_W]
 var magicnow_index=0
 var magicnow_deadline=0
+var allloot_index=0
+var allloot_deadline=0
+const ALLOOT_KEYS=[KEY_A,KEY_L,KEY_L,KEY_L,KEY_O,KEY_T,KEY_N,KEY_O,KEY_W]
 const WaterWave=preload("res://scripts/water_wave.gd")
 var combat_skills=preload("res://scripts/combat_skills.gd").new()
 var sea_dragon:Node3D
@@ -144,6 +147,7 @@ func _ready() -> void:
 	player.controllable=true
 	player.walk_speed=config.walk_speed
 	player.configure(read_data("res://content/characters/"+config.player_character+".json"))
+	player.set_weapon_visual("standard_greatsword")
 	world_root.add_child(player)
 	# The world is displayed as a texture, not a SubViewportContainer.
 	# Route keyboard events from the root window exactly once.
@@ -1159,9 +1163,27 @@ func _magicnow_input(event: InputEvent) -> bool:
 		notify("MAGICNOW: Everfull Experience Potion added. Inventory [I] > Potions.")
 	return code!=KEY_M
 
+func _allloot_input(event:InputEvent) -> bool:
+	if not event is InputEventKey or not event.pressed or event.echo:return false
+	var now=Time.get_ticks_msec();if now>allloot_deadline:allloot_index=0
+	var code=event.keycode if event.keycode!=0 else event.physical_keycode
+	if code!=ALLOOT_KEYS[allloot_index]:allloot_index=0;if code!=KEY_A:return false
+	allloot_index+=1;allloot_deadline=now+6000
+	if allloot_index==ALLOOT_KEYS.size():
+		allloot_index=0
+		for item in magic_items.catalog.items:
+			if item.id not in magic_items.owned:magic_items.owned.append(item.id)
+		for material in worldrise.guild.catalog.materials:worldrise.guild.materials[material]=999
+		for core in monster_cores.catalog.cores:monster_cores.quantities[core.id]=99
+		notify("ALLOOTNOW: all catalogued items added. Inventory [I] opened.");toggle_inventory()
+	return true
+
 func _input(event: InputEvent) -> void:
 	if player!=null:
 		_refresh_simulation()
+		if _allloot_input(event):
+			get_viewport().set_input_as_handled()
+			return
 		if _magicnow_input(event):
 			get_viewport().set_input_as_handled()
 			return
@@ -1384,7 +1406,9 @@ func _attack_contact(kind: String, direction: Vector3, already_hit: Dictionary) 
 		already_hit[enemy.get_instance_id()]=true
 		var previous_health=enemy.health
 		var weakspot=enemy.sword_weakspot_open()
-		enemy.take_sword_damage(roundi(float(tuning.damage)*(1.2 if combat_skills.exposed.has(enemy.get_instance_id()) else 1.0)),toward.normalized(),kind in ["heavy","thrust"] or (kind=="light" and player.combo_stage==3 and player.attack_phase()>=.60),(float(player.combat.thrust_charge.recoil_multiplier) if kind=="thrust" else 1.0)*(1+magic_items.bonus("sword_recoil")))
+		var weapon_mult=magic_items.weapon_base()
+		if String(enemy.get("mob_category",""))=="canine":weapon_mult*=1.0+magic_items.weapon_bonus_against("canine")
+		enemy.take_sword_damage(roundi(float(tuning.damage)*weapon_mult*(1.2 if combat_skills.exposed.has(enemy.get_instance_id()) else 1.0)),toward.normalized(),kind in ["heavy","thrust"] or (kind=="light" and player.combo_stage==3 and player.attack_phase()>=.60),(float(player.combat.thrust_charge.recoil_multiplier) if kind=="thrust" else 1.0)*(1+magic_items.bonus("sword_recoil")))
 		magic_items.sword_hit(enemy,previous_health)
 		combat_skills.sword_hit(enemy,previous_health,weakspot,kind in ["heavy","thrust"] or (kind=="light" and player.combo_stage==3 and player.attack_phase()>=.60))
 

@@ -24,7 +24,9 @@
       "chance": 0.08,
       "value": 22,
       "beast": "beta_wolf"
-    }
+    },
+    "ashfang_wolf_fang": {"name":"Ashfang Fang","chance":1.0,"value":40,"beast":"ashfang"},
+    "ashfang_wolf_hide": {"name":"Ashfang Hide","chance":1.0,"value":18,"beast":"ashfang"}
   },
   "coins": {
     "vault_elder": [45,130],
@@ -32,12 +34,11 @@
       2,
       4
     ],
-    "beta_wolf": [
-      1,
-      5
-    ]
+    "beta_wolf": [1,5],
+    "ashfang": [30,50]
   },
   "recipes": {
+    "improved_standard_greatsword": {"level":5,"copper":300,"materials":{}},
     "leaf_shield": {"level":1,"copper":1000,"materials":{"elder_leaves":5},"requires_elder":true},
     "boar_hide_armor": {
       "level": 5,

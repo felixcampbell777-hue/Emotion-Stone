@@ -106,7 +106,7 @@ func icon_for(entry:Dictionary) -> Texture2D:
 
 func item_count(category:String) -> int:
 	if category=="all": return item_count("weapons")+item_count("apparel")+item_count("potions")+item_count("ingredients")+item_count("quest")
-	if category=="weapons": return 1
+	if category=="weapons": return game.magic_items.owned.filter(func(id): return game.magic_items.item(id).category=="weapon").size()
 	if category=="apparel": return game.magic_items.owned.filter(func(id): return game.magic_items.item(id).category!="consumable").size()
 	if category=="potions": return game.magic_items.owned.filter(func(id): return game.magic_items.item(id).category=="consumable").size()+(1 if game.well_gift_stage=="potion_owned" else 0)
 	if category=="ingredients": return game.monster_cores.quantities.size()+(game.worldrise.guild.materials.size() if game.game_mode=="world_rise" else 0)
@@ -121,7 +121,10 @@ func weapon_description() -> String:
 
 func listed_items() -> Array:
 	var list=[]
-	if selected_category in ["all","weapons"]: list.append({"kind":"weapon","id":"greatsword","name":weapon_name(),"description":weapon_description()+" "+("Equipped" if game.player.sword_equipped else "Stored")})
+	if selected_category in ["all","weapons"]:
+		for id in game.magic_items.owned:
+			if game.magic_items.item(id).category=="weapon":
+				var weapon=game.magic_items.item(id);list.append({"kind":"weapon","id":id,"name":weapon.name,"description":weapon.description+" "+("Equipped" if game.magic_items.weapon_id==id else "Stored")})
 	if selected_category in ["all","apparel"]:
 		for id in game.magic_items.owned:
 			var item=game.magic_items.item(id)
@@ -192,7 +195,10 @@ func refresh_detail() -> void:
 	detail.add_child(game.label(category_label,15,Color("#c9c0a2")))
 	var description=game.label(String(entry.get("description","")),17); description.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART; detail.add_child(description)
 	match String(entry.kind):
-		"weapon": detail.add_child(game.button("Unequip weapon" if game.player.sword_equipped else "Equip weapon",toggle_weapon))
+		"weapon": detail.add_child(game.button("Unequip weapon" if game.magic_items.weapon_id==entry.id else "Equip weapon",func():
+			if game.magic_items.weapon_id==entry.id: game.player.set_sword_equipped(false)
+			elif game.magic_items.equip_weapon(entry.id): game.player.set_weapon_visual(entry.id); game.player.set_sword_equipped(true)
+			refresh()))
 		"apparel": refresh_apparel_detail(entry)
 		"potion":
 			var action=game.button("Drink" if entry.id!="everfull" else "Drink · +1,000 XP",func():
@@ -276,7 +282,7 @@ func refresh_skills() -> void:
 	wrap_labels()
 
 func toggle_weapon() -> void:
-	game.player.set_sword_equipped(not game.player.sword_equipped); selected_item={"kind":"weapon","id":"greatsword","name":weapon_name(),"description":weapon_description()+" "+("Equipped" if game.player.sword_equipped else "Stored")}; refresh()
+	game.player.set_sword_equipped(not game.player.sword_equipped); refresh()
 
 func drink_potion() -> void:
 	game.drink_experience_potion(); refresh()

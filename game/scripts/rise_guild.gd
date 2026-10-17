@@ -15,7 +15,7 @@ static func integer(value:Variant,limit:int) -> bool:return (value is int or val
 static func valid_counts(data:Variant,gear:bool=false) -> bool:
 	if not data is Dictionary or data.size()>catalog.materials.size()+1:return false
 	for id in data:
-		if (not catalog.materials.has(id) and not (gear and id=="elder_heart_necklace")) or not integer(data[id],99999) or data[id]<1:return false
+		if (not catalog.materials.has(id) and not (gear and (id=="elder_heart_necklace" or id in ["wolfs_bane_greatsword","improved_standard_greatsword"]))) or not integer(data[id],99999) or data[id]<1:return false
 	return true
 static func valid(data:Variant) -> bool:
 	if not data is Dictionary or not integer(data.get("copper",0),100000000) or not valid_counts(data.get("materials",{})):return false
@@ -31,12 +31,12 @@ static func valid(data:Variant) -> bool:
 	if not pending is Dictionary or pending.size()>160:return false
 	var enemies=JSON.parse_string(FileAccess.get_file_as_string("res://content/maps/wr_floor_01.json")).enemies
 	for key in pending:
-		if key!="wr_boss_chamber/vault_elder" and not enemies.any(func(e):return key=="wr_floor_01/"+e.id or key=="wr_floor_01/"+e.id+"_night"):return false
+		if key not in ["wr_boss_chamber/vault_elder","wr_floor_01/ashfang"] and not enemies.any(func(e):return key=="wr_floor_01/"+e.id or key=="wr_floor_01/"+e.id+"_night"):return false
 		var drop=pending[key]
 		if not drop is Dictionary or not drop.has_all(["at","copper","items"]) or not integer(drop.copper,100000000) or not valid_counts(drop.items,true):return false
 		if not drop.at is Array or drop.at.size()!=2:return false
 		for v in drop.at:
-			if not (v is int or v is float) or not is_finite(float(v)) or absf(v)>240:return false
+			if not (v is int or v is float) or not is_finite(float(v)) or absf(v)>500:return false
 	return true
 func reset() -> void:copper=0;materials.clear();drops.clear();nodes.clear();contracts.clear()
 func snapshot() -> Dictionary:return {"copper":copper,"materials":materials.duplicate(),"drops":drops.duplicate(true),"contracts":contracts.duplicate(true)}
@@ -50,6 +50,10 @@ func purse() -> String:return "%d gp %d cp"%[copper/100,copper%100]
 func roll(kind:String,coin_roll:int=-1,hide_roll:float=-1,rare_roll:float=-1) -> Dictionary:
 	if not catalog.coins.has(kind):return {}
 	var range= catalog.coins[kind];var result={"copper":rng.randi_range(range[0],range[1]) if coin_roll<0 else clampi(coin_roll,range[0],range[1]),"items":{}}
+	if kind=="ashfang":
+		result.items.wolf_fang=1;result.items.wolf_hide=rng.randi_range(2,3)
+		if rng.randf()<.04:result.items.wolfs_bane_greatsword=1
+		return result
 	for id in catalog.materials:
 		var entry=catalog.materials[id]
 		if entry.beast!=kind:continue
@@ -66,7 +70,7 @@ func defeated(key:String,kind:String,at:Vector3) -> void:
 		if contracts[id].active and catalog.contracts[id].kind==kind:contracts[id].count=mini(10,int(contracts[id].count)+1)
 	copper=mini(100000000,copper+int(rolled.copper))
 	if rolled.items.is_empty():return
-	var horizontal=Vector2(at.x,at.z).limit_length(238);at=Vector3(horizontal.x,0,horizontal.y)
+	var horizontal=Vector2(at.x,at.z).limit_length(500);at=Vector3(horizontal.x,0,horizontal.y)
 	if not drops.has(key):drops[key]={"at":[at.x,at.z],"copper":0,"items":{}}
 	var drop=drops[key]
 	for id in rolled.items:drop.items[id]=mini(99999,int(drop.items.get(id,0))+rolled.items[id])
@@ -97,7 +101,10 @@ func collect(key:String) -> bool:
 		if id=="elder_heart_necklace":
 			if id not in game.magic_items.owned:game.magic_items.owned.append(id)
 			summary.append("Elder Heart Necklace")
-		else:materials[id]=mini(99999,int(materials.get(id,0))+int(drop.items[id]));summary.append("%s ×%d"%[catalog.materials[id].name,drop.items[id]])
+		elif catalog.materials.has(id):materials[id]=mini(99999,int(materials.get(id,0))+int(drop.items[id]));summary.append("%s ×%d"%[catalog.materials[id].name,drop.items[id]])
+		elif game.magic_items.item(id).get("category","")=="weapon":
+			if id not in game.magic_items.owned:game.magic_items.owned.append(id)
+			summary.append(game.magic_items.item(id).name)
 	drops.erase(key)
 	if nodes.has(key) and is_instance_valid(nodes[key]):nodes[key].queue_free()
 	nodes.erase(key);game.current_world.interactions=game.current_world.interactions.filter(func(t):return t.get("beast_loot","")!=key);game.nearest={};game.notify("Collected "+", ".join(summary)+".");return true

@@ -12,12 +12,13 @@ var clock=0.0
 var elapsed=0.0
 var day_clock=0.0
 var elder_respawn=0.0
+var ashfang_respawn=0.0
 var light_clock=0.0
 var night_population=false
 func is_night() -> bool:return day_clock>=600 and day_clock<1080
 const ELDER_ID="wr_boss_chamber/vault_elder"
 func active() -> bool:return game.game_mode=="world_rise" and game.map_id=="wr_floor_01"
-func reset() -> void:states.clear();flags.clear();checkpoint=[0,0];packs.clear();clock=0;elapsed=0;day_clock=0;elder_respawn=0;light_clock=0;guild.reset()
+func reset() -> void:states.clear();flags.clear();checkpoint=[0,0];packs.clear();clock=0;elapsed=0;day_clock=0;elder_respawn=0;ashfang_respawn=0;light_clock=0;guild.reset()
 static func valid(data:Variant) -> bool:
 	if not data is Dictionary:return false
 	for key in ["day_clock","elder_respawn"]:
@@ -30,6 +31,7 @@ static func valid(data:Variant) -> bool:
 		if not (v is float or v is int) or not is_finite(float(v)):return false
 	if not Shape.safe(Vector3(cp[0],0,cp[1])):return false
 	var ids=JSON.parse_string(FileAccess.get_file_as_string("res://content/maps/wr_floor_01.json")).enemies.map(func(e):return e.id)
+	ids.append("ashfang")
 	for base in ids.duplicate():ids.append(base+"_night")
 	for key in records:
 		if key not in ids or not records[key] is Dictionary:return false
@@ -44,9 +46,9 @@ static func valid(data:Variant) -> bool:
 	return true
 func snapshot() -> Dictionary:
 	if active():remember_all()
-	return {"states":states.duplicate(true),"flags":flags.duplicate(),"checkpoint":checkpoint.duplicate(),"economy":guild.snapshot(),"day_clock":day_clock,"elder_respawn":elder_respawn}
+	return {"states":states.duplicate(true),"flags":flags.duplicate(),"checkpoint":checkpoint.duplicate(),"economy":guild.snapshot(),"day_clock":day_clock,"elder_respawn":elder_respawn,"ashfang_respawn":ashfang_respawn}
 func restore(data:Dictionary) -> void:
-	states=data.get("states",{}).duplicate(true);flags=data.get("flags",[]).duplicate();checkpoint=data.get("checkpoint",[0,0]).duplicate();guild.restore(data.get("economy",{}));day_clock=fposmod(float(data.get("day_clock",0)),1080);elder_respawn=float(data.get("elder_respawn",1080 if ELDER_ID in game.defeated_enemies else 0))
+	states=data.get("states",{}).duplicate(true);flags=data.get("flags",[]).duplicate();checkpoint=data.get("checkpoint",[0,0]).duplicate();guild.restore(data.get("economy",{}));day_clock=fposmod(float(data.get("day_clock",0)),1080);elder_respawn=float(data.get("elder_respawn",1080 if ELDER_ID in game.defeated_enemies else 0));ashfang_respawn=float(data.get("ashfang_respawn",1080 if "wr_floor_01/ashfang" in game.defeated_enemies else 0))
 	if ELDER_ID in game.defeated_enemies and "elder_defeated" not in flags:flags.append("elder_defeated")
 func elder_fell() -> void:
 	if "elder_defeated" not in flags:flags.append("elder_defeated")
@@ -112,6 +114,19 @@ func build_map() -> void:
 	guild.game=game;guild.build()
 	preload("res://scripts/rise_chamber.gd").build_entrance(game.current_world)
 	update_packs()
+	if is_night() and ashfang_respawn<=0 and "wr_floor_01/ashfang" not in game.defeated_enemies:spawn_ashfang()
+
+func spawn_ashfang() -> void:
+	if not active() or not is_night() or ashfang_respawn>0 or game.enemies.any(func(e):return String(e.definition.get("id",""))=="ashfang"):return
+	var boss=load("res://scripts/ashfang.gd").new();boss.name="Ashfang";boss.game=game;boss.configure({"id":"ashfang","kind":"beta_wolf","at":[-414,55],"size":"large"},game.player,states.get("ashfang",{}));game.world_root.add_child(boss);game.enemies.append(boss);game.add_enemy_bar(boss);boss.defeated.connect(func():game._enemy_defeated("wr_floor_01/ashfang","ashfang",boss);ashfang_respawn=1080)
+
+func spawn_ashfang_wolves(at:Vector3) -> void:
+	for i in range(3):
+		var e=load("res://scripts/beta_enemy.gd").new();var id="ashfang_wolf_%d"%i;e.name=id;e.game=game;e.configure({"id":id,"kind":"beta_wolf","at":[at.x+3+i*1.5,at.z+2]},game.player);e.mob_category="canine";game.world_root.add_child(e);game.enemies.append(e);game.add_enemy_bar(e)
+func ashfang_impact(at:Vector3) -> void:
+	for enemy in game.enemies:
+		if enemy==null or enemy.health<=0 or enemy==game.player:continue
+		if enemy.position.distance_to(at)<2.2:enemy.repel((enemy.position-at).normalized(),2.5,.35)
 func spawn_pack(record:Dictionary) -> void:
 	record.active=true;record.members=[]
 	var entries=game.current_world.definition.enemies.filter(func(e):return e.pack==record.spec.id)
@@ -132,6 +147,7 @@ func spawn_member(record:Dictionary,entry:Dictionary) -> void:
 	var saved=states.get(entry.id,{})
 	var enemy=load("res://scripts/beta_enemy.gd").new() if p.kind=="beta_wolf" else load("res://scripts/library_enemy.gd").new()
 	enemy.name=entry.id;enemy.configure(entry.duplicate(true),game.player,saved);enemy.game=game
+	enemy.mob_category="canine" if p.kind=="beta_wolf" else "supine" if p.kind=="library_boar" else "humanoid"
 	if p.kind=="library_boar":enemy.spec=enemy.spec.duplicate(true);enemy.spec.damage=9+int(p.tier)*4;enemy.spec.range=5.5;enemy.spec.windup=.8;enemy.spec.lunge_seconds=.8;enemy.spec.recovery=1.1;enemy.max_health=65+int(p.tier)*25;enemy.health=int(saved.get("health",enemy.max_health));enemy.encounter_owned=true
 	if p.kind=="beta_wolf":enemy.tuning.windup=.7;enemy.tuning.recovery=1.0
 	game.world_root.add_child(enemy);game.enemies.append(enemy);record.members.append(enemy)
@@ -168,8 +184,15 @@ func tick(delta:float) -> void:
 			game.defeated_enemies.erase(ELDER_ID)
 			if game.map_id=="wr_boss_chamber" and game.current_world.encounter=="cleared":game.current_world.encounter="waiting"
 			game.notify("The Elder has returned to the Veiled Vault.")
+	if ashfang_respawn>0:
+		ashfang_respawn=maxf(0,ashfang_respawn-delta)
+		if ashfang_respawn<=0:game.defeated_enemies.erase("wr_floor_01/ashfang")
 	if not active():return
 	if night_population!=is_night():refresh_population()
+	if not is_night():
+		for enemy in game.enemies:
+			if String(enemy.definition.get("id",""))=="ashfang" and enemy.health>0:game.retire_transient(enemy)
+	if is_night() and ashfang_respawn<=0 and not game.enemies.any(func(e):return String(e.definition.get("id",""))=="ashfang") and "wr_floor_01/ashfang" not in game.defeated_enemies:spawn_ashfang()
 	clock+=delta;elapsed+=delta
 	if clock>=.12:clock=0;game.current_world.update_details(game.player.position);update_packs()
 	for record in packs.values():
@@ -201,7 +224,7 @@ func can_see(enemy:Node3D) -> bool:
 
 func respawn_reset() -> void:
 	states.clear()
-	game.defeated_enemies=game.defeated_enemies.filter(func(id):return not String(id).begins_with("wr_floor_01/"))
+	game.defeated_enemies=game.defeated_enemies.filter(func(id):return not (String(id).begins_with("wr_floor_01/") and id!="wr_floor_01/ashfang"))
 func interact(target:Dictionary) -> bool:
 	if game.game_mode=="world_rise" and target.has("wr_chamber"):
 		var chamber=preload("res://scripts/rise_chamber.gd")

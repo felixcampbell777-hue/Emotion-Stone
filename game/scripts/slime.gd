@@ -24,6 +24,7 @@ var ai_enabled=true
 var simulation_enabled=true
 var lunge_hit=false
 var parry_flash=0.0
+var mob_category:String=""
 
 func configure(data: Dictionary, target: Node3D, saved: Dictionary={}) -> void:
 	definition=data

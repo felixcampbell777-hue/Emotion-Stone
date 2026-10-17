@@ -15,6 +15,7 @@ var strikes=0
 var pursuit_time=0.0
 func configure(data:Dictionary,target:Node3D,saved:Dictionary={}) -> void:
 	super.configure(data,target,saved)
+	mob_category="humanoid"
 	max_health=1100;health=max_health;size_class="giant"
 	definition.merge({"display_name":"The Elder · Keeper of the Veiled Vault","combat_height":3.9,"combat_radius":1.45,"label_height":5.6},true)
 	set_meta("library_creature",true)
