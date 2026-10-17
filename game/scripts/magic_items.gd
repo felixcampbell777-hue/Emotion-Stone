@@ -132,6 +132,11 @@ func apply_stats() -> void:
 	p.combat.dodge.stand_seconds*=1-clampf(bonus("stand_haste"),0,.4)
 	p.combat.slam_shockwave.radius*=1+bonus("slam_range")
 	p.combat.slam_shockwave.force_factor*=1+bonus("slam_force")
+	var universal=1+bonus("all_damage")
+	for key in ["light","heavy","thrust","water","lance","sea_dragon"]:
+		p.combat[key].damage=roundi(p.combat[key].damage*universal)
+		if p.combat[key].has("splash_damage"):p.combat[key].splash_damage=roundi(p.combat[key].splash_damage*universal)
+	for attack in p.combat.combo:attack.damage=roundi(attack.damage*universal)
 	p.magic_gear=self
 	var key=JSON.stringify(slots)
 	if key!=visual_key:

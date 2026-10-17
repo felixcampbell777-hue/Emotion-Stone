@@ -77,7 +77,7 @@ func refresh() -> void:
 
 func refresh_categories() -> void:
 	category_box.add_child(game.label("INVENTORY",21,Color("#e9c894")))
-	category_box.add_child(game.label("Gold 0   ·   Carry weight --",13,Color("#c9c0a2")))
+	category_box.add_child(game.label("Purse: "+game.worldrise.guild.purse() if game.game_mode=="world_rise" else "Gold 0   ·   Carry weight --",13,Color("#c9c0a2")))
 	for category in CATEGORY_ORDER:
 		var amount=item_count(category)
 		var title=CATEGORY_NAMES[category]+("  %d" % amount if amount>0 else "")
@@ -94,6 +94,7 @@ func icon_for(entry:Dictionary) -> Texture2D:
 	match String(entry.get("kind","")):
 		"weapon": return load("res://assets/ui/inventory/beta-longsword.png") if game.personal_character_enabled() else icon(0,1)
 		"potion": return icon(0,0)
+		"material":return icon(3,1) if String(entry.id).ends_with("hide") else icon(2,0)
 		"core":
 			var id=String(entry.id)
 			return icon(3,0) if id=="golem_core" else icon(2,0) if "goblin" in id or id=="foreman_core" else icon(1,0)
@@ -107,7 +108,7 @@ func item_count(category:String) -> int:
 	if category=="weapons": return 1
 	if category=="apparel": return game.magic_items.owned.filter(func(id): return game.magic_items.item(id).category!="consumable").size()
 	if category=="potions": return game.magic_items.owned.filter(func(id): return game.magic_items.item(id).category=="consumable").size()+(1 if game.well_gift_stage=="potion_owned" else 0)
-	if category=="ingredients": return game.monster_cores.quantities.size()
+	if category=="ingredients": return game.monster_cores.quantities.size()+(game.worldrise.guild.materials.size() if game.game_mode=="world_rise" else 0)
 	if category=="quest": return game.alpha2.quest_items().size() if game.game_mode=="alpha2" else (1 if game.well_gift_stage=="coin_ready" else 0)+(1 if game.goblin_campaign.stage=="goods_ready" else 0)+(1 if "heirloom" in game.goblin_campaign.flags else 0)+(1 if game.quest_stage=="component_ready" else 0)
 	return 0
 
@@ -130,6 +131,7 @@ func listed_items() -> Array:
 			if item.category=="consumable": list.append({"kind":"potion","id":id,"name":item.name,"description":item.description,"count":int(game.magic_items.quantities.get(id,0))})
 		if game.well_gift_stage=="potion_owned": list.append({"kind":"potion","id":"everfull","name":"Everfull Experience Potion","description":"A bottomless well-gift. Drink for 1,000 XP.","count":"∞"})
 	if selected_category in ["all","ingredients"]:
+		if game.game_mode=="world_rise":list.append_array(game.worldrise.guild.inventory_items())
 		for id in game.monster_cores.quantities:
 			var item=game.monster_cores.item(id)
 			list.append({"kind":"core","id":id,"name":item.name,"description":"Consume to restore %d%% of maximum health." % roundi(item.healing_percent*100),"count":int(game.monster_cores.quantities[id])})
@@ -185,7 +187,7 @@ func refresh_detail() -> void:
 		entry={"kind":"weapon","id":"greatsword","name":weapon_name(),"description":weapon_description()}; selected_item=entry.duplicate()
 	var art=TextureRect.new(); art.texture=icon_for(entry); art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE; art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED; art.custom_minimum_size=Vector2(0,190); detail.add_child(art)
 	detail.add_child(game.label(String(entry.get("name","Unknown item")),25,Color("#f4e5bd")))
-	var category_label={"weapon":"Weapon", "apparel":"Apparel", "potion":"Potion", "core":"Ingredient", "quest":"Quest item"}.get(String(entry.kind),"Item")
+	var category_label={"weapon":"Weapon", "apparel":"Apparel", "potion":"Potion", "core":"Ingredient", "material":"Crafting material", "quest":"Quest item"}.get(String(entry.kind),"Item")
 	detail.add_child(game.label(category_label,15,Color("#c9c0a2")))
 	var description=game.label(String(entry.get("description","")),17); description.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART; detail.add_child(description)
 	match String(entry.kind):
@@ -200,6 +202,7 @@ func refresh_detail() -> void:
 			var consume=game.button("Consume",func(): game.monster_cores.consume(entry.id); refresh())
 			if entry.id=="golem_core" and game.quest_stage!="completed": consume.text="Quest locked · inspect"; consume.tooltip_text="Mother needs this core."
 			detail.add_child(consume)
+		"material":detail.add_child(game.label("Sell at the guild front desk, or retain it for the armorer's recipes.",15,Color("#c9c0a2")))
 		"quest": detail.add_child(game.label("This item is tracked by the quest journal.",15,Color("#c9c0a2")))
 	detail.add_child(game.label("\nI closes inventory · equipment and items pause the world.",13,Color("#c9c0a2")))
 

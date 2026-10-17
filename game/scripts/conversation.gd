@@ -56,6 +56,7 @@ func _process(_delta: float) -> void:
 	hero_portrait.size=Vector2(available.x*.28,available.y*.96)
 	box.size=Vector2(available.x*.60,0)
 	box.position=Vector2(available.x*.385,maxf(available.y*.35,available.y*.96-box.get_combined_minimum_size().y))
+	if String(target.get("role","")).begins_with("wr_"):box.position.y=maxf(12,available.y*.96-box.get_combined_minimum_size().y)
 
 func show_mother() -> void:
 	show_character(game.dialogue_target)
@@ -81,6 +82,8 @@ func say(line: String) -> void:
 
 func menu() -> void:
 	clear_choices()
+	if game.game_mode=="world_rise" and String(target.get("role","")).begins_with("wr_"):
+		game.worldrise.guild.dialogue(self,target);return
 	if game.game_mode=="alpha2" and String(target.get("role","")).begins_with("a2_"):
 		game.alpha2.dialogue(self,target);return
 	if String(target.get("role","")).begins_with("farm_"):

@@ -735,7 +735,6 @@ func _process(delta: float) -> void:
 				camera.position+=axis*(snappedf(coordinate,step)-coordinate)
 	goblin_campaign.tick()
 	alpha2.tick(delta)
-	worldrise.tick(delta)
 	current_world.update_interior_walls(camera.position,player.position,camera_mode)
 	if current_world.definition.get("cave",false):
 		for piece in current_world.get_children():
@@ -1192,6 +1191,7 @@ func _physics_process(delta: float) -> void:
 	_refresh_simulation()
 	if is_instance_valid(current_world):load("res://scripts/wading.gd").tick(self)
 	combat_skills.tick(delta)
+	worldrise.tick(delta)
 	wolf_packs.tick(delta)
 	if parry_after_draw:
 		if not player.input_enabled or player.state not in ["draw","free"]:
@@ -1449,6 +1449,9 @@ func respawn_player() -> void:
 func _enemy_defeated(id: String, kind: String, slain_enemy:Node3D=null) -> void:
 	if id in defeated_enemies: return
 	defeated_enemies.append(id)
+	var earned_copper=0
+	if game_mode=="world_rise" and is_instance_valid(slain_enemy):
+		var purse_before=worldrise.guild.copper;worldrise.guild.defeated(id,kind,slain_enemy.position);earned_copper=worldrise.guild.copper-purse_before
 	gain_xp(int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind))
 	if is_instance_valid(slain_enemy): monster_cores.defeated(kind,slain_enemy.position,kind=="warden" and map_id=="herb_glade")
 	if kind=="bellkeeper": alpha2.boss_fell()
@@ -1459,7 +1462,7 @@ func _enemy_defeated(id: String, kind: String, slain_enemy:Node3D=null) -> void:
 	if monster_cores.boss_bonus(kind)>0:
 		notify(kind.capitalize()+" defeated · +%d XP (%d boss bonus)" % [int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind),monster_cores.boss_bonus(kind)])
 	else:
-		notify("Beast defeated. +%d XP · Level %d"%[int(progression.definition.enemy_xp.get(kind,0)),progression.level()] if game_mode=="world_rise" else {"slime":"The deeper forest trail is clear.","boar":"Briar boar defeated.","wisp":"Thorn wisp defeated.","warden":"The stone warden falls. Search its remains for the alchemical core."}.get(kind,"Goblin defeated.")+" +%d XP · Level %d" % [int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind),progression.level()])
+		notify("Beast defeated. +%d XP · +%d copper · Level %d"%[int(progression.definition.enemy_xp.get(kind,0)),earned_copper,progression.level()] if game_mode=="world_rise" else {"slime":"The deeper forest trail is clear.","boar":"Briar boar defeated.","wisp":"Thorn wisp defeated.","warden":"The stone warden falls. Search its remains for the alchemical core."}.get(kind,"Goblin defeated.")+" +%d XP · Level %d" % [int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind),progression.level()])
 
 func quest_objective(include_side:bool=true) -> String:
 	if game_mode=="world_rise":return "Explore the Verdant Reach. Elderwood lies northwest; the silver rim lies beyond the hills."

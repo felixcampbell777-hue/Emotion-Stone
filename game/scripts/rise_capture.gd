@@ -26,8 +26,25 @@ func uphill(g:Node,directory:String) -> void:
 	boar.ai_enabled=false
 	await picture(g,directory+"/world-rise-uphill-finish.png")
 	performance.uphill={"player_travel":Vector2(g.player.position.x-start_player.x,g.player.position.z-start_player.z).length(),"player_rise":g.player.position.y-start_player.y,"boar_travel":Vector2(boar.position.x-start_boar.x,boar.position.z-start_boar.z).length(),"boar_rise":boar.position.y-start_boar.y,"scope":"90 actual physics frames; player walking speed and real boar AI"}
+func guild_view(g:Node,at:Vector3,target:Vector3) -> void:
+	var house=g.current_world.get_node("AdventurersGuild");var pos=house.to_global(at);view(g,Vector2(pos.x,pos.z),0,0)
+	var toward=house.to_global(target)-(g.player.position+Vector3.UP*1.6);g.camera_driver.yaw=atan2(-toward.x,-toward.z);g.camera_driver.first_pitch=-atan2(toward.y,Vector2(toward.x,toward.z).length());g.camera_driver.update_first_person()
+func guild_capture(g:Node,directory:String) -> void:
+	guild_view(g,Vector3(0,0,-26),Vector3(0,3,-5));await picture(g,directory+"/world-rise-guild-exterior.png")
+	guild_view(g,Vector3(22,0,-30),Vector3(0,4,0));await picture(g,directory+"/world-rise-guild-approach.png")
+	guild_view(g,Vector3(0,0,-7.6),Vector3(0,1.7,1));await picture(g,directory+"/world-rise-guild-hall.png")
+	guild_view(g,Vector3(2,0,1),Vector3(-6,1.6,5));await picture(g,directory+"/world-rise-guild-workshop.png")
+	var guild=g.worldrise.guild;guild.copper=1000;guild.materials={"boar_hide":5,"wolf_hide":8,"wolf_fang":2,"boar_tusk":1}
+	var clerk=g.current_world.interactions.filter(func(t):return t.get("role","")=="wr_clerk")[0]
+	g.player.position=clerk.position+Vector3(0,0,-1).rotated(Vector3.UP,PI/4);g.conversation.show_character(clerk);g._refresh_simulation();guild.dialogue(g.conversation,clerk,"wolf");await picture(g,directory+"/world-rise-guild-sales.png")
+	guild.contracts={"boar":{"active":true,"count":7,"completed":false}};guild.dialogue(g.conversation,clerk,"contracts");await picture(g,directory+"/world-rise-guild-contracts.png");g.conversation.close()
+	var armorer=g.current_world.interactions.filter(func(t):return t.get("role","")=="wr_armorer")[0]
+	g.player.position=armorer.position+Vector3(0,0,-1).rotated(Vector3.UP,PI/4);g.progression.xp=int(g.progression.definition.level_thresholds[9]);g.apply_skill_stats();g.conversation.show_character(armorer);g._refresh_simulation();await picture(g,directory+"/world-rise-guild-crafting.png")
+	g.get_window().size=Vector2i(960,540);await picture(g,directory+"/world-rise-guild-crafting-small.png");g.get_window().size=Vector2i(1366,768)
+	for id in ["boar_hide_armor","wolf_hide_armor","cruel_charm"]:assert(guild.craft(id))
+	g.conversation.close();g._refresh_simulation();g.toggle_inventory();g.inventory.selected_category="apparel";g.inventory.selected_slot="necklace";g.inventory.selected_item={"kind":"apparel","id":"cruel_charm"};g.inventory.refresh();await picture(g,directory+"/world-rise-guild-equipment.png");g.inventory.close();g._refresh_simulation()
 func run(g:Node,directory:String) -> void:
-	g.game_mode="world_rise";g.start_new_game(false);g.title_screen.hide();g._refresh_simulation();g.set_resolution(0);g.player.set_physics_process(false);g.set_process(false);g.camera_driver.set_mode("first_person")
+	g.game_mode="world_rise";g.start_new_game(false);g.title_screen.hide();g._refresh_simulation();g.set_resolution(0);g.player.set_physics_process(false);g.set_process(false);g.set_physics_process(false);g.camera_driver.set_mode("first_person")
 	view(g,Vector2(0,4),0,-.05);await profile(g,"arrival");await picture(g,directory+"/world-rise-arrival.png")
 	view(g,Vector2(42,-58),PI/2,.25);await profile(g,"hilltop");await picture(g,directory+"/world-rise-ridges.png")
 	view(g,Vector2(40,43),0,.08);await picture(g,directory+"/world-rise-boar-valley.png")
@@ -36,6 +53,7 @@ func run(g:Node,directory:String) -> void:
 	view(g,Vector2(-63,-57),0,.08);await picture(g,directory+"/world-rise-wolf-pack.png")
 	view(g,Vector2(239.6,0),-PI/2,.6);await picture(g,directory+"/world-rise-rim.png")
 	view(g,Vector2(90,-150),0,-.08);await picture(g,directory+"/world-rise-ascent.png")
+	await guild_capture(g,directory)
 	g.title_screen.show_menu();g.title_screen.mode_choice.select(3);g.title_screen.select_mode(3);await picture(g,directory+"/world-rise-title.png");g.title_screen.hide()
 	g.toggle_inventory();g.inventory.show_page("quests");await picture(g,directory+"/world-rise-journal.png")
 	var file=FileAccess.open(directory+"/world-rise-performance.json",FileAccess.WRITE);file.store_string(JSON.stringify(performance,"\t"));file.close()

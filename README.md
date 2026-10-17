@@ -1,10 +1,10 @@
 # Coastal Foundation
 
-Current source baseline: **v0.35.1**, first-person gameplay with the upright two-hand sword hold, Mana Lance aim control, Dash Reach upgrades uppercut dash attacks with a vertical mana wave, a steerable first-person Mana Sea Dragon, and Flowing Counter, Measured Recovery, Breaker and Undertow.
+Current source baseline: **v0.36.1**, first-person gameplay with the upright two-hand sword hold, Mana Lance aim control, Dash Reach upgrades uppercut dash attacks with a vertical mana wave, a steerable first-person Mana Sea Dragon, and Flowing Counter, Measured Recovery, Breaker and Undertow.
 
 The GitHub repository has separate **`alpha`** and **`beta`** branches. This checkout is **Alpha**: the title selects Alpha 2 — The Hollow Bell by default; original Alpha remains available. The Beta branch defaults to the meadow, wolf packs and castle town. Both retain the shared engine, map builder, other mode selector and separate saves.
 
-**World Rise:** choose World Rise — Floor 1 on the title for a fresh first-person character on a 480m floating floor. A central arrival platform overlooks substantial hills and valleys, boar herds, northwest wolf woodland, treasure and a metallic abyss rim. Its save is separate. See [World Rise](docs/WORLD-RISE.md).
+**World Rise:** choose World Rise — Floor 1 on the title for a fresh first-person character on a 480m floating floor. A central arrival platform overlooks substantial hills and valleys, boar herds, northwest wolf woodland, a timber-and-stone Adventurers’ Guild and a metallic abyss rim. Earn copper automatically and sell collected beast drops, complete two one-time copper/XP hunts, and craft hide armor or the Cruel Charm. Its save is separate. See [World Rise](docs/WORLD-RISE.md).
 
 **Alpha 2:** [The Hollow Bell](docs/ALPHA2.md) is a separate first-person Advanced exploration adventure: nine linked areas, companion quests, hidden equipment, checkpoints and a new Bellkeeper boss. Choose an Alpha or Beta save to copy your character into the campaign; the source save stays untouched. Target playtime is around an hour, depending on imported power and exploration.
 
