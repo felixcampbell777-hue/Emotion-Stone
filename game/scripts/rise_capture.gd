@@ -43,6 +43,25 @@ func guild_capture(g:Node,directory:String) -> void:
 	g.get_window().size=Vector2i(960,540);await picture(g,directory+"/world-rise-guild-crafting-small.png");g.get_window().size=Vector2i(1366,768)
 	for id in ["boar_hide_armor","wolf_hide_armor","cruel_charm"]:assert(guild.craft(id))
 	g.conversation.close();g._refresh_simulation();g.toggle_inventory();g.inventory.selected_category="apparel";g.inventory.selected_slot="necklace";g.inventory.selected_item={"kind":"apparel","id":"cruel_charm"};g.inventory.refresh();await picture(g,directory+"/world-rise-guild-equipment.png");g.inventory.close();g._refresh_simulation()
+func western_capture(g:Node,directory:String) -> void:
+	view(g,Vector2(-237,54.5),PI/2,.12);await picture(g,directory+"/world-rise-west-connection.png")
+	view(g,Vector2(-282,45),PI/2,.05);await picture(g,directory+"/world-rise-west-islands.png")
+	view(g,Vector2(-413,55),PI/2,-.04);await picture(g,directory+"/world-rise-west-grove.png")
+	g.worldrise.day_clock=800;g.worldrise.cycle_lighting();g.worldrise.spawn_ashfang()
+	var boss=g.enemies.filter(func(e):return e.definition.id=="ashfang")[0];boss.set_physics_process(false);boss.ai_enabled=true;boss.simulation_enabled=true;boss.engaged=true
+	view(g,Vector2(-427,55),PI/2,.04);boss.ai_enabled=true;boss.state="windup";boss.state_time=1.0;boss._physics_process(.01)
+	await picture(g,directory+"/world-rise-ashfang-windup.png")
+	boss.state="gnash";boss.state_time=.6;boss._physics_process(.01);await picture(g,directory+"/world-rise-ashfang-gnash.png")
+	boss.health=180;boss._physics_process(.01)
+	for enemy in g.enemies:enemy.set_physics_process(false)
+	await picture(g,directory+"/world-rise-ashfang-wolves.png")
+	var record={"materials":[],"bones":[]}
+	for mesh in boss.animal.find_children("*","MeshInstance3D",true,false):
+		for i in range(mesh.mesh.get_surface_count()):record.materials.append(mesh.mesh.surface_get_material(i).resource_name)
+	for rig in boss.animal.find_children("*","Skeleton3D",true,false):
+		for i in range(rig.get_bone_count()):record.bones.append(rig.get_bone_name(i))
+	var file=FileAccess.open(directory+"/world-rise-ashfang-art.json",FileAccess.WRITE);file.store_string(JSON.stringify(record,"\t"));file.close()
+	g.worldrise.day_clock=300;g.worldrise.cycle_lighting()
 func run(g:Node,directory:String) -> void:
 	g.game_mode="world_rise";g.start_new_game(false);g.title_screen.hide();g._refresh_simulation();g.set_resolution(0);g.player.set_physics_process(false);g.set_process(false);g.set_physics_process(false);g.camera_driver.set_mode("first_person")
 	view(g,Vector2(0,4),0,-.05);await profile(g,"arrival");await picture(g,directory+"/world-rise-arrival.png")
@@ -53,6 +72,7 @@ func run(g:Node,directory:String) -> void:
 	view(g,Vector2(-63,-57),0,.08);await picture(g,directory+"/world-rise-wolf-pack.png")
 	view(g,Vector2(239.6,0),-PI/2,.6);await picture(g,directory+"/world-rise-rim.png")
 	view(g,Vector2(90,-150),0,-.08);await picture(g,directory+"/world-rise-ascent.png")
+	await western_capture(g,directory)
 	await guild_capture(g,directory)
 	g.title_screen.show_menu();g.title_screen.mode_choice.select(3);g.title_screen.select_mode(3);await picture(g,directory+"/world-rise-title.png");g.title_screen.hide()
 	g.toggle_inventory();g.inventory.show_page("quests");await picture(g,directory+"/world-rise-journal.png")

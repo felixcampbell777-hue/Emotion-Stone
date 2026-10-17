@@ -3,6 +3,9 @@ render_mode cull_disabled;
 uniform sampler2D grass : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D stone : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D cobbles : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform vec2 terrain_center=vec2(0.0);
+uniform float terrain_radius=240.0;
+uniform bool arrival_enabled=true;
 varying vec3 at;
 varying vec3 n;
 float trail_distance(vec2 p){
@@ -13,7 +16,7 @@ float trail_distance(vec2 p){
 }
 void vertex(){at=VERTEX;n=NORMAL;}
 void fragment(){
- float r=length(at.xz);
+ float r=length(at.xz-terrain_center);
  vec3 g=texture(grass,at.xz*.18).rgb;
  vec3 rock=texture(stone,at.xz*.16).rgb;
  float slope=1.0-smoothstep(.5,.85,n.y);
@@ -23,7 +26,7 @@ void fragment(){
  c=mix(c,rock,slope*.9);
  float trail=1.0-smoothstep(2.0,3.2,trail_distance(at.xz));
  c=mix(c,texture(cobbles,at.xz*.45).rgb*.85,trail*.95);
- float hub=1.0-smoothstep(8.8,9.2,r);float rim=smoothstep(225.5,227.0,r);float metal=max(hub,rim);
+ float hub=arrival_enabled?1.0-smoothstep(8.8,9.2,r):0.0;float rim=smoothstep(terrain_radius*.94,terrain_radius*.946,r);float metal=max(hub,rim);
  vec3 silver=vec3(.39,.46,.44);float lines=step(.96,fract(r*.32));silver+=lines*.1;
  ALBEDO=mix(c,silver,metal);METALLIC=metal*.6;ROUGHNESS=mix(.95,.47,metal);
 }

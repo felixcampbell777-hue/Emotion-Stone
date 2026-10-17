@@ -1407,7 +1407,7 @@ func _attack_contact(kind: String, direction: Vector3, already_hit: Dictionary) 
 		var previous_health=enemy.health
 		var weakspot=enemy.sword_weakspot_open()
 		var weapon_mult=magic_items.weapon_base()
-		if String(enemy.get("mob_category",""))=="canine":weapon_mult*=1.0+magic_items.weapon_bonus_against("canine")
+		if enemy.mob_category=="canine":weapon_mult*=1.0+magic_items.weapon_bonus_against("canine")
 		enemy.take_sword_damage(roundi(float(tuning.damage)*weapon_mult*(1.2 if combat_skills.exposed.has(enemy.get_instance_id()) else 1.0)),toward.normalized(),kind in ["heavy","thrust"] or (kind=="light" and player.combo_stage==3 and player.attack_phase()>=.60),(float(player.combat.thrust_charge.recoil_multiplier) if kind=="thrust" else 1.0)*(1+magic_items.bonus("sword_recoil")))
 		magic_items.sword_hit(enemy,previous_health)
 		combat_skills.sword_hit(enemy,previous_health,weakspot,kind in ["heavy","thrust"] or (kind=="light" and player.combo_stage==3 and player.attack_phase()>=.60))

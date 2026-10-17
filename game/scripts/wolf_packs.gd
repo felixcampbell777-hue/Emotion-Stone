@@ -12,6 +12,7 @@ func build(owner_game:Control) -> void:
 		tuning.territories={}
 		for p in preload("res://scripts/rise_shape.gd").spec.packs:
 			if p.kind=="beta_wolf":tuning.territories[p.id]={"center":p.at,"radius":14}
+		tuning.territories.ashfang_aid={"center":[-437,55],"radius":22}
 	for id in tuning.territories:
 		var members=game.enemies.filter(func(e): return e.definition.kind=="beta_wolf" and e.definition.get("pack","")==id)
 		if members.is_empty(): continue

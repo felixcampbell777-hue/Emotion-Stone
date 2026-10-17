@@ -19,7 +19,7 @@ static func height(at:Vector3) -> float:
 	var a=raw(x,z);var b=raw(x+4,z);var c=raw(x,z+4);var d=raw(x+4,z+4)
 	return a+(b-a)*u+(c-a)*v if u+v<=1 else d+(c-d)*(1-u)+(b-d)*(1-v)
 static func safe(at:Vector3) -> bool:
-	if Vector2(at.x,at.z).length()>239:return false
+	if Vector2(at.x,at.z).length()>239:return load("res://scripts/west_islands.gd").safe(at)
 	var local=(Vector2(at.x,at.z)-Vector2(spec.guild.at[0],spec.guild.at[1])).rotated(spec.guild.rotation)
 	for solid in spec.guild.solids:
 		if absf(local.x-solid[0])<solid[2]*.5+.25 and absf(local.y-solid[1])<solid[3]*.5+.25:return false
