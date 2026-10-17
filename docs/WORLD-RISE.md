@@ -1,6 +1,6 @@
 # World Rise — The Verdant Reach
 
-Playable foundation in v0.35.0. On the title choose **World Rise — Floor 1**, then Start New Game. This mode begins with a fresh level-one character, existing basic equipment and three Spring Elixirs; no Alpha/Beta imports. Load uses its own `user://world-rise-save-v1.json`. Other modes and their saves remain available.
+Playable foundation in v0.35.1. On the title choose **World Rise — Floor 1**, then Start New Game. This mode begins with a fresh level-one character, existing basic equipment and three Spring Elixirs; no Alpha/Beta imports. Load uses its own `user://world-rise-save-v1.json`. Other modes and their saves remain available.
 
 ## The floor
 
@@ -39,4 +39,6 @@ Coverage includes actual capsule routes across slopes/seams, relief, pack sizing
 
 Refresh the desktop shortcut and purge superseded releases after verification. Preserve the manifest-selected release, current sources and rendered evidence.
 
-Validation results: World Rise source suite passes 32 checks; Alpha 2 source suite passes 256. Beta passes 220/223; the same three draw/unarmed-visibility assertions also fail identically in the previously verified v0.34.4 executable (retained comparison log), so this map update does not claim to repair those older test expectations. Existing heroine sources are unchanged. Native stationary Full/Forward+ samples were approximately 31–36ms median, 38–40ms p95 on the RTX 5070 Laptop test machine during this run; this does not establish 60fps gameplay.
+Validation results: World Rise source suite passes 41 checks; The prior v0.35.0 Alpha 2 source suite passed 256. Beta passed 220/223; the same three draw/unarmed-visibility assertions also fail identically in the previously verified v0.34.4 executable (retained comparison log), so this map update does not claim to repair those older test expectations. Existing heroine sources are unchanged. Native stationary Full/Forward+ v0.35.1 samples were approximately 6–12ms median, 9–15ms p95 on the RTX 5070 Laptop test machine; these isolated rendering samples do not establish full-combat performance.
+
+Slope fix v0.35.1: World Rise raises the bottom capsule hemisphere to meet the slope across its footprint, rather than embedding it and letting recovery push actors downhill. Grounded motion and a 62-degree slope limit cover the unchanged hills (maximum approximately 57 degrees). True physics tests move the player at 2.4m/s and real boar AI at 1.2m/s across three inclines, check idle stability and actual wall blocking. First-person native uphill captures record actual distance/rise; other maps retain their floating movement mode.

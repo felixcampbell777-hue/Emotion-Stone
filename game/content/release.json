@@ -1,4 +1,4 @@
 {
-  "version": "0.35.0",
-  "baseline": "Playable World Rise Floor 1 with central arrival, significant hills, streamed herds, forest packs and abyss rim"
+  "version": "0.35.1",
+  "baseline": "World Rise slope contact fix for player and beast walking without reducing hills"
 }

@@ -13,6 +13,7 @@ func run(test:RefCounted) -> void:
 	g.set_process(false);g.game_mode="world_rise";g.start_new_game(false);g.title_screen.hide();g._refresh_simulation();freeze(g)
 	test.check(g.map_id=="wr_floor_01" and g.player.position==Vector3(0,26,0),"Fresh World Rise begins on the central arrival platform")
 	await test.frames(2)
+	await load("res://scripts/rise_slope_checks.gd").new().run(test)
 	test.check(g.progression.xp==0 and g.progression.learned.is_empty() and g.magic_items.quantities.get("spring_elixir",0)==3,"Fresh progression imports no existing character and supplies three remedies")
 	test.check(g.camera_mode=="first_person" and g.environment_profile=="darkwood" and g.camera.far>=6000,"World Rise uses advanced first person with the complete distant backdrop")
 	test.check(g.current_save_path()=="user://world-rise-save-v1.json","World Rise has its own save slot")
@@ -26,7 +27,9 @@ func run(test:RefCounted) -> void:
 	var graph=AStarGrid2D.new();graph.region=Rect2i(-59,-59,119,119);graph.cell_size=Vector2(4,4);graph.diagonal_mode=AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES;graph.update()
 	for x in range(-59,60):
 		for z in range(-59,60):
-			var at=Vector3(x*4,0,z*4);graph.set_point_solid(Vector2i(x,z),not Shape.safe(at) or Shape.normal(at.x,at.z).y<.74)
+			var at=Vector3(x*4,0,z*4)
+			var trunk_clear=not Shape.spec.trees.any(func(t):return Vector2(at.x-t[0],at.z-t[1]).length()<t[3]+3.2)
+			graph.set_point_solid(Vector2i(x,z),not Shape.safe(at) or not trunk_clear or Shape.normal(at.x,at.z).y<.74)
 	var connected=true;var traversed=true
 	for goal in [Vector2i(16,22),Vector2i(-25,-9),Vector2i(51,6),Vector2i(24,-45)]:
 		var path=graph.get_point_path(Vector2i.ZERO,goal)
@@ -38,7 +41,7 @@ func run(test:RefCounted) -> void:
 				var toward=(target-g.player.position)*Vector3(1,0,1)
 				if toward.length()<.2:break
 				g.player.velocity=toward.normalized()*6;g.current_world.move_grounded(g.player,1.0/60)
-			if Vector2(target.x-g.player.position.x,target.z-g.player.position.z).length()>.4:traversed=false;break
+			if Vector2(target.x-g.player.position.x,target.z-g.player.position.z).length()>.4:print("RISE_ROUTE_BLOCK ",target," actual ",g.player.position," collisions ",g.player.get_slide_collision_count());traversed=false;break
 	test.check(connected,"Walkable saddles connect the hub to both rests, eastern rim and ascent gate")
 	test.check(traversed,"Actual player capsule walks terrain seams and slopes along four routes")
 	move_to(g,Vector2(45,35));await test.frames(2)
