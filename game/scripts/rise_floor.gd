@@ -7,8 +7,14 @@ var loaded_chunks:Dictionary={}
 var grass_material:ShaderMaterial
 var grass_template:Node3D
 var proxies:Dictionary={}
+const WEST_ISLANDS:Array=[
+	{"center":Vector3(-270,34,55),"radius":18.0},
+	{"center":Vector3(-318,34,55),"radius":15.0},
+	{"center":Vector3(-362,34,55),"radius":17.0},
+	{"center":Vector3(-414,34,55),"radius":26.0}
+]
 func build(data:Dictionary) -> void:
-	definition=data;bounds=Rect2(-240,-240,480,480);npc_definitions=[]
+	definition=data;bounds=Rect2(-470,-240,710,480);npc_definitions=[]
 	grass_material=ShaderMaterial.new();grass_material.shader=preload("res://shaders/rise_ground.gdshader");grass_material.set_shader_parameter("grass",load(Art.ROOT+"leafy_grass/albedo.jpg"));grass_material.set_shader_parameter("stone",load("res://assets/alpha2/rock_face/albedo.jpg"))
 	grass_material.set_shader_parameter("cobbles",load(Art.ROOT+"cobblestone_floor_08/albedo.jpg"))
 	for cx in range(-4,4):
@@ -16,6 +22,7 @@ func build(data:Dictionary) -> void:
 	var backdrop=preload("res://assets/environment/world_rise_backdrop/ring.tscn").instantiate();add_child(backdrop)
 	arrival()
 	preload("res://scripts/rise_guild_house.gd").build(self)
+	build_west_islands()
 	for cx in range(-8,8):
 		for cz in range(-8,8):
 			if Vector2(cx*32+16,cz*32+16).length()<261:decoration[Vector2i(cx,cz)]=[]
@@ -97,8 +104,39 @@ func update_details(at:Vector3) -> void:
 		if Vector2(pos.x,pos.z).length()<220 and Vector2(pos.x-146,pos.z-146).length()>20:
 			pos.y=ground_height(pos)-.9;var rock=Art.model(Art.ROOT+"models/rock_moss_set_01_a.glb",Vector3(3.5,1.3,2.8),false)
 			if rock!=null:root.add_child(rock);rock.position=pos;rock.rotation.y=rng.randf()*TAU
-func ground_height(at:Vector3) -> float:return Shape.height(at)
-func safe_position(at:Vector3) -> bool:return Shape.safe(at)
+func ground_height(at:Vector3) -> float:
+	var island=island_height(at)
+	return island if not is_nan(island) else Shape.height(at)
+func island_height(at:Vector3) -> float:
+	for island in WEST_ISLANDS:
+		var c:Vector3=island.center
+		if Vector2(at.x-c.x,at.z-c.z).length()<=float(island.radius):return c.y+2.4
+	for i in range(WEST_ISLANDS.size()-1):
+		var a:Vector3=WEST_ISLANDS[i].center;var b:Vector3=WEST_ISLANDS[i+1].center
+		if Geometry2D.get_closest_point_to_segment(Vector2(at.x,at.z),Vector2(a.x,a.z),Vector2(b.x,b.z)).distance_to(Vector2(at.x,at.z))<=3.2:return a.y+2.65
+	return NAN
+func island_walkable(at:Vector3) -> bool:return not is_nan(island_height(at))
+func safe_position(at:Vector3) -> bool:return island_walkable(at) or Shape.safe(at)
+func build_west_islands() -> void:
+	for i in range(WEST_ISLANDS.size()):
+		var island:Dictionary=WEST_ISLANDS[i];var c:Vector3=island.center;var r:float=island.radius
+		var top=Props.cone(self,c,r,4.8,"#687b80",r);top.name="WestFloatingIsland_%d"%i
+		var body=StaticBody3D.new();body.collision_layer=1;body.collision_mask=0;var cs=CollisionShape3D.new();var shape=CylinderShape3D.new();shape.radius=r;shape.height=4.8;cs.shape=shape;body.add_child(cs);body.position=c;add_child(body)
+		var rim_mesh=TorusMesh.new();rim_mesh.inner_radius=r-.55;rim_mesh.outer_radius=r-.35;rim_mesh.rings=64;rim_mesh.ring_segments=6
+		var rim=Props.mesh_node(self,rim_mesh,c+Vector3.UP*2.42,"#9a936d");rim.name="IslandRim_%d"%i
+		if i==WEST_ISLANDS.size()-1:build_final_grove(c,r)
+	for i in range(WEST_ISLANDS.size()-1):
+		var a:Vector3=WEST_ISLANDS[i].center;var b:Vector3=WEST_ISLANDS[i+1].center;var mid=(a+b)*.5;var length=Vector2(b.x-a.x,b.z-a.z).length()
+		var bridge=Props.box(self,mid+Vector3.UP*2.35,Vector3(6.0,.5,length),"#786652");bridge.name="WestBridge_%d"%i;bridge.rotation.y=atan2(b.x-a.x,b.z-a.z)
+		var bc=StaticBody3D.new();bc.collision_layer=1;bc.collision_mask=0;var cc=CollisionShape3D.new();var bs=BoxShape3D.new();bs.size=Vector3(6,.5,length);cc.shape=bs;bc.add_child(cc);bc.position=mid+Vector3.UP*2.35;bc.rotation.y=bridge.rotation.y;add_child(bc)
+func build_final_grove(c:Vector3,r:float) -> void:
+	var tree_positions=[]
+	for i in range(14):
+		var a=i*TAU/14.0;var at=c+Vector3(cos(a)*17,0,sin(a)*17);tree_positions.append(at)
+		var tree=Art.model(Art.ROOT+"models/fir_a.glb",Vector3(7,1.35,7),false);if tree==null:continue
+		add_child(tree);tree.position=at+Vector3.UP*2.4;tree.rotation.y=a+.4;Art.add_canopy(tree,1.35,i%3)
+		var trunk=StaticBody3D.new();trunk.collision_layer=1;trunk.collision_mask=0;var cs=CollisionShape3D.new();var sh=CylinderShape3D.new();sh.radius=1.0;sh.height=5;cs.shape=sh;trunk.add_child(cs);trunk.position=at+Vector3.UP*2.5;add_child(trunk)
+	var label=Label3D.new();label.text="WESTERN GROVE";label.font_size=28;label.pixel_size=.008;label.position=c+Vector3(0,3.2,0);add_child(label)
 func support_height(body:CharacterBody3D,at:Vector3) -> float:
 	# Root height must clear the bottom hemisphere against the slope, not bury
 	# its uphill edge by placing its lowest point at the height of its center.
@@ -125,7 +163,7 @@ func ground_step_allowed(at:Vector3,to:Vector3) -> bool:
 	var run=Vector2(to.x-at.x,to.z-at.z).length()
 	return absf(ground_height(to)-ground_height(at))<=maxf(.02,run*1.8)
 func move_grounded(body:CharacterBody3D,delta:float) -> void:
-	var outside=Vector2(body.position.x,body.position.z).length()>240.15
+	var outside=Vector2(body.position.x,body.position.z).length()>240.15 and not island_walkable(body.position)
 	if outside or body.has_meta("rise_fall"):
 		var fall=float(body.get_meta("rise_fall",body.velocity.y));fall-=18*delta;body.set_meta("rise_fall",fall);body.velocity.y=fall;body.move_and_slide()
 		if not outside and body.is_on_floor():body.remove_meta("rise_fall");body.position.y=ground_height(body.position);if_jump_finish(body)
