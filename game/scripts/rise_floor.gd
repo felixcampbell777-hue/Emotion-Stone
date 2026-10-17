@@ -7,6 +7,11 @@ var loaded_chunks:Dictionary={}
 var grass_material:ShaderMaterial
 var grass_template:Node3D
 var proxies:Dictionary={}
+var render_profile:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://content/render_budget.json")).profiles.balanced
+func configure_render(profile:Dictionary) -> void:
+	render_profile=profile
+	for key in proxies:
+		for crown in proxies[key]:crown.visibility_range_begin=render_profile.detail-12 if loaded_chunks.has(key) else 0
 const West=preload("res://scripts/west_islands.gd")
 func build(data:Dictionary) -> void:
 	definition=data;bounds=Rect2(-500,-240,740,480);npc_definitions=[]
@@ -31,6 +36,7 @@ func build(data:Dictionary) -> void:
 		var trunk=StaticBody3D.new();trunk.collision_layer=1;trunk.collision_mask=0;var c=CollisionShape3D.new();var shape=CylinderShape3D.new();shape.radius=t[3];shape.height=5;c.shape=shape;trunk.add_child(c);add_child(trunk);trunk.position=Vector3(t[0],ground_height(Vector3(t[0],0,t[1]))+2.5,t[1])
 		var proxy=Node3D.new();add_child(proxy);proxy.position=Vector3(t[0],ground_height(Vector3(t[0],0,t[1])),t[1]);Art.add_canopy(proxy,t[2],int(absf(t[0]))%3)
 		var crown=proxy.get_child(0);crown.visibility_range_end=0;crown.visibility_range_begin=0;crown.visibility_range_begin_margin=12;crown.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		crown.set_meta("budget_kind","skyline")
 		if not proxies.has(key):proxies[key]=[]
 		proxies[key].append(crown)
 func clipped(poly:Array) -> Array:
@@ -69,14 +75,15 @@ func arrival() -> void:
 func update_details(at:Vector3) -> void:
 	for key in decoration:
 		var distance=Vector2(at.x-key.x*32-16,at.z-key.y*32-16).length()
-		if distance<110 and not loaded_chunks.has(key) and key not in pending:pending.append(key)
-		if distance>145 and loaded_chunks.has(key):
+		if distance<render_profile.load and not loaded_chunks.has(key) and key not in pending:pending.append(key)
+		if distance>render_profile.unload and loaded_chunks.has(key):
 			loaded_chunks[key].queue_free();loaded_chunks.erase(key)
 			for crown in proxies.get(key,[]):crown.visibility_range_begin=0
+	pending=pending.filter(func(key):return Vector2(at.x-key.x*32-16,at.z-key.y*32-16).length()<render_profile.load)
 	if pending.is_empty():return
 	pending.sort_custom(func(a,b):return Vector2(at.x-a.x*32-16,at.z-a.y*32-16).length_squared()<Vector2(at.x-b.x*32-16,at.z-b.y*32-16).length_squared())
 	var key:Vector2i=pending.pop_front();var root=Node3D.new();root.name="LandscapeDetail";add_child(root);loaded_chunks[key]=root
-	for crown in proxies.get(key,[]):crown.visibility_range_begin=85
+	for crown in proxies.get(key,[]):crown.visibility_range_begin=render_profile.detail-12
 	for t in decoration[key]:
 		if Vector2(t[0]+168,t[1]+125).length()<10:continue
 		var tree=Art.model(Art.ROOT+"models/fir_a.glb",Vector3(7,t[2],7),false);root.add_child(tree);tree.position=Vector3(t[0],ground_height(Vector3(t[0],0,t[1])),t[1]);tree.rotation.y=t[0]*.2
@@ -93,6 +100,7 @@ func update_details(at:Vector3) -> void:
 		var local=grass_template.global_transform.affine_inverse()*mesh.global_transform
 		for index in range(placements.size()):batch.set_instance_transform(index,placements[index]*local)
 		var instance=MultiMeshInstance3D.new();instance.multimesh=batch;root.add_child(instance);instance.visibility_range_end=65;instance.visibility_range_end_margin=12;instance.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		instance.add_to_group("budget_scenery");instance.set_meta("budget_kind","grass")
 	# Sparse low outcrops emphasize hill shoulders without blocking the open valleys.
 	if Vector2(key.x*32+16,key.y*32+16).length()>45:
 		var pos=Vector3(key.x*32+12,0,key.y*32+10)

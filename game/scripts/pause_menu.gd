@@ -4,6 +4,8 @@ var box:PanelContainer
 var status:Label
 var character_options:HBoxContainer
 var custom_worlds:Button
+var performance_quality:OptionButton
+var frame_limit:OptionButton
 func configure(owner_game:Control) -> void:
 	game=owner_game
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -38,6 +40,14 @@ func configure(owner_game:Control) -> void:
 	for option in [[0,"Full"],[960,"Detailed"],[640,"Fine"],[320,"Chunky"]]:
 		var width:int=option[0]
 		quality.add_child(game.button(option[1],func(): game.set_resolution(width)))
+	var performance=HBoxContainer.new();column.add_child(performance)
+	performance.add_child(game.label("Detail",16));performance_quality=OptionButton.new();performance.add_child(performance_quality)
+	for name in ["Low","Balanced","High"]:performance_quality.add_item(name)
+	performance_quality.item_selected.connect(func(index):game.render_budget.select_quality(["low","balanced","high"][index]))
+	performance.add_child(game.label("FPS cap",16));frame_limit=OptionButton.new();performance.add_child(frame_limit)
+	for limit in [30,60,90,120]:frame_limit.add_item(str(limit))
+	frame_limit.item_selected.connect(func(index):game.render_budget.select_fps([30,60,90,120][index]))
+	var hint=game.label("Distant scenery uses less detail; background capped at 15 FPS.",14);hint.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;column.add_child(hint)
 	var environment=HBoxContainer.new()
 	column.add_child(environment)
 	environment.add_child(game.label("World art",16))
@@ -60,6 +70,8 @@ func _process(_delta:float) -> void:
 	box.size=Vector2(500,minf(680,screen.y-36))
 	box.position=(screen-box.size)*.5
 func open() -> void:
+	performance_quality.select(["low","balanced","high"].find(game.render_budget.quality))
+	frame_limit.select([30,60,90,120].find(game.render_budget.fps))
 	character_options.visible=game.game_mode=="alpha"
 	custom_worlds.visible=game.game_mode=="alpha"
 	visible=true

@@ -271,3 +271,4 @@ Healing stack presentation: one inventory button per potion ID with a Ãƒâ€�
 
 
 Canyon distance fog density .065 / Forward+ volume .055 fades long corridor ends into gray-green mist while retaining the existing stone albedo and normal textures.
+v0.40.1: Render-only budget defaults Balanced/60 FPS, unfocused15, selectable30/60/90/120; user://graphics.cfg independent of character saves. render_budget.gd + content/render_budget.json control AA2x/High4x, LOD and shadow/detail/grass ranges; Low FSR.77 + no volumetric fog retains ordinary fog. World Rise detailed chunks use profile load/unload hysteresis and bounded skyline proxies; pending distant loads cancelled. Terrain, colliders, enemy activation, animations and saves unchanged. Run verify-world-rise/Windows, native performance comparison and menus; inspect before/after images. No Blender regeneration or unrelated animation QA. Disposable test data only; purge superseded release after verification.

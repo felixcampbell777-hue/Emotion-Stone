@@ -8,7 +8,7 @@ func run(test: RefCounted) -> void:
 	var available=game.get_viewport_rect().size
 	var scale=minf(available.x/16,available.y/9)
 	test.check(game.world_view.size==Vector2i(floori(scale*16),floori(scale*9)),"Full resolution renders at the available window size rather than a pixel preset")
-	test.check(game.world_view.msaa_3d==Viewport.MSAA_8X and game.image_view.texture_filter==CanvasItem.TEXTURE_FILTER_LINEAR,"Full resolution uses 8x MSAA and smooth presentation")
+	test.check(game.world_view.msaa_3d==int(game.render_budget.profile().msaa) and game.image_view.texture_filter==CanvasItem.TEXTURE_FILTER_LINEAR,"Full resolution uses selected budget AA and smooth presentation")
 	test.check(game.view_button.text=="Full resolution" and game.save_data().resolution==0,"Full graphics uses a stable preset ID independent of display resolution")
 	var path="user://full-graphics-verification.json"
 	game.Save.write(game.save_data(),path)

@@ -59,6 +59,7 @@ static func add_canopy(parent:Node3D,height:float,variant:int) -> void:
 		mat.set_shader_parameter("needles",load(ROOT+"foliage/albedo.jpg")); mat.set_shader_parameter("cutout",load(ROOT+"foliage/alpha.png"))
 		var mesh=surface.commit(); mesh.surface_set_material(0,mat); canopies[variant]=mesh
 	var canopy=MeshInstance3D.new(); canopy.name="NeedleCanopy"; canopy.mesh=canopies[variant]; canopy.scale=Vector3.ONE*height
+	canopy.add_to_group("budget_scenery")
 	canopy.visibility_range_end=90; canopy.visibility_range_end_margin=10; parent.add_child(canopy)
 
 static func texture_material(id:String,scale:float=1.0,tint:Color=Color.WHITE) -> StandardMaterial3D:
@@ -119,6 +120,9 @@ static func model(path:String,size:Vector3,uniform:bool=true) -> Node3D:
 		mesh.visibility_range_end=100; mesh.visibility_range_end_margin=12
 		mesh.visibility_range_fade_mode=GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
 		mesh.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_ON
+		if path.contains("/models/"):
+			mesh.add_to_group("budget_scenery")
+			mesh.set_meta("budget_kind","grass" if path.contains("grass") or path.contains("fern") else "detail")
 	container.set_meta("environment_asset",path)
 	return container
 

@@ -1,0 +1,8 @@
+{
+  "default_fps": 60,
+  "profiles": {
+    "low": {"detail": 48, "grass": 22, "skyline": 160, "load": 76, "unload": 105, "shadow": 18, "sun": 28, "lod": 4.0, "msaa": 0, "scale": 0.77},
+    "balanced": {"detail": 76, "grass": 35, "skyline": 250, "load": 102, "unload": 132, "shadow": 32, "sun": 48, "lod": 2.5, "msaa": 1, "scale": 1.0},
+    "high": {"detail": 110, "grass": 60, "skyline": 360, "load": 136, "unload": 170, "shadow": 52, "sun": 72, "lod": 1.5, "msaa": 2, "scale": 1.0}
+  }
+}

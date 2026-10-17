@@ -17,6 +17,7 @@ const Conversation=preload("res://scripts/conversation.gd")
 var monster_cores=preload("res://scripts/monster_cores.gd").new()
 var magic_items=preload("res://scripts/magic_items.gd").new()
 var worldrise=preload("res://scripts/world_rise.gd").new()
+var render_budget:Node
 var alpha2=preload("res://scripts/alpha2_campaign.gd").new()
 var dreadmore=preload("res://scripts/dreadmore.gd").new()
 var alpha2_import_mode="alpha"
@@ -209,6 +210,7 @@ func _ready() -> void:
 		environment_profile="darkwood"
 		set_resolution(0)
 	load_map("coastal_path" if "--verify" in launch_args or "--capture" in launch_args else config.start_map)
+	render_budget=load("res://scripts/render_budget.gd").new();add_child(render_budget);render_budget.configure(self);render_budget.scene_changed()
 	resized.connect(_layout)
 	_layout()
 	var args=OS.get_cmdline_user_args()
@@ -678,6 +680,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 	exit_cooldown=.8
 	nearest={}
 	_layout()
+	if render_budget!=null:render_budget.scene_changed()
 
 func spawn_catalog_creature(entry:Dictionary,at:Vector3) -> Node3D:
 	var script="res://scripts/queen_slime.gd" if entry.style=="queen_slime" else "res://scripts/menagery_enemy.gd"
@@ -971,7 +974,8 @@ func set_resolution(width: int) -> void:
 	graphics_preset=width
 	if width!=0:
 		world_view.size=Vector2i(width,int(width*9/16))
-	world_view.msaa_3d=Viewport.MSAA_8X if width==0 else Viewport.MSAA_2X
+	world_view.msaa_3d=Viewport.MSAA_2X if width==0 else Viewport.MSAA_DISABLED
+	if render_budget!=null:render_budget.apply_view()
 	image_view.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR if width==0 or width>=960 else CanvasItem.TEXTURE_FILTER_NEAREST
 	view_button.text={0:"Full resolution",960:"Detailed",640:"Fine pixels",320:"Chunky pixels"}[width]
 	_layout()
@@ -1576,6 +1580,9 @@ func _capture(directory: String) -> void:
 	var view="all"
 	if "--capture-view" in arguments:
 		view=arguments[arguments.find("--capture-view")+1]
+	if view=="performance":
+		await load("res://scripts/render_budget_capture.gd").new().run(self,directory)
+		print("CAPTURE_OK ",directory);get_tree().quit();return
 	if view=="world-rise":
 		await load("res://scripts/rise_capture.gd").new().run(self,directory)
 		get_tree().quit();return
