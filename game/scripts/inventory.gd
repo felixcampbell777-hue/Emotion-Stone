@@ -253,12 +253,13 @@ func refresh_skills() -> void:
 		var cell=game.button(("EQUIPPED\n" if game.player.heavy_style==id else "")+("Overhead Heavy" if id=="overhead" else "Driving Thrust"),func(): game.select_heavy_attack(id))
 		cell.size_flags_horizontal=Control.SIZE_EXPAND_FILL; cell.custom_minimum_size.y=52; cell.disabled=id=="charge_thrust" and not game.progression.has(id); heavies.add_child(cell)
 	var movement=HBoxContainer.new();slots.add_child(movement)
-	for id in ["dash","jump"]:
-		if not game.skill_tree.revealed(id):continue
-		var unlocked=game.progression.has(id);var equipped=game.player.dash_equipped if id=="dash" else game.player.jump_equipped
-		var caption="Dash · hold/release T" if id=="dash" else "Jump · Space"
-		var cell=game.button(("EQUIPPED  " if equipped else "")+caption+("" if unlocked else " · Locked: Form"),func(): game.toggle_movement_skill(id))
+	var movement_id="dash"
+	if game.skill_tree.revealed(movement_id):
+		var unlocked=game.progression.has(movement_id);var equipped=game.player.dash_equipped
+		var cell=game.button(("EQUIPPED  " if equipped else "")+"Dash · hold/release T"+("" if unlocked else " · Locked: Form"),func(): game.toggle_movement_skill(movement_id))
 		cell.disabled=not unlocked;cell.custom_minimum_size.y=45;cell.size_flags_horizontal=Control.SIZE_EXPAND_FILL;movement.add_child(cell)
+	var jump=game.button("JUMP · Space · Always available",func(): return)
+	jump.disabled=true;jump.custom_minimum_size.y=45;jump.size_flags_horizontal=Control.SIZE_EXPAND_FILL;movement.add_child(jump)
 	slots.add_child(game.label("Dodge · Ctrl / tap Shift; hold Shift to sprint" if game.progression.has("belly_roll") else "Dodge · Locked: Form",16))
 	var counter=game.button(("EQUIPPED  " if game.player.counter_equipped else "")+"Flowing Counter · light attack after parry",func(): game.toggle_movement_skill("flowing_counter"))
 	counter.visible=game.skill_tree.revealed("flowing_counter")

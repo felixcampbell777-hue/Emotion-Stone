@@ -50,7 +50,7 @@ func refresh() -> void:
 	for id in nodes:
 		var item=state.skill(id);var node=nodes[id]
 		node.learned=state.has(id);node.available=state.can_learn(id);node.blocked=false
-		cards[id].visible=item.branch==branch and revealed(id) and (category=="all" or item.category==category)
+		cards[id].visible=id!="jump" and item.branch==branch and revealed(id) and (category=="all" or item.category==category)
 		if cards[id].visible:shown.append(id)
 		captions[id].text=item.name+"\n%d / %d"%[state.rank(id),item.max_rank]
 	if selected_id not in shown:selected_id=shown[0] if not shown.is_empty() else ""

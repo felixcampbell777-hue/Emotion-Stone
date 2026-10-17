@@ -25,9 +25,9 @@ var lance_unlocked=false
 var thrust_unlocked=false
 var roll_unlocked=false
 var dash_unlocked=false
-var jump_unlocked=false
+var jump_unlocked=true
 var dash_equipped=false
-var jump_equipped=false
+var jump_equipped=true
 var thrust_charge_rate=1.0
 var lance_stability=0.0
 var dash_distance=0.0
@@ -919,8 +919,7 @@ func _dash_water_followthrough(progress:float) -> void:
 	vertical_water_cast.emit(position+toward*.9,toward)
 
 func begin_jump() -> bool:
-	if not input_enabled or state!="free" or not jump_unlocked or not jump_equipped:
-		if input_enabled and not jump_equipped: dodge_rejected.emit("Learn and equip Jump in Skills.")
+	if not input_enabled or state!="free":
 		return false
 	if not spend_stamina(12): return false
 	jump_active=true;jump_velocity=6.0
