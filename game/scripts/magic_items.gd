@@ -34,7 +34,8 @@ static func valid_save(data:Variant) -> bool:
 		var id=equipped[slot]
 		if slot not in SLOTS or not id is String: return false
 		if id.is_empty(): continue
-		if id not in collection or id in seen or not items.any(func(e): return e.id==id and e.category==category(slot)): return false
+		var legacy_wolf=slot=="torso" and id=="wolf_hide_armor"
+		if id not in collection or id in seen or (not legacy_wolf and not items.any(func(e): return e.id==id and e.category==category(slot))): return false
 		seen.append(id)
 	var counts=data.get("quantities",{})
 	if not counts is Dictionary: return false
@@ -66,6 +67,9 @@ func restore(data:Dictionary) -> void:
 	owned=data.get("owned",[]).duplicate(); if "standard_greatsword" not in owned: owned.append("standard_greatsword")
 	weapon_id=String(data.get("weapon_id","standard_greatsword")); if weapon_id not in owned or item(weapon_id).category!="weapon":weapon_id="standard_greatsword"
 	slots=data.get("slots",{}).duplicate(); phoenix_cooldown=float(data.get("phoenix_cooldown",0)); visual_key="!"; quiet_seconds=0; heal_clock=0
+	if slots.get("torso","")=="wolf_hide_armor":
+		slots.erase("torso")
+		if slots.get("leggings","").is_empty():slots.leggings="wolf_hide_armor"
 	var buffs=data.get("healing",[])
 	healing=([buffs.duplicate()] if not buffs.is_empty() else []) if buffs is Dictionary else buffs.duplicate(true)
 	quantities=data.get("quantities",{}).duplicate()

@@ -41,8 +41,14 @@ func guild_capture(g:Node,directory:String) -> void:
 	var armorer=g.current_world.interactions.filter(func(t):return t.get("role","")=="wr_armorer")[0]
 	g.player.position=armorer.position+Vector3(0,0,-1).rotated(Vector3.UP,PI/4);g.progression.xp=int(g.progression.definition.level_thresholds[9]);g.apply_skill_stats();g.conversation.show_character(armorer);g._refresh_simulation();await picture(g,directory+"/world-rise-guild-crafting.png")
 	g.get_window().size=Vector2i(960,540);await picture(g,directory+"/world-rise-guild-crafting-small.png");g.get_window().size=Vector2i(1366,768)
-	for id in ["boar_hide_armor","wolf_hide_armor","cruel_charm"]:assert(guild.craft(id))
-	g.conversation.close();g._refresh_simulation();g.toggle_inventory();g.inventory.selected_category="apparel";g.inventory.selected_slot="necklace";g.inventory.selected_item={"kind":"apparel","id":"cruel_charm"};g.inventory.refresh();await picture(g,directory+"/world-rise-guild-equipment.png");g.inventory.close();g._refresh_simulation()
+	for id in ["boar_hide_armor","wolf_hide_armor","cruel_charm"]:
+		var crafted=guild.craft(id)
+		if not crafted:push_error("Guild capture could not craft "+id)
+	g.conversation.close();g._refresh_simulation()
+	var merchant=g.current_world.interactions.filter(func(t):return t.get("role","")=="wr_swords")[0]
+	g.player.position=merchant.position+Vector3(0,0,-1).rotated(Vector3.UP,PI/4);g.conversation.show_character(merchant);g._refresh_simulation();await picture(g,directory+"/world-rise-guild-swords.png");g.conversation.close();g._refresh_simulation()
+	g.magic_items.equip("torso","boar_hide_armor");g.magic_items.equip("leggings","wolf_hide_armor")
+	g.toggle_inventory();g.inventory.selected_category="apparel";g.inventory.selected_slot="leggings";g.inventory.selected_item={"kind":"apparel","id":"wolf_hide_armor"};g.inventory.refresh();await picture(g,directory+"/world-rise-guild-equipment.png");g.inventory.close();g._refresh_simulation()
 func western_capture(g:Node,directory:String) -> void:
 	view(g,Vector2(-237,54.5),PI/2,.12);await picture(g,directory+"/world-rise-west-connection.png")
 	view(g,Vector2(-282,45),PI/2,.05);await picture(g,directory+"/world-rise-west-islands.png")

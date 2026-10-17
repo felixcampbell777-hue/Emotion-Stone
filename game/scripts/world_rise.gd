@@ -133,7 +133,7 @@ func spawn_ashfang_wolves(at:Vector3) -> void:
 		var e=load("res://scripts/beta_enemy.gd").new();var id="ashfang_wolf_%d"%i
 		var angle=(i+1)*TAU/3;var pos=preload("res://scripts/west_islands.gd").GROVE+Vector3(cos(angle),0,sin(angle))*21
 		e.name=id;e.game=game;e.configure({"id":id,"kind":"beta_wolf","pack":"ashfang_aid","at":[pos.x,pos.z]},game.player);e.mob_category="canine";game.world_root.add_child(e);game.enemies.append(e);game.add_enemy_bar(e);e.position.y=game.current_world.ground_height(e.position)
-		e.defeated.connect(func():game.gain_xp(int(game.progression.definition.enemy_xp.beta_wolf)))
+		e.defeated.connect(func():game.gain_xp(game.enemy_xp_reward("beta_wolf")))
 	game.wolf_packs.build(game)
 	for pack in game.wolf_packs.packs:
 		if pack.id=="ashfang_aid":game.wolf_packs.engage(pack)

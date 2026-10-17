@@ -1,4 +1,5 @@
 {
+  "kill_xp_multiplier": 0.25,
   "materials": {
     "elder_leaves": {"name":"Elder Leaves","chance":0.2,"value":0,"beast":"vault_elder"},
     "boar_hide": {
@@ -38,7 +39,7 @@
     "ashfang": [30,50]
   },
   "recipes": {
-    "improved_standard_greatsword": {"level":5,"copper":300,"materials":{}},
+    "improved_standard_greatsword": {"level":5,"copper":300,"materials":{},"vendor":"wr_swords"},
     "leaf_shield": {"level":1,"copper":1000,"materials":{"elder_leaves":5},"requires_elder":true},
     "boar_hide_armor": {
       "level": 5,

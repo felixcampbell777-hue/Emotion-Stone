@@ -506,9 +506,9 @@
     {
       "id": "wolf_hide_armor",
       "code": "WRW",
-      "category": "torso",
-      "name": "Wolf Hide Armor",
-      "description": "Guild-crafted torso armor. Reduces incoming damage by 3%. Requires level 10, eight wolf hides and 200 copper to craft.",
+      "category": "leggings",
+      "name": "Wolf Hide Leggings",
+      "description": "Guild-crafted leggings. Reduces incoming damage by 3%; can be worn with Boar Hide Armor. Requires level 10, eight wolf hides and 200 copper to craft.",
       "color": "#7f8587",
       "accent": "#bdac85",
       "variant": 0,

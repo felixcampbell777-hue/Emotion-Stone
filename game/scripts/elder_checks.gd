@@ -47,7 +47,7 @@ func run(test:RefCounted) -> void:
 	test.check(Vector2(boss.position.x/20.5,boss.position.z/22.5).length()<=1.01 and boss.health==boss.max_health,"Boss stays inside the lethal rim without resetting health while chasing edge targets")
 	var xp=g.progression.xp;boss.state="idle";boss.take_damage(99999,Vector3.ZERO)
 	test.check(chamber.encounter=="cleared" and chamber.bridge_open and chamber.bridge_body.collision_layer==1,"Victory restores the escape ramp")
-	test.check(g.progression.xp==xp+1000 and g.monster_cores.pending.any(func(d):return d.id=="elder_core"),"Elder awards one large XP reward and a guaranteed boss core")
+	test.check(g.progression.xp==xp+250 and g.monster_cores.pending.any(func(d):return d.id=="elder_core"),"Elder awards reduced 250 XP including its boss bonus and a guaranteed core")
 	var saved=g.save_data();var path="user://elder-verification.json"
 	test.check(g.Save.write(saved,path)==OK and not g.Save.read(path).is_empty() and g.apply_save(g.Save.read(path)),"Elder victory passes strict private save/load validation")
 	g.current_world.set_physics_process(false);g.current_world.tick(.016)

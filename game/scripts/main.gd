@@ -1488,7 +1488,8 @@ func _enemy_defeated(id: String, kind: String, slain_enemy:Node3D=null) -> void:
 	var earned_copper=0
 	if game_mode=="world_rise" and is_instance_valid(slain_enemy):
 		var purse_before=worldrise.guild.copper;worldrise.guild.defeated(id,kind,slain_enemy.position);earned_copper=worldrise.guild.copper-purse_before
-	gain_xp(int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind))
+	var earned_xp=enemy_xp_reward(kind)
+	gain_xp(earned_xp)
 	if is_instance_valid(slain_enemy): monster_cores.defeated(kind,slain_enemy.position,kind=="warden" and map_id=="herb_glade")
 	if kind=="bellkeeper": alpha2.boss_fell()
 	if kind=="warden" and map_id=="herb_glade":
@@ -1496,11 +1497,11 @@ func _enemy_defeated(id: String, kind: String, slain_enemy:Node3D=null) -> void:
 			if enemy.definition.kind=="warden" and enemy.health<=0:
 				spawn_warden_remains(enemy.position)
 	if kind=="vault_elder":
-		notify("The Elder falls · +1,000 XP. The ramp returns.")
+		notify("The Elder falls · +%d XP. The ramp returns."%earned_xp)
 	elif monster_cores.boss_bonus(kind)>0:
-		notify(kind.capitalize()+" defeated · +%d XP (%d boss bonus)" % [int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind),monster_cores.boss_bonus(kind)])
+		notify(kind.capitalize()+" defeated · +%d XP"%earned_xp)
 	else:
-		notify("Beast defeated. +%d XP · +%d copper · Level %d"%[int(progression.definition.enemy_xp.get(kind,0)),earned_copper,progression.level()] if game_mode=="world_rise" else {"slime":"The deeper forest trail is clear.","boar":"Briar boar defeated.","wisp":"Thorn wisp defeated.","warden":"The stone warden falls. Search its remains for the alchemical core."}.get(kind,"Goblin defeated.")+" +%d XP · Level %d" % [int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind),progression.level()])
+		notify("Beast defeated. +%d XP · +%d copper · Level %d"%[earned_xp,earned_copper,progression.level()] if game_mode=="world_rise" else {"slime":"The deeper forest trail is clear.","boar":"Briar boar defeated.","wisp":"Thorn wisp defeated.","warden":"The stone warden falls. Search its remains for the alchemical core."}.get(kind,"Goblin defeated.")+" +%d XP · Level %d" % [earned_xp,progression.level()])
 
 func quest_objective(include_side:bool=true) -> String:
 	if game_mode=="world_rise":return "Explore the Verdant Reach. Elderwood lies northwest; the silver rim lies beyond the hills."
@@ -1580,6 +1581,10 @@ func _capture(directory: String) -> void:
 	var view="all"
 	if "--capture-view" in arguments:
 		view=arguments[arguments.find("--capture-view")+1]
+	if view=="guild":
+		game_mode="world_rise";start_new_game(false);title_screen.hide();_refresh_simulation();set_resolution(0);set_process(false);set_physics_process(false);player.set_physics_process(false)
+		await load("res://scripts/rise_capture.gd").new().guild_capture(self,directory)
+		print("CAPTURE_OK ",directory);get_tree().quit();return
 	if view=="performance":
 		await load("res://scripts/render_budget_capture.gd").new().run(self,directory)
 		print("CAPTURE_OK ",directory);get_tree().quit();return
@@ -1802,11 +1807,14 @@ func toggle_skills() -> void:
 	_refresh_simulation()
 
 func _catalog_enemy_defeated(kind:String,display_name:String,enemy:Node3D=null) -> void:
-	var amount=int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind)
+	var amount=enemy_xp_reward(kind)
 	if is_instance_valid(enemy): monster_cores.defeated(kind,enemy.position)
 	gain_xp(amount)
-	if monster_cores.boss_bonus(kind)>0: notify(display_name+" defeated · +%d XP (%d boss bonus)" % [amount,monster_cores.boss_bonus(kind)])
-	else: notify(display_name+" defeated. +%d XP - Level %d (%d points)" % [amount,progression.level(),progression.points()])
+	notify(display_name+" defeated. +%d XP - Level %d (%d points)" % [amount,progression.level(),progression.points()])
+
+func enemy_xp_reward(kind:String) -> int:
+	var base=int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind)
+	return roundi(base*float(worldrise.guild.catalog.kill_xp_multiplier)) if game_mode=="world_rise" else base
 
 func gain_xp(amount: int) -> void:
 	amount=roundi(amount*(1+magic_items.bonus("xp")))

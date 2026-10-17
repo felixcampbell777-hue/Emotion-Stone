@@ -138,12 +138,13 @@ func craft_error(id:String) -> String:
 	if copper<int(recipe.copper):return "Not enough copper"
 	return ""
 func craft(id:String) -> bool:
-	if not context("wr_armorer") or not craft_error(id).is_empty():return false
+	if not catalog.recipes.has(id) or not context(catalog.recipes[id].get("vendor","wr_armorer")) or not craft_error(id).is_empty():return false
 	var recipe=catalog.recipes[id];copper-=int(recipe.copper)
 	for material in recipe.materials:
 		materials[material]-=int(recipe.materials[material])
 		if materials[material]<=0:materials.erase(material)
-	game.magic_items.owned.append(id);game.notify("Crafted "+game.magic_items.item(id).name+". Find it in Inventory → Apparel.");return true
+	game.magic_items.owned.append(id)
+	game.notify(("Purchased " if recipe.get("vendor","")=="wr_swords" else "Crafted ")+game.magic_items.item(id).name+". Find it in Inventory → "+("Weapons." if game.magic_items.item(id).category=="weapon" else "Apparel."));return true
 func elder_unlocked() -> bool:return "elder_defeated" in game.worldrise.flags or "wr_boss_chamber/vault_elder" in game.defeated_enemies
 func dialogue(ui:Control,target:Dictionary,page:String="") -> void:
 	ui.clear_choices();ui.title.text=target.title.to_upper()
@@ -163,14 +164,15 @@ func dialogue(ui:Control,target:Dictionary,page:String="") -> void:
 		else:
 			ui.choices.add_child(game.button("Sell boar materials",func():dialogue(ui,target,"boar")));ui.choices.add_child(game.button("Sell wolf materials",func():dialogue(ui,target,"wolf")))
 			ui.choices.add_child(game.button("Guild contracts · 10 boars / 10 wolves",func():dialogue(ui,target,"contracts")))
-	elif target.role=="wr_armorer":
-		ui.text.text="I turn hard-earned hides and trophies into equipment.\nPurse: "+purse()+" · Level %d"%game.progression.level()
+	elif target.role in ["wr_armorer","wr_swords"]:
+		ui.text.text=("I turn hard-earned hides and trophies into equipment." if target.role=="wr_armorer" else "Corin's sword shop. Choose a blade, then equip it from Inventory → Weapons.")+"\nPurse: "+purse()+" · Level %d"%game.progression.level()
 		for id in catalog.recipes:
 			var recipe=catalog.recipes[id];var costs=[]
+			if recipe.get("vendor","wr_armorer")!=target.role:continue
 			if recipe.get("requires_elder",false) and not elder_unlocked():continue
 			for material in recipe.materials:costs.append("%d %s (%d owned)"%[recipe.materials[material],catalog.materials[material].name,materials.get(material,0)])
-			var reason=craft_error(id);var action=game.button("%s · Lv %d · %s + %d cp%s"%[game.magic_items.item(id).name,recipe.level,", ".join(costs),recipe.copper," · "+reason if not reason.is_empty() else ""],func():craft(id);dialogue(ui,target));action.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;action.disabled=not reason.is_empty();ui.choices.add_child(action)
-	else:ui.text.text="Corin, sword merchant. I'm preparing a stock of swords and other equipment. My shop will open in a later update."
+			costs.append("%d cp"%recipe.copper)
+			var reason=craft_error(id);var action=game.button("%s · Lv %d · %s%s"%[game.magic_items.item(id).name,recipe.level," + ".join(costs)," · "+reason if not reason.is_empty() else ""],func():craft(id);dialogue(ui,target));action.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;action.disabled=not reason.is_empty();ui.choices.add_child(action)
 	ui.choices.add_child(game.button("Leave  /  E",ui.close));ui.choices.get_child(0).grab_focus()
 func inventory_items() -> Array:
 	var result=[]

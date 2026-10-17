@@ -32,12 +32,14 @@ Boars drop 2–4 copper, wolves 1–5. Each beast independently rolls 35% for it
 | Item | Requirements | Effect |
 | --- | --- | --- |
 | Boar Hide Armor (torso) | Level5, 5 boar hides, 100cp | 2% damage reduction |
-| Wolf Hide Armor (torso) | Level10, 8 wolf hides, 200cp | 3% damage reduction |
+| Wolf Hide Leggings | Level10, 8 wolf hides, 200cp | 3% damage reduction |
 | Cruel Charm (necklace) | 2 wolf fangs, 1 boar tusk, 300cp | +2% all attack damage |
 
-Equip in Apparel after crafting. Torso pieces replace each other. Cosmetic equipment remains deferred to the future Blender update. Corin, the sword merchant, is interactable but has no purchasable stock yet.
+Equip in Apparel after crafting. Boar torso armor and wolf leggings can be worn together for 5% damage reduction. The saved wolf item ID remains `wolf_hide_armor`; old torso equips move to leggings if free, otherwise remain owned without displacing existing leggings. Cosmetic equipment remains deferred to the future Blender update. Corin exclusively sells the level-five Improved Standard Greatsword for 300cp; equip purchased weapons in Inventory → Weapons. Bram retains armor, charm and shield crafting.
 
 The clerk offers two **non-repeatable** contracts, independently accepted: ten boars pays 75cp +107XP; ten wolves pays 125cp +133XP. Kills count only after acceptance. Return to claim once; completion stays saved. XP is rounded one third of the XP needed to advance from level5 and level6 respectively (320/3 and 400/3), independent of the player’s turn-in level.
+
+World Rise kill XP uses `guild.json`'s `kill_xp_multiplier` of 0.25, rounded after the base reward and boss bonus are combined: boars 16XP, wolves (including Ashfang helpers) 8XP, Ashfang 125XP, Elder 250XP. Quest XP, level thresholds, previously earned XP/skills and other adventure modes are unchanged. This balance change was approved by the user before implementation.
 
 `world_rise/guild.json` owns rates, prices, recipes and contract rewards. `rise_guild.gd` owns transactions, interactions and `world_rise.economy` saves. Old saves default to empty economy; rest/death retains currency, materials, pending sacks and contract completion. Invalid/unknown material and contract fields are rejected. `rise_guild_house.gd` owns architecture; `floor_01.json` guild.solids mirrors collision footprints for safe load positions.
 

@@ -53,7 +53,7 @@ func run(test:RefCounted) -> void:
 	boar=g.enemies.filter(func(e):return e.definition.id==id)[0]
 	test.check(boar.health==31,"Unloading and revisiting a herd retains its damage")
 	var purse_before=g.worldrise.guild.copper;var xp=g.progression.xp;boar.take_damage(1000,Vector3.ZERO);var awarded=g.progression.xp-xp;var paid=g.worldrise.guild.copper;g._enemy_defeated("wr_floor_01/"+id,"library_boar",boar)
-	test.check(awarded>0 and g.progression.xp==xp+awarded,"Boar defeat awards XP exactly once")
+	test.check(awarded==16 and g.progression.xp==xp+16,"Boar defeat awards reduced 16 XP exactly once")
 	test.check(paid-purse_before>=2 and paid-purse_before<=4 and g.worldrise.guild.copper==paid,"Boar copper is paid immediately and duplicate defeat callbacks cannot pay twice")
 	test.check(g.monster_cores.pending.is_empty() and g.monster_cores.nodes.is_empty(),"Beasts do not produce monster cores")
 	move_to(g,Vector2(-65,-65));await test.frames(2)
@@ -63,7 +63,7 @@ func run(test:RefCounted) -> void:
 	g.wolf_packs.alert(wolves[0]);g.wolf_packs.tick(.1)
 	test.check(wolves.any(func(e):return e.pack_engaged),"Wolves engage as coordinated packs")
 	xp=g.progression.xp;wolves[0].take_damage(1000,Vector3.ZERO)
-	test.check(g.progression.xp>xp,"Defeating a woodland wolf awards its established XP value")
+	test.check(g.progression.xp==xp+8,"Defeating a woodland wolf awards reduced eight XP")
 	var area=PI*88*82/(PI*240*240);test.check(absf(area-.125)<.01 and Shape.spec.trees.size()>200,"Dense tall woodland occupies approximately one eighth of the floor")
 	var elapsed=g.worldrise.elapsed;g.player.input_enabled=false;g.worldrise.tick(1)
 	test.check(g.worldrise.elapsed==elapsed,"Overlay gating freezes pack and landscape simulation clocks")
