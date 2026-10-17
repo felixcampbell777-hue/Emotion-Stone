@@ -4,6 +4,7 @@ const SWORD = preload("res://assets/characters/greatsword-v1.glb")
 const BETA_SWORD = preload("res://assets/characters/greatsword-beta.glb")
 const BetaSwordMotion = preload("res://scripts/beta_sword_motion.gd")
 signal health_changed(current: int, maximum: int)
+signal damaged(amount: int)
 signal dodge_rejected(reason: String)
 signal defeated
 signal ground_slam(at: Vector3, heavy: bool)
@@ -1092,7 +1093,9 @@ func take_damage(amount: int, direction: Vector3) -> bool:
 		return false
 	counter_remaining=0;counter_target=null
 	if magic_gear!=null: amount=magic_gear.incoming_damage(amount)
+	var previous_health=health
 	health=maxi(0,health-amount)
+	damaged.emit(previous_health-health)
 	if dash_water_pending: clear_dash_attack()
 	if state in ["dash_charge","dash"]: clear_dash_attack()
 	invulnerability=float(combat.hurt_invulnerability)

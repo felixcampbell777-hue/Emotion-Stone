@@ -583,7 +583,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 		world_root.remove_child(npc)
 		npc.queue_free()
 	npcs.clear()
-	current_world=load("res://scripts/rise_floor.gd").new() if id=="wr_floor_01" else World.new()
+	current_world=load("res://scripts/rise_chamber.gd").new() if id=="wr_boss_chamber" else load("res://scripts/rise_floor.gd").new() if id=="wr_floor_01" else World.new()
 	current_world.environment_profile=environment_profile
 	world_root.add_child(current_world)
 	current_world.build(data)
@@ -600,7 +600,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 	camera.size=5.0 if data.has("interior") else float(config.camera_size)
 	var spawn=Vector2(data.spawn[0],data.spawn[1]) if not is_finite(at.x) else at
 	player.ground_world=current_world
-	player.motion_mode=CharacterBody3D.MOTION_MODE_GROUNDED if id=="wr_floor_01" else CharacterBody3D.MOTION_MODE_FLOATING
+	player.motion_mode=CharacterBody3D.MOTION_MODE_GROUNDED if id in ["wr_floor_01","wr_boss_chamber"] else CharacterBody3D.MOTION_MODE_FLOATING
 	if player.has_meta("rise_fall"):player.remove_meta("rise_fall")
 	player.position=Vector3(spawn.x,0,spawn.y)
 	player.position.y=current_world.ground_height(player.position)
@@ -665,7 +665,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 	goblin_campaign.build_map()
 	alpha2.build_map()
 	worldrise.build_map()
-	if environment_profile=="darkwood" and id!="wr_floor_01": EnvironmentArt._retexture(current_world)
+	if environment_profile=="darkwood" and id not in ["wr_floor_01","wr_boss_chamber"]: EnvironmentArt._retexture(current_world)
 	monster_cores.build_map()
 	location_title.text=data.display_name
 	location_subtitle.text=data.subtitle
@@ -1058,7 +1058,7 @@ func apply_save(data: Dictionary) -> bool:
 		var entrance=test_world.definition.spawn
 		at=Vector3(entrance[0],0,entrance[1])
 	if mode=="world_rise" and (not test_world.safe_position(at) or at.y< -5):
-		var rest=data.get("world_rise",{}).get("checkpoint",[0,0]);at=Vector3(rest[0],0,rest[1])
+		var rest=test_world.definition.spawn if data.map=="wr_boss_chamber" else data.get("world_rise",{}).get("checkpoint",[0,0]);at=Vector3(rest[0],0,rest[1])
 	var safe=test_world.safe_position(at)
 	test_world.free()
 	if not safe:
@@ -1545,6 +1545,9 @@ func _capture(directory: String) -> void:
 		view=arguments[arguments.find("--capture-view")+1]
 	if view=="world-rise":
 		await load("res://scripts/rise_capture.gd").new().run(self,directory)
+		get_tree().quit();return
+	if view=="boss-chamber":
+		await load("res://scripts/rise_chamber_capture.gd").new().run(self,directory)
 		get_tree().quit();return
 	if view=="world-rise-backdrop":
 		await load("res://scripts/world_rise_backdrop_capture.gd").new().run(self,directory)

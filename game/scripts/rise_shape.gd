@@ -10,6 +10,9 @@ static func raw(x:float,z:float) -> float:
 		if pack.kind=="library_boar":h-=5*exp(-Vector2(x-pack.at[0],z-pack.at[1]).length_squared()/450.0)
 	h=maxf(2,h+1.1*sin(x*.043)*sin(z*.037));h=lerpf(26,h,smoothstep(18,48,r));h+=4*smoothstep(218,240,r)
 	var guild=spec.guild;var distance=Vector2(x-guild.at[0],z-guild.at[1]).length();h=lerpf(guild.height,h,smoothstep(18,42,distance))
+	# A small level threshold at the hill foot keeps the concealed cave walkable.
+	var cave_distance=Vector2(x+168,z+125).length()
+	if cave_distance<13:h=lerpf(17.0,h,smoothstep(6,13,cave_distance))
 	samples[key]=h;return h
 static func height(at:Vector3) -> float:
 	var x=floor(at.x/4)*4;var z=floor(at.z/4)*4;var u=(at.x-x)/4;var v=(at.z-z)/4
@@ -21,6 +24,7 @@ static func safe(at:Vector3) -> bool:
 	for solid in spec.guild.solids:
 		if absf(local.x-solid[0])<solid[2]*.5+.25 and absf(local.y-solid[1])<solid[3]*.5+.25:return false
 	for tree in spec.trees:
+		if Vector2(tree[0]+168,tree[1]+125).length()<10:continue
 		if Vector2(at.x-tree[0],at.z-tree[1]).length()<tree[3]+.3:return false
 	return true
 static func normal(x:float,z:float) -> Vector3:return Vector3(raw(x-1,z)-raw(x+1,z),2,raw(x,z-1)-raw(x,z+1)).normalized()
