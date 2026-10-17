@@ -630,7 +630,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 		if role in ["mother","a2_mother"]:
 			npc.set_arm_wrapped(not mother_unwrapped)
 		current_world.interactions.append({"id":npc_data.id,"title":npc.definition.display_name,"lines":npc_data.dialogue,"position":npc.position,"actor":npc,"role":role})
-	for enemy_data in ([] if id=="wr_floor_01" else data.get("enemies",[])):
+	for enemy_data in ([] if id in ["wr_floor_01","wr_boss_chamber"] else data.get("enemies",[])):
 		var enemy=load("res://scripts/canyon_fiend.gd").new() if enemy_data.kind=="canyon_fiend" else load("res://scripts/library_enemy.gd").new() if String(enemy_data.kind).begins_with("library_") else load("res://scripts/bellkeeper.gd").new() if enemy_data.kind=="bellkeeper" else BetaEnemy.new() if String(enemy_data.kind).begins_with("beta_") else GoblinEnemy.new() if String(enemy_data.kind).begins_with("goblin_") else Slime.new() if enemy_data.kind=="slime" else ForestEnemy.new()
 		enemy.name=enemy_data.id
 		var encounter_id=id+"/"+enemy_data.id
@@ -1023,6 +1023,7 @@ func save_data() -> Dictionary:
 	return {"world_rise":worldrise.snapshot(),"alpha2":alpha2.snapshot(),"game_mode":game_mode,"environment_revision":1,"monster_cores":monster_cores.snapshot(),"magic_items":magic_items.snapshot(),"goblin_campaign":goblin_campaign.snapshot(),"respawn_timers":respawn_timers.duplicate(),"world_id":world_id,"world_defeats":world_defeats.duplicate(),"version":1,"home_layout":2,"home_intro_complete":home_intro_complete,"camera_mode":camera_mode,"first_person_pitch":camera_driver.first_pitch,"camera_yaw":camera_driver.yaw,"camera_pitch":camera_driver.pitch,"camera_distance":camera_driver.distance,"map":map_id,"ground_y":player.position.y,"position":[player.position.x,player.position.z],"facing":player.visual.rotation.y,"resolution":graphics_preset,"environment_profile":environment_profile,"character_profile":character_profile,"health":player.health,"stamina":player.stamina,"sword_drawn":player.sword_drawn,"sword_equipped":player.sword_equipped,"special_attack":selected_special_attack,"heavy_attack":player.heavy_style,"mother_unwrapped":mother_unwrapped,"well_gift_stage":well_gift_stage,"quest_stage":quest_stage,"defeated_enemies":defeated_enemies.duplicate(),"progression":progression.snapshot(),"skill_loadout":{"dash":player.dash_equipped,"jump":player.jump_equipped,"flowing_counter":player.counter_equipped}}
 
 func save_game() -> void:
+	if map_id=="wr_boss_chamber" and current_world.combat_locked():notify("Defeat the Elder before saving in the Vault.");return
 	if game_mode=="world_rise" and not current_world.safe_position(player.position):notify("Return to solid ground before saving.");return
 	if player.state!="free" or recovering:
 		notify("Finish the swing before saving.")
@@ -1297,7 +1298,7 @@ func _update_combat_ui() -> void:
 		var enemy=item.enemy
 		var point=enemy.position+Vector3(0,float(enemy.definition.get("label_height",3.4 if enemy.definition.kind=="warden" else 1.35)),0)
 		var screen=camera.unproject_position(point)
-		item.root.visible=enemy.health>0 and enemy.health<enemy.max_health and enemy.visible and not pause_menu.visible and not skill_tree.visible and not inventory.visible and not conversation.visible and not recovering and not help_panel.visible and not dialog.visible and (menagery==null or not menagery.opened) and (world_browser==null or not world_browser.visible) and (monster_cores.warning==null or not monster_cores.warning.visible) and not camera.is_position_behind(point) and Rect2(Vector2.ZERO,Vector2(world_view.size)).has_point(screen)
+		item.root.visible=enemy.health>0 and (enemy.health<enemy.max_health or enemy.definition.kind=="vault_elder") and enemy.visible and not pause_menu.visible and not skill_tree.visible and not inventory.visible and not conversation.visible and not recovering and not help_panel.visible and not dialog.visible and (menagery==null or not menagery.opened) and (world_browser==null or not world_browser.visible) and (monster_cores.warning==null or not monster_cores.warning.visible) and not camera.is_position_behind(point) and Rect2(Vector2.ZERO,Vector2(world_view.size)).has_point(screen)
 		item.root.position=world_rect.position+screen*(world_rect.size/Vector2(world_view.size))-Vector2(50,30)
 		item.bar.max_value=enemy.max_health
 		item.bar.value=enemy.health
@@ -1460,7 +1461,9 @@ func _enemy_defeated(id: String, kind: String, slain_enemy:Node3D=null) -> void:
 		for enemy in enemies:
 			if enemy.definition.kind=="warden" and enemy.health<=0:
 				spawn_warden_remains(enemy.position)
-	if monster_cores.boss_bonus(kind)>0:
+	if kind=="vault_elder":
+		notify("The Elder falls · +1,000 XP. The ramp returns.")
+	elif monster_cores.boss_bonus(kind)>0:
 		notify(kind.capitalize()+" defeated · +%d XP (%d boss bonus)" % [int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind),monster_cores.boss_bonus(kind)])
 	else:
 		notify("Beast defeated. +%d XP · +%d copper · Level %d"%[int(progression.definition.enemy_xp.get(kind,0)),earned_copper,progression.level()] if game_mode=="world_rise" else {"slime":"The deeper forest trail is clear.","boar":"Briar boar defeated.","wisp":"Thorn wisp defeated.","warden":"The stone warden falls. Search its remains for the alchemical core."}.get(kind,"Goblin defeated.")+" +%d XP · Level %d" % [int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind),progression.level()])

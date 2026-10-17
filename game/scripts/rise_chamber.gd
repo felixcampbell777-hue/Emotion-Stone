@@ -4,6 +4,36 @@ const Art=preload("res://scripts/environment_art.gd")
 const ENTRANCE=Vector2(-168,-125)
 const ENTRANCE_YAW=-2.18
 var rock:StandardMaterial3D
+var game:Node
+var bridge_mesh:MeshInstance3D
+var bridge_body:StaticBody3D
+var bridge_open=true
+var encounter="waiting"
+var boss:Node3D
+const BOSS_ID="wr_boss_chamber/vault_elder"
+func activate(owner_game:Node) -> void:
+	game=owner_game
+	if BOSS_ID in game.defeated_enemies:encounter="cleared"
+func set_bridge(open:bool) -> void:
+	bridge_open=open;bridge_mesh.visible=open;bridge_body.collision_layer=1 if open else 0
+	interactions=interactions.filter(func(t):return t.get("wr_chamber","")!="leave")
+	if open:interactions.append({"id":"vault_return","title":"Return to Elderwood","position":Vector3(0,0,38),"lines":[],"actor":null,"wr_chamber":"leave"})
+func combat_locked() -> bool:return encounter in ["forming","fighting"]
+func start_encounter() -> void:
+	if encounter!="waiting" or game==null:return
+	encounter="forming";set_bridge(false)
+	boss=load("res://scripts/elder_boss.gd").new();boss.name="VaultElder";boss.game=game
+	boss.configure({"id":"vault_elder","kind":"vault_elder","at":[0,-5],"size":"giant"},game.player)
+	game.world_root.add_child(boss);game.enemies.append(boss);game.add_enemy_bar(boss)
+	boss.defeated.connect(func():game._enemy_defeated(BOSS_ID,"vault_elder",boss);encounter="cleared";set_bridge(true))
+	game.notify("The ramp dissolves. Stone and roots gather into the Elder.")
+func tick(_delta:float) -> void:
+	if game==null or not game.player.input_enabled or game.player.health<=0:return
+	if encounter=="waiting":
+		var p=game.player.position
+		if p.y>=-.2 and p.y<4.5 and Vector2(p.x/23.0,p.z/25.0).length()<.94:start_encounter()
+	elif encounter=="forming" and is_instance_valid(boss) and boss.state!="forming":encounter="fighting"
+func _physics_process(delta:float) -> void:tick(delta)
 static func supported(at:Vector3,margin:float=0.0) -> bool:
 	return Vector2(at.x/(23.0-margin),at.z/(25.0-margin)).length()<=1.0 or (absf(at.x)<3.0-margin and at.z>=21 and at.z<=40-margin)
 static func return_point() -> Vector2:
@@ -26,7 +56,7 @@ func build(data:Dictionary) -> void:
 	surface(st,"FloatingArena",true)
 	surface(sides,"IslandUnderside",true)
 	var bridge=Props.box(self,Vector3(0,-.7,31),Vector3(6,1.4,18),"#596576");bridge.material_override=rock
-	Props.collider(self,Vector3(0,-.7,31),Vector3(6,1.4,18))
+	bridge_mesh=bridge;bridge_body=Props.collider(self,Vector3(0,-.7,31),Vector3(6,1.4,18))
 	# Shared ring vertices make the sloped ceiling a sealed surface, not slabs.
 	var roof=SurfaceTool.new();roof.begin(Mesh.PRIMITIVE_TRIANGLES)
 	for ring in range(10):
@@ -76,10 +106,10 @@ func lighting(game:Node) -> void:
 	env.fog_enabled=true;env.fog_light_color=Color("#142740");env.fog_density=.018;env.fog_sky_affect=1;env.fog_aerial_perspective=0;env.volumetric_fog_enabled=RenderingServer.get_current_rendering_method()=="forward_plus";env.volumetric_fog_density=.012;env.volumetric_fog_albedo=Color("#41618a");env.volumetric_fog_emission=Color("#051020");env.volumetric_fog_length=90;env.tonemap_exposure=1.1
 	game.world_root.get_node("WorldSun").light_energy=0;game.camera.far=150
 func ground_height(_at:Vector3) -> float:return 0.0
-func safe_position(at:Vector3) -> bool:return supported(at,1.0)
+func safe_position(at:Vector3) -> bool:return supported(at,1.0) and (bridge_open or Vector2(at.x/22.0,at.z/24.0).length()<=1)
 func update_details(_at:Vector3) -> void:pass
 func move_grounded(body:CharacterBody3D,delta:float) -> void:
-	var outside=not supported(body.position)
+	var outside=not supported(body.position) or (not bridge_open and Vector2(body.position.x/23.0,body.position.z/25.0).length()>1)
 	if outside or body.has_meta("rise_fall"):
 		var fall=float(body.get_meta("rise_fall",body.velocity.y))-18*delta;body.set_meta("rise_fall",fall);body.velocity.y=fall;body.move_and_slide()
 		if body.is_on_floor() and supported(body.position):body.remove_meta("rise_fall");body.position.y=0;body.finish_jump()

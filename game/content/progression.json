@@ -78,7 +78,8 @@
     "library_boar": 65,
     "library_wolf": 65,
     "library_rat": 25,
-    "canyon_fiend": 350
+    "canyon_fiend": 350,
+    "vault_elder": 350
   },
   "quest_xp": 80,
   "skills": [
