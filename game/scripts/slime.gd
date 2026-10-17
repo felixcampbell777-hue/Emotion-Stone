@@ -37,7 +37,8 @@ func configure(data: Dictionary, target: Node3D, saved: Dictionary={}) -> void:
 	home=Vector3(data.at[0],0,data.at[1])
 	position=home
 	collision_layer=4 if health>0 else 0
-	collision_mask=1 | 2 | 4
+	# Layer 8 is reserved for enemy-only boundaries such as the guild safe-zone door.
+	collision_mask=1 | 2 | 4 | 8
 	motion_mode=CharacterBody3D.MOTION_MODE_FLOATING
 	collision=CollisionShape3D.new()
 	var shape=SphereShape3D.new()

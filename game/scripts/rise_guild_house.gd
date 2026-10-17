@@ -73,6 +73,8 @@ static func gable(parent:Node3D,z:float) -> void:
 	for side in [-1,1]:beam(parent,Vector3(0,5,z-.15),Vector3(side*8,6.3,z-.15),.2)
 static func build(world:Node3D) -> void:
 	var root=Node3D.new();root.name="AdventurersGuild";world.add_child(root);root.position=Vector3(Shape.spec.guild.at[0],Shape.spec.guild.height,Shape.spec.guild.at[1]);root.rotation.y=Shape.spec.guild.rotation
+	# The doorway remains open for the player, but an enemy-only boundary keeps hostile actors outside.
+	var barrier=preload("res://scripts/guild_safe_barrier.gd").new();barrier.build(root,Vector3(0,0,-9.05),3.35)
 	box(root,Vector3(0,.012,0),Vector3(22,.02,18),"floor",false)
 	# Real openings in the stone-and-plaster envelope, with matching solid sills.
 	for x in [-11,11]:
