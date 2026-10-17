@@ -1092,7 +1092,7 @@ func apply_save(data: Dictionary) -> bool:
 	if not Progression.valid_loadout(growth,data.get("skill_loadout",{})): return false
 	progression.restore(growth)
 	player.dash_equipped=bool(data.get("skill_loadout",{}).get("dash",false))
-	player.jump_equipped=bool(data.get("skill_loadout",{}).get("jump",false))
+	player.jump_equipped=true
 	player.counter_equipped=bool(data.get("skill_loadout",{}).get("flowing_counter",false))
 	magic_items.restore(data.get("magic_items",{}))
 	monster_cores.restore(data.get("monster_cores",{}))
@@ -1829,7 +1829,6 @@ func learn_skill(id: String) -> void:
 		return
 	apply_skill_stats()
 	if id=="dash": player.dash_equipped=true
-	if id=="jump": player.jump_equipped=true
 	if id=="flowing_counter": player.counter_equipped=true
 	update_progression_ui()
 	skill_tree.refresh()
@@ -1843,7 +1842,6 @@ func toggle_passive(id:String) -> void:
 func toggle_movement_skill(id:String) -> void:
 	if id=="flowing_counter" and player.counter_unlocked: player.counter_equipped=not player.counter_equipped
 	if id=="dash" and player.dash_unlocked: player.dash_equipped=not player.dash_equipped
-	if id=="jump" and player.jump_unlocked: player.jump_equipped=not player.jump_equipped
 	inventory.refresh()
 
 func apply_skill_stats() -> void:
@@ -1890,9 +1888,9 @@ func apply_skill_stats() -> void:
 	player.roll_unlocked=progression.has("belly_roll")
 	player.thrust_unlocked=progression.has("charge_thrust")
 	player.dash_unlocked=progression.has("dash")
-	player.jump_unlocked=progression.has("jump")
+	player.jump_unlocked=true
 	if not player.dash_unlocked: player.dash_equipped=false
-	if not player.jump_unlocked: player.jump_equipped=false
+	player.jump_equipped=true
 	if selected_special_attack in ["water_lance","sea_dragon","undertow"] and not special_unlocked(selected_special_attack):
 		selected_special_attack="water_sweep"
 	if player.heavy_style=="charge_thrust" and not player.thrust_unlocked:

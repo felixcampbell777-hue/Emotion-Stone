@@ -64,7 +64,7 @@ static func read(path: String = SAVE_PATH) -> Dictionary:
 	var loadout=parsed.get("skill_loadout",{})
 	if not loadout is Dictionary: return {}
 	for key in loadout:
-		if key not in ["dash","jump","flowing_counter"] or not loadout[key] is bool or (loadout[key] and not state.has(key)): return {}
+		if key not in ["dash","jump","flowing_counter"] or not loadout[key] is bool or (key!="jump" and loadout[key] and not state.has(key)): return {}
 	var equipment=parsed.get("magic_items",{})
 	var magic=preload("res://scripts/magic_items.gd").new()
 	if not magic.valid_save(equipment): return {}

@@ -79,14 +79,14 @@ func grant(item:String,count:int=1) -> void:
 func start(imported:Dictionary={}) -> void:
 	reset();game.home_intro_complete=true
 	# Three familiar movement foundations, plus room to grow through the campaign.
-	game.progression.restore({"tree_version":3,"xp":430,"learned":["form","belly_roll","jump"],"passives":[]})
+	game.progression.restore({"tree_version":3,"xp":430,"learned":["form","belly_roll"],"passives":[]})
 	game.player.jump_equipped=true;game.player.dash_equipped=false;game.player.counter_equipped=false
 	if not imported.is_empty():
 		game.progression.restore(imported.get("progression",{}))
 		game.magic_items.restore(imported.get("magic_items",{}))
 		game.monster_cores.restore({"quantities":imported.get("monster_cores",{}).get("quantities",{}).duplicate(),"pending":[],"serial":0})
 		var loadout=imported.get("skill_loadout",{})
-		game.player.jump_equipped=bool(loadout.get("jump",false));game.player.dash_equipped=bool(loadout.get("dash",false));game.player.counter_equipped=bool(loadout.get("flowing_counter",false))
+		game.player.jump_equipped=true;game.player.dash_equipped=bool(loadout.get("dash",false));game.player.counter_equipped=bool(loadout.get("flowing_counter",false))
 		game.selected_special_attack=String(imported.get("special_attack","water_sweep"));game.player.heavy_style=String(imported.get("heavy_attack","overhead"))
 		game.player.set_sword_equipped(bool(imported.get("sword_equipped",true)))
 		game.mother_unwrapped=bool(imported.get("mother_unwrapped",false));game.well_gift_stage="potion_owned" if imported.get("well_gift_stage","")=="potion_owned" else "not_started"

@@ -146,9 +146,7 @@
       "name": "Driving Thrust",
       "description": "Equip in Inventory: hold to charge (8 stamina/s), then release a long thrust with 2.5x knockback and a stopping wind gust.",
       "effects": {},
-      "requires": [
-        "form"
-      ],
+      "requires": [],
       "excludes": [],
       "max_rank": 1,
       "category": "active"

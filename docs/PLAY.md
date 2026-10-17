@@ -8,6 +8,8 @@ v0.30.0 (2026-10-12): gameplay is FIRST PERSON ONLY. C and the pause camera sele
 
 Choose **Alpha — Existing adventure** or **Beta — Meadow & woodland** on the title screen, then Start New Game or Load Saved Game. Beta begins outdoors with the current personal heroine and only normal/sticky slimes, wolves and rats. Its F5/F9 save file is separate from Alpha. Escape → Alpha / Beta menu returns to the selector; save first to keep your current session.
 
+# v0.36.3: Jump is a baseline movement action. Space works from a fresh game and every mode without a Form unlock or inventory equip slot. Dash remains the Form-gated T ability; jump stamina, gravity, collision and damage behavior are unchanged.
+
 # Coastal Foundation
 
 A 3D woodland exploration and sword-combat prototype for Windows, built from the earlier coastal character artwork. Advanced graphics now reskin the whole world with scanned vegetation, rocks and detailed surfaces. Original graphics remain available in Pause > World art.
