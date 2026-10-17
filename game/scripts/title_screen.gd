@@ -42,6 +42,7 @@ func configure(owner_game:Control) -> void:
 	mode_choice.add_item("Alpha — Existing adventure")
 	mode_choice.add_item("Beta — Meadow & woodland")
 	mode_choice.add_item("Alpha 2 — The Hollow Bell")
+	mode_choice.add_item("World Rise — Floor 1")
 	mode_choice.custom_minimum_size.y=48
 	mode_choice.item_selected.connect(select_mode)
 	box.add_child(mode_choice)
@@ -68,7 +69,7 @@ func show_menu(path:String="user://save-v1.json") -> void:
 	game.move_child(self,game.get_child_count()-1)
 	save_path=path
 	fixture_path=path if path not in ["user://save-v1.json","user://beta-save-v1.json",game.current_save_path()] else ""
-	mode_choice.select(2 if game.game_mode=="alpha2" else 1 if game.game_mode=="beta" else 0)
+	mode_choice.select(3 if game.game_mode=="world_rise" else 2 if game.game_mode=="alpha2" else 1 if game.game_mode=="beta" else 0)
 	if game.game_mode=="alpha2" and game.alpha2_import_path.is_empty():
 		var alpha=game.Save.read("user://save-v1.json");var beta=game.Save.read("user://beta-save-v1.json")
 		if alpha.is_empty() and not beta.is_empty(): game.alpha2_import_mode="beta"
@@ -81,7 +82,7 @@ func show_menu(path:String="user://save-v1.json") -> void:
 
 func select_mode(index:int) -> void:
 	mode_choice.select(index)
-	game.game_mode="alpha2" if index==2 else "beta" if index==1 else "alpha"
+	game.game_mode="world_rise" if index==3 else "alpha2" if index==2 else "beta" if index==1 else "alpha"
 	save_path=fixture_path if not fixture_path.is_empty() else game.current_save_path()
 	var data=game.Save.read(save_path)
 	load_button.disabled=data.is_empty() or data.get("game_mode","alpha")!=game.game_mode
@@ -93,6 +94,7 @@ func select_mode(index:int) -> void:
 		var imported=game.Save.read(source)
 		status.text="Nine linked areas, treasure hunts, companions and a new boss. First person · Advanced graphics. About an hour, depending on exploration and imported power. Separate Alpha 2 save."
 		status.text+="\nNew Game copies "+game.alpha2_import_mode.capitalize()+" level, skills and equipment. Original save stays untouched." if not imported.is_empty() else "\nNo usable "+game.alpha2_import_mode.capitalize()+" save found. New Game will use a fresh adventurer."
+	if index==3:status.text="World Rise: a fresh character on a vast floating floor. Significant hills, boar valleys, Elderwood wolves and a central arrival platform. Separate save; no imports."
 	if load_button.disabled: status.text+="\nNo usable save for this mode yet."
 
 func _process(_delta:float) -> void:

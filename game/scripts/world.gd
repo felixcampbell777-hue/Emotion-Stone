@@ -160,6 +160,7 @@ func _build_cobbles(rng: RandomNumberGenerator) -> void:
 	add_child(batch)
 
 func safe_position(at: Vector3) -> bool:
+	if definition.get("id","")=="wr_floor_01":return preload("res://scripts/rise_shape.gd").safe(at)
 	if load("res://scripts/dreadmore.gd").blocked(String(definition.id),at):return false
 	if not bounds.grow(-.30).has_point(Vector2(at.x,at.z)):
 		return false
@@ -232,6 +233,7 @@ func raw_sculpt_height(at:Vector3) -> float:
 	return Sculpt.apply(definition.get("sculpted_terrain",[]).filter(func(p): return p.profile!="overhang"),at,base_height(at))
 
 func ground_height(at:Vector3) -> float:
+	if definition.get("id","")=="wr_floor_01":return preload("res://scripts/rise_shape.gd").height(at)
 	if Wading.enabled(self) and terrain_at(floori(at.x),floori(at.z))=="water":return Wading.level(self)-Wading.depth(self,at)
 	if definition.get("sculpted_terrain",[]).is_empty(): return base_height(at)
 	var cell=Vector2(at.x,at.z).snapped(Vector2(.5,.5))

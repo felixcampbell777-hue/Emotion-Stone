@@ -1,0 +1,22 @@
+shader_type spatial;
+render_mode cull_disabled;
+uniform sampler2D grass : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D stone : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+varying vec3 at;
+varying vec3 n;
+void vertex(){at=VERTEX;n=NORMAL;}
+void fragment(){
+ float r=length(at.xz);
+ vec3 g=texture(grass,at.xz*.18).rgb;
+ vec3 rock=texture(stone,at.xz*.16).rgb;
+ float slope=1.0-smoothstep(.5,.85,n.y);
+ float variation=.5+.5*sin(at.x*.024+sin(at.z*.031))*sin(at.z*.022);
+ vec3 meadow=mix(vec3(.12,.23,.055),vec3(.26,.35,.10),variation);
+ vec3 c=mix(meadow, g*vec3(.65,1.0,.42),.28);
+ c=mix(c,rock,slope*.9);
+ float trail=(1.0-smoothstep(2.0,3.5,abs(at.x)))*(1.0-smoothstep(0.0,2.0,-at.z));
+ c=mix(c,rock*.85,trail*.7);
+ float hub=1.0-smoothstep(17.8,18.2,r);float rim=smoothstep(225.5,227.0,r);float metal=max(hub,rim);
+ vec3 silver=vec3(.39,.46,.44);float lines=step(.96,fract(r*.32));silver+=lines*.1;
+ ALBEDO=mix(c,silver,metal);METALLIC=metal*.6;ROUGHNESS=mix(.95,.47,metal);
+}

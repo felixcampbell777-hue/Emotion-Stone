@@ -19,7 +19,7 @@ const STORY_FLAGS=["begun","medicine_asked","medicine_returned","courier_asked",
 static func valid_mode(mode:Variant,map_id:Variant,world:Variant="") -> bool:
 	if not mode is String or not map_id is String: return false
 	var areas=JSON.parse_string(FileAccess.get_file_as_string("res://content/alpha2.json")).maps
-	return (mode=="alpha2" and world=="" and map_id in areas) or (mode=="beta" and world=="" and map_id=="beta_meadow") or (mode=="alpha" and map_id not in areas and map_id!="beta_meadow")
+	return (mode=="world_rise" and world=="" and map_id=="wr_floor_01") or (mode=="alpha2" and world=="" and map_id in areas) or (mode=="beta" and world=="" and map_id=="beta_meadow") or (mode=="alpha" and map_id not in areas and map_id not in ["beta_meadow","wr_floor_01"])
 
 static func valid_save(data:Variant,defeated:Array) -> bool:
 	if not data is Dictionary: return false

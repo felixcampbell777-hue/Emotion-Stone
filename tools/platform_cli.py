@@ -169,7 +169,8 @@ def validate():
     if pack_tuning['attack_distance']<pack_tuning['circle_radius'] or pack_tuning['leash_radius']<=pack_tuning['circle_radius']: raise ValueError('Wolf attack/leash must cover its circle')
     for area in maps.values():
         for enemy in area.get('enemies',[]):
-            if enemy['kind']=='beta_wolf' and enemy.get('pack') not in pack_tuning['territories']: raise ValueError('Wolf lacks a known pack territory')
+            territories=pack_tuning['territories'] if area['id']!='wr_floor_01' else {p['id']:p for p in read(GAME/'content/world_rise/floor_01.json')['packs'] if p['kind']=='beta_wolf'}
+            if enemy['kind']=='beta_wolf' and enemy.get('pack') not in territories: raise ValueError('Wolf lacks a known pack territory')
     for territory in pack_tuning['territories'].values():
         if not 1<=territory['radius']<pack_tuning['leash_radius'] or len(territory['center'])!=2: raise ValueError('Invalid wolf patrol territory')
     monster_codes={entry['code']:entry for entry in catalog['monsters']}
@@ -531,11 +532,11 @@ def identifier(value):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     commands=parser.add_subparsers(dest='command',required=True)
-    for name in ['validate','build','verify','verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-dash-uppercut','verify-unarmed','verify-dreadmore','verify-alpha2','verify-environment','verify-builder','capture','verify-windows','capture-windows','run','recipes-check']:
+    for name in ['validate','build','verify','verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-dash-uppercut','verify-unarmed','verify-dreadmore','verify-world-rise','verify-alpha2','verify-environment','verify-builder','capture','verify-windows','capture-windows','run','recipes-check']:
         command=commands.add_parser(name)
-        if name=='verify-windows': command.add_argument('--suite',choices=['all','sea-dragon','combat-skills','dash-uppercut','unarmed','dreadmore','alpha2'],default='all')
+        if name=='verify-windows': command.add_argument('--suite',choices=['all','sea-dragon','combat-skills','dash-uppercut','unarmed','dreadmore','world-rise','alpha2'],default='all')
         if name in ['capture','capture-windows']:
-            command.add_argument('--view',choices=['world-rise-backdrop','dreadmore','mob-facing','alpha2','unarmed','dash-uppercut','combat-skills','sea-dragon','beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
+            command.add_argument('--view',choices=['world-rise','world-rise-backdrop','dreadmore','mob-facing','alpha2','unarmed','dash-uppercut','combat-skills','sea-dragon','beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
             command.add_argument('--renderer',choices=['forward_plus','gl_compatibility'])
             command.add_argument('--art-profile',choices=['original','darkwood'])
             if name=='capture':
@@ -568,14 +569,14 @@ def main():
         assets(args.regenerate)
     elif args.command=='build':
         build()
-    elif args.command in ['verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-dash-uppercut','verify-unarmed','verify-dreadmore','verify-alpha2','verify-environment']:
+    elif args.command in ['verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-dash-uppercut','verify-unarmed','verify-dreadmore','verify-world-rise','verify-alpha2','verify-environment']:
         validate()
         assets()
         audit_sword()
         import_game()
-        suite='dreadmore' if args.command=='verify-dreadmore' else 'alpha2' if args.command=='verify-alpha2' else 'unarmed' if args.command=='verify-unarmed' else 'uppercut' if args.command=='verify-dash-uppercut' else 'skills' if args.command=='verify-skills' else 'sea_dragon' if args.command=='verify-sea-dragon' else 'beta' if args.command=='verify-beta' else 'environment' if args.command=='verify-environment' else 'core' if args.command=='verify-cores' else 'magic' if args.command=='verify-magic' else 'goblin' if args.command=='verify-goblins' else 'terrain' if args.command=='verify-terrain' else 'combat'
+        suite='rise' if args.command=='verify-world-rise' else 'dreadmore' if args.command=='verify-dreadmore' else 'alpha2' if args.command=='verify-alpha2' else 'unarmed' if args.command=='verify-unarmed' else 'uppercut' if args.command=='verify-dash-uppercut' else 'skills' if args.command=='verify-skills' else 'sea_dragon' if args.command=='verify-sea-dragon' else 'beta' if args.command=='verify-beta' else 'environment' if args.command=='verify-environment' else 'core' if args.command=='verify-cores' else 'magic' if args.command=='verify-magic' else 'goblin' if args.command=='verify-goblins' else 'terrain' if args.command=='verify-terrain' else 'combat'
         output=run_process([toolchain()['godot'],'--headless','--path',str(GAME),'--script',f'res://scripts/focused_{suite}_checks.gd'],log=f'focused-{suite}.log')
-        prefix='VERIFICATION_' if suite in ['sea_dragon','skills','uppercut','unarmed','dreadmore','alpha2'] else 'BETA_CHECKS' if suite=='beta' else 'ENVIRONMENT_CHECKS' if suite=='environment' else 'CORE_CHECKS' if suite=='core' else 'MAGIC_CHECKS' if suite=='magic' else 'GOBLIN_CHECKS' if suite=='goblin' else 'TERRAIN_CHECKS' if suite=='terrain' else 'FOCUSED_COMBAT'
+        prefix='VERIFICATION_' if suite in ['sea_dragon','skills','uppercut','unarmed','dreadmore','rise','alpha2'] else 'BETA_CHECKS' if suite=='beta' else 'ENVIRONMENT_CHECKS' if suite=='environment' else 'CORE_CHECKS' if suite=='core' else 'MAGIC_CHECKS' if suite=='magic' else 'GOBLIN_CHECKS' if suite=='goblin' else 'TERRAIN_CHECKS' if suite=='terrain' else 'FOCUSED_COMBAT'
         print(next(line for line in output.splitlines() if line.startswith(prefix)))
     elif args.command in ['verify','capture']:
         validate()
