@@ -1,5 +1,7 @@
 # World Rise — The Verdant Reach
 
+v0.37.0 adds the [Veiled Vault](VEILED-VAULT.md): a concealed cave in northwest Elderwood leads to a separate crystal-lit floating boss chamber. The arena is empty pending boss selection. E enters/returns; falling from its unrailed island is lethal and respawns at the current rest crystal.
+
 Playable foundation in v0.36.1. On the title choose **World Rise — Floor 1**, then Start New Game. This mode begins with a fresh level-one character, existing basic equipment and three Spring Elixirs; no Alpha/Beta imports. Load uses its own `user://world-rise-save-v1.json`. Other modes and their saves remain available.
 
 ## The floor

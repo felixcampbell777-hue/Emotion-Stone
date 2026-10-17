@@ -45,11 +45,14 @@ func remember(enemy:Node3D) -> void:
 	states[enemy.definition.id]={"health":enemy.health,"at":pos}
 func lighting() -> void:
 	if game.game_mode!="world_rise":return
+	if game.map_id=="wr_boss_chamber":game.current_world.lighting(game);return
+	game.environment_settings.ambient_light_source=Environment.AMBIENT_SOURCE_BG
 	game.camera.far=6500;var env=game.environment_settings;env.fog_enabled=true;env.fog_density=.0006;env.fog_sky_affect=.08;env.fog_light_color=Color("#c5dbdb");env.volumetric_fog_enabled=false;env.ambient_light_energy=.5;env.tonemap_exposure=1.0;env.background_mode=Environment.BG_SKY
 	var sky=Sky.new();var mat=ProceduralSkyMaterial.new();mat.sky_top_color=Color("#4f91c5");mat.sky_horizon_color=Color("#dce9e6");mat.ground_bottom_color=Color("#fff0c9");mat.ground_horizon_color=Color("#dce9e6");sky.sky_material=mat;env.sky=sky
 	var sun=game.world_root.get_node("WorldSun");sun.light_energy=1.2;sun.rotation_degrees=Vector3(-42,-30,0);sun.directional_shadow_max_distance=90
 func build_map() -> void:
 	packs.clear();clock=0
+	if game.game_mode=="world_rise" and game.map_id=="wr_boss_chamber":lighting();return
 	if not active():return
 	lighting()
 	for p in Shape.spec.packs:packs[p.id]={"spec":p,"active":false,"members":[],"engaged":false,"attack":0.0,"cursor":0}
@@ -70,6 +73,7 @@ func build_map() -> void:
 		var at=Vector3(45+i*8,0,-150);at.y=game.current_world.ground_height(at);Props.box(game.current_world,at+Vector3.UP*4,Vector3(1.4,8,1.8),"#959e87");Props.box(game.current_world,at+Vector3(3.5,8,0),Vector3(8,1,2.4),"#a0a88e");Props.collider(game.current_world,at+Vector3.UP*4,Vector3(1.4,8,1.8))
 	game.current_world.update_details(game.player.position)
 	guild.game=game;guild.build()
+	preload("res://scripts/rise_chamber.gd").build_entrance(game.current_world)
 	update_packs()
 func spawn_pack(record:Dictionary) -> void:
 	record.active=true;record.members=[]
@@ -131,6 +135,14 @@ func respawn_reset() -> void:
 	states.clear()
 	game.defeated_enemies=game.defeated_enemies.filter(func(id):return not String(id).begins_with("wr_floor_01/"))
 func interact(target:Dictionary) -> bool:
+	if game.game_mode=="world_rise" and target.has("wr_chamber"):
+		var chamber=preload("res://scripts/rise_chamber.gd")
+		if target.wr_chamber=="enter":
+			remember_all()
+			game.load_map("wr_boss_chamber",Vector2(0,36),true);game.camera_driver.yaw=0
+		else:
+			game.load_map("wr_floor_01",chamber.return_point(),true);game.camera_driver.yaw=chamber.ENTRANCE_YAW
+		game.camera_driver.first_pitch=0;game.camera_driver.update_first_person();return true
 	if target.has("beast_loot"):guild.collect(target.beast_loot);return true
 	if not active() or not target.has("wr_action"):return false
 	var entry=target.wr_action

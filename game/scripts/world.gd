@@ -160,6 +160,7 @@ func _build_cobbles(rng: RandomNumberGenerator) -> void:
 	add_child(batch)
 
 func safe_position(at: Vector3) -> bool:
+	if definition.get("id","")=="wr_boss_chamber":return Vector2(at.x/22.0,at.z/24.0).length()<=1 or (absf(at.x)<2 and at.z>=21 and at.z<=39)
 	if definition.get("id","")=="wr_floor_01":return preload("res://scripts/rise_shape.gd").safe(at)
 	if load("res://scripts/dreadmore.gd").blocked(String(definition.id),at):return false
 	if not bounds.grow(-.30).has_point(Vector2(at.x,at.z)):

@@ -21,6 +21,7 @@ func build(data:Dictionary) -> void:
 			if Vector2(cx*32+16,cz*32+16).length()<261:decoration[Vector2i(cx,cz)]=[]
 	grass_template=Art.model(Art.ROOT+"models/grass_medium_01.glb",Vector3(.8,.45,.8),false);add_child(grass_template);grass_template.visible=false
 	for t in Shape.spec.trees:
+		if Vector2(t[0]+168,t[1]+125).length()<10:continue
 		var key=Vector2i(floori(t[0]/32),floori(t[1]/32))
 		if not decoration.has(key):decoration[key]=[]
 		decoration[key].append(t)
@@ -75,6 +76,7 @@ func update_details(at:Vector3) -> void:
 	var key:Vector2i=pending.pop_front();var root=Node3D.new();root.name="LandscapeDetail";add_child(root);loaded_chunks[key]=root
 	for crown in proxies.get(key,[]):crown.visibility_range_begin=85
 	for t in decoration[key]:
+		if Vector2(t[0]+168,t[1]+125).length()<10:continue
 		var tree=Art.model(Art.ROOT+"models/fir_a.glb",Vector3(7,t[2],7),false);root.add_child(tree);tree.position=Vector3(t[0],ground_height(Vector3(t[0],0,t[1])),t[1]);tree.rotation.y=t[0]*.2
 		Art.add_canopy(tree,t[2],int(absf(t[0]))%3)
 		for mesh in tree.find_children("*","MeshInstance3D",true,false):mesh.visibility_range_end=110;mesh.visibility_range_end_margin=15;mesh.visibility_range_fade_mode=GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF

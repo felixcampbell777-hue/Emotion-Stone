@@ -1,0 +1,12 @@
+{
+  "id": "wr_boss_chamber",
+  "display_name": "World Rise · The Veiled Vault",
+  "subtitle": "Blue crystal light hangs above a bottomless gulf.",
+  "seed": 51621,
+  "bounds": [-64, -64, 64, 64],
+  "spawn": [0, 36],
+  "sea": false,
+  "biome": "highlands",
+  "terrain_regions": [{"kind": "cobble", "rect": [-64,-64,128,128]}],
+  "props": [], "npcs": [], "interactions": [], "exits": [], "enemies": []
+}
