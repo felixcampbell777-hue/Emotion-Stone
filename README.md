@@ -1,6 +1,6 @@
 # Coastal Foundation
 
-Current source baseline: **v0.35.0**, first-person gameplay with the upright two-hand sword hold, Mana Lance aim control, Dash Reach upgrades uppercut dash attacks with a vertical mana wave, a steerable first-person Mana Sea Dragon, and Flowing Counter, Measured Recovery, Breaker and Undertow.
+Current source baseline: **v0.35.1**, first-person gameplay with the upright two-hand sword hold, Mana Lance aim control, Dash Reach upgrades uppercut dash attacks with a vertical mana wave, a steerable first-person Mana Sea Dragon, and Flowing Counter, Measured Recovery, Breaker and Undertow.
 
 The GitHub repository has separate **`alpha`** and **`beta`** branches. This checkout is **Beta**: the title selects the meadow, wolf packs and castle town by default. The Alpha branch defaults to Alpha 2 — The Hollow Bell; original Alpha remains available. Both retain the shared engine, map builder, other mode selector and separate saves.
 

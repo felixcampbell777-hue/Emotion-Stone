@@ -603,6 +603,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 	camera.size=5.0 if data.has("interior") else float(config.camera_size)
 	var spawn=Vector2(data.spawn[0],data.spawn[1]) if not is_finite(at.x) else at
 	player.ground_world=current_world
+	player.motion_mode=CharacterBody3D.MOTION_MODE_GROUNDED if id=="wr_floor_01" else CharacterBody3D.MOTION_MODE_FLOATING
 	if player.has_meta("rise_fall"):player.remove_meta("rise_fall")
 	player.position=Vector3(spawn.x,0,spawn.y)
 	player.position.y=current_world.ground_height(player.position)

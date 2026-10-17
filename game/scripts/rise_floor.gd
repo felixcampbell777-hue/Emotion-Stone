@@ -95,6 +95,31 @@ func update_details(at:Vector3) -> void:
 			if rock!=null:root.add_child(rock);rock.position=pos;rock.rotation.y=rng.randf()*TAU
 func ground_height(at:Vector3) -> float:return Shape.height(at)
 func safe_position(at:Vector3) -> bool:return Shape.safe(at)
+func support_height(body:CharacterBody3D,at:Vector3) -> float:
+	# Root height must clear the bottom hemisphere against the slope, not bury
+	# its uphill edge by placing its lowest point at the height of its center.
+	var result=ground_height(at)
+	for child in body.get_children():
+		if not child is CollisionShape3D or child.disabled:continue
+		var shape=child.shape
+		if not (shape is CapsuleShape3D or shape is SphereShape3D):continue
+		var radius=shape.radius*child.scale.x
+		var half_height=shape.height*.5*child.scale.y if shape is CapsuleShape3D else radius
+		var center=at+child.position
+		var h=ground_height(center)
+		# Sampling the footprint also covers triangle seams where the local
+		# gradient on the uphill triangle differs from the one at the center.
+		var support=h+radius
+		for fraction in [.25,.5,.707,.85,.96]:
+			for i in range(16):
+				var offset=Vector3(sin(i*TAU/16),0,cos(i*TAU/16))*radius*fraction
+				var edge=ground_height(center+offset)+radius*sqrt(1-fraction*fraction)
+				support=maxf(support,edge)
+		result=maxf(result,support+(half_height-radius)-child.position.y+.008)
+	return result
+func ground_step_allowed(at:Vector3,to:Vector3) -> bool:
+	var run=Vector2(to.x-at.x,to.z-at.z).length()
+	return absf(ground_height(to)-ground_height(at))<=maxf(.02,run*1.8)
 func move_grounded(body:CharacterBody3D,delta:float) -> void:
 	var outside=Vector2(body.position.x,body.position.z).length()>240.15
 	if outside or body.has_meta("rise_fall"):
@@ -104,6 +129,20 @@ func move_grounded(body:CharacterBody3D,delta:float) -> void:
 			if body.get("controllable")==true:body.invulnerability=0
 			body.take_damage(999999,Vector3.ZERO)
 		return
-	super.move_grounded(body,delta)
+	body.motion_mode=CharacterBody3D.MOTION_MODE_GROUNDED
+	body.floor_max_angle=deg_to_rad(62);body.floor_stop_on_slope=true;body.floor_constant_speed=true;body.floor_snap_length=.35
+	if body.has_method("finish_jump") and body.jump_active:
+		body.move_and_slide()
+		if body.is_on_ceiling() and body.jump_velocity>0:body.jump_velocity=0
+		var floor_y=support_height(body,body.position)
+		if body.jump_velocity<=0 and (body.position.y<=floor_y+.001 or body.is_on_floor()):body.position.y=floor_y;body.finish_jump()
+		return
+	body.position.y=support_height(body,body.position)
+	var goal=body.position+body.velocity*delta
+	if not ground_step_allowed(body.position,goal):body.velocity=Vector3.ZERO
+	body.velocity.y=(support_height(body,body.position+body.velocity*delta)-body.position.y)/maxf(delta,.001)
+	body.move_and_slide()
+	if not body.has_meta("rise_fall"):body.position.y=support_height(body,body.position)
+	body.velocity.y=0
 func if_jump_finish(body:Node) -> void:
 	if body.has_method("finish_jump") and body.jump_active:body.finish_jump()
