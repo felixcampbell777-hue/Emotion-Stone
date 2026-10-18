@@ -1,5 +1,11 @@
 extends "res://scripts/slime.gd"
 ## Arena-wide pursuit: never uses an ordinary mob's notice range or home leash.
+const SWEEP_REACH=4.8
+const SLAM_REACH=5.5
+const RUSH_REACH=2.8
+const RUSH_CONE=.15
+const RUSH_SPEED=10.0
+const RUSH_SECONDS=.65
 const Model=preload("res://scripts/library_model.gd")
 var game:Node
 var art:Node3D
@@ -9,7 +15,7 @@ var attack_kind="sweep"
 var duration=1.0
 var exposed=0.0
 var rock:MeshInstance3D
-var marker:MeshInstance3D
+var attack_lines:Node3D
 var formation:Array=[]
 var target_point=Vector3.ZERO
 var strikes=0
@@ -30,9 +36,7 @@ func configure(data:Dictionary,target:Node3D,saved:Dictionary={}) -> void:
 	body=MeshInstance3D.new();body.mesh=SphereMesh.new();body.visible=false;visual.add_child(body)
 	var capsule=CapsuleShape3D.new();capsule.radius=1.2;capsule.height=3.8;collision.shape=capsule;collision.position.y=1.9
 	rock=Props.box(visual,Vector3(1.4,.3,1.3),Vector3(1.1,.9,1.0),"#82949f");rock.visible=false
-	var ring=TorusMesh.new();ring.inner_radius=5.4;ring.outer_radius=5.6;ring.rings=64;ring.ring_segments=6
-	marker=Props.mesh_node(self,ring,Vector3(0,.06,0),"#73d5ff");marker.visible=false
-	var mat=Props.mat("#73d5ff");mat.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED;marker.material_override=mat
+	attack_lines=preload("res://scripts/elder_attack_lines.gd").new();add_child(attack_lines);attack_lines.configure(self)
 	for i in range(18):
 		var fragment=Props.box(self,Vector3.ZERO,Vector3(.35,.45,.35),"#728a96");fragment.material_override=preload("res://scripts/rise_chamber.gd").stone_material();formation.append(fragment)
 	state="forming";state_time=3.0;collision_layer=0;collision.disabled=true;visual.position.y=-4
@@ -48,14 +52,14 @@ func repel(_away:Vector3,_force:float,stun:float) -> void:
 	if state=="strike" and attack_kind=="rush":
 		player.knockback=direction*8.5
 		game.notify("Charge parried! Its weight drives you backward.")
-	exposed=3;state="recover";state_time=maxf(1.4,stun);parry_flash=.4;marker.visible=false;rock.visible=false
+	exposed=3;state="recover";state_time=maxf(1.4,stun);parry_flash=.4;rock.visible=false
 func open_armor() -> void:repel(Vector3.ZERO,0,2.5)
 func breaker_expose(seconds:float) -> void:exposed=maxf(exposed,seconds);state="recover";state_time=1.5
 func take_lance_damage(amount:int,away:Vector3) -> void:exposed=2;take_damage(amount,away)
 func begin_attack(kind:String) -> void:
 	attack_kind=kind;attacks+=1;strikes=0;lunge_hit=false;pursuit_time=0;direction=((player.position-position)*Vector3(1,0,1)).normalized()
 	target_point=player.position*Vector3(1,0,1)
-	duration={"sweep":1.25,"slam":1.7,"rush":1.45,"stone":1.7}[kind];state="windup";state_time=duration;marker.visible=kind=="slam";rock.visible=kind=="stone"
+	duration={"sweep":1.25,"slam":1.7,"rush":1.45,"stone":1.7}[kind];state="windup";state_time=duration;rock.visible=kind=="stone"
 func form(delta:float) -> void:
 	state_time=maxf(0,state_time-delta);var t=1-state_time/3.0
 	visual.position.y=-4*(1-smoothstep(0,1,t));art.pose("rise",t,delta)
@@ -67,8 +71,9 @@ func form(delta:float) -> void:
 		for fragment in formation:fragment.queue_free()
 		formation.clear()
 func strike(reach:float,damage:int,wide:bool=false) -> void:
+	attack_lines.hit(attack_kind)
 	var offset=(player.position-position)*Vector3(1,0,1)
-	if offset.length()>reach or (not wide and direction.dot(offset.normalized())<.15):return
+	if offset.length()>reach or (not wide and direction.dot(offset.normalized())<RUSH_CONE):return
 	if game.impact_blocked(position+Vector3.UP,player.position+Vector3.UP):return
 	if player.position.y>1.1 and attack_kind=="sweep":return
 	# The attacking limb reaches the player long before the giant body centre does.
@@ -78,7 +83,7 @@ func strike(reach:float,damage:int,wide:bool=false) -> void:
 func _physics_process(delta:float) -> void:
 	if not simulation_enabled or not is_instance_valid(game) or not player.input_enabled or player.health<=0:return
 	if health<=0:
-		marker.visible=false;rock.visible=false;return
+		attack_lines.visible=false;rock.visible=false;return
 	if state=="forming":form(delta);return
 	if not ai_enabled:return
 	phase+=delta;exposed=maxf(0,exposed-delta);hit_flash=maxf(0,hit_flash-delta);parry_flash=maxf(0,parry_flash-delta)
@@ -99,20 +104,20 @@ func _physics_process(delta:float) -> void:
 			var t=clampf(1-state_time/duration,0,1)
 			rock.position=Vector3(-1.4,lerpf(.25,4.3,smoothstep(0,.65,t)),lerpf(1.3,-.4,smoothstep(0,.65,t)))
 		if state_time<=0:
-			state="strike";duration=.85 if attack_kind=="sweep" else .65;state_time=duration
+			state="strike";duration=.85 if attack_kind=="sweep" else RUSH_SECONDS;state_time=duration
 	elif state=="strike":
 		state_time-=delta;var t=1-state_time/duration
 		if attack_kind=="stone" and strikes==0 and t>=.28:
 			strikes=1
 			var projectile=load("res://scripts/elder_stone.gd").new();game.world_root.add_child(projectile);projectile.configure(game,self,direction);projectile.position=rock.global_position;projectile.direction=(player.position+Vector3.UP*.9-projectile.position).normalized();game.projectiles.append(projectile);rock.visible=false
-		if attack_kind=="rush":velocity=direction*10
+		if attack_kind=="rush":velocity=direction*RUSH_SPEED
 		if attack_kind=="slam" and strikes==0 and t>=.4:
-			strikes=1;strike(5.5,30,true);marker.visible=false;game._ground_slam(position+direction*2.5,true)
+			strikes=1;strike(SLAM_REACH,30,true);game._ground_slam(position+direction*2.5,true)
 		elif attack_kind=="sweep":
-			if strikes==0 and t>=.18:strikes=1;strike(4.8,19,true)
-			elif strikes==1 and t>=.72:strikes=2;strike(4.8,21,true)
-		elif attack_kind=="rush" and not lunge_hit and distance<2.8:
-			lunge_hit=true;strike(3.0,25)
+			if strikes==0 and t>=.18:strikes=1;strike(SWEEP_REACH,19,true)
+			elif strikes==1 and t>=.72:strikes=2;strike(SWEEP_REACH,21,true)
+		elif attack_kind=="rush" and not lunge_hit and distance<RUSH_REACH:
+			lunge_hit=true;strike(RUSH_REACH,25)
 		if state_time<=0 and state=="strike":state="recover";state_time={"slam":1.9,"rush":1.5,"sweep":1.3,"stone":1.2}[attack_kind];exposed=state_time
 	elif state=="recover":
 		state_time-=delta
@@ -126,3 +131,4 @@ func _physics_process(delta:float) -> void:
 	if radial.length()>1:
 		radial=radial.normalized();goal=Vector3(radial.x*20.5,0,radial.y*22.5);velocity=(goal-position)/maxf(delta,.001)
 	velocity.y=0;move_and_slide();position.y=0;knockback=Vector3.ZERO
+	attack_lines.update(delta)
