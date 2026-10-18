@@ -1,6 +1,6 @@
 {
   "kill_xp_multiplier": 0.25,
-  "kill_xp_overrides": {"vault_elder": 2500},
+  "kill_xp_overrides": {"vault_elder": 1500},
   "materials": {
     "elder_leaves": {"name":"Elder Leaves","chance":0.2,"value":0,"beast":"vault_elder"},
     "boar_hide": {
