@@ -109,7 +109,8 @@ func update(actor:Node3D,frame:Transform3D) -> void:
 		var left_grip=actor.equipment.global_transform*Vector3(0,.20 if actor.equipment.get_meta("beta_sword",false) else .08,0)
 		left=left.lerp(left_grip,left_weight)
 		if actor.state=="parry":
-			var brace=smoothstep(.10,.30,actor.state_time/actor.state_duration)*(1-smoothstep(.65,.90,actor.state_time/actor.state_duration))
+			var guard_phase=actor.parry_pose_phase(actor.state_time/actor.state_duration)
+			var brace=smoothstep(.10,.30,guard_phase)*(1-smoothstep(.65,.90,guard_phase))
 			brace_weight=brace
 			left=left.lerp(actor.equipment.global_transform*Vector3(0,-.34,.045),brace)
 			left_weight*=1-brace

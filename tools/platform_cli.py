@@ -446,10 +446,13 @@ def audit_character_detail():
         if not read(skirt).get('passed'): raise RuntimeError('Advanced walking skirt clearance failed')
 
 
-def build():
-    validate()
-    assets()
-    audit_sword()
+def build(skip_tests=False):
+    if skip_tests:
+        print('UNTESTED BUILD: user-requested packaging only; validation, asset audits and gameplay tests skipped')
+    else:
+        validate()
+        assets()
+        audit_sword()
     icon=prepare_icons()
     chain=toolchain()
     cache_path=ROOT/'output/build-cache.json'
@@ -561,6 +564,7 @@ def main():
     commands=parser.add_subparsers(dest='command',required=True)
     for name in ['validate','build','verify','verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-dash-uppercut','verify-unarmed','verify-dreadmore','verify-world-rise','verify-alpha2','verify-environment','verify-builder','capture','verify-windows','capture-windows','run','recipes-check']:
         command=commands.add_parser(name)
+        if name=='build': command.add_argument('--skip-tests',action='store_true',help='Package existing assets without validation or audits; explicitly untested')
         if name=='verify-windows': command.add_argument('--suite',choices=['all','sea-dragon','combat-skills','dash-uppercut','unarmed','dreadmore','world-rise','alpha2'],default='all')
         if name in ['capture','capture-windows']:
             command.add_argument('--view',choices=['guild','performance','boss-chamber','world-rise','world-rise-backdrop','dreadmore','mob-facing','alpha2','unarmed','dash-uppercut','combat-skills','sea-dragon','beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
@@ -595,7 +599,7 @@ def main():
     elif args.command=='assets':
         assets(args.regenerate)
     elif args.command=='build':
-        build()
+        build(skip_tests=args.skip_tests)
     elif args.command in ['verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-dash-uppercut','verify-unarmed','verify-dreadmore','verify-world-rise','verify-alpha2','verify-environment']:
         validate()
         assets()

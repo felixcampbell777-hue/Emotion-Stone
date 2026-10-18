@@ -34,8 +34,8 @@
   },
   "parry": {
     "duration": 0.7,
-    "active_start": 0.2,
-    "active_end": 0.48,
+    "active_start": 0.0,
+    "active_end": 0.15,
     "stamina_cost": 10,
     "cone_dot": 0.0,
     "knockback": 8.0,

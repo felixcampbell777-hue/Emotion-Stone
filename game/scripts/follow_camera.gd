@@ -196,7 +196,7 @@ func sample_first_person(delta:float=0.0,advance_gait:bool=true) -> Transform3D:
 	# Keep the guard's physical twist, but let the player keep sight of the threat.
 	# The authored action clock also freezes this smooth entry/recovery in menus.
 	if actor.state=="parry":
-		var phase=clampf(actor.state_time/actor.state_duration,0,1)
+		var phase=actor.parry_pose_phase(actor.state_time/actor.state_duration)
 		var guard=smoothstep(0,.12,phase)*(1-smoothstep(.82,1,phase))
 		var parry_scale=lerpf(1.0,float(tuning.get("first_person_parry_motion",.2)),guard)
 		var look_basis=Basis(Vector3.UP,yaw)*Basis(Vector3.RIGHT,-first_pitch)

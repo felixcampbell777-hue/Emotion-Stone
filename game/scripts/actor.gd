@@ -1043,7 +1043,7 @@ func begin_parry() -> bool:
 		return false
 	if not spend_stamina(float(combat.parry.stamina_cost)):
 		return false
-	begin_action_transition(.18)
+	begin_action_transition(.06)
 	state="parry"
 	combo_stage=0
 	combo_remaining=0
@@ -1054,6 +1054,14 @@ func begin_parry() -> bool:
 	attack_direction=facing()
 	play_clip("parry_guard",0)
 	return true
+
+func parry_pose_phase(progress:float) -> float:
+	# Accelerate the existing outside-body entry; keep its path and recovery.
+	var time=clampf(progress,0,1)*float(combat.parry.duration)
+	var recovery=float(combat.parry.duration)*.68
+	if time<=.06:return .30*smoothstep(0,.06,time)
+	if time<recovery:return lerpf(.30,.68,(time-.06)/(recovery-.06))
+	return clampf(progress,0,1)
 
 func try_parry(enemy: Node3D) -> bool:
 	if not input_enabled or health<=0 or state!="parry" or not is_instance_valid(enemy) or parried_threats.has(enemy.get_instance_id()):
@@ -1496,9 +1504,10 @@ func _physics_process(delta: float) -> void:
 			animator.seek(animator.get_animation(clips.attack_lance).length*lance_phase,true)
 			_pose_sword("lance",lance_phase)
 		elif state=="parry":
-			animator.seek(progress*animator.get_animation(clips.parry_guard).length,true)
+			var guard_phase=parry_pose_phase(progress)
+			animator.seek(guard_phase*animator.get_animation(clips.parry_guard).length,true)
 			blend_action_transition(delta)
-			_pose_sword("parry",progress)
+			_pose_sword("parry",guard_phase)
 		elif state in ["light","heavy","thrust"]:
 			if dash_uppercut and state=="light" and combo_stage==1:
 				var lift=smoothstep(.28,.74,progress)
