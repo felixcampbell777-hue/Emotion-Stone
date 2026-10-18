@@ -1,0 +1,12 @@
+{
+  "source": "art/source/two-headed-wolf.blend",
+  "runtime": "game/assets/creatures/two-headed-wolf.glb",
+  "recipe": "tools/build_two_headed_wolf.py",
+  "derived_from": "art/source/beta-wolf.blend",
+  "donor": "Quaternius CC0 wolf; see art/library/beta-wolf-customization.json",
+  "textures": "Project-original CC0 fur maps reused",
+  "rig": "75 bones: shared body plus two independent neck/head/ear branches",
+  "static_reference": "art/source/concepts/two-headed-wolf.blend",
+  "source_sha256": "505ae8ffe3da4f6594dce81fc3696f5f588ccc5643ca6f59d70f8dcf956242cb",
+  "runtime_sha256": "3240e20552a68c81ae25f7270b915d15bb6dfe71efd28b499550b2b9a462b4c8"
+}

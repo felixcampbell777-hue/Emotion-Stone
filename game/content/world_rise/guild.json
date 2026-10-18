@@ -1,8 +1,16 @@
 {
   "kill_xp_multiplier": 0.25,
-  "kill_xp_overrides": {"vault_elder": 1500},
+  "kill_xp_overrides": {
+    "vault_elder": 1500,
+    "beta_twin_wolf": 14
+  },
   "materials": {
-    "elder_leaves": {"name":"Elder Leaves","chance":0.2,"value":0,"beast":"vault_elder"},
+    "elder_leaves": {
+      "name": "Elder Leaves",
+      "chance": 0.2,
+      "value": 0,
+      "beast": "vault_elder"
+    },
     "boar_hide": {
       "name": "Boar Hide",
       "chance": 0.35,
@@ -27,21 +35,52 @@
       "value": 22,
       "beast": "beta_wolf"
     },
-    "ashfang_wolf_fang": {"name":"Ashfang Fang","chance":1.0,"value":40,"beast":"ashfang"},
-    "ashfang_wolf_hide": {"name":"Ashfang Hide","chance":1.0,"value":18,"beast":"ashfang"}
+    "ashfang_wolf_fang": {
+      "name": "Ashfang Fang",
+      "chance": 1.0,
+      "value": 40,
+      "beast": "ashfang"
+    },
+    "ashfang_wolf_hide": {
+      "name": "Ashfang Hide",
+      "chance": 1.0,
+      "value": 18,
+      "beast": "ashfang"
+    }
   },
   "coins": {
-    "vault_elder": [45,130],
+    "vault_elder": [
+      45,
+      130
+    ],
     "library_boar": [
       2,
       4
     ],
-    "beta_wolf": [1,5],
-    "ashfang": [30,50]
+    "beta_wolf": [
+      1,
+      5
+    ],
+    "ashfang": [
+      30,
+      50
+    ]
   },
   "recipes": {
-    "improved_standard_greatsword": {"level":5,"copper":300,"materials":{},"vendor":"wr_swords"},
-    "leaf_shield": {"level":1,"copper":1000,"materials":{"elder_leaves":5},"requires_elder":true},
+    "improved_standard_greatsword": {
+      "level": 5,
+      "copper": 300,
+      "materials": {},
+      "vendor": "wr_swords"
+    },
+    "leaf_shield": {
+      "level": 1,
+      "copper": 1000,
+      "materials": {
+        "elder_leaves": 5
+      },
+      "requires_elder": true
+    },
     "boar_hide_armor": {
       "level": 5,
       "copper": 100,

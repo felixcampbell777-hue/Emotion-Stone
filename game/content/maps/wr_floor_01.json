@@ -642,6 +642,26 @@
         -149.8250020331211
       ],
       "pack": "wolves_04"
+    },
+    {
+      "id": "twin_wolves_01_0",
+      "kind": "beta_twin_wolf",
+      "pack": "twin_wolves_01",
+      "at": [
+        -327,
+        12
+      ],
+      "size": "medium"
+    },
+    {
+      "id": "twin_wolves_01_1",
+      "kind": "beta_twin_wolf",
+      "pack": "twin_wolves_01",
+      "at": [
+        -335,
+        20
+      ],
+      "size": "medium"
     }
   ]
 }

@@ -53,7 +53,7 @@ static func valid(data:Variant) -> bool:
 		var e=records[key];var pos=e.get("at",[]);var hp=e.get("health",-1)
 		if not (hp is float or hp is int) or not is_finite(float(hp)) or hp<0 or hp>(360 if key=="ashfang" else 200) or not pos is Array or pos.size()!=2:return false
 		for v in pos:
-			if not (v is float or v is int) or not is_finite(float(v)) or absf(v)>(500 if key=="ashfang" else 240):return false
+			if not (v is float or v is int) or not is_finite(float(v)) or absf(v)>(500 if key=="ashfang" or String(key).begins_with("twin_wolves_") else 240):return false
 	var seen=[]
 	for flag in marks:
 		if flag not in ["rim_watch","hollow_tree","elder_defeated"] or flag in seen:return false
@@ -101,10 +101,12 @@ func cycle_lighting() -> void:
 		var sky=env.sky.sky_material;sky.sky_top_color=Color("#030a20").lerp(Color("#4f91c5"),blend);sky.sky_horizon_color=Color("#182941").lerp(Color("#dce9e6"),blend);sky.ground_bottom_color=Color("#081224").lerp(Color("#fff0c9"),blend);sky.ground_horizon_color=sky.sky_horizon_color
 func remember_all() -> void:
 	for enemy in game.enemies:
-		if String(enemy.definition.id).begins_with("boars_") or String(enemy.definition.id).begins_with("wolves_"):remember(enemy)
+		if String(enemy.definition.id).begins_with("boars_") or String(enemy.definition.id).begins_with("wolves_") or enemy.definition.kind=="beta_twin_wolf":remember(enemy)
 func remember(enemy:Node3D) -> void:
 	var pos=[enemy.position.x,enemy.position.z]
-	if Vector2(pos[0],pos[1]).length()>239:pos=enemy.definition.at.duplicate()
+	if enemy.definition.kind=="beta_twin_wolf":
+		if not preload("res://scripts/west_islands.gd").safe(Vector3(pos[0],0,pos[1])):pos=enemy.definition.at.duplicate()
+	elif Vector2(pos[0],pos[1]).length()>239:pos=enemy.definition.at.duplicate()
 	states[enemy.definition.id]={"health":enemy.health,"at":pos}
 func lighting() -> void:
 	if game.game_mode!="world_rise":return
@@ -168,7 +170,7 @@ func ashfang_impact(at:Vector3) -> void:
 func spawn_pack(record:Dictionary) -> void:
 	record.active=true;record.members=[]
 	var entries=game.current_world.definition.enemies.filter(func(e):return e.pack==record.spec.id)
-	if is_night():
+	if is_night() and record.spec.get("night_double",true):
 		for base in entries.duplicate():entries.append(night_entry(base))
 	for entry in entries:
 		spawn_queue.append({"record":record,"entry":entry})
@@ -182,9 +184,9 @@ func spawn_member(record:Dictionary,entry:Dictionary) -> void:
 	var p=record.spec;var key="wr_floor_01/"+entry.id
 	if key in game.defeated_enemies or record.members.any(func(e):return is_instance_valid(e) and e.definition.id==entry.id):return
 	var saved=states.get(entry.id,{})
-	var enemy=load("res://scripts/beta_enemy.gd").new() if p.kind=="beta_wolf" else load("res://scripts/library_enemy.gd").new()
+	var enemy=load("res://scripts/twin_wolf.gd").new() if p.kind=="beta_twin_wolf" else load("res://scripts/beta_enemy.gd").new() if p.kind=="beta_wolf" else load("res://scripts/library_enemy.gd").new()
 	enemy.name=entry.id;enemy.configure(entry.duplicate(true),game.player,saved);enemy.game=game
-	enemy.mob_category="canine" if p.kind=="beta_wolf" else "supine" if p.kind=="library_boar" else "humanoid"
+	enemy.mob_category="canine" if p.kind in ["beta_wolf","beta_twin_wolf"] else "supine" if p.kind=="library_boar" else "humanoid"
 	if p.kind=="library_boar":enemy.spec=enemy.spec.duplicate(true);enemy.spec.damage=9+int(p.tier)*4;enemy.spec.range=5.5;enemy.spec.windup=.8;enemy.spec.lunge_seconds=.8;enemy.spec.recovery=1.1;enemy.max_health=65+int(p.tier)*25;enemy.health=int(saved.get("health",enemy.max_health));enemy.encounter_owned=true
 	if p.kind=="beta_wolf":enemy.tuning.windup=.7;enemy.tuning.recovery=1.0
 	game.world_root.add_child(enemy);game.enemies.append(enemy);record.members.append(enemy)
@@ -196,7 +198,7 @@ func refresh_population() -> void:
 	night_population=is_night()
 	for record in packs.values():
 		if not record.active:continue
-		if night_population:
+		if night_population and record.spec.get("night_double",true):
 			for base in game.current_world.definition.enemies.filter(func(e):return e.pack==record.spec.id):spawn_queue.append({"record":record,"entry":night_entry(base)})
 		else:
 			for enemy in record.members.duplicate():

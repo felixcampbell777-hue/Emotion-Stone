@@ -48,6 +48,7 @@ func restore(data:Dictionary) -> void:
 		if drops[key].items.is_empty():drops.erase(key)
 func purse() -> String:return "%d gp %d cp"%[copper/100,copper%100]
 func roll(kind:String,coin_roll:int=-1,hide_roll:float=-1,rare_roll:float=-1) -> Dictionary:
+	if kind=="beta_twin_wolf":kind="beta_wolf"
 	if not catalog.coins.has(kind):return {}
 	var range= catalog.coins[kind];var result={"copper":rng.randi_range(range[0],range[1]) if coin_roll<0 else clampi(coin_roll,range[0],range[1]),"items":{}}
 	if kind=="ashfang":
@@ -67,7 +68,7 @@ func defeated(key:String,kind:String,at:Vector3) -> void:
 	if rolled.is_empty():return
 	if "elder_heart_necklace" in game.magic_items.owned or drops.values().any(func(d):return d.items.has("elder_heart_necklace")):rolled.items.erase("elder_heart_necklace")
 	for id in contracts:
-		if contracts[id].active and catalog.contracts[id].kind==kind:contracts[id].count=mini(10,int(contracts[id].count)+1)
+		if contracts[id].active and catalog.contracts[id].kind==("beta_wolf" if kind=="beta_twin_wolf" else kind):contracts[id].count=mini(10,int(contracts[id].count)+1)
 	copper=mini(100000000,copper+int(rolled.copper))
 	if rolled.items.is_empty():return
 	var horizontal=Vector2(at.x,at.z).limit_length(500);at=Vector3(horizontal.x,0,horizontal.y)

@@ -287,6 +287,7 @@
     "library_crab",
     "library_boar",
     "library_wolf",
-    "library_rat"
+    "library_rat",
+    "beta_twin_wolf"
   ]
 }

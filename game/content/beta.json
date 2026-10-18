@@ -65,6 +65,29 @@
         "hit": "Hit",
         "death": "Die"
       }
+    },
+    "beta_twin_wolf": {
+      "name": "Two-headed Wolf",
+      "model": "res://assets/creatures/two-headed-wolf.glb",
+      "max_health": 96,
+      "damage": 14,
+      "notice_range": 6.5,
+      "walk_speed": 1.65,
+      "lunge_speed": 7.8,
+      "windup": 0.85,
+      "lunge_seconds": 0.5,
+      "recovery": 1.5,
+      "height": 1.0,
+      "radius": 0.42,
+      "clips": {
+        "idle": "Idle",
+        "walk": "Walk",
+        "run": "Gallop",
+        "attack": "Attack",
+        "hit": "Idle_HitReact1",
+        "death": "Death"
+      },
+      "combat_height": 1.3
     }
   },
   "wolf_packs": {
