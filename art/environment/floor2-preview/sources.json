@@ -1,0 +1,34 @@
+{
+  "purpose": "Asset selection review only. No floor implementation.",
+  "textures": [
+    {
+      "title": "Forest soil",
+      "source": "game\\assets\\environment\\polyhaven_cc0\\forest_ground_04\\albedo.jpg"
+    },
+    {
+      "title": "Leaf litter",
+      "source": "game\\assets\\environment\\polyhaven_cc0\\forest_leaves_02\\albedo.jpg"
+    },
+    {
+      "title": "Low green ground cover",
+      "source": "game\\assets\\environment\\polyhaven_cc0\\leafy_grass\\albedo.jpg"
+    },
+    {
+      "title": "Dead-tree bark",
+      "source": "art\\environment\\source\\quaternius_stylized_nature_cc0\\glTF\\Bark_DeadTree.png"
+    },
+    {
+      "title": "Twisted-tree bark",
+      "source": "art\\environment\\source\\quaternius_stylized_nature_cc0\\glTF\\Bark_TwistedTree.png"
+    },
+    {
+      "title": "Mossy stone",
+      "source": "game\\assets\\environment\\polyhaven_cc0\\models\\rock_moss_set_01_b_rock_moss_set_01_diff_2k.jpg"
+    }
+  ],
+  "model_sources": [
+    "Quaternius local CC0 nature kit",
+    "Poly Haven local CC0 scans"
+  ],
+  "water": "Proposed flat colour palette, not an existing water texture or completed shader."
+}
