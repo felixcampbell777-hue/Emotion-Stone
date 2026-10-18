@@ -38,7 +38,9 @@ static func valid(data:Variant) -> bool:
 		visited.append(id)
 	if "arrival" not in unlocked:return false
 	var cp=data.get("checkpoint",[0,0]);var marks=data.get("flags",[]);var records=data.get("states",{})
-	if data.get("checkpoint_layout",1) not in [1,2]:return false
+	var layout=data.get("checkpoint_layout",1)
+	if not (layout is int or layout is float) or not is_finite(float(layout)):return false
+	if layout!=1 and layout!=2:return false
 	if not cp is Array or cp.size()!=2 or not marks is Array or marks.size()>8 or not records is Dictionary or records.size()>160:return false
 	for v in cp:
 		if not (v is float or v is int) or not is_finite(float(v)):return false

@@ -1,4 +1,4 @@
 {
-  "version": "0.40.7",
-  "baseline": "World Rise secret undiscovered checkpoints and unlabelled map; user playtest pending"
+  "version": "0.40.8",
+  "baseline": "Fix World Rise checkpoint layout save loading; existing player save accepted"
 }
