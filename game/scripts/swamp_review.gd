@@ -69,14 +69,12 @@ func run(g:Node,directory:String="") -> bool:
 	var e=Fen.spec.edges.filter(func(edge):return edge.water_tier=="wade")[0];var mid=Vector2(e.points[1][0],e.points[1][1]);var p=Vector3(mid.x,Fen.height(Vector3(mid.x,0,mid.y)),mid.y)
 	g.player.position=p;var start=g.player.position;g.player.velocity=Vector3(1,0,0)*3;g.current_world.move_grounded(g.player,.1)
 	check(g.player.position.distance_to(start)<.25,"Shallow water significantly slows movement")
-	g.worldrise.swamp.stream()
-	for i in range(20):
-		if not g.worldrise.swamp.queue.is_empty():g.worldrise.swamp.spawn(g.worldrise.swamp.queue.pop_front())
+	var first_giant=Fen.spec.enemies[0];g.player.position=Vector3(first_giant.at[0],.85,first_giant.at[1]);g.worldrise.swamp.spawn(first_giant)
 	check(not g.enemies.is_empty(),"Nearby slime encounters stream in")
 	if not g.enemies.is_empty():
 		var enemy=g.enemies[0];enemy.set_physics_process(false);enemy.take_damage(7,Vector3.ZERO)
 		g.worldrise.swamp.snapshot();check(g.worldrise.swamp.states[enemy.definition.id].health==enemy.health,"Damaged slime health is recorded")
-		check(enemy.max_health>=160 and enemy.specimen.damage>=16,"Floor Two slime stats suit later progression")
+		check(enemy.max_health==128 and enemy.specimen.damage==18,"Floor Two slime stats suit later progression")
 	g.player.position=Vector3(Fen.arrival().x,.85,Fen.arrival().y);g.player.state="free";g.recovering=false
 	var data=g.save_data();check(g.Save.write(data,"user://swamp-review.json")==OK,"Private Floor Two save writes")
 	check(not g.Save.read("user://swamp-review.json").is_empty(),"Floor Two save passes strict validation")
@@ -90,10 +88,8 @@ func run(g:Node,directory:String="") -> bool:
 	var unsafe=data.duplicate(true);unsafe.position=[225,0];unsafe.ground_y=-3.6
 	check(g.apply_save(unsafe) and Vector2(g.player.position.x,g.player.position.z).distance_to(Fen.arrival())<1,"Unsafe swamp save falls back to its own checkpoint")
 	check(not g.current_world.safe_position(Vector3(225,0,0)),"Deep swamp is rejected as a safe save position")
-	check(g.enemy_xp_reward("green_slime")==18,"Floor Two XP uses its explicit final reward")
+	check(g.enemy_xp_reward("green_slime")==15,"Floor Two XP uses its explicit final reward")
 	var water_at=Vector3(mid.x,Fen.height(Vector3(mid.x,0,mid.y)),mid.y)
-	g.monster_cores.defeated("green_slime",water_at,false,0,1)
-	check(float(g.monster_cores.pending.back().at[1])>=.039,"Core loot remains visible above swamp water")
 	var patch=load("res://scripts/menagery_hazard.gd").new();g.current_world.add_child(patch);patch.configure(g,water_at,true)
 	check(patch.position.y>=.025,"Resin puddles float above the shallows");patch.queue_free()
 	var save_path=OS.get_environment("USERPROFILE").replace("\\","/")+"/AppData/Roaming/Godot/app_userdata/Coastal Foundation/world-rise-save-v1.json"
@@ -106,9 +102,6 @@ func run(g:Node,directory:String="") -> bool:
 	g.worldrise.swamp.respawn_reset()
 	check("wr_floor_02/"+specimen.id not in g.defeated_enemies and "wr_floor_01/wr_boar_test" in g.defeated_enemies,"Swamp rest resets only its own enemies")
 	g.defeated_enemies.erase("wr_floor_01/wr_boar_test")
-	g.worldrise.day_clock=800;g.worldrise.swamp.stream();var night=g.worldrise.swamp.entry_for(Fen.spec.enemies[1],true);g.player.position=Vector3(night.at[0],0,night.at[1]);g.worldrise.swamp.spawn(night)
-	check(g.worldrise.swamp.live.has(night.id),"Night adds a second slime to ordinary encounters")
-	g.worldrise.day_clock=250;g.worldrise.swamp.stream();check(not g.worldrise.swamp.live.has(night.id),"Dawn retires only night companions")
 	var pursuer=Fen.spec.enemies[2];g.player.position=Vector3(pursuer.at[0],0,pursuer.at[1]);g.worldrise.swamp.spawn(pursuer)
 	g.player.position=Vector3(Fen.arrival().x,.85,Fen.arrival().y)
 	for mob in g.enemies:
@@ -123,9 +116,15 @@ func run(g:Node,directory:String="") -> bool:
 	check(g.player.health==0 and g.recovering,"Deep water drowns the player")
 	g.respawn_player();g._refresh_simulation();check(g.map_id=="wr_floor_02" and g.player.health>0,"Death respawns on Floor Two")
 	check(g.player.position.distance_to(Vector3(unknown.at[0],.85,unknown.at[1]))<1,"Respawn uses the Floor Two checkpoint")
+	await load("res://scripts/swamp_encounter_checks.gd").new().run(g,self)
 	if not directory.is_empty():
 		g.set_resolution(0);g.render_budget.select_quality("balanced",false);g.worldrise.day_clock=250;g.worldrise.swamp.lighting()
 		await picture(g,directory,"arrival",Fen.arrival(),Fen.arrival()+Vector2(-20,-35))
+		var giant_at=Vector2(Fen.spec.enemies[0].at[0],Fen.spec.enemies[0].at[1]);await picture(g,directory,"giant",giant_at+Vector2(0,6),giant_at)
+		var raft=load("res://scripts/swamp_raft.gd").center();await picture(g,directory,"raft",Vector2(raft.x-5,raft.z-2),Vector2(raft.x,raft.z+1.5))
+		var clerk=g.current_world.interactions.filter(func(e):return e.get("role","")=="wr_clerk")[0];g.player.position=clerk.position;g.conversation.show_character(clerk);g._refresh_simulation()
+		await g.get_tree().create_timer(.2).timeout;await RenderingServer.frame_post_draw;g.get_viewport().get_texture().get_image().save_png(directory+"/swamp-raft-menu.png");g.conversation.close();g._refresh_simulation()
+		await picture(g,directory,"arrival-lantern",Fen.arrival(),Vector2(raft.x+1.4,raft.z-2.7))
 		var node=Fen.spec.nodes[60];var at=Vector2(node.at[0],node.at[1]);await picture(g,directory,"island-network",at,at+Vector2(-25,-25))
 		await picture(g,directory,"water-boundary",mid,mid+Vector2(20,10))
 		var fast_at=Vector2(fast_mid.x,fast_mid.z);await picture(g,directory,"fast-shoal",fast_at,fast_at+Vector2(20,10))

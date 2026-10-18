@@ -69,6 +69,9 @@ for i,node in enumerate(nodes):
  for j in range(2 if i%4==0 else 1):
   angle=rng.random()*math.tau;enemies.append({'id':'fen_%03d_%d'%(i,j),'style':style,'at':[round(node['at'][0]+math.sin(angle)*3,2),round(node['at'][1]+math.cos(angle)*3,2)],'island':i})
 spec={'version':2,'radius':240,'cell':2,'arrival':nodes[arrival]['at'],'fast_islands':sorted(fast_nodes),'nodes':nodes,'edges':edges,'sites':sites,'enemies':enemies,'heights':H.reshape(-1).tolist()}
+from configure_swamp_encounters import apply
+spec=apply(spec)
+enemies=spec['enemies']
 path=ROOT/'game/content/world_rise/floor_02.json';path.write_text(json.dumps(spec,separators=(',',':'))+'\n')
 assets=ROOT/'game/assets/environment/swamp';assets.mkdir(parents=True,exist_ok=True)
 mask=np.uint8(np.clip((H+4)/6,0,1)*255);Image.fromarray(mask).save(assets/'depth-height.png')
@@ -80,5 +83,7 @@ for _ in range(2):
   fog=sum(weight*np.take(p,np.arange(N)+i,axis=dim) for i,weight in enumerate([1,4,6,4,1]))/16
 Image.fromarray(np.uint8(np.clip(fog,0,1)**1.5*255)).save(assets/'deep-mist-mask.png')
 base=json.loads((ROOT/'game/content/maps/wr_floor_01.json').read_text());base.update(id='wr_floor_02',display_name='World Rise · Floor 2 — The Drowned Labyrinth',subtitle='Follow pale shallows between low islands. Dark green water is deadly.',bounds=[-240,-240,240,240],spawn=spec['arrival'],props=[],npcs=[],interactions=[],exits=[],enemies=[{"id":e["id"],"kind":"slime","at":e["at"],"size":"medium"} for e in enemies],catalog_enemies=[],wading=True)
+for e in enemies:
+ for i in range(4):base['enemies'].append({'id':e['id']+'_split_'+str(i),'kind':'slime','at':e['at'],'size':'medium'})
 (ROOT/'game/content/maps/wr_floor_02.json').write_text(json.dumps(base,indent=2)+'\n')
 print('SWAMP GENERATED',len(nodes),'islands',len(edges),'links',len(edges)-len(nodes)+1,'loops',len(enemies),'slimes')

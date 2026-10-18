@@ -117,6 +117,9 @@ static func read(path: String = SAVE_PATH) -> Dictionary:
 		for mob in WorldPacks.definition(map_name).get("enemies",[]): allowed_story.append(map_name+"/"+mob.id)
 	if not preload("res://scripts/goblin_campaign.gd").valid_save(parsed.get("goblin_campaign",{}),defeated): return {}
 	if not preload("res://scripts/alpha2_campaign.gd").valid_save(parsed.get("alpha2",{}),defeated): return {}
+	if mode=="world_rise":
+		for id in preload("res://scripts/swamp_campaign.gd").legacy_ids():
+			allowed_story.append("wr_floor_02/"+id);allowed_story.append("wr_floor_02/"+id+"_night")
 	var seen=[]
 	for id in defeated:
 		if not id is String or id not in allowed_story or id in seen:

@@ -68,7 +68,7 @@ func defeated(kind:String,at:Vector3,quest_warden:bool=false,drop_roll:float=-1,
 func build_map() -> void:
 	nodes.clear()
 	for drop in pending:
-		if drop.map==game.map_id: build_drop(drop)
+		if drop.map==game.map_id and game.map_id!="wr_floor_02": build_drop(drop)
 func build_drop(drop:Dictionary) -> void:
 	var root=Node3D.new(); root.name="MonsterCore_"+str(drop.key); game.current_world.add_child(root); nodes[int(drop.key)]=root
 	root.position=Vector3(drop.at[0],drop.at[1],drop.at[2])

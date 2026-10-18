@@ -46,6 +46,12 @@
       "chance": 1.0,
       "value": 18,
       "beast": "ashfang"
+    },
+    "green_slime_residue": {
+      "name": "Green Slime Residue",
+      "chance": 0.3,
+      "value": 3,
+      "beast": "green_slime"
     }
   },
   "coins": {
@@ -64,6 +70,10 @@
     "ashfang": [
       30,
       50
+    ],
+    "green_slime": [
+      5,
+      6
     ]
   },
   "recipes": {

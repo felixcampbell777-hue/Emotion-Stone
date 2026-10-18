@@ -32,704 +32,317 @@
   "exits": [],
   "enemies": [
     {
-      "id": "fen_001_0",
+      "id": "giant_g9",
       "kind": "slime",
       "at": [
-        -33.96,
-        -177.8
+        35.6,
+        111.1
       ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_002_0",
-      "kind": "slime",
-      "at": [
-        0.09,
-        -181.17
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_004_0",
-      "kind": "slime",
-      "at": [
-        75.36,
-        -181.28
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_004_1",
-      "kind": "slime",
-      "at": [
-        71.12,
-        -185.5
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_005_0",
-      "kind": "slime",
-      "at": [
-        -141.3,
-        -138.12
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_008_0",
-      "kind": "slime",
-      "at": [
-        -32.75,
-        -142.55
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_008_1",
-      "kind": "slime",
-      "at": [
-        -32.43,
-        -140.14
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_010_0",
-      "kind": "slime",
-      "at": [
-        37.74,
-        -139.83
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_011_0",
-      "kind": "slime",
-      "at": [
-        69.17,
-        -145.94
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_013_0",
-      "kind": "slime",
-      "at": [
-        145.78,
-        -137.33
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_014_0",
-      "kind": "slime",
-      "at": [
-        -135.8,
-        -109.67
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_016_0",
-      "kind": "slime",
-      "at": [
-        -65.38,
-        -106.56
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_016_1",
-      "kind": "slime",
-      "at": [
-        -65.61,
-        -106.98
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_017_0",
-      "kind": "slime",
-      "at": [
-        -38.7,
-        -106.63
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_019_0",
-      "kind": "slime",
-      "at": [
-        33.89,
-        -111.56
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_020_0",
-      "kind": "slime",
-      "at": [
-        63.28,
-        -113.61
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_020_1",
-      "kind": "slime",
-      "at": [
-        66.16,
-        -109.43
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_022_0",
-      "kind": "slime",
-      "at": [
-        138.75,
-        -106.9
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_023_0",
-      "kind": "slime",
-      "at": [
-        -184.64,
-        -68.42
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_025_0",
-      "kind": "slime",
-      "at": [
-        -106.85,
-        -69.34
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_026_0",
-      "kind": "slime",
-      "at": [
-        -69.93,
-        -73.88
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_028_0",
-      "kind": "slime",
-      "at": [
-        2.46,
-        -80.19
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_028_1",
-      "kind": "slime",
-      "at": [
-        1.98,
-        -74.33
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_029_0",
-      "kind": "slime",
-      "at": [
-        39.49,
-        -75.03
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_032_0",
-      "kind": "slime",
-      "at": [
-        143.55,
-        -68.85
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_032_1",
-      "kind": "slime",
-      "at": [
-        144.52,
-        -70.04
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_034_0",
-      "kind": "slime",
-      "at": [
-        -176.38,
-        -41.21
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_035_0",
-      "kind": "slime",
-      "at": [
-        -143.41,
-        -36.28
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_037_0",
-      "kind": "slime",
-      "at": [
-        -71.29,
-        -35.11
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_038_0",
-      "kind": "slime",
-      "at": [
-        -35.31,
-        -37.39
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_040_0",
-      "kind": "slime",
-      "at": [
-        41.79,
-        -33.62
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_040_1",
-      "kind": "slime",
-      "at": [
-        39.28,
-        -38.8
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_041_0",
-      "kind": "slime",
-      "at": [
-        71.27,
-        -34.26
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_043_0",
-      "kind": "slime",
-      "at": [
-        144.89,
-        -41.51
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_044_0",
-      "kind": "slime",
-      "at": [
-        177.39,
-        -40.9
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_044_1",
-      "kind": "slime",
-      "at": [
-        173.78,
-        -44.19
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_046_0",
-      "kind": "slime",
-      "at": [
-        -146.01,
-        -7.04
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_047_0",
-      "kind": "slime",
-      "at": [
-        -104.21,
-        1.47
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_049_0",
-      "kind": "slime",
-      "at": [
-        -34.37,
-        6.89
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_050_0",
-      "kind": "slime",
-      "at": [
-        5.21,
-        3.22
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_052_0",
-      "kind": "slime",
-      "at": [
-        66.42,
-        8.23
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_052_1",
-      "kind": "slime",
-      "at": [
-        69.76,
-        3.28
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_053_0",
-      "kind": "slime",
-      "at": [
-        112.2,
-        0.75
-      ],
-      "size": "medium"
-    },
-    {
-      "id": "fen_055_0",
-      "kind": "slime",
-      "at": [
-        179.08,
-        -3.61
-      ],
-      "size": "medium"
+      "size": "large"
     },
     {
-      "id": "fen_056_0",
+      "id": "giant_g9_split_0",
       "kind": "slime",
       "at": [
-        -175.53,
-        41.48
+        35.6,
+        111.1
       ],
       "size": "medium"
     },
     {
-      "id": "fen_056_1",
+      "id": "giant_g9_split_1",
       "kind": "slime",
       "at": [
-        -179.96,
-        37.76
+        35.6,
+        111.1
       ],
       "size": "medium"
     },
     {
-      "id": "fen_058_0",
+      "id": "giant_g9_split_2",
       "kind": "slime",
       "at": [
-        -100.03,
-        36.6
+        35.6,
+        111.1
       ],
       "size": "medium"
     },
     {
-      "id": "fen_059_0",
+      "id": "giant_g9_split_3",
       "kind": "slime",
       "at": [
-        -79.6,
-        32.04
+        35.6,
+        111.1
       ],
       "size": "medium"
     },
     {
-      "id": "fen_061_0",
+      "id": "giant_i8",
       "kind": "slime",
       "at": [
-        -2.97,
-        35.02
+        108.76,
+        66.84
       ],
-      "size": "medium"
+      "size": "large"
     },
     {
-      "id": "fen_062_0",
+      "id": "giant_i8_split_0",
       "kind": "slime",
       "at": [
-        37.24,
-        39.92
+        108.76,
+        66.84
       ],
       "size": "medium"
     },
     {
-      "id": "fen_064_0",
+      "id": "giant_i8_split_1",
       "kind": "slime",
       "at": [
-        108.5,
-        30.9
+        108.76,
+        66.84
       ],
       "size": "medium"
     },
     {
-      "id": "fen_064_1",
+      "id": "giant_i8_split_2",
       "kind": "slime",
       "at": [
-        108.46,
-        32.98
+        108.76,
+        66.84
       ],
       "size": "medium"
     },
     {
-      "id": "fen_065_0",
+      "id": "giant_i8_split_3",
       "kind": "slime",
       "at": [
-        145.23,
-        40.27
+        108.76,
+        66.84
       ],
       "size": "medium"
     },
     {
-      "id": "fen_067_0",
+      "id": "giant_i9",
       "kind": "slime",
       "at": [
-        -179.66,
-        71.36
+        105.16,
+        112.44
       ],
-      "size": "medium"
+      "size": "large"
     },
     {
-      "id": "fen_070_0",
+      "id": "giant_i9_split_0",
       "kind": "slime",
       "at": [
-        -79.06,
-        73.6
+        105.16,
+        112.44
       ],
       "size": "medium"
     },
     {
-      "id": "fen_071_0",
+      "id": "giant_i9_split_1",
       "kind": "slime",
       "at": [
-        -29.25,
-        64.0
+        105.16,
+        112.44
       ],
       "size": "medium"
     },
     {
-      "id": "fen_073_0",
+      "id": "giant_i9_split_2",
       "kind": "slime",
       "at": [
-        35.19,
-        68.52
+        105.16,
+        112.44
       ],
       "size": "medium"
     },
     {
-      "id": "fen_074_0",
+      "id": "giant_i9_split_3",
       "kind": "slime",
       "at": [
-        76.56,
-        71.97
+        105.16,
+        112.44
       ],
       "size": "medium"
     },
     {
-      "id": "fen_076_0",
+      "id": "giant_k6",
       "kind": "slime",
       "at": [
-        149.36,
-        72.09
+        177.57,
+        -1.02
       ],
-      "size": "medium"
+      "size": "large"
     },
     {
-      "id": "fen_076_1",
+      "id": "giant_k6_split_0",
       "kind": "slime",
       "at": [
-        144.3,
-        73.31
+        177.57,
+        -1.02
       ],
       "size": "medium"
     },
     {
-      "id": "fen_077_0",
+      "id": "giant_k6_split_1",
       "kind": "slime",
       "at": [
-        180.42,
-        71.54
+        177.57,
+        -1.02
       ],
       "size": "medium"
     },
     {
-      "id": "fen_079_0",
+      "id": "giant_k6_split_2",
       "kind": "slime",
       "at": [
-        -105.56,
-        108.85
+        177.57,
+        -1.02
       ],
       "size": "medium"
     },
     {
-      "id": "fen_080_0",
+      "id": "giant_k6_split_3",
       "kind": "slime",
       "at": [
-        -74.67,
-        101.91
+        177.57,
+        -1.02
       ],
       "size": "medium"
     },
     {
-      "id": "fen_080_1",
+      "id": "giant_d10",
       "kind": "slime",
       "at": [
-        -73.16,
-        107.42
+        -74.06,
+        142.19
       ],
-      "size": "medium"
+      "size": "large"
     },
     {
-      "id": "fen_082_0",
+      "id": "giant_d10_split_0",
       "kind": "slime",
       "at": [
-        1.07,
-        101.46
+        -74.06,
+        142.19
       ],
       "size": "medium"
     },
     {
-      "id": "fen_083_0",
+      "id": "giant_d10_split_1",
       "kind": "slime",
       "at": [
-        37.21,
-        113.63
+        -74.06,
+        142.19
       ],
       "size": "medium"
     },
     {
-      "id": "fen_085_0",
+      "id": "giant_d10_split_2",
       "kind": "slime",
       "at": [
-        102.16,
-        112.39
+        -74.06,
+        142.19
       ],
       "size": "medium"
     },
     {
-      "id": "fen_086_0",
+      "id": "giant_d10_split_3",
       "kind": "slime",
       "at": [
-        145.05,
-        103.87
+        -74.06,
+        142.19
       ],
       "size": "medium"
     },
     {
-      "id": "fen_088_0",
+      "id": "giant_e6",
       "kind": "slime",
       "at": [
-        -102.12,
-        146.61
+        -36.79,
+        5.11
       ],
-      "size": "medium"
+      "size": "large"
     },
     {
-      "id": "fen_088_1",
+      "id": "giant_e6_split_0",
       "kind": "slime",
       "at": [
-        -104.3,
-        151.84
+        -36.79,
+        5.11
       ],
       "size": "medium"
     },
     {
-      "id": "fen_089_0",
+      "id": "giant_e6_split_1",
       "kind": "slime",
       "at": [
-        -73.26,
-        145.08
+        -36.79,
+        5.11
       ],
       "size": "medium"
     },
     {
-      "id": "fen_091_0",
+      "id": "giant_e6_split_2",
       "kind": "slime",
       "at": [
-        8.58,
-        141.88
+        -36.79,
+        5.11
       ],
       "size": "medium"
     },
     {
-      "id": "fen_092_0",
+      "id": "giant_e6_split_3",
       "kind": "slime",
       "at": [
-        33.6,
-        142.69
+        -36.79,
+        5.11
       ],
       "size": "medium"
     },
     {
-      "id": "fen_092_1",
+      "id": "giant_i3",
       "kind": "slime",
       "at": [
-        33.59,
-        146.06
+        104.06,
+        -111.91
       ],
-      "size": "medium"
+      "size": "large"
     },
     {
-      "id": "fen_094_0",
+      "id": "giant_i3_split_0",
       "kind": "slime",
       "at": [
-        108.2,
-        138.31
+        104.06,
+        -111.91
       ],
       "size": "medium"
     },
     {
-      "id": "fen_095_0",
+      "id": "giant_i3_split_1",
       "kind": "slime",
       "at": [
-        148.43,
-        136.88
+        104.06,
+        -111.91
       ],
       "size": "medium"
     },
     {
-      "id": "fen_097_0",
+      "id": "giant_i3_split_2",
       "kind": "slime",
       "at": [
-        -42.47,
-        183.06
+        104.06,
+        -111.91
       ],
       "size": "medium"
     },
     {
-      "id": "fen_098_0",
+      "id": "giant_i3_split_3",
       "kind": "slime",
       "at": [
-        0.39,
-        176.84
+        104.06,
+        -111.91
       ],
       "size": "medium"
     }

@@ -1492,7 +1492,7 @@ func _enemy_defeated(id: String, kind: String, slain_enemy:Node3D=null) -> void:
 		var purse_before=worldrise.guild.copper;worldrise.guild.defeated(id,kind,slain_enemy.position);earned_copper=worldrise.guild.copper-purse_before
 	var earned_xp=enemy_xp_reward(kind)
 	gain_xp(earned_xp)
-	if is_instance_valid(slain_enemy): monster_cores.defeated(kind,slain_enemy.position,kind=="warden" and map_id=="herb_glade")
+	if is_instance_valid(slain_enemy) and not worldrise.swamp.active(): monster_cores.defeated(kind,slain_enemy.position,kind=="warden" and map_id=="herb_glade")
 	if kind=="bellkeeper": alpha2.boss_fell()
 	if kind=="warden" and map_id=="herb_glade":
 		for enemy in enemies:

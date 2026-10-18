@@ -1,3 +1,9 @@
+# Current encounter and outpost update (v0.41.2)
+
+v0.41.2: Floor Two authored giant-green-slime encounters at permanent codes G9/I8/I9/K6/D10/E6/I3 (E6 listed twice by user, one placement). Mother/queen body dimensions without crown; 128HP=1.6x80HP wolf; longer 9m telegraphed leap. Parent gives no reward, splits once into four original 45HP/8damage greens, each final15XP/5-6 immediate copper, independent30% Green Slime Residue/10% Minor Healing Potion (25HP); no Floor Two core drops. Stable child IDs and parent defeat gate persist partial fights, all reset on rest/death. Fixed authored encounters replace prior streamed/night variants; no additional slimes until split. Historical fen IDs retained as validation-only allowlist so old saves load, not spawn. D11 fifth discovered-only crystal. E11 moored 8x9m wooden trading raft/level gangplank, guild clerk and sword vendor; residue sell3cp, existing25cp potion shop/shared purse. Tall golden depth-tested beacon renders after deep-water fog, faint from H11; one local shadowless light. Real raft collisions/support/save safety, terrain unchanged. Focused inspect-swamp covers leap/split/reload/loot/reset/raft/vendor/checkpoint and native views; no unrelated heroine audits or player-save edits. Current Windows release only after verification/cleanup.
+
+The earlier terrain baseline below still applies. Its former slime placement and reward descriptions are superseded by this update.
+
 # World Rise: Floor Two — The Drowned Labyrinth
 
 A playable terrain baseline for later custom quests and encounters. This extends World Rise with the same character and save. No new boss or quest chain has been added for this milestone.

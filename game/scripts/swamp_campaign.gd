@@ -8,13 +8,22 @@ var clock=0.0
 var live:Dictionary={}
 var queue:Array=[]
 var last_night=false
-const STATS={"green_slime":[160,16,18],"moss_slime":[210,18,23],"resin_slime":[175,16,22],"bramble_slime":[160,20,25]}
+const STATS={"giant_green_slime":[128,18,0],"green_slime":[45,8,15]}
+static func all_entries() -> Array:
+	var entries=[]
+	for base in Fen.spec.enemies:
+		entries.append(base)
+		for i in range(4):
+			var child=base.duplicate(true);child.id=base.id+"_split_"+str(i);child.style="green_slime";child.parent_id=base.id;child.at=[base.at[0]+sin(i*TAU/4+.4)*1.8,base.at[1]+cos(i*TAU/4+.4)*1.8];entries.append(child)
+	return entries
+static func legacy_ids() -> Array:
+	return Fen.spec.get("legacy_enemy_ids",[])
 func active() -> bool:return game!=null and game.game_mode=="world_rise" and game.map_id=="wr_floor_02"
 func reset() -> void:states.clear();unlocked=["arrival"];checkpoint=Fen.spec.arrival.duplicate();live.clear();queue.clear();clock=0
 static func valid(data:Variant) -> bool:
 	if not data is Dictionary:return false
 	var marks=data.get("unlocked",["arrival"]);var cp=data.get("checkpoint",Fen.spec.arrival);var records=data.get("states",{})
-	if not marks is Array or marks.size()>4 or not cp is Array or cp.size()!=2 or not records is Dictionary or records.size()>200:return false
+	if not marks is Array or marks.size()>Fen.spec.sites.size() or not cp is Array or cp.size()!=2 or not records is Dictionary or records.size()>240:return false
 	var ids=Fen.spec.sites.map(func(s):return s.id);var seen=[]
 	for id in marks:
 		if not id is String or id not in ids or id in seen:return false
@@ -23,7 +32,7 @@ static func valid(data:Variant) -> bool:
 	for v in cp:
 		if not (v is int or v is float) or not is_finite(float(v)):return false
 	if not Fen.dry(Vector3(cp[0],0,cp[1])):return false
-	var enemies=Fen.spec.enemies.map(func(e):return e.id)
+	var enemies=all_entries().map(func(e):return e.id)+legacy_ids()
 	for key in records:
 		if not key is String or key.trim_suffix("_night") not in enemies or not records[key] is Dictionary:return false
 		var e=records[key];var at=e.get("at",[]);var hp=e.get("health",-1)
@@ -38,32 +47,43 @@ func snapshot() -> Dictionary:
 	return {"states":states.duplicate(true),"unlocked":unlocked.duplicate(),"checkpoint":checkpoint.duplicate()}
 func restore(data:Dictionary) -> void:
 	states=data.get("states",{}).duplicate(true);unlocked=data.get("unlocked",["arrival"]).duplicate();checkpoint=data.get("checkpoint",Fen.spec.arrival).duplicate();live.clear();queue.clear()
+	for id in states.keys():
+		if String(id).trim_suffix("_night") in legacy_ids():states.erase(id)
 func build() -> void:
 	live.clear();queue.clear();clock=0;last_night=game.worldrise.is_night();lighting()
-	stream()
-func entry_for(base:Dictionary,night:bool) -> Dictionary:
-	var e=base.duplicate(true)
-	if night:e.id+="_night";e.at=[e.at[0]+1.4,e.at[1]+.6]
-	return e
+	game.worldrise.guild.game=game;game.worldrise.guild.build();stream()
+func entry_for(base:Dictionary,_night:bool) -> Dictionary:return base.duplicate(true)
+func available(entry:Dictionary) -> bool:
+	return not entry.has("parent_id") or "wr_floor_02/"+entry.parent_id in game.defeated_enemies
 func stream() -> void:
-	for base in Fen.spec.enemies:
-		for night in [false,true] if game.worldrise.is_night() else [false]:
-			var e=entry_for(base,night);var distance=Vector2(game.player.position.x-e.at[0],game.player.position.z-e.at[1]).length()
-			if distance<50 and not live.has(e.id) and "wr_floor_02/"+e.id not in game.defeated_enemies and not queue.any(func(q):return q.id==e.id):queue.append(e)
+	for e in all_entries():
+		if not available(e):continue
+		var distance=Vector2(game.player.position.x-e.at[0],game.player.position.z-e.at[1]).length()
+		if distance<50 and not live.has(e.id) and "wr_floor_02/"+e.id not in game.defeated_enemies and not queue.any(func(q):return q.id==e.id):queue.append(e)
 	for id in live.keys():
 		var enemy=live[id]
 		if not is_instance_valid(enemy):live.erase(id);continue
-		if enemy.health<=0 or enemy.position.distance_squared_to(game.player.position)>8100 or (String(id).ends_with("_night") and not game.worldrise.is_night()):
+		if enemy.health<=0 or enemy.position.distance_squared_to(game.player.position)>8100:
 			states[id]={"health":enemy.health,"at":[enemy.position.x,enemy.position.z]};live.erase(id);game.retire_transient(enemy)
+func fell(entry:Dictionary,enemy:Node3D) -> void:
+	game._enemy_defeated("wr_floor_02/"+entry.id,entry.style,enemy)
+	states[entry.id]={"health":0,"at":[enemy.position.x,enemy.position.z]}
+	if entry.style!="giant_green_slime":return
+	# Fixed child IDs prevent duplicate XP/loot, including after save/load or travel.
+	for child in all_entries().filter(func(e):return e.get("parent_id","")==entry.id):
+		var i=int(String(child.id).get_slice("_split_",1));var at=enemy.position+Vector3(sin(i*TAU/4+.4),0,cos(i*TAU/4+.4))*1.8
+		at=game.current_world.safe_landing(at);states[child.id]={"health":45,"at":[at.x,at.z]}
+		queue.append(child)
 func spawn(entry:Dictionary) -> void:
 	if Vector2(entry.at[0]-game.player.position.x,entry.at[1]-game.player.position.z).length()>70:return
-	if live.has(entry.id) or "wr_floor_02/"+entry.id in game.defeated_enemies or (String(entry.id).ends_with("_night") and not game.worldrise.is_night()):return
-	var specimen=game.menagery.catalog.monsters.filter(func(e):return e.style==entry.style)[0].duplicate(true)
+	if not available(entry) or live.has(entry.id) or "wr_floor_02/"+entry.id in game.defeated_enemies:return
+	var specimen=game.menagery.catalog.monsters.filter(func(e):return e.style=="green_slime")[0].duplicate(true)
 	var stats=STATS[entry.style];specimen.health=stats[0];specimen.damage=stats[1];specimen.windup=maxf(float(specimen.windup),.75)
-	var enemy=load("res://scripts/swamp_slime.gd").new();game.world_root.add_child(enemy)
-	var saved=states.get(entry.id,{});var pos=saved.get("at",entry.at);enemy.setup(game,specimen,Vector3(pos[0],0,pos[1]));enemy.definition.id=entry.id;enemy.definition.kind=entry.style;enemy.definition.display_name="Fen "+specimen.name;enemy.max_health=int(stats[0]);enemy.health=int(saved.get("health",stats[0]));enemy.home=Vector3(entry.at[0],game.current_world.ground_height(Vector3(entry.at[0],0,entry.at[1])),entry.at[1])
+	if entry.style=="giant_green_slime":specimen.style=entry.style;specimen.size="large";specimen.speed=1.25
+	var enemy=load("res://scripts/giant_green_slime.gd" if entry.style=="giant_green_slime" else "res://scripts/swamp_slime.gd").new();game.world_root.add_child(enemy)
+	var saved=states.get(entry.id,{});var pos=saved.get("at",entry.at);enemy.setup(game,specimen,Vector3(pos[0],0,pos[1]));enemy.definition.id=entry.id;enemy.definition.kind=entry.style;enemy.definition.display_name="Giant Green Slime" if entry.style=="giant_green_slime" else "Green Slime";enemy.max_health=int(stats[0]);enemy.health=int(saved.get("health",stats[0]));enemy.home=Vector3(entry.at[0],game.current_world.ground_height(Vector3(entry.at[0],0,entry.at[1])),entry.at[1])
 	game.EnvironmentArt.creature_quality(enemy,game.environment_profile);game.enemies.append(enemy);game.add_enemy_bar(enemy);live[entry.id]=enemy
-	enemy.defeated.connect(func():game._enemy_defeated("wr_floor_02/"+entry.id,entry.style,enemy))
+	enemy.defeated.connect(func():fell(entry,enemy))
 func tick(delta:float) -> void:
 	if not active():return
 	game.current_world.animate_water(delta)
@@ -73,6 +93,9 @@ func tick(delta:float) -> void:
 	if clock>=.15:clock=0;game.current_world.update_details(game.player.position);stream()
 func respawn_reset() -> void:
 	states.clear();queue.clear()
+	for enemy in live.values():
+		if is_instance_valid(enemy):game.retire_transient(enemy)
+	live.clear()
 	game.defeated_enemies=game.defeated_enemies.filter(func(id):return not String(id).begins_with("wr_floor_02/"))
 func unlocked_floor_two() -> bool:return "elder_defeated" in game.worldrise.flags
 func at_platform() -> bool:

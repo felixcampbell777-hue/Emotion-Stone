@@ -4,7 +4,12 @@ const RADIUS=240.0
 const WATER=0.0
 const DROWN=1.35
 static func vertex(x:int,z:int) -> float:return float(spec.heights[clampi(z,0,240)*241+clampi(x,0,240)])
+static func raft_surface(at:Vector3) -> bool:
+	var p=Vector2(at.x-spec.raft.anchor[0],at.z-spec.raft.anchor[1])
+	return (p.x>=12 and p.x<=20 and absf(p.y)<=4.5) or (p.x>=4.8 and p.x<=12.1 and absf(p.y)<=1.15)
 static func height(at:Vector3) -> float:
+	return .85 if raft_surface(at) else terrain_height(at)
+static func terrain_height(at:Vector3) -> float:
 	var p=(Vector2(at.x,at.z)+Vector2.ONE*240)/2;var x=floori(p.x);var z=floori(p.y);var u=p.x-x;var v=p.y-z
 	var a=vertex(x,z);var b=vertex(x+1,z);var c=vertex(x,z+1);var d=vertex(x+1,z+1)
 	return a+(b-a)*u+(c-a)*v if u+v<=1 else d+(c-d)*(1-u)+(b-d)*(1-v)

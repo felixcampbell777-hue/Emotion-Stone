@@ -39,6 +39,7 @@ func build(data:Dictionary) -> void:
 		var root=Node3D.new();add_child(root);root.position=Vector3(site.at[0],ground_height(Vector3(site.at[0],0,site.at[1])),site.at[1]);Props.box(root,Vector3(0,.25,0),Vector3(1,.5,1),"#667869")
 		var crystal=Props.cone(root,Vector3(0,.85,0),.28,.8,"#83dbc5",.03);var mat=Props.mat("#83dbc5");mat.emission_enabled=true;mat.emission=Color("#83dbc5");crystal.material_override=mat
 		interactions.append({"id":site.id,"wr_action":site,"title":"Rest · Fen Refuge","position":root.position,"actor":null,"lines":[]})
+	load("res://scripts/swamp_raft.gd").build(self)
 	for i in range(Fen.spec.nodes.size()):
 		var n=Fen.spec.nodes[i];var key=Vector2i(floori(n.at[0]/32),floori(n.at[1]/32))
 		if not nodes_by_chunk.has(key):nodes_by_chunk[key]=[]
@@ -56,7 +57,7 @@ func build(data:Dictionary) -> void:
 			var patch=PlaneMesh.new();patch.size=Vector2(78,78);var veil=MeshInstance3D.new();veil.mesh=patch;veil.material_override=mist_material;veil.position=Vector3(x*65,.22,z*65);veil.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;add_child(veil)
 	# A bounded depth-aware pass integrates only low fog above genuinely deep water.
 	# It leaves the existing world mist untouched and avoids costly volumetric fog.
-	deep_fog_material=ShaderMaterial.new();deep_fog_material.shader=preload("res://shaders/swamp_deep_fog.gdshader");deep_fog_material.set_shader_parameter("deep_mask",load("res://assets/environment/swamp/deep-mist-mask.png"));deep_fog_material.set_shader_parameter("density",.20);deep_fog_material.render_priority=127
+	deep_fog_material=ShaderMaterial.new();deep_fog_material.shader=preload("res://shaders/swamp_deep_fog.gdshader");deep_fog_material.set_shader_parameter("deep_mask",load("res://assets/environment/swamp/deep-mist-mask.png"));deep_fog_material.set_shader_parameter("density",.20);deep_fog_material.render_priority=126
 	var quad=QuadMesh.new();quad.size=Vector2(2,2);var cloud=MeshInstance3D.new();cloud.name="DeepWaterMist";cloud.mesh=quad;cloud.material_override=deep_fog_material;cloud.extra_cull_margin=16384;cloud.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;add_child(cloud)
 func terrain_chunk(cx:int,cz:int) -> void:
 	var st=SurfaceTool.new();st.begin(Mesh.PRIMITIVE_TRIANGLES);var count=0
@@ -67,12 +68,12 @@ func terrain_chunk(cx:int,cz:int) -> void:
 			for offset in [Vector2(0,0),Vector2(2,0),Vector2(0,2),Vector2(2,2)]:
 				var flat=Vector2(x,z)+offset
 				if flat.length()>240:flat=flat.normalized()*240
-				points.append(Vector3(flat.x,Fen.height(Vector3(flat.x,0,flat.y)),flat.y))
+				points.append(Vector3(flat.x,Fen.terrain_height(Vector3(flat.x,0,flat.y)),flat.y))
 			for triangle in [[0,2,1],[1,2,3]]:
 				var a:Vector3=points[triangle[0]];var b:Vector3=points[triangle[1]];var c:Vector3=points[triangle[2]]
 				if (b-a).cross(c-a).length_squared()<.000001:continue
 				for p in [a,b,c]:
-					var normal=Vector3(Fen.height(p-Vector3(1,0,0))-Fen.height(p+Vector3(1,0,0)),2,Fen.height(p-Vector3(0,0,1))-Fen.height(p+Vector3(0,0,1))).normalized()
+					var normal=Vector3(Fen.terrain_height(p-Vector3(1,0,0))-Fen.terrain_height(p+Vector3(1,0,0)),2,Fen.terrain_height(p-Vector3(0,0,1))-Fen.terrain_height(p+Vector3(0,0,1))).normalized()
 					st.set_normal(normal);st.set_uv(Vector2(p.x,p.z));st.add_vertex(p);count+=1
 	if count==0:return
 	var mesh=st.commit();var node=MeshInstance3D.new();node.mesh=mesh;node.material_override=grass_material;add_child(node)
@@ -119,14 +120,14 @@ func update_details(at:Vector3) -> void:
 		if tree_at.y>.15:groups["dead" if index%3==0 else "tree"].append(Transform3D(Basis(Vector3.UP,rng.randf()*TAU).scaled(Vector3.ONE*rng.randf_range(.8,1.2)),tree_at))
 		for i in range(75):
 			var angle=rng.randf()*TAU;var radius=rng.randf_range(.42,1.12);var p=centre+Vector3(sin(angle)*n.radii[0]*radius,0,cos(angle)*n.radii[1]*radius);p.y=ground_height(p)
-			if p.y<-.45 or p.y>.86 or Vector2(p.x-centre.x,p.z-centre.z).length()<4:continue
+			if Fen.raft_surface(p) or p.y<-.45 or p.y>.86 or Vector2(p.x-centre.x,p.z-centre.z).length()<4:continue
 			groups.reeds.append(Transform3D(Basis(Vector3.UP,angle).scaled(Vector3.ONE*rng.randf_range(.65,1.2)),p))
 		for i in range(65):
 			var p=centre+Vector3(rng.randf_range(-.8,.8)*n.radii[0],0,rng.randf_range(-.8,.8)*n.radii[1]);p.y=ground_height(p)
-			if p.y>.08 and Vector2(p.x-centre.x,p.z-centre.z).length()>3.5:groups.grass.append(Transform3D(Basis(Vector3.UP,rng.randf()*TAU).scaled(Vector3.ONE*rng.randf_range(.6,1.2)),p))
+			if not Fen.raft_surface(p) and p.y>.08 and Vector2(p.x-centre.x,p.z-centre.z).length()>3.5:groups.grass.append(Transform3D(Basis(Vector3.UP,rng.randf()*TAU).scaled(Vector3.ONE*rng.randf_range(.6,1.2)),p))
 		for i in range(14):
 			var p=centre+Vector3(rng.randf_range(-.55,.55)*n.radii[0],0,rng.randf_range(-.55,.55)*n.radii[1]);p.y=ground_height(p)
-			if p.y>.1:groups.fern.append(Transform3D(Basis(Vector3.UP,rng.randf()*TAU),p))
+			if not Fen.raft_surface(p) and p.y>.1:groups.fern.append(Transform3D(Basis(Vector3.UP,rng.randf()*TAU),p))
 		if index%5==0:
 			var p=centre+Vector3(-n.radii[0]*.4,0,0);p.y=ground_height(p)-.2;groups["stump" if index%2 else "rock"].append(Transform3D(Basis(Vector3.UP,rng.randf()*TAU),p))
 	for name in groups:
