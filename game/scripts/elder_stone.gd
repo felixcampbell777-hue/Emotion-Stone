@@ -12,7 +12,7 @@ func _physics_process(delta:float) -> void:
 	var previous=position;position=next;stone.rotation+=Vector3(3,5,2)*delta
 	var target=thrower if reflected else game.player;var center=target.position+Vector3.UP*(1.8 if reflected else .9)
 	var closest=Geometry3D.get_closest_point_to_segment(center,previous,position)
-	if not reflected and closest.distance_to(center)<float(game.player.combat.parry.contact_range)+.3 and game.player.try_parry(self):return
+	if not reflected and closest.distance_to(center)<float(game.player.combat.parry.contact_range) and game.player.try_parry(self,closest):return
 	if closest.distance_to(center)<(1.8 if reflected else .8):
 		if reflected:thrower.open_armor();thrower.take_damage(55,direction)
 		else:game.player.take_damage(22,direction)

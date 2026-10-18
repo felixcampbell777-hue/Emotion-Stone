@@ -21,8 +21,7 @@ func configure(data:Dictionary,target:Node3D,saved:Dictionary={}) -> void:
 			if "eye" in title:mat.albedo_color=Color("#f12e19");mat.emission_enabled=true;mat.emission=Color("#d72c16");mat.emission_energy_multiplier=2
 			else:mat.albedo_color*=Color(.72,.64,.60)
 			mesh.set_surface_override_material(surface,mat)
-	var ring=TorusMesh.new();ring.inner_radius=1.3;ring.outer_radius=1.4;ring.rings=48;ring.ring_segments=6
-	tell=Props.mesh_node(self,ring,Vector3(0,.07,0),"#ec9b48");tell.visible=false
+	tell=MeshInstance3D.new();add_child(tell);tell.visible=false
 func bounded(at:Vector3) -> Vector3:
 	var d=(at-West.GROVE)*Vector3(1,0,1)
 	var result=West.GROVE+d.limit_length(19);result.y=game.current_world.ground_height(result)
@@ -41,7 +40,7 @@ func _physics_process(delta:float) -> void:
 	if engaged and health<=max_health*.5 and not half_called:
 		half_called=true;state="howl";state_time=2.2
 		game.worldrise.spawn_ashfang_wolves(position);game.notify("Ashfang howls. Three wolves emerge from the trees!")
-	tell.visible=state=="windup"
+	tell.visible=false
 	if engaged:
 		match state:
 			"circle":

@@ -67,9 +67,13 @@ func take_damage(amount:int,from_direction:Vector3) -> void:
 
 func _physics_process(delta:float) -> void:
 	if not simulation_enabled or health<=0: return
+	if is_instance_valid(game) and game.game_mode=="world_rise" and state in ["idle","patrol","circle"] and knockback.length_squared()<.01 and player.position.distance_squared_to(position)>3600:
+		velocity=Vector3.ZERO;return
 	if definition.kind=="beta_wolf": _wolf_tick(delta)
 	else: super._physics_process(delta)
 	visual.scale=Vector3.ONE
+	var animation_delta=game.worldrise.animation_step(self,delta) if is_instance_valid(game) and game.game_mode=="world_rise" else delta
+	if animation_delta<=0:return
 	var purpose="attack" if state in ["windup","lunge"] else "hit" if hit_flash>0 else "run" if velocity.length()>2.5 else "walk" if velocity.length()>.2 else "idle"
 	var clip=animation_names.get(purpose,animation_names.get("idle",""))
 	if clip.is_empty(): return
@@ -81,7 +85,7 @@ func _physics_process(delta:float) -> void:
 		var playback=1.0
 		if definition.kind=="beta_wolf" and purpose in ["walk","run"]:
 			playback=clampf(velocity.length()/(1.3 if purpose=="walk" else 3.8),.6,1.8)
-		animator.advance(delta*playback)
+		animator.advance(animation_delta*playback)
 	for entry in coat_materials:
 		entry[0].albedo_color=entry[1].lerp(Color("#d1eef2"),.5) if parry_flash>0 else entry[1].lerp(Color("#efcfb8"),.5) if hit_flash>0 else entry[1]
 
@@ -97,7 +101,11 @@ func _wolf_tick(delta:float) -> void:
 			if travel.length()>.18: velocity=travel.normalized()*minf(pack_speed,travel.length()*3)
 			# Avoid stacking in a ring or crushing together around scenery.
 			if is_instance_valid(game):
-				for other in game.enemies:
+				var neighbours=game.enemies
+				if game.game_mode=="world_rise":
+					for pack in game.wolf_packs.packs:
+						if self in pack.members:neighbours=pack.members;break
+				for other in neighbours:
 					if other==self or other.health<=0 or other.definition.kind!="beta_wolf": continue
 					var away=(position-other.position)*Vector3(1,0,1)
 					if away.length()<1.0 and away.length()>.01: velocity+=away.normalized()*(1-away.length())*2.5

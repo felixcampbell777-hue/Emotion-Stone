@@ -1,4 +1,4 @@
 {
-  "version": "0.40.3",
-  "baseline": "Immediate 150ms parry with accelerated guard entry; awaiting user playtest"
+  "version": "0.40.4",
+  "baseline": "World Rise night performance, quick roll recovery, guild potions, boss parry and buried cave entrance; user playtest pending"
 }

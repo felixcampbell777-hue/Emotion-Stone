@@ -1063,19 +1063,21 @@ func parry_pose_phase(progress:float) -> float:
 	if time<recovery:return lerpf(.30,.68,(time-.06)/(recovery-.06))
 	return clampf(progress,0,1)
 
-func try_parry(enemy: Node3D) -> bool:
+func try_parry(enemy: Node3D,contact:Vector3=Vector3(INF,INF,INF)) -> bool:
 	if not input_enabled or health<=0 or state!="parry" or not is_instance_valid(enemy) or parried_threats.has(enemy.get_instance_id()):
 		return false
 	if first_person_driver!=null: attack_direction=-Vector3(sin(first_person_driver.yaw),0,cos(first_person_driver.yaw))
 	if state_time<float(combat.parry.active_start) or state_time>float(combat.parry.active_end):
 		return false
-	var incoming=enemy.position-position
+	var threat=contact if is_finite(contact.x) else enemy.position
+	var incoming=threat-position
 	incoming.y=0
 	if incoming.length()>float(combat.parry.contact_range):
 		return false
 	if incoming.normalized().dot(attack_direction)<float(combat.parry.cone_dot):
 		return false
-	var ray=PhysicsRayQueryParameters3D.create(position+Vector3(0,.7,0),enemy.position+Vector3(0,.7,0),1)
+	var ray_end=Vector3(threat.x,position.y+.7,threat.z) if is_finite(contact.x) else enemy.position+Vector3(0,.7,0)
+	var ray=PhysicsRayQueryParameters3D.create(position+Vector3(0,.7,0),ray_end,1)
 	if not get_world_3d().direct_space_state.intersect_ray(ray).is_empty():
 		return false
 	parried_threats[enemy.get_instance_id()]=true

@@ -15,6 +15,9 @@ var elder_respawn=0.0
 var ashfang_respawn=0.0
 var light_clock=0.0
 var night_population=false
+var spawn_queue:Array=[]
+var packs_dirty=false
+var ai_clock=0.0
 func is_night() -> bool:return day_clock>=600 and day_clock<1080
 const ELDER_ID="wr_boss_chamber/vault_elder"
 func active() -> bool:return game.game_mode=="world_rise" and game.map_id=="wr_floor_01"
@@ -94,7 +97,7 @@ func lighting() -> void:
 	var sun=game.world_root.get_node("WorldSun");sun.light_energy=1.2;sun.rotation_degrees=Vector3(-42,-30,0);sun.directional_shadow_max_distance=90
 	cycle_lighting()
 func build_map() -> void:
-	packs.clear();clock=0
+	packs.clear();spawn_queue.clear();packs_dirty=false;clock=0;ai_clock=0
 	night_population=is_night()
 	if game.game_mode=="world_rise" and game.map_id=="wr_boss_chamber":game.current_world.activate(game);lighting();return
 	if not active():return
@@ -146,8 +149,7 @@ func spawn_pack(record:Dictionary) -> void:
 	if is_night():
 		for base in entries.duplicate():entries.append(night_entry(base))
 	for entry in entries:
-		spawn_member(record,entry)
-	game.wolf_packs.build(game)
+		spawn_queue.append({"record":record,"entry":entry})
 func night_entry(base:Dictionary) -> Dictionary:
 	var entry=base.duplicate(true);entry.id+="_night"
 	for i in range(12):
@@ -166,13 +168,14 @@ func spawn_member(record:Dictionary,entry:Dictionary) -> void:
 	game.world_root.add_child(enemy);game.enemies.append(enemy);record.members.append(enemy)
 	var pos=saved.get("at",entry.at);enemy.position=Vector3(pos[0],0,pos[1]);enemy.position.y=game.current_world.ground_height(enemy.position);enemy.home=Vector3(p.at[0],game.current_world.ground_height(Vector3(p.at[0],0,p.at[1])),p.at[1])
 	enemy.defeated.connect(func():game._enemy_defeated(key,p.kind,enemy));game.add_enemy_bar(enemy)
+	packs_dirty=true
 func refresh_population() -> void:
 	if not active():return
 	night_population=is_night()
 	for record in packs.values():
 		if not record.active:continue
 		if night_population:
-			for base in game.current_world.definition.enemies.filter(func(e):return e.pack==record.spec.id):spawn_member(record,night_entry(base))
+			for base in game.current_world.definition.enemies.filter(func(e):return e.pack==record.spec.id):spawn_queue.append({"record":record,"entry":night_entry(base)})
 		else:
 			for enemy in record.members.duplicate():
 				if String(enemy.definition.id).ends_with("_night"):remember(enemy);record.members.erase(enemy);game.retire_transient(enemy)
@@ -186,7 +189,7 @@ func update_packs() -> void:
 		if distance>145 and record.active and not record.engaged and game.projectiles.is_empty():
 			for enemy in record.members:
 				remember(enemy);game.retire_transient(enemy)
-			record.members=[];record.active=false;game.wolf_packs.build(game)
+			record.members=[];record.active=false;packs_dirty=true
 func tick(delta:float) -> void:
 	if game.game_mode!="world_rise" or not game.player.input_enabled:return
 	day_clock=fposmod(day_clock+delta,1080);light_clock+=delta
@@ -201,6 +204,10 @@ func tick(delta:float) -> void:
 		ashfang_respawn=maxf(0,ashfang_respawn-delta)
 		if ashfang_respawn<=0:game.defeated_enemies.erase("wr_floor_01/ashfang");states.erase("ashfang")
 	if not active():return
+	# One model per physics frame, rather than an entire doubled pack at once.
+	if not spawn_queue.is_empty():
+		var request=spawn_queue.pop_front()
+		if request.record.active and (is_night() or not String(request.entry.id).ends_with("_night")):spawn_member(request.record,request.entry)
 	if night_population!=is_night():refresh_population()
 	if not is_night():
 		for enemy in game.enemies.duplicate():
@@ -208,7 +215,16 @@ func tick(delta:float) -> void:
 			elif enemy.definition.get("pack","")=="ashfang_aid":game.retire_transient(enemy)
 	if is_night() and ashfang_respawn<=0 and not game.enemies.any(func(e):return e.health>0 and String(e.definition.get("id",""))=="ashfang") and "wr_floor_01/ashfang" not in game.defeated_enemies:spawn_ashfang()
 	clock+=delta;elapsed+=delta
-	if clock>=.12:clock=0;game.current_world.update_details(game.player.position);update_packs()
+	if clock>=.12:
+		clock=0;game.current_world.update_details(game.player.position);update_packs()
+		for record in packs.values():
+			for enemy in record.members.duplicate():
+				if not is_instance_valid(enemy):record.members.erase(enemy)
+				elif enemy.health<=0:record.members.erase(enemy);game.retire_transient(enemy);packs_dirty=true
+		if packs_dirty:game.wolf_packs.build(game);packs_dirty=false
+	ai_clock+=delta
+	if ai_clock<.1:return
+	var coordination_delta=ai_clock;ai_clock=0
 	for record in packs.values():
 		if not record.active or record.spec.kind!="library_boar":continue
 		var center=Vector3(record.spec.at[0],0,record.spec.at[1]);var distance=Vector2(game.player.position.x-center.x,game.player.position.z-center.z).length()
@@ -216,7 +232,7 @@ func tick(delta:float) -> void:
 		if members.is_empty():continue
 		if (distance<20 and members.any(func(e):return can_see(e))) or (distance<42 and members.any(func(e):return e.health<e.max_health)):record.engaged=true
 		if distance>42:record.engaged=false
-		record.attack=maxf(0,record.attack-delta)
+		record.attack=maxf(0,record.attack-coordination_delta)
 		var busy=members.any(func(e):return e.state in ["windup","lunge"])
 		# Consume the turn only after an animal actually enters its attack.
 		# Permission remains available across physics frames until then.
@@ -235,6 +251,12 @@ func tick(delta:float) -> void:
 			e.encounter_goal=game.player.position+Vector3(sin(angle),0,cos(angle))*2.6 if record.engaged else center+Vector3(sin(angle),0,cos(angle))*3.0
 func can_see(enemy:Node3D) -> bool:
 	return not game.impact_blocked(enemy.position+Vector3.UP*.6,game.player.position+Vector3.UP*.6)
+
+func animation_step(enemy:Node3D,delta:float) -> float:
+	var accumulated=float(enemy.get_meta("rise_animation_clock",0.0))+delta
+	if enemy.position.distance_squared_to(game.player.position)>576 and enemy.state not in ["windup","lunge"] and enemy.hit_flash<=0 and enemy.parry_flash<=0 and accumulated<.1:
+		enemy.set_meta("rise_animation_clock",accumulated);return 0.0
+	enemy.set_meta("rise_animation_clock",0.0);return accumulated
 
 func respawn_reset() -> void:
 	states.clear()

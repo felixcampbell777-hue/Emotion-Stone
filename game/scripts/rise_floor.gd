@@ -108,6 +108,8 @@ func update_details(at:Vector3) -> void:
 			pos.y=ground_height(pos)-.9;var rock=Art.model(Art.ROOT+"models/rock_moss_set_01_a.glb",Vector3(3.5,1.3,2.8),false)
 			if rock!=null:root.add_child(rock);rock.position=pos;rock.rotation.y=rng.randf()*TAU
 func ground_height(at:Vector3) -> float:
+	# Western bridges are the only surfaces that override the main terrain.
+	if at.x> -230:return Shape.height(at)
 	var island=island_height(at)
 	return island if not is_nan(island) else Shape.height(at)
 func island_height(at:Vector3) -> float:
@@ -126,14 +128,22 @@ func support_height(body:CharacterBody3D,at:Vector3) -> float:
 		var half_height=shape.height*.5*child.scale.y if shape is CapsuleShape3D else radius
 		var center=at+child.position
 		var h=ground_height(center)
-		# Sampling the footprint also covers triangle seams where the local
-		# gradient on the uphill triangle differs from the one at the center.
+		# Optimize h(x,z)+sqrt(r²-offset²) on the local terrain planes.
+		# Each candidate remains within the actual capsule footprint; nearby
+		# planes cover triangle seams without eighty repeated height lookups.
 		var support=h+radius
-		for fraction in [.25,.5,.707,.85,.96]:
-			for i in range(16):
-				var offset=Vector3(sin(i*TAU/16),0,cos(i*TAU/16))*radius*fraction
-				var edge=ground_height(center+offset)+radius*sqrt(1-fraction*fraction)
-				support=maxf(support,edge)
+		var planes={}
+		for i in range(9):
+			var seed=center if i==0 else center+Vector3(sin(i*TAU/8),0,cos(i*TAU/8))*radius*.85
+			support=maxf(support,ground_height(seed)+radius*(1.0 if i==0 else sqrt(1-.85*.85)))
+			var slope:Vector2
+			if center.x> -230:slope=Shape.gradient(seed)
+			else:slope=Vector2((ground_height(seed+Vector3(.1,0,0))-ground_height(seed-Vector3(.1,0,0)))*5,(ground_height(seed+Vector3(0,0,.1))-ground_height(seed-Vector3(0,0,.1)))*5)
+			if planes.has(slope):continue
+			planes[slope]=true
+			var offset=slope*radius/sqrt(1+slope.length_squared())
+			var edge=ground_height(center+Vector3(offset.x,0,offset.y))+sqrt(maxf(0,radius*radius-offset.length_squared()))
+			support=maxf(support,edge)
 		result=maxf(result,support+(half_height-radius)-child.position.y+.008)
 	return result
 func ground_step_allowed(at:Vector3,to:Vector3) -> bool:

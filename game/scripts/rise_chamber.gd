@@ -140,14 +140,44 @@ static func build_entrance(world:Node) -> void:
 	quad(st,Vector3(-6.8,.35,1.5),Vector3(-3.25,1,1.5),Vector3(-3.25,1,-5),Vector3(-6.8,.35,-5))
 	quad(st,Vector3(3.25,1,1.5),Vector3(6.8,.35,1.5),Vector3(6.8,.35,-5),Vector3(3.25,1,-5))
 	st.generate_normals();var mesh=st.commit();var arch=MeshInstance3D.new();arch.mesh=mesh;arch.material_override=mat;root.add_child(arch);arch.create_trimesh_collision()
-	# Moss and soil sit on the broad upper shelf, softening the silhouette into the surrounding terrain.
-	for side in [-1,1]:
-		var boulder=Art.model(Art.ROOT+"models/rock_moss_set_01_a.glb",Vector3(4,5.5,5),false)
-		if boulder!=null:root.add_child(boulder);boulder.position=Vector3(side*5.2,5.7,-.8);boulder.rotation.y=side*.8
-		var moss=Props.box(root,Vector3(side*4.7,7.15,-1.5),Vector3(3.4,.18,3.8),"#43583b");moss.rotation.z=side*.08
+	build_entrance_hillside(world,root)
 	var dark=Props.box(root,Vector3(0,2.8,-3.5),Vector3(6.4,5.6,.3),"#010207");dark.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF;Props.collider(root,dark.position,Vector3(6.4,5.6,.3))
 	for x in [-4.8,4.8]:Props.collider(root,Vector3(x,2.4,-2),Vector3(3,4.8,8))
 	var mat_dark=StandardMaterial3D.new();mat_dark.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED;mat_dark.albedo_color=Color("#010207");dark.material_override=mat_dark
 	var crystal=Props.cone(root,Vector3(2.6,1,1),.22,1.2,"#3b9bde",.02);var glow=Props.mat("#3b9bde");glow.emission_enabled=true;glow.emission=Color("#298ce0");crystal.material_override=glow
 	var lamp=OmniLight3D.new();lamp.position=Vector3(0,2.4,0);lamp.light_color=Color("#63adff");lamp.light_energy=2;lamp.omni_range=9;root.add_child(lamp)
 	world.interactions.append({"id":"vault_entrance","title":"Enter the Veiled Vault?","position":root.to_global(Vector3(0,0,2.6)),"actor":null,"lines":[],"wr_chamber":"enter"})
+
+static func entrance_cap_height(world:Node,root:Node3D,x:float,z:float) -> float:
+	var existing=world.ground_height(root.to_global(Vector3(x,0,z)))-root.position.y
+	var shoulder=exp(-x*x/242.0)*(1-smoothstep(18,22,absf(x)))
+	var depth=1-smoothstep(1.5,24.0,1.5-z)
+	return maxf(existing,8.95*shoulder*depth)
+static func build_entrance_hillside(world:Node,root:Node3D) -> void:
+	# Continuous grass/earth mass joins the forest slope to the stone lip.
+	# The front stops above the opening, keeping the dark approach unobstructed.
+	var top=SurfaceTool.new();top.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for ix in range(44):
+		for iz in range(24):
+			var x=-22.0+ix;var z=1.5-iz
+			var a=Vector3(x,entrance_cap_height(world,root,x,z),z)
+			var b=Vector3(x+1,entrance_cap_height(world,root,x+1,z),z)
+			var c=Vector3(x+1,entrance_cap_height(world,root,x+1,z-1),z-1)
+			var d=Vector3(x,entrance_cap_height(world,root,x,z-1),z-1)
+			quad(top,a,b,c,d)
+	top.generate_normals()
+	var grass=StandardMaterial3D.new();grass.albedo_texture=load(Art.ROOT+"leafy_grass/albedo.jpg");grass.albedo_color=Color("#8a956e");grass.roughness=1;grass.cull_mode=BaseMaterial3D.CULL_DISABLED
+	var cap=MeshInstance3D.new();cap.name="ForestEarthRoof";cap.mesh=top.commit();cap.material_override=grass;root.add_child(cap);cap.create_trimesh_collision()
+	var face=SurfaceTool.new();face.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for i in range(32):
+		var a=i*PI/32.0;var b=(i+1)*PI/32.0
+		var oa=Vector3(cos(a)*(6.8+.18*sin(a*7)),.35+sin(a)*(8.0+.22*sin(a*5)),1.5)
+		var ob=Vector3(cos(b)*(6.8+.18*sin(b*7)),.35+sin(b)*(8.0+.22*sin(b*5)),1.5)
+		quad(face,oa,Vector3(oa.x,maxf(oa.y,entrance_cap_height(world,root,oa.x,1.5))+.04,1.5),Vector3(ob.x,maxf(ob.y,entrance_cap_height(world,root,ob.x,1.5))+.04,1.5),ob)
+	for side in [-1,1]:
+		for i in range(16):
+			var x=side*(6.8+i*.95);var next_x=side*(6.8+(i+1)*.95)
+			var a=Vector3(x,world.ground_height(root.to_global(Vector3(x,0,1.5)))-root.position.y,1.5)
+			var b=Vector3(next_x,world.ground_height(root.to_global(Vector3(next_x,0,1.5)))-root.position.y,1.5)
+			quad(face,a,Vector3(x,entrance_cap_height(world,root,x,1.5),1.5),Vector3(next_x,entrance_cap_height(world,root,next_x,1.5),1.5),b)
+	face.generate_normals();var soil=MeshInstance3D.new();soil.name="EarthAboveStoneLip";soil.mesh=face.commit();soil.material_override=stone_material();root.add_child(soil);soil.create_trimesh_collision()

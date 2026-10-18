@@ -39,6 +39,8 @@ func take_damage(amount:int,away:Vector3) -> void:
 func take_lance_damage(amount:int,away:Vector3) -> void:armor_open=3;take_damage(amount,away)
 func _physics_process(delta:float) -> void:
 	if not simulation_enabled or health<=0:return
+	if is_instance_valid(game) and game.game_mode=="world_rise" and state=="idle" and not encounter_engaged and knockback.length_squared()<.01 and player.position.distance_squared_to(position)>3600:
+		velocity=Vector3.ZERO;return
 	if encounter_hidden:return
 	if encounter_emerge>0:
 		encounter_emerge=maxf(0,encounter_emerge-delta);visual.position.y=-float(spec.height)*encounter_emerge/.75;art.pose("idle",-1,delta);return
@@ -90,5 +92,6 @@ func _physics_process(delta:float) -> void:
 	if state=="windup":clip_phase=clampf(1-state_time/float(spec.windup),0,1)*.35
 	elif state=="lunge":clip_phase=.35+clampf(1-state_time/float(spec.lunge_seconds),0,1)*.65
 	elif state=="burrow":clip_phase=clampf(1-state_time/.9,0,1)
-	art.pose(purpose,clip_phase,delta);art.flash(hit_flash,maxf(parry_flash,armor_open))
+	var animation_delta=game.worldrise.animation_step(self,delta) if game.game_mode=="world_rise" else delta
+	if animation_delta>0:art.pose(purpose,clip_phase,animation_delta);art.flash(hit_flash,maxf(parry_flash,armor_open))
 	velocity+=knockback;knockback=knockback.move_toward(Vector3.ZERO,delta*float(recoil_policy.deceleration));game.current_world.move_grounded(self,delta)

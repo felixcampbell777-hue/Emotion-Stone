@@ -83,10 +83,12 @@ func equip_weapon(id:String) -> bool:
 	weapon_id=id;return true
 func drink(id:String) -> bool:
 	var entry=item(id)
-	if id not in owned or entry.get("category","")!="consumable" or game.player.health<=0 or healing.size()>=297: return false
+	if id not in owned or entry.get("category","")!="consumable" or game.player.health<=0: return false
+	var timed=float(entry.effects.regen_seconds)>0
+	if timed and healing.size()>=297:return false
 	quantities[id]=int(quantities.get(id,1))-1
 	if quantities[id]<=0: quantities.erase(id); owned.erase(id)
-	healing.append({"id":id,"remaining":float(entry.effects.regen_seconds),"clock":0.0})
+	if timed:healing.append({"id":id,"remaining":float(entry.effects.regen_seconds),"clock":0.0})
 	game.player.restore_health(game.player.health+int(entry.effects.burst_heal))
 	game.notify("Drank "+entry.name+".")
 	return true

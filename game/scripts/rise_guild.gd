@@ -127,6 +127,13 @@ func contract_action(id:String) -> bool:
 func contract_xp(id:String) -> int:
 	var level=int(catalog.contracts[id].xp_level);var thresholds=game.progression.definition.level_thresholds
 	return roundi((float(thresholds[level])-float(thresholds[level-1]))/3.0)
+func buy_potion() -> bool:
+	var id="guild_healing_potion"
+	if not context("wr_clerk") or copper<25 or int(game.magic_items.quantities.get(id,0))>=99:return false
+	copper-=25
+	if id not in game.magic_items.owned:game.magic_items.owned.append(id)
+	game.magic_items.quantities[id]=int(game.magic_items.quantities.get(id,0))+1
+	game.notify("Purchased Healing Potion · restores 25 HP.");return true
 func craft_error(id:String) -> String:
 	if not catalog.recipes.has(id):return "Unknown recipe"
 	if id in game.magic_items.owned:return "Already owned"
@@ -162,6 +169,8 @@ func dialogue(ui:Control,target:Dictionary,page:String="") -> void:
 				var item=catalog.materials[id];var action=game.button("Sell 1 %s · %d cp (owned: %d)"%[item.name,item.value,materials.get(id,0)],func():sell(id);dialogue(ui,target,page));action.disabled=int(materials.get(id,0))<1;ui.choices.add_child(action)
 			ui.choices.add_child(game.button("Back",func():dialogue(ui,target)))
 		else:
+			var potion=game.button("Buy Healing Potion · 25 HP · 25 cp (owned: %d)"%game.magic_items.quantities.get("guild_healing_potion",0),func():buy_potion();dialogue(ui,target));potion.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+			potion.disabled=copper<25 or int(game.magic_items.quantities.get("guild_healing_potion",0))>=99;ui.choices.add_child(potion)
 			ui.choices.add_child(game.button("Sell boar materials",func():dialogue(ui,target,"boar")));ui.choices.add_child(game.button("Sell wolf materials",func():dialogue(ui,target,"wolf")))
 			ui.choices.add_child(game.button("Guild contracts · 10 boars / 10 wolves",func():dialogue(ui,target,"contracts")))
 	elif target.role in ["wr_armorer","wr_swords"]:

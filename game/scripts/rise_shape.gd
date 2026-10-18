@@ -18,6 +18,10 @@ static func height(at:Vector3) -> float:
 	var x=floor(at.x/4)*4;var z=floor(at.z/4)*4;var u=(at.x-x)/4;var v=(at.z-z)/4
 	var a=raw(x,z);var b=raw(x+4,z);var c=raw(x,z+4);var d=raw(x+4,z+4)
 	return a+(b-a)*u+(c-a)*v if u+v<=1 else d+(c-d)*(1-u)+(b-d)*(1-v)
+static func gradient(at:Vector3) -> Vector2:
+	var x=floor(at.x/4)*4;var z=floor(at.z/4)*4
+	var a=raw(x,z);var b=raw(x+4,z);var c=raw(x,z+4);var d=raw(x+4,z+4)
+	return Vector2(b-a,c-a)/4 if (at.x-x)+(at.z-z)<=4 else Vector2(d-c,d-b)/4
 static func safe(at:Vector3) -> bool:
 	if Vector2(at.x,at.z).length()>239:return load("res://scripts/west_islands.gd").safe(at)
 	var local=(Vector2(at.x,at.z)-Vector2(spec.guild.at[0],spec.guild.at[1])).rotated(spec.guild.rotation)

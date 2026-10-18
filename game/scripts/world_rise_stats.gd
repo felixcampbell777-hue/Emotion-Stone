@@ -6,6 +6,8 @@ static func damage_multiplier(g:Node) -> float:
 	return (1+.02*p.rank("iron_body")+.05*p.rank("great_greatsword")+.15*p.rank("basher"))*(2 if p.has("devastating_blade") else 1)
 static func apply(g:Node) -> void:
 	var p=g.player;var s=g.progression;var c=p.combat;var gain=1+.01*(s.level()-1)
+	c.dodge.stand_seconds=.08
+	c.parry.active_start=0.0;c.parry.active_end+=.03
 	p.max_health=roundi(p.max_health*gain);p.max_stamina*=gain
 	var strength=damage_multiplier(g);c.thrust.damage=c.light.damage
 	for key in ["light","heavy","thrust"]:c[key].damage=roundi(c[key].damage*strength)
