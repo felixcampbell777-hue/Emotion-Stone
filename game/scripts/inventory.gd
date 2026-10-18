@@ -19,6 +19,7 @@ var detail_box:PanelContainer
 var detail:VBoxContainer
 var category_box:VBoxContainer
 var picker_focus:Button
+var rise_map:Control
 
 func configure(owner_game:Control) -> void:
 	game=owner_game
@@ -26,7 +27,7 @@ func configure(owner_game:Control) -> void:
 	mouse_filter=Control.MOUSE_FILTER_STOP
 	var frost=Frost.new(); add_child(frost); frost.configure(game)
 	tabs=HBoxContainer.new(); tabs.add_theme_constant_override("separation",8); add_child(tabs)
-	for entry in [["equipment","Inventory"],["skills","Skills"],["level","Level Up"],["quests","Quests"]]:
+	for entry in [["equipment","Inventory"],["skills","Skills"],["level","Level Up"],["quests","Quests"],["map","Map"]]:
 		var id:String=entry[0]; tabs.add_child(game.button(entry[1],func(): show_page(id)))
 	tabs.add_child(game.button("Close [I / Esc]",close))
 	category_box=VBoxContainer.new(); category_box.add_theme_constant_override("separation",5); add_child(category_box)
@@ -38,6 +39,7 @@ func configure(owner_game:Control) -> void:
 	var scroll=ScrollContainer.new(); scroll.follow_focus=true; scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED; box.add_child(scroll)
 	slots=VBoxContainer.new(); slots.add_theme_constant_override("separation",7); slots.size_flags_horizontal=Control.SIZE_EXPAND_FILL; scroll.add_child(slots)
 	detail_box=game.panel(self); detail=VBoxContainer.new(); detail.add_theme_constant_override("separation",11); detail_box.add_child(detail)
+	rise_map=load("res://scripts/rise_map.gd").new();add_child(rise_map);rise_map.configure(game)
 	visible=false
 
 func _process(_delta:float) -> void:
@@ -47,7 +49,8 @@ func _process(_delta:float) -> void:
 	category_box.position=Vector2(screen.x*.035,75); category_box.size=Vector2(screen.x*.19,screen.y*.32)
 	portrait.position=Vector2(screen.x*.035,screen.y*.42); portrait.size=Vector2(screen.x*.19,screen.y*.54)
 	preview.position=portrait.position; preview.size=portrait.size
-	preview.visible=page=="equipment"; portrait.visible=page not in ["equipment","level"]
+	preview.visible=page=="equipment"; portrait.visible=page not in ["equipment","level","map"]
+	rise_map.visible=page=="map";rise_map.position=Vector2(screen.x*.035,75);rise_map.size=Vector2(screen.x*.93,screen.y-94)
 	box.position=Vector2(screen.x*.245,75); box.size=Vector2(screen.x*.35,screen.y-94)
 	if page in ["skills","quests"]: box.size.x=screen.x*.72
 	detail_box.position=Vector2(screen.x*.615,75); detail_box.size=Vector2(screen.x*.35,screen.y-94)
@@ -62,13 +65,16 @@ func clear(node:Node) -> void:
 	for child in node.get_children(): node.remove_child(child); child.queue_free()
 
 func refresh() -> void:
+	if page=="map" and game.game_mode!="world_rise":page="equipment"
 	picker_focus=null; clear(slots); clear(detail); clear(category_box)
 	preview.refresh(game)
-	box.visible=page!="level"
+	box.visible=page not in ["level","map"]
+	rise_map.visible=page=="map";tabs.get_child(4).visible=game.game_mode=="world_rise"
 	if game.skill_tree!=null:
 		game.skill_tree.visible=page=="level" and visible
 		if page=="level": game.skill_tree.refresh()
-	for index in range(4): tabs.get_child(index).disabled=["equipment","skills","level","quests"][index]==page
+	for index in range(5): tabs.get_child(index).disabled=["equipment","skills","level","quests","map"][index]==page
+	if page=="map":rise_map.signature="";rise_map.refresh_status();return
 	if page=="level": return
 	if page=="quests": refresh_quests(); return
 	if page=="skills": refresh_skills(); return

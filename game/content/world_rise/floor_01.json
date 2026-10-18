@@ -995,12 +995,6 @@
       0.76
     ],
     [
-      -120.96,
-      -101.96,
-      15.79,
-      0.79
-    ],
-    [
       -108.89,
       -102.03,
       17.53,
@@ -1583,12 +1577,6 @@
       0.77
     ],
     [
-      -85.8,
-      -47.13,
-      22.97,
-      0.68
-    ],
-    [
       -75.34,
       -48.15,
       17.66,
@@ -1719,19 +1707,54 @@
     {
       "id": "spring",
       "at": [
+        119,
+        111
+      ],
+      "title": "Guild Hill Overlook",
+      "type": "rest",
+      "legacy_at": [
         65,
         90
+      ]
+    },
+    {
+      "id": "western_rest",
+      "at": [
+        -376,
+        65
       ],
-      "title": "Sunfold Spring",
+      "title": "Ashfang Approach",
       "type": "rest"
     },
     {
       "id": "forest_camp",
       "at": [
+        -89,
+        -49
+      ],
+      "title": "Elderwood East Refuge",
+      "type": "rest",
+      "legacy_at": [
         -100,
         -35
+      ]
+    },
+    {
+      "id": "forest_west_rest",
+      "at": [
+        -123,
+        -101
       ],
-      "title": "Elderwood Refuge",
+      "title": "Elderwood West Refuge",
+      "type": "rest"
+    },
+    {
+      "id": "vault_rest",
+      "at": [
+        -174.151,
+        -124.049
+      ],
+      "title": "Veiled Vault Entrance",
       "type": "rest"
     },
     {

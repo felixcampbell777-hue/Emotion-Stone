@@ -68,9 +68,6 @@ func arrival() -> void:
 	for radius in [3,7.5,8.75]:
 		var mesh=TorusMesh.new();mesh.inner_radius=radius-.06;mesh.outer_radius=radius+.06;mesh.rings=96;mesh.ring_segments=4
 		var ring=Props.mesh_node(self,mesh,Vector3(0,26.04,0),"#c8c99d");ring.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	for i in range(4):
-		var at=Vector3(sin(i*PI/2)*7,26,cos(i*PI/2)*7);Props.box(self,at+Vector3.UP*1.1,Vector3(.6,2.2,.6),"#adb7b2")
-		var crystal=Props.cone(self,at+Vector3.UP*2.6,.25,.8,"#69c2d1",.08);var mat=Props.mat("#69c2d1");mat.emission_enabled=true;mat.emission=Color("#69c2d1");crystal.material_override=mat
 	var label=Label3D.new();label.text="WORLD RISE\nFLOOR 1 · THE VERDANT REACH";label.font_size=48;label.pixel_size=.012;label.position=Vector3(0,29,-6);add_child(label)
 func update_details(at:Vector3) -> void:
 	for key in decoration:

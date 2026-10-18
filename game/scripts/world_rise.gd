@@ -3,6 +3,7 @@ const Shape=preload("res://scripts/rise_shape.gd")
 const Props=preload("res://scripts/props.gd")
 const Guild=preload("res://scripts/rise_guild.gd")
 var guild=Guild.new()
+var checkpoints=preload("res://scripts/rise_checkpoints.gd").new()
 var game:Node
 var states:Dictionary={}
 var flags:Array=[]
@@ -21,7 +22,7 @@ var ai_clock=0.0
 func is_night() -> bool:return day_clock>=600 and day_clock<1080
 const ELDER_ID="wr_boss_chamber/vault_elder"
 func active() -> bool:return game.game_mode=="world_rise" and game.map_id=="wr_floor_01"
-func reset() -> void:states.clear();flags.clear();checkpoint=[0,0];packs.clear();clock=0;elapsed=0;day_clock=0;elder_respawn=0;ashfang_respawn=0;light_clock=0;guild.reset()
+func reset() -> void:states.clear();flags.clear();checkpoint=[0,0];packs.clear();clock=0;elapsed=0;day_clock=0;elder_respawn=0;ashfang_respawn=0;light_clock=0;guild.reset();checkpoints.hold=0;checkpoints.armed=true
 static func valid(data:Variant) -> bool:
 	if not data is Dictionary:return false
 	for key in ["day_clock","elder_respawn","ashfang_respawn"]:
@@ -29,6 +30,7 @@ static func valid(data:Variant) -> bool:
 		if not (value is float or value is int) or not is_finite(float(value)) or value<0 or value>1080:return false
 	if not Guild.valid(data.get("economy",{})):return false
 	var cp=data.get("checkpoint",[0,0]);var marks=data.get("flags",[]);var records=data.get("states",{})
+	if data.get("checkpoint_layout",1) not in [1,2]:return false
 	if not cp is Array or cp.size()!=2 or not marks is Array or marks.size()>8 or not records is Dictionary or records.size()>160:return false
 	for v in cp:
 		if not (v is float or v is int) or not is_finite(float(v)):return false
@@ -52,10 +54,11 @@ func snapshot() -> Dictionary:
 	if active():
 		for enemy in game.enemies:
 			if enemy.definition.id=="ashfang" and enemy.health>0:states.ashfang={"health":enemy.health,"at":[enemy.position.x,enemy.position.z]}
-	return {"states":states.duplicate(true),"flags":flags.duplicate(),"checkpoint":checkpoint.duplicate(),"economy":guild.snapshot(),"day_clock":day_clock,"elder_respawn":elder_respawn,"ashfang_respawn":ashfang_respawn}
+	return {"states":states.duplicate(true),"flags":flags.duplicate(),"checkpoint":checkpoint.duplicate(),"checkpoint_layout":2,"economy":guild.snapshot(),"day_clock":day_clock,"elder_respawn":elder_respawn,"ashfang_respawn":ashfang_respawn}
 func restore(data:Dictionary) -> void:
 	states=data.get("states",{}).duplicate(true);flags=data.get("flags",[]).duplicate();checkpoint=data.get("checkpoint",[0,0]).duplicate();guild.restore(data.get("economy",{}));day_clock=fposmod(float(data.get("day_clock",0)),1080);elder_respawn=float(data.get("elder_respawn",1080 if ELDER_ID in game.defeated_enemies else 0));ashfang_respawn=float(data.get("ashfang_respawn",1080 if "wr_floor_01/ashfang" in game.defeated_enemies else 0))
 	if ELDER_ID in game.defeated_enemies and "elder_defeated" not in flags:flags.append("elder_defeated")
+	checkpoints.game=game;checkpoints.migrate(data)
 func elder_fell() -> void:
 	if "elder_defeated" not in flags:flags.append("elder_defeated")
 	elder_respawn=1080
@@ -97,24 +100,28 @@ func lighting() -> void:
 	var sun=game.world_root.get_node("WorldSun");sun.light_energy=1.2;sun.rotation_degrees=Vector3(-42,-30,0);sun.directional_shadow_max_distance=90
 	cycle_lighting()
 func build_map() -> void:
+	checkpoints.game=game;checkpoints.hold=0
 	packs.clear();spawn_queue.clear();packs_dirty=false;clock=0;ai_clock=0
 	night_population=is_night()
 	if game.game_mode=="world_rise" and game.map_id=="wr_boss_chamber":game.current_world.activate(game);lighting();return
 	if not active():return
 	lighting()
 	for p in Shape.spec.packs:packs[p.id]={"spec":p,"active":false,"members":[],"engaged":false,"attack":0.0,"cursor":0}
-	var hub={"id":"arrival","at":[0,8],"title":"Arrival Platform · Rest","type":"rest"}
+	var hub={"id":"arrival","at":[0,0],"title":"Central Platform","type":"rest"}
 	for entry in [hub]+Shape.spec.landmarks:
 		var at=Vector3(entry.at[0],0,entry.at[1]);at.y=game.current_world.ground_height(at)
 		var node=Node3D.new();game.current_world.add_child(node);node.position=at
-		if entry.type=="rest":
+		if entry.id=="arrival":
+			var seal=TorusMesh.new();seal.inner_radius=1.85;seal.outer_radius=2.0;seal.rings=64;seal.ring_segments=4
+			var rune=Props.mesh_node(node,seal,Vector3(0,.025,0),"#74d4db");rune.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		elif entry.type=="rest":
 			Props.box(node,Vector3(0,.4,0),Vector3(1.3,.8,1.3),"#697a72");var crystal=Props.cone(node,Vector3(0,1.1,0),.3,.9,"#74d4db",.06);var material=Props.mat("#74d4db");material.emission_enabled=true;material.emission=Color("#74d4db");crystal.material_override=material
 		elif entry.type=="cache":
 			Props.box(node,Vector3(0,.35,0),Vector3(1.5,.7,.9),"#674d37");Props.box(node,Vector3(0,.75,0),Vector3(1.6,.15,1.0),"#8d784f")
 		elif entry.type=="gate":
 			for x in [-5,5]:Props.box(node,Vector3(x,5,0),Vector3(2,10,2),"#8a9b92");Props.collider(node,Vector3(x,5,0),Vector3(2,10,2))
 			Props.box(node,Vector3(0,10,0),Vector3(12,2,2),"#a2afa4")
-		game.current_world.interactions.append({"id":entry.id,"wr_action":entry,"title":entry.title,"position":at,"actor":null,"lines":[]})
+		if entry.id!="arrival":game.current_world.interactions.append({"id":entry.id,"wr_action":entry,"title":entry.title,"position":at,"actor":null,"lines":[]})
 	# Long, readable aqueduct silhouette near the northern route.
 	for i in range(7):
 		var at=Vector3(45+i*8,0,-150);at.y=game.current_world.ground_height(at);Props.box(game.current_world,at+Vector3.UP*4,Vector3(1.4,8,1.8),"#959e87");Props.box(game.current_world,at+Vector3(3.5,8,0),Vector3(8,1,2.4),"#a0a88e");Props.collider(game.current_world,at+Vector3.UP*4,Vector3(1.4,8,1.8))
@@ -205,6 +212,7 @@ func tick(delta:float) -> void:
 		if ashfang_respawn<=0:game.defeated_enemies.erase("wr_floor_01/ashfang");states.erase("ashfang")
 	if not active():return
 	# One model per physics frame, rather than an entire doubled pack at once.
+	if checkpoints.tick(delta):return
 	if not spawn_queue.is_empty():
 		var request=spawn_queue.pop_front()
 		if request.record.active and (is_night() or not String(request.entry.id).ends_with("_night")):spawn_member(request.record,request.entry)
@@ -275,14 +283,13 @@ func interact(target:Dictionary) -> bool:
 	if not active() or not target.has("wr_action"):return false
 	var entry=target.wr_action
 	if entry.type=="rest":
-		if game.enemies.any(func(e):return e.health>0 and e.position.distance_to(game.player.position)<12):game.notify("Clear nearby enemies before resting.");return true
-		checkpoint=entry.at.duplicate();respawn_reset();game.load_map("wr_floor_01",Vector2(checkpoint[0],checkpoint[1]),true);game.player.restore_health(game.player.max_health);game.player.restore_stamina(game.player.max_stamina);game.notify("Rested. Valley herds and wolf packs return.")
+		checkpoints.rest(entry)
 	elif entry.type=="view":game.notify("The Silver Verge overlooks the sunny abyss." if entry.id=="rim_watch" else "An old hollow tree marks this quiet forest clearing.")
 	else:game.notify("The ascent gate is dormant. Floor Two is not available yet.")
 	return true
 func journal(ui:Node) -> void:
-	ui.add_quest("The Verdant Reach","Exploration + combat XP","Explore from the central arrival platform.","Boar herds occupy the valleys. Elderwood lies northwest; follow its clear paths to avoid encirclement. The eastern silver rim overlooks the abyss. Rest crystals set your respawn and restore regular packs.")
-	ui.add_quest("The Adventurers' Guild","Sell spoils · craft equipment","Follow the trail southeast, opposite Elderwood.","Copper is credited on kills; pick up material sacks from fallen boars and wolves. Sell at the front desk; craft hide armor or the Cruel Charm with Bram at the back. The sword merchant's shop opens later. 100 copper = 1 gold.")
+	ui.add_quest("The Verdant Reach","Exploration + combat XP","Explore from the central arrival platform.","Six checkpoints connect Floor One. Stand still in the platform centre for one second to rest; use E at the five crystals. Inventory → Map travels between them within 6m, when no aggressive enemy is within 30m. Resting restores health/stamina, sets respawn and resets ordinary packs. Elderwood lies northwest; the eastern rim falls into the abyss.")
+	ui.add_quest("The Adventurers' Guild","Sell spoils · craft equipment","Follow the trail southeast, opposite Elderwood.","Copper is credited on kills; collect material sacks with E. The clerk buys spoils and sells 25-HP potions for 25cp. Craft armor or the Cruel Charm with Bram; buy swords from Corin. 100 copper = 1 gold.")
 	for id in Guild.catalog.contracts:
 		var entry=Guild.catalog.contracts[id];var state=guild.contracts.get(id,{"active":false,"count":0})
 		ui.add_quest(entry.name,"%d copper + %d XP"%[entry.reward,guild.contract_xp(id)],"Complete · reward collected." if state.get("completed",false) else "%d/10 defeated · return to the front desk"%state.count if state.active else "Accept at the guild front desk.","One-time contract. Only kills after acceptance count; ordinary packs return when you rest.")
