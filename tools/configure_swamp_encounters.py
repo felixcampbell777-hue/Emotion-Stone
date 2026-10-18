@@ -11,7 +11,7 @@ def apply(spec):
     for code in ['G9','I8','I9','K6','D10','E6','I3']:
         e=codes[code];index=next(i for i,n in enumerate(spec['nodes']) if n['id']==e['island_id'])
         spec['enemies'].append({'id':'giant_'+code.lower(),'style':'giant_green_slime','at':e['at'],'island':index})
-    spec['slime_combat']={'giant_health':128,'giant_damage':18,'jump_range':9.0,'jump_warning':1.0,'jump_seconds':.9,'jump_height':3.2,'impact_radius':2.1,'child_health':45,'child_damage':8,'child_xp':15}
+    spec['slime_combat']={'giant_health':128,'giant_damage':18,'jump_range':9.0,'jump_warning':1.0,'jump_seconds':.9,'jump_height':3.2,'impact_radius':2.1,'child_health':45,'child_damage':8,'child_xp':18}
     spec['sites']=[s for s in spec['sites'] if s['id']!='swamp_rest_d11']+[{'id':'swamp_rest_d11','at':codes['D11']['at'],'title':'Fen Refuge','type':'rest'}]
     spec['raft']={'island_id':codes['E11']['island_id'],'anchor':codes['E11']['at'],'deck_offset':[16,0],'deck_size':[8,9],'deck_height':.85}
     spec['version']=3

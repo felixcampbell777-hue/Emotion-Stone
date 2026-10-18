@@ -88,7 +88,7 @@ func run(g:Node,directory:String="") -> bool:
 	var unsafe=data.duplicate(true);unsafe.position=[225,0];unsafe.ground_y=-3.6
 	check(g.apply_save(unsafe) and Vector2(g.player.position.x,g.player.position.z).distance_to(Fen.arrival())<1,"Unsafe swamp save falls back to its own checkpoint")
 	check(not g.current_world.safe_position(Vector3(225,0,0)),"Deep swamp is rejected as a safe save position")
-	check(g.enemy_xp_reward("green_slime")==15,"Floor Two XP uses its explicit final reward")
+	check(g.enemy_xp_reward("green_slime")==18,"Floor Two XP uses its explicit final reward")
 	var water_at=Vector3(mid.x,Fen.height(Vector3(mid.x,0,mid.y)),mid.y)
 	var patch=load("res://scripts/menagery_hazard.gd").new();g.current_world.add_child(patch);patch.configure(g,water_at,true)
 	check(patch.position.y>=.025,"Resin puddles float above the shallows");patch.queue_free()

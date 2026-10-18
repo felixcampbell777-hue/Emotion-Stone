@@ -8,7 +8,7 @@ var clock=0.0
 var live:Dictionary={}
 var queue:Array=[]
 var last_night=false
-const STATS={"giant_green_slime":[128,18,0],"green_slime":[45,8,15]}
+const STATS={"giant_green_slime":[128,18,0],"green_slime":[45,8,18]}
 static func all_entries() -> Array:
 	var entries=[]
 	for base in Fen.spec.enemies:

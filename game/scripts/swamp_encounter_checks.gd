@@ -26,7 +26,7 @@ func run(g:Node,review:RefCounted) -> void:
 	review.check(children.size()==4 and not campaign.live.has(placement.id),"Reload restores four children without resurrecting or splitting the parent twice")
 	var coins=guild.copper
 	for child in children:child.set_physics_process(false);child.take_damage(9999,Vector3.ZERO)
-	review.check(g.progression.xp==xp+60 and guild.copper-coins>=20 and guild.copper-coins<=24,"Four children give 60 XP and 20–24 copper")
+	review.check(g.progression.xp==xp+72 and guild.copper-coins>=20 and guild.copper-coins<=24,"Four children give 72 XP and 20–24 copper")
 	review.check(g.monster_cores.pending.size()==cores,"No Floor Two slime cores drop")
 	var samples=4000;var residues=0;var potions=0;var valid_coins=true
 	for i in range(samples):
