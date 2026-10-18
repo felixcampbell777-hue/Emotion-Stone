@@ -3,6 +3,7 @@ extends "res://scripts/slime.gd"
 const Model=preload("res://scripts/library_model.gd")
 var game:Node
 var art:Node3D
+var motion=preload("res://scripts/elder_motion.gd").new()
 var attacks=0
 var attack_kind="sweep"
 var duration=1.0
@@ -25,6 +26,7 @@ func configure(data:Dictionary,target:Node3D,saved:Dictionary={}) -> void:
 	for mesh in art.model.find_children("*","MeshInstance3D",true,false):
 		if "tree" in String(mesh.name).to_lower():
 			var leaves=StandardMaterial3D.new();leaves.albedo_texture=load("res://assets/creatures/elder-tree.png");leaves.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR;leaves.alpha_scissor_threshold=.4;leaves.cull_mode=BaseMaterial3D.CULL_DISABLED;leaves.roughness=1.0;mesh.material_override=leaves
+	motion.configure(art,visual)
 	body=MeshInstance3D.new();body.mesh=SphereMesh.new();body.visible=false;visual.add_child(body)
 	var capsule=CapsuleShape3D.new();capsule.radius=1.2;capsule.height=3.8;collision.shape=capsule;collision.position.y=1.9
 	rock=Props.box(visual,Vector3(1.4,.3,1.3),Vector3(1.1,.9,1.0),"#82949f");rock.visible=false
@@ -43,6 +45,9 @@ func take_damage(amount:int,away:Vector3) -> void:
 	if health>0:state=before;state_time=remaining
 func repel(_away:Vector3,_force:float,stun:float) -> void:
 	if state=="forming" or health<=0:return
+	if state=="strike" and attack_kind=="rush":
+		player.knockback=direction*8.5
+		game.notify("Charge parried! Its weight drives you backward.")
 	exposed=3;state="recover";state_time=maxf(1.4,stun);parry_flash=.4;marker.visible=false;rock.visible=false
 func open_armor() -> void:repel(Vector3.ZERO,0,2.5)
 func breaker_expose(seconds:float) -> void:exposed=maxf(exposed,seconds);state="recover";state_time=1.5
@@ -50,7 +55,7 @@ func take_lance_damage(amount:int,away:Vector3) -> void:exposed=2;take_damage(am
 func begin_attack(kind:String) -> void:
 	attack_kind=kind;attacks+=1;strikes=0;lunge_hit=false;pursuit_time=0;direction=((player.position-position)*Vector3(1,0,1)).normalized()
 	target_point=player.position*Vector3(1,0,1)
-	duration={"sweep":1.0,"slam":1.45,"rush":1.0,"stone":1.6}[kind];state="windup";state_time=duration;marker.visible=kind=="slam";rock.visible=kind=="stone"
+	duration={"sweep":1.25,"slam":1.7,"rush":1.45,"stone":1.7}[kind];state="windup";state_time=duration;marker.visible=kind=="slam";rock.visible=kind=="stone"
 func form(delta:float) -> void:
 	state_time=maxf(0,state_time-delta);var t=1-state_time/3.0
 	visual.position.y=-4*(1-smoothstep(0,1,t));art.pose("rise",t,delta)
@@ -66,7 +71,9 @@ func strike(reach:float,damage:int,wide:bool=false) -> void:
 	if offset.length()>reach or (not wide and direction.dot(offset.normalized())<.15):return
 	if game.impact_blocked(position+Vector3.UP,player.position+Vector3.UP):return
 	if player.position.y>1.1 and attack_kind=="sweep":return
-	if offset.length()<=float(player.combat.parry.contact_range)+1.5 and player.try_parry(self):return
+	# The attacking limb reaches the player long before the giant body centre does.
+	var contact=player.position-offset.normalized()*.75
+	if player.try_parry(self,contact):return
 	player.take_damage(damage,offset.normalized())
 func _physics_process(delta:float) -> void:
 	if not simulation_enabled or not is_instance_valid(game) or not player.input_enabled or player.health<=0:return
@@ -88,13 +95,16 @@ func _physics_process(delta:float) -> void:
 		state_time-=delta
 		if state_time>.25 and distance>.01:direction=offset.normalized()
 		visual.rotation.y=atan2(direction.x,direction.z)
-		if attack_kind=="stone":rock.position.y=lerpf(.25,3.4,1-state_time/duration)
+		if attack_kind=="stone":
+			var t=clampf(1-state_time/duration,0,1)
+			rock.position=Vector3(-1.4,lerpf(.25,4.3,smoothstep(0,.65,t)),lerpf(1.3,-.4,smoothstep(0,.65,t)))
 		if state_time<=0:
 			state="strike";duration=.85 if attack_kind=="sweep" else .65;state_time=duration
-			if attack_kind=="stone":
-				var projectile=load("res://scripts/elder_stone.gd").new();game.world_root.add_child(projectile);projectile.configure(game,self,direction);projectile.position=rock.global_position;projectile.direction=(player.position+Vector3.UP*.9-projectile.position).normalized();game.projectiles.append(projectile);rock.visible=false
 	elif state=="strike":
 		state_time-=delta;var t=1-state_time/duration
+		if attack_kind=="stone" and strikes==0 and t>=.28:
+			strikes=1
+			var projectile=load("res://scripts/elder_stone.gd").new();game.world_root.add_child(projectile);projectile.configure(game,self,direction);projectile.position=rock.global_position;projectile.direction=(player.position+Vector3.UP*.9-projectile.position).normalized();game.projectiles.append(projectile);rock.visible=false
 		if attack_kind=="rush":velocity=direction*10
 		if attack_kind=="slam" and strikes==0 and t>=.4:
 			strikes=1;strike(5.5,30,true);marker.visible=false;game._ground_slam(position+direction*2.5,true)
@@ -103,14 +113,14 @@ func _physics_process(delta:float) -> void:
 			elif strikes==1 and t>=.72:strikes=2;strike(4.8,21,true)
 		elif attack_kind=="rush" and not lunge_hit and distance<2.8:
 			lunge_hit=true;strike(3.0,25)
-		if state_time<=0 and state=="strike":state="recover";state_time=1.6 if attack_kind=="slam" else 1.0;exposed=state_time
+		if state_time<=0 and state=="strike":state="recover";state_time={"slam":1.9,"rush":1.5,"sweep":1.3,"stone":1.2}[attack_kind];exposed=state_time
 	elif state=="recover":
 		state_time-=delta
 		if state_time<=0:state="idle"
-	var purpose="walk" if velocity.length()>.1 else "idle";var sample=-1.0
-	if state=="windup":purpose="brace" if attack_kind=="slam" else "attack";sample=clampf(1-state_time/duration,0,1)*.38
-	elif state=="strike":purpose="attack";sample=.38+clampf(1-state_time/duration,0,1)*.62
-	art.pose(purpose,sample,delta);art.flash(hit_flash,exposed)
+	if state!="strike":velocity=Vector3.ZERO if state!="idle" else velocity
+	var progress=clampf(1-state_time/duration,0,1) if state in ["windup","strike"] else 0.0
+	motion.update(state,attack_kind,progress,delta,velocity.length()>.1);art.flash(hit_flash,exposed)
+	if rock.visible:rock.global_position=motion.hand_position()+direction*.35
 	# Stop inside the rim without resetting or de-aggroing. Reach covers its edge.
 	var goal=position+velocity*delta;var radial=Vector2(goal.x/20.5,goal.z/22.5)
 	if radial.length()>1:
