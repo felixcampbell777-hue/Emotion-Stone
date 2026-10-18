@@ -175,5 +175,3 @@ static func build(world:Node3D) -> void:
 	lantern(root,Vector3(4,3.5,6))
 	# Keep a modest amount of static draw work despite the richer joinery.
 	P.batch_kit(root,"rise_guild_lodge_v2")
-	for point in [[Vector3(15,0,35),"GUILD ↗"],[Vector3(90,0,97),"ADVENTURERS' GUILD ↗"]]:
-		var at:Vector3=point[0];at.y=world.ground_height(at);box(world,at+Vector3.UP,Vector3(.16,2,.16),"wood");box(world,at+Vector3(0,1.8,0),Vector3(2.7,.6,.14),"wood",false);placard(world,at+Vector3(0,1.8,.1),point[1],26)

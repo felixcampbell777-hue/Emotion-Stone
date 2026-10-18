@@ -9,6 +9,12 @@ func run(test:RefCounted) -> void:
 		var loot=guild.roll("vault_elder");leaf+=int(loot.items.has("elder_leaves"));heart+=int(loot.items.has("elder_heart_necklace"));limits=limits and loot.copper>=45 and loot.copper<=130
 	test.check(limits and absf(leaf/10000.0-.2)<.02 and absf(heart/10000.0-.05)<.01,"Seeded Elder drop sampling respects both chances and copper bounds")
 	g.load_map("wr_boss_chamber",Vector2(0,36),true);g.current_world.set_physics_process(false)
+	r.flags.erase("elder_first_kill_bonus");g.defeated_enemies.erase(id);var elder_xp=g.progression.xp
+	g._enemy_defeated(id,"vault_elder")
+	test.check(g.progression.xp==elder_xp+1500 and "elder_first_kill_bonus" in r.flags,"The Elder awards 500 repeatable XP plus a one-time 1,000 XP first-victory bonus")
+	r.elder_respawn=0;g.defeated_enemies.erase(id);elder_xp=g.progression.xp
+	g._enemy_defeated(id,"vault_elder")
+	test.check(g.progression.xp==elder_xp+500,"Later Elder victories award only the repeatable 500 XP")
 	var before=guild.copper;guild.defeated(id,"vault_elder",Vector3(0,0,-5))
 	test.check(guild.copper>=before+45 and guild.copper<=before+130,"Real Elder defeat directly credits copper in the boss chamber")
 	guild.drops[id]={"at":[0,-5],"copper":0,"items":{"elder_leaves":1,"elder_heart_necklace":1}};guild.build_drop(id);g.player.position=Vector3(0,0,-5);g.player.input_enabled=true

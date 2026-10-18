@@ -143,7 +143,9 @@ func support_height(body:CharacterBody3D,at:Vector3) -> float:
 	return height+.008
 func move_grounded(body:CharacterBody3D,delta:float) -> void:
 	if body.get("controllable")==true and body.position.y<.1:
-		var factor=Fen.movement_factor(body.position);body.velocity.x*=factor;body.velocity.z*=factor
+		# Water Walkers cancel terrain drag, then make every water gait twenty percent faster.
+		var gear=body.get("magic_gear")
+		var factor=1.2 if gear!=null and gear.bonus("water_speed")>0 else Fen.movement_factor(body.position);body.velocity.x*=factor;body.velocity.z*=factor
 	elif body.get("controllable")!=true and not Fen.safe(body.position+body.velocity*delta):body.velocity=Vector3.ZERO
 	super.move_grounded(body,delta)
 func animate_water(delta:float) -> void:

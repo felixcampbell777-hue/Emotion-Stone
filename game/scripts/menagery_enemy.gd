@@ -171,7 +171,7 @@ func _physics_process(delta:float) -> void:
 		if state=="idle":
 			if distance<(16 if canyon_support else 12):
 				visual.rotation.y=atan2(toward.x,toward.z)
-				var range=12.0 if canyon_support else 6.0 if style in ["bramble_slime","resin_slime","squirrel"] else 3.5 if style=="bat" else 2.4
+				var range=12.0 if canyon_support else 6.0 if style in ["bramble_slime","resin_slime","squirrel"] else 3.6 if style=="green_slime" else 3.5 if style=="bat" else 2.4
 				if style=="squirrel" and distance<2.8: velocity=-toward.normalized()*float(specimen.speed)
 				elif distance<range and (not canyon_support or not game.impact_blocked(position,player.position)):
 					state="windup"; state_time=float(specimen.windup); direction=toward.normalized(); bounce_count=0

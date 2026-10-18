@@ -345,6 +345,15 @@
         -111.91
       ],
       "size": "medium"
+    },
+    {
+      "id": "sticky_d10",
+      "kind": "slime",
+      "at": [
+        -69.96000000000001,
+        139.49
+      ],
+      "size": "large"
     }
   ],
   "catalog_enemies": [],

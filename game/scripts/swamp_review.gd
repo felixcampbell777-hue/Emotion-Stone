@@ -74,7 +74,7 @@ func run(g:Node,directory:String="") -> bool:
 	if not g.enemies.is_empty():
 		var enemy=g.enemies[0];enemy.set_physics_process(false);enemy.take_damage(7,Vector3.ZERO)
 		g.worldrise.swamp.snapshot();check(g.worldrise.swamp.states[enemy.definition.id].health==enemy.health,"Damaged slime health is recorded")
-		check(enemy.max_health==128 and enemy.specimen.damage==18,"Floor Two slime stats suit later progression")
+		check(enemy.max_health==128 and enemy.specimen.damage==36,"Floor Two giant slime stats suit later progression")
 	g.player.position=Vector3(Fen.arrival().x,.85,Fen.arrival().y);g.player.state="free";g.recovering=false
 	var data=g.save_data();check(g.Save.write(data,"user://swamp-review.json")==OK,"Private Floor Two save writes")
 	check(not g.Save.read("user://swamp-review.json").is_empty(),"Floor Two save passes strict validation")

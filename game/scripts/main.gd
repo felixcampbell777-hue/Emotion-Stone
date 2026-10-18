@@ -1485,12 +1485,13 @@ func respawn_player() -> void:
 
 func _enemy_defeated(id: String, kind: String, slain_enemy:Node3D=null) -> void:
 	if id in defeated_enemies: return
+	var first_bonus=worldrise.claim_first_kill_bonus(kind) if game_mode=="world_rise" and kind in ["vault_elder","ashfang"] else false
 	defeated_enemies.append(id)
 	if kind=="vault_elder":worldrise.elder_fell()
 	var earned_copper=0
 	if game_mode=="world_rise" and is_instance_valid(slain_enemy):
 		var purse_before=worldrise.guild.copper;worldrise.guild.defeated(id,kind,slain_enemy.position);earned_copper=worldrise.guild.copper-purse_before
-	var earned_xp=enemy_xp_reward(kind)
+	var earned_xp=enemy_xp_reward(kind)+(1000 if kind=="vault_elder" and first_bonus else 200 if kind=="ashfang" and first_bonus else 0)
 	gain_xp(earned_xp)
 	if is_instance_valid(slain_enemy) and not worldrise.swamp.active(): monster_cores.defeated(kind,slain_enemy.position,kind=="warden" and map_id=="herb_glade")
 	if kind=="bellkeeper": alpha2.boss_fell()
@@ -1499,7 +1500,9 @@ func _enemy_defeated(id: String, kind: String, slain_enemy:Node3D=null) -> void:
 			if enemy.definition.kind=="warden" and enemy.health<=0:
 				spawn_warden_remains(enemy.position)
 	if kind=="vault_elder":
-		notify("The Elder falls · +%d XP. The ramp returns."%earned_xp)
+		notify("The Elder falls · +%d XP%s. The ramp returns."%[earned_xp," · First victory bonus +1,000 XP" if first_bonus else ""])
+	elif kind=="ashfang" and first_bonus:
+		notify("Ashfang defeated · +%d XP · First victory bonus +200 XP"%earned_xp)
 	elif monster_cores.boss_bonus(kind)>0:
 		notify(kind.capitalize()+" defeated · +%d XP"%earned_xp)
 	else:

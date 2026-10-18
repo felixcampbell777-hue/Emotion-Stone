@@ -1,7 +1,7 @@
 {
   "kill_xp_multiplier": 0.25,
   "kill_xp_overrides": {
-    "vault_elder": 1500,
+    "vault_elder": 500,
     "beta_twin_wolf": 14
   },
   "materials": {
@@ -82,6 +82,15 @@
       "copper": 300,
       "materials": {},
       "vendor": "wr_swords"
+    },
+    "water_walkers": {
+      "level": 10,
+      "copper": 450,
+      "materials": {
+        "green_slime_residue": 15
+      },
+      "vendor": "wr_swords",
+      "floor": "wr_floor_02"
     },
     "leaf_shield": {
       "level": 1,

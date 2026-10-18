@@ -2,10 +2,11 @@ extends RefCounted
 const Fen=preload("res://scripts/swamp_shape.gd")
 func run(g:Node,review:RefCounted) -> void:
 	var campaign=g.worldrise.swamp;var guild=g.worldrise.guild
-	review.check(Fen.spec.enemies.size()==7 and Fen.spec.enemies.all(func(e):return e.style=="giant_green_slime"),"Only seven authored giant slimes populate Floor Two")
-	var placement=Fen.spec.enemies[0];g.player.position=Vector3(placement.at[0]+5,.85,placement.at[1]);campaign.spawn(placement)
+	var giants=Fen.spec.enemies.filter(func(e):return e.style=="giant_green_slime");var sticky=Fen.spec.enemies.filter(func(e):return e.style=="resin_slime")
+	review.check(giants.size()==7 and sticky.size()==1 and sticky[0].id=="sticky_d10","Seven giant slimes and one sticky D10 support slime populate Floor Two")
+	var placement=giants[0];g.player.position=Vector3(placement.at[0]+5,.85,placement.at[1]);campaign.spawn(placement)
 	var giant=campaign.live[placement.id];giant.set_physics_process(false);giant.ai_enabled=true;giant.simulation_enabled=true
-	review.check(giant.max_health==128 and is_equal_approx(giant.body.mesh.radius,1.45) and giant.collision.shape.radius==1.25,"Giant has 1.6 wolf HP and mother-slime dimensions")
+	review.check(giant.max_health==128 and giant.specimen.damage==36 and is_equal_approx(giant.body.mesh.radius,1.45) and giant.collision.shape.radius==1.25,"Giant has 1.6 wolf HP, doubled damage and mother-slime dimensions")
 	giant._physics_process(.01);review.check(giant.state=="giant_warn" and is_instance_valid(giant.warning),"Giant warns before its extended jump")
 	var target=giant.jump_target;review.check(target.distance_to(giant.position)>4 and target.distance_to(giant.position)<=9.1,"Jump reaches beyond the original short hop")
 	giant.take_damage(1,Vector3.ZERO);review.check(giant.state=="recover","Damage can interrupt the giant's jump tell")
@@ -18,7 +19,7 @@ func run(g:Node,review:RefCounted) -> void:
 	for child in campaign.all_entries().filter(func(e):return e.get("parent_id","")==placement.id):campaign.spawn(child)
 	var children=campaign.live.values().filter(func(e):return is_instance_valid(e) and String(e.definition.id).begins_with(placement.id+"_split_") and e.health>0)
 	review.check(children.size()==4 and g.progression.xp==xp,"Giant splits once into four children, with no extra parent XP")
-	review.check(children.all(func(e):return e.max_health==45 and e.specimen.damage==8),"Split children use original green-slime stats")
+	review.check(children.all(func(e):return e.max_health==45 and e.specimen.damage==8 and e.specimen.attack_speed==7.0),"Split children keep their original stats but jump farther and faster")
 	var split_save=g.save_data();g.Save.write(split_save,"user://swamp-live-split.json")
 	review.check(g.apply_save(g.Save.read("user://swamp-live-split.json")),"Reload accepts an encounter between parent defeat and child defeats")
 	for child in campaign.all_entries().filter(func(e):return e.get("parent_id","")==placement.id):campaign.spawn(child)
@@ -41,6 +42,10 @@ func run(g:Node,review:RefCounted) -> void:
 	var site=Fen.spec.sites.filter(func(e):return e.id=="swamp_rest_d11")[0];g.player.position=Vector3(site.at[0],.85,site.at[1]);g.worldrise.checkpoints.discover()
 	review.check(site.id in campaign.unlocked,"D11 crystal is discovered on approach")
 	review.check(g.current_world.interactions.any(func(e):return e.get("role","")=="wr_clerk") and g.current_world.interactions.any(func(e):return e.get("role","")=="wr_swords"),"Raft has a functional guild clerk and equipment vendor")
+	var vendor=g.current_world.interactions.filter(func(e):return e.get("role","")=="wr_swords")[0];g.player.position=vendor.position;g.conversation.visible=true;g.conversation.target=vendor;guild.copper=450;guild.materials.green_slime_residue=15;g.progression.xp=int(g.progression.definition.level_thresholds[9]);g.apply_skill_stats()
+	review.check(guild.craft("water_walkers") and "water_walkers" in g.magic_items.owned and int(guild.materials.get("green_slime_residue",0))==0 and guild.copper==0,"Fen vendor sells Water Walkers for level 10, fifteen residues and 450 copper")
+	g.magic_items.equip("boots","water_walkers");review.check(is_equal_approx(g.magic_items.bonus("water_speed"),1.2),"Water Walkers provide their water-only 20% gait bonus without sticky resistance")
+	g.conversation.close();g._refresh_simulation()
 	var clerk=g.current_world.interactions.filter(func(e):return e.get("role","")=="wr_clerk")[0];g.player.position=clerk.position;g.conversation.visible=true;g.conversation.target=clerk;guild.copper=100
 	review.check(guild.buy_potion() and guild.copper==75,"Raft clerk sells the existing 25-copper healing potion")
 	g.conversation.close();g._refresh_simulation()

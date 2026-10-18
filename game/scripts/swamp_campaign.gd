@@ -8,11 +8,12 @@ var clock=0.0
 var live:Dictionary={}
 var queue:Array=[]
 var last_night=false
-const STATS={"giant_green_slime":[128,18,0],"green_slime":[45,8,18]}
+const STATS={"giant_green_slime":[128,36,0],"green_slime":[45,8,18],"resin_slime":[100,16,18]}
 static func all_entries() -> Array:
 	var entries=[]
 	for base in Fen.spec.enemies:
 		entries.append(base)
+		if base.style!="giant_green_slime":continue
 		for i in range(4):
 			var child=base.duplicate(true);child.id=base.id+"_split_"+str(i);child.style="green_slime";child.parent_id=base.id;child.at=[base.at[0]+sin(i*TAU/4+.4)*1.8,base.at[1]+cos(i*TAU/4+.4)*1.8];entries.append(child)
 	return entries
@@ -77,11 +78,13 @@ func fell(entry:Dictionary,enemy:Node3D) -> void:
 func spawn(entry:Dictionary) -> void:
 	if Vector2(entry.at[0]-game.player.position.x,entry.at[1]-game.player.position.z).length()>70:return
 	if not available(entry) or live.has(entry.id) or "wr_floor_02/"+entry.id in game.defeated_enemies:return
-	var specimen=game.menagery.catalog.monsters.filter(func(e):return e.style=="green_slime")[0].duplicate(true)
+	var source_style="green_slime" if entry.style=="giant_green_slime" else entry.style
+	var specimen=game.menagery.catalog.monsters.filter(func(e):return e.style==source_style)[0].duplicate(true)
 	var stats=STATS[entry.style];specimen.health=stats[0];specimen.damage=stats[1];specimen.windup=maxf(float(specimen.windup),.75)
 	if entry.style=="giant_green_slime":specimen.style=entry.style;specimen.size="large";specimen.speed=1.25
+	elif entry.style=="green_slime":specimen.attack_speed=7.0;specimen.speed=2.5
 	var enemy=load("res://scripts/giant_green_slime.gd" if entry.style=="giant_green_slime" else "res://scripts/swamp_slime.gd").new();game.world_root.add_child(enemy)
-	var saved=states.get(entry.id,{});var pos=saved.get("at",entry.at);enemy.setup(game,specimen,Vector3(pos[0],0,pos[1]));enemy.definition.id=entry.id;enemy.definition.kind=entry.style;enemy.definition.display_name="Giant Green Slime" if entry.style=="giant_green_slime" else "Green Slime";enemy.max_health=int(stats[0]);enemy.health=int(saved.get("health",stats[0]));enemy.home=Vector3(entry.at[0],game.current_world.ground_height(Vector3(entry.at[0],0,entry.at[1])),entry.at[1])
+	var saved=states.get(entry.id,{});var pos=saved.get("at",entry.at);enemy.setup(game,specimen,Vector3(pos[0],0,pos[1]));enemy.definition.id=entry.id;enemy.definition.kind=entry.style;enemy.definition.display_name="Giant Green Slime" if entry.style=="giant_green_slime" else "Sticky Slime" if entry.style=="resin_slime" else "Green Slime";enemy.max_health=int(stats[0]);enemy.health=int(saved.get("health",stats[0]));enemy.home=Vector3(entry.at[0],game.current_world.ground_height(Vector3(entry.at[0],0,entry.at[1])),entry.at[1])
 	game.EnvironmentArt.creature_quality(enemy,game.environment_profile);game.enemies.append(enemy);game.add_enemy_bar(enemy);live[entry.id]=enemy
 	enemy.defeated.connect(func():fell(entry,enemy))
 func tick(delta:float) -> void:

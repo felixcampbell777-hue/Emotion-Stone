@@ -58,7 +58,7 @@ static func valid(data:Variant) -> bool:
 			if not (v is float or v is int) or not is_finite(float(v)) or absf(v)>(500 if key=="ashfang" or String(key).begins_with("twin_wolves_") else 240):return false
 	var seen=[]
 	for flag in marks:
-		if flag not in ["rim_watch","hollow_tree","elder_defeated"] or flag in seen:return false
+		if flag not in ["rim_watch","hollow_tree","elder_defeated","elder_first_kill_bonus","ashfang_first_kill_bonus"] or flag in seen:return false
 		seen.append(flag)
 	return true
 func snapshot() -> Dictionary:
@@ -70,7 +70,10 @@ func snapshot() -> Dictionary:
 func restore(data:Dictionary) -> void:
 	swamp.game=game;swamp.restore(data.get("swamp",{}))
 	states=data.get("states",{}).duplicate(true);flags=data.get("flags",[]).duplicate();checkpoint=data.get("checkpoint",[0,0]).duplicate();guild.restore(data.get("economy",{}));day_clock=fposmod(float(data.get("day_clock",0)),1080);elder_respawn=float(data.get("elder_respawn",1080 if ELDER_ID in game.defeated_enemies else 0));ashfang_respawn=float(data.get("ashfang_respawn",1080 if "wr_floor_01/ashfang" in game.defeated_enemies else 0))
-	if ELDER_ID in game.defeated_enemies and "elder_defeated" not in flags:flags.append("elder_defeated")
+	if ELDER_ID in game.defeated_enemies:
+		if "elder_defeated" not in flags:flags.append("elder_defeated")
+		# Existing victories predate the first-kill XP split and have already received it.
+		if "elder_first_kill_bonus" not in flags:flags.append("elder_first_kill_bonus")
 	checkpoints.game=game;checkpoints.migrate(data)
 	checkpoints.unlocked=data.get("unlocked_checkpoints",["arrival"]).duplicate()
 	# Preserve an already-rested checkpoint when loading saves predating discovery.
@@ -81,6 +84,10 @@ func elder_fell() -> void:
 	if "elder_defeated" not in flags:flags.append("elder_defeated")
 	elder_respawn=1080
 	game.hud_feedback.boss_victory()
+func claim_first_kill_bonus(kind:String) -> bool:
+	var flag="elder_first_kill_bonus" if kind=="vault_elder" else "ashfang_first_kill_bonus" if kind=="ashfang" else ""
+	if flag.is_empty() or flag in flags:return false
+	flags.append(flag);return true
 static func daylight(at:float) -> float:
 	at=fposmod(at,1080)
 	if at<45:return smoothstep(-45,45,at)

@@ -541,6 +541,19 @@
       }
     },
     {
+      "id": "water_walkers",
+      "code": "WRB2",
+      "category": "boots",
+      "name": "Water Walkers",
+      "description": "Fen-wrought boots. Water no longer slows you; walking and sprinting move 20% faster in water. Sticky slime effects still apply.",
+      "color": "#315e58",
+      "accent": "#a8d8bd",
+      "variant": 2,
+      "effects": {
+        "water_speed": 1.2
+      }
+    },
+    {
       "id": "royal_tide",
       "code": "A2N1",
       "category": "necklace",

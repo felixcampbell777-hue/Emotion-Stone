@@ -50,6 +50,7 @@ func restore(data:Dictionary) -> void:
 func purse() -> String:return "%d gp %d cp"%[copper/100,copper%100]
 func roll(kind:String,coin_roll:int=-1,hide_roll:float=-1,rare_roll:float=-1) -> Dictionary:
 	if kind=="beta_twin_wolf":kind="beta_wolf"
+	if kind=="resin_slime":kind="green_slime"
 	if not catalog.coins.has(kind):return {}
 	var range= catalog.coins[kind];var result={"copper":rng.randi_range(range[0],range[1]) if coin_roll<0 else clampi(coin_roll,range[0],range[1]),"items":{}}
 	if kind=="ashfang":
@@ -153,6 +154,7 @@ func craft_error(id:String) -> String:
 	if not catalog.recipes.has(id):return "Unknown recipe"
 	if id in game.magic_items.owned:return "Already owned"
 	var recipe=catalog.recipes[id]
+	if not String(recipe.get("floor","")).is_empty() and game.map_id!=String(recipe.floor):return "Available on Floor %s"%String(recipe.floor).trim_prefix("wr_floor_0")
 	if recipe.get("requires_elder",false) and not elder_unlocked():return "Defeat the Elder first"
 	if game.progression.level()<int(recipe.level):return "Requires level %d"%recipe.level
 	for material in recipe.materials:
@@ -194,6 +196,7 @@ func dialogue(ui:Control,target:Dictionary,page:String="") -> void:
 		for id in catalog.recipes:
 			var recipe=catalog.recipes[id];var costs=[]
 			if recipe.get("vendor","wr_armorer")!=target.role:continue
+			if not String(recipe.get("floor","")).is_empty() and game.map_id!=String(recipe.floor):continue
 			if recipe.get("requires_elder",false) and not elder_unlocked():continue
 			for material in recipe.materials:costs.append("%d %s (%d owned)"%[recipe.materials[material],catalog.materials[material].name,materials.get(material,0)])
 			costs.append("%d cp"%recipe.copper)

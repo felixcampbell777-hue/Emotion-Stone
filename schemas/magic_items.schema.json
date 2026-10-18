@@ -149,6 +149,11 @@
                 "minimum": -0.5,
                 "maximum": 50
               },
+              "water_speed": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
               "speed": {
                 "type": "number",
                 "minimum": -0.5,
@@ -326,6 +331,11 @@
                 "maximum": 50
               },
               "slow_resist": {
+                "type": "number",
+                "minimum": -0.5,
+                "maximum": 50
+              },
+              "water_speed": {
                 "type": "number",
                 "minimum": -0.5,
                 "maximum": 50
