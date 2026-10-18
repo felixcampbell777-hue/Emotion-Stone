@@ -1813,6 +1813,8 @@ func _catalog_enemy_defeated(kind:String,display_name:String,enemy:Node3D=null) 
 	notify(display_name+" defeated. +%d XP - Level %d (%d points)" % [amount,progression.level(),progression.points()])
 
 func enemy_xp_reward(kind:String) -> int:
+	if game_mode=="world_rise" and worldrise.guild.catalog.get("kill_xp_overrides",{}).has(kind):
+		return int(worldrise.guild.catalog.kill_xp_overrides[kind])
 	var base=int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind)
 	return roundi(base*float(worldrise.guild.catalog.kill_xp_multiplier)) if game_mode=="world_rise" else base
 
