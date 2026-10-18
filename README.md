@@ -1,91 +1,48 @@
-# Coastal Foundation
+# World Rise — development handoff
 
-Current source baseline: **v0.36.1**, first-person gameplay with the upright two-hand sword hold, Mana Lance aim control, Dash Reach upgrades uppercut dash attacks with a vertical mana wave, a steerable first-person Mana Sea Dragon, and Flowing Counter, Measured Recovery, Breaker and Undertow.
+**Current game: v0.41.4. Prepared October 18, 2026.**
 
-The GitHub repository has separate **`alpha`** and **`beta`** branches. This checkout is **Alpha**: the title selects Alpha 2 — The Hollow Bell by default; original Alpha remains available. The Beta branch defaults to the meadow, wolf packs and castle town. Both retain the shared engine, map builder, other mode selector and separate saves.
+This is the **`codex/world-rise-handoff`** branch of Coastal Foundation, created from the latest Alpha commit `7af7e89` for continued World Rise development on another computer.
 
-**World Rise:** choose World Rise — Floor 1 on the title for a fresh first-person character on a 480m floating floor. A central arrival platform overlooks substantial hills and valleys, boar herds, northwest wolf woodland, a timber-and-stone Adventurers’ Guild and a metallic abyss rim. Earn copper automatically and sell collected beast drops, complete two one-time copper/XP hunts, and craft hide armor or the Cruel Charm. Its save is separate. See [World Rise](docs/WORLD-RISE.md).
+**Read [START-HERE-WORLD-RISE.md](START-HERE-WORLD-RISE.md) first.** It contains the exact Git LFS clone command, editor and Windows build setup, and a prompt to give your AI. Then read [the current development handoff](docs/WORLD-RISE-HANDOFF.md) and [AGENTS.md](AGENTS.md).
 
-**Alpha 2:** [The Hollow Bell](docs/ALPHA2.md) is a separate first-person Advanced exploration adventure: nine linked areas, companion quests, hidden equipment, checkpoints and a new Bellkeeper boss. Choose an Alpha or Beta save to copy your character into the campaign; the source save stays untouched. Target playtime is around an hour, depending on imported power and exploration.
+World Rise is an Advanced-graphics, first-person action RPG with a shared character across floating floors:
 
-For cloning, Git LFS, Windows builds and branch editing, read [GitHub setup](docs/GITHUB.md). Large editable models and runtime art are stored through Git LFS; generated releases, player saves, caches and local toolchain paths are excluded. Third-party assets retain their credits and licences; see [asset credits](docs/ASSET-CREDITS.md).
+- **Floor One:** large hills and boar valleys, wolf forest, guild vendors/contracts, western bridge-island chain with Ashfang and two-headed wolves, and a concealed Elder boss chamber.
+- **Floor Two:** 101 small swamp islands joined by winding shallows, green mist/deadly deep water, splitting giant slimes, a Sticky Slime, rest crystals and a small guild trading raft.
+- Shared sword combat, timed parries, stamina, jumping, dodge/dash, three-category World Rise progression, inventory, equipment, item drops, day/night cycle, saves and discovered-only fast travel.
 
-v0.23.0 adds a full-world Advanced graphics profile: CC0 scanned woodland vegetation/rocks, photographed terrain/roads, detailed roofs/interiors, wet slime surfaces, a scanned-stone guardian and a denser heroine mesh on the existing rig. Forward+ is the desktop default. Original art remains selectable and its editable sources are preserved. All 14 areas and the standalone builder share the new scenery. See docs/ENVIRONMENT-ASSET-INTEGRATION.md and docs/ASSET-CREDITS.md.
+Latest changes: Elder 500 repeatable XP + 1000 first-victory XP; Ashfang +200 first-victory XP; giant slimes 36 damage; more aggressive small-slime leaps; D10 Sticky Slime; level-10 Water Walkers sold on Floor Two for 450cp and 15 residues. Floor One guild-direction signs are removed. See the handoff for precise current behavior and known limitations.
 
-The project includes a runnable Windows game foundation: an elevated orthographic 3D world rendered at full window resolution with 8x MSAA, or in Detailed (960 x 540), Fine (640 x 360), or Chunky (320 x 180) mode, smooth diagonal movement, sprinting/stamina, oversized sword combat with timed parries and a flowing three-hit light combo, rushing wind-up bonuses, selectable water sweeps or a charged, interruptible armor-breaking lance, eight connected maps, illustrated conversations, an alchemical-core quest for Mother, four permanent enemy encounters, a death/respawn screen, XP/levels with a Strength / Form / Mana skill tree with ranked roots and equipable attack choices, and versioned saving.
-
-**Play:** double-click `Play.cmd` or the desktop shortcut. The current executable and shareable ZIP are in the release folder selected by `game/content/release.json`. The exported game needs no Godot, Blender, or Python installation. Only the release selected by `game/content/release.json` is retained. Read `docs/CURRENT-BASELINE.md` before changing the game.
-
-The desktop **Coastal Foundation** shortcut uses the custom coastal sword-and-gem icon. `tools/install_desktop_shortcut.ps1` updates it for this checkout; the Windows archive includes **Install Desktop Shortcut.cmd** for another computer. Keep the ICO beside the executable. Icon artwork and its exact prompt are in `game/assets/ui/`; `tools/icon_assets.py` packages ten Windows sizes using Pillow.
-
-See [Menagery and shared sketch codes](docs/MENAGERY.md) for the western scenery catalog, eight practice creature buttons and later area-layout notation.
-
-See [player controls](docs/PLAY.md) and [editing recipes](docs/EDITING.md). Open `game/project.godot` in the pinned Godot editor to inspect scenes and scripts.
-
-See [XP and starter skills](docs/PROGRESSION.md) for the Strength, Form and Mana branches and the reusable stone guardian kit.
-
-## Reuse that is already implemented
-
-- One Blender master with a 16-bone humanoid rig and nineteen shared clips, including secondary hair/dress motion, dragging, three combo attacks, water sweep and two-handed lance poses, and braced parry.
-- Bob/short/headscarf hair, dress/tunic/workdress, boots/bare feet, and human/prosthetic left arm modules.
-- A separate oversized greatsword, back carry, grip-aligned combat motion, and pooled ground scrape marks.
-- Semantic palette overrides in character JSON; no model export for recolors.
-- Seeded GridMap terrain, modular scenery, batched grass, and map JSON.
-- Schema validation, reference checks, source/export/build caches, and a Windows packaging command.
-- Headless integration checks and real renderer screenshot/animation captures.
-
-The rig is a simple reusable starting asset, with modest procedural geometry rather than a finished high-detail character. New body proportions or unusual outfits can require additional rigging work.
-
-## Small local tool interface
-
-Run these from this project folder in PowerShell:
+## Quick start
 
 ```powershell
-.\tools\platform.cmd validate
-.\tools\platform.cmd verify
-.\tools\platform.cmd capture
-.\tools\platform.cmd build
-.\tools\platform.cmd run
+git lfs install
+git clone --single-branch --branch codex/world-rise-handoff https://github.com/felixcampbell777-hue/Emotion-Stone.git WorldRise
+Set-Location WorldRise
+git lfs pull
+py -3 tools/check_checkout.py
 ```
 
-`build` validates definitions, rebuilds only changed source assets, and exports Windows when the runtime source has changed. `run` builds if needed and launches the executable. `verify` never writes the player's real save. `capture` runs the renderer in a hidden test window and writes images/metrics to `output/verification/`.
+Open `game/project.godot` in **Godot 4.5.1 standard**, allow the first import to finish, then run. Select **World Rise — Floor 1** on the title and Start New Game. The shared project currently defaults to Alpha 2; this branch preserves its gameplay settings. Blender is not needed to play in the editor. Windows export setup is in the start guide.
 
-## Files to change
+## Included source and assets
 
-| Task | First file/location |
-| --- | --- |
-| Change the heroine's colors | `game/content/characters/hero.json` |
-| Add a compatible character | `game/content/characters/` |
-| Move props or extend the world | `game/content/maps/` |
-| Camera, walk speed, initial map, pixel density | `game/content/platform.json` |
-| New geometry or animation | `art/source/humanoid-v1.blend` or `tools/build_character.py` |
-| Rig/module contract | `art/rig-spec.json` and `schemas/character.schema.json` |
-| Scenery shapes/materials | `game/scripts/props.gd` |
-| Movement | `game/scripts/actor.gd` |
-| Attack timing/damage/health/slime balance | `game/content/combat.json` |
-| Sprint, rushing, stamina, parry, water and mouse hold threshold | `game/content/combat.json` |
-| Desktop icon artwork | `game/assets/ui/launcher-icon-v1.png` |
-| Authored sword grip/blade trajectory | `game/content/sword_motion.json` |
-| Enemy behavior | `game/scripts/slime.gd` |
-| Dialogue/camera/UI/map travel | `game/scripts/main.gd` |
+Runtime GDScript, JSON and shaders are under `game/`; runtime GLBs/textures under `game/assets/`. Editable Blender files are in `art/source/`, donor library/provenance in `art/library/` and `art/environment/`, generation/build tools in `tools/`, schemas in `schemas/`. Large files use Git LFS. Finish downloading them before import; GitHub Download ZIP may not materialize LFS assets.
 
-See [combat editing and animation contracts](docs/COMBAT.md). The mother matches the wrapped/exposed prosthetic concepts from **Create two character variants**; these runtime modules use native editable geometry.
+The full shared project and its standalone map builder are included so dependencies remain intact. Alpha, Alpha 2 and Beta still exist with separate saves. Develop World Rise on this branch; use `alpha`/`beta` only when deliberately integrating changes.
 
-Editable sources are outside the Godot import tree. Runtime GLB exports are in `game/assets/characters/`. The original illustrations are preserved in `output/imagegen/`.
+Player saves, machine-specific tool paths, installed tools, `.godot` caches, generated Windows packages and test artifacts are excluded. Your friend starts with their own local save. Current gameplay export version is selected by `game/content/release.json`; builds are generated locally, not stored as source in Git.
 
-## Pinned authoring environment
+## Main references
 
-Godot **4.5.1**, Blender **4.5.3 LTS**, jsonschema **4.25.1**, and Pillow **12.3.0** are used here. Portable tools are cached in `%USERPROFILE%\.cache\comic-art-platform`; executable paths are in `tools/toolchain.local.json`. The existing Codex bundled Python runs the tools. Authoring binaries and transient Godot caches are excluded from version control.
+- [Setup and collaboration](docs/GITHUB.md)
+- [Current state, file ownership and known issues](docs/WORLD-RISE-HANDOFF.md)
+- [Newest baseline](docs/CURRENT-BASELINE.md)
+- [Floor Two terrain](docs/WORLD-RISE-FLOOR-2.md)
+- [Permanent Floor Two island codes](docs/maps/FLOOR-02-REFERENCE.md)
+- [Map builder](docs/MAP-BUILDER.md)
+- [First-person sword](docs/FIRST-PERSON-SWORD.md)
+- [Asset credits and licences](docs/ASSET-CREDITS.md)
 
-To set up the toolchain again on a machine with Python, run `python tools/bootstrap_runtime.py`. It downloads the pinned official Godot release/template and Blender release from the Berkeley Blender distribution mirror and installs validation dependencies into that local cache. It does not change global PATH. Godot archive digests are checked against release metadata when supplied; archive digests are recorded locally.
-
-Use one writer at a time for Blender files in the local checkout. Preserve source assets and the known working Windows export when making larger changes.
-
-Northern goblin campaign and Windstep equipment: [docs/GOBLIN-CAMPAIGN.md](docs/GOBLIN-CAMPAIGN.md).
-
-Magic equipment: [catalog, slots and set bonuses](docs/MAGIC-ITEMS.md). Menagerie [M] > Magic items provides 35 test specimens; equip in Inventory [I].
-
-
-Monster cores v0.22.0: see [drop/healing/quest rules](docs/MONSTER-CORES.md). Warden, Queen Slime and Goblin Foreman add 300, 800 and 250 XP boss bonuses respectively; prior base rewards remain. Mother now removes one canonical golem core from inventory; consumption is quest locked until completion.
-
-Alpha 2 v0.32.1 has distinct shipwreck coast, marsh, winding forest and coastal bluff routes; salvage and a bell-note puzzle vary the three ward objectives. Collected animated wolves, rats, boars, spiders and crabs replace the old campaign goblins/wardens. The living Bellkeeper has new melee, roots and grown-thornseed patterns. Shore wading, drowning and progressively revealed constellation skills are documented in docs/ALPHA2.md.
+Older documents contain historical designs and balances. The newest baseline, handoff and current code/content take precedence. The whole game is not represented as having a single blanket open-source licence; retain all third-party notices.

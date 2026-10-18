@@ -1,4 +1,4 @@
-v0.41.3: Floor Two split green slimes award 18 XP each (72 XP per complete giant encounter); parent remains zero XP. No other balance or save changes.
+Current v0.41.4: seven giants now deal 36 damage; split greens leap farther and engage more aggressively. D10 also has a resin Sticky Slime. The E11 Fen vendor sells level-10 Water Walkers for 450cp and 15 Green Slime Residue: water walking/sprinting at 1.2x land speed, with sticky effects and drowning preserved. Each split green remains 18 XP (72 per complete giant encounter), 5–6cp and independent 30% residue / 10% potion; parent zero XP. See [current handoff](WORLD-RISE-HANDOFF.md) for the exact current implementation and verification limits. Encounter descriptions below are historical where superseded.
 
 # Current encounter and outpost update (v0.41.2)
 

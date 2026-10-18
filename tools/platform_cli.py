@@ -456,7 +456,7 @@ def build(skip_tests=False):
     icon=prepare_icons()
     chain=toolchain()
     cache_path=ROOT/'output/build-cache.json'
-    state=read(cache_path)
+    state=read(cache_path) if cache_path.exists() else {}
     version=read(GAME/'content/release.json')['version']
     executable=ROOT/f'output/windows/v{version}/CoastalFoundation.exe'
     def build_key():
