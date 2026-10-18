@@ -47,15 +47,20 @@ func layout() -> void:
 func project(at:Vector2) -> Vector2:return origin+at*scale_factor
 func refresh_status() -> void:
 	var checkpoints=game.worldrise.checkpoints;var source=checkpoints.nearby();var reason=checkpoints.block_reason()
-	var next_signature=selected+str(source.get("id",""))+reason+str(game.player.position)
+	var locked=selected not in checkpoints.unlocked
+	var next_signature=selected+str(source.get("id",""))+reason+str(game.player.position)+str(checkpoints.unlocked)
 	if next_signature==signature:return
 	signature=next_signature
 	status.text=reason if not reason.is_empty() else "Near "+str(source.title)+" · choose another checkpoint on the map or list."
+	if locked:status.text="Visit the selected checkpoint to unlock it. "+reason
 	status.modulate=Color("#efb5a5") if not reason.is_empty() else Color("#a9ded7")
-	travel_button.disabled=not reason.is_empty() or selected==source.get("id","")
+	travel_button.disabled=locked or not reason.is_empty() or selected==source.get("id","")
 	var sites=checkpoints.sites()
 	for index in range(sites.size()):
 		var button=destinations.get_child(index)
+		var available=sites[index].id in checkpoints.unlocked
+		button.text="%d · %s%s"%[index+1,sites[index].title,"" if available else " · Locked"]
+		button.modulate=Color.WHITE if available else Color("#8b9298")
 		button.add_theme_stylebox_override("normal",game.style(Color("#5a4a2fee") if sites[index].id==selected else Color("#203a33ee"),Color("#e2c277") if sites[index].id==selected else Color("#66877a")))
 	queue_redraw()
 func _gui_input(event:InputEvent) -> void:
@@ -89,9 +94,10 @@ func _draw() -> void:
 	var sites=game.worldrise.checkpoints.sites()
 	for index in range(sites.size()):
 		var entry=sites[index];var at=project(Vector2(entry.at[0],entry.at[1]));var color=Color("#f6d17f") if entry.id==selected else Color("#8ae4df")
+		if entry.id not in game.worldrise.checkpoints.unlocked:color=Color("#858b92")
 		draw_circle(at,9,color);draw_arc(at,12,0,TAU,24,color,1.5,true)
 		draw_string(font,at+Vector2(-4,5),str(index+1),HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color("#15272a"))
 	if game.worldrise.active():
 		var at=project(Vector2(game.player.position.x,game.player.position.z))
 		draw_colored_polygon(PackedVector2Array([at+Vector2(0,-8),at+Vector2(-6,6),at+Vector2(6,6)]),Color.WHITE)
-	draw_string(font,Vector2(plot.position.x+12,plot.end.y-12),"White triangle: you   ·   numbered circles: checkpoints",HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("#d2ddd5"))
+	draw_string(font,Vector2(plot.position.x+12,plot.end.y-12),"White: you   ·   grey: visit to unlock   ·   cyan: unlocked",HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("#d2ddd5"))

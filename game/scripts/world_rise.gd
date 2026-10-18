@@ -22,13 +22,21 @@ var ai_clock=0.0
 func is_night() -> bool:return day_clock>=600 and day_clock<1080
 const ELDER_ID="wr_boss_chamber/vault_elder"
 func active() -> bool:return game.game_mode=="world_rise" and game.map_id=="wr_floor_01"
-func reset() -> void:states.clear();flags.clear();checkpoint=[0,0];packs.clear();clock=0;elapsed=0;day_clock=0;elder_respawn=0;ashfang_respawn=0;light_clock=0;guild.reset();checkpoints.hold=0;checkpoints.armed=true
+func reset() -> void:states.clear();flags.clear();checkpoint=[0,0];packs.clear();clock=0;elapsed=0;day_clock=0;elder_respawn=0;ashfang_respawn=0;light_clock=0;guild.reset();checkpoints.hold=0;checkpoints.armed=true;checkpoints.unlocked=["arrival"]
 static func valid(data:Variant) -> bool:
 	if not data is Dictionary:return false
 	for key in ["day_clock","elder_respawn","ashfang_respawn"]:
 		var value=data.get(key,0)
 		if not (value is float or value is int) or not is_finite(float(value)) or value<0 or value>1080:return false
 	if not Guild.valid(data.get("economy",{})):return false
+	var unlocked=data.get("unlocked_checkpoints",["arrival"])
+	if not unlocked is Array or unlocked.size()>6:return false
+	var site_ids=["arrival"]+Shape.spec.landmarks.filter(func(e):return e.type=="rest").map(func(e):return e.id)
+	var visited=[]
+	for id in unlocked:
+		if not id is String or id not in site_ids or id in visited:return false
+		visited.append(id)
+	if "arrival" not in unlocked:return false
 	var cp=data.get("checkpoint",[0,0]);var marks=data.get("flags",[]);var records=data.get("states",{})
 	if data.get("checkpoint_layout",1) not in [1,2]:return false
 	if not cp is Array or cp.size()!=2 or not marks is Array or marks.size()>8 or not records is Dictionary or records.size()>160:return false
@@ -54,11 +62,16 @@ func snapshot() -> Dictionary:
 	if active():
 		for enemy in game.enemies:
 			if enemy.definition.id=="ashfang" and enemy.health>0:states.ashfang={"health":enemy.health,"at":[enemy.position.x,enemy.position.z]}
-	return {"states":states.duplicate(true),"flags":flags.duplicate(),"checkpoint":checkpoint.duplicate(),"checkpoint_layout":2,"economy":guild.snapshot(),"day_clock":day_clock,"elder_respawn":elder_respawn,"ashfang_respawn":ashfang_respawn}
+	return {"states":states.duplicate(true),"flags":flags.duplicate(),"checkpoint":checkpoint.duplicate(),"checkpoint_layout":2,"unlocked_checkpoints":checkpoints.unlocked.duplicate(),"economy":guild.snapshot(),"day_clock":day_clock,"elder_respawn":elder_respawn,"ashfang_respawn":ashfang_respawn}
 func restore(data:Dictionary) -> void:
 	states=data.get("states",{}).duplicate(true);flags=data.get("flags",[]).duplicate();checkpoint=data.get("checkpoint",[0,0]).duplicate();guild.restore(data.get("economy",{}));day_clock=fposmod(float(data.get("day_clock",0)),1080);elder_respawn=float(data.get("elder_respawn",1080 if ELDER_ID in game.defeated_enemies else 0));ashfang_respawn=float(data.get("ashfang_respawn",1080 if "wr_floor_01/ashfang" in game.defeated_enemies else 0))
 	if ELDER_ID in game.defeated_enemies and "elder_defeated" not in flags:flags.append("elder_defeated")
 	checkpoints.game=game;checkpoints.migrate(data)
+	checkpoints.unlocked=data.get("unlocked_checkpoints",["arrival"]).duplicate()
+	# Preserve an already-rested checkpoint when loading saves predating discovery.
+	if not data.has("unlocked_checkpoints"):
+		for entry in checkpoints.sites():
+			if Vector2(checkpoint[0],checkpoint[1]).distance_to(Vector2(entry.at[0],entry.at[1]))<.1 and entry.id not in checkpoints.unlocked:checkpoints.unlocked.append(entry.id)
 func elder_fell() -> void:
 	if "elder_defeated" not in flags:flags.append("elder_defeated")
 	elder_respawn=1080
@@ -288,7 +301,7 @@ func interact(target:Dictionary) -> bool:
 	else:game.notify("The ascent gate is dormant. Floor Two is not available yet.")
 	return true
 func journal(ui:Node) -> void:
-	ui.add_quest("The Verdant Reach","Exploration + combat XP","Explore from the central arrival platform.","Six checkpoints connect Floor One. Stand still in the platform centre for one second to rest; use E at the five crystals. Inventory → Map travels between them within 6m, when no aggressive enemy is within 30m. Resting restores health/stamina, sets respawn and resets ordinary packs. Elderwood lies northwest; the eastern rim falls into the abyss.")
+	ui.add_quest("The Verdant Reach","Exploration + combat XP","Explore from the central arrival platform.","Six checkpoints connect Floor One. Stand still in the platform centre for one second to rest; use E at the five crystals. Visit within 6m to unlock each destination, then save to retain discoveries. Inventory → Map travels between unlocked sites within 6m, when no aggressive enemy is within 30m. Resting restores health/stamina, sets respawn and resets ordinary packs. Elderwood lies northwest; the eastern rim falls into the abyss.")
 	ui.add_quest("The Adventurers' Guild","Sell spoils · craft equipment","Follow the trail southeast, opposite Elderwood.","Copper is credited on kills; collect material sacks with E. The clerk buys spoils and sells 25-HP potions for 25cp. Craft armor or the Cruel Charm with Bram; buy swords from Corin. 100 copper = 1 gold.")
 	for id in Guild.catalog.contracts:
 		var entry=Guild.catalog.contracts[id];var state=guild.contracts.get(id,{"active":false,"count":0})
