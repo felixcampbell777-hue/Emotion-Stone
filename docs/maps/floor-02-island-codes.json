@@ -1,0 +1,2070 @@
+{
+  "floor": "wr_floor_02",
+  "baseline": "0.41.1",
+  "rule": "Codes are permanent island identities. Keep codes assigned to island_id even if islands move. Do not recalculate existing codes from coordinates. Crossing references use both endpoint codes.",
+  "islands": [
+    {
+      "code": "F2-D1",
+      "island_id": "island_000",
+      "at": [
+        -74.34,
+        -178.28
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_001",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_007",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-E1",
+      "island_id": "island_001",
+      "at": [
+        -36.96,
+        -177.89
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_000",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-F1",
+      "island_id": "island_002",
+      "at": [
+        -1.02,
+        -178.38
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_003",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_009",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-G1",
+      "island_id": "island_003",
+      "at": [
+        36.98,
+        -184.63
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_002",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_004",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_010",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-H1",
+      "island_id": "island_004",
+      "at": [
+        73.09,
+        -183.24
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_003",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_011",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-B2",
+      "island_id": "island_005",
+      "at": [
+        -144.01,
+        -139.42
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_006",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-C2",
+      "island_id": "island_006",
+      "at": [
+        -111.95,
+        -149.84
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_005",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_015",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-D2",
+      "island_id": "island_007",
+      "at": [
+        -70.69,
+        -142.84
+      ],
+      "checkpoint": "swamp_rest_3",
+      "links": [
+        {
+          "island_id": "island_000",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_008",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_016",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-E2",
+      "island_id": "island_008",
+      "at": [
+        -35.31,
+        -140.98
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_007",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_009",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-F2",
+      "island_id": "island_009",
+      "at": [
+        5.76,
+        -143.15
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_002",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_008",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-G2",
+      "island_id": "island_010",
+      "at": [
+        40.49,
+        -141.03
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_003",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_011",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_019",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-H2",
+      "island_id": "island_011",
+      "at": [
+        66.95,
+        -147.96
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_004",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_010",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_012",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-I2",
+      "island_id": "island_012",
+      "at": [
+        103.64,
+        -143.24
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_011",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_013",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-J2",
+      "island_id": "island_013",
+      "at": [
+        146.49,
+        -140.25
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_012",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_022",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-B3",
+      "island_id": "island_014",
+      "at": [
+        -138.22,
+        -111.45
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_015",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_024",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-C3",
+      "island_id": "island_015",
+      "at": [
+        -111.49,
+        -106.7
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_006",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_014",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_025",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-D3",
+      "island_id": "island_016",
+      "at": [
+        -68.11,
+        -105.32
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_007",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_026",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-E3",
+      "island_id": "island_017",
+      "at": [
+        -41.66,
+        -107.11
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_018",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_027",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-F3",
+      "island_id": "island_018",
+      "at": [
+        4.62,
+        -108.94
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_017",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_028",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-G3",
+      "island_id": "island_019",
+      "at": [
+        31.4,
+        -113.24
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_010",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_020",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-H3",
+      "island_id": "island_020",
+      "at": [
+        66.04,
+        -112.43
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_019",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_021",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_030",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-I3",
+      "island_id": "island_021",
+      "at": [
+        104.06,
+        -111.91
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_020",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_022",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-J3",
+      "island_id": "island_022",
+      "at": [
+        141.64,
+        -106.11
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_013",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_021",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_032",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-A4",
+      "island_id": "island_023",
+      "at": [
+        -184.47,
+        -71.42
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_034",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-B4",
+      "island_id": "island_024",
+      "at": [
+        -145.59,
+        -70.63
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_014",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_025",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_035",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-C4",
+      "island_id": "island_025",
+      "at": [
+        -109.05,
+        -67.3
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_015",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_024",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_036",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-D4",
+      "island_id": "island_026",
+      "at": [
+        -66.93,
+        -73.74
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_016",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_037",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-E4",
+      "island_id": "island_027",
+      "at": [
+        -37.89,
+        -69.85
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_017",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_028",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-F4",
+      "island_id": "island_028",
+      "at": [
+        1.61,
+        -77.31
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_018",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_027",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_029",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_039",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-G4",
+      "island_id": "island_029",
+      "at": [
+        37.8,
+        -77.51
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_028",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_030",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_040",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-H4",
+      "island_id": "island_030",
+      "at": [
+        77.55,
+        -68.94
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_020",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_029",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_041",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-I4",
+      "island_id": "island_031",
+      "at": [
+        109.85,
+        -76.38
+      ],
+      "checkpoint": "swamp_rest_2",
+      "links": [
+        {
+          "island_id": "island_032",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_042",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-J4",
+      "island_id": "island_032",
+      "at": [
+        141.78,
+        -71.27
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_022",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_031",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_033",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-K4",
+      "island_id": "island_033",
+      "at": [
+        182.09,
+        -73.11
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_032",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_044",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-A5",
+      "island_id": "island_034",
+      "at": [
+        -178.77,
+        -39.4
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_023",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_035",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_045",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-B5",
+      "island_id": "island_035",
+      "at": [
+        -142.14,
+        -39.0
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_024",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_034",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-C5",
+      "island_id": "island_036",
+      "at": [
+        -109.74,
+        -40.42
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_025",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_037",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_047",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-D5",
+      "island_id": "island_037",
+      "at": [
+        -73.88,
+        -36.62
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_026",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_036",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_038",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-E5",
+      "island_id": "island_038",
+      "at": [
+        -32.6,
+        -38.67
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_037",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_039",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_049",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-F5",
+      "island_id": "island_039",
+      "at": [
+        -0.57,
+        -31.64
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_028",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_038",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_050",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-G5",
+      "island_id": "island_040",
+      "at": [
+        39.78,
+        -35.84
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_029",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_041",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_051",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-H5",
+      "island_id": "island_041",
+      "at": [
+        72.94,
+        -36.75
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_030",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_040",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_042",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_052",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-I5",
+      "island_id": "island_042",
+      "at": [
+        110.54,
+        -36.53
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_031",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_041",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_053",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-J5",
+      "island_id": "island_043",
+      "at": [
+        141.92,
+        -41.91
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_044",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_054",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-K5",
+      "island_id": "island_044",
+      "at": [
+        174.41,
+        -41.26
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_033",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_043",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-A6",
+      "island_id": "island_045",
+      "at": [
+        -178.91,
+        -0.46
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_034",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_056",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-B6",
+      "island_id": "island_046",
+      "at": [
+        -147.65,
+        -4.53
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_047",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_057",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-C6",
+      "island_id": "island_047",
+      "at": [
+        -102.84,
+        -1.2
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_036",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_046",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_048",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_058",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-D6",
+      "island_id": "island_048",
+      "at": [
+        -71.64,
+        -3.91
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_047",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_049",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-E6",
+      "island_id": "island_049",
+      "at": [
+        -36.79,
+        5.11
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_038",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_048",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_060",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-F6",
+      "island_id": "island_050",
+      "at": [
+        2.8,
+        1.43
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_039",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_051",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_061",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-G6",
+      "island_id": "island_051",
+      "at": [
+        36.18,
+        -1.46
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_040",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_050",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-H6",
+      "island_id": "island_052",
+      "at": [
+        67.83,
+        5.58
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_041",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_063",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-I6",
+      "island_id": "island_053",
+      "at": [
+        109.92,
+        -1.2
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_042",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_054",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_064",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-J6",
+      "island_id": "island_054",
+      "at": [
+        139.01,
+        3.7
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_043",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_053",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_055",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-K6",
+      "island_id": "island_055",
+      "at": [
+        177.57,
+        -1.02
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_054",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_066",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-A7",
+      "island_id": "island_056",
+      "at": [
+        -177.23,
+        39.01
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_045",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_067",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-B7",
+      "island_id": "island_057",
+      "at": [
+        -149.04,
+        31.77
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_046",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_058",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-C7",
+      "island_id": "island_058",
+      "at": [
+        -103.03,
+        36.6
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_047",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_057",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_059",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_069",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-D7",
+      "island_id": "island_059",
+      "at": [
+        -76.6,
+        32.02
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_058",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_070",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-E7",
+      "island_id": "island_060",
+      "at": [
+        -34.01,
+        34.47
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_049",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_061",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_071",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-F7",
+      "island_id": "island_061",
+      "at": [
+        -3.62,
+        37.95
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_050",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_060",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_072",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-G7",
+      "island_id": "island_062",
+      "at": [
+        38.05,
+        37.03
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_063",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-H7",
+      "island_id": "island_063",
+      "at": [
+        67.37,
+        41.09
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_052",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_062",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_074",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-I7",
+      "island_id": "island_064",
+      "at": [
+        111.29,
+        32.0
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_053",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_065",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_075",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-J7",
+      "island_id": "island_065",
+      "at": [
+        142.25,
+        40.61
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_064",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-K7",
+      "island_id": "island_066",
+      "at": [
+        184.9,
+        36.0
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_055",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_077",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-A8",
+      "island_id": "island_067",
+      "at": [
+        -181.34,
+        68.88
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_056",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_068",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-B8",
+      "island_id": "island_068",
+      "at": [
+        -139.39,
+        77.38
+      ],
+      "checkpoint": "swamp_rest_1",
+      "links": [
+        {
+          "island_id": "island_067",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_069",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_078",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-C8",
+      "island_id": "island_069",
+      "at": [
+        -109.72,
+        68.76
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_058",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_068",
+          "water_tier": "wade"
+        }
+      ]
+    },
+    {
+      "code": "F2-D8",
+      "island_id": "island_070",
+      "at": [
+        -76.63,
+        75.36
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_059",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_080",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-E8",
+      "island_id": "island_071",
+      "at": [
+        -31.0,
+        66.43
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_060",
+          "water_tier": "wade"
+        },
+        {
+          "island_id": "island_081",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-F8",
+      "island_id": "island_072",
+      "at": [
+        -2.1,
+        66.17
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_061",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_082",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-G8",
+      "island_id": "island_073",
+      "at": [
+        32.39,
+        67.44
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_074",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_083",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-H8",
+      "island_id": "island_074",
+      "at": [
+        73.76,
+        70.9
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_063",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_073",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_075",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-I8",
+      "island_id": "island_075",
+      "at": [
+        108.76,
+        66.84
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_064",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_074",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-J8",
+      "island_id": "island_076",
+      "at": [
+        146.48,
+        71.25
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_077",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_086",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-K8",
+      "island_id": "island_077",
+      "at": [
+        177.6,
+        70.51
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_066",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_076",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-B9",
+      "island_id": "island_078",
+      "at": [
+        -143.53,
+        105.96
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_068",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_087",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-C9",
+      "island_id": "island_079",
+      "at": [
+        -105.64,
+        105.85
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_080",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_088",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-D9",
+      "island_id": "island_080",
+      "at": [
+        -73.03,
+        104.42
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_070",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_079",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-E9",
+      "island_id": "island_081",
+      "at": [
+        -39.21,
+        102.98
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_071",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_090",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-F9",
+      "island_id": "island_082",
+      "at": [
+        -1.68,
+        102.65
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_072",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_091",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-G9",
+      "island_id": "island_083",
+      "at": [
+        35.6,
+        111.1
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_073",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_084",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_092",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-H9",
+      "island_id": "island_084",
+      "at": [
+        68.49,
+        111.25
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_083",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_085",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_093",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-I9",
+      "island_id": "island_085",
+      "at": [
+        105.16,
+        112.44
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_084",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_094",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-J9",
+      "island_id": "island_086",
+      "at": [
+        146.97,
+        106.17
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_076",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_095",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-B10",
+      "island_id": "island_087",
+      "at": [
+        -139.66,
+        138.02
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_078",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_088",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-C10",
+      "island_id": "island_088",
+      "at": [
+        -102.31,
+        149.6
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_079",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_087",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_089",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-D10",
+      "island_id": "island_089",
+      "at": [
+        -74.06,
+        142.19
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_088",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_090",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_096",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-E10",
+      "island_id": "island_090",
+      "at": [
+        -30.93,
+        149.59
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_081",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_089",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_091",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-F10",
+      "island_id": "island_091",
+      "at": [
+        5.86,
+        143.14
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_082",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_090",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_098",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-G10",
+      "island_id": "island_092",
+      "at": [
+        31.11,
+        144.37
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_083",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_099",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-H10",
+      "island_id": "island_093",
+      "at": [
+        72.99,
+        138.27
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_084",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_100",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-I10",
+      "island_id": "island_094",
+      "at": [
+        111.2,
+        138.4
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_085",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_095",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-J10",
+      "island_id": "island_095",
+      "at": [
+        147.25,
+        139.64
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_086",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_094",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-D11",
+      "island_id": "island_096",
+      "at": [
+        -75.6,
+        179.73
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_089",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_097",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-E11",
+      "island_id": "island_097",
+      "at": [
+        -39.82,
+        184.48
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_096",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-F11",
+      "island_id": "island_098",
+      "at": [
+        -2.6,
+        177.06
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_091",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_099",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-G11",
+      "island_id": "island_099",
+      "at": [
+        41.65,
+        182.23
+      ],
+      "checkpoint": null,
+      "links": [
+        {
+          "island_id": "island_092",
+          "water_tier": "shoal"
+        },
+        {
+          "island_id": "island_098",
+          "water_tier": "shoal"
+        }
+      ]
+    },
+    {
+      "code": "F2-H11",
+      "island_id": "island_100",
+      "at": [
+        72,
+        180
+      ],
+      "checkpoint": "arrival",
+      "links": [
+        {
+          "island_id": "island_093",
+          "water_tier": "shoal"
+        }
+      ]
+    }
+  ]
+}
