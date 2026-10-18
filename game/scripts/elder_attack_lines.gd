@@ -15,8 +15,8 @@ func make_line(color:Color) -> MeshInstance3D:
 	return node
 func hit(kind:String) -> void:
 	hit_kind=kind;flash_left=.14
-func sector(radius:float) -> PackedVector2Array:
-	var points=PackedVector2Array([Vector2.ZERO]);var half=acos(boss.RUSH_CONE)
+func sector(radius:float,cone:float) -> PackedVector2Array:
+	var points=PackedVector2Array([Vector2.ZERO]);var half=acos(cone)
 	for i in range(49):
 		var angle=lerpf(-half,half,i/48.0);points.append(Vector2(sin(angle),cos(angle))*radius)
 	return points
@@ -25,9 +25,9 @@ func circle(radius:float) -> PackedVector2Array:
 	for i in range(96):points.append(Vector2(sin(i*TAU/96),cos(i*TAU/96))*radius)
 	return points
 func outline(kind:String,preview:bool) -> PackedVector2Array:
-	if kind=="sweep":return circle(boss.SWEEP_REACH)
+	if kind=="sweep":return sector(boss.SWEEP_REACH,boss.SWEEP_CONE)
 	if kind=="slam":return circle(boss.SLAM_REACH)
-	var points=sector(boss.RUSH_REACH)
+	var points=sector(boss.RUSH_REACH,boss.RUSH_CONE)
 	if preview:
 		# Swept union of the forward contact sector and the committed rush travel.
 		var heading=boss.direction;var finish=boss.position+heading*boss.RUSH_SPEED*boss.RUSH_SECONDS

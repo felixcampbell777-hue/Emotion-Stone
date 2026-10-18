@@ -1,6 +1,7 @@
 extends "res://scripts/slime.gd"
 ## Arena-wide pursuit: never uses an ordinary mob's notice range or home leash.
 const SWEEP_REACH=4.8
+const SWEEP_CONE=cos(70.0*PI/180.0)
 const SLAM_REACH=5.5
 const RUSH_REACH=2.8
 const RUSH_CONE=.15
@@ -73,7 +74,8 @@ func form(delta:float) -> void:
 func strike(reach:float,damage:int,wide:bool=false) -> void:
 	attack_lines.hit(attack_kind)
 	var offset=(player.position-position)*Vector3(1,0,1)
-	if offset.length()>reach or (not wide and direction.dot(offset.normalized())<RUSH_CONE):return
+	var cone=SWEEP_CONE if attack_kind=="sweep" else RUSH_CONE
+	if offset.length()>reach or (not wide and direction.dot(offset.normalized())<cone):return
 	if game.impact_blocked(position+Vector3.UP,player.position+Vector3.UP):return
 	if player.position.y>1.1 and attack_kind=="sweep":return
 	# The attacking limb reaches the player long before the giant body centre does.
@@ -114,8 +116,8 @@ func _physics_process(delta:float) -> void:
 		if attack_kind=="slam" and strikes==0 and t>=.4:
 			strikes=1;strike(SLAM_REACH,30,true);game._ground_slam(position+direction*2.5,true)
 		elif attack_kind=="sweep":
-			if strikes==0 and t>=.18:strikes=1;strike(SWEEP_REACH,19,true)
-			elif strikes==1 and t>=.72:strikes=2;strike(SWEEP_REACH,21,true)
+			if strikes==0 and t>=.18:strikes=1;strike(SWEEP_REACH,19)
+			elif strikes==1 and t>=.72:strikes=2;strike(SWEEP_REACH,21)
 		elif attack_kind=="rush" and not lunge_hit and distance<RUSH_REACH:
 			lunge_hit=true;strike(RUSH_REACH,25)
 		if state_time<=0 and state=="strike":state="recover";state_time={"slam":1.9,"rush":1.5,"sweep":1.3,"stone":1.2}[attack_kind];exposed=state_time
