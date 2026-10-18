@@ -50,7 +50,7 @@
       }
     },
     "wolf_hide_armor": {
-      "level": 10,
+      "level": 7,
       "copper": 200,
       "materials": {
         "wolf_hide": 8

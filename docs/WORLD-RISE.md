@@ -42,7 +42,7 @@ Boars drop 2–4 copper, wolves 1–5. Each beast independently rolls 35% for it
 | Item | Requirements | Effect |
 | --- | --- | --- |
 | Boar Hide Armor (torso) | Level5, 5 boar hides, 100cp | 2% damage reduction |
-| Wolf Hide Leggings | Level10, 8 wolf hides, 200cp | 3% damage reduction |
+| Wolf Hide Leggings | Level7, 8 wolf hides, 200cp | 3% damage reduction |
 | Cruel Charm (necklace) | 2 wolf fangs, 1 boar tusk, 300cp | +2% all attack damage |
 
 Equip in Apparel after crafting. Boar torso armor and wolf leggings can be worn together for 5% damage reduction. The saved wolf item ID remains `wolf_hide_armor`; old torso equips move to leggings if free, otherwise remain owned without displacing existing leggings. Cosmetic equipment remains deferred to the future Blender update. Corin exclusively sells the level-five Improved Standard Greatsword for 300cp; equip purchased weapons in Inventory → Weapons. Bram retains armor, charm and shield crafting.
