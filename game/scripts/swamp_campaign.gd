@@ -100,4 +100,5 @@ func lighting() -> void:
 	var sky=env.sky.sky_material;sky.sky_top_color=Color("#667d72");sky.sky_horizon_color=Color("#899480");sky.ground_bottom_color=Color("#d9d9ad");sky.ground_horizon_color=sky.sky_horizon_color
 	env.ambient_light_source=Environment.AMBIENT_SOURCE_COLOR;env.ambient_light_color=Color("#77967f");env.ambient_light_energy=lerpf(.38,.68,blend)
 	env.fog_enabled=true;env.fog_height_density=0;env.fog_density=.055;env.fog_sky_affect=.94;env.fog_light_color=Color("#52685d").lerp(Color("#91a28c"),blend);env.volumetric_fog_enabled=false;env.tonemap_exposure=1.0
+	game.current_world.deep_fog_material.set_shader_parameter("fog_colour",Color("#203c2d").lerp(Color("#64785b"),blend))
 	var sun=game.world_root.get_node("WorldSun");sun.light_energy=lerpf(.12,.65,blend);sun.light_color=Color("#dde8c9");sun.rotation_degrees=Vector3(-52,-25,0);sun.directional_shadow_max_distance=48;game.camera.far=6500

@@ -104,7 +104,7 @@ func draw_swamp() -> void:
 		for z in range(241):
 			for x in range(241):
 				if Vector2(x-120,z-120).length()>120:image.set_pixel(x,z,Color.TRANSPARENT);continue
-				var depth=maxf(0,-field.vertex(x,z));var color=Color("#687d50") if depth==0 else Color("#647d4b") if depth<1.3 else Color("#1b392a")
+				var depth=maxf(0,-field.vertex(x,z));var color=Color("#687d50") if depth==0 else Color("#a0ad6a") if depth<.3 else Color("#647d4b") if depth<1.3 else Color("#1b392a")
 				image.set_pixel(x,z,color)
 		swamp_texture=ImageTexture.create_from_image(image)
 	draw_texture_rect(swamp_texture,Rect2(project(Vector2(-240,-240)),Vector2.ONE*480*scale_factor),false)

@@ -11,6 +11,7 @@ void fragment(){
  float ground=texture(bed,((at.xz+240.0)/2.0+vec2(.5))/241.0).r*6.0-4.0;
  float depth=max(0.0,-ground);float dark=smoothstep(1.30,1.38,depth);
  vec3 shallow=mix(vec3(.43,.49,.28),vec3(.28,.38,.20),smoothstep(0.0,1.22,depth));
+ shallow=mix(shallow,vec3(.52,.56,.32),1.0-smoothstep(.25,.38,depth));
  float wave=sin(at.x*2.8+clock*.65+sin(at.z*1.8))*sin(at.z*2.1-clock*.45);
  float film=noise(at.xz*.65+vec2(clock*.008,0));
  float algae=smoothstep(.56,.79,noise(at.xz*.19+vec2(0,clock*.004)))*film;

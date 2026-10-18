@@ -12,3 +12,6 @@ static func depth(at:Vector3) -> float:return maxf(0,WATER-height(at))
 static func safe(at:Vector3) -> bool:return Vector2(at.x,at.z).length()<235 and depth(at)<1.1
 static func dry(at:Vector3) -> bool:return safe(at) and height(at)>.12
 static func arrival() -> Vector2:return Vector2(spec.arrival[0],spec.arrival[1])
+static func movement_factor(at:Vector3) -> float:
+	var d=depth(at)
+	return lerpf(1,.85,smoothstep(0,.18,d)) if d<=.25 else lerpf(.85,.28,smoothstep(.25,.95,d))

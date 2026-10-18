@@ -32,6 +32,18 @@ func run(g:Node,directory:String="") -> bool:
 			if visited.has(int(edge.a)) and not visited.has(int(edge.b)):visited[int(edge.b)]=true;changed=true
 			if visited.has(int(edge.b)) and not visited.has(int(edge.a)):visited[int(edge.a)]=true;changed=true
 	check(visited.size()==Fen.spec.nodes.size(),"Every island is connected")
+	var fast_edges=Fen.spec.edges.filter(func(edge):return edge.water_tier=="shoal");var fast_visited={int(Fen.spec.fast_islands[0]):true};changed=true
+	while changed:
+		changed=false
+		for edge in fast_edges:
+			if fast_visited.has(int(edge.a)) and not fast_visited.has(int(edge.b)):fast_visited[int(edge.b)]=true;changed=true
+			if fast_visited.has(int(edge.b)) and not fast_visited.has(int(edge.a)):fast_visited[int(edge.a)]=true;changed=true
+	check(Fen.spec.fast_islands.size()==76 and fast_visited.size()==76,"Fast shoals form one connected network reaching 75% of islands")
+	var fast_edge=fast_edges[0];var fast_mid=Vector3(fast_edge.points[1][0],0,fast_edge.points[1][1]);fast_mid.y=Fen.height(fast_mid)
+	check(Fen.depth(fast_mid)<.3 and Fen.movement_factor(fast_mid)>.8 and Fen.movement_factor(fast_mid)<1,"Fast shoals are ankle-deep and slightly slower than dry land")
+	check(g.current_world.get_node("SwampArrival/ArrivalCrystals").get_child_count()==8,"Arrival has four crystal pedestals")
+	check(g.current_world.grass_material.shader.code.contains("rise_metal.gdshaderinc"),"Arrival uses the identical shared Floor One silver material")
+	check(g.current_world.deep_fog_material.get_shader_parameter("density")>=.19 and is_equal_approx(g.environment_settings.fog_density,.055),"Deep-water clouds are dense while general mist is unchanged")
 	var max_depth=0.0
 	for edge in Fen.spec.edges:
 		for segment in range(edge.points.size()-1):
@@ -54,7 +66,7 @@ func run(g:Node,directory:String="") -> bool:
 	g.inventory.close();g._refresh_simulation()
 
 	check(g.environment_settings.fog_density>=.05,"Mist obscures distant islands")
-	var e=Fen.spec.edges[0];var mid=Vector2(e.points[1][0],e.points[1][1]);var p=Vector3(mid.x,Fen.height(Vector3(mid.x,0,mid.y)),mid.y)
+	var e=Fen.spec.edges.filter(func(edge):return edge.water_tier=="wade")[0];var mid=Vector2(e.points[1][0],e.points[1][1]);var p=Vector3(mid.x,Fen.height(Vector3(mid.x,0,mid.y)),mid.y)
 	g.player.position=p;var start=g.player.position;g.player.velocity=Vector3(1,0,0)*3;g.current_world.move_grounded(g.player,.1)
 	check(g.player.position.distance_to(start)<.25,"Shallow water significantly slows movement")
 	g.worldrise.swamp.stream()
@@ -116,6 +128,8 @@ func run(g:Node,directory:String="") -> bool:
 		await picture(g,directory,"arrival",Fen.arrival(),Fen.arrival()+Vector2(-20,-35))
 		var node=Fen.spec.nodes[60];var at=Vector2(node.at[0],node.at[1]);await picture(g,directory,"island-network",at,at+Vector2(-25,-25))
 		await picture(g,directory,"water-boundary",mid,mid+Vector2(20,10))
+		var fast_at=Vector2(fast_mid.x,fast_mid.z);await picture(g,directory,"fast-shoal",fast_at,fast_at+Vector2(20,10))
+		await picture(g,directory,"deep-mist",at,at+Vector2(40,5))
 		g.worldrise.day_clock=800;g.worldrise.swamp.lighting();await picture(g,directory,"night-mist",at,at+Vector2(-25,-25))
 		g.worldrise.day_clock=250;g.worldrise.swamp.lighting();g.player.position=Vector3(Fen.arrival().x,.85,Fen.arrival().y);g.toggle_inventory();g.inventory.show_page("map")
 		await g.get_tree().create_timer(.3).timeout;await RenderingServer.frame_post_draw;g.get_viewport().get_texture().get_image().save_png(directory+"/swamp-map-travel.png");g.inventory.close();g._refresh_simulation()

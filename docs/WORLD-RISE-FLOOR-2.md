@@ -12,9 +12,9 @@ Character, skills, equipment, inventory, copper, XP, day/night clock and Floor O
 
 The 480m circular floor retains the metal rim and mountain backdrop. A deterministic jittered graph creates 101 small irregular islands, 119 winding shallow crossings and 19 independent loops. All islands connect, with alternate approaches and short dead ends. Dry surfaces sit roughly 0.85m above water; rest sites have clear centres.
 
-Crossings stay around 0.65m submerged. Leaving the pale green routes descends toward a 3.6m-deep bed. Movement progressively slows to 28% of normal in deeper shallows. Water darkens around the 1.35m shoulder immersion limit; reaching that depth causes death through the normal respawn flow. Jump height is respected. Geometry, collision, water colour and map derive from the same 2m height grid. Water samples exact height-map texel centres. The outer rim still permits a fatal fall.
+A connected fast network reaches 76 of 101 islands through 75 of the existing links. Its ankle-deep crossings sit around 0.18m submerged and allow 85% of dry-land speed, shown as paler gold-green water. The remaining 44 crossings stay around 0.65m submerged. Leaving the pale green routes descends toward a 3.6m-deep bed. Movement progressively slows to 28% of normal in deeper shallows. Water darkens around the 1.35m shoulder immersion limit; reaching that depth causes death through the normal respawn flow. Jump height is respected. Geometry, collision, water colour and map derive from the same 2m height grid. Water samples exact height-map texel centres. The outer rim still permits a fatal fall.
 
-Distance fog hides routes after a few islands; animated low mist covers the water. Lighting shares the day/night cycle. Existing local CC0 twisted/dead trees, reeds, ferns, grass, mossy rocks and stumps form the palette. Warm donor foliage becomes olive green. Ground and bark reuse Poly Haven textures. Mountains receive fog on this floor only.
+The arrival platform now shares Floor One's exact etched silver material and metal settings, with four teal crystal pedestals. Distance fog hides routes after a few islands; animated low mist covers the water. That general mist remains unchanged. A separate green cloud layer heavily obscures deep-water sightlines, feathered by a generated depth mask. It integrates 24 samples per pixel over at most 72m, stays below 6.5m and avoids engine volumetric fog. Lighting shares the day/night cycle. Existing local CC0 twisted/dead trees, reeds, ferns, grass, mossy rocks and stumps form the palette. Warm donor foliage becomes olive green. Ground and bark reuse Poly Haven textures. Mountains receive fog on this floor only.
 
 ## Starter encounters
 
@@ -31,7 +31,7 @@ Resin puddles appear above water. Monster cores use existing loot. Slimes float 
 
 ## Editing and performance
 
-- `tools/create_swamp_floor.py` regenerates graph, islands, height/depth texture, map and encounters. Use bundled Python with numpy/Pillow. Edit the recipe instead of duplicating exports.
+- `tools/create_swamp_floor.py` regenerates graph, islands, height/depth and deep-fog masks, water tiers, map and encounters. Use bundled Python with numpy/Pillow. Edit the recipe instead of duplicating exports.
 - `tools/prepare_swamp_assets.py` converts three existing local Quaternius models through Blender; it downloads nothing and executes no donor scripts.
 - `game/content/world_rise/floor_02.json` owns generated topology, height samples, encounters and refuges.
 - `swamp_shape.gd` supplies shared terrain queries; `swamp_floor.gd` builds terrain/dressing/water; `swamp_campaign.gd` owns streaming/save/travel; `swamp_slime.gd` adapts enemies.
@@ -44,4 +44,4 @@ Resin puddles appear above water. Monster cores use existing loot. Slimes float 
 
 `tools/platform.cmd inspect-swamp --windows --render` runs the checks in the selected Windows release and captures arrival, island network, shallow/deep boundary, night mist and Map/travel. Inspect these native images after relevant changes. Do not rerun unrelated heroine animation audits for floor-content edits. Keep only current accepted evidence and the selected release.
 
-Current v0.41.0 inspection: content validation passed; 40 focused checks passed in the packaged Forward+ Windows build. Five native views inspected over repeated material/lighting/traversal iterations. Full unrelated animation suites were not rerun. The existing player-save SHA256 stayed unchanged.
+Current v0.41.1 inspection: content validation passed; 45 focused checks passed in the packaged Forward+ Windows build. Seven native views inspected over repeated material/lighting/traversal iterations. Full unrelated animation suites were not rerun. The existing player-save SHA256 stayed unchanged.

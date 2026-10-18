@@ -1,5 +1,6 @@
 shader_type spatial;
 render_mode cull_disabled;
+#include "res://shaders/rise_metal.gdshaderinc"
 uniform sampler2D grass : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D stone : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform sampler2D cobbles : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
@@ -27,6 +28,6 @@ void fragment(){
  float trail=1.0-smoothstep(2.0,3.2,trail_distance(at.xz));
  c=mix(c,texture(cobbles,at.xz*.45).rgb*.85,trail*.95);
  float hub=arrival_enabled?1.0-smoothstep(8.8,9.2,r):0.0;float rim=smoothstep(terrain_radius*.94,terrain_radius*.946,r);float metal=max(hub,rim);
- vec3 silver=vec3(.39,.46,.44);float lines=step(.96,fract(r*.32));silver+=lines*.1;
+ vec3 silver=rise_silver(r);
  ALBEDO=mix(c,silver,metal);METALLIC=metal*.6;ROUGHNESS=mix(.95,.47,metal);
 }
