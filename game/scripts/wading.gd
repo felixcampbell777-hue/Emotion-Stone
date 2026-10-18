@@ -4,6 +4,7 @@ const SHOULDER=1.35
 static func enabled(world:Node3D) -> bool:return world.definition.get("wading",false)
 static func level(world:Node3D) -> float:return -.115 if world.definition.sea else -.035
 static func depth(world:Node3D,at:Vector3) -> float:
+	if world.definition.get("id","")=="wr_floor_02":return preload("res://scripts/swamp_shape.gd").depth(at)
 	if not enabled(world):return 0
 	if world.terrain_at(int(floor(at.x)),int(floor(at.z)))!="water":return 0
 	var point=Vector2(at.x,at.z)
@@ -18,4 +19,7 @@ static func speed(world:Node3D,at:Vector3) -> float:return lerpf(1,.25,clampf(de
 static func tick(game:Control) -> void:
 	if not enabled(game.current_world) or not game.player.input_enabled:return
 	var d=depth(game.current_world,game.player.position)
+	if game.map_id=="wr_floor_02":
+		if d>SHOULDER and -game.player.position.y>SHOULDER:game.player.drown()
+		return
 	if d>0 and level(game.current_world)-game.player.position.y>SHOULDER:game.player.drown()

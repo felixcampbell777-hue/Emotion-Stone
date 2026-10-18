@@ -62,6 +62,7 @@ func defeated(kind:String,at:Vector3,quest_warden:bool=false,drop_roll:float=-1,
 	serial+=1
 	var bounds=game.current_world.bounds
 	var safe=Vector3(clampf(at.x,bounds.position.x+.1,bounds.end.x-.1),0,clampf(at.z,bounds.position.y+.1,bounds.end.y-.1)); safe.y=game.current_world.ground_height(safe)
+	if game.map_id=="wr_floor_02":safe.y=maxf(safe.y,.04)
 	var drop={"key":serial,"id":id,"map":game.map_id,"at":[safe.x,safe.y,safe.z]}
 	pending.append(drop); build_drop(drop); return id
 func build_map() -> void:

@@ -1,0 +1,52 @@
+{
+  "licence": "CC0: reused Quaternius nature and Poly Haven library; see existing library manifests and docs/ASSET-CREDITS.md",
+  "downloads": [],
+  "sources": [
+    {
+      "path": "art/environment/source/quaternius_stylized_nature_cc0/glTF/TwistedTree_2.bin",
+      "sha256": "968895bfe950e40a2a0ba82c5a7f67571a5959629ec03ad23076990280386d69"
+    },
+    {
+      "path": "art/environment/source/quaternius_stylized_nature_cc0/glTF/TwistedTree_2.gltf",
+      "sha256": "7d57307e4ba817e807d84cf8020693ed31a82297593cca32e1780cfcdc6397c2"
+    },
+    {
+      "path": "art/environment/source/quaternius_stylized_nature_cc0/glTF/DeadTree_3.bin",
+      "sha256": "5c3b29bf37c700f5ca545b315f6423d966562d7af01116fdd2d8f94a6173959e"
+    },
+    {
+      "path": "art/environment/source/quaternius_stylized_nature_cc0/glTF/DeadTree_3.gltf",
+      "sha256": "aa74a47c69259f217388d7b3e2871d76c0385449fc1efd92299c2e55417fdffc"
+    },
+    {
+      "path": "art/environment/source/quaternius_stylized_nature_cc0/glTF/Grass_Wispy_Tall.bin",
+      "sha256": "a46e091f39958242a96722ea331efa8d7fb055c6e24d21aea6b0ac091a7b1b66"
+    },
+    {
+      "path": "art/environment/source/quaternius_stylized_nature_cc0/glTF/Grass_Wispy_Tall.gltf",
+      "sha256": "a05e3ac05e43abbdb89c5b61134e367c7d33e285ff8d2a6e0a40180cb335af0b"
+    }
+  ],
+  "exports": [
+    {
+      "path": "game/assets/environment/swamp/dead-tree.glb",
+      "sha256": "8822fba81dbbdc7f97c63c33c53f49db9d8604cd08728e356928f76bc737ece0"
+    },
+    {
+      "path": "game/assets/environment/swamp/reeds.glb",
+      "sha256": "c9bba14f6d685b1343663befc7e3f728a98c4c5c1289f66c362567dab22c96b5"
+    },
+    {
+      "path": "game/assets/environment/swamp/twisted-tree.glb",
+      "sha256": "b8d72f6d0ab0f2c92bbe3e98d64d76328fa76311a9d8e772df98d39d5859101d"
+    }
+  ],
+  "recipe": "tools/prepare_swamp_assets.py",
+  "textures": [
+    "forest_ground_04",
+    "forest_leaves_02",
+    "leafy_grass",
+    "pine_bark"
+  ],
+  "preview": "art/environment/floor2-preview"
+}

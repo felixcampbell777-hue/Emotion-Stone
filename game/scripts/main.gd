@@ -591,7 +591,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 		world_root.remove_child(npc)
 		npc.queue_free()
 	npcs.clear()
-	current_world=load("res://scripts/rise_chamber.gd").new() if id=="wr_boss_chamber" else load("res://scripts/rise_floor.gd").new() if id=="wr_floor_01" else World.new()
+	current_world=load("res://scripts/rise_chamber.gd").new() if id=="wr_boss_chamber" else load("res://scripts/swamp_floor.gd").new() if id=="wr_floor_02" else load("res://scripts/rise_floor.gd").new() if id=="wr_floor_01" else World.new()
 	current_world.environment_profile=environment_profile
 	world_root.add_child(current_world)
 	current_world.build(data)
@@ -608,7 +608,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 	camera.size=5.0 if data.has("interior") else float(config.camera_size)
 	var spawn=Vector2(data.spawn[0],data.spawn[1]) if not is_finite(at.x) else at
 	player.ground_world=current_world
-	player.motion_mode=CharacterBody3D.MOTION_MODE_GROUNDED if id in ["wr_floor_01","wr_boss_chamber"] else CharacterBody3D.MOTION_MODE_FLOATING
+	player.motion_mode=CharacterBody3D.MOTION_MODE_GROUNDED if id in ["wr_floor_01","wr_boss_chamber","wr_floor_02"] else CharacterBody3D.MOTION_MODE_FLOATING
 	if player.has_meta("rise_fall"):player.remove_meta("rise_fall")
 	player.position=Vector3(spawn.x,0,spawn.y)
 	player.position.y=current_world.ground_height(player.position)
@@ -638,7 +638,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 		if role in ["mother","a2_mother"]:
 			npc.set_arm_wrapped(not mother_unwrapped)
 		current_world.interactions.append({"id":npc_data.id,"title":npc.definition.display_name,"lines":npc_data.dialogue,"position":npc.position,"actor":npc,"role":role})
-	for enemy_data in ([] if id in ["wr_floor_01","wr_boss_chamber"] else data.get("enemies",[])):
+	for enemy_data in ([] if id in ["wr_floor_01","wr_boss_chamber","wr_floor_02"] else data.get("enemies",[])):
 		var enemy=load("res://scripts/canyon_fiend.gd").new() if enemy_data.kind=="canyon_fiend" else load("res://scripts/library_enemy.gd").new() if String(enemy_data.kind).begins_with("library_") else load("res://scripts/bellkeeper.gd").new() if enemy_data.kind=="bellkeeper" else BetaEnemy.new() if String(enemy_data.kind).begins_with("beta_") else GoblinEnemy.new() if String(enemy_data.kind).begins_with("goblin_") else Slime.new() if enemy_data.kind=="slime" else ForestEnemy.new()
 		enemy.name=enemy_data.id
 		var encounter_id=id+"/"+enemy_data.id
@@ -673,7 +673,7 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 	goblin_campaign.build_map()
 	alpha2.build_map()
 	worldrise.build_map()
-	if environment_profile=="darkwood" and id not in ["wr_floor_01","wr_boss_chamber"]: EnvironmentArt._retexture(current_world)
+	if environment_profile=="darkwood" and id not in ["wr_floor_01","wr_boss_chamber","wr_floor_02"]: EnvironmentArt._retexture(current_world)
 	monster_cores.build_map()
 	location_title.text=data.display_name
 	location_subtitle.text=data.subtitle
@@ -1069,7 +1069,7 @@ func apply_save(data: Dictionary) -> bool:
 		var entrance=test_world.definition.spawn
 		at=Vector3(entrance[0],0,entrance[1])
 	if mode=="world_rise" and (not test_world.safe_position(at) or at.y< -5):
-		var rest=test_world.definition.spawn if data.map=="wr_boss_chamber" else data.get("world_rise",{}).get("checkpoint",[0,0]);at=Vector3(rest[0],0,rest[1])
+		var rest=test_world.definition.spawn if data.map=="wr_boss_chamber" else data.get("world_rise",{}).get("swamp",{}).get("checkpoint",test_world.definition.spawn) if data.map=="wr_floor_02" else data.get("world_rise",{}).get("checkpoint",[0,0]);at=Vector3(rest[0],0,rest[1])
 	var safe=test_world.safe_position(at)
 	test_world.free()
 	if not safe:
@@ -1312,7 +1312,7 @@ func _health_changed(value: int, maximum: int) -> void:
 func _stamina_changed(value: float, maximum: float) -> void:
 	stamina_bar.max_value=maximum
 	stamina_bar.value=value
-	stamina_label.text="STAMINA  %d / %d" % [ceili(value),int(maximum)]
+	stamina_label.text="STAMINA  %d / %d" % [mini(ceili(value-.00001),roundi(maximum)),roundi(maximum)]
 
 func _parry_succeeded(enemy: Node3D) -> void:
 	combat_skills.parried(enemy)
@@ -1467,7 +1467,9 @@ func respawn_player() -> void:
 	player.set_sword_drawn(false)
 	dreadmore.reset_ambushes_after_death()
 	if game_mode=="world_rise":worldrise.respawn_reset()
-	if game_mode=="world_rise":load_map("wr_floor_01",Vector2(worldrise.checkpoint[0],worldrise.checkpoint[1]))
+	if game_mode=="world_rise":
+		var cp=worldrise.swamp.checkpoint if worldrise.swamp.active() else worldrise.checkpoint
+		load_map("wr_floor_02" if worldrise.swamp.active() else "wr_floor_01",Vector2(cp[0],cp[1]))
 	elif game_mode=="alpha2": load_map(alpha2.checkpoint,Vector2(alpha2.checkpoint_at[0],alpha2.checkpoint_at[1]))
 	elif game_mode=="beta": load_map("beta_meadow")
 	elif world_id.is_empty(): load_map("village_green",Vector2(0,3.5))
@@ -1581,6 +1583,9 @@ func _capture(directory: String) -> void:
 	var view="all"
 	if "--capture-view" in arguments:
 		view=arguments[arguments.find("--capture-view")+1]
+	if view=="swamp":
+		var passed=await load("res://scripts/swamp_review.gd").new().run(self,directory)
+		print("CAPTURE_OK ",directory);get_tree().quit(0 if passed else 1);return
 	if view=="guild":
 		game_mode="world_rise";start_new_game(false);title_screen.hide();_refresh_simulation();set_resolution(0);set_process(false);set_physics_process(false);player.set_physics_process(false)
 		await load("res://scripts/rise_capture.gd").new().guild_capture(self,directory)
@@ -1813,6 +1818,7 @@ func _catalog_enemy_defeated(kind:String,display_name:String,enemy:Node3D=null) 
 	notify(display_name+" defeated. +%d XP - Level %d (%d points)" % [amount,progression.level(),progression.points()])
 
 func enemy_xp_reward(kind:String) -> int:
+	if worldrise.swamp.active() and worldrise.swamp.STATS.has(kind):return int(worldrise.swamp.STATS[kind][2])
 	if game_mode=="world_rise" and worldrise.guild.catalog.get("kill_xp_overrides",{}).has(kind):
 		return int(worldrise.guild.catalog.kill_xp_overrides[kind])
 	var base=int(progression.definition.enemy_xp.get(kind,0))+monster_cores.boss_bonus(kind)

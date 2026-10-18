@@ -3,6 +3,7 @@ const Shape=preload("res://scripts/rise_shape.gd")
 const Props=preload("res://scripts/props.gd")
 const Guild=preload("res://scripts/rise_guild.gd")
 var guild=Guild.new()
+var swamp=preload("res://scripts/swamp_campaign.gd").new()
 var checkpoints=preload("res://scripts/rise_checkpoints.gd").new()
 var game:Node
 var states:Dictionary={}
@@ -22,12 +23,13 @@ var ai_clock=0.0
 func is_night() -> bool:return day_clock>=600 and day_clock<1080
 const ELDER_ID="wr_boss_chamber/vault_elder"
 func active() -> bool:return game.game_mode=="world_rise" and game.map_id=="wr_floor_01"
-func reset() -> void:states.clear();flags.clear();checkpoint=[0,0];packs.clear();clock=0;elapsed=0;day_clock=0;elder_respawn=0;ashfang_respawn=0;light_clock=0;guild.reset();checkpoints.hold=0;checkpoints.armed=true;checkpoints.unlocked=["arrival"]
+func reset() -> void:states.clear();flags.clear();checkpoint=[0,0];packs.clear();clock=0;elapsed=0;day_clock=0;elder_respawn=0;ashfang_respawn=0;light_clock=0;guild.reset();checkpoints.hold=0;checkpoints.armed=true;checkpoints.unlocked=["arrival"];swamp.reset()
 static func valid(data:Variant) -> bool:
 	if not data is Dictionary:return false
 	for key in ["day_clock","elder_respawn","ashfang_respawn"]:
 		var value=data.get(key,0)
 		if not (value is float or value is int) or not is_finite(float(value)) or value<0 or value>1080:return false
+	if not preload("res://scripts/swamp_campaign.gd").valid(data.get("swamp",{})):return false
 	if not Guild.valid(data.get("economy",{})):return false
 	var unlocked=data.get("unlocked_checkpoints",["arrival"])
 	if not unlocked is Array or unlocked.size()>6:return false
@@ -64,15 +66,16 @@ func snapshot() -> Dictionary:
 	if active():
 		for enemy in game.enemies:
 			if enemy.definition.id=="ashfang" and enemy.health>0:states.ashfang={"health":enemy.health,"at":[enemy.position.x,enemy.position.z]}
-	return {"states":states.duplicate(true),"flags":flags.duplicate(),"checkpoint":checkpoint.duplicate(),"checkpoint_layout":2,"unlocked_checkpoints":checkpoints.unlocked.duplicate(),"economy":guild.snapshot(),"day_clock":day_clock,"elder_respawn":elder_respawn,"ashfang_respawn":ashfang_respawn}
+	return {"swamp":swamp.snapshot(),"states":states.duplicate(true),"flags":flags.duplicate(),"checkpoint":checkpoint.duplicate(),"checkpoint_layout":2,"unlocked_checkpoints":checkpoints.unlocked.duplicate(),"economy":guild.snapshot(),"day_clock":day_clock,"elder_respawn":elder_respawn,"ashfang_respawn":ashfang_respawn}
 func restore(data:Dictionary) -> void:
+	swamp.game=game;swamp.restore(data.get("swamp",{}))
 	states=data.get("states",{}).duplicate(true);flags=data.get("flags",[]).duplicate();checkpoint=data.get("checkpoint",[0,0]).duplicate();guild.restore(data.get("economy",{}));day_clock=fposmod(float(data.get("day_clock",0)),1080);elder_respawn=float(data.get("elder_respawn",1080 if ELDER_ID in game.defeated_enemies else 0));ashfang_respawn=float(data.get("ashfang_respawn",1080 if "wr_floor_01/ashfang" in game.defeated_enemies else 0))
 	if ELDER_ID in game.defeated_enemies and "elder_defeated" not in flags:flags.append("elder_defeated")
 	checkpoints.game=game;checkpoints.migrate(data)
 	checkpoints.unlocked=data.get("unlocked_checkpoints",["arrival"]).duplicate()
 	# Preserve an already-rested checkpoint when loading saves predating discovery.
 	if not data.has("unlocked_checkpoints"):
-		for entry in checkpoints.sites():
+		for entry in [{"id":"arrival","at":[0,0]}]+Shape.spec.landmarks.filter(func(e):return e.type=="rest"):
 			if Vector2(checkpoint[0],checkpoint[1]).distance_to(Vector2(entry.at[0],entry.at[1]))<.1 and entry.id not in checkpoints.unlocked:checkpoints.unlocked.append(entry.id)
 func elder_fell() -> void:
 	if "elder_defeated" not in flags:flags.append("elder_defeated")
@@ -86,6 +89,7 @@ static func daylight(at:float) -> float:
 	if at<1035:return 0.0
 	return smoothstep(1035,1125,at)
 func cycle_lighting() -> void:
+	if swamp.active():swamp.lighting();return
 	if not active():return
 	var blend=daylight(day_clock);var env=game.environment_settings
 	var grove_light=game.current_world.get_node_or_null("WesternGroveMoonlight")
@@ -109,6 +113,7 @@ func remember(enemy:Node3D) -> void:
 	elif Vector2(pos[0],pos[1]).length()>239:pos=enemy.definition.at.duplicate()
 	states[enemy.definition.id]={"health":enemy.health,"at":pos}
 func lighting() -> void:
+	if swamp.active():swamp.lighting();return
 	if game.game_mode!="world_rise":return
 	if game.map_id=="wr_boss_chamber":game.current_world.lighting(game);return
 	game.environment_settings.ambient_light_source=Environment.AMBIENT_SOURCE_BG
@@ -117,12 +122,14 @@ func lighting() -> void:
 	var sun=game.world_root.get_node("WorldSun");sun.light_energy=1.2;sun.rotation_degrees=Vector3(-42,-30,0);sun.directional_shadow_max_distance=90
 	cycle_lighting()
 func build_map() -> void:
-	checkpoints.game=game;checkpoints.hold=0
+	checkpoints.game=game;checkpoints.hold=0;swamp.game=game
 	packs.clear();spawn_queue.clear();packs_dirty=false;clock=0;ai_clock=0
 	night_population=is_night()
 	if game.game_mode=="world_rise" and game.map_id=="wr_boss_chamber":game.current_world.activate(game);lighting();return
+	if swamp.active():swamp.build();add_platform_portal();return
 	if not active():return
 	lighting()
+	add_platform_portal()
 	for p in Shape.spec.packs:packs[p.id]={"spec":p,"active":false,"members":[],"engaged":false,"attack":0.0,"cursor":0}
 	var hub={"id":"arrival","at":[0,0],"title":"Central Platform","type":"rest"}
 	for entry in [hub]+Shape.spec.landmarks:
@@ -147,6 +154,11 @@ func build_map() -> void:
 	preload("res://scripts/rise_chamber.gd").build_entrance(game.current_world)
 	update_packs()
 	if is_night() and ashfang_respawn<=0 and "wr_floor_01/ashfang" not in game.defeated_enemies:spawn_ashfang()
+
+func add_platform_portal() -> void:
+	var at=preload("res://scripts/swamp_shape.gd").arrival() if swamp.active() else Vector2.ZERO
+	var point=Vector3(at.x,game.current_world.ground_height(Vector3(at.x,0,at.y)),at.y)
+	game.current_world.interactions.append({"id":"floor_platform","wr_floor_portal":true,"title":"Choose floor · Arrival Platform","position":point,"actor":null,"lines":[]})
 
 func spawn_ashfang() -> void:
 	if not active() or not is_night() or ashfang_respawn>0 or game.enemies.any(func(e):return e.health>0 and String(e.definition.get("id",""))=="ashfang"):return
@@ -227,6 +239,7 @@ func tick(delta:float) -> void:
 	if ashfang_respawn>0:
 		ashfang_respawn=maxf(0,ashfang_respawn-delta)
 		if ashfang_respawn<=0:game.defeated_enemies.erase("wr_floor_01/ashfang");states.erase("ashfang")
+	if swamp.active():swamp.tick(delta);return
 	if not active():return
 	# One model per physics frame, rather than an entire doubled pack at once.
 	if checkpoints.tick(delta):return
@@ -284,9 +297,14 @@ func animation_step(enemy:Node3D,delta:float) -> float:
 	enemy.set_meta("rise_animation_clock",0.0);return accumulated
 
 func respawn_reset() -> void:
+	if swamp.active():swamp.respawn_reset();return
 	states.clear()
 	game.defeated_enemies=game.defeated_enemies.filter(func(id):return not (String(id).begins_with("wr_floor_01/") and id!="wr_floor_01/ashfang"))
 func interact(target:Dictionary) -> bool:
+	if game.game_mode=="world_rise" and target.has("wr_floor_portal"):
+		game.toggle_inventory();game.inventory.show_page("map");return true
+	if swamp.active() and target.has("wr_action"):
+		checkpoints.rest(target.wr_action);return true
 	if game.game_mode=="world_rise" and target.has("wr_chamber"):
 		var chamber=preload("res://scripts/rise_chamber.gd")
 		if target.wr_chamber=="enter":
@@ -302,9 +320,11 @@ func interact(target:Dictionary) -> bool:
 	if entry.type=="rest":
 		checkpoints.rest(entry)
 	elif entry.type=="view":game.notify("The Silver Verge overlooks the sunny abyss." if entry.id=="rim_watch" else "An old hollow tree marks this quiet forest clearing.")
-	else:game.notify("The ascent gate is dormant. Floor Two is not available yet.")
+	else:game.notify("Floor Two is unlocked. Travel from the central arrival platform." if swamp.unlocked_floor_two() else "Defeat the Elder to awaken the ascent. Then return to the arrival platform.")
 	return true
 func journal(ui:Node) -> void:
+	if swamp.active():
+		ui.add_quest("The Drowned Labyrinth","Floor Two · Exploration","Follow pale shallows between small islands.","Dark green water is deep enough to drown. Shallow channels connect every island through loops and branches. Mist conceals distant routes. Return to the arrival platform and press E to travel between unlocked floors. Rest crystals must be found before they appear on your map.")
 	ui.add_quest("The Verdant Reach","Exploration + combat XP","Explore from the central arrival platform.","Six checkpoints connect Floor One. Stand still in the platform centre for one second to rest; use E at the five crystals. Visit within 6m to unlock each destination, then save to retain discoveries. Inventory → Map travels between unlocked sites within 6m, when no aggressive enemy is within 30m. Resting restores health/stamina, sets respawn and resets ordinary packs. Elderwood lies northwest; the eastern rim falls into the abyss.")
 	ui.add_quest("The Adventurers' Guild","Sell spoils · craft equipment","Follow the trail southeast, opposite Elderwood.","Copper is credited on kills; collect material sacks with E. The clerk buys spoils and sells 25-HP potions for 25cp. Craft armor or the Cruel Charm with Bram; buy swords from Corin. 100 copper = 1 gold.")
 	for id in Guild.catalog.contracts:

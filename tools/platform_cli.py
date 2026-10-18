@@ -298,7 +298,7 @@ def run_process(arguments,timeout=240,log='last-build.log',rendered=False):
     if disposable:
         log_path=log_path.parent/'latest-test.log'
         write(log_path.parent/'latest-test-result.json',{'passed':not failed,'command':[str(arg) for arg in arguments],
-              'summary':[line for line in result.stdout.splitlines() if line.startswith(('VERIFICATION_','BETA_CHECKS','MAP_BUILDER_CHECKS','CAPTURE_OK'))]})
+              'summary':[line for line in result.stdout.splitlines() if line.startswith(('VERIFICATION_','BETA_CHECKS','MAP_BUILDER_CHECKS','CAPTURE_OK','SWAMP_CHECKS'))]})
         if not failed: log_path.unlink(missing_ok=True)
     if not disposable or failed: log_path.write_text(result.stdout+result.stderr,encoding='utf-8')
     if failed:
@@ -562,12 +562,15 @@ def identifier(value):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     commands=parser.add_subparsers(dest='command',required=True)
-    for name in ['validate','build','verify','verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-dash-uppercut','verify-unarmed','verify-dreadmore','verify-world-rise','verify-alpha2','verify-environment','verify-builder','capture','verify-windows','capture-windows','run','recipes-check']:
+    for name in ['inspect-swamp','validate','build','verify','verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-dash-uppercut','verify-unarmed','verify-dreadmore','verify-world-rise','verify-alpha2','verify-environment','verify-builder','capture','verify-windows','capture-windows','run','recipes-check']:
         command=commands.add_parser(name)
+        if name=='inspect-swamp':
+            command.add_argument('--render',action='store_true')
+            command.add_argument('--windows',action='store_true')
         if name=='build': command.add_argument('--skip-tests',action='store_true',help='Package existing assets without validation or audits; explicitly untested')
         if name=='verify-windows': command.add_argument('--suite',choices=['all','sea-dragon','combat-skills','dash-uppercut','unarmed','dreadmore','world-rise','alpha2'],default='all')
         if name in ['capture','capture-windows']:
-            command.add_argument('--view',choices=['guild','performance','boss-chamber','world-rise','world-rise-backdrop','dreadmore','mob-facing','alpha2','unarmed','dash-uppercut','combat-skills','sea-dragon','beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
+            command.add_argument('--view',choices=['swamp','guild','performance','boss-chamber','world-rise','world-rise-backdrop','dreadmore','mob-facing','alpha2','unarmed','dash-uppercut','combat-skills','sea-dragon','beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
             command.add_argument('--renderer',choices=['forward_plus','gl_compatibility'])
             command.add_argument('--art-profile',choices=['original','darkwood'])
             if name=='capture':
@@ -594,7 +597,25 @@ def main():
     prop.add_argument('x',type=float)
     prop.add_argument('z',type=float)
     args=parser.parse_args()
-    if args.command=='validate':
+    if args.command=='inspect-swamp':
+        import_game()
+        engine=str(ROOT/'output/windows'/('v'+read(GAME/'content/release.json')['version'])/'CoastalFoundation.exe') if args.windows else toolchain()['godot']
+        launch=[engine] if args.windows else [engine,'--path',str(GAME)]
+        if args.render:
+            directory=ROOT/'output/verification/windows-render/swamp'
+            directory.mkdir(parents=True,exist_ok=True)
+            for obsolete in directory.glob('swamp-*.png'):
+                obsolete.unlink()
+            output=run_process([*launch,'--rendering-method','forward_plus','--','--capture',str(directory),'--capture-view','swamp'],rendered=True,timeout=300,log='swamp-inspection.log')
+            if args.windows:
+                write(ROOT/'output/verification/current-render-evidence.json',{
+                    'release':read(GAME/'content/release.json')['version'],
+                    'game_key':read(ROOT/'output/build-cache.json')['game_key'],
+                    'files':['swamp/'+p.name for p in sorted(directory.glob('swamp-*.png'))]})
+        else:
+            output=run_process([*launch,'--headless','--script','res://scripts/focused_swamp_checks.gd'],timeout=300,log='swamp-inspection.log')
+        print(next(line for line in output.splitlines() if line.startswith('SWAMP_CHECKS')))
+    elif args.command=='validate':
         validate()
     elif args.command=='assets':
         assets(args.regenerate)

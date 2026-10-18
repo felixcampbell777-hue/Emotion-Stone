@@ -14,6 +14,7 @@ func configure(owner:Node,thrower:Node3D,target:Vector3) -> void:
  game=owner; source=thrower; origin=thrower.position+Vector3.UP*.8
  var bounds=game.current_world.bounds.grow(-.5)
  landing=Vector3(clampf(target.x,bounds.position.x,bounds.end.x),0,clampf(target.z,bounds.position.y,bounds.end.y)); landing.y=game.current_world.ground_height(landing)+.035
+ if game.map_id=="wr_floor_02":landing.y=maxf(landing.y,.035)
  position=origin; duration=float(game.menagery.catalog.resin_attack.flight_seconds); height=float(game.menagery.catalog.resin_attack.arc_height)
  add_to_group("menagery_effect"); add_to_group("resin_gloop")
  var mesh=SphereMesh.new(); mesh.radius=.23; mesh.height=.46; mesh.radial_segments=8; mesh.rings=4
@@ -28,6 +29,7 @@ func _physics_process(delta:float) -> void:
  var next=origin.lerp(landing,t)+Vector3.UP*(4*height*t*(1-t))
  var hit=get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(position,next,1))
  if not hit.is_empty(): landing=hit.position+hit.normal*.25; landing.y=game.current_world.ground_height(landing)+.035; next=landing; t=1
+ if t>=1 and game.map_id=="wr_floor_02":landing.y=maxf(landing.y,.035);next=landing
  position=next; blob.rotation+=Vector3(1,2,3)*delta
  if not reflected and position.distance_to(game.player.position+Vector3.UP*.8)<float(game.player.combat.parry.contact_range) and game.player.try_parry(self): return
  if t>=1:

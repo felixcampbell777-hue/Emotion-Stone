@@ -12,6 +12,7 @@ var surface:MeshInstance3D
 func configure(owner:Node,at:Vector3,sap:bool,thrower:Node=null) -> void:
 	game=owner
 	position=Vector3(at.x,game.current_world.ground_height(at)+.025,at.z)
+	if game.map_id=="wr_floor_02":position.y=maxf(position.y,.025)
 	sticky=sap
 	lifetime=float(game.menagery.catalog.sticky_seconds) if sticky else 2.4
 	radius=1.15 if sticky else 2.0
@@ -20,6 +21,7 @@ func configure(owner:Node,at:Vector3,sap:bool,thrower:Node=null) -> void:
 	add_to_group("menagery_effect")
 	surface=Props.cone(self,Vector3.ZERO,radius,.02,"#bc9442" if sticky else "#b995b1",radius)
 	var label=Label3D.new(); label.text="2E Sticky sap" if sticky else "8E Spore warning"; label.font_size=28; label.pixel_size=.006; label.position.y=.15; label.billboard=BaseMaterial3D.BILLBOARD_ENABLED
+	label.visible=game.map_id!="wr_floor_02"
 	add_child(label)
 	if thrower!=null:
 		splash=Node3D.new(); add_child(splash)
