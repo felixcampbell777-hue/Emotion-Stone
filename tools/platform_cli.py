@@ -289,7 +289,7 @@ def package_fingerprints():
     return groups
 
 
-def run_process(arguments,timeout=240,log='last-build.log',rendered=False,isolated=False,export_template=None):
+def run_process(arguments,timeout=240,log='last-build.log',rendered=False,isolated=False,export_template=None,environment=None):
     started=time.perf_counter()
     options={}
     if rendered and sys.platform == 'win32':
@@ -310,6 +310,8 @@ def run_process(arguments,timeout=240,log='last-build.log',rendered=False,isolat
                 templates=data_path/'export_templates/4.5.1.stable'
                 templates.mkdir(parents=True,exist_ok=True)
                 shutil.copy2(export_template,templates/Path(export_template).name)
+        if environment:
+            options['env']={**options.get('env',os.environ),**environment}
         try:
             result=subprocess.run(arguments,cwd=ROOT,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=timeout,**options)
         except subprocess.TimeoutExpired as error:

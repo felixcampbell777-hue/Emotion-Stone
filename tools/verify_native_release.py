@@ -1,4 +1,5 @@
 """Native CI acceptance; uses disposable userdata and never publishes releases."""
+import hashlib
 import json
 from pathlib import Path
 import platform
@@ -40,7 +41,7 @@ def voice_transport(engine, exported=False):
                 log = folder / 'process.log'
                 stream = log.open('w', encoding='utf-8')
                 env = isolated_environment(folder / 'userdata')
-                env['WORLD_RISE_DURABLE_HELPER'] = str(ROOT / 'tools/network/durable_replace.py')
+                env['WORLD_RISE_DURABLE_HELPER'] = str(Path(engine).parent / 'durable_replace.py' if exported and sys.platform == 'linux' else ROOT / 'tools/network/durable_replace.py')
                 env['WORLD_RISE_PYTHON'] = sys.executable
                 args = [str(engine), '--headless']
                 if not exported:
@@ -113,6 +114,7 @@ def main():
         engine = toolchain(('godot',))['godot']
         fingerprint = package_fingerprints()
         for script in (*SOURCE, *VOICE):
+            print('NATIVE_SOURCE_START ' + script, flush=True)
             output = run_process([engine, '--headless', '--path', str(GAME), '--script', 'res://scripts/' + script],
                                  timeout=240, log='native-source-' + Path(script).stem + '.log', isolated=True)
             report['checks'].append({'kind': 'source', 'script': script, 'passed': True,
@@ -148,6 +150,16 @@ def main():
             package = folder / 'world-rise-server.x86_64'
         else:
             raise ValueError('This CI gate targets native Windows and Linux only')
+        # Durable fixtures exercise an external Python worker; the Linux target
+        # must use the helper actually shipped beside its executable. Dedicated
+        # Windows client fixtures use the checkout helper only as test support;
+        # this does not grant or claim installed-client server hosting.
+        helper = package.parent / 'durable_replace.py' if sys.platform == 'linux' else ROOT / 'tools/network/durable_replace.py'
+        if not helper.is_file():
+            raise RuntimeError('Exported persistence fixture helper is missing')
+        fixture_environment = {'WORLD_RISE_DURABLE_HELPER': str(helper), 'WORLD_RISE_PYTHON': sys.executable}
+        report['exported_persistence_helper'] = {'source': 'packaged' if sys.platform == 'linux' else 'checkout-test-support',
+                                                   'sha256': hashlib.sha256(helper.read_bytes()).hexdigest()}
         exported = (*VOICE, 'network/wr_storage_codec_checks.gd', 'network/wr_native_session_checks.gd',
                     'network/wr_progression_migration_checks.gd', 'network/wr_transaction_checks.gd',
                     'network/wr_store_worker_checks.gd', 'network/wr_store_lock_checks.gd')
@@ -158,14 +170,15 @@ def main():
                          'network/wr_client_hurt_checks.gd', 'network/wr_actor_parity_checks.gd',
                          'network/wr_export_title_checks.gd')
         for script in exported:
+            print('NATIVE_EXPORT_START ' + script, flush=True)
             output = run_process([str(package), '--headless', '--script', 'res://scripts/' + script], timeout=240,
-                        log='native-export-' + Path(script).stem + '.log', isolated=True)
+                        log='native-export-' + Path(script).stem + '.log', isolated=True, environment=fixture_environment)
             report['checks'].append({'kind': 'exported-release', 'script': script, 'passed': True,
                                      'summary': [line for line in output.splitlines() if any(word in line for word in ('CHECKS', 'PASS', 'RESULT', 'VERIFICATION_'))][-4:]})
         if sys.platform == 'win32':
             output = run_process([str(package), '--headless', '--script', 'res://scripts/world_rise_ui_checks.gd',
                                   '--', '--exported-host-gate'], timeout=240,
-                                 log='native-export-host-gate.log', isolated=True)
+                                 log='native-export-host-gate.log', isolated=True, environment=fixture_environment)
             report['checks'].append({'kind': 'exported-release', 'script': 'world_rise_ui_checks.gd --exported-host-gate',
                                      'passed': True, 'summary': [line for line in output.splitlines() if 'CHECKS' in line or 'PASS' in line][-4:]})
         report['checks'].append(voice_transport(package, exported=True))
@@ -173,7 +186,7 @@ def main():
         # than accepting stripped assert() calls as passing voice coverage.
         try:
             run_process([str(package), '--headless', '--script', 'res://scripts/voice/voice_checks.gd',
-                         '--', '--voice-fixture-force-failure'], log='native-export-negative-control.log', isolated=True)
+                         '--', '--voice-fixture-force-failure'], log='native-export-negative-control.log', isolated=True, environment=fixture_environment)
         except RuntimeError:
             negative = json.loads((destination.parent / 'native-export-negative-control.result.json').read_text())
             failure_log = (destination.parent / 'native-export-negative-control.log').read_text()

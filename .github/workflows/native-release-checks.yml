@@ -29,7 +29,7 @@ jobs:
       - name: Install pinned runtime
         run: python tools/bootstrap_runtime.py
       - name: Check native source and exported release runtime
-        run: python tools/verify_native_release.py
+        run: python -u tools/verify_native_release.py
       - name: Retain current reports and native package
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
