@@ -3,6 +3,8 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
+import prepare_release_downloads as release
 import zipfile
 
 from prepare_release_downloads import archive, sha, verified_package
@@ -28,6 +30,18 @@ class ReleaseChecks(unittest.TestCase):
 
     def verify(self):
         return verified_package(self.folder, {'scripts': 'frozen'}, '0.42.0')
+
+    def test_current_release_requires_three_original_categories(self):
+        catalog = self.root / 'game/content/world_rise/skills.json'
+        catalog.parent.mkdir(parents=True)
+        current = {'tree_version': 6, 'attributes': [{'id': value} for value in ('strength', 'agility', 'greatsword')]}
+        catalog.write_text(json.dumps(current))
+        with mock.patch.object(release, 'ROOT', self.root):
+            self.assertEqual(6, release.progression_contract()['tree_version'])
+            current['attributes'] = [{'id': value} for value in ('body', 'reflexes', 'technical_ability', 'intelligence', 'cool')]
+            catalog.write_text(json.dumps(current))
+            with self.assertRaisesRegex(ValueError, 'Strength, Agility and Greatsword'):
+                release.progression_contract()
 
     def test_valid_package_and_tampered_binary(self):
         self.assertEqual(2, len(self.verify()))

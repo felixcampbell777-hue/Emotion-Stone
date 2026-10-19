@@ -19,6 +19,17 @@ def sha(path):
     return value.hexdigest()
 
 
+def progression_contract():
+    catalog = json.loads((ROOT / 'game/content/world_rise/skills.json').read_text())
+    attributes = [item['id'] for item in catalog['attributes']]
+    if attributes != ['strength', 'agility', 'greatsword']:
+        raise ValueError('Current World Rise release requires Strength, Agility and Greatsword categories')
+    version = catalog['tree_version']
+    if type(version) is not int or version < 1:
+        raise ValueError('Current progression tree version must be explicit')
+    return {'tree_version': version, 'attributes': attributes}
+
+
 def verified_package(folder, current, version):
     manifest = json.loads((folder / 'manifest.json').read_text())
     if manifest['game_version'] != version or not manifest.get('source_stable_during_export'):
@@ -63,6 +74,7 @@ def main():
     args = parser.parse_args()
     from platform_cli import package_fingerprints
     current = package_fingerprints()
+    progression = progression_contract()
     version = json.loads((ROOT / 'game/content/release.json').read_text())['version']
     if not re.fullmatch(r'\d+\.\d+\.\d+', version):
         raise ValueError('A semantic release version is required')
@@ -70,11 +82,14 @@ def main():
     if subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT, text=True).strip():
         raise ValueError('Commit the final source/tooling before assembling immutable release downloads')
     systems = set()
+    native = {}
     for path in args.native_report:
         report = json.loads(path.read_text())
         if not report.get('passed') or report.get('commit') != commit or report.get('runtime_source') != current:
             raise ValueError('Native gate must pass on this exact commit/runtime: ' + str(path))
-        systems.add(report['host'].split('-')[0])
+        system = report['host'].split('-')[0]
+        systems.add(system)
+        native[system] = report
     if not {'Windows', 'Linux'} <= systems:
         raise ValueError('Both native Windows and Linux reports are required')
     mac = ROOT / 'output/clients/macos' / ('v' + version)
@@ -87,6 +102,20 @@ def main():
         raise ValueError('Required client executable/archive missing')
     if not (server / 'world-rise-server.x86_64') in serverfiles:
         raise ValueError('Required server executable missing')
+    for system, folder, binary in [('Windows', win, win / 'WorldRise.exe'),
+                                   ('Linux', server, server / 'world-rise-server.x86_64')]:
+        proof = native[system].get('exported_package', {})
+        if proof.get('manifest_sha256') != sha(folder / 'manifest.json') or proof.get('binary_sha256') != sha(binary):
+            raise ValueError('Download must be the exact native-tested artifact: ' + system)
+    local = json.loads((ROOT / 'output/verification/local-release-current.json').read_text())
+    if not local.get('passed') or not local.get('source_unchanged') or local.get('commit') != commit or local.get('runtime_source') != current:
+        raise ValueError('Current exact-commit Mac/Docker package acceptance is required')
+    for name, folder in [('macos', mac), ('windows', win), ('linux', server)]:
+        if local.get('packages', {}).get(name, {}).get('manifest_sha256') != sha(folder / 'manifest.json'):
+            raise ValueError('Package changed after local acceptance: ' + name)
+    if local.get('macos', {}).get('package_sha256') != sha(mac / 'WorldRise.zip') or not local.get('docker', {}).get('passed'):
+        raise ValueError('Actual Mac and Docker package guards must pass')
+
     if f'SERVER_VERSION: {version}' not in (ROOT / 'hosting/compose.yaml').read_text():
         raise ValueError('Compose build version must match release')
     destination = ROOT / 'output/releases' / ('v' + version)
@@ -161,6 +190,7 @@ acceptance. Native automated headless checks are recorded in the manifest.
     for folder, tag in ((game, 'v' + version), (host, 'server-v' + version)):
         record = {'version': version, 'tag': tag, 'commit': commit, 'runtime_source': current,
                   'native_gates': [json.loads(p.read_text()) for p in args.native_report],
+                  'progression_contract': progression,
                   'distribution': 'prerelease', 'remaining_acceptance': limits}
         (folder / 'RELEASE-MANIFEST.json').write_text(json.dumps(record, indent=2) + '\n')
         members = sorted(p for p in folder.iterdir() if p.is_file())

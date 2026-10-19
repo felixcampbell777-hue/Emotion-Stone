@@ -24,9 +24,25 @@ def fingerprint():
     return {'sha256': digest.hexdigest(), 'files': len(paths)}
 
 
-def scenario(engine, port_a, port_b):
+def file_sha(path):
+    with path.open('rb') as stream:
+        return hashlib.file_digest(stream, 'sha256').hexdigest()
+
+
+def scenario(engine, port_a, port_b, exported=False, durable_helper=None):
     children = []
-    before = fingerprint()
+    engine = str(Path(engine).resolve())
+    adjacent = Path(engine).parent / 'durable_replace.py'
+    helper = Path(durable_helper).resolve() if durable_helper else adjacent if exported and adjacent.is_file() else ROOT / 'tools/network/durable_replace.py'
+    if not helper.is_file():
+        raise RuntimeError('Trusted fixture persistence helper is missing')
+    def capture():
+        if not exported:
+            return fingerprint()
+        return {'scope': 'embedded executable and trusted external helper',
+                'executable_sha256': file_sha(Path(engine)),
+                'durable_helper_sha256': file_sha(helper)}
+    before = capture()
     with tempfile.TemporaryDirectory(prefix='wr-progression-live-hop-') as temporary:
         scratch = Path(temporary)
         data = scratch / 'scenario'
@@ -37,9 +53,9 @@ def scenario(engine, port_a, port_b):
             log = folder / 'process.log'
             stream = log.open('w')
             env = isolated_environment(folder / 'userdata')
-            env.update(WORLD_RISE_DURABLE_HELPER=str(ROOT / 'tools/network/durable_replace.py'),
+            env.update(WORLD_RISE_DURABLE_HELPER=str(helper),
                        WORLD_RISE_PYTHON=sys.executable)
-            process = subprocess.Popen([engine, '--headless', '--path', str(ROOT / 'game')] + arguments,
+            process = subprocess.Popen([engine, '--headless'] + ([] if exported else ['--path', str(ROOT / 'game')]) + arguments,
                                        stdout=stream, stderr=subprocess.STDOUT, env=env)
             children.append((process, stream, log))
             return process, log
@@ -94,12 +110,17 @@ def scenario(engine, port_a, port_b):
                 rows = [line for line in log.read_text().splitlines() if 'ERROR' in line or 'WARNING:' in line]
                 errors[log.parent.name] = dict(Counter(rows))
             exits = {log.parent.name: process.returncode for process, _, log in children}
-            after = fingerprint()
+            ready_counts = {log.parent.name: sum(line.startswith('WORLD_RISE_SERVER_READY') for line in log.read_text().splitlines())
+                            for _, _, log in children if log.parent.name.startswith('server')}
+            ready_once = set(ready_counts) == {'serverA', 'serverB'} and all(count == 1 for count in ready_counts.values())
+            after = capture()
             passed = bool(result and result.get('passed') and reopened and reopened.get('passed')) and not any(errors.values()) \
-                and all(code == 0 for code in exits.values()) and before == after
+                and all(code == 0 for code in exits.values()) and ready_once and before == after
             return {'passed': passed,
-                    'engine': 'Godot 4.5.1', 'topology': 'Separate dedicated A/B and one reused real ENet Session client',
+                    'engine': 'Godot 4.5.1', 'execution_scope': 'embedded export; no source path override' if exported else 'source project',
+                    'fixture_helper_scope': 'adjacent packaged helper' if helper == adjacent else 'explicit checkout fixture support; no installed-client hosting claim', 'topology': 'Separate dedicated A/B and one reused real ENet Session client',
                     'result': result, 'durable_server_reopen': reopened, 'exits': exits, 'errors': errors,
+                    'server_ready_counts': ready_counts, 'servers_started_exactly_once': ready_once,
                     'source_before': before, 'source_after': after, 'source_unchanged': before == after,
                     'failure_logs': {} if passed else {log.parent.name: log.read_text()[-6000:] for _, _, log in children}}
         finally:
@@ -117,6 +138,8 @@ def scenario(engine, port_a, port_b):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--godot', required=True)
+    parser.add_argument('--exported', action='store_true', help='Execute the embedded export without a source --path override')
+    parser.add_argument('--durable-helper', type=Path, help='Trusted external fixture helper when not shipped beside the executable')
     parser.add_argument('--port-a', type=int, default=25091)
     parser.add_argument('--port-b', type=int, default=25093)
     parser.add_argument('--output', type=Path, default=ROOT / 'output/verification/network-progression-hop-current.json')
@@ -124,7 +147,7 @@ def main():
     if not (1024 <= args.port_a <= 65534 and 1024 <= args.port_b <= 65534) or abs(args.port_a - args.port_b) < 2:
         parser.error('Use two nonoverlapping game/voice port pairs')
     try:
-        result = scenario(args.godot, args.port_a, args.port_b)
+        result = scenario(args.godot, args.port_a, args.port_b, args.exported, args.durable_helper)
     except (RuntimeError, TimeoutError, subprocess.TimeoutExpired) as error:
         result = {'passed': False, 'error': str(error)}
     args.output.parent.mkdir(parents=True, exist_ok=True)

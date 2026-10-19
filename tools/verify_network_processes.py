@@ -115,10 +115,14 @@ def scenario(engine, clients, duration, external_port=None, password_file=None, 
                     actual_cap = (item.get('result') or {}).get('render_fps_cap')
                     if actual_cap != requested_caps[index % len(requested_caps)]:
                         acceptance_failures.append(f'Client {index} cap {actual_cap} differs from requested cap')
-            if registry and registry.get('progression_tree_version') == 5:
+            if registry:
+                from prepare_release_downloads import progression_contract
+                expected_tree = progression_contract()['tree_version']
+                if registry.get('progression_tree_version') != expected_tree:
+                    acceptance_failures.append('Scenario seed does not use the declared current progression tree')
                 for index, item in enumerate(results):
-                    if (item.get('result') or {}).get('progression_tree_version') != 5:
-                        acceptance_failures.append(f'Client {index} did not durably export current tree5 progression')
+                    if (item.get('result') or {}).get('progression_tree_version') != expected_tree:
+                        acceptance_failures.append(f'Client {index} did not durably export current tree{expected_tree} progression')
             ready = Path(registry['server']) / 'ready.json' if registry else scratch / 'world/ready.json'
             health = json.loads(ready.read_text()) if ready.exists() else {}
             source_after = package_fingerprints()

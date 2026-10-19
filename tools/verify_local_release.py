@@ -10,7 +10,7 @@ import sys
 import tempfile
 import time
 
-from prepare_release_downloads import sha, verified_package
+from prepare_release_downloads import sha, verified_package, progression_contract
 from runtime_paths import isolated_environment
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,6 +44,7 @@ def fixture(executable, script, args=(), native=False, expect_failure=False):
 
 
 def clients(executable, scratch, password, port, voice=False, returning=False):
+    expected_tree = progression_contract()['tree_version']
     jobs = []
     try:
         for index in range(2):
@@ -79,7 +80,7 @@ def clients(executable, scratch, password, port, voice=False, returning=False):
                 valid = bool(parsed)
             else:
                 parsed = [json.loads(line.removeprefix('PROBE_RESULT ')) for line in output.splitlines() if line.startswith('PROBE_RESULT ')]
-                valid = bool(parsed and parsed[-1].get('hash_roundtrip_stable') and parsed[-1].get('departed') and parsed[-1].get('progression_tree_version') == 5)
+                valid = bool(parsed and parsed[-1].get('hash_roundtrip_stable') and parsed[-1].get('departed') and parsed[-1].get('progression_tree_version') == expected_tree)
             if process.poll() != 0 or errors or not valid:
                 raise RuntimeError('Packaged client failed: ' + log.parent.name + '\n' + output[-12000:])
             reports.append({'exit': process.returncode, 'passed': True, 'result': parsed[-1]})
@@ -95,11 +96,12 @@ def clients(executable, scratch, password, port, voice=False, returning=False):
             stream.close()
 
 
-def docker_smoke(executable, version):
+def docker_smoke(executable, version, report=None):
     project = 'wr-hosting-fixture-release' + version.replace('.', '')
     if command(['docker', 'ps', '-aq', '--filter', 'label=com.docker.compose.project=' + project]).stdout.strip() or command(['docker', 'volume', 'ls', '-q', '--filter', 'label=com.docker.compose.project=' + project]).stdout.strip():
         raise RuntimeError('Refusing to reuse existing fixture containers/volumes')
-    report = {'scope': 'Current packaged Mac embedded-PCK clients and Linux Docker export; amd64 emulation on Apple arm64, not native Linux performance.'}
+    report = report if report is not None else {}
+    report['scope'] = 'Current packaged Mac embedded-PCK clients and Linux Docker export; amd64 emulation on Apple arm64, not native Linux performance.'
     with tempfile.TemporaryDirectory(prefix='wr-packaged-docker-') as temporary:
         scratch = Path(temporary)
         password = scratch / 'server_password'
@@ -142,7 +144,7 @@ def docker_smoke(executable, version):
                                 'user': configuration['Config']['User']}
             report['guards'] = []
             for script, negative in [('voice/voice_udp_checks.gd', False), ('voice/voice_checks.gd', False),
-                                     ('network/wr_session_teardown_checks.gd', False),
+                                     ('network/wr_session_teardown_checks.gd', False), ('network/wr_session_reuse_checks.gd', False),
                                      ('voice/voice_udp_checks.gd', True)]:
                 result = run(['run', '--rm', '--no-deps', '--entrypoint', '/app/world-rise-server.x86_64', 'world-rise',
                               '--headless', '--script', 'res://scripts/' + script,
@@ -157,7 +159,7 @@ def docker_smoke(executable, version):
             # embedded Linux export, including its actual Session teardown.
             support = scratch / 'transport-harness'
             support.mkdir(mode=0o755)
-            for name in ('verify_native_release.py', 'runtime_paths.py'):
+            for name in ('verify_native_release.py', 'verify_network_progression_hop.py', 'runtime_paths.py'):
                 shutil.copy2(ROOT / 'tools' / name, support / name)
             transport_code = """import sys,json
 from pathlib import Path
@@ -186,6 +188,17 @@ except Exception:
                 retained.write_text(transport.stdout + transport.stderr)
                 raise RuntimeError('Exported Linux voice transport failed; see ' + str(retained))
             report['exported_voice_transport'] = json.loads(transport.stdout.splitlines()[-1])
+            hop_code = ("import sys,json; sys.path.insert(0,'/fixture-tools'); import verify_network_progression_hop as hop; "
+                        "result=hop.scenario('/app/world-rise-server.x86_64',25091,25093,exported=True); "
+                        "print(json.dumps(result)); sys.exit(0 if result['passed'] else 1)")
+            hop = subprocess.run([*compose, 'run', '--rm', '--no-deps', '--volume', str(support) + ':/fixture-tools:ro',
+                                  '--entrypoint', 'python3', 'world-rise', '-c', hop_code],
+                                 cwd=ROOT, env=env, capture_output=True, text=True, timeout=300)
+            hop_log = ROOT / 'output/verification/local-export-progression-hop.log'
+            if hop.returncode:
+                hop_log.write_text(hop.stdout + hop.stderr)
+                raise RuntimeError('Embedded export same-Session rejoin failed; see ' + str(hop_log))
+            report['exported_progression_hop'] = json.loads(hop.stdout.splitlines()[-1])
             report['packaged_voice_clients'] = clients(executable, scratch, password, 24891, voice=True)
             print('LOCAL_RELEASE_DOCKER_VOICE_PASS', flush=True)
             ready(0)
@@ -209,11 +222,17 @@ except Exception:
             report['graceful_stop'] = {'exit': stopped['ExitCode'], 'oom_killed': stopped['OOMKilled']}
             report['passed'] = True
         finally:
-            run(['down', '--volumes', '--remove-orphans'], timeout=120)
-    report['cleanup'] = {'containers_remaining': command(['docker', 'ps', '-aq', '--filter', 'label=com.docker.compose.project=' + project]).stdout.split(),
-                         'volumes_remaining': command(['docker', 'volume', 'ls', '-q', '--filter', 'label=com.docker.compose.project=' + project]).stdout.split()}
-    if any(report['cleanup'].values()):
-        raise RuntimeError('Fixture resources were not removed')
+            preserving_failure = sys.exc_info()[0] is not None
+            try:
+                run(['down', '--volumes', '--remove-orphans'], timeout=120)
+                report['cleanup'] = {'containers_remaining': command(['docker', 'ps', '-aq', '--filter', 'label=com.docker.compose.project=' + project]).stdout.split(),
+                                     'volumes_remaining': command(['docker', 'volume', 'ls', '-q', '--filter', 'label=com.docker.compose.project=' + project]).stdout.split()}
+                if any(report['cleanup'].values()):
+                    raise RuntimeError('Fixture resources were not removed')
+            except Exception as cleanup_error:
+                report['cleanup_error'] = str(cleanup_error)
+                if not preserving_failure:
+                    raise
     return report
 
 
@@ -228,8 +247,10 @@ def main():
     current = package_fingerprints()
     report = {'version': version, 'commit': command(['git', 'rev-parse', 'HEAD']).stdout.strip(), 'runtime_source': current, 'passed': False}
     try:
+        report['packages'] = {}
         for name, folder in [('macos', ROOT / 'output/clients/macos' / ('v' + version)), ('windows', ROOT / 'output/clients/windows' / ('v' + version)), ('linux', ROOT / 'output/linux-server' / ('v' + version))]:
             verified_package(folder, current, version)
+            report['packages'][name] = {'manifest_sha256': sha(folder / 'manifest.json')}
         folder = ROOT / 'output/clients/macos' / ('v' + version)
         expanded = folder / 'probe-expanded'
         if expanded.exists():
@@ -252,7 +273,8 @@ def main():
                                        fixture(executable, 'voice/voice_playback_checks.gd')]}
         print('LOCAL_RELEASE_MAC_PASS', flush=True)
         if args.docker:
-            report['docker'] = docker_smoke(executable, version)
+            report['docker'] = {}
+            docker_smoke(executable, version, report['docker'])
         if current != package_fingerprints():
             raise RuntimeError('Runtime source changed during package acceptance')
         report['source_unchanged'] = True

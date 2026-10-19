@@ -15,7 +15,7 @@ VOICE = tuple('voice/' + name + '_checks.gd' for name in (
 SOURCE = (
     'network/wr_storage_codec_checks.gd', 'network/wr_snapshot_codec_checks.gd',
     'network/wr_store_worker_checks.gd', 'network/wr_native_session_checks.gd',
-    'network/wr_store_lock_checks.gd', 'network/wr_session_teardown_checks.gd',
+    'network/wr_store_lock_checks.gd', 'network/wr_session_teardown_checks.gd', 'network/wr_session_reuse_checks.gd',
     'network/wr_actor_parity_checks.gd', 'network/wr_floor_runtime_checks.gd',
     'network/wr_online_input_checks.gd',
     'network/wr_transaction_checks.gd', 'network/wr_client_hurt_checks.gd',
@@ -125,7 +125,7 @@ def main():
         hop = json.loads((destination.parent / 'network-progression-hop-current.json').read_text())
         report['checks'].append({'kind': 'source-real-enet', 'script': 'verify_network_progression_hop.py',
                                  'passed': bool(hop.get('passed')), 'topology': hop.get('topology'),
-                                 'exits': hop.get('exits'), 'source_unchanged': hop.get('source_unchanged')})
+                                 'exits': hop.get('exits'), 'server_ready_counts': hop.get('server_ready_counts'), 'source_unchanged': hop.get('source_unchanged')})
         if not hop.get('passed'):
             raise RuntimeError('Real progression A-B-A hop report did not pass')
         run_process([sys.executable, 'tools/verify_blood_online.py', '--godot', engine], timeout=300,
@@ -163,7 +163,7 @@ def main():
         exported = (*VOICE, 'network/wr_storage_codec_checks.gd', 'network/wr_native_session_checks.gd',
                     'network/wr_progression_migration_checks.gd', 'network/wr_transaction_checks.gd',
                     'network/wr_store_worker_checks.gd', 'network/wr_store_lock_checks.gd',
-                    'network/wr_session_teardown_checks.gd')
+                    'network/wr_session_teardown_checks.gd', 'network/wr_session_reuse_checks.gd')
         if sys.platform == 'win32':
             exported += ('world_rise_progression_fixture.gd', 'world_rise_practice_checks.gd',
                          'wr_third_person_checks.gd', 'blood_feedback_checks.gd',
@@ -183,6 +183,16 @@ def main():
             report['checks'].append({'kind': 'exported-release', 'script': 'world_rise_ui_checks.gd --exported-host-gate',
                                      'passed': True, 'summary': [line for line in output.splitlines() if 'CHECKS' in line or 'PASS' in line][-4:]})
         report['checks'].append(voice_transport(package, exported=True))
+        run_process([sys.executable, 'tools/verify_network_progression_hop.py', '--godot', str(package),
+                     '--exported', '--durable-helper', str(helper)], timeout=300,
+                    log='native-export-progression-hop.log', isolated=True)
+        exported_hop = json.loads((destination.parent / 'network-progression-hop-current.json').read_text())
+        if not exported_hop.get('passed'):
+            raise RuntimeError('Embedded export same-Session progression/voice rejoin did not pass')
+        report['checks'].append({'kind': 'exported-real-enet-rejoin', 'script': 'verify_network_progression_hop.py',
+                                 'passed': True, 'execution_scope': exported_hop.get('execution_scope'),
+                                 'exits': exported_hop.get('exits'), 'server_ready_counts': exported_hop.get('server_ready_counts'),
+                                 'fingerprint': exported_hop.get('source_after')})
         # Prove the release-template assertions execute and can fail, rather
         # than accepting stripped assert() calls as passing voice coverage.
         try:
@@ -207,6 +217,11 @@ def main():
             report['checks'].append({'kind': 'native-linux-eight-player-source', 'passed': True})
         if fingerprint != package_fingerprints():
             raise RuntimeError('Runtime sources changed during native verification')
+        from prepare_release_downloads import sha, verified_package
+        version = json.loads((GAME / 'content/release.json').read_text())['version']
+        verified_package(package.parent, fingerprint, version)
+        report['exported_package'] = {'target': sys.platform, 'manifest_sha256': sha(package.parent / 'manifest.json'),
+                                      'binary_sha256': sha(package)}
         report.update(passed=True, runtime_source=fingerprint)
     except Exception as error:
         report['error'] = str(error)
