@@ -15,7 +15,7 @@ VOICE = tuple('voice/' + name + '_checks.gd' for name in (
 SOURCE = (
     'network/wr_storage_codec_checks.gd', 'network/wr_snapshot_codec_checks.gd',
     'network/wr_store_worker_checks.gd', 'network/wr_native_session_checks.gd',
-    'network/wr_store_lock_checks.gd',
+    'network/wr_store_lock_checks.gd', 'network/wr_session_teardown_checks.gd',
     'network/wr_actor_parity_checks.gd', 'network/wr_floor_runtime_checks.gd',
     'network/wr_online_input_checks.gd',
     'network/wr_transaction_checks.gd', 'network/wr_client_hurt_checks.gd',
@@ -162,7 +162,8 @@ def main():
                                                    'sha256': hashlib.sha256(helper.read_bytes()).hexdigest()}
         exported = (*VOICE, 'network/wr_storage_codec_checks.gd', 'network/wr_native_session_checks.gd',
                     'network/wr_progression_migration_checks.gd', 'network/wr_transaction_checks.gd',
-                    'network/wr_store_worker_checks.gd', 'network/wr_store_lock_checks.gd')
+                    'network/wr_store_worker_checks.gd', 'network/wr_store_lock_checks.gd',
+                    'network/wr_session_teardown_checks.gd')
         if sys.platform == 'win32':
             exported += ('world_rise_progression_fixture.gd', 'world_rise_practice_checks.gd',
                          'wr_third_person_checks.gd', 'blood_feedback_checks.gd',

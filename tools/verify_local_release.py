@@ -141,9 +141,11 @@ def docker_smoke(executable, version):
                                 'read_only': configuration['HostConfig']['ReadonlyRootfs'],
                                 'user': configuration['Config']['User']}
             report['guards'] = []
-            for script, negative in [('voice_udp_checks.gd', False), ('voice_checks.gd', False), ('voice_udp_checks.gd', True)]:
+            for script, negative in [('voice/voice_udp_checks.gd', False), ('voice/voice_checks.gd', False),
+                                     ('network/wr_session_teardown_checks.gd', False),
+                                     ('voice/voice_udp_checks.gd', True)]:
                 result = run(['run', '--rm', '--no-deps', '--entrypoint', '/app/world-rise-server.x86_64', 'world-rise',
-                              '--headless', '--script', 'res://scripts/voice/' + script,
+                              '--headless', '--script', 'res://scripts/' + script,
                               *(['--', '--voice-fixture-force-failure'] if negative else [])], expected=1 if negative else 0)
                 text = result.stdout + result.stderr
                 if negative and 'VOICE FIXTURE FAIL' not in text:
@@ -151,6 +153,39 @@ def docker_smoke(executable, version):
                 if not negative and any(line.startswith(('ERROR:', 'SCRIPT ERROR:')) for line in text.splitlines()):
                     raise RuntimeError(text[-10000:])
                 report['guards'].append({'script': script, 'expected_failure': negative, 'expected_outcome_met': True, 'stdout': result.stdout, 'stderr': result.stderr})
+            # Reuse the exact strict native-CI transport harness against the
+            # embedded Linux export, including its actual Session teardown.
+            support = scratch / 'transport-harness'
+            support.mkdir(mode=0o755)
+            for name in ('verify_native_release.py', 'runtime_paths.py'):
+                shutil.copy2(ROOT / 'tools' / name, support / name)
+            transport_code = """import sys,json
+from pathlib import Path
+sys.path.insert(0,'/fixture-tools')
+import verify_native_release as gate
+gate.ROOT=Path('/tmp/transport-root')
+gate.ROOT.mkdir()
+try:
+    print(json.dumps(gate.voice_transport(Path('/app/world-rise-server.x86_64'),exported=True)))
+except Exception:
+    for retained in gate.ROOT.glob('output/verification/*.log'):
+        print(retained.read_text(),flush=True)
+    raise
+"""
+            retained = ROOT / 'output/verification/local-export-voice-transport.log'
+            try:
+                transport = subprocess.run([*compose, 'run', '--rm', '--no-deps', '--volume', str(support) + ':/fixture-tools:ro',
+                                            '--entrypoint', 'python3', 'world-rise', '-c', transport_code],
+                                           cwd=ROOT, env=env, capture_output=True, text=True, timeout=120)
+            except subprocess.TimeoutExpired as error:
+                def captured(value):
+                    return value.decode('utf-8', 'replace') if isinstance(value, bytes) else value or ''
+                retained.write_text(captured(error.stdout) + captured(error.stderr) + '\nTransport exceeded120s outer deadline.\n')
+                raise RuntimeError('Exported Linux voice transport timed out; see ' + str(retained)) from error
+            if transport.returncode:
+                retained.write_text(transport.stdout + transport.stderr)
+                raise RuntimeError('Exported Linux voice transport failed; see ' + str(retained))
+            report['exported_voice_transport'] = json.loads(transport.stdout.splitlines()[-1])
             report['packaged_voice_clients'] = clients(executable, scratch, password, 24891, voice=True)
             print('LOCAL_RELEASE_DOCKER_VOICE_PASS', flush=True)
             ready(0)
