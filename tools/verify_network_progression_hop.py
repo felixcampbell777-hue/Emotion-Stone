@@ -53,6 +53,11 @@ def scenario(engine, port_a, port_b, exported=False, durable_helper=None):
             log = folder / 'process.log'
             stream = log.open('w')
             env = isolated_environment(folder / 'userdata')
+            # A fixture owns its loopback ports and empty test membership secret.
+            # Never inherit a real host's password, bind, data or voice settings.
+            for key in ('WORLD_RISE_PASSWORD_FILE', 'WORLD_RISE_PRIVATE_VPN', 'WORLD_RISE_PORT',
+                        'WORLD_RISE_VOICE_PORT', 'WORLD_RISE_DATA_DIR', 'WORLD_RISE_BIND_ADDRESS'):
+                env.pop(key, None)
             env.update(WORLD_RISE_DURABLE_HELPER=str(helper),
                        WORLD_RISE_PYTHON=sys.executable)
             process = subprocess.Popen([engine, '--headless'] + ([] if exported else ['--path', str(ROOT / 'game')]) + arguments,
@@ -66,7 +71,7 @@ def scenario(engine, port_a, port_b, exported=False, durable_helper=None):
             deadline = time.monotonic() + 45
             while 'WORLD_RISE_SERVER_READY' not in log.read_text():
                 if process.poll() is not None or time.monotonic() > deadline:
-                    raise RuntimeError('Server startup failed: ' + log.read_text()[-4000:])
+                    raise RuntimeError(f'Server startup failed ({name}, exit={process.poll()}, deadline=45s): ' + log.read_text()[-4000:])
                 time.sleep(.1)
             return process, log
 
