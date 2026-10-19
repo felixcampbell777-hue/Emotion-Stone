@@ -38,6 +38,7 @@ jobs:
           path: |
             output/verification/*.json
             output/verification/*.log
+            output/verification/native-source-*.txt
             output/clients/windows/
             output/linux-server/
           retention-days: 7

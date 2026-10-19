@@ -9,6 +9,20 @@ import tempfile
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def source_inventory():
+    """Record exact fingerprint inputs so host differences remain diagnosable."""
+    game = ROOT / 'game'
+    paths = []
+    for folder in ('content', 'scripts', 'scenes', 'assets', 'addons', 'shaders'):
+        paths.extend(p for p in (game / folder).rglob('*') if p.is_file()
+                     and '__pycache__' not in p.parts and p.suffix != '.pyc' and p.name != '.DS_Store')
+    paths.extend(p for p in (game / 'project.godot', game / 'default_bus_layout.tres') if p.is_file())
+    return {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in sorted(paths, key=lambda p: p.relative_to(ROOT).parts)}
+
+
 VOICE = tuple('voice/' + name + '_checks.gd' for name in (
     'voice', 'voice_udp', 'voice_playback',
     'voice_device', 'voice_text_focus'))
@@ -109,8 +123,23 @@ def main():
     report['platform_exclusions'] = ['voice_native_checks.gd loads the macOS-only capture extension; verify separately on macOS.']
     destination = ROOT / 'output/verification/native-release-current.json'
     try:
+        report['source_inventory_before_import'] = source_inventory()
         validate()
         import_game()
+        report['source_inventory_after_import'] = source_inventory()
+        report['tracked_diff_after_import'] = subprocess.check_output(
+            ['git', 'diff', '--', 'game'], cwd=ROOT, text=True)
+        report['git_status_after_import'] = subprocess.check_output(
+            ['git', 'status', '--porcelain'], cwd=ROOT, text=True)
+        report['project_input_artifacts'] = {}
+        for name in ('project.godot', 'default_bus_layout.tres'):
+            data = (GAME / name).read_bytes()
+            artifact = destination.parent / ('native-source-' + name + '.txt')
+            artifact.write_bytes(data)
+            report['project_input_artifacts'][name] = {
+                'artifact': artifact.name, 'sha256': hashlib.sha256(data).hexdigest()}
+        if report['tracked_diff_after_import']:
+            raise RuntimeError('Godot import changed tracked runtime sources; inspect exact provenance artifacts')
         engine = toolchain(('godot',))['godot']
         fingerprint = package_fingerprints()
         for script in (*SOURCE, *VOICE):
