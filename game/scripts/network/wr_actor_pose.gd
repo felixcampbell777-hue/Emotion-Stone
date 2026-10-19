@@ -1,12 +1,14 @@
 extends RefCounted
 ## Server-authored presentation state; JSON-portable transforms use basis columns then origin.
+const SCALAR_FIELDS=["slow_sources","swing_cue_action","action_event_index","shift_pending","shift_clock","stamina_delay","sprint_exhausted","sprint_denial_latched","parry_resolved","parry_flash","invulnerability","measured_remaining","measured_triggered","water_released","undertow_cast","dash_water_pending","attack_yaw","combo_stage","combo_remaining","combo_queued","dash_distance","dash_attack_queued","dash_attack_blend","dash_uppercut","dash_release_queued","roll_restore_drawn","roll_attack_queued","thrust_charging","thrust_charge_seconds","thrust_distance","thrust_launch_seconds","thrust_hold_seconds","thrust_windup_seconds","thrust_start_phase","thrust_gust_emitted","charge_rush","attack_rushing","compressed_windup","chain_speed","chain_blend","chain_blend_duration","action_transition_remaining","action_transition_duration","stagger_start_phase","stagger_motion","counter_active","counter_remaining","sprinting","jump_active","jump_velocity","current_clip","presentation_clock","slam_emitted","slam_contact_started","beta_hand_drop","rush_clock","rush_credit","heavy_style"]
+const VECTOR_FIELDS=["attack_direction","movement_direction","counter_step","knockback"]
 static func encode_transform(value:Transform3D) -> Array:
  return [value.basis.x.x,value.basis.x.y,value.basis.x.z,value.basis.y.x,value.basis.y.y,value.basis.y.z,value.basis.z.x,value.basis.z.y,value.basis.z.z,value.origin.x,value.origin.y,value.origin.z]
 static func snapshot(actor:Node3D) -> Dictionary:
  var result:Dictionary={}
- for key in ["slow_sources","swing_cue_action","action_event_index","shift_pending","shift_clock","stamina_delay","sprint_exhausted","sprint_denial_latched","parry_resolved","parry_flash","invulnerability","measured_remaining","measured_triggered","water_released","undertow_cast","dash_water_pending","attack_yaw","combo_stage","combo_remaining","combo_queued","dash_distance","dash_attack_queued","dash_attack_blend","dash_uppercut","dash_release_queued","roll_restore_drawn","roll_attack_queued","thrust_charging","thrust_charge_seconds","thrust_distance","thrust_launch_seconds","thrust_hold_seconds","thrust_windup_seconds","thrust_start_phase","thrust_gust_emitted","charge_rush","attack_rushing","compressed_windup","chain_speed","chain_blend","chain_blend_duration","action_transition_remaining","action_transition_duration","stagger_start_phase","stagger_motion","counter_active","counter_remaining","sprinting","jump_active","jump_velocity","current_clip","presentation_clock","slam_emitted","slam_contact_started","beta_hand_drop","rush_clock","rush_credit","heavy_style"]:
+ for key in SCALAR_FIELDS:
   var value=actor.get(key);result[key]=value.duplicate(true) if value is Dictionary or value is Array else value
- for key in ["attack_direction","movement_direction","counter_step","knockback"]:
+ for key in VECTOR_FIELDS:
   var vector:Vector3=actor.get(key);result[key]=[vector.x,vector.y,vector.z]
  result.visual_yaw=actor.visual.rotation.y
  result.equipment_transform=encode_transform(actor.equipment.transform)
@@ -44,18 +46,17 @@ static func snapshot(actor:Node3D) -> Dictionary:
 static func decode_transform(value:Array) -> Transform3D:
  return Transform3D(Basis(Vector3(value[0],value[1],value[2]),Vector3(value[3],value[4],value[5]),Vector3(value[6],value[7],value[8])),Vector3(value[9],value[10],value[11]))
 static func apply(actor:Node3D,state:Dictionary) -> void:
- # Derive the accepted field allowlist from the same serializer; no arbitrary
- # network property names are written to the actor.
- var allowed=snapshot(actor)
- var vectors=["attack_direction","movement_direction","counter_step","knockback"]
- var complex=["hero_state","equipment_parent","equipment_transform","chain_weapon","chain_bones","action_transition_bones","source_bones","native_bones","gait","view_blend","visual_yaw","weapon_state","animator_clip","animator_position","blade_sweep_previous"]
- for key in allowed:
-  if not state.has(key) or key in complex:continue
-  if key in vectors:
-   var value=state[key]
-   if value is Array and value.size()==3:actor.set(key,Vector3(value[0],value[1],value[2]))
-  elif typeof(state[key])==typeof(allowed[key]) or (state[key] is float and allowed[key] is int):
-   actor.set(key,state[key].duplicate(true) if state[key] is Dictionary or state[key] is Array else int(state[key]) if allowed[key] is int else state[key])
+ # Snapshot and restore share the exact field allowlists. Reading only the
+ # scalar types avoids serializing and discarding every bone/weapon pose here.
+ for key in SCALAR_FIELDS:
+  if not state.has(key):continue
+  var current=actor.get(key)
+  if typeof(state[key])==typeof(current) or (state[key] is float and current is int):
+   actor.set(key,state[key].duplicate(true) if state[key] is Dictionary or state[key] is Array else int(state[key]) if current is int else state[key])
+ for key in VECTOR_FIELDS:
+  if not state.has(key):continue
+  var value=state[key]
+  if value is Array and value.size()==3:actor.set(key,Vector3(value[0],value[1],value[2]))
  if state.has("animator_clip") and actor.animator.has_animation(String(state.animator_clip)):
   actor.animator.play(String(state.animator_clip),0)
   actor.animator.seek(float(state.get("animator_position",0)),true)
