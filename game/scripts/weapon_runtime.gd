@@ -93,11 +93,10 @@ func apply_stats() -> void:
  settings=Profiles.profile(item_id)
  if not enabled() or not is_instance_valid(game):return
  var growth=game.progression;var gear=game.magic_items
- var universal=maxf(.01,1-.02*growth.rank("iron_body")) if game.game_mode=="world_rise" else 1.0
- var damage=1+.02*growth.rank("iron_body") if game.game_mode=="world_rise" else 1.0
+ var damage=preload("res://scripts/world_rise_stats.gd").weapon_damage_multiplier(growth,settings.kind) if game.game_mode=="world_rise" else 1.0
  if settings.kind!="bow":damage*=1+gear.bonus("melee")
  settings.damage=roundi(float(settings.damage)*damage*(1+gear.bonus("all_damage")))
- settings.stamina*=universal*maxf(.01,1-.15*growth.rank("honed_arms")) if game.game_mode=="world_rise" else 1.0
+ settings.stamina*=preload("res://scripts/world_rise_stats.gd").weapon_stamina_multiplier(growth,settings.kind) if game.game_mode=="world_rise" else 1.0
 func action_context() -> Dictionary:
  var result=actor.action_context().duplicate(true) if actor.has_method("action_context") else {}
  result.merge({"attacker_id":String(result.get("actor_id",actor.get_meta("player_id",actor.name))),"weapon_id":item_id,"weapon_type":settings.get("kind","greatsword"),"action_id":action_id,"strike_index":0,"damage_kind":"projectile" if settings.get("kind","")=="bow" else "melee"},true)

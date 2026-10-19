@@ -7,6 +7,8 @@ var swamp=preload("res://scripts/swamp_campaign.gd").new()
 var checkpoints=preload("res://scripts/rise_checkpoints.gd").new()
 var game:Node
 var states:Dictionary={}
+var practice_contributors:Dictionary={}
+static var practice_encounters:Dictionary={}
 var flags:Array=[]
 var checkpoint:Array=[0,0]
 var packs:Dictionary={}
@@ -23,9 +25,10 @@ var ai_clock=0.0
 func is_night() -> bool:return day_clock>=600 and day_clock<1080
 const ELDER_ID="wr_boss_chamber/vault_elder"
 func active() -> bool:return game.game_mode=="world_rise" and game.map_id=="wr_floor_01"
-func reset() -> void:states.clear();flags.clear();checkpoint=[0,0];packs.clear();clock=0;elapsed=0;day_clock=0;elder_respawn=0;ashfang_respawn=0;light_clock=0;guild.reset();checkpoints.hold=0;checkpoints.armed=true;checkpoints.unlocked=["arrival"];swamp.reset()
+func reset() -> void:practice_contributors.clear();states.clear();flags.clear();checkpoint=[0,0];packs.clear();clock=0;elapsed=0;day_clock=0;elder_respawn=0;ashfang_respawn=0;light_clock=0;guild.reset();checkpoints.hold=0;checkpoints.armed=true;checkpoints.unlocked=["arrival"];swamp.reset()
 static func valid(data:Variant) -> bool:
 	if not data is Dictionary:return false
+	if not valid_practice_contributors(data.get("practice_contributors",{})):return false
 	for key in ["day_clock","elder_respawn","ashfang_respawn"]:
 		var value=data.get(key,0)
 		if not (value is float or value is int) or not is_finite(float(value)) or value<0 or value>1080:return false
@@ -66,8 +69,9 @@ func snapshot() -> Dictionary:
 	if active():
 		for enemy in game.enemies:
 			if enemy.definition.id=="ashfang" and enemy.health>0:states.ashfang={"health":enemy.health,"at":[enemy.position.x,enemy.position.z]}
-	return {"swamp":swamp.snapshot(),"states":states.duplicate(true),"flags":flags.duplicate(),"checkpoint":checkpoint.duplicate(),"checkpoint_layout":2,"unlocked_checkpoints":checkpoints.unlocked.duplicate(),"economy":guild.snapshot(),"day_clock":day_clock,"elder_respawn":elder_respawn,"ashfang_respawn":ashfang_respawn}
+	return {"practice_contributors":practice_contributors.duplicate(true),"swamp":swamp.snapshot(),"states":states.duplicate(true),"flags":flags.duplicate(),"checkpoint":checkpoint.duplicate(),"checkpoint_layout":2,"unlocked_checkpoints":checkpoints.unlocked.duplicate(),"economy":guild.snapshot(),"day_clock":day_clock,"elder_respawn":elder_respawn,"ashfang_respawn":ashfang_respawn}
 func restore(data:Dictionary) -> void:
+	practice_contributors=data.get("practice_contributors",{}).duplicate(true)
 	swamp.game=game;swamp.restore(data.get("swamp",{}))
 	states=data.get("states",{}).duplicate(true);flags=data.get("flags",[]).duplicate();checkpoint=data.get("checkpoint",[0,0]).duplicate();guild.restore(data.get("economy",{}));day_clock=fposmod(float(data.get("day_clock",0)),1080);elder_respawn=float(data.get("elder_respawn",1080 if ELDER_ID in game.defeated_enemies else 0));ashfang_respawn=float(data.get("ashfang_respawn",1080 if "wr_floor_01/ashfang" in game.defeated_enemies else 0))
 	if ELDER_ID in game.defeated_enemies:
@@ -177,9 +181,10 @@ func spawn_ashfang() -> void:
 func spawn_ashfang_wolves(at:Vector3) -> void:
 	for i in range(3):
 		var e=load("res://scripts/beta_enemy.gd").new();var id="ashfang_wolf_%d"%i
+		practice_contributors.erase("wr_floor_01/"+id)
 		var angle=(i+1)*TAU/3;var pos=preload("res://scripts/west_islands.gd").GROVE+Vector3(cos(angle),0,sin(angle))*21
 		e.name=id;e.game=game;e.configure({"id":id,"kind":"beta_wolf","pack":"ashfang_aid","at":[pos.x,pos.z]},game.player);e.mob_category="canine";game.world_root.add_child(e);game.enemies.append(e);game.add_enemy_bar(e);e.position.y=game.current_world.ground_height(e.position)
-		e.defeated.connect(func():game.gain_xp(game.enemy_xp_reward("beta_wolf")))
+		e.defeated.connect(func():var reward=game.enemy_xp_reward("beta_wolf");game._award_weapon_practice(e,reward);game.gain_xp(reward))
 	game.wolf_packs.build(game)
 	for pack in game.wolf_packs.packs:
 		if pack.id=="ashfang_aid":game.wolf_packs.engage(pack)
@@ -313,6 +318,7 @@ func animation_step(enemy:Node3D,delta:float) -> float:
 
 func respawn_reset() -> void:
 	if swamp.active():swamp.respawn_reset();return
+	clear_practice_floor("wr_floor_01");clear_practice_floor("wr_boss_chamber")
 	states.clear()
 	game.defeated_enemies=game.defeated_enemies.filter(func(id):return not (String(id).begins_with("wr_floor_01/") and id!="wr_floor_01/ashfang"))
 func interact(target:Dictionary) -> bool:
@@ -465,3 +471,26 @@ func apply_authoritative_effects(records:Dictionary) -> void:
 		if id not in retained or not is_instance_valid(node):
 			if is_instance_valid(node):node.queue_free()
 			authoritative_effect_nodes.erase(id)
+
+static func known_practice_encounter(key:String) -> bool:
+	if practice_encounters.is_empty():
+		practice_encounters={"wr_boss_chamber/vault_elder":true,"wr_floor_01/ashfang":true}
+		for entry in JSON.parse_string(FileAccess.get_file_as_string("res://content/maps/wr_floor_01.json")).enemies:
+			practice_encounters["wr_floor_01/"+String(entry.id)]=true;practice_encounters["wr_floor_01/"+String(entry.id)+"_night"]=true
+		for entry in preload("res://scripts/swamp_campaign.gd").all_entries():practice_encounters["wr_floor_02/"+String(entry.id)]=true
+		for index in range(3):practice_encounters["wr_floor_01/ashfang_wolf_%d"%index]=true
+	return practice_encounters.has(key)
+
+static func valid_practice_contributors(value:Variant) -> bool:
+	if not value is Dictionary or value.size()>400:return false
+	for key in value:
+		if not key is String or not known_practice_encounter(key) or not value[key] is Array or value[key].is_empty() or value[key].size()>4:return false
+		var seen:Array=[]
+		for kind in value[key]:
+			if not kind is String or kind not in ["greatsword","spear","rapier","bow"] or kind in seen:return false
+			seen.append(kind)
+	return true
+
+func clear_practice_floor(floor_id:String) -> void:
+	for key in practice_contributors.keys():
+		if String(key).begins_with(floor_id+"/"):practice_contributors.erase(key)

@@ -63,8 +63,10 @@ func run() -> void:
  g.game_mode="world_rise";g.start_new_game(false);g.title_screen.hide();g._refresh_simulation();g.set_process(false);g.set_physics_process(false)
  for e in g.enemies:e.ai_enabled=false;e.set_physics_process(false)
  var local=g.player;local.set_physics_process(false);local.set_meta("canonical_manual_step",true);local.get_node("BetaHero").set_process(false);local.set_process_input(false);local.collision_mask=1|4
- g.progression.xp=10000000;g.progression.greatsword_kills=1000
- for skill in ["iron_body","honed_arms","swiftfoot","dash","streaming_dash","lightstep","belly_roll","roly_poly","speed_freak","great_greatsword","charge_thrust","fast_thrust","basher"]:g.progression.learn(skill)
+ g.progression.xp=10000000;g.progression.award_practice("greatsword",1000)
+ for attribute in ["body","reflexes","mastery"]:
+  for point in range(12 if attribute!="mastery" else 17):g.progression.increase_attribute(attribute)
+ for skill in ["iron_body","honed_arms","swiftfoot","dash","streaming_dash","lightstep","belly_roll","roly_poly","great_greatsword","charge_thrust","fast_thrust","basher"]:g.progression.learn(skill)
  var floor_context=FloorContext.new();floor_context.current_world=g.current_world;floor_context.world_root=g.world_root;root.add_child(floor_context)
  var local_driver=View.new()
  for item in ["standard_greatsword","field_spear","duelist_rapier","hunting_bow"]:

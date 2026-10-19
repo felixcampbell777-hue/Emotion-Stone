@@ -15,7 +15,7 @@ func configure(owner_game:Control) -> void:
 	box=game.panel(self)
 	box.add_theme_stylebox_override("panel",game.style(Color("#203630"),Color("#c6c6a74a")))
 	var frame=VBoxContainer.new(); frame.add_theme_constant_override("separation",12); box.add_child(frame)
-	frame.add_child(game.label("SOUND & VOICE",24,Color("#e9c894")))
+	frame.add_child(game.label("SETTINGS",24,Color("#e9c894")))
 	back=game.button("Back [Esc]",close); frame.add_child(back)
 	content_scroll=ScrollContainer.new(); content_scroll.follow_focus=true; content_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED; content_scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL; frame.add_child(content_scroll)
 	sections=VBoxContainer.new(); sections.size_flags_horizontal=Control.SIZE_EXPAND_FILL; sections.add_theme_constant_override("separation",12); content_scroll.add_child(sections)
@@ -30,6 +30,13 @@ func open() -> void:
 	var voice=game.get("voice")
 	if voice!=null and voice.has_method("settings_panel"): sections.add_child(voice.settings_panel())
 	else: sections.add_child(game.label("Voice is unavailable in this build. You can still play and join servers.",16))
+	if game.game_mode=="world_rise" and game.blood!=null:
+		var feedback=VBoxContainer.new();feedback.add_child(game.label("DAMAGE FEEDBACK",18,Color("#e9c894")))
+		var blood_choice=OptionButton.new()
+		for choice in ["Off","Reduced","Full"]:blood_choice.add_item(choice)
+		blood_choice.select(["off","reduced","full"].find(game.blood.level))
+		blood_choice.item_selected.connect(func(index:int):game.blood.set_level(["off","reduced","full"][index]))
+		feedback.add_child(blood_choice);sections.add_child(feedback)
 	fit_labels(sections)
 	game.move_child(self,game.get_child_count()-1)
 	visible=true

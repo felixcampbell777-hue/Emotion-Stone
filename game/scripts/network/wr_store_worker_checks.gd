@@ -27,21 +27,11 @@ func _init() -> void:
  var reopened=Store.new()
  check(reopened.open("user://worker-check"),"explicit restart recovers durable file")
  check(reopened.data.get("probe_counter")==29,"accepted disk preserved after worker failure")
- var fault=Store.new()
- check(fault.open("user://post-rename-fault"),"fault fixture initial durable checkpoint")
- fault.stop_worker()
- var wrapper_path=ProjectSettings.globalize_path("user://directory_fsync_fault.py")
- var wrapper=FileAccess.open(wrapper_path,FileAccess.WRITE)
- wrapper.store_string("import runpy,os,stat,sys\nmodule=runpy.run_path("+JSON.stringify(fault.helper)+")\nreal_fsync=os.fsync\ndef injected(fd):\n if stat.S_ISDIR(os.fstat(fd).st_mode): raise OSError('injected directory fsync failure')\n return real_fsync(fd)\nos.fsync=injected\nraise SystemExit(module['worker'](sys.argv[2],int(sys.argv[3]),sys.argv[4]))\n");wrapper.close()
- fault.helper=wrapper_path
- var before=fault.data.duplicate(true);var after=before.duplicate(true);after["post_rename_probe"]=123
- check(not fault.commit(after),"post-rename fsync failure never acknowledged")
- check(fault.read_only,"negative acknowledgement freezes ambiguous disk state")
- check(fault.data==before,"ambiguous negative acknowledgement retains prior accepted RAM")
- var disk=preload("res://scripts/network/wr_storage_codec.gd").read_file(fault.directory.path_join("world.json"),"world").data
- check(disk.get("post_rename_probe")==123,"fault actually occurred after atomic replacement")
- check(not fault.commit(before),"stale RAM cannot overwrite replaced checkpoint")
- fault.stop_worker()
+ # Every platform exercises a real replacement followed by an ambiguous failure.
+ check_post_replace_fault("post-replace-fault", "real_replace=os.replace\ndef injected_replace(source,destination):\n real_replace(source,destination)\n if os.path.realpath(destination)==os.path.realpath(sys.argv[2]): raise OSError('injected post-replace failure')\nos.replace=injected_replace\n")
+ # POSIX additionally retains the specific parent-directory fsync failure path.
+ if OS.get_name()!="Windows":
+  check_post_replace_fault("directory-fsync-fault", "real_fsync=os.fsync\ndef injected(fd):\n if stat.S_ISDIR(os.fstat(fd).st_mode): raise OSError('injected directory fsync failure')\n return real_fsync(fd)\nos.fsync=injected\n")
  var precision=Store.new()
  check(precision.open("user://fractional-precision"),"fractional checkpoint opens")
  var owner=Crypto.new().generate_rsa(2048)
@@ -60,6 +50,23 @@ func _init() -> void:
  samples.sort()
  print("WR_STORE_WORKER_CHECKS ",JSON.stringify({"checks":checks,"failures":failures,"warm_commit_p95_usec":samples[28],"warm_commit_max_usec":samples[-1],"stages":summarize_stages(stage_samples)}))
  store.stop_worker();reopened.stop_worker();quit(0 if failures.is_empty() else 1)
+
+func check_post_replace_fault(label:String,injection:String) -> void:
+ var fault=Store.new()
+ check(fault.open("user://"+label),label+": initial durable checkpoint")
+ fault.stop_worker()
+ var wrapper_path=ProjectSettings.globalize_path("user://"+label+".py")
+ var wrapper=FileAccess.open(wrapper_path,FileAccess.WRITE)
+ wrapper.store_string("import runpy,os,stat,sys\nmodule=runpy.run_path("+JSON.stringify(fault.helper)+")\n"+injection+"raise SystemExit(module['worker'](sys.argv[2],int(sys.argv[3]),sys.argv[4]))\n");wrapper.close()
+ fault.helper=wrapper_path
+ var before=fault.data.duplicate(true);var after=before.duplicate(true);after["post_rename_probe"]=123
+ check(not fault.commit(after),label+": post-replacement failure never acknowledged")
+ check(fault.read_only,label+": negative acknowledgement freezes ambiguous disk state")
+ check(fault.data==before,label+": ambiguous negative acknowledgement retains prior accepted RAM")
+ var disk=preload("res://scripts/network/wr_storage_codec.gd").read_file(fault.directory.path_join("world.json"),"world").data
+ check(disk.get("post_rename_probe")==123,label+": fault actually occurred after atomic replacement")
+ check(not fault.commit(before),label+": stale RAM cannot overwrite replaced checkpoint")
+ fault.stop_worker()
 
 func collect_stages(samples:Dictionary,stages:Dictionary,prefix:String="") -> void:
  for key in stages:

@@ -14,8 +14,12 @@ func run() -> void:
 	var g=load("res://scenes/main.tscn").instantiate();root.add_child(g);await process_frame;await process_frame
 	g.game_mode="world_rise";g.start_new_game(false);g.title_screen.hide();g._refresh_simulation();g.set_process(false);g.set_physics_process(false);g.player.set_physics_process(false)
 	for e in g.enemies:e.set_physics_process(false);e.ai_enabled=false
-	g.progression.xp=10000000;g.progression.greatsword_kills=1000
-	for id in ["iron_body","iron_body","honed_arms","swiftfoot","dash","streaming_dash","lightstep","belly_roll","roly_poly","speed_freak","great_greatsword","great_greatsword","charge_thrust","fast_thrust","basher","basher","basher","devastating_blade"]:
+	g.progression.xp=10000000
+	for kind in ["greatsword","spear","rapier","bow"]:g.progression.award_practice(kind,400)
+	for attribute in {"body":9,"reflexes":15,"precision":15,"endurance":9,"mastery":20}:
+		while g.progression.attributes[attribute]<{"body":9,"reflexes":15,"precision":15,"endurance":9,"mastery":20}[attribute]:
+			check(g.progression.increase_attribute(attribute),"Actual progression raises "+attribute)
+	for id in ["iron_body","iron_body","honed_arms","swiftfoot","dash","streaming_dash","deep_reserve","lightstep","belly_roll","roly_poly","finesse","measured_draw","point_control","great_greatsword","great_greatsword","charge_thrust","fast_thrust","basher","basher","basher","devastating_blade"]:
 		check(g.progression.learn(id),"Actual progression learns "+id)
 	for item in ["standard_greatsword","field_spear","duelist_rapier","hunting_bow"]:
 		if item not in g.magic_items.owned:g.magic_items.owned.append(item)

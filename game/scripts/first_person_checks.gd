@@ -57,7 +57,8 @@ func run(test:RefCounted) -> void:
 	game.load_map(game.map_id,Vector2(0,-12),true); await test.frames(2)
 	test.check(actor.find_children("*","MeshInstance3D",true,false).filter(func(mesh): return mesh.has_meta("first_person_arms")).size()==count,"Map reload rebuilds first-person arms without duplicate layers")
 	game.toggle_camera()
-	test.check(game.camera_mode=="first_person" and actor.camera_relative and InputMap.action_get_events("camera_mode").is_empty(),"Gameplay has only first person and C no longer switches to retired views")
+	test.check(game.camera_mode==("third_person" if game.game_mode=="world_rise" else "first_person") and actor.camera_relative and not InputMap.action_get_events("camera_mode").is_empty(),"C toggles World Rise perspective while legacy modes retain first person")
+	if game.game_mode=="world_rise":game.toggle_camera()
 	actor.set_sword_drawn(false)
 
 func locomotion_motion_checks(test:RefCounted) -> void:

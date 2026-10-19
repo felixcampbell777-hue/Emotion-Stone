@@ -30,10 +30,10 @@ static func build(profile:Dictionary) -> Dictionary:
 	gear.apply_stats();Stats.apply(context)
 	var weapon=Profiles.profile(gear.weapon_id)
 	if not bool(weapon.get("legacy",true)):
-		var damage=1+.02*growth.rank("iron_body")
+		var damage=Stats.weapon_damage_multiplier(growth,weapon.kind)
 		if weapon.kind!="bow":damage*=1+gear.bonus("melee")
 		weapon.damage=roundi(float(weapon.damage)*damage*(1+gear.bonus("all_damage")))
-		weapon.stamina*=maxf(.01,1-.02*growth.rank("iron_body"))*maxf(.01,1-.15*growth.rank("honed_arms"))
+		weapon.stamina*=Stats.weapon_stamina_multiplier(growth,weapon.kind)
 	var result={"combat":actor.combat.duplicate(true),"weapon":weapon,"weapon_multiplier":gear.weapon_base(),"max_health":actor.max_health,"max_stamina":actor.max_stamina,"walk_speed":actor.walk_speed,"damage_reduction":Stats.reduction(context),"gear_armor":gear.bonus("armor"),"sword_recoil":gear.bonus("sword_recoil"),"life_on_hit":gear.bonus("life_on_hit"),"canine_bonus":gear.weapon_bonus_against("canine"),"terrain_water_speed":gear.bonus("terrain_water_speed"),"dash_distance_multiplier":actor.dash_distance_multiplier,"dash_stamina_multiplier":actor.dash_stamina_multiplier,"jump_stamina_multiplier":actor.jump_stamina_multiplier}
 	actor.free();context.free()
 	return result

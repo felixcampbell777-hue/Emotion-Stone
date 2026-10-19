@@ -1,6 +1,16 @@
 # Dedicated server performance evidence
 
-Current implementation candidate; not a packaged release certification.
+Performance evidence is specific to its named protocol, source revision, host and scenario. The protocol-3 measurements below describe the earlier candidate; current World Rise v0.42.0 uses protocol 4. Read the newest verification/status evidence and the exact reports attached to each download before applying older measurements to a current host. This document does not certify a host capacity or uniform frame cadence.
+
+## v0.42.0 / protocol 4 native-source result
+
+The final current-tree5 authored eight-client source scenario passes in **62.32s** on native Apple M3/macOS ARM64 with pinned Godot 4.5.1. All eight clients exit zero, retain valid tree5 profiles and produce exact durable exports; no engine errors or source-fingerprint drift occur. Both Fen participants receive 72 XP and reach 1,022 copper; accepted damage earns four/three weapon-practice credits, preserving the separate shared-XP and actual-weapon-contribution policies. Vendor clients complete the normal purchases/equipment at their expected balances; the bow spends ten arrows down to four. Both Vault participants hit the Elder and die; this run does not demonstrate a boss victory.
+
+Across **56** continuous full-population 600-tick samples, latest physics callback P95 is **13.870ms** and worst sampled rolling P95 **15.707ms**, meeting the unchanged 16.67ms work budget. Active callback maximum is 36.773ms. Interval P95 is **18.501ms**, with active maximum **38.027ms**; uniform 60Hz delivery remains unproven. Active sampled CPU peaks at **77.2%** of one core and RSS at **998.52MiB**. Startup/departure-inclusive peaks are 99% CPU and 999.45MiB; the lifetime physics maximum includes startup and is not the active-work metric. Active compressed traffic is approximately **0.83–1.30Mbit/s per peer**.
+
+Reports: `output/verification/network-process-latest.json` and `network-performance-current.json`. Their runtime groups remain identical before/after, and the content digest is `6266368031e0d0db87af11c82b83a857c4e427734662adbc8f5a0310fccd3c78`. These are eight headless source clients on the declared native host. They do not establish packaged-client GPU FPS, Docker performance or capacity of the selected native Linux host. Native CI and the exact reports/checksums shipped with each release remain publication gates.
+
+## Earlier protocol-3 measurements and profiling method
 
 The dedicated authority retains 60 Hz playable Actor simulation, real swept steel contacts, authored native enemies, and retained terrain collision. Snapshot publication is 20 Hz. Server profiling measures these separately so a slow publication tick cannot be hidden by reporting only a mean simulation time.
 
@@ -12,7 +22,7 @@ Use the disposable authored scenario through `tools/verify_network_processes.py 
 
 The immutable snapshot selector avoids recursively copying the full world for every recipient. It allocates fresh selected dictionaries and player records, copies the recipient's private profile before removing history, and omits other characters' private profiles. All borrowed world payloads remain read-only during synchronous serialization. Earned item claims remain durable server state; only the nearest 64 owned item claims and 32 shared arrows are visible at once. Picking up nearer claims exposes later ones. The focused snapshot filter check verifies legacy selection parity within these bounds, privacy, source immutability, nearest selection, and retained unselected claims.
 
-The current protocol is version 3. Its `WRZ1` packet envelope identifies Zstandard, records the expected raw size, and checks a SHA-256 digest before decompression. Both the 2 MiB decompressed limit and 128 × 900-byte chunk limit remain enforced. Focused negative checks cover versions, corruption, oversized data, object-bearing data, and invalid snapshot shape. Protocol mismatches fail authentication rather than accepting an incompatible decoder.
+The earlier measured candidate used protocol version 3. Its `WRZ1` packet envelope identifies Zstandard, records the expected raw size, and checks a SHA-256 digest before decompression. Both the 2 MiB decompressed limit and 128 × 900-byte chunk limit remain enforced. Focused negative checks cover versions, corruption, oversized data, object-bearing data, and invalid snapshot shape. Protocol mismatches fail authentication rather than accepting an incompatible decoder.
 
 For compression experiments, also set `WORLD_RISE_PROFILE_SNAPSHOT=1` in a disposable fixture. The server writes one serialized representative packet inside its isolated data directory. Copy it while the fixture is alive, then use `wr_snapshot_compression_probe.gd -- --snapshot=/absolute/fixture/path` to compare algorithms on identical bytes with exact decompression checks. This probe does not change the production wire format. Delete the captured packet after analysis; it contains the fixture character's profile.
 

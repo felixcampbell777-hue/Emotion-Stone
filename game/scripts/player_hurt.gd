@@ -16,7 +16,8 @@ static func volumes(actor:Node3D) -> Array:
  var left=rig.find_bone("upper_arm.L");var right=rig.find_bone("upper_arm.R")
  if head<0 or pelvis<0 or left<0 or right<0:return result
  var head_pose=rig.global_transform*rig.get_bone_global_pose(head)
- var shoulder=((rig.global_transform*rig.get_bone_global_pose(left)).origin+(rig.global_transform*rig.get_bone_global_pose(right)).origin)*.5
+ var anchors:Dictionary=rig.get_meta("canonical_hurt_shoulders",{})
+ var shoulder=(anchors.L+anchors.R)*.5 if anchors.has("L") and anchors.has("R") else ((rig.global_transform*rig.get_bone_global_pose(left)).origin+(rig.global_transform*rig.get_bone_global_pose(right)).origin)*.5
  var hip=(rig.global_transform*rig.get_bone_global_pose(pelvis)).origin
  result.append({"from":hip,"to":shoulder,"radius":TORSO_RADIUS,"region":"torso"})
  var cranial_up=(head_pose.basis*rig.get_bone_global_rest(head).basis.inverse()*Vector3.UP).normalized()

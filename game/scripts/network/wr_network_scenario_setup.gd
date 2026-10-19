@@ -27,7 +27,7 @@ func _initialize() -> void:
 		var key=Crypto.new().generate_rsa(2048);var profile=Profile.new_profile(key.save_to_string(true),"Load participant %d"%(i+1));profile.copper=1000;profile.progression.xp=1000
 		if pvp_scenario:
 			profile.magic_items.owned=["standard_greatsword","field_spear","duelist_rapier","hunting_bow","wooden_arrows","guild_healing_potion"];profile.magic_items.quantities={"wooden_arrows":20,"guild_healing_potion":20}
-		if not Profile.valid(profile):push_error("Invalid disposable profile "+str(i));quit(1);return
+		if not Profile.valid(profile) or int(profile.progression.get("tree_version",0))!=5:push_error("Invalid current tree5 disposable profile "+str(i));quit(1);return
 		var directory=destination.path_join("client-%d"%i);DirAccess.make_dir_recursive_absolute(directory)
 		if key.save(directory.path_join("owner.private.pem"))!=OK:push_error("Cannot save disposable client credential");quit(1);return
 		var file=FileAccess.open(directory.path_join("portable.json"),FileAccess.WRITE);file.store_string(Storage.encode(profile,"character"));file.close()
@@ -49,7 +49,7 @@ func _initialize() -> void:
 	var occlusion_route=[]
 	for point in [Vector2(3.5,-.2),Vector2(3.5,-7.5),Vector2(0,-7.5),Vector2(0,-10.5),Vector2(12,-10.5),Vector2(12,-.2),Vector2(12,2.8)]:occlusion_route.append(vector_array(guild_point(point.x,point.y)))
 	var occlusion_hint={"inside_position":vector_array(guild_point(10,2.8)),"inside_walk_route":[vector_array(guild_point(10,-.2)),vector_array(guild_point(10,2.8))],"inside_yaw":-PI*.25,"outside_position":vector_array(guild_point(12,2.8)),"outside_yaw":PI*.75,"outside_walk_route":occlusion_route,"inside_return_position":vector_array(guild_point(8,-.2)),"outside_return_position":vector_array(guild_point(6.8,-.2)),"wall":"authored guild east plaster bay local x=11,z=2.8; use reverse routes to return"}
-	var file=FileAccess.open(destination.path_join("scenario.json"),FileAccess.WRITE);file.store_string(JSON.stringify({"server":destination.path_join("server"),"night_clock":next.day_clock,"scenario_kind":scenario_kind,"clients":registry,"missed_arrow_hint":{"origin":"same arrival platform","pitch_down":0.9,"yaw_sideways":PI*.5,"recover_distance":3.0},"occlusion_hint":occlusion_hint,"near_wall_hint":{"position":vector_array(guild_point(10.5,-.2)),"yaw":-PI*.25,"return_position":vector_array(guild_point(8,-.2)),"return_yaw":PI*.75}},"\t"));file.close()
+	var file=FileAccess.open(destination.path_join("scenario.json"),FileAccess.WRITE);file.store_string(JSON.stringify({"progression_tree_version":5,"content_digest":Profile.content_digest(),"server":destination.path_join("server"),"night_clock":next.day_clock,"scenario_kind":scenario_kind,"clients":registry,"missed_arrow_hint":{"origin":"same arrival platform","pitch_down":0.9,"yaw_sideways":PI*.5,"recover_distance":3.0},"occlusion_hint":occlusion_hint,"near_wall_hint":{"position":vector_array(guild_point(10.5,-.2)),"yaw":-PI*.25,"return_position":vector_array(guild_point(8,-.2)),"return_yaw":PI*.75}},"\t"));file.close()
 	print("NETWORK_SCENARIO_READY ",destination.path_join("scenario.json"));quit()
 
 func guild_point(x:float,z:float) -> Vector3:

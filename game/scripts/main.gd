@@ -30,6 +30,7 @@ var last_online_profile=""
 var wr_session:Node
 var voice:Node
 var audio:Node
+var blood:Node
 var network_session:Node
 var progression=Progression.new()
 var skill_tree: Control
@@ -248,6 +249,8 @@ func _ready() -> void:
 	if ResourceLoader.exists("res://scripts/audio/audio_director.gd"):
 		audio=load("res://scripts/audio/audio_director.gd").new();add_child(audio);audio.configure(self)
 		player.presentation_event.connect(audio.emit_event)
+	blood=preload("res://scripts/blood_feedback.gd").new();add_child(blood);blood.configure(self)
+	player.presentation_event.connect(_player_feedback_event)
 	if ResourceLoader.exists("res://scripts/voice/world_rise_voice.gd"):
 		voice=load("res://scripts/voice/world_rise_voice.gd").new();add_child(voice)
 		if audio!=null and audio.has_method("set_voice_activity"):voice.voice_activity.connect(audio.set_voice_activity)
@@ -277,9 +280,13 @@ func _ready() -> void:
 		camera_driver.set_mode("overhead")
 		call_deferred("_capture",args[args.find("--capture")+1])
 	else:
-		if game_mode=="alpha" and DisplayServer.get_name()!="headless": game_mode="alpha2"
+		if game_mode=="alpha":game_mode=default_title_mode()
 		title_screen.show_menu()
 	if "--play-world" in args and args.find("--play-world")+1<args.size(): start_world(args[args.find("--play-world")+1])
+
+func default_title_mode() -> String:
+	if OS.has_feature("world_rise_client"):return "world_rise"
+	return "alpha2" if DisplayServer.get_name()!="headless" else "alpha"
 
 func start_new_game(show_wakeup:bool=true) -> void:
 	appearance=AppearanceProfile.default_profile()
@@ -337,7 +344,7 @@ func start_new_game(show_wakeup:bool=true) -> void:
 		camera_driver.set_mode("first_person")
 		player.restore_health(player.max_health);player.restore_stamina(player.max_stamina)
 	if game_mode=="world_rise":
-		home_intro_complete=true;camera_driver.set_mode("first_person");alpha2.grant("spring_elixir",3)
+		home_intro_complete=true;camera_driver.set_mode(camera_driver.preferred_mode());alpha2.grant("spring_elixir",3)
 	load_map("wr_floor_01" if game_mode=="world_rise" else "a2_haven" if game_mode=="alpha2" else "beta_meadow" if game_mode=="beta" else config.start_map,Vector2(INF,INF),true)
 	title_screen.visible=false
 	toast_time=0
@@ -363,7 +370,7 @@ func start_saved_game(path:String="user://save-v1.json") -> bool:
 	return true
 
 func _bind_inputs() -> void:
-	var bindings={"move_up":[KEY_W,KEY_UP],"move_down":[KEY_S,KEY_DOWN],"move_left":[KEY_A,KEY_LEFT],"move_right":[KEY_D,KEY_RIGHT],"skills":[KEY_P],"inventory":[KEY_I],"pause":[KEY_ESCAPE],"sprint":[KEY_SHIFT],"dodge":[KEY_CTRL],"dash":[KEY_T],"jump":[KEY_SPACE],"camera_mode":[],"camera_recenter":[KEY_V],"interact":[KEY_E,KEY_ENTER],"save_game":[KEY_F5],"load_game":[KEY_F9],"help":[KEY_H],"fullscreen":[KEY_F11]}
+	var bindings={"move_up":[KEY_W,KEY_UP],"move_down":[KEY_S,KEY_DOWN],"move_left":[KEY_A,KEY_LEFT],"move_right":[KEY_D,KEY_RIGHT],"skills":[KEY_P],"inventory":[KEY_I],"pause":[KEY_ESCAPE],"sprint":[KEY_SHIFT],"dodge":[KEY_CTRL],"dash":[KEY_T],"jump":[KEY_SPACE],"camera_mode":[KEY_C],"camera_recenter":[KEY_V],"interact":[KEY_E,KEY_ENTER],"save_game":[KEY_F5],"load_game":[KEY_F9],"help":[KEY_H],"fullscreen":[KEY_F11]}
 	for action in bindings:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action)
@@ -546,7 +553,7 @@ func _build_ui() -> void:
 	help_panel.add_child(help)
 	help.add_theme_constant_override("separation",14)
 	help.add_child(label("A sword too heavy",27,Color("#e8d0a5")))
-	help.add_child(label("WASD / arrows    Move\nMouse    Look (first-person gameplay)\nV    Recenter view\nHold Shift    Sprint / Rush with the sword drawn\nCtrl / Tap Shift    Dodge (unlock in Form)\nT (hold/release)    Dash (learn and equip in Form)\nSpace    Jump (learn and equip in Form)\nE / Enter    Talk / Continue\nR    Draw or sheathe the sword\nTap Left-click / J    Light swing\nTap again during a swing    Return cut, then spin\nHold Left-click / K    Equipped heavy attack\nRight-click / F    Timed parry\nQ    Equipped water attack (unlock in Mana; equip in Inventory)\nI    Inventory       P    Level Up\nF5 / F9    Save / Load\nF11    Fullscreen       H    Help       Esc    Pause / Close\n\nRush into a swing for a faster wind-up.\nFace the slime and parry just as its lunge lands.\nSlime Forest is south; Mother is by the west cottage.",17))
+	help.add_child(label("WASD / arrows    Move\nMouse    Look\nC    First / third person (World Rise)\nV    Recenter view\nHold Shift    Sprint / Rush with the sword drawn\nCtrl / Tap Shift    Dodge (unlock in Form)\nT (hold/release)    Dash (learn and equip in Form)\nSpace    Jump (learn and equip in Form)\nE / Enter    Talk / Continue\nR    Draw or sheathe the sword\nTap Left-click / J    Light swing\nTap again during a swing    Return cut, then spin\nHold Left-click / K    Equipped heavy attack\nRight-click / F    Timed parry\nQ    Equipped water attack (unlock in Mana; equip in Inventory)\nI    Inventory       P    Level Up\nF5 / F9    Save / Load\nF11    Fullscreen       H    Help       Esc    Pause / Close\n\nRush into a swing for a faster wind-up.\nFace the slime and parry just as its lunge lands.\nSlime Forest is south; Mother is by the west cottage.",17))
 	help.add_child(button("Return to the path",toggle_help))
 	_build_story_ui()
 
@@ -618,6 +625,7 @@ func _layout() -> void:
 		death_screen.position=(available-death_screen.size)/2
 
 func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false) -> void:
+	if blood!=null:blood.clear_feedback()
 	goblin_campaign.game=self
 	var data=read_data("res://content/maps/"+id+".json")
 	if data.is_empty():
@@ -659,13 +667,13 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 	world_root.add_child(current_world)
 	current_world.build(data)
 	map_id=id
-	if id!="wr_floor_01":camera.far=160 if camera_mode=="overhead" else 90 if camera_mode=="first_person" else 55
+	if id!="wr_floor_01":camera.far=160 if camera_mode=="overhead" else 90 if camera_mode in ["first_person","third_person"] else 55
 	environment_settings.ambient_light_energy=.16 if data.get("cave",false) else .32
 	environment_settings.background_color=Color("#223638" if data.get("cave",false) else "#819a87" if data.get("biome","")=="jungle" else "#a1b8b7")
 	environment_settings.fog_light_color=environment_settings.background_color
 	EnvironmentArt.configure_lighting(self,data)
 	apply_character_art(player)
-	if camera_mode=="first_person":
+	if camera_mode in ["first_person","third_person"]:
 		camera_driver.visuals.rig_id=0
 		camera_driver.visuals.prepare(player)
 	camera.size=5.0 if data.has("interior") else float(config.camera_size)
@@ -1057,7 +1065,7 @@ func set_resolution(width: int) -> void:
 	_layout()
 
 func toggle_camera() -> void:
-	camera_driver.set_mode("first_person")
+	camera_driver.toggle_mode()
 
 func toggle_resolution() -> void:
 	set_resolution({960:0,0:640,640:320,320:960}[graphics_preset])
@@ -1100,7 +1108,7 @@ func set_character_profile(profile:String) -> void:
 		notify("Finish the current action before changing character art."); return
 	character_profile=profile
 	apply_character_art(player)
-	if camera_mode=="first_person":
+	if camera_mode in ["first_person","third_person"]:
 		camera_driver.visuals.rig_id=0
 		camera_driver.visuals.prepare(player)
 	if profile=="standalone": set_resolution(0)
@@ -1109,7 +1117,7 @@ func set_character_profile(profile:String) -> void:
 
 func save_data() -> Dictionary:
 	# Mode is serialized below and selects a separate Beta file.
-	return {"appearance":AppearanceProfile.snapshot(appearance),"world_rise":worldrise.snapshot(),"alpha2":alpha2.snapshot(),"game_mode":game_mode,"environment_revision":1,"monster_cores":monster_cores.snapshot(),"magic_items":magic_items.snapshot(),"goblin_campaign":goblin_campaign.snapshot(),"respawn_timers":respawn_timers.duplicate(),"world_id":world_id,"world_defeats":world_defeats.duplicate(),"version":1,"home_layout":2,"home_intro_complete":home_intro_complete,"camera_mode":camera_mode,"first_person_pitch":camera_driver.first_pitch,"camera_yaw":camera_driver.yaw,"camera_pitch":camera_driver.pitch,"camera_distance":camera_driver.distance,"map":map_id,"ground_y":player.position.y,"position":[player.position.x,player.position.z],"facing":player.visual.rotation.y,"resolution":graphics_preset,"environment_profile":environment_profile,"character_profile":character_profile,"health":player.health,"stamina":player.stamina,"sword_drawn":player.sword_drawn,"sword_equipped":player.sword_equipped,"special_attack":selected_special_attack,"heavy_attack":player.heavy_style,"mother_unwrapped":mother_unwrapped,"well_gift_stage":well_gift_stage,"quest_stage":quest_stage,"defeated_enemies":defeated_enemies.duplicate(),"progression":progression.snapshot(),"skill_loadout":{"dash":player.dash_equipped,"jump":player.jump_equipped,"flowing_counter":player.counter_equipped}}
+	return {"appearance":AppearanceProfile.snapshot(appearance),"world_rise":worldrise.snapshot(),"alpha2":alpha2.snapshot(),"game_mode":game_mode,"environment_revision":1,"monster_cores":monster_cores.snapshot(),"magic_items":magic_items.snapshot(),"goblin_campaign":goblin_campaign.snapshot(),"respawn_timers":respawn_timers.duplicate(),"world_id":world_id,"world_defeats":world_defeats.duplicate(),"version":1,"home_layout":2,"home_intro_complete":home_intro_complete,"camera_mode":"first_person" if camera_mode=="third_person" else camera_mode,"first_person_pitch":camera_driver.first_pitch,"camera_yaw":camera_driver.yaw,"camera_pitch":camera_driver.pitch,"camera_distance":camera_driver.distance,"map":map_id,"ground_y":player.position.y,"position":[player.position.x,player.position.z],"facing":player.visual.rotation.y,"resolution":graphics_preset,"environment_profile":environment_profile,"character_profile":character_profile,"health":player.health,"stamina":player.stamina,"sword_drawn":player.sword_drawn,"sword_equipped":player.sword_equipped,"special_attack":selected_special_attack,"heavy_attack":player.heavy_style,"mother_unwrapped":mother_unwrapped,"well_gift_stage":well_gift_stage,"quest_stage":quest_stage,"defeated_enemies":defeated_enemies.duplicate(),"progression":progression.snapshot(),"skill_loadout":{"dash":player.dash_equipped,"jump":player.jump_equipped,"flowing_counter":player.counter_equipped}}
 
 func save_game() -> void:
 	if online_session_active():
@@ -1430,6 +1438,9 @@ func _online_action_result(result:Dictionary) -> void:
 	var event_id=String({"equip":"inventory.equip","weapon_equipped":"inventory.equip","drink":"inventory.drink","purchase":"economy.buy","sell":"economy.sell","loot":"inventory.pickup","rest":"world.rest","travel":"world.travel"}.get(kind,""))
 	if not event_id.is_empty():audio.play(event_id,player.position)
 
+func _player_feedback_event(event:Dictionary) -> void:
+	if blood!=null and game_mode=="world_rise" and not online_session_active():blood.actor_event(event)
+
 func _online_joined(character_id:String) -> void:
 	offline_session_snapshot=save_data()
 	online_started=true
@@ -1453,6 +1464,7 @@ func _online_status_changed(_message:String) -> void:
 		appearance_commit_finished.emit(false,"Disconnected before the appearance was accepted.")
 	for screen in [appearance_menu,connection_menu,settings_menu]:
 		if is_instance_valid(screen) and screen.visible:screen.close()
+	if blood!=null:blood.clear_feedback()
 	if online_view!=null:online_view.clear()
 	if prediction!=null:prediction.clear()
 	player.set_physics_process(true);player.set_meta("canonical_manual_step",false)
@@ -1680,7 +1692,7 @@ func _water_lance_fired(origin: Vector3, direction: Vector3) -> void:
 	projectiles.append(lance)
 
 func begin_sea_dragon() -> bool:
-	if is_instance_valid(sea_dragon) or camera_mode!="first_person" or not player.begin_dragon_channel(): return false
+	if is_instance_valid(sea_dragon) or camera_mode not in ["first_person","third_person"] or not player.begin_dragon_channel(): return false
 	projectiles=projectiles.filter(func(item): return is_instance_valid(item))
 	sea_dragon=SeaDragon.new();world_root.add_child(sea_dragon)
 	sea_dragon.configure(self,player.sword_gem_position(),camera_driver.sample_first_person(0,false),player.combat.sea_dragon)
@@ -1742,13 +1754,43 @@ func _attack_contact(kind: String, direction: Vector3, already_hit: Dictionary) 
 		var weakspot=enemy.sword_weakspot_open()
 		var weapon_mult=magic_items.weapon_base()
 		if enemy.mob_category=="canine":weapon_mult*=1.0+magic_items.weapon_bonus_against("canine")
+		var practice_before=_stage_weapon_practice(enemy,player.action_context())
 		enemy.take_sword_damage(roundi(float(tuning.damage)*weapon_mult*(1.2 if combat_skills.exposed.has(enemy.get_instance_id()) else 1.0)),toward.normalized(),kind in ["heavy","thrust"] or (kind=="light" and player.combo_stage==3 and player.attack_phase()>=.60),(float(player.combat.thrust_charge.recoil_multiplier) if kind=="thrust" else 1.0)*(1+magic_items.bonus("sword_recoil")))
+		if enemy.health>=previous_health:_restore_weapon_practice(enemy,practice_before)
 		if audio!=null:
 			var sound_context=player.action_context();sound_context["target_id"]=String(enemy.definition.get("id",enemy.name))
 			audio.play("combat.hit."+contact_material(enemy),enemy.position,sound_context)
 		magic_items.sword_hit(enemy,previous_health)
-		if game_mode=="world_rise" and player.weapon_type=="greatsword" and previous_health>0 and enemy.health<=0:progression.greatsword_kills=mini(Progression.MAX_XP,progression.greatsword_kills+1)
 		combat_skills.sword_hit(enemy,previous_health,weakspot,kind in ["heavy","thrust"] or (kind=="light" and player.combo_stage==3 and player.attack_phase()>=.60))
+
+func _practice_key(target:Node) -> String:
+	return map_id+"/"+String(target.definition.get("id",target.name))
+
+func _stage_weapon_practice(target:Node,context:Dictionary) -> Array:
+	if game_mode!="world_rise" or online_session_active():return []
+	var key=_practice_key(target)
+	if not worldrise.known_practice_encounter(key):return []
+	var before:Array=worldrise.practice_contributors.get(key,[]).duplicate()
+	var kind=String(context.get("weapon_type",""))
+	if kind in Progression.WEAPON_KINDS:
+		var pending=before.duplicate()
+		if kind not in pending:pending.append(kind)
+		worldrise.practice_contributors[key]=pending
+	return before
+
+func _restore_weapon_practice(target:Node,before:Array) -> void:
+	if game_mode!="world_rise" or online_session_active():return
+	var key=_practice_key(target)
+	if before.is_empty():worldrise.practice_contributors.erase(key)
+	else:worldrise.practice_contributors[key]=before
+
+func _award_weapon_practice(target:Node,earned_xp:int) -> void:
+	if game_mode!="world_rise" or online_session_active() or not is_instance_valid(target):return
+	var key=_practice_key(target)
+	var kinds:Array=worldrise.practice_contributors.get(key,[])
+	if earned_xp>0:
+		for kind in kinds:progression.award_practice(kind,1)
+	worldrise.practice_contributors.erase(key)
 
 func contact_material(target:Node) -> String:
 	var kind=String(target.definition.get("kind",""))
@@ -1762,9 +1804,11 @@ func resolve_weapon_contact(context:Dictionary,target:Node3D,amount:int,directio
 	var multiplier=magic_items.weapon_base()
 	if target.get("mob_category")=="canine":multiplier*=1+magic_items.weapon_bonus_against("canine")
 	target.set_meta("last_damage_context",context.duplicate(true))
+	var practice_before=_stage_weapon_practice(target,context)
 	var melee=context.get("damage_kind","melee")=="melee"
 	if melee:target.take_sword_damage(maxi(1,roundi(amount*multiplier)),direction,strong,1+magic_items.bonus("sword_recoil"))
 	else:target.take_damage(maxi(1,roundi(amount*multiplier)),direction)
+	if target.health>=before:_restore_weapon_practice(target,practice_before)
 	if melee:magic_items.sword_hit(target,before)
 	if is_instance_valid(audio):
 		var sound_context=context.duplicate();sound_context["target_id"]=String(target.definition.get("id",target.name))
@@ -1848,6 +1892,7 @@ func _enemy_defeated(id: String, kind: String, slain_enemy:Node3D=null) -> void:
 	if game_mode=="world_rise" and is_instance_valid(slain_enemy):
 		var purse_before=worldrise.guild.copper;worldrise.guild.defeated(id,kind,slain_enemy.position);earned_copper=worldrise.guild.copper-purse_before
 	var earned_xp=enemy_xp_reward(kind)+(1000 if kind=="vault_elder" and first_bonus else 200 if kind=="ashfang" and first_bonus else 0)
+	_award_weapon_practice(slain_enemy,earned_xp)
 	gain_xp(earned_xp)
 	if is_instance_valid(slain_enemy) and not worldrise.swamp.active(): monster_cores.defeated(kind,slain_enemy.position,kind=="warden" and map_id=="herb_glade")
 	if kind=="bellkeeper": alpha2.boss_fell()
@@ -2191,10 +2236,11 @@ func enemy_xp_reward(kind:String) -> int:
 func gain_xp(amount: int) -> void:
 	amount=roundi(amount*(1+magic_items.bonus("xp")))
 	var levels=progression.award(amount)
+	if game_mode=="world_rise":apply_skill_stats()
 	update_progression_ui()
 	if levels>0:
 		if audio!=null:audio.play("progression.level_up")
-		notify("Level %d! %d skill points available - P to learn." % [progression.level(),progression.points()])
+		notify("Level %d! %d attribute points · %d perk points - P to grow." % [progression.level(),progression.attribute_points(),progression.points()] if game_mode=="world_rise" else "Level %d! %d skill points available - P to learn." % [progression.level(),progression.points()])
 
 func receive_wishing_coin() -> bool:
 	if well_gift_stage!="not_started" or map_id!="village_green" or conversation.target.get("id","")!="keeper_green":
@@ -2249,6 +2295,7 @@ func update_progression_ui() -> void:
 	xp_bar.value=progression.xp-floor_xp if progression.level()<thresholds.size() else xp_bar.max_value
 
 func learn_skill(id: String) -> void:
+	if not _progression_change_allowed():return
 	if online_session_active():wr_session.request_action("learn",{"skill":id});return
 	if not progression.learn(id):
 		return
@@ -2258,6 +2305,36 @@ func learn_skill(id: String) -> void:
 	update_progression_ui()
 	skill_tree.refresh()
 	notify("Learned "+progression.skill(id).name+". F5 saves your progress.")
+
+func _progression_change_allowed() -> bool:
+	if game_mode!="world_rise":return true
+	if not is_instance_valid(player) or player.health<=0 or player.state!="free" or recovering:
+		notify("Finish the current action before changing attributes or perks.")
+		return false
+	return true
+
+func _refresh_progression_changes() -> void:
+	apply_skill_stats();update_progression_ui()
+	if is_instance_valid(skill_tree):skill_tree.refresh()
+	if is_instance_valid(inventory) and inventory.visible:inventory.refresh()
+
+func increase_attribute(id:String) -> void:
+	if game_mode!="world_rise" or not _progression_change_allowed():return
+	if online_session_active():wr_session.request_action("attribute",{"attribute":id});return
+	if not progression.increase_attribute(id):return
+	_refresh_progression_changes()
+
+func refund_skill(id:String) -> void:
+	if game_mode!="world_rise" or not _progression_change_allowed():return
+	if online_session_active():wr_session.request_action("refund",{"skill":id});return
+	if not progression.refund(id):return
+	_refresh_progression_changes()
+
+func reset_attributes() -> void:
+	if game_mode!="world_rise" or not _progression_change_allowed():return
+	if online_session_active():wr_session.request_action("reset_attributes",{});return
+	if not progression.reset_attributes():return
+	_refresh_progression_changes()
 
 func toggle_passive(id:String) -> void:
 	if not progression.toggle_passive(id): return
@@ -2329,7 +2406,11 @@ func apply_skill_stats() -> void:
 	magic_items.apply_stats()
 	if game_mode=="world_rise":preload("res://scripts/world_rise_stats.gd").apply(self)
 	if player.weapon_runtime!=null and player.weapon_runtime.has_method("apply_stats"):player.weapon_runtime.apply_stats()
-	player.restore_health(mini(player.health,player.max_health))
+	if game_mode=="world_rise":
+		# Stat rebuilds never heal or revive a character, including late kill rewards.
+		player.health=clampi(player.health,0,player.max_health)
+		player.health_changed.emit(player.health,player.max_health)
+	else:player.restore_health(mini(player.health,player.max_health))
 	player.restore_stamina(minf(player.stamina,player.max_stamina))
 
 func start_world(id:String) -> bool:

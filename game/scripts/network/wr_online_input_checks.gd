@@ -123,8 +123,7 @@ func run() -> void:
   overlay.visible=false
  game._refresh_simulation();fixture.commands.clear();hardware_key(game,KEY_J,true);game._cancel_mouse_charge()
  check(fixture.commands.map(func(command):return command[0])==["primary_down","cancel"],"Focus cancellation sends authority cancel")
+ if game.voice!=null:check(await game.voice.shutdown_and_drain(),"Online input fixture drains voice before exit")
+ if game.audio!=null:check(await game.audio.shutdown_and_drain(),"Online input fixture drains mixer before exit")
  print("WORLD_RISE_ONLINE_INPUT_CHECKS ",count," checks; failures=",failures)
- if game.audio!=null:game.audio.shutdown()
- if game.voice!=null:game.voice.configure_session(false)
- await create_timer(.15).timeout
- game.queue_free();await process_frame;await process_frame;quit(0 if failures.is_empty() else 1)
+ game.queue_free();fixture.queue_free();await process_frame;await process_frame;quit(0 if failures.is_empty() else 1)

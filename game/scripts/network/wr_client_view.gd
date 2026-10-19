@@ -62,6 +62,7 @@ func receive(snapshot:Dictionary) -> void:
 		if not members.has(id) or members[id].floor!=game.map_id:
 			if is_instance_valid(remotes[id]):remotes[id].queue_free()
 			remotes.erase(id);remote_targets.erase(id)
+	if game.get("blood")!=null:game.get("blood").snapshot_events(snapshot.get("events",[]),own_id,game.map_id,int(snapshot.tick))
 	for event in snapshot.get("events",[]):
 		if event.get("floor",game.map_id)!=game.map_id or game.audio==null:continue
 		var at=vector(event.get("position",[0,0,0]))

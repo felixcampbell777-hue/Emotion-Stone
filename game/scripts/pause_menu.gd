@@ -41,7 +41,7 @@ func configure(owner_game:Control) -> void:
 	column.add_child(status)
 	custom_worlds=game.button("Custom Worlds",func(): game.world_browser.open()); column.add_child(custom_worlds)
 	appearance_button=game.button("Appearance",func(): game.appearance_menu.open()); column.add_child(appearance_button)
-	column.add_child(game.button("Sound & Voice",func(): game.settings_menu.open()))
+	column.add_child(game.button("Settings",func(): game.settings_menu.open()))
 	multiplayer_button=game.button("Multiplayer",func(): game.connection_menu.open()); column.add_child(multiplayer_button)
 	column.add_child(game.label("GRAPHICS & VIEW",20,Color("#e9c894")))
 	column.add_child(game.view_button)

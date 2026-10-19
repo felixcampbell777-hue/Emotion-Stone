@@ -60,6 +60,7 @@ func cache_gear_parts(source:Node,copy:Node) -> void:
 		cache_gear_parts(source_child,copy_child)
 
 func synchronize(delta:float=0.0) -> void:
+	hands.prepare_transition(self)
 	if actor.state in ["draw","sheathe"] and previous_state!=actor.state:
 		carry_transition.clear()
 		for i in range(rig.get_bone_count()):carry_transition.append(rig.get_bone_pose(i))
@@ -99,6 +100,7 @@ func synchronize(delta:float=0.0) -> void:
 				pair[1].set_surface_override_material(surface,pair[0].get_surface_override_material(surface))
 	rig.force_update_all_bone_transforms()
 	gait.apply(self,delta if actor.input_enabled else 0.0)
+	hands.capture_hurt_shoulders(self)
 	if actor.state in ["draw","sheathe"] and not carry_transition.is_empty():
 		var clock=actor.state_time
 		if not actor.is_physics_processing() and not actor.get_meta("canonical_manual_step",false) and actor.current_clip in ["draw_sword","sheathe_sword"]:

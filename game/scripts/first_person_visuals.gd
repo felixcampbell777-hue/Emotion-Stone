@@ -30,7 +30,7 @@ func prepare(actor:Node3D) -> void:
 	var skeleton:Skeleton3D=actor.get_node("BetaHero").rig if actor.has_node("BetaHero") else actor.skeleton
 	var identity=skeleton.get_instance_id()
 	var revision=String(actor.get_meta("appearance_revision",""))
-	if identity==rig_id and revision==appearance_revision: return
+	if identity==rig_id and revision==appearance_revision and resting.size()==skeleton.get_bone_count(): return
 	rig_id=identity
 	appearance_revision=revision
 	if is_instance_valid(root): root.free()
@@ -45,6 +45,7 @@ func prepare(actor:Node3D) -> void:
 		global_rests.append(skeleton.get_bone_global_rest(index))
 	if personal_skin:
 		for side in ["L","R"]:
+			if rig.find_bone("view_hand."+side)>=0:continue
 			var wrist=rig.get_bone_count();rig.add_bone("view_hand."+side);rig.set_bone_parent(wrist,bone("forearm",side));rig.set_bone_rest(wrist,Transform3D(Basis.IDENTITY,Vector3(0,-.26,0)))
 	var relative=Basis(Vector3.UP,actor.visual.global_rotation.y).inverse()*skeleton.global_basis
 	rig_basis=relative
@@ -68,19 +69,27 @@ func prepare(actor:Node3D) -> void:
 		if source_rig!=skeleton: continue
 		var label=String(source.name).to_lower()
 		if ["hair","crown","eyebrow","eyelash","teeth","tongue","high-poly","denim"].any(func(word): return word in label): continue
-		var filtered=arms_mesh(source,skeleton)
+		# Body wrists preserve the immutable pre-grip surface/skin. Extract the
+		# accepted first-person arms from those originals, never a gripped mesh.
+		var extraction=source
+		if source.has_meta("body_grip_original_mesh"):
+			extraction=source.duplicate()
+			extraction.mesh=source.get_meta("body_grip_original_mesh") if source.mesh==source.get_meta("body_grip_mesh") or source.mesh.get_blend_shape_count()>0 else source.mesh
+			extraction.skin=source.get_meta("body_grip_original_skin")
+		var filtered=arms_mesh(extraction,skeleton)
 		if filtered.get_surface_count()>0:
 			var arms=source.duplicate(); arms.name=String(source.name)+"FirstPersonArms"
-			var view_skin=wrist_skin(source.skin) if personal_skin else source.skin
-			arms.mesh=grip_blends(filtered,source.skin,skeleton,view_skin) if personal_skin else filtered; arms.skin=view_skin; arms.layers=ARMS_LAYER; arms.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			var view_skin=wrist_skin(extraction.skin) if personal_skin else extraction.skin
+			arms.mesh=grip_blends(filtered,extraction.skin,skeleton,view_skin) if personal_skin else filtered; arms.skin=view_skin; arms.layers=ARMS_LAYER; arms.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 			arms.set_meta("first_person_arms",true);rig.add_child(arms)
 			arms.transform=skeleton.global_transform.affine_inverse()*source.global_transform
 			arms.skeleton=NodePath("..");arms.visible=true
+		if extraction!=source:extraction.free()
 	if actor.has_meta("appearance_profile"):
 		load("res://scripts/character_appearance.gd").apply(actor,actor.get_meta("appearance_profile"))
 
 func update(actor:Node3D,frame:Transform3D) -> void:
-	if not is_instance_valid(root) or not is_instance_valid(source_rig) or appearance_revision!=String(actor.get_meta("appearance_revision","")): prepare(actor)
+	if not is_instance_valid(root) or not is_instance_valid(source_rig) or appearance_revision!=String(actor.get_meta("appearance_revision","")) or resting.size()!=source_rig.get_bone_count(): prepare(actor)
 	view_frame=frame
 	grip_sample=actor.get_meta("view_sword_sample",{"key":"drag","phase":0.0})
 	if actor.get("weapon_runtime")!=null and actor.weapon_runtime.enabled():grip_sample={"key":"weapon","phase":0.0}

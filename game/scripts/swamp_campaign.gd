@@ -96,6 +96,7 @@ func tick(delta:float) -> void:
 	clock+=delta
 	if clock>=.15:clock=0;game.current_world.update_details(game.player.position);stream()
 func respawn_reset() -> void:
+	game.worldrise.clear_practice_floor("wr_floor_02")
 	states.clear();queue.clear()
 	for enemy in live.values():
 		if is_instance_valid(enemy):game.retire_transient(enemy)

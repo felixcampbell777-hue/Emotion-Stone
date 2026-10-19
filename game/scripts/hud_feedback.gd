@@ -30,6 +30,9 @@ func denied() -> void:
 func damaged(amount:int) -> void:
 	if game==null or not is_instance_valid(game.player):
 		return
+	if game.get("game_mode")=="world_rise" and game.get("blood")!=null:
+		damage_flash_remaining=0;damage_flash_strength=0
+		return
 	var fraction=clampf(float(maxi(0,amount))/float(maxi(1,game.player.max_health)),0.0,1.0)
 	# Keep the flash readable for light hits while scaling its peak with damage.
 	damage_flash_strength=maxf(damage_flash_strength,clampf(.045+fraction*.82,.06,.30))
