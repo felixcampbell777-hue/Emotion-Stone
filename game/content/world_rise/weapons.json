@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "profiles": {
+    "greatsword": {
+      "legacy": true,
+      "items": [
+        "standard_greatsword",
+        "improved_standard_greatsword",
+        "wolfs_bane_greatsword"
+      ]
+    },
+    "spear": {
+      "legacy": false,
+      "items": [
+        "field_spear"
+      ],
+      "length": 3.1,
+      "damaging_length": 0.48,
+      "radius": 0.045,
+      "grip": 0.0,
+      "duration": 0.88,
+      "active_start": 0.32,
+      "active_end": 0.58,
+      "damage": 23,
+      "stamina": 17.0,
+      "movement_multiplier": 0.58,
+      "ready_movement_multiplier": 1.2,
+      "draw_seconds": 0.65,
+      "recovery_seconds": 0.22,
+      "strong": false,
+      "shoulder_reach": 0.18
+    },
+    "rapier": {
+      "legacy": false,
+      "items": [
+        "duelist_rapier"
+      ],
+      "length": 1.18,
+      "damaging_length": 1.02,
+      "radius": 0.025,
+      "grip": 0.0,
+      "duration": 0.46,
+      "active_start": 0.28,
+      "active_end": 0.55,
+      "damage": 13,
+      "stamina": 10.0,
+      "movement_multiplier": 0.9,
+      "ready_movement_multiplier": 1.65,
+      "draw_seconds": 0.45,
+      "recovery_seconds": 0.12,
+      "strong": false,
+      "shoulder_reach": 0.18
+    },
+    "bow": {
+      "legacy": false,
+      "items": [
+        "hunting_bow"
+      ],
+      "length": 0.72,
+      "damaging_length": 0.0,
+      "radius": 0.018,
+      "grip": 0.0,
+      "duration": 0.4,
+      "active_start": 0.0,
+      "active_end": 0.0,
+      "damage": 25,
+      "stamina": 12.0,
+      "movement_multiplier": 0.65,
+      "ready_movement_multiplier": 1.25,
+      "draw_seconds": 0.65,
+      "recovery_seconds": 0.5,
+      "strong": false,
+      "draw_max_seconds": 1.1,
+      "minimum_speed": 12.0,
+      "maximum_speed": 34.0,
+      "gravity": 12.0,
+      "step_seconds": 0.016666666666666666,
+      "lifetime": 5.0,
+      "arrow_radius": 0.025,
+      "ammo_id": "wooden_arrows",
+      "arrow_recovery_seconds": 90.0,
+      "shoulder_reach": 0.18
+    }
+  }
+}

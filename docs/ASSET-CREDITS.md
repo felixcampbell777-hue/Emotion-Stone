@@ -1,5 +1,25 @@
 # Scenery source credits
 
+## World Rise appearance options (October 18, 2026)
+
+Softer cheeks, shorter tapered layers and the subtle silhouette are bounded local
+surface derivatives of the existing approved Beta heroine, not a new donor or
+replacement rig. The human explicitly approved the shown options: “Approve these
+options”. The asset-specific evidence and hashes are in
+`art/character/appearance-review/review.json` and `runtime-export.json`; this does
+not approve the older rejected draft recorded in `art/character/model-review.json`.
+The original Beta source/runtime bytes, sixteen-bone rests and nineteen existing
+animations remain unchanged. No new animation or third-party asset was downloaded.
+
+The derivative inherits the figure's existing MakeHuman/MPFB, hair, garment and
+boot licences and attribution below, including the CC-BY garments. Runtime
+materials also repair black pixels sampled outside the dress atlas by the sleeve
+UVs, using the already-credited Poly Haven CC0 matching denim. This material-only
+bug fix applies to the original shape and the approved variants; the original
+default geometry/profile is preserved. Recipes: `tools/prepare_appearance_review.py`
+and `tools/export_appearance_variants.py`. The latter reuses original texture
+resources and appends the reviewed morph data without regenerating the rig/actions.
+
 ## Standalone personal heroine (static option)
 
 MPFB/MakeHuman core body, skin and facial assets: CC0, https://static.makehumancommunity.org/about/license.html. User-authored proportions/face/outfit assembly from `heroinedraft1.blend`, exported without a rig or animation.
@@ -82,3 +102,9 @@ Orchid Stalker geometry, articulated part hierarchy and chitin image are locally
 ## World Rise backdrop
 
 Mountain geometry and vertex colors, repeat/ring scenes and cloud shaders are original locally authored assets. Source/export hashes are recorded in art/source/environments/world-rise/runtime-assets.json. The mountain shader reuses the existing Poly Haven CC0 rock_face albedo credited above. No new downloads or third-party executable scripts.
+
+## World Rise audio
+
+- **Kenney RPG Audio / 50 RPG sound effects**, Kenney Vleugels (Kenney.nl), CC0 1.0. Author upload: https://opengameart.org/content/50-rpg-sound-effects ; official pack: https://kenney.nl/assets/rpg-audio . Selected unmodified OGG files are under `game/assets/audio/kenney/`; source license, archive digest and selected-file digests are retained in `art/library/audio/kenney-rpg/`.
+- **Wolf Monster Sound**, CaveboyTup, CC0 1.0: https://opengameart.org/content/wolf-monster-sound . The author describes this fantasy wolf cry as a modified CC0 horse snort. Original MP3 and intake provenance are in `art/library/audio/`; runtime conversion is mono 22.05 kHz PCM WAV with no further creative changes.
+- **World Rise original sound designs and ambient compositions**, World Rise contributors, CC0 1.0 dedication. Generated entirely from deterministic oscillators and noise without sampled recordings or adapted melodies. Generator: `tools/audio/create_original_audio.py`; individual SHA-256 records: `art/library/audio/original-audio-manifest.json`. These are intentionally stylized sound designs, including synthetic creature exertions, not claims of natural wildlife recordings. CC0 legal text: https://creativecommons.org/publicdomain/zero/1.0/ .

@@ -8,7 +8,9 @@ var reflected=false
 var life=4.0
 var mesh:MeshInstance3D
 func configure(owner:Node,thrower:Node3D,aim:Vector3,thorn:bool=false) -> void:
-	game=owner; source=thrower; direction=aim.normalized(); position=thrower.position+Vector3.UP*.75
+	game=owner
+	if game.has_method("bind_effect"):game.bind_effect(self)
+	source=thrower; direction=aim.normalized(); position=thrower.position+Vector3.UP*.75
 	add_to_group("menagery_effect")
 	mesh=Props.box(self,Vector3.ZERO,Vector3(.14,.14,.34) if thorn else Vector3(.28,.30,.28),"#92b67b" if thorn else "#be965e")
 	damage=7 if thorn else 8
@@ -18,7 +20,7 @@ func repel(_away:Vector3,_force:float,_stun:float) -> void:
 	mesh.material_override=Props.mat("#9fe3ec")
 func _physics_process(delta:float) -> void:
 	if is_queued_for_deletion(): return
-	if not is_instance_valid(game) or not game.player.input_enabled or game.gallery_mode: return
+	if not is_instance_valid(game) or not game.simulation_active() or game.gallery_mode: return
 	if not is_instance_valid(source) or source.health<=0: queue_free(); return
 	life-=delta
 	var next=position+direction*(9 if reflected else 5.5)*delta

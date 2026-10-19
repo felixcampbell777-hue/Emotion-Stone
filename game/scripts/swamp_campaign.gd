@@ -70,6 +70,7 @@ func fell(entry:Dictionary,enemy:Node3D) -> void:
 	game._enemy_defeated("wr_floor_02/"+entry.id,entry.style,enemy)
 	states[entry.id]={"health":0,"at":[enemy.position.x,enemy.position.z]}
 	if entry.style!="giant_green_slime":return
+	preload("res://scripts/world_sound.gd").play(game,"enemy.giant_slime.split",enemy.position,{"actor_id":String(entry.id),"action_id":"split"})
 	# Fixed child IDs prevent duplicate XP/loot, including after save/load or travel.
 	for child in all_entries().filter(func(e):return e.get("parent_id","")==entry.id):
 		var i=int(String(child.id).get_slice("_split_",1));var at=enemy.position+Vector3(sin(i*TAU/4+.4),0,cos(i*TAU/4+.4))*1.8
@@ -105,6 +106,7 @@ func at_platform() -> bool:
 	var at=Fen.arrival() if active() else Vector2.ZERO
 	return (game.worldrise.active() or active()) and Vector2(game.player.position.x-at.x,game.player.position.z-at.y).length()<=6
 func travel_floor(number:int) -> bool:
+	if game.worldrise.guild.online_request("travel",{"floor":"wr_floor_02" if number==2 else "wr_floor_01"}):return true
 	var cp=game.worldrise.checkpoints
 	if not at_platform() or not cp.block_reason().is_empty():game.notify("Use the arrival platform when no enemies are pursuing you.");return false
 	if number==2 and not unlocked_floor_two():game.notify("Defeat the Elder to unlock Floor Two.");return false
@@ -115,6 +117,7 @@ func travel_floor(number:int) -> bool:
 	cp.armed=false;cp.hold=0;game.camera_driver.yaw=yaw;game.camera_driver.first_pitch=0;game.camera_driver.update_first_person()
 	# Floor travel is an explicit checkpoint transition: resume on the last floor visited.
 	var saved=game.Save.write(game.save_data(),game.current_save_path())==OK
+	preload("res://scripts/world_sound.gd").play(game,"world.floor_arrival",game.player.position)
 	game.notify("Floor %d reached. Progress saved."%number if saved else "Floor reached; could not save. Use Save in the pause menu.")
 	return true
 func lighting() -> void:

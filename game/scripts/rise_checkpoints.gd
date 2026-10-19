@@ -29,6 +29,7 @@ func discover() -> void:
 	var entry=nearby()
 	if entry.is_empty() or entry.id in current_unlocked():return
 	current_unlocked().append(entry.id)
+	preload("res://scripts/world_sound.gd").play(game,"world.discovery",point(entry))
 	game.notify("Checkpoint unlocked: "+entry.title+".")
 func hostile_nearby() -> bool:
 	for enemy in game.enemies:
@@ -43,6 +44,7 @@ func block_reason() -> String:
 	if hostile_nearby():return "Travel blocked: an aggressive enemy is within 30 metres."
 	return ""
 func rest(entry:Dictionary) -> bool:
+	if game.worldrise.guild.online_request("rest",{"checkpoint":entry.id}):return true
 	if not floor_active() or game.player.health<=0:return false
 	if hostile_nearby() or game.enemies.any(func(e):return is_instance_valid(e) and e.health>0 and e.position.distance_squared_to(game.player.position)<144):
 		game.notify("Clear nearby enemies before resting.");return false
@@ -55,6 +57,7 @@ func rest(entry:Dictionary) -> bool:
 	game.worldrise.respawn_reset();game.load_map(map,Vector2(entry.at[0],entry.at[1]),true)
 	game.player.restore_health(game.player.max_health);game.player.restore_stamina(game.player.max_stamina)
 	game.camera_driver.yaw=yaw;game.camera_driver.first_pitch=pitch;game.camera_driver.update_first_person()
+	preload("res://scripts/world_sound.gd").play(game,"world.rest",game.player.position)
 	game.notify("Rested at "+entry.title+". Respawn set; ordinary packs return.")
 	return true
 func tick(delta:float) -> bool:
@@ -67,6 +70,7 @@ func tick(delta:float) -> bool:
 	if hold<1:return false
 	hold=0;return rest(sites()[0])
 func travel(id:String) -> bool:
+	if game.worldrise.guild.online_request("checkpoint",{"checkpoint":id}):return true
 	if id not in current_unlocked():game.notify("Visit this checkpoint to unlock it first.");return false
 	var reason=block_reason()
 	if not reason.is_empty():game.notify(reason);return false
@@ -85,4 +89,5 @@ func travel(id:String) -> bool:
 	game.inventory.close();hold=0;armed=true
 	game.load_map(current_map(),at)
 	game.camera_driver.yaw=yaw;game.camera_driver.first_pitch=pitch;game.camera_driver.update_first_person()
+	preload("res://scripts/world_sound.gd").play(game,"world.travel",game.player.position)
 	game.notify("Arrived at "+entry.title+".");return true

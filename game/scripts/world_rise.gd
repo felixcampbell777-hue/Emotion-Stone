@@ -234,7 +234,7 @@ func update_packs() -> void:
 				remember(enemy);game.retire_transient(enemy)
 			record.members=[];record.active=false;packs_dirty=true
 func tick(delta:float) -> void:
-	if game.game_mode!="world_rise" or not game.player.input_enabled:return
+	if game.game_mode!="world_rise" or not game.simulation_active():return
 	day_clock=fposmod(day_clock+delta,1080);light_clock+=delta
 	if light_clock>=.1:light_clock=0;cycle_lighting()
 	if elder_respawn>0:
@@ -270,9 +270,17 @@ func tick(delta:float) -> void:
 	ai_clock+=delta
 	if ai_clock<.1:return
 	var coordination_delta=ai_clock;ai_clock=0
+	coordinate_boars(coordination_delta)
+
+func coordinate_boars(coordination_delta:float) -> void:
 	for record in packs.values():
 		if not record.active or record.spec.kind!="library_boar":continue
-		var center=Vector3(record.spec.at[0],0,record.spec.at[1]);var distance=Vector2(game.player.position.x-center.x,game.player.position.z-center.z).length()
+		var center=Vector3(record.spec.at[0],0,record.spec.at[1])
+		if game.has_method("combat_target"):
+			var target=game.combat_target(center)
+			if target==null:continue
+			game.player=target
+		var distance=Vector2(game.player.position.x-center.x,game.player.position.z-center.z).length()
 		var members=record.members.filter(func(e):return is_instance_valid(e) and e.health>0 and e.ai_enabled and e.simulation_enabled)
 		if members.is_empty():continue
 		if (distance<20 and members.any(func(e):return can_see(e))) or (distance<42 and members.any(func(e):return e.health<e.max_health)):record.engaged=true
@@ -308,6 +316,12 @@ func respawn_reset() -> void:
 	states.clear()
 	game.defeated_enemies=game.defeated_enemies.filter(func(id):return not (String(id).begins_with("wr_floor_01/") and id!="wr_floor_01/ashfang"))
 func interact(target:Dictionary) -> bool:
+	if target.has("wr_claim"):
+		guild.online_request("loot",{"claim":target.wr_claim});return true
+	if target.has("wr_arrow"):
+		var arrow=target.wr_arrow
+		if is_instance_valid(arrow) and arrow.recover(game.player):preload("res://scripts/world_sound.gd").play(game,"inventory.pickup",game.player.position)
+		return true
 	if game.game_mode=="world_rise" and target.has("wr_floor_portal"):
 		game.toggle_inventory();game.inventory.show_page("map");return true
 	if swamp.active() and target.has("wr_action"):
@@ -315,10 +329,12 @@ func interact(target:Dictionary) -> bool:
 	if game.game_mode=="world_rise" and target.has("wr_chamber"):
 		var chamber=preload("res://scripts/rise_chamber.gd")
 		if target.wr_chamber=="enter":
+			if guild.online_request("travel",{"floor":"wr_boss_chamber"}):return true
 			remember_all()
 			game.load_map("wr_boss_chamber",Vector2(0,36),true);game.camera_driver.yaw=0
 		else:
 			if game.map_id=="wr_boss_chamber" and game.current_world.combat_locked():return true
+			if guild.online_request("travel",{"floor":"wr_floor_01"}):return true
 			game.load_map("wr_floor_01",chamber.return_point(),true);game.camera_driver.yaw=chamber.ENTRANCE_YAW
 		game.camera_driver.first_pitch=0;game.camera_driver.update_first_person();return true
 	if target.has("beast_loot"):guild.collect(target.beast_loot);return true
@@ -337,3 +353,115 @@ func journal(ui:Node) -> void:
 	for id in Guild.catalog.contracts:
 		var entry=Guild.catalog.contracts[id];var state=guild.contracts.get(id,{"active":false,"count":0})
 		ui.add_quest(entry.name,"%d copper + %d XP"%[entry.reward,guild.contract_xp(id)],"Complete · reward collected." if state.get("completed",false) else "%d/10 defeated · return to the front desk"%state.count if state.active else "Accept at the guild front desk.","One-time contract. Only kills after acceptance count; ordinary packs return when you rest.")
+
+func apply_authoritative_enemies(records:Array) -> void:
+	if game.map_id=="wr_boss_chamber":
+		var live_boss=records.any(func(record):return String(record.get("id","")).ends_with("vault_elder") and int(record.get("health",0))>0)
+		game.current_world.encounter="fighting" if live_boss else "cleared" if "elder_defeated" in flags else "waiting"
+		game.current_world.set_bridge(not live_boss)
+	# Client-only presentation. Native controllers stay disabled; server state owns
+	# health/action/position and local floor travel cannot affect another floor.
+	var ids=[]
+	for record in records:
+		if String(record.get("floor",game.map_id))!=game.map_id:continue
+		var id=String(record.get("id","")).get_slice("/",String(record.get("id","")).get_slice_count("/")-1)
+		if id.is_empty():continue
+		ids.append(id)
+		var found=game.enemies.filter(func(enemy):return is_instance_valid(enemy) and String(enemy.definition.id)==id)
+		if found.is_empty():
+			if swamp.active():
+				var entries=swamp.all_entries().filter(func(entry):return entry.id==id)
+				if not entries.is_empty():
+					game.defeated_enemies.erase(game.map_id+"/"+id)
+					# Server already validated split availability and interest.
+					var entry=entries[0].duplicate(true);entry.erase("parent_id");swamp.spawn(entry)
+			elif active():
+				if id.begins_with("ashfang_wolf_"):
+					var at=record.get("position",[0,0,0]);var aid=load("res://scripts/beta_enemy.gd").new();aid.game=game;aid.configure({"id":id,"kind":"beta_wolf","pack":"ashfang_aid","at":[at[0],at[2]]},game.player);aid.mob_category="canine";game.world_root.add_child(aid);game.enemies.append(aid);game.add_enemy_bar(aid)
+				elif id=="ashfang":
+					var saved_day=day_clock;var saved_respawn=ashfang_respawn;day_clock=600;ashfang_respawn=0;game.defeated_enemies.erase(game.map_id+"/"+id);spawn_ashfang();day_clock=saved_day;ashfang_respawn=saved_respawn
+				else:
+					var base=game.current_world.definition.enemies.filter(func(entry):return entry.id==id.trim_suffix("_night"))
+					if not base.is_empty():
+						var entry=base[0].duplicate(true);entry.id=id;game.defeated_enemies.erase(game.map_id+"/"+id);spawn_member(packs[entry.pack],entry)
+			elif game.map_id=="wr_boss_chamber" and id=="vault_elder":game.current_world.encounter="waiting";game.current_world.start_encounter()
+			found=game.enemies.filter(func(enemy):return is_instance_valid(enemy) and String(enemy.definition.id)==id)
+		if found.is_empty():continue
+		var enemy=found[0];enemy.simulation_enabled=false;enemy.ai_enabled=false
+		var at=record.get("position",[enemy.position.x,enemy.position.y,enemy.position.z]);enemy.position=Vector3(at[0],at[1],at[2]);enemy.health=int(record.get("health",enemy.health));enemy.state=String(record.get("state","idle"));enemy.state_time=float(record.get("state_time",0));enemy.visual.rotation.y=float(record.get("yaw",0));enemy.visible=enemy.health>0
+		if record.has("visual_position"):
+			var visual_at=record.visual_position;enemy.visual.position=Vector3(visual_at[0],visual_at[1],visual_at[2])
+		if record.has("visual_scale"):
+			var scale_at=record.visual_scale;enemy.visual.scale=Vector3(scale_at[0],scale_at[1],scale_at[2])
+		var native:Dictionary=record.get("native_state",{})
+		if native.get("direction") is Dictionary:
+			var heading=native.direction.get("vector3",[0,0,0]);enemy.direction=Vector3(heading[0],heading[1],heading[2])
+		if native.has("lunge_hit"):enemy.lunge_hit=bool(native.lunge_hit)
+		if enemy.definition.kind in ["vault_elder","beta_twin_wolf"] and native.has("attack_kind"):enemy.attack_kind=String(native.attack_kind)
+		if enemy.definition.kind=="vault_elder" and native.has("strikes"):
+			if int(native.strikes)>enemy.strikes:enemy.attack_lines.hit(enemy.attack_kind)
+			enemy.strikes=int(native.strikes)
+		if enemy.definition.kind=="giant_green_slime":
+			if enemy.state in ["giant_warn","giant_jump"] and native.get("jump_target") is Dictionary:
+				if not is_instance_valid(enemy.warning):
+					var warning_at=native.jump_target.get("vector3",[0,0,0]);enemy.warning=load("res://scripts/slime_warning.gd").new();game.current_world.add_child(enemy.warning);enemy.warning.configure(Vector3(warning_at[0],warning_at[1],warning_at[2]),float(swamp.Fen.spec.slime_combat.impact_radius),"")
+			else:enemy.clear_warning()
+		var animator=enemy.get("animator")
+		if animator is AnimationPlayer and record.has("animation") and animator.has_animation(String(record.animation)):
+			animator.play(String(record.animation));animator.seek(float(record.get("animation_time",0)),true)
+		if enemy.definition.kind=="vault_elder":
+			enemy.attack_kind=String(record.get("attack_kind","sweep"));enemy.duration=float(record.get("duration",1))
+			enemy.present_network(1.0/20)
+		if enemy.definition.kind=="library_boar":
+			var purpose="attack" if enemy.state in ["windup","lunge"] else "walk" if record.get("moving",false) else "idle"
+			var pose_phase=-1.0
+			if enemy.state=="windup":pose_phase=clampf(1-enemy.state_time/float(enemy.spec.windup),0,1)*.35
+			elif enemy.state=="lunge":pose_phase=.35+clampf(1-enemy.state_time/float(enemy.spec.lunge_seconds),0,1)*.65
+			enemy.art.pose(purpose,pose_phase,1.0/20)
+		if enemy.definition.kind=="beta_twin_wolf":
+			enemy.velocity=Vector3(0,0,3.2) if record.get("moving",false) else Vector3.ZERO
+			enemy.animate(1.0/20)
+		preload("res://scripts/world_sound.gd").creature(enemy)
+	for enemy in game.enemies.duplicate():
+		if is_instance_valid(enemy) and String(enemy.definition.id) not in ids:game.retire_transient(enemy)
+
+var authoritative_effect_nodes:Dictionary={}
+func apply_authoritative_effects(records:Dictionary) -> void:
+	var retained=[]
+	for id in records:
+		var record:Dictionary=records[id]
+		if String(record.get("floor",""))!=game.map_id:continue
+		var kind=String(record.get("kind",""))
+		if kind not in ["elder_stone","rock_projectile","resin_gloop","menagery_projectile","menagery_hazard","ashfang_impact"]:continue
+		retained.append(id)
+		var at=record.get("position",[0,0,0]);var point=Vector3(at[0],at[1],at[2])
+		var heading=record.get("direction",[0,0,-1]);var direction=Vector3(heading[0],heading[1],heading[2])
+		var node=authoritative_effect_nodes.get(id)
+		if not is_instance_valid(node):
+			node=load("res://scripts/"+kind+".gd").new();node.game=game;game.current_world.add_child(node);node.position=point
+			# The real presentation constructors are reused, but their autonomous
+			# clocks and gameplay loops are disabled before the next physics step.
+			match kind:
+				"elder_stone","rock_projectile":node.configure(game,node,direction)
+				"resin_gloop":
+					var landing=record.get("landing",at);node.configure(game,node,Vector3(landing[0],landing[1],landing[2]),true)
+				"menagery_projectile":node.configure(game,node,direction)
+				"menagery_hazard":node.configure(game,point,bool(record.get("sticky",true)))
+			node.set_physics_process(false);node.set_process(false);authoritative_effect_nodes[id]=node
+		node.position=point
+		var age=float(record.get("age",0))
+		if kind in ["elder_stone","rock_projectile"]:
+			node.direction=direction;node.reflected=bool(record.get("reflected",false));node.stone.rotation=Vector3(3,5,2)*(10-float(record.get("life",10)))
+			if node.reflected and not node.get_meta("reflected_tint",false):node.stone.material_override=Props.mat("#9de4ff");node.set_meta("reflected_tint",true)
+		elif kind=="resin_gloop":
+			node.age=age;node.reflected=bool(record.get("reflected",false));node.blob.rotation=Vector3(1,2,3)*age
+			if node.reflected and not node.get_meta("reflected_tint",false):node.blob.material_override=Props.mat("#9fe3ec");node.set_meta("reflected_tint",true)
+		elif kind=="menagery_hazard":
+			node.age=age;node.surface.scale=Vector3.ONE*(1+.025*sin(age*8))*float(record.get("radius",node.radius))/node.radius
+		elif kind=="ashfang_impact" and is_instance_valid(node.ring):
+			node.ring.scale=Vector3.ONE*(1+age*3);node.ring.material_override.albedo_color.a=maxf(0,1-age/.65)
+	for id in authoritative_effect_nodes.keys():
+		var node=authoritative_effect_nodes[id]
+		if id not in retained or not is_instance_valid(node):
+			if is_instance_valid(node):node.queue_free()
+			authoritative_effect_nodes.erase(id)

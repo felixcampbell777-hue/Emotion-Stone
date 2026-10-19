@@ -66,6 +66,7 @@ func take_damage(amount:int,from_direction:Vector3) -> void:
 		game.wolf_packs.alert(self)
 
 func _physics_process(delta:float) -> void:
+	preload("res://scripts/world_sound.gd").creature(self)
 	if not simulation_enabled or health<=0: return
 	if is_instance_valid(game) and game.game_mode=="world_rise" and state in ["idle","patrol","circle"] and knockback.length_squared()<.01 and player.position.distance_squared_to(position)>3600:
 		velocity=Vector3.ZERO;return

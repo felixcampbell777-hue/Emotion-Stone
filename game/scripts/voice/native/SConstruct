@@ -1,0 +1,8 @@
+import os
+cpp = os.environ['WORLD_RISE_GODOT_CPP']
+env = SConscript(os.path.join(cpp, 'SConstruct'))
+env['SHLIBSUFFIX'] = '.dylib'
+env.Append(CXXFLAGS=['-fobjc-arc', '-std=c++17'])
+env.Append(LINKFLAGS=['-framework', 'AVFoundation', '-framework', 'AudioToolbox', '-framework', 'CoreAudio', '-framework', 'Foundation', '-lobjc'])
+result = env.SharedLibrary(target=os.path.join(os.environ['WORLD_RISE_NATIVE_OUT'], 'world_rise_mic.' + env['arch']), source=['src/mic_capture.mm'])
+Default(result)

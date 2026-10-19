@@ -31,7 +31,8 @@ func start_encounter() -> void:
 	boss.defeated.connect(func():game._enemy_defeated(BOSS_ID,"vault_elder",boss);encounter="cleared";set_bridge(true))
 	game.notify("The ramp dissolves. Stone and roots gather into the Elder.")
 func tick(_delta:float) -> void:
-	if game==null or not game.player.input_enabled or game.player.health<=0:return
+	if game!=null and game.has_method("online_session_active") and game.online_session_active():return
+	if game==null or not game.simulation_active() or game.player.health<=0:return
 	if encounter=="waiting":
 		var p=game.player.position
 		if p.y>=-.2 and p.y<4.5 and Vector2(p.x/23.0,p.z/25.0).length()<.94:start_encounter()

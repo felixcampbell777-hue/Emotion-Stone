@@ -1,0 +1,44 @@
+{
+  "source": "game/assets/characters/heroine-beta.glb",
+  "source_sha256": "cdb69dc65041d2f9ffe9965c0c655aa3c51781463d33d61ed785bb568ecc4cb7",
+  "export": "art/character/appearance-review/heroine-morph-reference.glb",
+  "export_sha256": "f93a7e96eee7eefc5766cc3eff0cfb2e740411eef2e45f715ddf80b4ee75e6c6",
+  "reviewed_source_sha256": "302ac1f306d5ae2ebbf79de5c903073e8ae761651b306c2d2f64b99057646314",
+  "reviewed_render_sha256": "d2dc4a236b37fa1138df4a5242d24cc0cec56e466eebd6ca8b12162ae2cf485a",
+  "approval": {
+    "instruction": "Approve these options",
+    "scope": "Shown softer cheeks, shorter tapered layers and subtle silhouette; animation fitting and inclusion authorized by human in current Codex session",
+    "date": "2026-10-18"
+  },
+  "morphs": [
+    "soft_cheeks",
+    "short_layers",
+    "subtle_shape"
+  ],
+  "changed_export_vertices": {
+    "soft_cheeks": 3068,
+    "short_layers": 1147,
+    "subtle_shape": 9721
+  },
+  "base_buffer_bytes_unchanged": true,
+  "textures_reused_from_original": true,
+  "runtime_geometry_module": "game/scripts/appearance_geometry.gd",
+  "runtime_method": "Same reviewed bounded surface formulas baked from original CPU vertex arrays; no GPU morph dependency on headless server",
+  "bones": 16,
+  "animations": 19,
+  "new_animations": 0,
+  "coordinates": "Raw runtime mesh Y equals reviewed Blender mesh Z",
+  "default_weights": [
+    0,
+    0,
+    0
+  ],
+  "denim_repair_scope": "Non-destructive material bug fix for original and all variant profiles; source and original GLB bytes remain unchanged.",
+  "denim_repaired_pixels": 394327,
+  "denim_maps": {
+    "color": "3fb27953140ca94d4255ab20aee1788aceffb167cea3cf53d04f47b21b247175",
+    "normal": "dd7d915b92f7463c7eb71dd4a9c2970a8a16ba53ea866af2dc79b3e91631395c",
+    "roughness": "d75e884e78ed8c933d3978be90d68caba0e9f2e71735f6b221920d4a730ad3c2"
+  },
+  "runtime_fit_correction": "Short-layer shortening is restricted below sourceZ1.48 to preserve the original fringe and hairline while retaining the reviewed lower-end height; no rig/bone/height/grip change."
+}

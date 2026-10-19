@@ -17,7 +17,16 @@ import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
 GAME=ROOT/'game'
-CACHE=Path(os.environ['USERPROFILE'])/'.cache/comic-art-platform'
+# Native dependency wheels must use the interpreter that bootstrapped them.
+# Windows' optional bundled launcher may differ from the human's py -3 default.
+if __name__ == '__main__' and not os.environ.get('WORLD_RISE_PYTHON'):
+    local_record = ROOT/'tools/toolchain.local.json'
+    if local_record.is_file():
+        configured_python = json.loads(local_record.read_text(encoding='utf-8')).get('python')
+        if configured_python and Path(configured_python).is_file() and Path(configured_python).resolve() != Path(sys.executable).resolve():
+            os.execv(configured_python,[configured_python,'-u',str(Path(__file__).resolve()),*sys.argv[1:]])
+from runtime_paths import cache_dir, isolated_environment
+CACHE=cache_dir()
 sys.path.insert(0,str(CACHE/'python'))
 from jsonschema import Draft202012Validator
 from icon_assets import prepare_icons, ICON_NAME
@@ -29,9 +38,13 @@ def read(path):
 
 def write(path,data):
     path.parent.mkdir(parents=True,exist_ok=True)
-    temporary=path.with_suffix(path.suffix+'.tmp')
-    temporary.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
-    temporary.replace(path)
+    with tempfile.NamedTemporaryFile(mode='w',encoding='utf-8',dir=path.parent,prefix=path.name+'.',suffix='.tmp',delete=False) as stream:
+        temporary=Path(stream.name)
+        stream.write(json.dumps(data,indent=2,ensure_ascii=False)+'\n')
+    try:
+        temporary.replace(path)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 def valid(kind,data):
@@ -45,6 +58,8 @@ def valid(kind,data):
 def validate():
     valid('sea_dragon_pose',read(GAME/'content/sea_dragon_pose.json'))
     valid('unarmed_hands',read(GAME/'content/unarmed_hands.json'))
+    valid('world_rise_weapons',read(GAME/'content/world_rise/weapons.json'))
+    valid('appearance_catalog',read(GAME/'content/world_rise/appearance.json'))
     characters={}
     maps={}
     for kind,folder,collection in [('character','characters',characters),('map','maps',maps)]:
@@ -245,13 +260,13 @@ def validate():
     print(f'VALID: {len(characters)} characters, {len(maps)} maps, platform settings')
 
 
-def toolchain():
+def toolchain(required=('godot',)):
     path=ROOT/'tools/toolchain.local.json'
     if not path.exists():
         raise ValueError('Run tools/bootstrap_runtime.py once to set up portable tools.')
     data=read(path)
-    for key in ['godot','blender','windows_release_template']:
-        if not Path(data[key]).is_file():
+    for key in required:
+        if key not in data or not Path(data[key]).is_file():
             raise ValueError(f'Missing tool: {key}; rerun bootstrap_runtime.py')
     return data
 
@@ -259,46 +274,56 @@ def toolchain():
 def digest(paths,extra=''):
     result=hashlib.sha256(extra.encode())
     for path in sorted(paths):
-        result.update(str(path.relative_to(ROOT)).encode())
+        result.update(path.relative_to(ROOT).as_posix().encode())
         result.update(path.read_bytes())
     return result.hexdigest()
 
 
-def prune_test_output():
-    """Keep current visual evidence and cheap audit caches, never fixture history."""
-    directory=ROOT/'output/verification'
-    keep={'windows-render','current-render-evidence.json','user-heroine-draft','user-heroine-anime-draft',
-          'sword-clearance.json','walk-skirt.json','advanced-sword-clearance.json','advanced-walk-skirt.json',
-          'icon-source.sha256','icon-report.json','latest-test-result.json','latest-test.log'}
-    if directory.exists():
-        for path in directory.iterdir():
-            if path.name not in keep:
-                if path.is_dir(): shutil.rmtree(path)
-                else: path.unlink()
+def package_fingerprints():
+    groups={}
+    for folder in ('content','scripts','scenes','assets','addons','shaders'):
+        groups[folder]=digest([p for p in (GAME/folder).rglob('*') if p.is_file() and '__pycache__' not in p.parts and p.suffix!='.pyc' and p.name!='.DS_Store'])
+    groups['project']=digest([p for p in (GAME/'project.godot',GAME/'default_bus_layout.tres') if p.is_file()])
+    return groups
 
 
-def run_process(arguments,timeout=240,log='last-build.log',rendered=False):
+def run_process(arguments,timeout=240,log='last-build.log',rendered=False,isolated=False,export_template=None):
     started=time.perf_counter()
     options={}
-    if rendered:
+    if rendered and sys.platform == 'win32':
         info=subprocess.STARTUPINFO()
         info.dwFlags|=subprocess.STARTF_USESHOWWINDOW
         info.wShowWindow=0
         options['startupinfo']=info
-    disposable=any(flag in arguments for flag in ['--verify','--capture','--builder-checks','--builder-capture']) or any('focused_' in str(arg) and str(arg).endswith('_checks.gd') for arg in arguments)
+    disposable=isolated or any(flag in arguments for flag in ['--verify','--capture','--builder-checks','--builder-capture']) or any('focused_' in str(arg) and str(arg).endswith('_checks.gd') for arg in arguments)
     # Godot resolves user:// from APPDATA on Windows. Isolate both saves and
     # shader/log caches; TemporaryDirectory also cleans on errors/timeouts.
     with tempfile.TemporaryDirectory(prefix='coastal-test-') if disposable else contextlib.nullcontext() as scratch:
         if disposable:
-            options['env']={**os.environ,'APPDATA':scratch,'LOCALAPPDATA':scratch}
-        result=subprocess.run(arguments,cwd=ROOT,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=timeout,**options)
+            options['env']=isolated_environment(scratch)
+            options['env'].setdefault('WORLD_RISE_PYTHON',sys.executable)
+            if export_template:
+                environment=options['env']
+                data_path=Path(environment['APPDATA'])/'Godot' if sys.platform=='win32' else Path(environment['HOME'])/'Library/Application Support/Godot' if sys.platform=='darwin' else Path(environment['XDG_DATA_HOME'])/'godot'
+                templates=data_path/'export_templates/4.5.1.stable'
+                templates.mkdir(parents=True,exist_ok=True)
+                shutil.copy2(export_template,templates/Path(export_template).name)
+        try:
+            result=subprocess.run(arguments,cwd=ROOT,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=timeout,**options)
+        except subprocess.TimeoutExpired as error:
+            def captured(value):
+                return value.decode('utf-8','replace') if isinstance(value,bytes) else value or ''
+            result=subprocess.CompletedProcess(arguments,124,captured(error.stdout),captured(error.stderr)+f'\nERROR: test exceeded {timeout}s timeout\n')
     log_path=ROOT/'output/verification'/log
     log_path.parent.mkdir(parents=True,exist_ok=True)
-    failed=bool(result.returncode or 'SCRIPT ERROR:' in result.stderr or '\nERROR:' in result.stderr)
+    combined_output=result.stdout+'\n'+result.stderr
+    failed=bool(result.returncode or any(line.startswith(('SCRIPT ERROR:', 'ERROR:')) for line in combined_output.splitlines()))
     if disposable:
-        log_path=log_path.parent/'latest-test.log'
-        write(log_path.parent/'latest-test-result.json',{'passed':not failed,'command':[str(arg) for arg in arguments],
-              'summary':[line for line in result.stdout.splitlines() if line.startswith(('VERIFICATION_','BETA_CHECKS','MAP_BUILDER_CHECKS','CAPTURE_OK','SWAMP_CHECKS'))]})
+        outcome={'passed':not failed,'command':[str(arg) for arg in arguments],'log':str(log_path.relative_to(ROOT)),
+              'summary':[line for line in result.stdout.splitlines() if line.startswith(('VERIFICATION_','BETA_CHECKS','MAP_BUILDER_CHECKS','CAPTURE_OK','SWAMP_CHECKS','APPEARANCE','VOICE','WEAPON','NETWORK'))]}
+        # Each feature retains one result/failure log; unrelated successes cannot erase it.
+        write(log_path.with_suffix('.result.json'),outcome)
+        write(log_path.parent/'latest-test-result.json',outcome)
         if not failed: log_path.unlink(missing_ok=True)
     if not disposable or failed: log_path.write_text(result.stdout+result.stderr,encoding='utf-8')
     if failed:
@@ -326,13 +351,13 @@ def assets(regenerate=False):
     if not wolf_report.get('saved_source_reopened') or wolf_report.get('embedded_scripts') or wolf_report.get('drivers'):
         raise ValueError('Export the current saved wolf with tools/export_beta_wolf.py')
     for name,key in [(wolf_report['source'],'source_sha256'),(wolf_report['runtime'],'runtime_sha256')]:
-        if hashlib.sha256((ROOT/name).read_bytes()).hexdigest()!=wolf_report[key]: raise ValueError('Wolf source/export hash mismatch: '+name)
+        if hashlib.sha256((ROOT/str(name).replace('\\','/')).read_bytes()).hexdigest()!=wolf_report[key]: raise ValueError('Wolf source/export hash mismatch: '+name)
     if hashlib.sha256((ROOT/wolf_report['donor']).read_bytes()).hexdigest()!=wolf_report['donor_sha256']: raise ValueError('Original wolf donor changed')
     print('BETA WOLF VERIFIED: saved source/export and untouched donor match')
     beta_hero=read(ROOT/'art/character/beta-heroine-export.json')
     if beta_hero.get('editable_source'):
         for name,key in [(beta_hero['editable_source'],'editable_source_sha256'),(beta_hero['export'].replace('\\','/'),'export_sha256')]:
-            if hashlib.sha256((ROOT/name).read_bytes()).hexdigest()!=beta_hero[key]: raise ValueError('Beta garment source/export mismatch; export with tools/export_beta_saved.py')
+            if hashlib.sha256((ROOT/str(name).replace('\\','/')).read_bytes()).hexdigest()!=beta_hero[key]: raise ValueError('Beta garment source/export mismatch; export with tools/export_beta_saved.py')
         print('BETA GARMENT VERIFIED: current editable skin/export hashes match')
     review=ROOT/'art/character/model-review.json'
     if review.exists() and read(review).get('status')=='awaiting_user_approval':
@@ -341,7 +366,7 @@ def assets(regenerate=False):
             print('STATIC REVIEW: canonical meshes/animation frozen; standalone export verified')
             return
         raise ValueError('Hero model awaits user approval before animation fitting. Use capture --draft --model-only --view hero for static review; Play.cmd still launches the verified release.')
-    chain=toolchain()
+    chain=toolchain(('godot','blender'))
     cache_path=ROOT/'output/build-cache.json'
     state=read(cache_path) if cache_path.exists() else {}
     builder_key=digest([ROOT/'tools/build_character.py',ROOT/'tools/motion_math.py',ROOT/'art/rig-spec.json',GAME/'content/sword_motion.json'],chain['blender_version'])
@@ -379,7 +404,7 @@ def detail_assets(state,chain):
 
 
 def import_game():
-    run_process([toolchain()['godot'],'--headless','--path',str(GAME),'--editor','--import'],log='import.log')
+    run_process([toolchain()['godot'],'--headless','--path',str(GAME),'--editor','--import'],log='import.log',isolated=True)
 
 def audit_walk_skirt():
     path=ROOT/'output/verification/walk-skirt.json'
@@ -388,13 +413,13 @@ def audit_walk_skirt():
     if report.get('passed') and report.get('source_hash')==source_hash and report.get('recipe_hash')==hashlib.sha256((ROOT/'tools/audit_walk_skirt.py').read_bytes()).hexdigest():
         print(f"WALK SKIRT CACHE HIT: {report['covered_vertices']} covered vertices")
         return
-    run_process([toolchain()['blender'],'--background','--factory-startup','--python-exit-code','1','--python',str(ROOT/'tools/audit_walk_skirt.py')],log='walk-skirt.log')
+    run_process([toolchain(('godot','blender'))['blender'],'--background','--factory-startup','--python-exit-code','1','--python',str(ROOT/'tools/audit_walk_skirt.py')],log='walk-skirt.log')
     if not read(path).get('passed'): raise RuntimeError('Walking legs escape the skirt envelope')
 
 
 def audit_sword():
     files=['art/source/humanoid-v1.blend','art/source/greatsword-v1.blend','game/content/sword_motion.json','game/content/combat.json','tools/audit_sword.py','tools/motion_math.py']
-    inputs={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in files}
+    inputs={name:hashlib.sha256((ROOT/str(name).replace('\\','/')).read_bytes()).hexdigest() for name in files}
     path=ROOT/'output/verification/sword-clearance.json'
     report=read(path) if path.exists() else {}
     if report.get('passed') and report.get('inputs')==inputs:
@@ -402,7 +427,7 @@ def audit_sword():
         audit_walk_skirt()
         audit_character_detail()
         return
-    run_process([toolchain()['blender'],'--background','--factory-startup','--python-exit-code','1','--python',str(ROOT/'tools/audit_sword.py')],log='sword-clearance.log')
+    run_process([toolchain(('godot','blender'))['blender'],'--background','--factory-startup','--python-exit-code','1','--python',str(ROOT/'tools/audit_sword.py')],log='sword-clearance.log')
     report=read(path)
     if not report.get('passed') or report.get('inputs')!=inputs:
         raise RuntimeError('Sword clearance audit failed or does not match current assets')
@@ -413,12 +438,12 @@ def validate_static_integration():
     import struct
     review=read(ROOT/'art/character/model-review.json')['static_integration']
     for name,expected in review['frozen_assets'].items():
-        if hashlib.sha256((ROOT/name).read_bytes()).hexdigest()!=expected:
+        if hashlib.sha256((ROOT/str(name).replace('\\','/')).read_bytes()).hexdigest()!=expected:
             raise ValueError('Unapproved animated source/export changed: '+name)
     report=read(ROOT/'art/character/standalone-export.json')
     for name,expected in [(report['export'],report['export_sha256']),('tools/export_personal_heroine_static.py',report['recipe_sha256'])]:
-        if hashlib.sha256((ROOT/name).read_bytes()).hexdigest()!=expected: raise ValueError('Standalone export needs refresh: '+name)
-    raw=(ROOT/report['export']).read_bytes()
+        if hashlib.sha256((ROOT/str(name).replace('\\','/')).read_bytes()).hexdigest()!=expected: raise ValueError('Standalone export needs refresh: '+name)
+    raw=(ROOT/report['export'].replace('\\','/')).read_bytes()
     length=struct.unpack_from('<I',raw,12)[0];document=json.loads(raw[20:20+length])
     if document.get('animations') or document.get('skins'): raise ValueError('Standalone review must contain no rigs or animations')
 
@@ -429,20 +454,20 @@ def audit_character_detail():
         print('ADVANCED BASELINE FROZEN: no animation retargeting during static review')
         return
     files=['art/source/humanoid-v1.blend','art/source/greatsword-v1.blend','game/content/sword_motion.json','game/content/combat.json','tools/audit_sword.py','tools/motion_math.py','tools/prepare_character_detail.py','tools/remake_hero.py','tools/build_character.py','game/assets/characters/humanoid-hero-v1.glb','art/character/source/human_base_meshes_bundle.blend']
-    inputs={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in files}
+    inputs={name:hashlib.sha256((ROOT/str(name).replace('\\','/')).read_bytes()).hexdigest() for name in files}
     path=ROOT/'output/verification/advanced-sword-clearance.json'
     report=read(path) if path.exists() else {}
     if report.get('passed') and report.get('inputs')==inputs:
         print(f'ADVANCED SWORD CACHE HIT: {report["samples"]} poses, no intersections')
     else:
-        run_process([toolchain()['blender'],'--background','--factory-startup','--disable-autoexec','--python-exit-code','1','--python',str(ROOT/'tools/audit_sword.py'),'--','--advanced'],timeout=1200,log='advanced-sword-clearance.log')
+        run_process([toolchain(('godot','blender'))['blender'],'--background','--factory-startup','--disable-autoexec','--python-exit-code','1','--python',str(ROOT/'tools/audit_sword.py'),'--','--advanced'],timeout=1200,log='advanced-sword-clearance.log')
         if not read(path).get('passed') or read(path).get('inputs')!=inputs: raise RuntimeError('Advanced sword clearance failed')
     skirt=ROOT/'output/verification/advanced-walk-skirt.json'
     report=read(skirt) if skirt.exists() else {}
     if report.get('passed') and report.get('source_hash')==inputs['art/source/humanoid-v1.blend'] and report.get('recipe_hash')==hashlib.sha256((ROOT/'tools/audit_walk_skirt.py').read_bytes()).hexdigest() and report.get('detail_recipe_hash')==inputs['tools/prepare_character_detail.py'] and report.get('hero_recipe_hash')==inputs['tools/remake_hero.py']:
         print(f'ADVANCED SKIRT CACHE HIT: {report["covered_vertices"]} covered vertices')
     else:
-        run_process([toolchain()['blender'],'--background','--factory-startup','--python-exit-code','1','--python',str(ROOT/'tools/audit_walk_skirt.py'),'--','--advanced'],log='advanced-walk-skirt.log')
+        run_process([toolchain(('godot','blender'))['blender'],'--background','--factory-startup','--python-exit-code','1','--python',str(ROOT/'tools/audit_walk_skirt.py'),'--','--advanced'],log='advanced-walk-skirt.log')
         if not read(skirt).get('passed'): raise RuntimeError('Advanced walking skirt clearance failed')
 
 
@@ -454,14 +479,14 @@ def build(skip_tests=False):
         assets()
         audit_sword()
     icon=prepare_icons()
-    chain=toolchain()
+    chain=toolchain(('godot','windows_release_template','windows_debug_template'))
     cache_path=ROOT/'output/build-cache.json'
     state=read(cache_path) if cache_path.exists() else {}
     version=read(GAME/'content/release.json')['version']
     executable=ROOT/f'output/windows/v{version}/CoastalFoundation.exe'
     def build_key():
         files=[p for p in GAME.rglob('*') if p.is_file() and '.godot' not in p.parts and p.name!='export_presets.cfg']
-        files += [ROOT/'tools/platform_cli.py',ROOT/'tools/icon_assets.py',ROOT/'tools/install_desktop_shortcut.ps1',ROOT/'tools/Install Desktop Shortcut.cmd',ROOT/'tools/Play Compatibility.cmd',icon,ROOT/'docs/PLAY.md',ROOT/'docs/MAP-BUILDER.md',ROOT/'docs/ASSET-CREDITS.md',ROOT/'docs/GODOT-LICENSE.txt',ROOT/'docs/GODOT-COPYRIGHT.txt']
+        files += [ROOT/'tools/platform_cli.py',ROOT/'tools/export_notices.py',ROOT/'tools/icon_assets.py',ROOT/'tools/install_desktop_shortcut.ps1',ROOT/'tools/Install Desktop Shortcut.cmd',ROOT/'tools/Play Compatibility.cmd',icon,ROOT/'docs/PLAY.md',ROOT/'docs/MAP-BUILDER.md',ROOT/'docs/ASSET-CREDITS.md',ROOT/'docs/GODOT-LICENSE.txt',ROOT/'docs/GODOT-COPYRIGHT.txt']
         template_hash=hashlib.sha256(Path(chain['windows_release_template']).read_bytes()).hexdigest()
         return digest(files,chain['godot_version']+template_hash)
     key=build_key()
@@ -502,14 +527,18 @@ texture_format/s3tc_bptc=true
     shutil.copy2(executable,executable.parent/'MapBuilder.exe')
     shutil.copy2(ROOT/'docs/MAP-BUILDER.md',executable.parent/'MAP-BUILDER.md')
     shutil.copy2(ROOT/'docs/PLAY.md',executable.parent/'README.md')
-    shutil.copy2(ROOT/'docs/GODOT-LICENSE.txt',executable.parent/'GODOT-LICENSE.txt')
-    shutil.copy2(ROOT/'docs/GODOT-COPYRIGHT.txt',executable.parent/'GODOT-COPYRIGHT.txt')
-    shutil.copy2(ROOT/'docs/ASSET-CREDITS.md',executable.parent/'ASSET-CREDITS.md')
+    from export_notices import copy_runtime_notices
+    copy_runtime_notices(executable.parent)
     for name in ['install_desktop_shortcut.ps1','Install Desktop Shortcut.cmd','Play Compatibility.cmd']:
         shutil.copy2(ROOT/'tools'/name,executable.parent/name)
     with zipfile.ZipFile(executable.parent/'CoastalFoundation-Windows.zip','w',zipfile.ZIP_DEFLATED,compresslevel=6) as archive:
         for name in ['CoastalFoundation.exe','MapBuilder.exe','MAP-BUILDER.md',ICON_NAME,'Install Desktop Shortcut.cmd','install_desktop_shortcut.ps1','Play Compatibility.cmd','README.md','ASSET-CREDITS.md','GODOT-LICENSE.txt','GODOT-COPYRIGHT.txt']:
             archive.write(executable.parent/name,name)
+        for notice in sorted((executable.parent/'third-party-notices').rglob('*')):
+            if notice.is_file():
+                archive.write(notice,notice.relative_to(executable.parent).as_posix())
+        for native in sorted(executable.parent.rglob('*.dll')):
+            archive.write(native,native.relative_to(executable.parent).as_posix())
     state.update(game_key=build_key(),executable_hash=hashlib.sha256(executable.read_bytes()).hexdigest(),executable_path=str(executable))
     write(cache_path,state)
     print(f'WINDOWS READY: {executable}')
@@ -562,7 +591,7 @@ def identifier(value):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     commands=parser.add_subparsers(dest='command',required=True)
-    for name in ['inspect-swamp','validate','build','verify','verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-dash-uppercut','verify-unarmed','verify-dreadmore','verify-world-rise','verify-alpha2','verify-environment','verify-builder','capture','verify-windows','capture-windows','run','recipes-check']:
+    for name in ['verify-appearance','inspect-swamp','validate','build','verify','verify-combat','verify-terrain','verify-goblins','verify-magic','verify-cores','verify-beta','verify-sea-dragon','verify-skills','verify-dash-uppercut','verify-unarmed','verify-dreadmore','verify-world-rise','verify-alpha2','verify-environment','verify-builder','capture','verify-windows','capture-windows','run','recipes-check']:
         command=commands.add_parser(name)
         if name=='inspect-swamp':
             command.add_argument('--render',action='store_true')
@@ -570,12 +599,21 @@ def main():
         if name=='build': command.add_argument('--skip-tests',action='store_true',help='Package existing assets without validation or audits; explicitly untested')
         if name=='verify-windows': command.add_argument('--suite',choices=['all','sea-dragon','combat-skills','dash-uppercut','unarmed','dreadmore','world-rise','alpha2'],default='all')
         if name in ['capture','capture-windows']:
-            command.add_argument('--view',choices=['swamp','guild','performance','boss-chamber','world-rise','world-rise-backdrop','dreadmore','mob-facing','alpha2','unarmed','dash-uppercut','combat-skills','sea-dragon','beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
+            command.add_argument('--view',choices=['world-rise-menus','appearance','swamp','guild','performance','boss-chamber','world-rise','world-rise-backdrop','dreadmore','mob-facing','alpha2','unarmed','dash-uppercut','combat-skills','sea-dragon','beta','all','world','characters','hero','standalone','combat','quest','progression','graphics','environment','potion','title','parry','camera','menus','home','knockback','menagery','terrain','builder','resin','queen','goblins','magic','hud','cores'],default='all')
             command.add_argument('--renderer',choices=['forward_plus','gl_compatibility'])
             command.add_argument('--art-profile',choices=['original','darkwood'])
             if name=='capture':
                 command.add_argument('--draft',action='store_true',help='Source-only visual iteration; skips clearance gates and cannot build a release')
                 command.add_argument('--model-only',action='store_true',help='Static heroine review before animation approval; requires --draft --view hero')
+    focused = commands.add_parser('check-script', help='Run a focused Godot script with disposable userdata')
+    focused.add_argument('script', help='Project-relative .gd script under scripts/')
+    focused.add_argument('--timeout', type=int, default=240)
+    focused.add_argument('--render', action='store_true', help='Run a native rendering fixture with disposable userdata')
+    client = commands.add_parser('export-client', help='Package a desktop client candidate; content validation only')
+    client.add_argument('--target', choices=['macos','windows'], required=True)
+    client.add_argument('--skip-tests', action='store_true')
+    server = commands.add_parser('build-server', help='Package pinned Linux x86_64 dedicated server')
+    server.add_argument('--skip-tests', action='store_true')
     asset_command=commands.add_parser('assets')
     asset_command.add_argument('--regenerate',action='store_true')
     recolor=commands.add_parser('recolor')
@@ -597,7 +635,23 @@ def main():
     prop.add_argument('x',type=float)
     prop.add_argument('z',type=float)
     args=parser.parse_args()
-    if args.command=='inspect-swamp':
+    if args.command=='verify-appearance':
+        validate()
+        import_game()
+        for fixture in ('appearance_checks.gd','appearance_geometry_checks.gd'):
+            print(run_process([toolchain()['godot'],'--headless','--path',str(GAME),'--script','res://scripts/'+fixture],log='appearance-checks.log',isolated=True))
+    elif args.command=='export-client':
+        from client_export import export_client
+        export_client(args.target,args.skip_tests)
+    elif args.command=='build-server':
+        from server_export import export_server
+        export_server(args.skip_tests)
+    elif args.command=='check-script':
+        script = Path(args.script)
+        if script.is_absolute() or '..' in script.parts or script.suffix != '.gd' or not (GAME / script).is_file() or script.parts[0] != 'scripts':
+            raise ValueError('Script must be an existing project-relative scripts/*.gd path')
+        print(run_process([toolchain()['godot'],*([] if args.render else ['--headless']),'--path',str(GAME),'--script','res://' + script.as_posix()], timeout=args.timeout, log=script.stem+'.log', isolated=True,rendered=args.render))
+    elif args.command=='inspect-swamp':
         import_game()
         engine=str(ROOT/'output/windows'/('v'+read(GAME/'content/release.json')['version'])/'CoastalFoundation.exe') if args.windows else toolchain()['godot']
         launch=[engine] if args.windows else [engine,'--path',str(GAME)]
@@ -636,7 +690,7 @@ def main():
         model_only=args.command=='capture' and args.model_only
         if model_only:
             if not draft or args.view!='hero': raise ValueError('--model-only requires --draft --view hero')
-            run_process([toolchain()['blender'],'--background','--factory-startup','--disable-autoexec','--python-exit-code','1','--python',str(ROOT/'tools/prepare_character_detail.py'),'--','--model-only'],log='hero-model-only.log')
+            run_process([toolchain(('godot','blender'))['blender'],'--background','--factory-startup','--disable-autoexec','--python-exit-code','1','--python',str(ROOT/'tools/prepare_character_detail.py'),'--','--model-only'],log='hero-model-only.log')
         else:
             assets()
         if not draft: audit_sword()
@@ -648,8 +702,9 @@ def main():
         else:
             renderer=['--rendering-method',args.renderer] if args.renderer else []
             art=['--art-profile',args.art_profile] if args.art_profile else []
-            directory=ROOT/('output/verification/draft-render' if draft else 'output/verification')
-            run_process([toolchain()['godot'],'--path',str(GAME),*renderer,'--','--capture',str(directory),'--capture-view',args.view,*art,*(['--model-only'] if model_only else [])],rendered=True,log='draft-capture.log' if draft else 'capture.log')
+            directory=ROOT/'output/verification'/('draft-render' if draft else 'current-render')/args.view
+            directory.mkdir(parents=True,exist_ok=True)
+            run_process([toolchain()['godot'],'--path',str(GAME),*renderer,'--','--capture',str(directory),'--capture-view',args.view,*art,*(['--model-only'] if model_only else [])],rendered=True,log=f'draft-capture-{args.view}.log' if draft else f'capture-{args.view}.log')
             print(f'{"DRAFT (not release verification)" if draft else "RENDERED"}: {args.view} view in {directory}')
     elif args.command=='run':
         executable=build()
@@ -670,11 +725,11 @@ def main():
         capture_started=time.time()
         if args.view=='builder':
             directory.mkdir(parents=True,exist_ok=True)
-            run_process([str(executable.parent/'MapBuilder.exe'),'--resolution','1366x768','--','--builder-capture',str(directory)],rendered=True,log='windows-capture.log')
+            run_process([str(executable.parent/'MapBuilder.exe'),'--resolution','1366x768','--','--builder-capture',str(directory)],rendered=True,log='windows-builder-capture.log')
         else:
             renderer=['--rendering-method',args.renderer] if args.renderer else []
             art=['--art-profile',args.art_profile] if args.art_profile else []
-            run_process([str(executable),'--resolution','1366x768',*renderer,'--','--capture',str(directory),'--capture-view',args.view,*art],rendered=True,log='windows-capture.log')
+            run_process([str(executable),'--resolution','1366x768',*renderer,'--','--capture',str(directory),'--capture-view',args.view,*art],rendered=True,log=f'windows-capture-{args.view}.log')
         evidence_path=ROOT/'output/verification/current-render-evidence.json'
         key=read(ROOT/'output/build-cache.json')['game_key']
         evidence=read(evidence_path) if evidence_path.exists() else {}
@@ -722,6 +777,3 @@ if __name__=='__main__':
     except (ValueError,RuntimeError,FileNotFoundError,subprocess.TimeoutExpired) as error:
         print(f'ERROR: {error}',file=sys.stderr)
         sys.exit(1)
-    finally:
-        if len(sys.argv)>1 and sys.argv[1].startswith(('verify','capture')):
-            prune_test_output()

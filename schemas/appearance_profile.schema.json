@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "World Rise canonical cosmetic appearance v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "appearance_version",
+    "catalog_version",
+    "base_id",
+    "face_id",
+    "hair_id",
+    "skin_id",
+    "body_id",
+    "colors",
+    "morphs"
+  ],
+  "properties": {
+    "appearance_version": {
+      "const": 1
+    },
+    "catalog_version": {
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "base_id": {
+      "const": "wr_heroine"
+    },
+    "face_id": {
+      "enum": [
+        "default",
+        "soft_cheeks"
+      ]
+    },
+    "hair_id": {
+      "enum": [
+        "chestnut_layers",
+        "short_layers"
+      ]
+    },
+    "skin_id": {
+      "const": "default_freckled"
+    },
+    "body_id": {
+      "enum": [
+        "default",
+        "subtle_shape"
+      ]
+    },
+    "colors": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "skin",
+        "hair",
+        "eyes",
+        "cloth",
+        "leather"
+      ],
+      "properties": {
+        "skin": {
+          "$ref": "#/$defs/rgb"
+        },
+        "hair": {
+          "$ref": "#/$defs/rgb"
+        },
+        "eyes": {
+          "$ref": "#/$defs/rgb"
+        },
+        "cloth": {
+          "$ref": "#/$defs/rgb"
+        },
+        "leather": {
+          "$ref": "#/$defs/rgb"
+        }
+      }
+    },
+    "morphs": {
+      "type": "object",
+      "maxProperties": 0
+    }
+  },
+  "$defs": {
+    "rgb": {
+      "type": "string",
+      "pattern": "^#[0-9a-fA-F]{6}$"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "catalog_version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "face_id": {
+            "const": "default"
+          },
+          "hair_id": {
+            "const": "chestnut_layers"
+          },
+          "body_id": {
+            "const": "default"
+          }
+        }
+      }
+    }
+  ]
+}

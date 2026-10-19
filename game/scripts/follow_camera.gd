@@ -1,4 +1,5 @@
 extends RefCounted
+const ViewFrame=preload("res://scripts/network/wr_view_frame.gd")
 ## Root-window input, perspective orbit and scenery collision share one owner.
 var game:Control
 var tuning:Dictionary
@@ -59,6 +60,13 @@ func set_mode(mode:String) -> void:
 func recenter() -> void:
 	yaw=wrapf(game.player.visual.rotation.y+PI,-PI,PI)
 	game.player.movement_camera_yaw=yaw
+
+func reset_motion() -> void:
+	if game.player==null:return
+	visuals.unarmed.reset(game.player)
+	game.player.first_person_sword.reset_gait(game.player)
+	locomotion_camera_blend=0.0
+	game.player.set_meta("canonical_view_blend",0.0)
 
 func handle_input(event:InputEvent) -> bool:
 	if is_instance_valid(game.sea_dragon) and game.sea_dragon.active and game.player.input_enabled:
@@ -127,7 +135,7 @@ func refresh_pointer() -> void:
 	crosshair.visible=active
 	crosshair.position=game.world_rect.get_center()-Vector2(6,14)
 	var args=OS.get_cmdline_user_args()
-	var capture=active and game.get_window().has_focus() and DisplayServer.get_name()!="headless" and "--verify" not in args and "--capture" not in args
+	var capture=active and game.get_window().has_focus() and DisplayServer.get_name()!="headless" and "--verify" not in args and "--capture" not in args and "--weapon-render" not in args
 	if capture and not owns_pointer:
 		Input.mouse_mode=Input.MOUSE_MODE_CAPTURED; owns_pointer=true
 	elif not capture and owns_pointer:
@@ -162,77 +170,14 @@ func sample_first_person(delta:float=0.0,advance_gait:bool=true) -> Transform3D:
 	var eye=float(tuning.get("first_person_eye_height",1.52))
 	if game.game_mode=="alpha" and game.environment_profile=="original" and game.character_profile=="game": eye=float(tuning.get("original_eye_height",1.65))
 	var actor=game.player
-	var rig:Skeleton3D=actor.skeleton
-	if actor.has_node("BetaHero"):
-		var hero=actor.get_node("BetaHero");hero.synchronize();rig=hero.rig
-	rig.force_update_all_bone_transforms()
-	var head=rig.find_bone("head")
-	var rest=rig.get_bone_global_rest(head);var pose=rig.get_bone_global_pose(head)
-	# The eye is authored in bind space, then follows the animated head/root.
-	var eye_bind=rig.global_transform.affine_inverse()*(actor.global_position+Vector3(0,eye,0))
-	# Remove root facing from the calibration point (its X/Z are zero).
-	var eye_local=rest.affine_inverse()*eye_bind
-	var head_world=rig.global_transform*pose
-	var spinning=actor.state=="light" and actor.combo_stage==3
-	var base_facing=actor.attack_yaw if spinning else actor.visual.rotation.y
-	var mouse_offset=wrapf(yaw-base_facing-PI,-PI,PI)
-	var orientation=(rig.global_basis*pose.basis*rest.basis.inverse()*Basis(Vector3.UP,PI+mouse_offset)*Basis(Vector3.RIGHT,-first_pitch)).orthonormalized()
-	var chest=game.player.position+Vector3(0,.65,0)
-	var forward=-orientation.z
-	var desired_eye=head_world*eye_local+forward*.18
-	# Attenuate gait-induced eye translation/rotation around the player's current
-	# look pose. Attacks keep the full authored head/root motion, including spins.
-	var walking=actor.state=="free" and actor.current_clip in ["walk_loop","drag_walk_loop"]
-	if actor.state!="free": locomotion_camera_blend=0.0
-	elif actor.input_enabled and advance_gait:
-		var target=1.0 if walking else 0.0
-		locomotion_camera_blend=move_toward(locomotion_camera_blend,target,delta/.16) if delta>0 else target
-	var motion_scale=lerpf(1.0,float(tuning.get("first_person_movement_motion",.5)),locomotion_camera_blend)
-	if motion_scale<1.0:
-		var look_basis=Basis(Vector3.UP,yaw)*Basis(Vector3.RIGHT,-first_pitch)
-		var neutral_eye=actor.global_position+Vector3(0,eye,0)-look_basis.z*.18
-		var view_pose=Transform3D(look_basis,neutral_eye).interpolate_with(Transform3D(orientation,desired_eye),motion_scale)
-		orientation=view_pose.basis;desired_eye=view_pose.origin;forward=-orientation.z
-	# Keep the guard's physical twist, but let the player keep sight of the threat.
-	# The authored action clock also freezes this smooth entry/recovery in menus.
-	if actor.state=="parry":
-		var phase=actor.parry_pose_phase(actor.state_time/actor.state_duration)
-		var guard=smoothstep(0,.12,phase)*(1-smoothstep(.82,1,phase))
-		var parry_scale=lerpf(1.0,float(tuning.get("first_person_parry_motion",.2)),guard)
-		var look_basis=Basis(Vector3.UP,yaw)*Basis(Vector3.RIGHT,-first_pitch)
-		orientation=Basis(look_basis.get_rotation_quaternion().slerp(orientation.get_rotation_quaternion(),parry_scale))
-		forward=-orientation.z
-		desired_eye=head_world*eye_local+forward*.18
-	var lance_kick=lance_view_offset()
-	if not lance_kick.is_zero_approx():
-		orientation=(orientation*Basis(Vector3.UP,lance_kick.x)*Basis(Vector3.RIGHT,lance_kick.y)).orthonormalized()
-		forward=-orientation.z;desired_eye=head_world*eye_local+forward*.18
-	collision_query.transform=Transform3D(Basis.IDENTITY,chest); collision_query.motion=desired_eye-chest
-	var fractions=game.player.get_world_3d().direct_space_state.cast_motion(collision_query)
-	return Transform3D(orientation,chest+collision_query.motion*fractions[0])
+	locomotion_camera_blend=ViewFrame.locomotion_blend(actor,locomotion_camera_blend,delta,advance_gait)
+	return ViewFrame.from_actor(actor,tuning,yaw,first_pitch,locomotion_camera_blend,actor.get_world_3d().direct_space_state,collision_query,eye)
 
 func lance_view_offset() -> Vector2:
-	# Read only the actor's charge clock: sword, view and beam share an aim,
-	# repeated sampling cannot add kicks, and overlays freeze the motion.
-	var actor=game.player
-	if actor.state=="lance_charge":
-		return lance_charge_offset(clampf(actor.state_time/actor.state_duration,0,1))
-	if actor.state=="lance_fire":
-		return lance_charge_offset(1)*(1-smoothstep(0,.38,actor.state_time/actor.state_duration))
-	return Vector2.ZERO
+	return ViewFrame.lance_offset(game.player,tuning)
 
 func lance_charge_offset(progress:float) -> Vector2:
-	var seconds=progress*3.0
-	var motion=Vector2(sin(seconds*8.3+sin(seconds*3.1))*.23,sin(seconds*11.9+.8)*.20)
-	var impulses=[Vector2(-1,.5),Vector2(.85,-.8),Vector2(-.6,-1),Vector2(1,.65),Vector2(-.95,.4),Vector2(.7,-.9),Vector2(-.85,-.7)]
-	var times=[.18,.34,.51,.65,.80,.93,.985]
-	for index in range(times.size()):
-		var elapsed=(progress-times[index])*3.0
-		if elapsed>0: motion+=impulses[index]*smoothstep(0,.035,elapsed)*exp(-elapsed*11)
-	motion.x=clampf(motion.x,-1,1);motion.y=clampf(motion.y,-1,1)
-	var buildup=smoothstep(0,.12,progress)*lerpf(.35,1,progress)
-	var control=1-clampf(game.player.lance_stability,0,.75)
-	return motion*Vector2(deg_to_rad(float(tuning.get("first_person_lance_yaw_degrees",6))),deg_to_rad(float(tuning.get("first_person_lance_pitch_degrees",4))))*buildup*control
+	return ViewFrame.lance_charge_offset(progress,game.player.lance_stability,tuning)
 
 func bounded_travel(angle:float) -> Vector3:
 	var direction=Vector3(sin(yaw)*cos(angle),sin(angle),cos(yaw)*cos(angle))

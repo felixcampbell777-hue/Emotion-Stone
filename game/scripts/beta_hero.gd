@@ -48,6 +48,9 @@ static func apply(target:Node3D,enabled:bool,beta_weapon:bool=true) -> void:
 	target.visual.visible=false
 	if target.has_node("Shadow"): target.get_node("Shadow").visible=false
 	current.synchronize()
+	# Recreated presentation nodes (weapon/art changes) retain accepted cosmetics.
+	if target.has_meta("appearance_profile"):
+		preload("res://scripts/character_appearance.gd").apply(target,target.get_meta("appearance_profile"))
 
 func cache_gear_parts(source:Node,copy:Node) -> void:
 	# duplicate() preserves child order but renames automatically named nodes.
@@ -98,7 +101,7 @@ func synchronize(delta:float=0.0) -> void:
 	gait.apply(self,delta if actor.input_enabled else 0.0)
 	if actor.state in ["draw","sheathe"] and not carry_transition.is_empty():
 		var clock=actor.state_time
-		if not actor.is_physics_processing() and actor.current_clip in ["draw_sword","sheathe_sword"]:
+		if not actor.is_physics_processing() and not actor.get_meta("canonical_manual_step",false) and actor.current_clip in ["draw_sword","sheathe_sword"]:
 			var length=actor.animator.get_animation(actor.clips[actor.current_clip]).length
 			clock=actor.animator.current_animation_position/length*float(actor.combat.draw_seconds if actor.state=="draw" else actor.combat.sheathe_seconds)
 		var weight=smoothstep(0,.12,clock)
@@ -113,6 +116,10 @@ func synchronize(delta:float=0.0) -> void:
 	actor.sync_beta_back_carry(self)
 	sword.transform=global_transform.affine_inverse()*actor.equipment.global_transform
 	harness.transform=global_transform.affine_inverse()*actor.back_harness.global_transform
+
+	if actor.weapon_runtime!=null and actor.weapon_runtime.enabled():
+		sword.visible=false;harness.visible=false
+		actor.weapon_runtime.apply_rig(rig,true)
 
 func carry_delta() -> Transform3D:
 	var spine=rig.find_bone("spine")

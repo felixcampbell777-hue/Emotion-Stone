@@ -85,7 +85,11 @@ func set_body_color(color:Color) -> void:
 func take_damage(amount: int, from_direction: Vector3) -> void:
 	if health<=0:
 		return
+	set_meta("last_damage_context",get_meta("pending_damage_context",{}).duplicate(true))
+	if has_meta("pending_damage_context"):remove_meta("pending_damage_context")
 	health=maxi(0,health-amount)
+	preload("res://scripts/world_sound.gd").creature_damage(self)
+	set_meta("last_impulse_context",get_meta("last_damage_context",{}).duplicate(true))
 	knockback=from_direction*3.2
 	hit_flash=.18
 	state="recover"

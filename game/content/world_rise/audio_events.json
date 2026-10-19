@@ -1,0 +1,1877 @@
+{
+  "version": 1,
+  "events": {
+    "player.step.grass": {
+      "clips": [
+        "res://assets/audio/kenney/footstep00.ogg",
+        "res://assets/audio/kenney/footstep01.ogg",
+        "res://assets/audio/kenney/footstep02.ogg"
+      ],
+      "bus": "SFX",
+      "gain_db": -16,
+      "priority": 20,
+      "max_distance": 16,
+      "cooldown": 0.12,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "enemy.step.grass": {
+      "clips": [
+        "res://assets/audio/kenney/footstep00.ogg",
+        "res://assets/audio/kenney/footstep01.ogg",
+        "res://assets/audio/kenney/footstep02.ogg"
+      ],
+      "bus": "SFX",
+      "gain_db": -18,
+      "priority": 15,
+      "max_distance": 22,
+      "cooldown": 0.12,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "player.step.dirt": {
+      "clips": [
+        "res://assets/audio/kenney/footstep00.ogg",
+        "res://assets/audio/kenney/footstep01.ogg",
+        "res://assets/audio/kenney/footstep02.ogg"
+      ],
+      "bus": "SFX",
+      "gain_db": -16,
+      "priority": 20,
+      "max_distance": 16,
+      "cooldown": 0.12,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "enemy.step.dirt": {
+      "clips": [
+        "res://assets/audio/kenney/footstep00.ogg",
+        "res://assets/audio/kenney/footstep01.ogg",
+        "res://assets/audio/kenney/footstep02.ogg"
+      ],
+      "bus": "SFX",
+      "gain_db": -18,
+      "priority": 15,
+      "max_distance": 22,
+      "cooldown": 0.12,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "player.step.stone": {
+      "clips": [
+        "res://assets/audio/kenney/footstep03.ogg",
+        "res://assets/audio/kenney/footstep04.ogg",
+        "res://assets/audio/kenney/footstep05.ogg"
+      ],
+      "bus": "SFX",
+      "gain_db": -16,
+      "priority": 20,
+      "max_distance": 16,
+      "cooldown": 0.12,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "enemy.step.stone": {
+      "clips": [
+        "res://assets/audio/kenney/footstep03.ogg",
+        "res://assets/audio/kenney/footstep04.ogg",
+        "res://assets/audio/kenney/footstep05.ogg"
+      ],
+      "bus": "SFX",
+      "gain_db": -18,
+      "priority": 15,
+      "max_distance": 22,
+      "cooldown": 0.12,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "player.step.wood": {
+      "clips": [
+        "res://assets/audio/original/step_wood_0.wav",
+        "res://assets/audio/original/step_wood_1.wav",
+        "res://assets/audio/original/step_wood_2.wav",
+        "res://assets/audio/original/step_wood_3.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -16,
+      "priority": 20,
+      "max_distance": 16,
+      "cooldown": 0.12,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "enemy.step.wood": {
+      "clips": [
+        "res://assets/audio/original/step_wood_0.wav",
+        "res://assets/audio/original/step_wood_1.wav",
+        "res://assets/audio/original/step_wood_2.wav",
+        "res://assets/audio/original/step_wood_3.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -18,
+      "priority": 15,
+      "max_distance": 22,
+      "cooldown": 0.12,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "player.step.metal": {
+      "clips": [
+        "res://assets/audio/original/step_metal_0.wav",
+        "res://assets/audio/original/step_metal_1.wav",
+        "res://assets/audio/original/step_metal_2.wav",
+        "res://assets/audio/original/step_metal_3.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -16,
+      "priority": 20,
+      "max_distance": 16,
+      "cooldown": 0.12,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "enemy.step.metal": {
+      "clips": [
+        "res://assets/audio/original/step_metal_0.wav",
+        "res://assets/audio/original/step_metal_1.wav",
+        "res://assets/audio/original/step_metal_2.wav",
+        "res://assets/audio/original/step_metal_3.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -18,
+      "priority": 15,
+      "max_distance": 22,
+      "cooldown": 0.12,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "player.step.mud": {
+      "clips": [
+        "res://assets/audio/original/step_mud_0.wav",
+        "res://assets/audio/original/step_mud_1.wav",
+        "res://assets/audio/original/step_mud_2.wav",
+        "res://assets/audio/original/step_mud_3.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -16,
+      "priority": 20,
+      "max_distance": 16,
+      "cooldown": 0.12,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "enemy.step.mud": {
+      "clips": [
+        "res://assets/audio/original/step_mud_0.wav",
+        "res://assets/audio/original/step_mud_1.wav",
+        "res://assets/audio/original/step_mud_2.wav",
+        "res://assets/audio/original/step_mud_3.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -18,
+      "priority": 15,
+      "max_distance": 22,
+      "cooldown": 0.12,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "player.step.water": {
+      "clips": [
+        "res://assets/audio/original/step_water_0.wav",
+        "res://assets/audio/original/step_water_1.wav",
+        "res://assets/audio/original/step_water_2.wav",
+        "res://assets/audio/original/step_water_3.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -16,
+      "priority": 20,
+      "max_distance": 16,
+      "cooldown": 0.12,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "enemy.step.water": {
+      "clips": [
+        "res://assets/audio/original/step_water_0.wav",
+        "res://assets/audio/original/step_water_1.wav",
+        "res://assets/audio/original/step_water_2.wav",
+        "res://assets/audio/original/step_water_3.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -18,
+      "priority": 15,
+      "max_distance": 22,
+      "cooldown": 0.12,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "combat.hit.flesh": {
+      "clips": [
+        "res://assets/audio/original/hit_flesh_0.wav",
+        "res://assets/audio/original/hit_flesh_1.wav",
+        "res://assets/audio/original/hit_flesh_2.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 80,
+      "max_distance": 45,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Weapon impact"
+    },
+    "projectile.impact.flesh": {
+      "clips": [
+        "res://assets/audio/original/hit_flesh_0.wav",
+        "res://assets/audio/original/hit_flesh_1.wav",
+        "res://assets/audio/original/hit_flesh_2.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -12,
+      "priority": 65,
+      "max_distance": 45,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "combat.hit.gel": {
+      "clips": [
+        "res://assets/audio/original/hit_gel_0.wav",
+        "res://assets/audio/original/hit_gel_1.wav",
+        "res://assets/audio/original/hit_gel_2.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 80,
+      "max_distance": 45,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Weapon impact"
+    },
+    "projectile.impact.gel": {
+      "clips": [
+        "res://assets/audio/original/hit_gel_0.wav",
+        "res://assets/audio/original/hit_gel_1.wav",
+        "res://assets/audio/original/hit_gel_2.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -12,
+      "priority": 65,
+      "max_distance": 45,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "combat.hit.stone": {
+      "clips": [
+        "res://assets/audio/original/hit_stone_0.wav",
+        "res://assets/audio/original/hit_stone_1.wav",
+        "res://assets/audio/original/hit_stone_2.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 80,
+      "max_distance": 45,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Weapon impact"
+    },
+    "projectile.impact.stone": {
+      "clips": [
+        "res://assets/audio/original/hit_stone_0.wav",
+        "res://assets/audio/original/hit_stone_1.wav",
+        "res://assets/audio/original/hit_stone_2.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -12,
+      "priority": 65,
+      "max_distance": 45,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "combat.hit.metal": {
+      "clips": [
+        "res://assets/audio/original/hit_metal_0.wav",
+        "res://assets/audio/original/hit_metal_1.wav",
+        "res://assets/audio/original/hit_metal_2.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 80,
+      "max_distance": 45,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Weapon impact"
+    },
+    "projectile.impact.metal": {
+      "clips": [
+        "res://assets/audio/original/hit_metal_0.wav",
+        "res://assets/audio/original/hit_metal_1.wav",
+        "res://assets/audio/original/hit_metal_2.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -12,
+      "priority": 65,
+      "max_distance": 45,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "combat.hit.wood": {
+      "clips": [
+        "res://assets/audio/original/hit_wood_0.wav",
+        "res://assets/audio/original/hit_wood_1.wav",
+        "res://assets/audio/original/hit_wood_2.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 80,
+      "max_distance": 45,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Weapon impact"
+    },
+    "projectile.impact.wood": {
+      "clips": [
+        "res://assets/audio/original/hit_wood_0.wav",
+        "res://assets/audio/original/hit_wood_1.wav",
+        "res://assets/audio/original/hit_wood_2.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -12,
+      "priority": 65,
+      "max_distance": 45,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "player.jump": {
+      "clips": [
+        "res://assets/audio/original/jump.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "player.land": {
+      "clips": [
+        "res://assets/audio/original/land.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "player.dodge": {
+      "clips": [
+        "res://assets/audio/kenney/cloth1.ogg",
+        "res://assets/audio/kenney/cloth2.ogg"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "player.dash": {
+      "clips": [
+        "res://assets/audio/original/dash.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "player.hurt": {
+      "clips": [
+        "res://assets/audio/original/hurt.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 95,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "You were hit"
+    },
+    "player.death": {
+      "clips": [
+        "res://assets/audio/original/death.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 95,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "player.stamina_denied": {
+      "clips": [
+        "res://assets/audio/original/denied.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Not enough stamina"
+    },
+    "player.draw": {
+      "clips": [
+        "res://assets/audio/kenney/drawKnife1.ogg",
+        "res://assets/audio/kenney/drawKnife2.ogg"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.8,
+      "pitch_max": 0.9,
+      "caption": ""
+    },
+    "player.sheathe": {
+      "clips": [
+        "res://assets/audio/original/sheathe.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "combat.swing.light": {
+      "clips": [
+        "res://assets/audio/kenney/knifeSlice.ogg",
+        "res://assets/audio/kenney/knifeSlice2.ogg"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.65,
+      "pitch_max": 0.8,
+      "caption": ""
+    },
+    "combat.swing.heavy": {
+      "clips": [
+        "res://assets/audio/original/swing_heavy.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "combat.swing.thrust": {
+      "clips": [
+        "res://assets/audio/original/thrust.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "combat.parry": {
+      "clips": [
+        "res://assets/audio/original/parry.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 95,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Parry"
+    },
+    "combat.slam": {
+      "clips": [
+        "res://assets/audio/original/land.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "combat.thrust_stop": {
+      "clips": [
+        "res://assets/audio/original/wind.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "weapon.spear.thrust": {
+      "clips": [
+        "res://assets/audio/original/spear.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "weapon.spear.swing": {
+      "clips": [
+        "res://assets/audio/original/spear.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "weapon.spear.draw": {
+      "clips": [
+        "res://assets/audio/kenney/drawKnife1.ogg",
+        "res://assets/audio/kenney/drawKnife2.ogg"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.8,
+      "pitch_max": 0.9,
+      "caption": ""
+    },
+    "weapon.rapier.thrust": {
+      "clips": [
+        "res://assets/audio/original/rapier.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "weapon.rapier.swing": {
+      "clips": [
+        "res://assets/audio/original/rapier.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "weapon.rapier.draw": {
+      "clips": [
+        "res://assets/audio/kenney/drawKnife1.ogg",
+        "res://assets/audio/kenney/drawKnife2.ogg"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.8,
+      "pitch_max": 0.9,
+      "caption": ""
+    },
+    "weapon.bow.nock": {
+      "clips": [
+        "res://assets/audio/original/bow_nock.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "weapon.bow.draw": {
+      "clips": [
+        "res://assets/audio/original/bow_draw.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "weapon.bow.release": {
+      "clips": [
+        "res://assets/audio/original/bow_release.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "weapon.bow.cancel": {
+      "clips": [
+        "res://assets/audio/original/bow_nock.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "weapon.bow.dry": {
+      "clips": [
+        "res://assets/audio/original/denied.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "weapon.bow.pickup": {
+      "clips": [
+        "res://assets/audio/original/arrow_pickup.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "projectile.arrow.flight": {
+      "clips": [
+        "res://assets/audio/original/arrow_flight.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "ability.water.cast": {
+      "clips": [
+        "res://assets/audio/original/water_cast.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "ability.water.impact": {
+      "clips": [
+        "res://assets/audio/original/water_hit.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "ability.lance.release": {
+      "clips": [
+        "res://assets/audio/original/water_cast.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "ability.thrust.charge": {
+      "clips": [
+        "res://assets/audio/original/wind.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "world.water.enter": {
+      "clips": [
+        "res://assets/audio/original/water_enter.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "world.water.exit": {
+      "clips": [
+        "res://assets/audio/original/water_exit.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "world.water.drown": {
+      "clips": [
+        "res://assets/audio/original/drown.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -10,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Drowning"
+    },
+    "enemy.wolf.tell": {
+      "clips": [
+        "res://assets/audio/wolf-monster.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 90,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.95,
+      "pitch_max": 1.05,
+      "caption": "Wolf growls"
+    },
+    "enemy.wolf.bite": {
+      "clips": [
+        "res://assets/audio/original/wolf_bite.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Wolf bite"
+    },
+    "enemy.wolf.pain": {
+      "clips": [
+        "res://assets/audio/original/wolf_pain.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Wolf pain"
+    },
+    "enemy.wolf.death": {
+      "clips": [
+        "res://assets/audio/original/wolf_death.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Wolf death"
+    },
+    "enemy.wolf.howl": {
+      "clips": [
+        "res://assets/audio/original/wolf_howl.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 90,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Wolf howl"
+    },
+    "enemy.boar.tell": {
+      "clips": [
+        "res://assets/audio/original/boar_tell.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 90,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Boar prepares to charge"
+    },
+    "enemy.boar.charge": {
+      "clips": [
+        "res://assets/audio/original/boar_charge.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Boar charge"
+    },
+    "enemy.boar.pain": {
+      "clips": [
+        "res://assets/audio/original/boar_pain.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Boar pain"
+    },
+    "enemy.boar.death": {
+      "clips": [
+        "res://assets/audio/original/boar_death.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Boar death"
+    },
+    "enemy.twin_wolf.tell": {
+      "clips": [
+        "res://assets/audio/wolf-monster.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 90,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.95,
+      "pitch_max": 1.05,
+      "caption": "Two-headed wolf growls"
+    },
+    "enemy.twin_wolf.bite_a": {
+      "clips": [
+        "res://assets/audio/original/wolf_bite.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Twin wolf bite a"
+    },
+    "enemy.twin_wolf.bite_b": {
+      "clips": [
+        "res://assets/audio/original/wolf_bite.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Twin wolf bite b"
+    },
+    "enemy.twin_wolf.rush": {
+      "clips": [
+        "res://assets/audio/original/wolf_tell.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Twin wolf rush"
+    },
+    "enemy.twin_wolf.death": {
+      "clips": [
+        "res://assets/audio/original/wolf_death.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Twin wolf death"
+    },
+    "enemy.ashfang.tell": {
+      "clips": [
+        "res://assets/audio/wolf-monster.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 90,
+      "max_distance": 65,
+      "cooldown": 0.04,
+      "pitch_min": 0.85,
+      "pitch_max": 1.05,
+      "caption": "Ashfang growls"
+    },
+    "enemy.ashfang.lunge": {
+      "clips": [
+        "res://assets/audio/original/wolf_bite.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 65,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Ashfang lunge"
+    },
+    "enemy.ashfang.land": {
+      "clips": [
+        "res://assets/audio/original/land.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 65,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Ashfang land"
+    },
+    "enemy.ashfang.howl": {
+      "clips": [
+        "res://assets/audio/original/wolf_howl.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 90,
+      "max_distance": 65,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Ashfang howls"
+    },
+    "enemy.ashfang.death": {
+      "clips": [
+        "res://assets/audio/original/wolf_death.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 65,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Ashfang death"
+    },
+    "enemy.slime.tell": {
+      "clips": [
+        "res://assets/audio/original/slime_tell.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 90,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Slime readies a leap"
+    },
+    "enemy.slime.leap": {
+      "clips": [
+        "res://assets/audio/original/slime_leap.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Slime leap"
+    },
+    "enemy.slime.land": {
+      "clips": [
+        "res://assets/audio/original/slime_land.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Slime land"
+    },
+    "enemy.slime.hit": {
+      "clips": [
+        "res://assets/audio/original/hit_gel_0.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Slime hit"
+    },
+    "enemy.slime.death": {
+      "clips": [
+        "res://assets/audio/original/slime_death.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Slime death"
+    },
+    "enemy.giant_slime.tell": {
+      "clips": [
+        "res://assets/audio/original/slime_tell.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 90,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Giant slime readies a leap"
+    },
+    "enemy.giant_slime.leap": {
+      "clips": [
+        "res://assets/audio/original/slime_leap.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Giant slime leap"
+    },
+    "enemy.giant_slime.land": {
+      "clips": [
+        "res://assets/audio/original/slime_land.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Giant slime land"
+    },
+    "enemy.giant_slime.split": {
+      "clips": [
+        "res://assets/audio/original/slime_split.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Giant slime split"
+    },
+    "enemy.giant_slime.death": {
+      "clips": [
+        "res://assets/audio/original/slime_death.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Giant slime death"
+    },
+    "enemy.resin.launch": {
+      "clips": [
+        "res://assets/audio/original/resin_launch.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Resin launch"
+    },
+    "enemy.resin.impact": {
+      "clips": [
+        "res://assets/audio/original/slime_land.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Resin impact"
+    },
+    "enemy.resin.sticky": {
+      "clips": [
+        "res://assets/audio/original/resin_sticky.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Resin sticky"
+    },
+    "enemy.resin.release": {
+      "clips": [
+        "res://assets/audio/original/slime_leap.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Resin release"
+    },
+    "enemy.resin.death": {
+      "clips": [
+        "res://assets/audio/original/slime_death.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 40,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Resin death"
+    },
+    "enemy.elder.form": {
+      "clips": [
+        "res://assets/audio/original/elder_form.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 90,
+      "max_distance": 65,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Stone gathers into the Elder"
+    },
+    "enemy.elder.tell": {
+      "clips": [
+        "res://assets/audio/original/elder_tell.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 90,
+      "max_distance": 65,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Elder prepares an attack"
+    },
+    "enemy.elder.sweep": {
+      "clips": [
+        "res://assets/audio/original/elder_sweep.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 65,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Elder swings"
+    },
+    "enemy.elder.slam": {
+      "clips": [
+        "res://assets/audio/original/elder_slam.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 65,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Elder slams the ground"
+    },
+    "enemy.elder.rush": {
+      "clips": [
+        "res://assets/audio/original/elder_rush.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 65,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Elder charges"
+    },
+    "enemy.elder.throw": {
+      "clips": [
+        "res://assets/audio/original/stone_throw.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 65,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Elder throw"
+    },
+    "enemy.elder.stone_hit": {
+      "clips": [
+        "res://assets/audio/original/hit_stone_0.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 65,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Elder stone hit"
+    },
+    "enemy.elder.reflect": {
+      "clips": [
+        "res://assets/audio/original/parry.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 65,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Elder reflect"
+    },
+    "enemy.elder.death": {
+      "clips": [
+        "res://assets/audio/original/boss_death.wav"
+      ],
+      "bus": "SFX",
+      "gain_db": -9,
+      "priority": 65,
+      "max_distance": 65,
+      "cooldown": 0.04,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Elder death"
+    },
+    "ui.focus": {
+      "clips": [
+        "res://assets/audio/original/ui_focus.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -16,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "ui.confirm": {
+      "clips": [
+        "res://assets/audio/original/ui_confirm.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "ui.back": {
+      "clips": [
+        "res://assets/audio/original/ui_back.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "ui.tab": {
+      "clips": [
+        "res://assets/audio/original/ui_confirm.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "ui.error": {
+      "clips": [
+        "res://assets/audio/original/denied.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "ui.open": {
+      "clips": [
+        "res://assets/audio/kenney/bookOpen.ogg"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "ui.close": {
+      "clips": [
+        "res://assets/audio/kenney/bookClose.ogg"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": ""
+    },
+    "inventory.equip": {
+      "clips": [
+        "res://assets/audio/kenney/drawKnife1.ogg",
+        "res://assets/audio/kenney/drawKnife2.ogg"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.8,
+      "pitch_max": 0.9,
+      "caption": "Inventory equip"
+    },
+    "inventory.unequip": {
+      "clips": [
+        "res://assets/audio/original/sheathe.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Inventory unequip"
+    },
+    "inventory.drink": {
+      "clips": [
+        "res://assets/audio/original/drink.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Inventory drink"
+    },
+    "inventory.pickup": {
+      "clips": [
+        "res://assets/audio/original/pickup.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Inventory pickup"
+    },
+    "economy.buy": {
+      "clips": [
+        "res://assets/audio/kenney/handleCoins.ogg",
+        "res://assets/audio/kenney/handleCoins2.ogg"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Economy buy"
+    },
+    "economy.sell": {
+      "clips": [
+        "res://assets/audio/kenney/handleCoins.ogg",
+        "res://assets/audio/kenney/handleCoins2.ogg"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Economy sell"
+    },
+    "economy.craft": {
+      "clips": [
+        "res://assets/audio/original/craft.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Economy craft"
+    },
+    "economy.denied": {
+      "clips": [
+        "res://assets/audio/original/denied.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Economy denied"
+    },
+    "quest.accept": {
+      "clips": [
+        "res://assets/audio/original/quest.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Contract accepted"
+    },
+    "quest.complete": {
+      "clips": [
+        "res://assets/audio/original/level.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Contract completed"
+    },
+    "progression.level_up": {
+      "clips": [
+        "res://assets/audio/original/level.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Level up"
+    },
+    "world.discovery": {
+      "clips": [
+        "res://assets/audio/original/discover.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Rest site discovered"
+    },
+    "world.rest": {
+      "clips": [
+        "res://assets/audio/original/rest.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Rested"
+    },
+    "world.travel": {
+      "clips": [
+        "res://assets/audio/original/travel.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Travelling"
+    },
+    "world.floor_arrival": {
+      "clips": [
+        "res://assets/audio/original/travel.wav"
+      ],
+      "bus": "UI",
+      "gain_db": -12,
+      "priority": 70,
+      "max_distance": 40,
+      "cooldown": 0.08,
+      "pitch_min": 0.96,
+      "pitch_max": 1.04,
+      "caption": "Arrived"
+    },
+    "music.reach": {
+      "clips": [
+        "res://assets/audio/original/music_reach.wav"
+      ],
+      "bus": "Music",
+      "gain_db": -22,
+      "priority": 10,
+      "max_distance": 0,
+      "cooldown": 0,
+      "pitch_min": 1,
+      "pitch_max": 1,
+      "caption": "",
+      "loop": true
+    },
+    "music.fen": {
+      "clips": [
+        "res://assets/audio/original/music_fen.wav"
+      ],
+      "bus": "Music",
+      "gain_db": -22,
+      "priority": 10,
+      "max_distance": 0,
+      "cooldown": 0,
+      "pitch_min": 1,
+      "pitch_max": 1,
+      "caption": "",
+      "loop": true
+    },
+    "music.combat": {
+      "clips": [
+        "res://assets/audio/original/music_combat.wav"
+      ],
+      "bus": "Music",
+      "gain_db": -22,
+      "priority": 10,
+      "max_distance": 0,
+      "cooldown": 0,
+      "pitch_min": 1,
+      "pitch_max": 1,
+      "caption": "",
+      "loop": true
+    },
+    "music.vault": {
+      "clips": [
+        "res://assets/audio/original/music_vault.wav"
+      ],
+      "bus": "Music",
+      "gain_db": -22,
+      "priority": 10,
+      "max_distance": 0,
+      "cooldown": 0,
+      "pitch_min": 1,
+      "pitch_max": 1,
+      "caption": "",
+      "loop": true
+    },
+    "music.title": {
+      "clips": [
+        "res://assets/audio/original/music_title.wav"
+      ],
+      "bus": "Music",
+      "gain_db": -22,
+      "priority": 10,
+      "max_distance": 0,
+      "cooldown": 0,
+      "pitch_min": 1,
+      "pitch_max": 1,
+      "caption": "",
+      "loop": true
+    },
+    "ambience.wind": {
+      "clips": [
+        "res://assets/audio/original/amb_wind.wav"
+      ],
+      "bus": "Ambience",
+      "gain_db": -21,
+      "priority": 5,
+      "max_distance": 0,
+      "cooldown": 0,
+      "pitch_min": 1,
+      "pitch_max": 1,
+      "caption": "",
+      "loop": true
+    },
+    "ambience.forest": {
+      "clips": [
+        "res://assets/audio/original/amb_forest.wav"
+      ],
+      "bus": "Ambience",
+      "gain_db": -21,
+      "priority": 5,
+      "max_distance": 0,
+      "cooldown": 0,
+      "pitch_min": 1,
+      "pitch_max": 1,
+      "caption": "",
+      "loop": true
+    },
+    "ambience.night": {
+      "clips": [
+        "res://assets/audio/original/amb_night.wav"
+      ],
+      "bus": "Ambience",
+      "gain_db": -21,
+      "priority": 5,
+      "max_distance": 0,
+      "cooldown": 0,
+      "pitch_min": 1,
+      "pitch_max": 1,
+      "caption": "",
+      "loop": true
+    },
+    "ambience.fen": {
+      "clips": [
+        "res://assets/audio/original/amb_fen.wav"
+      ],
+      "bus": "Ambience",
+      "gain_db": -21,
+      "priority": 5,
+      "max_distance": 0,
+      "cooldown": 0,
+      "pitch_min": 1,
+      "pitch_max": 1,
+      "caption": "",
+      "loop": true
+    },
+    "ambience.cave": {
+      "clips": [
+        "res://assets/audio/original/amb_cave.wav"
+      ],
+      "bus": "Ambience",
+      "gain_db": -21,
+      "priority": 5,
+      "max_distance": 0,
+      "cooldown": 0,
+      "pitch_min": 1,
+      "pitch_max": 1,
+      "caption": "",
+      "loop": true
+    },
+    "ambience.water": {
+      "clips": [
+        "res://assets/audio/original/amb_water.wav"
+      ],
+      "bus": "Ambience",
+      "gain_db": -21,
+      "priority": 5,
+      "max_distance": 0,
+      "cooldown": 0,
+      "pitch_min": 1,
+      "pitch_max": 1,
+      "caption": "",
+      "loop": true
+    },
+    "ambience.guild": {
+      "clips": [
+        "res://assets/audio/original/amb_guild.wav"
+      ],
+      "bus": "Ambience",
+      "gain_db": -21,
+      "priority": 5,
+      "max_distance": 0,
+      "cooldown": 0,
+      "pitch_min": 1,
+      "pitch_max": 1,
+      "caption": "",
+      "loop": true
+    },
+    "ambience.underwater": {
+      "clips": [
+        "res://assets/audio/original/amb_underwater.wav"
+      ],
+      "bus": "Ambience",
+      "gain_db": -21,
+      "priority": 5,
+      "max_distance": 0,
+      "cooldown": 0,
+      "pitch_min": 1,
+      "pitch_max": 1,
+      "caption": "",
+      "loop": true
+    },
+    "ambience.fire": {
+      "clips": [
+        "res://assets/audio/original/amb_fire.wav"
+      ],
+      "bus": "Ambience",
+      "gain_db": -21,
+      "priority": 5,
+      "max_distance": 0,
+      "cooldown": 0,
+      "pitch_min": 1,
+      "pitch_max": 1,
+      "caption": "",
+      "loop": true
+    }
+  }
+}

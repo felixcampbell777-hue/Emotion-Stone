@@ -1,0 +1,34 @@
+{
+  "status": "approved_for_existing_motion_integration",
+  "source": "art/source/beta-heroine.blend",
+  "source_sha256": "851a1c7e51afa505d4e743cbe6a6aade6d014571b4a1a389cb322fa6e67b5b40",
+  "candidate_source": "art/source/appearance-candidates.blend",
+  "candidate_sha256": "302ac1f306d5ae2ebbf79de5c903073e8ae761651b306c2d2f64b99057646314",
+  "render": "appearance-static-options.png",
+  "render_sha256": "d2dc4a236b37fa1138df4a5242d24cc0cec56e466eebd6ca8b12162ae2cf485a",
+  "face_render": "appearance-face-options.png",
+  "face_render_sha256": "5785adde06945380fa912a743c918fe3e380b174fa857a2f50c75368e59deb74",
+  "blender": "4.5.3 LTS",
+  "modified_vertices": {
+    "original": 0,
+    "soft_cheeks": 2972,
+    "short_layers": 2094,
+    "subtle_shape": 8308
+  },
+  "rig_rest_changes": 0,
+  "animation_fitting": false,
+  "runtime_replaced": false,
+  "candidate_only_material_repair": "Dress-atlas black background sampled by sleeve UVs is filled using existing seamless matching denim; all review columns share this repair. Approved runtime/default/source untouched.",
+  "notes": "Subtle local surface alternatives only; unchanged rig rests, heights, hands and existing approved sources. Review before any animation fitting or runtime adoption. Original shape column shares review-only denim repair for fair comparison.",
+  "approval": {
+    "instruction": "Approve these options",
+    "date": "2026-10-18",
+    "scope": [
+      "softer cheeks",
+      "shorter tapered hair",
+      "subtle body silhouette"
+    ],
+    "source": "Explicit human response to the shown original-shape/options sheet in this Codex session",
+    "material_bug_fix": "Root accepted non-destructive denim-atlas repair for original and all variants; geometry/default profile preserved."
+  }
+}

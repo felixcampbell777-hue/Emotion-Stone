@@ -53,12 +53,16 @@ func can_see(wolf:Node3D) -> bool:
 	return not game.impact_blocked(wolf.position+Vector3.UP*.45,game.player.position+Vector3.UP*.45)
 
 func tick(delta:float) -> void:
-	if not is_instance_valid(game) or game.game_mode not in ["beta","world_rise"] or not game.player.input_enabled or game.gallery_mode: return
+	if not is_instance_valid(game) or game.game_mode not in ["beta","world_rise"] or not game.simulation_active() or game.gallery_mode: return
 	if game.game_mode=="world_rise":
 		var elapsed=float(game.get_meta("rise_wolf_coordination",0.0))+delta
 		if elapsed<.1:game.set_meta("rise_wolf_coordination",elapsed);return
 		game.set_meta("rise_wolf_coordination",0.0);delta=elapsed
 	for pack in packs:
+		if game.has_method("combat_target"):
+			var target=game.combat_target(pack.home)
+			if target==null:continue
+			game.player=target
 		var members=active_members(pack)
 		if members.is_empty(): continue
 		if game.player.health<=0:

@@ -17,7 +17,7 @@ static func depth(world:Node3D,at:Vector3) -> float:
 	return 0
 static func speed(world:Node3D,at:Vector3) -> float:return lerpf(1,.25,clampf(depth(world,at)/SHOULDER,0,1))
 static func tick(game:Control) -> void:
-	if not enabled(game.current_world) or not game.player.input_enabled:return
+	if not enabled(game.current_world) or not game.simulation_active():return
 	var d=depth(game.current_world,game.player.position)
 	if game.map_id=="wr_floor_02":
 		if d>SHOULDER and -game.player.position.y>SHOULDER:game.player.drown()

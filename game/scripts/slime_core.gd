@@ -26,7 +26,7 @@ func setup_core(owner:Node,source:Node3D,variant:Dictionary,at:Vector3) -> void:
 func take_damage(amount:int,from_direction:Vector3) -> void:
 	super.take_damage(amount,from_direction); knockback=Vector3.ZERO
 func _physics_process(delta:float) -> void:
-	if not simulation_enabled or health<=0 or not game.player.input_enabled or game.gallery_mode: return
+	if not simulation_enabled or health<=0 or not game.simulation_active() or game.gallery_mode: return
 	if not is_instance_valid(queen) or queen.health<=0: take_damage(health,Vector3.ZERO); return
 	age+=delta; var t=clampf(age/duration,0,1)
 	core_label.text="CORE  %.1fs" % maxf(0,duration-age)

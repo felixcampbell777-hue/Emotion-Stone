@@ -1,0 +1,15 @@
+{
+  "godot_cpp_repository": "https://github.com/godotengine/godot-cpp",
+  "godot_cpp_commit": "e83fd0904c13356ed1d4c3d09f8bb9132bdc6b77",
+  "scons": "4.10.1",
+  "engine": "Godot 4.5.1",
+  "macos_deployment_target": "12.0",
+  "architectures": [
+    "arm64",
+    "x86_64"
+  ],
+  "signing": "ad hoc; distribution notarization remains required",
+  "payload_sha256": "6f77395a4484d176edab8e94cb920dca6d44ed40c6c87f285943528007fb2c51",
+  "source_sha256": "bd34c942d15adc04b4d0faf8cef3cb5aa8eed7580dcd318d09358a333aa7657f",
+  "install_name": "@rpath/world_rise_mic.dylib"
+}

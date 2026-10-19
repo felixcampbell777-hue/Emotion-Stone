@@ -3,6 +3,7 @@ const Frost=preload("res://scripts/frosted_backdrop.gd")
 var game:Control
 var artwork:TextureRect
 var box:VBoxContainer
+var menu_scroll:ScrollContainer
 var heading:Label
 var status:Label
 var new_button:Button
@@ -10,6 +11,7 @@ var load_button:Button
 var mode_choice:OptionButton
 var import_choice:OptionButton
 var custom_button:Button
+var rise_actions:HBoxContainer
 var fixture_path=""
 var save_path:String="user://save-v1.json"
 
@@ -31,9 +33,10 @@ func configure(owner_game:Control) -> void:
 	artwork.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	artwork.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	add_child(artwork)
-	box=VBoxContainer.new()
+	menu_scroll=ScrollContainer.new(); menu_scroll.follow_focus=true; menu_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED; add_child(menu_scroll)
+	box=VBoxContainer.new(); box.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	box.add_theme_constant_override("separation",20)
-	add_child(box)
+	menu_scroll.add_child(box)
 	box.add_child(game.label("A JOURNEY BY THE SEA",17,Color("#b5c8bf")))
 	heading=game.label("COASTAL\nFOUNDATION",52,Color("#e9c894"))
 	box.add_child(heading)
@@ -60,6 +63,10 @@ func configure(owner_game:Control) -> void:
 	box.add_child(load_button)
 	custom_button=game.button("Play Custom World",func(): game.world_browser.open())
 	box.add_child(custom_button)
+	rise_actions=HBoxContainer.new(); box.add_child(rise_actions)
+	for entry in [["Multiplayer",func(): game.connection_menu.open()]]:
+		var action=game.button(entry[0],entry[1]); action.add_theme_font_size_override("font_size",15); action.size_flags_horizontal=Control.SIZE_EXPAND_FILL; rise_actions.add_child(action)
+	box.add_child(game.button("Sound & Voice",func(): game.settings_menu.open()))
 	status=game.label("",16,Color("#c3cfc5"))
 	status.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	box.add_child(status)
@@ -87,6 +94,7 @@ func select_mode(index:int) -> void:
 	var data=game.Save.read(save_path)
 	load_button.disabled=data.is_empty() or data.get("game_mode","alpha")!=game.game_mode
 	custom_button.visible=index==0
+	rise_actions.visible=index==3
 	import_choice.visible=index==2
 	status.text="Beta: begin in a quiet meadow. Slimes, sticky resin slimes, wolves and rats inhabit the sparse woodland. Separate Beta save." if index==1 else "Alpha: the existing adventure. Your original save is preserved."
 	if index==2:
@@ -112,5 +120,5 @@ func _process(_delta:float) -> void:
 	artwork.position=Vector2(screen.x*.53,screen.y*.025)
 	artwork.size=Vector2(screen.x*.45,screen.y*.95)
 	heading.add_theme_font_size_override("font_size",28 if compact else clampi(int(screen.x/26),32,44))
-	box.size=Vector2(screen.x*.40,0)
-	box.position=Vector2(screen.x*.09,maxf(24,(screen.y-box.get_combined_minimum_size().y)*.5))
+	menu_scroll.size=Vector2(screen.x*.44,minf(screen.y-48,box.get_combined_minimum_size().y))
+	menu_scroll.position=Vector2(screen.x*.09,maxf(24,(screen.y-menu_scroll.size.y)*.5))

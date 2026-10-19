@@ -23,6 +23,7 @@ func take_damage(amount:int,from_direction:Vector3) -> void:
 	super.take_damage(amount,from_direction)
 func _exit_tree() -> void:clear_warning()
 func _physics_process(delta:float) -> void:
+	preload("res://scripts/world_sound.gd").creature(self)
 	if not simulation_enabled or health<=0:return
 	engaged=player.health>0 and ((player.position-position)*Vector3(1,0,1)).length()<18
 	phase+=delta;hit_flash=maxf(0,hit_flash-delta);parry_flash=maxf(0,parry_flash-delta)

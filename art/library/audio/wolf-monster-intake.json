@@ -1,0 +1,13 @@
+{
+  "author": "CaveboyTup",
+  "license": "CC0-1.0",
+  "page": "https://opengameart.org/content/wolf-monster-sound",
+  "download": "https://opengameart.org/sites/default/files/wolf_monster_6.mp3",
+  "source_notice": "CC0 - Made from CC0 sounds. Author describes a modified horse snort fantasy wolf sound.",
+  "sha256": "ae5fe120c3e6e39f77af6f340e0ca2a93b27eb62884959e47eae9357c3556252",
+  "runtime": {
+    "file": "game/assets/audio/wolf-monster.wav",
+    "sha256": "5c3b5db1145635b084583835d75e61c2b20ee4b3bcfe686db388ae6422260214",
+    "conversion": "FFmpeg decode to mono 22050 Hz signed 16-bit PCM WAV; no creative edits"
+  }
+}

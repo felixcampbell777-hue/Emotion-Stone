@@ -72,6 +72,9 @@ func form(delta:float) -> void:
 		for fragment in formation:fragment.queue_free()
 		formation.clear()
 func strike(reach:float,damage:int,wide:bool=false) -> void:
+	var targets=game.combat_players() if game.has_method("combat_players") else [player]
+	for target in targets:strike_target(target,reach,damage,wide)
+func strike_target(player:Node3D,reach:float,damage:int,wide:bool=false) -> void:
 	attack_lines.hit(attack_kind)
 	var offset=(player.position-position)*Vector3(1,0,1)
 	var cone=SWEEP_CONE if attack_kind=="sweep" else RUSH_CONE
@@ -83,7 +86,8 @@ func strike(reach:float,damage:int,wide:bool=false) -> void:
 	if player.try_parry(self,contact):return
 	player.take_damage(damage,offset.normalized())
 func _physics_process(delta:float) -> void:
-	if not simulation_enabled or not is_instance_valid(game) or not player.input_enabled or player.health<=0:return
+	preload("res://scripts/world_sound.gd").creature(self)
+	if not simulation_enabled or not is_instance_valid(game) or not game.simulation_active() or player.health<=0:return
 	if health<=0:
 		attack_lines.visible=false;rock.visible=false;return
 	if state=="forming":form(delta);return
@@ -133,4 +137,16 @@ func _physics_process(delta:float) -> void:
 	if radial.length()>1:
 		radial=radial.normalized();goal=Vector3(radial.x*20.5,0,radial.y*22.5);velocity=(goal-position)/maxf(delta,.001)
 	velocity.y=0;move_and_slide();position.y=0;knockback=Vector3.ZERO
+	attack_lines.update(delta)
+
+func present_network(delta:float) -> void:
+	if state=="forming":form(0);return
+	if not formation.is_empty():
+		for fragment in formation:fragment.queue_free()
+		formation.clear()
+		for mesh in art.model.find_children("*","MeshInstance3D",true,false):mesh.transparency=0
+	var progress=clampf(1-state_time/maxf(duration,.001),0,1) if state in ["windup","strike"] else 0.0
+	motion.update(state,attack_kind,progress,delta,false)
+	rock.visible=state in ["windup","strike"] and attack_kind=="stone"
+	if rock.visible:rock.global_position=motion.hand_position()+direction*.35
 	attack_lines.update(delta)

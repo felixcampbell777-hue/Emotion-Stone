@@ -3,6 +3,8 @@ extends RefCounted
 const BODY_LAYER=1<<19
 const ARMS_LAYER=1<<18
 var rig_id=0
+var appearance_revision=""
+var weapon_grip=false
 var root:Node3D
 var rig:Skeleton3D
 var source_rig:Skeleton3D
@@ -27,8 +29,10 @@ func prepare(actor:Node3D) -> void:
 	if actor.has_meta("standalone_static"): actor.visual.visible=true
 	var skeleton:Skeleton3D=actor.get_node("BetaHero").rig if actor.has_node("BetaHero") else actor.skeleton
 	var identity=skeleton.get_instance_id()
-	if identity==rig_id: return
+	var revision=String(actor.get_meta("appearance_revision",""))
+	if identity==rig_id and revision==appearance_revision: return
 	rig_id=identity
+	appearance_revision=revision
 	if is_instance_valid(root): root.free()
 	source_rig=skeleton
 	personal_skin=actor.has_node("BetaHero")
@@ -55,6 +59,8 @@ func prepare(actor:Node3D) -> void:
 	for source in actor.find_children("*","GeometryInstance3D",true,false):
 		if root.is_ancestor_of(source): continue
 		if actor.equipment.is_ancestor_of(source) or source==actor.equipment: continue
+		var runtime=actor.get("weapon_runtime")
+		if runtime!=null and is_instance_valid(runtime.model) and (source==runtime.model or runtime.model.is_ancestor_of(source)):continue
 		if actor.has_node("BetaHero") and actor.get_node("BetaHero").sword.is_ancestor_of(source): continue
 		source.layers=BODY_LAYER
 		if not source is MeshInstance3D or source.skin==null or source.mesh==null: continue
@@ -70,16 +76,21 @@ func prepare(actor:Node3D) -> void:
 			arms.set_meta("first_person_arms",true);rig.add_child(arms)
 			arms.transform=skeleton.global_transform.affine_inverse()*source.global_transform
 			arms.skeleton=NodePath("..");arms.visible=true
+	if actor.has_meta("appearance_profile"):
+		load("res://scripts/character_appearance.gd").apply(actor,actor.get_meta("appearance_profile"))
 
 func update(actor:Node3D,frame:Transform3D) -> void:
-	if not is_instance_valid(root) or not is_instance_valid(source_rig): prepare(actor)
+	if not is_instance_valid(root) or not is_instance_valid(source_rig) or appearance_revision!=String(actor.get_meta("appearance_revision","")): prepare(actor)
 	view_frame=frame
 	grip_sample=actor.get_meta("view_sword_sample",{"key":"drag","phase":0.0})
+	if actor.get("weapon_runtime")!=null and actor.weapon_runtime.enabled():grip_sample={"key":"weapon","phase":0.0}
 	var holding=actor.sword_equipped and actor.sword_drawn
 	var draw=actor.state in ["draw","sheathe"]
 	var arm_frame=frame
 	var basis=arm_frame.basis*Basis(Vector3.UP,PI)*rig_basis
-	root.global_transform=Transform3D(basis,arm_frame.origin-basis*bind_eye-arm_frame.basis.z*.18)
+	# Lower the view-only shoulder anchor so a cross-body grip does not bring
+	# the extracted proximal arm edge into the bottom of the first-person frame.
+	root.global_transform=Transform3D(basis,arm_frame.origin-basis*bind_eye-arm_frame.basis.z*.18-arm_frame.basis.y*(.06*support_elbow_weight()))
 	for index in range(source_rig.get_bone_count()):
 		# The view arms get their own stable shoulders, preserving the real skin.
 		rig.set_bone_pose(index,source_rig.get_bone_pose(index) if not holding and not draw else resting[index])
@@ -98,7 +109,13 @@ func update(actor:Node3D,frame:Transform3D) -> void:
 	var right_weight=smoothstep(.10,.40,phase) if draw else 1.0 if holding else 0.0
 	var left_weight=0.0;var brace_weight=0.0
 	var grip=.065 if actor.equipment.get_meta("beta_sword",false) else .16
-	if holding or draw:
+	var runtime=actor.get("weapon_runtime")
+	var weapon_targets:Dictionary=runtime.hand_targets() if runtime!=null and runtime.enabled() and (holding or draw) else {}
+	weapon_grip=not weapon_targets.is_empty()
+	if weapon_grip:
+		right=weapon_targets.R;left=weapon_targets.L
+		right_weight=float(weapon_targets.get("R_grasp",1.0));left_weight=float(weapon_targets.get("L_grasp",1.0))
+	elif holding or draw:
 		var right_grip=actor.equipment.global_transform*Vector3(0,grip,0)
 		right=right.lerp(right_grip,smoothstep(.0,.35,phase)) if draw else right_grip
 		var two_hand=actor.state not in ["water","draw","sheathe","roll","stand"]
@@ -114,9 +131,11 @@ func update(actor:Node3D,frame:Transform3D) -> void:
 			brace_weight=brace
 			left=left.lerp(actor.equipment.global_transform*Vector3(0,-.34,.045),brace)
 			left_weight*=1-brace
-	fit("R",right,-actor.equipment.global_basis.y if holding or draw else Vector3.ZERO,right_weight,smoothstep(.10,.50,phase) if draw else 1.0)
-	var left_axis=(-actor.equipment.global_basis.y.normalized()).slerp(actor.equipment.global_basis.x.normalized(),brace_weight)
-	fit("L",left,left_axis if holding or draw else Vector3.ZERO,left_weight,smoothstep(.35,.75,phase) if draw else 1.0)
+	var right_axis=weapon_targets.R_axis if weapon_grip else -actor.equipment.global_basis.y if holding or draw else Vector3.ZERO
+	fit("R",right,right_axis,right_weight,1.0 if weapon_grip else smoothstep(.10,.50,phase) if draw else 1.0)
+	var left_axis=weapon_targets.L_axis if weapon_grip else (-actor.equipment.global_basis.y.normalized()).slerp(actor.equipment.global_basis.x.normalized(),brace_weight)
+	if weapon_grip and left_weight<=.001:left_axis=Vector3.ZERO
+	fit("L",left,left_axis if holding or draw else Vector3.ZERO,left_weight,1.0 if weapon_grip else smoothstep(.35,.75,phase) if draw else 1.0)
 	for mesh in rig.get_children():
 		if mesh is MeshInstance3D and mesh.mesh.get_blend_shape_count()==2:
 			mesh.set_blend_shape_value(0,right_weight);mesh.set_blend_shape_value(1,left_weight)
@@ -156,11 +175,11 @@ func fit(side:String,world_target:Vector3,world_axis:Vector3=Vector3.ZERO,grasp:
 	var direction=(target-shoulder).normalized();var distance=clampf(shoulder.distance_to(target),.02,a+b-.001)
 	var along=(a*a-b*b+distance*distance)/(2*distance)
 	var pole=Vector3(-.65 if side=="R" else .65,-.7,.2)
-	var support=support_elbow_weight() if side=="L" and personal_skin else 0.0
+	var support=support_elbow_weight() if personal_skin else 0.0
 	if support>0:
 		# The support elbow remains below/outside its wrist in view space.
 		# A shoulder-seeking pole rolls it over when the hilt crosses the chest.
-		pole=pole.lerp(rig.global_basis.inverse()*view_frame.basis*Vector3(-.55,-1.0,.15),support)
+		pole=pole.lerp(rig.global_basis.inverse()*view_frame.basis*Vector3(-.55 if side=="L" else .35,-1.0,.15),support)
 	pole-=direction*pole.dot(direction)
 	if pole.length_squared()<.00001: pole=Vector3.DOWN
 	pole=pole.normalized()
@@ -232,9 +251,10 @@ func grip_track(key:String,side:String) -> Array:
 		var pose=grip_motion.sample(key,i/240.0)
 		var next:Vector3=pose.direction
 		y=Basis(Quaternion(z,next))*y;z=next
-		var toward:Vector3=shoulder-pose.grip
+		var phase=i/240.0
+		var shoulder_drop=smoothstep(0,.12,phase)*(1-smoothstep(.74,1,phase)) if key=="light" else 1-smoothstep(0,.20,phase) if key=="light2" else 0.0
+		var toward:Vector3=shoulder+Vector3.DOWN*.06*shoulder_drop-pose.grip
 		if side=="L" and key=="light":
-			var phase=i/240.0
 			var support=smoothstep(.0,.18,phase)*(1-smoothstep(.74,1,phase))
 			toward=toward.lerp(Vector3(-.45,-.85,.35),support)
 		toward-=z*toward.dot(z)
@@ -264,11 +284,22 @@ func fit_wrist(side:String,world_target:Vector3,world_axis:Vector3,grasp:float,t
 	var center:Vector3=palms[side]+Vector3(.009 if side=="R" else -.009,-.018,.012)*grasp
 	var wrist_local=Vector3(0,-.26,0)
 	var old:Vector3=palms[side]
-	var desired=transported_grip(side,axis)
+	var desired:Basis
+	var shoulder=rig.get_bone_global_pose(upper).origin
+	if weapon_grip:
+		# New weapon sockets specify their own thumb axis. Do not borrow a cached
+		# greatsword roll track for the bow's pull hand or a one-handed rapier.
+		var toward=shoulder-target;toward-=axis*toward.dot(axis)
+		if toward.length_squared()<.00001:
+			toward=rig.global_basis.inverse()*view_frame.basis.y;toward-=axis*toward.dot(axis)
+		if toward.length_squared()<.00001:
+			toward=rig.global_basis.inverse()*view_frame.basis.x;toward-=axis*toward.dot(axis)
+		var hand_y=toward.normalized()
+		desired=Basis(hand_y.cross(axis).normalized(),hand_y,axis)
+	else:desired=transported_grip(side,axis)
 	var existing=rig.get_bone_global_pose(lower).basis.orthonormalized()
 	desired=Basis(existing.get_rotation_quaternion().slerp(desired.get_rotation_quaternion(),twist))
 	palms[side]=wrist_local
-	var shoulder=rig.get_bone_global_pose(upper).origin
 	var wrist_target=target-desired*(center-wrist_local)
 	var arm_length=global_rests[upper].origin.distance_to(global_rests[lower].origin)+wrist_local.length()
 	var reach=wrist_target-shoulder
@@ -284,6 +315,7 @@ func fit_wrist(side:String,world_target:Vector3,world_axis:Vector3,grasp:float,t
 	var action_bend=0.0 if String(grip_sample.key) in ["drag","draw"] else smoothstep(0,.15,action_phase)*(1-smoothstep(.85,1,action_phase))
 	if String(grip_sample.key) in ["light2","light3"]:action_bend=1-smoothstep(.85,1,action_phase)
 	var wrist_limit=lerpf(16,36,action_bend)
+	if weapon_grip:wrist_limit=36
 	for iteration in range(14):
 		var incoming=rig.get_bone_global_pose(lower).basis.y.normalized()
 		var bend=desired.y.angle_to(incoming)

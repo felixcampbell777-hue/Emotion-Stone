@@ -32,6 +32,7 @@ func start_leap(away:Vector3) -> void:
 	if Vector2(target.x-position.x,target.z-position.z).length()<2:target=bounded(position+Vector3(away.z,0,-away.x)*6)
 	leap_target=target;leap_target.y=game.current_world.ground_height(target)
 func _physics_process(delta:float) -> void:
+	preload("res://scripts/world_sound.gd").creature(self)
 	if not simulation_enabled or health<=0 or not ai_enabled:return
 	phase+=delta;hit_flash=maxf(0,hit_flash-delta);parry_flash=maxf(0,parry_flash-delta);velocity=Vector3.ZERO
 	var toward=(player.position-position)*Vector3(1,0,1);var distance=toward.length()

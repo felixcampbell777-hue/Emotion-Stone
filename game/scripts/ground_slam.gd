@@ -1,5 +1,6 @@
 extends Node3D
 ## Ground-only crater, cracked rim and thrown earth; no gameplay collision.
+var source_context:Dictionary={}
 var game:Node
 var age=0.0
 var rubble:Array=[]
@@ -12,6 +13,8 @@ var wave_radius=0.0
 
 func configure(owner:Node, at:Vector3, heavy:bool) -> void:
 	game=owner
+	if game.player.has_method("action_context"):source_context=game.player.action_context().duplicate(true)
+	source_context["damage_kind"]="skill";source_context["weapon_type"]=""
 	add_to_group("ground_slam")
 	position=at
 	radius=1.15 if heavy else .90
@@ -74,14 +77,14 @@ func paint(node:MeshInstance3D, color:Color) -> void:
 	surfaces.append(node)
 
 func _physics_process(delta:float) -> void:
-	if game==null or not game.player.input_enabled or game.gallery_mode: return
+	if game==null or not game.simulation_active() or game.gallery_mode: return
 	age+=delta
 	if age<=float(wave_tuning.seconds)+delta:
 		var progress=clampf(age/float(wave_tuning.seconds),0,1)
 		wave_radius=float(wave_tuning.radius)*progress
 		wave.scale=Vector3(maxf(.06,wave_radius),.24,maxf(.06,wave_radius))
 		wave.visible=progress<1
-		for enemy in game.enemies:
+		for enemy in ([] if game.has_method("online_session_active") and game.online_session_active() and game.get("authoritative_simulation")!=true else game.enemies):
 			if not is_instance_valid(enemy) or enemy.health<=0 or wave_hits.has(enemy.get_instance_id()): continue
 			var away=enemy.global_position-global_position
 			away.y=0
@@ -92,6 +95,7 @@ func _physics_process(delta:float) -> void:
 			if not get_world_3d().direct_space_state.intersect_ray(query).is_empty(): continue
 			if away.is_zero_approx(): away=game.player.facing()
 			var strength=float(wave_tuning.force_factor)*lerpf(1.0,.65,distance/float(wave_tuning.radius))
+			if enemy.size_class!="giant":enemy.set_meta("last_impulse_context",source_context.duplicate(true))
 			enemy.take_slam_shockwave(away,strength,float(wave_tuning.stun_seconds))
 	for piece in rubble:
 		var t=minf(age,.70)

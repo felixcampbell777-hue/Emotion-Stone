@@ -9,6 +9,7 @@ var stone: MeshInstance3D
 
 func configure(owner_game: Control, source: Node3D, aim: Vector3) -> void:
 	game=owner_game
+	if game.has_method("bind_effect"):game.bind_effect(self)
 	thrower=source
 	position=source.position+Vector3(0,.7,0)
 	direction=aim.normalized()
@@ -23,7 +24,7 @@ func repel(_away: Vector3, _force: float, _stun: float) -> void:
 	game.notify("Rock reflected! Strike the warden's glowing cracks.")
 
 func _physics_process(delta: float) -> void:
-	if not game.player.input_enabled:
+	if not game.simulation_active():
 		return
 	if not is_instance_valid(thrower):
 		queue_free()
@@ -46,6 +47,7 @@ func _physics_process(delta: float) -> void:
 	if offset.length()<.65:
 		if reflected:
 			thrower.open_armor()
+			thrower.set_meta("pending_damage_context",{"damage_kind":"reflection","actor_id":String(get_meta("reflected_by",get_meta("target_character","")))})
 			thrower.take_damage(18,direction)
 			queue_free()
 		elif not game.player.try_parry(self):

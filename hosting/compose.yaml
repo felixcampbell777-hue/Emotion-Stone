@@ -1,0 +1,44 @@
+services:
+  world-rise:
+    image: world-rise-server:0.41.4
+    build:
+      context: ..
+      dockerfile: hosting/Dockerfile
+      args:
+        SERVER_VERSION: 0.41.4
+    platform: linux/amd64
+    read_only: true
+    user: "10001:10001"
+    init: true
+    ports:
+      - "${WORLD_RISE_BIND_ADDRESS:-127.0.0.1}:${WORLD_RISE_PORT:-24571}:${WORLD_RISE_PORT:-24571}/udp"
+      - "${WORLD_RISE_BIND_ADDRESS:-127.0.0.1}:${WORLD_RISE_VOICE_PORT:-24572}:${WORLD_RISE_VOICE_PORT:-24572}/udp"
+    environment:
+      WORLD_RISE_PORT: "${WORLD_RISE_PORT:-24571}"
+      WORLD_RISE_VOICE_PORT: "${WORLD_RISE_VOICE_PORT:-24572}"
+      WORLD_RISE_PRIVATE_VPN: "1"
+    volumes:
+      - world-rise-data:/data
+    secrets:
+      - server_password
+    tmpfs:
+      - /tmp:size=128m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 128
+    mem_limit: 2g
+    cpus: 2
+    stop_grace_period: 35s
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  world-rise-data:
+secrets:
+  server_password:
+    file: ./secrets/server_password

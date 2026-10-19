@@ -100,6 +100,7 @@ func build_drop(key:String) -> void:
 	Props.cone(root,Vector3(0,.16,0),.24,.32,"#8d6843",.14);Props.cone(root,Vector3(0,.35,0),.14,.09,"#b6a27c",.06)
 	game.current_world.interactions.append({"id":"beast_loot_"+key.get_file(),"beast_loot":key,"title":"Loot slime remains" if key.begins_with("wr_floor_02/") else "Loot Elder spoils" if key.begins_with("wr_boss_chamber/") else "Loot beast spoils","position":root.position,"actor":null,"lines":[]})
 func collect(key:String) -> bool:
+	if online_request("loot",{"claim":key}):return true
 	if not drops.has(key) or game.game_mode!="world_rise" or game.map_id!=key.get_slice("/",0) or not game.player.input_enabled:return false
 	var drop=drops[key];var at=Vector3(drop.at[0],0,drop.at[1]);at.y=game.current_world.ground_height(at)
 	if game.map_id=="wr_floor_02":at.y=maxf(at.y,.04)
@@ -123,33 +124,51 @@ func collect(key:String) -> bool:
 			summary.append(game.magic_items.item(id).name)
 	drops.erase(key)
 	if nodes.has(key) and is_instance_valid(nodes[key]):nodes[key].queue_free()
-	nodes.erase(key);game.current_world.interactions=game.current_world.interactions.filter(func(t):return t.get("beast_loot","")!=key);game.nearest={};game.notify("Collected "+", ".join(summary)+".");return true
+	nodes.erase(key);game.current_world.interactions=game.current_world.interactions.filter(func(t):return t.get("beast_loot","")!=key);game.nearest={};preload("res://scripts/world_sound.gd").play(game,"inventory.pickup",at);game.notify("Collected "+", ".join(summary)+".");return true
 func context(role:String) -> bool:
 	return active() and game.conversation.visible and game.conversation.target.get("role","")==role and game.player.position.distance_to(game.conversation.target.position)<4 and game.player.health>0
 func sell(id:String,all_items:bool=false) -> bool:
+	if online_request("sell",{"item":id,"all":all_items}):return true
 	if not context("wr_clerk") or not catalog.materials.has(id) or int(materials.get(id,0))<1:return false
 	var count=int(materials[id]) if all_items else 1;var value=count*int(catalog.materials[id].value)
 	if copper+value>100000000:return false
 	materials[id]-=count
 	if materials[id]<=0:materials.erase(id)
-	copper+=value;return true
+	copper+=value;preload("res://scripts/world_sound.gd").play(game,"economy.sell",game.player.position);return true
 func contract_action(id:String) -> bool:
+	if online_request("contract",{"id":id}):return true
 	if not context("wr_clerk") or not catalog.contracts.has(id):return false
 	var state=contracts.get(id,{"active":false,"count":0})
 	if state.get("completed",false):return false
-	if not state.active:contracts[id]={"active":true,"count":0,"completed":false};return true
+	if not state.active:contracts[id]={"active":true,"count":0,"completed":false};preload("res://scripts/world_sound.gd").play(game,"quest.accept");return true
 	if int(state.count)<10 or copper+int(catalog.contracts[id].reward)>100000000:return false
-	copper+=int(catalog.contracts[id].reward);contracts[id]={"active":false,"count":10,"completed":true};game.gain_xp(contract_xp(id));return true
+	copper+=int(catalog.contracts[id].reward);contracts[id]={"active":false,"count":10,"completed":true};game.gain_xp(contract_xp(id));preload("res://scripts/world_sound.gd").play(game,"quest.complete");return true
 func contract_xp(id:String) -> int:
 	var level=int(catalog.contracts[id].xp_level);var thresholds=game.progression.definition.level_thresholds
 	return roundi((float(thresholds[level])-float(thresholds[level-1]))/3.0)
 func buy_potion() -> bool:
+	if online_request("purchase",{"item":"guild_healing_potion","count":1}):return true
 	var id="guild_healing_potion"
 	if not context("wr_clerk") or copper<25 or int(game.magic_items.quantities.get(id,0))>=99:return false
 	copper-=25
 	if id not in game.magic_items.owned:game.magic_items.owned.append(id)
 	game.magic_items.quantities[id]=int(game.magic_items.quantities.get(id,0))+1
+	preload("res://scripts/world_sound.gd").play(game,"economy.buy",game.player.position)
 	game.notify("Purchased Healing Potion · restores 25 HP.");return true
+const ARROW_ID="wooden_arrows"
+const ARROW_PRICE=1
+const ARROW_STACK=99
+func buy_arrows(count:int=10) -> bool:
+	if online_request("purchase",{"item":ARROW_ID,"count":count}):return true
+	if not context("wr_swords") or count<1 or count>ARROW_STACK:return false
+	var current=int(game.magic_items.quantities.get(ARROW_ID,0))
+	if current+count>ARROW_STACK or copper<count*ARROW_PRICE:
+		preload("res://scripts/world_sound.gd").play(game,"economy.denied");return false
+	copper-=count*ARROW_PRICE
+	if ARROW_ID not in game.magic_items.owned:game.magic_items.owned.append(ARROW_ID)
+	game.magic_items.quantities[ARROW_ID]=current+count
+	preload("res://scripts/world_sound.gd").play(game,"economy.buy",game.player.position)
+	game.notify("Purchased %d wooden arrows."%count);return true
 func craft_error(id:String) -> String:
 	if not catalog.recipes.has(id):return "Unknown recipe"
 	if id in game.magic_items.owned:return "Already owned"
@@ -162,12 +181,14 @@ func craft_error(id:String) -> String:
 	if copper<int(recipe.copper):return "Not enough copper"
 	return ""
 func craft(id:String) -> bool:
+	if online_request("purchase",{"item":id}):return true
 	if not catalog.recipes.has(id) or not context(catalog.recipes[id].get("vendor","wr_armorer")) or not craft_error(id).is_empty():return false
 	var recipe=catalog.recipes[id];copper-=int(recipe.copper)
 	for material in recipe.materials:
 		materials[material]-=int(recipe.materials[material])
 		if materials[material]<=0:materials.erase(material)
 	game.magic_items.owned.append(id)
+	preload("res://scripts/world_sound.gd").play(game,"economy.buy" if recipe.get("vendor","")=="wr_swords" else "economy.craft",game.player.position)
 	game.notify(("Purchased " if recipe.get("vendor","")=="wr_swords" else "Crafted ")+game.magic_items.item(id).name+". Find it in Inventory → "+("Weapons." if game.magic_items.item(id).category=="weapon" else "Apparel."));return true
 func elder_unlocked() -> bool:return "elder_defeated" in game.worldrise.flags or "wr_boss_chamber/vault_elder" in game.defeated_enemies
 func dialogue(ui:Control,target:Dictionary,page:String="") -> void:
@@ -193,6 +214,10 @@ func dialogue(ui:Control,target:Dictionary,page:String="") -> void:
 			if game.map_id=="wr_floor_01":ui.choices.add_child(game.button("Guild contracts · 10 boars / 10 wolves",func():dialogue(ui,target,"contracts")))
 	elif target.role in ["wr_armorer","wr_swords"]:
 		ui.text.text=("I turn hard-earned hides and trophies into equipment." if target.role=="wr_armorer" else "Corin's sword shop. Choose a blade, then equip it from Inventory → Weapons.")+"\nPurse: "+purse()+" · Level %d"%game.progression.level()
+		if target.role=="wr_swords":
+			for amount in [1,10]:
+				var action=game.button("Buy %d Wooden Arrows · %d cp (owned: %d)"%[amount,amount*ARROW_PRICE,game.magic_items.quantities.get(ARROW_ID,0)],func():buy_arrows(amount);dialogue(ui,target))
+				action.disabled=copper<amount*ARROW_PRICE or int(game.magic_items.quantities.get(ARROW_ID,0))+amount>ARROW_STACK;ui.choices.add_child(action)
 		for id in catalog.recipes:
 			var recipe=catalog.recipes[id];var costs=[]
 			if recipe.get("vendor","wr_armorer")!=target.role:continue
@@ -207,3 +232,8 @@ func inventory_items() -> Array:
 	for id in materials:
 		var item=catalog.materials[id];result.append({"kind":"material","id":id,"name":item.name,"description":"Guild trade material · %d copper each. Keep for crafting, or sell at the front desk."%item.value,"count":int(materials[id])})
 	return result
+
+func online_request(action:String,payload:Dictionary) -> bool:
+	if game!=null and game.has_method("online_session_active") and game.online_session_active():
+		game.wr_session.request_action(action,payload);return true
+	return false

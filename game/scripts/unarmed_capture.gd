@@ -2,9 +2,10 @@ extends RefCounted
 func picture(game:Control,path:String) -> void:
 	await game.get_tree().create_timer(.08).timeout;await RenderingServer.frame_post_draw
 	game.get_viewport().get_texture().get_image().save_png(path)
-func run(game:Control,directory:String) -> void:
-	game.game_mode="beta";game.start_new_game(false);game.set_resolution(0);game.camera_driver.set_mode("first_person")
+func run(game:Control,directory:String,campaign:String="beta") -> void:
+	game.game_mode=campaign;game.start_new_game(false);game.set_resolution(0);game.camera_driver.set_mode("first_person")
 	var actor=game.player;actor.set_physics_process(false);actor.position=Vector3(12,0,-12);actor.set_sword_drawn(false)
+	if campaign=="world_rise":actor.position.y=game.current_world.ground_height(actor.position)
 	for enemy in game.enemies: enemy.ai_enabled=false
 	game.camera_driver.yaw=-PI/2;game.camera_driver.first_pitch=0
 	for mode in ["idle","walk","sprint"]:
@@ -13,6 +14,8 @@ func run(game:Control,directory:String) -> void:
 		for phase in range(4):
 			var rate=10.5 if mode=="sprint" else 7.0
 			actor.presentation_clock=(ceil(actor.presentation_clock*rate/TAU)+phase*.25+.25)*TAU/rate
+			game.camera_driver.visuals.unarmed.gait_phase=phase*.25*TAU
+			game.camera_driver.visuals.unarmed.previous_clock=actor.presentation_clock
 			game.camera_driver.update_first_person(0);await picture(game,directory+"/unarmed-%s-%d.png"%[mode,phase])
 	actor.velocity=Vector3.ZERO;actor.sprinting=false
 	for i in range(40): actor.presentation_clock+=.02;game.camera_driver.update_first_person(0)
@@ -25,7 +28,8 @@ func run(game:Control,directory:String) -> void:
 		actor.animator.seek(actor.animator.get_animation(actor.clips.draw_sword).length*phase,true)
 		actor._pose_sword("draw",phase);game.camera_driver.update_first_person(0)
 		await picture(game,directory+"/hands-rise-%03d.png"%roundi(phase*100))
-	for fixture in [["parry","parry_guard",.4],["water","attack_water",.45],["lance_charge","attack_lance",.45]]:
+	var actions=[["parry","parry_guard",.4]] if campaign=="world_rise" else [["parry","parry_guard",.4],["water","attack_water",.45],["lance_charge","attack_lance",.45]]
+	for fixture in actions:
 		actor.state=fixture[0];actor.state_duration=3;actor.state_time=3*fixture[2];actor.play_clip(fixture[1],0);actor.animator.seek(actor.animator.get_animation(actor.clips[fixture[1]]).length*fixture[2],true)
 		actor._pose_sword("parry" if fixture[0]=="parry" else "water" if fixture[0]=="water" else "lance",fixture[2]);game.camera_driver.update_first_person(0);await picture(game,directory+"/hands-"+fixture[0]+".png")
 	for stage in range(1,4):

@@ -74,7 +74,8 @@ func animate(delta:float) -> void:
 	visual.position.y=-.12*smoothstep(0,.7,1-state_time/.95) if state=="windup" and attack_kind=="rush" else 0.0
 	for entry in coat_materials:entry[0].albedo_color=entry[1].lerp(Color("#bce8ff"),.5) if parry_flash>0 else entry[1].lerp(Color("#ffe0c0"),.4) if hit_flash>0 else entry[1]
 func _physics_process(delta:float) -> void:
-	if not simulation_enabled or not ai_enabled or health<=0 or not player.input_enabled:return
+	preload("res://scripts/world_sound.gd").creature(self)
+	if not simulation_enabled or not ai_enabled or health<=0 or not player.simulation_active():return
 	if player.position.distance_squared_to(position)>3600 and not engaged and knockback.length_squared()<.01:return
 	phase+=delta;cooldown=maxf(0,cooldown-delta);hit_flash=maxf(0,hit_flash-delta);parry_flash=maxf(0,parry_flash-delta)
 	var toward=(player.position-position)*Vector3(1,0,1);var distance=toward.length()

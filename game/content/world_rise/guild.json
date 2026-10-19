@@ -121,6 +121,24 @@
         "boar_tusk": 1
       },
       "copper": 300
+    },
+    "field_spear": {
+      "level": 1,
+      "copper": 80,
+      "materials": {},
+      "vendor": "wr_swords"
+    },
+    "duelist_rapier": {
+      "level": 1,
+      "copper": 100,
+      "materials": {},
+      "vendor": "wr_swords"
+    },
+    "hunting_bow": {
+      "level": 1,
+      "copper": 75,
+      "materials": {},
+      "vendor": "wr_swords"
     }
   },
   "contracts": {

@@ -1,0 +1,10 @@
+*
+!hosting/
+hosting/**
+!hosting/Dockerfile
+!hosting/supervise.py
+!hosting/admin.py
+!output/
+output/*
+!output/linux-server/
+!output/linux-server/**

@@ -10,9 +10,23 @@
 *.bin filter=lfs diff=lfs merge=lfs -text
 *.fbx filter=lfs diff=lfs merge=lfs -text
 *.obj filter=lfs diff=lfs merge=lfs -text
+*.res filter=lfs diff=lfs merge=lfs -text
 *.png filter=lfs diff=lfs merge=lfs -text
 *.jpg filter=lfs diff=lfs merge=lfs -text
 *.jpeg filter=lfs diff=lfs merge=lfs -text
 *.thumb filter=lfs diff=lfs merge=lfs -text
 *.ico filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
+
+# Redistributable runtime voice codec libraries (not authoring tool binaries).
+game/addons/twovoip/libs/**/*.dll filter=lfs diff=lfs merge=lfs -text
+game/addons/twovoip/libs/**/*.dylib filter=lfs diff=lfs merge=lfs -text
+game/addons/twovoip/libs/**/*.so filter=lfs diff=lfs merge=lfs -text
+# Redistributable runtime audio assets.
+game/assets/audio/**/*.ogg filter=lfs diff=lfs merge=lfs -text
+game/assets/audio/**/*.wav filter=lfs diff=lfs merge=lfs -text
+game/assets/audio/**/*.mp3 filter=lfs diff=lfs merge=lfs -text
+
+# Preserve upstream framework plist bytes recorded in voice provenance.
+game/addons/twovoip/libs/libtwovoip.macos.template_debug.universal.framework/Resources/Info.plist whitespace=-blank-at-eol,-blank-at-eof
+game/addons/twovoip/libs/libtwovoip.macos.template_release.universal.framework/Resources/Info.plist whitespace=-blank-at-eol,-blank-at-eof

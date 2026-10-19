@@ -30,6 +30,7 @@ func refresh() -> void:
 		text.add_child(game.label(entry.code+"  "+entry.name+"  /  "+entry.category.capitalize(),18,Color(entry.accent)))
 		var detail=game.label(entry.description,15); detail.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART; text.add_child(detail)
 		var id:String=entry.id
-		var caption=("Add bottle · %d owned" % int(game.magic_items.quantities.get(id,0))) if entry.category=="consumable" else "Owned · equip in Inventory" if id in game.magic_items.owned else "Claim specimen"
+		var stackable=entry.category in ["consumable","ammunition"]
+		var caption=(("Add arrow" if entry.category=="ammunition" else "Add bottle")+" · %d owned" % int(game.magic_items.quantities.get(id,0))) if stackable else "Owned · equip in Inventory" if id in game.magic_items.owned else "Claim specimen"
 		var take=game.button(caption,func(): game.magic_items.claim(id); refresh())
-		take.disabled=int(game.magic_items.quantities.get(id,0))>=99 if entry.category=="consumable" else id in game.magic_items.owned; text.add_child(take)
+		take.disabled=int(game.magic_items.quantities.get(id,0))>=99 if stackable else id in game.magic_items.owned; text.add_child(take)

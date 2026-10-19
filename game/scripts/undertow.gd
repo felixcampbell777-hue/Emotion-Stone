@@ -17,7 +17,7 @@ func configure(owner_game:Control,at:Vector3,toward:Vector3) -> void:
 	material.shader=load("res://shaders/mana_water.gdshader");material.set_shader_parameter("tint",Color(.035,.34,.54,.62))
 	front.material_override=material;add_child(front);draw_wave(0)
 func _physics_process(delta:float) -> void:
-	if game.player.input_enabled: advance(delta)
+	if game.simulation_active(): advance(delta)
 func advance(delta:float) -> void:
 	clock+=delta
 	var radius=reach*clampf(clock/.5,0,1) if clock<=.5 else reach*(1-clampf((clock-.5)/.85,0,1))

@@ -4,7 +4,13 @@ func travel(test:RefCounted,body:CharacterBody3D,start:Vector2,direction:Vector2
 	body.position=Vector3(start.x,0,start.y);body.position.y=world.ground_height(body.position)
 	var origin=body.position
 	var mob=body!=test.game.player
-	if mob:body.ai_enabled=true;body.simulation_enabled=true;body.state="idle";body.encounter_goal=body.position+Vector3(direction.x,0,direction.y).normalized()*20;body.encounter_engaged=false
+	if mob:
+		# Exercise active nearby AI. The previous player route ends far away,
+		# so the real 60m sleep budget otherwise correctly skips this fixture.
+		var observer=body.position+Vector3(-direction.y,0,direction.x).normalized()*8
+		test.game.player.position=observer
+		test.game.player.position.y=world.support_height(test.game.player,observer)
+		body.ai_enabled=true;body.simulation_enabled=true;body.state="idle";body.encounter_goal=body.position+Vector3(direction.x,0,direction.y).normalized()*20;body.encounter_engaged=false
 	for i in range(90):
 		await test.frames(1)
 		if mob:body._physics_process(1.0/60)

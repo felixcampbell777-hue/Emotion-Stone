@@ -41,7 +41,8 @@
               "necklace",
               "weapon",
               "shield",
-              "consumable"
+              "consumable",
+              "ammunition"
             ]
           },
           "name": {
@@ -70,10 +71,26 @@
             "minProperties": 1,
             "additionalProperties": false,
             "properties": {
-              "weapon_base":{"type":"number","minimum":0.1,"maximum":10},
-              "canine_damage":{"type":"number","minimum":0,"maximum":5},
-              "level":{"type":"integer","minimum":1,"maximum":99},
-              "elder_regen":{"type":"number","minimum":0,"maximum":1},
+              "weapon_base": {
+                "type": "number",
+                "minimum": 0.1,
+                "maximum": 10
+              },
+              "canine_damage": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 5
+              },
+              "level": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 99
+              },
+              "elder_regen": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
               "armor": {
                 "type": "number",
                 "minimum": -0.5,
@@ -217,6 +234,11 @@
               "all_damage": {
                 "type": "number",
                 "minimum": 0,
+                "maximum": 1
+              },
+              "ammunition": {
+                "type": "integer",
+                "minimum": 1,
                 "maximum": 1
               }
             }

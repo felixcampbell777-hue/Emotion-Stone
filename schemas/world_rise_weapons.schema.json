@@ -1,0 +1,589 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "profiles"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "profiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "greatsword",
+        "spear",
+        "rapier",
+        "bow"
+      ],
+      "properties": {
+        "greatsword": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "legacy",
+            "items"
+          ],
+          "properties": {
+            "legacy": {
+              "type": "boolean"
+            },
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              }
+            },
+            "length": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "damaging_length": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "radius": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "grip": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "duration": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "active_start": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "active_end": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "damage": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "stamina": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "movement_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "ready_movement_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "draw_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "recovery_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "draw_max_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "minimum_speed": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "maximum_speed": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "gravity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "step_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "lifetime": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "arrow_radius": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "strong": {
+              "type": "boolean"
+            },
+            "ammo_id": {
+              "type": "string",
+              "enum": [
+                "wooden_arrows"
+              ]
+            },
+            "arrow_recovery_seconds": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 600
+            },
+            "shoulder_reach": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.24
+            }
+          }
+        },
+        "spear": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "legacy",
+            "items"
+          ],
+          "properties": {
+            "legacy": {
+              "type": "boolean"
+            },
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              }
+            },
+            "length": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "damaging_length": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "radius": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "grip": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "duration": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "active_start": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "active_end": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "damage": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "stamina": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "movement_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "ready_movement_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "draw_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "recovery_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "draw_max_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "minimum_speed": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "maximum_speed": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "gravity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "step_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "lifetime": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "arrow_radius": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "strong": {
+              "type": "boolean"
+            },
+            "ammo_id": {
+              "type": "string",
+              "enum": [
+                "wooden_arrows"
+              ]
+            },
+            "arrow_recovery_seconds": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 600
+            },
+            "shoulder_reach": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.24
+            }
+          }
+        },
+        "rapier": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "legacy",
+            "items"
+          ],
+          "properties": {
+            "legacy": {
+              "type": "boolean"
+            },
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              }
+            },
+            "length": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "damaging_length": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "radius": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "grip": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "duration": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "active_start": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "active_end": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "damage": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "stamina": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "movement_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "ready_movement_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "draw_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "recovery_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "draw_max_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "minimum_speed": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "maximum_speed": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "gravity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "step_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "lifetime": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "arrow_radius": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "strong": {
+              "type": "boolean"
+            },
+            "ammo_id": {
+              "type": "string",
+              "enum": [
+                "wooden_arrows"
+              ]
+            },
+            "arrow_recovery_seconds": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 600
+            },
+            "shoulder_reach": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.24
+            }
+          }
+        },
+        "bow": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "legacy",
+            "items"
+          ],
+          "properties": {
+            "legacy": {
+              "type": "boolean"
+            },
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              }
+            },
+            "length": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "damaging_length": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "radius": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "grip": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "duration": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "active_start": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "active_end": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "damage": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "stamina": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "movement_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "ready_movement_multiplier": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "draw_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "recovery_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "draw_max_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "minimum_speed": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "maximum_speed": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "gravity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "step_seconds": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "lifetime": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "arrow_radius": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 200
+            },
+            "strong": {
+              "type": "boolean"
+            },
+            "ammo_id": {
+              "type": "string",
+              "enum": [
+                "wooden_arrows"
+              ]
+            },
+            "arrow_recovery_seconds": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 600
+            },
+            "shoulder_reach": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.24
+            }
+          }
+        }
+      }
+    }
+  }
+}

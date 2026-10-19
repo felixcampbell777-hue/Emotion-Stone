@@ -8,9 +8,11 @@ var radius=1.0
 var producer:WeakRef
 var dash_triggered=false
 var splash:Node3D
+var trapped=false
 var surface:MeshInstance3D
 func configure(owner:Node,at:Vector3,sap:bool,thrower:Node=null) -> void:
 	game=owner
+	if game.has_method("bind_effect"):game.bind_effect(self)
 	position=Vector3(at.x,game.current_world.ground_height(at)+.025,at.z)
 	if game.map_id=="wr_floor_02":position.y=maxf(position.y,.025)
 	sticky=sap
@@ -31,17 +33,24 @@ func contains_player() -> bool:
 	return age<lifetime and ((game.player.position-position)*Vector3(1,0,1)).length()<radius
 func _physics_process(delta:float) -> void:
 	if is_queued_for_deletion(): return
-	if not is_instance_valid(game) or not game.player.input_enabled or game.gallery_mode: return
+	if not is_instance_valid(game) or not game.simulation_active() or game.gallery_mode: return
 	age+=delta
-	if age>=lifetime: queue_free(); return
-	var offset=game.player.position-position
-	offset.y=0
-	if offset.length()<radius:
+	if age>=lifetime:
+		if trapped:preload("res://scripts/world_sound.gd").play(game,"enemy.resin.release",position)
+		queue_free(); return
+	var targets=game.combat_players() if game.has_method("combat_players") else [game.player]
+	var was_trapped=trapped;trapped=false
+	for target in targets:
+		var offset=(target.position-position)*Vector3(1,0,1)
+		if offset.length()>=radius:continue
 		if sticky:
-			game.player.slow_sources[get_instance_id()]={"remaining":.15,"factor":float(game.menagery.catalog.sticky_multiplier)}
+			trapped=true
+			target.slow_sources[get_instance_id()]={"remaining":.15,"factor":float(game.menagery.catalog.sticky_multiplier)}
 			if producer!=null and not dash_triggered:
 				var owner=producer.get_ref()
-				if is_instance_valid(owner): dash_triggered=owner.notice_trapped_target()
-		elif age>=.75: game.player.take_damage(9,offset.normalized())
+				if is_instance_valid(owner):dash_triggered=owner.notice_trapped_target(target)
+		elif age>=.75:target.take_damage(9,offset.normalized())
+	if trapped and not was_trapped:preload("res://scripts/world_sound.gd").play(game,"enemy.resin.sticky",position)
+	if was_trapped and not trapped:preload("res://scripts/world_sound.gd").play(game,"enemy.resin.release",position)
 	if splash!=null: splash.visible=age<.45; splash.position.y=.35*sin(PI*clampf(age/.45,0,1)); splash.scale=Vector3.ONE*(1+age)
 	surface.scale=Vector3.ONE*(1+.025*sin(age*8))

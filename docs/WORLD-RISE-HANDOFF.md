@@ -1,6 +1,6 @@
 # World Rise development handoff
 
-Prepared **October 18, 2026**. Branch `codex/world-rise-handoff`, game release `0.41.4`, based on the pushed Alpha commit `7af7e89`. This document describes the current implementation, not a future design proposal. Read the newest `CURRENT-BASELINE.md` entry before historical notes elsewhere.
+Prepared **October 18, 2026**. Branch `codex/world-rise-handoff`, game release `0.41.4`, based on the pushed Alpha commit `7af7e89`. This document records the released offline baseline at handoff. Implementation of the later roadmap/tree was subsequently authorized; current sources include new weapons, approved appearance, audio/voice and dedicated multiplayer, with acceptance still incomplete. Read the newest [baseline entry](CURRENT-BASELINE.md), [implementation status](WORLD-RISE-IMPLEMENTATION-STATUS.md) and [integration contract](WORLD-RISE-INTEGRATION-CONTRACT.md) before treating behavior below as current. Gameplay release metadata remains v0.41.4.
 
 ## What exists now
 

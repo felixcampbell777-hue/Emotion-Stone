@@ -1,0 +1,927 @@
+{
+  "version": 1,
+  "license": "CC0-1.0",
+  "copyright": "Original sound designs and compositions created for World Rise; contributors dedicate these recordings and compositions to CC0.",
+  "generator": "tools/audio/create_original_audio.py",
+  "sample_rate": 22050,
+  "files": [
+    {
+      "file": "game/assets/audio/original/step_wood_0.wav",
+      "sha256": "e68add9a5dec3e9b25ce2b7284dfcf44c255d4476d628835ce6b03b6e0fad20c",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/step_wood_1.wav",
+      "sha256": "e130a3842bfc685be0873fd815d3a2d881e54b1c1b03302c112ac37773633915",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/step_wood_2.wav",
+      "sha256": "78b248e5485bbcaf02e1dd87efe19f31421193259cb948ab204e88d2d83caa01",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/step_wood_3.wav",
+      "sha256": "79298c7edfaffae44ac53999444c58cf2f42b2b1f0cc08b20c04572b012114a0",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/step_metal_0.wav",
+      "sha256": "1ef5e68fe612c5b76b67570a01a3b376658d81ba935b08da086e51ca3ebf30b9",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/step_metal_1.wav",
+      "sha256": "3ac87a4b69479c160d6a793a40acc71fead761f14b91016fe4c5b72aa6607a5b",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/step_metal_2.wav",
+      "sha256": "f8f0335ec8c623f7a995a40a8183342543ea12cff55bddc68aa8284480c49eaf",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/step_metal_3.wav",
+      "sha256": "3bfe7e9f677b6aeb7a343bb765343f19b0e8f48e79504d66ce2d6d71c6c482d9",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/step_mud_0.wav",
+      "sha256": "11a7b50514a25db7ceee924bd3ed3a5f3ffe3ca153707345404b0e5a684c39c3",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/step_mud_1.wav",
+      "sha256": "72fbf94fbd27a4d1ab80cc96a9275c1683f5dfbd4f4bb4ae72cec4b2e04dcb07",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/step_mud_2.wav",
+      "sha256": "13e8aab14cc6698ea755b68807b952e41bd220af4ea485edff1a828d74d1b4d3",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/step_mud_3.wav",
+      "sha256": "af3d356a6b1766768297de186de8425a7e5c96bf2101646ca46d169471921791",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/step_water_0.wav",
+      "sha256": "b221f94e321ccf6d66f6b67f77edfe00659bf9ee559fa251cb9d5b59be893489",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/step_water_1.wav",
+      "sha256": "6fc26aa050c6d4aa21f77f045c9708a591ddcbd481a9690cf03d8209268832ff",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/step_water_2.wav",
+      "sha256": "648c062817a8600453a824f69ea75841d379537b1ad641c6213b4d37a8a57974",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/step_water_3.wav",
+      "sha256": "b807d37089ed60325dafd5e91d3028ce5406a84884f86dab6d330b9c68077d9a",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hit_flesh_0.wav",
+      "sha256": "e43d1bf030f0cd3538f8e4bda43f85c7d518a0d8cda8643327d6bfb80e34c636",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hit_flesh_1.wav",
+      "sha256": "0d5c67be17adff24a2713160779a231b52f87e50236133fa662e4bf3c27fe7fd",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hit_flesh_2.wav",
+      "sha256": "0ad38bd3f2a659a9cb3d32559af114ecb398518a90901b89537a0ad8dfaf16fa",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hit_gel_0.wav",
+      "sha256": "35920de0c90d2efe768e894662203fcec82e691d99d3aa1fde7a8ddb11fe1426",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hit_gel_1.wav",
+      "sha256": "737b5b6cca90e985ba8d2af627059b12653713a2574de5b1da37770480f17bf4",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hit_gel_2.wav",
+      "sha256": "2d4e0445ee103a620d0a188a187f3604a88874b5db6607df21f0fcdde177fde9",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hit_stone_0.wav",
+      "sha256": "3751b1e4dab92852107a2f7469ca4c3956868a6b174850c38d49e43ba632b658",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hit_stone_1.wav",
+      "sha256": "797ebc81bc0eee8395ffb47a082df0169cb5c5b5fbbe6b658c49a81fb730f5d4",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hit_stone_2.wav",
+      "sha256": "de0114a1830e98cdccd789c059299d79cb43a7c1fe128ba9302c1a675545769c",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hit_metal_0.wav",
+      "sha256": "f0ad8f95df288fdc6ec6f871e8b0061e014578d385a1176e649846b8246f376d",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hit_metal_1.wav",
+      "sha256": "c9a34f9fd63768da798de5b95dc3e750d26b88ec2f4de3a7955e994f5bfdb767",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hit_metal_2.wav",
+      "sha256": "d96c4caf39f7a74e106216353eb887bde95f13ea01296409ea483aecdf8ce982",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hit_wood_0.wav",
+      "sha256": "852cfe15ccd367a0e3f60d229e7895f1c941444442d9569dda9956eec82c16b9",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hit_wood_1.wav",
+      "sha256": "0d7e3f27c7a2cb2b30f21b6f3af78e707b984160899204430f14d54b162f8cfa",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hit_wood_2.wav",
+      "sha256": "f997bdba65ece5b25700f783a943ee8994d078bde60d9b410240667e755bcbaf",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/swing_heavy.wav",
+      "sha256": "c313c0c5a586009de853d37384cade38b848bd6ce1dfed028992bf03d633c75d",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/thrust.wav",
+      "sha256": "477db1aec5f699f59b77910f52a3c05ad3074d7b6d35a064548c830fa3636353",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/sheathe.wav",
+      "sha256": "1e2081b794d945621c433403c3c379720dd769b82b349a2b4f32fad78b166fb4",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/parry.wav",
+      "sha256": "d1fbc02131c4850ada5430206bad88e4660e14f068c8030dc1166b906070d115",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/jump.wav",
+      "sha256": "47e73fdb7bfc7f6f41538fb5523b3a58a3ce7fc673baf79e6fb4a19b4eb57604",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/land.wav",
+      "sha256": "f57cca3812f21192fbf9fbe504e709f8821fd23282b7a17c3b8273eacf79aedf",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/dash.wav",
+      "sha256": "0f302af3ac24531e1944ef8b535872be7ee0329d34e75836967b85de7a79e40e",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/hurt.wav",
+      "sha256": "bace371db48400b7bee3da73d583b6a72f818240764bec461276e37597fa20fc",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/death.wav",
+      "sha256": "6b00ae6f2ca8a2873ae89621454601535cd5a9a226678e7e025202e4af44a1c1",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/denied.wav",
+      "sha256": "efd55334a39a5a9e4155f7ea6aeb21891df358c0f0ac1d8bf41fda29d0266eb3",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/bow_nock.wav",
+      "sha256": "a0275fddd3fb47f937d0bb96fc6bf9df54597819141a3e2906aa550d75da4310",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/bow_draw.wav",
+      "sha256": "4a57415cbaecb894f2ea77c0a90bfdf8fbc0ca0624995f7aa1fb6ce43119a56f",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/bow_release.wav",
+      "sha256": "66f6b4037f32d1c481f5a4739e09497c6fbb66734bcda62e27ff3ea9570b771d",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/arrow_flight.wav",
+      "sha256": "a6558dc47f2c5d4ed81fde0caab1fecd2a488a6e2b2003ac9ac236223c92b95f",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/spear.wav",
+      "sha256": "1fb9677821c83c51de1ea2751ecbacdc0def6dd72854f5908b72474d5885f9e8",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/rapier.wav",
+      "sha256": "34f3e5a953be41bdefb317b2fd66bde43f6219b8eae11536d9385a5c1cbb56db",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/arrow_pickup.wav",
+      "sha256": "b32c9969294e909c370652c543cffe871878d0218a163e1a49ec1151c1c38dae",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/wolf_tell.wav",
+      "sha256": "8958c1f312296330285554b42e922db98e55917cff661acae6a40bceb4d3c25e",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/wolf_bite.wav",
+      "sha256": "32e742fbd02073266544571921a710121a2d1fce71d1066315d1536fd57e335e",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/wolf_pain.wav",
+      "sha256": "1281e28a1df45199b9e90960495babbeb8dd54a8d34fdaf1b90d8c635ba6e415",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/wolf_death.wav",
+      "sha256": "d8c757fbb84df7833ffff61050975b046c2733f1532a5a385c2472d593984913",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/wolf_howl.wav",
+      "sha256": "17eee76e9bf33db9c9b39a9703559f3df9c30219907ece5dd60756a6a8d61317",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/boar_tell.wav",
+      "sha256": "470953eb165539009cb40e2721df8fa4094244d50eff163ee5819ab59307e459",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/boar_charge.wav",
+      "sha256": "a0daf1564898249a3f8cfe117a18826a435aebef261fb5bedf54b466902717de",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/boar_pain.wav",
+      "sha256": "927f3fdb85cf3455d4425109e053f40fc84c3777c9d4a70b96da381652e09bdf",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/boar_death.wav",
+      "sha256": "6a9950839a6c65874f65e28825e6de305b603fd24c92f2a65523ba9134e8b9de",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/slime_tell.wav",
+      "sha256": "c70278b00ec0f3d9f85d791f744e28c733207485b07d80d72783f406d406dc13",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/slime_leap.wav",
+      "sha256": "c47fff404e0f9a7b3354691fc44ea06a526d2fff47de1061eb84ee793b750946",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/slime_land.wav",
+      "sha256": "51f92b2edd31d156cea5cedbd9503ff4d67dd076495310bb3be4dad510b054c5",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/slime_death.wav",
+      "sha256": "87449bb83de1e457b634c33c6749592f9c3c03e13fe65bed64d5d9adabb91cc8",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/slime_split.wav",
+      "sha256": "06bfab4ccbcff0f2f6c6e3873d08f7b81415d7d79705a225a635c167bb3c89ba",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/resin_launch.wav",
+      "sha256": "8418a240a3d731bcbb7ad87049f9bea7f8abf0b7fe7e8ae26ba5935c9c69ffee",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/resin_sticky.wav",
+      "sha256": "4eb9a60d6f4828487dc86957b59784ad998ead967384a9d6a0e1485f3846c988",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/elder_form.wav",
+      "sha256": "51be71f24e7aaeabda7e3a775464a3b15bd0d95729f1d730312b874a6bb21b7a",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/elder_tell.wav",
+      "sha256": "1f674283c52364ccde51e5c37cb389353fbe9c726b63e1fcc6777ea7f33cf135",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/elder_sweep.wav",
+      "sha256": "118ff5d9c9da1f43b7cc00ca01d57ab9be95ee735cb97b04a79ba9f6504280ff",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/elder_slam.wav",
+      "sha256": "af426a7e7e2a033631eef43d9025cac0ed723f98923a553323adbc5b5e53f2c5",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/elder_rush.wav",
+      "sha256": "df38aca1648cc7a2f788b19fa59dd86208ff4d6d47b7bb2583e2e715d355b6a6",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/stone_throw.wav",
+      "sha256": "6c56e29790a21d2ada9848b1b19c2116bb84f5a56d3336e107ef53d1f15cd02b",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/boss_death.wav",
+      "sha256": "f418d4f08a2a4be8f2135dca9fe4f498a44598df6e4d9d527c0ec4353c1fe0be",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/water_enter.wav",
+      "sha256": "e3b054183ac428211c64a87c429d0e7584d0585fb094d39b6f9d12ccc559b554",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/water_exit.wav",
+      "sha256": "42188ed109f946c2285a1c015866eceb49da3f52252286659c0252882266d93d",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/drown.wav",
+      "sha256": "6a58d0e0c47b5dfc6d3b4fe0f4bdb6baf3d6469e95200e190952c877ea94a919",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/water_cast.wav",
+      "sha256": "ad6f374555b04af2e52560f11185465ca6da8db52737026a697799a27b64f22a",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/water_hit.wav",
+      "sha256": "5b5a0f80ec0224f84bef320dd14f93aeeae878cf2b56d1385f260e07a044cf65",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/wind.wav",
+      "sha256": "3bb7eb4ac7942a9d0dd3c12ec4ad46ad11232619b3fce5e743c4b88a52a4ef5c",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/ui_focus.wav",
+      "sha256": "44f472df773ea4e3a204c6cd92ce5cc089affc02ba8cce7e27fad5ceba4d8e56",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/ui_confirm.wav",
+      "sha256": "11f0841c3470df319c49b640f80434082894eb5f96f68e680f03d3ab076608eb",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/ui_back.wav",
+      "sha256": "b825f27e68420b66e14a08a23f278f9c9814a7ccde1a61007efe756eb00b4858",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/pickup.wav",
+      "sha256": "fc0dfde401890a14345440f9cec45e570306e7882658586a059c37b92587e525",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/drink.wav",
+      "sha256": "f67cd2182785995749bc500b149bf9d4a01bdcc80b512f91b7ae7720a411d5e6",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/craft.wav",
+      "sha256": "e927b5b6801d0fbaefb1b243c430c0425894f5e6624ca68474e1f2f1860fccc6",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/rest.wav",
+      "sha256": "a7954a7ad7d3571337844e54803ab6b51ce86c2273658a16fad6b61c0f128fc3",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/travel.wav",
+      "sha256": "584bdcc101d24704748c7a6d12c733fbe25f07fa4609c2206993ab23b7fff362",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/discover.wav",
+      "sha256": "a247f04656213561aa4708b83368e1a06f440e8a60e109ea7bdd62edba37b85b",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/level.wav",
+      "sha256": "40608e14a8d47e347737d2419aef8637c8cdd4ce2572a5bb1da84fbaa449d193",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/quest.wav",
+      "sha256": "8942a2c4eb4050e7e12e71530a94a758e679292bb932b72564f09340036b499d",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": false
+    },
+    {
+      "file": "game/assets/audio/original/music_reach.wav",
+      "sha256": "5b28cd5a007db5951f02450452b0ab0ded991511f9ff9e30e657c21382aa1f33",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": true
+    },
+    {
+      "file": "game/assets/audio/original/music_fen.wav",
+      "sha256": "f96416a20ca4405689c6c6b31d0680e24448b5343e2fc5c564076e073534f5c2",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": true
+    },
+    {
+      "file": "game/assets/audio/original/music_combat.wav",
+      "sha256": "9930c6274266bf05dbd4027b8cfc71c09e3b60be356482ef521b0b14ebd8de1e",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": true
+    },
+    {
+      "file": "game/assets/audio/original/music_vault.wav",
+      "sha256": "e61b66b4cd24487c5f69f034e1e193bd95784dae12ec3da79c4ed98b2d0b2eee",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": true
+    },
+    {
+      "file": "game/assets/audio/original/music_title.wav",
+      "sha256": "1f3891db4d2bc842a338f7d5f6c43de2a978ecf8ffd1de3a32e23c5056b28751",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": true
+    },
+    {
+      "file": "game/assets/audio/original/amb_wind.wav",
+      "sha256": "8a638902408390ac8b2ca57a3271f30d756e8ae078fcd9f1678541421e616f68",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": true
+    },
+    {
+      "file": "game/assets/audio/original/amb_forest.wav",
+      "sha256": "3d347a0d733c23db00d9f61c3160c1050f9581b058c48ae4e170c020a1be6366",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": true
+    },
+    {
+      "file": "game/assets/audio/original/amb_night.wav",
+      "sha256": "83fcfddbd7ba4b955d938408560154f9b36876ee5743c70ec3407da8ecdbb7ac",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": true
+    },
+    {
+      "file": "game/assets/audio/original/amb_fen.wav",
+      "sha256": "338055eba39fddad933fb7214e3de3aeda8b11be5e96159b210de64d01ba404d",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": true
+    },
+    {
+      "file": "game/assets/audio/original/amb_cave.wav",
+      "sha256": "0e1ec507d0d4f785765be3b6f396017bdacaafd2027a6185f15a7e35aae8ba5d",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": true
+    },
+    {
+      "file": "game/assets/audio/original/amb_water.wav",
+      "sha256": "e270a6a9cdd42de60517bbe427588a66beaa7d4fae5fbd50b5c5ade683f3d6a3",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": true
+    },
+    {
+      "file": "game/assets/audio/original/amb_guild.wav",
+      "sha256": "3aed01ee2051e20724ddda6a94f32f5feeabdc4f0748fb4bd6ae8b69f68ef963",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": true
+    },
+    {
+      "file": "game/assets/audio/original/amb_underwater.wav",
+      "sha256": "855eae5b2a866905ed57e805e4815b9d01de40a5fde60730fdd92dd195d36ce0",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": true
+    },
+    {
+      "file": "game/assets/audio/original/amb_fire.wav",
+      "sha256": "972b917df60e4c464d7399851052e2630702d6247775b02b2d96d0060e12bcbc",
+      "license": "CC0-1.0",
+      "author": "World Rise contributors",
+      "source": "tools/audio/create_original_audio.py",
+      "original": true,
+      "loop": true
+    }
+  ]
+}

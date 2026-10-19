@@ -53,7 +53,7 @@ func damage_at(distance: float) -> int:
 	return maxi(0,roundi(float(tuning.damage)*clampf(1-distance/float(tuning.range),0,1)))
 
 func _physics_process(delta: float) -> void:
-	if game.player.input_enabled and not game.gallery_mode:
+	if game.simulation_active() and not game.gallery_mode:
 		advance(delta)
 
 func advance(delta: float) -> void:

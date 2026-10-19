@@ -1,4 +1,5 @@
 extends Control
+signal appearance_commit_finished(accepted:bool,message:String)
 const World = preload("res://scripts/world.gd")
 const EnvironmentArt=preload("res://scripts/environment_art.gd")
 const Actor = preload("res://scripts/actor.gd")
@@ -7,6 +8,29 @@ const Save = preload("res://scripts/save_store.gd")
 const Slime = preload("res://scripts/slime.gd")
 const Progression=preload("res://scripts/progression.gd")
 const SkillTree=preload("res://scripts/skill_tree.gd")
+const AppearanceProfile=preload("res://scripts/appearance_profile.gd")
+const CharacterAppearance=preload("res://scripts/character_appearance.gd")
+var appearance=AppearanceProfile.default_profile()
+var appearance_revision=0
+var appearance_commit_pending=false
+var pending_appearance:Dictionary={}
+var appearance_menu:Control
+var connection_menu:Control
+var settings_menu:Control
+var prediction:RefCounted
+var online_view:RefCounted
+var offline_session_snapshot:Dictionary={}
+var quit_after_disconnect=false
+var quit_started=false
+var online_pvp=false
+var online_primary_pending=false
+var online_started=false
+var online_profile_revision=-1
+var last_online_profile=""
+var wr_session:Node
+var voice:Node
+var audio:Node
+var network_session:Node
 var progression=Progression.new()
 var skill_tree: Control
 var title_screen: Control
@@ -129,6 +153,8 @@ func read_data(path: String) -> Dictionary:
 	return {}
 
 func _ready() -> void:
+	get_tree().auto_accept_quit=false
+	get_window().close_requested.connect(quit_game)
 	alpha2.game=self
 	worldrise.game=self
 	dreadmore.game=self
@@ -152,9 +178,14 @@ func _ready() -> void:
 	world_root.add_child(player)
 	# The world is displayed as a texture, not a SubViewportContainer.
 	# Route keyboard events from the root window exactly once.
+	player.weapon_runtime=preload("res://scripts/weapon_runtime.gd").new()
+	player.weapon_runtime.configure(self,player)
+	player.weapon_runtime.equip(magic_items.weapon_id)
 	player.set_process_input(false)
 	player.dodge_rejected.connect(notify)
 	player.stamina_denied.connect(hud_feedback.denied)
+	player.stamina_denied.connect(func():
+		if audio!=null:audio.play("player.stamina_denied",player.position))
 	player.attack_contact.connect(_attack_contact)
 	player.ground_slam.connect(_ground_slam)
 	player.thrust_stopped.connect(_thrust_stopped)
@@ -198,6 +229,31 @@ func _ready() -> void:
 	title_screen=load("res://scripts/title_screen.gd").new()
 	add_child(title_screen)
 	title_screen.configure(self)
+	wr_session=load("res://scripts/network/wr_session.gd").new();wr_session.name="WorldRiseSession";add_child(wr_session)
+	network_session=wr_session
+	online_view=preload("res://scripts/network/wr_client_view.gd").new();online_view.configure(self)
+	prediction=preload("res://scripts/network/wr_prediction.gd").new();prediction.configure(self)
+	wr_session.action_requested.connect(prediction.predict_action)
+	wr_session.joined.connect(_online_joined)
+	wr_session.status_changed.connect(_online_status_changed)
+	wr_session.snapshot_received.connect(online_view.receive)
+	wr_session.profile_received.connect(apply_online_profile)
+	wr_session.action_result.connect(_online_action_result)
+	for module in [["appearance_menu","res://scripts/appearance_menu.gd"],["connection_menu","res://scripts/world_rise_connection_menu.gd"],["settings_menu","res://scripts/world_rise_settings_menu.gd"]]:
+		if ResourceLoader.exists(module[1]):
+			var screen=load(module[1]).new()
+			set(module[0],screen)
+			add_child(screen)
+			screen.configure(self)
+	if ResourceLoader.exists("res://scripts/audio/audio_director.gd"):
+		audio=load("res://scripts/audio/audio_director.gd").new();add_child(audio);audio.configure(self)
+		player.presentation_event.connect(audio.emit_event)
+	if ResourceLoader.exists("res://scripts/voice/world_rise_voice.gd"):
+		voice=load("res://scripts/voice/world_rise_voice.gd").new();add_child(voice)
+		if audio!=null and audio.has_method("set_voice_activity"):voice.voice_activity.connect(audio.set_voice_activity)
+		voice.outgoing_frame.connect(wr_session.send_voice)
+		wr_session.voice_received.connect(voice.receive_frame)
+		get_window().focus_exited.connect(voice.cancel_push_to_talk)
 	monster_cores.configure_ui()
 	apply_skill_stats()
 	update_progression_ui()
@@ -226,6 +282,8 @@ func _ready() -> void:
 	if "--play-world" in args and args.find("--play-world")+1<args.size(): start_world(args[args.find("--play-world")+1])
 
 func start_new_game(show_wakeup:bool=true) -> void:
+	appearance=AppearanceProfile.default_profile()
+	appearance_revision+=1
 	hud_feedback.victory_remaining=0
 	var imported={}
 	if game_mode=="alpha2":
@@ -252,6 +310,7 @@ func start_new_game(show_wakeup:bool=true) -> void:
 	well_gift_stage="not_started"
 	magicnow_index=0
 	magic_items.reset()
+	player.set_weapon_visual(magic_items.weapon_id)
 	monster_cores.reset()
 	goblin_campaign.reset()
 	alpha2.reset()
@@ -417,6 +476,10 @@ func button(text: String,callback: Callable) -> Button:
 	node.add_theme_stylebox_override("pressed",style(Color("#5b795aff")))
 	node.add_theme_stylebox_override("focus",style(Color("#45644eee"),Color("#ddd5af")))
 	node.pressed.connect(callback)
+	node.pressed.connect(func():
+		if audio!=null:audio.play("ui.confirm"))
+	node.focus_entered.connect(func():
+		if audio!=null:audio.play("ui.focus"))
 	return node
 
 func _build_ui() -> void:
@@ -681,13 +744,14 @@ func load_map(id: String, at: Vector2=Vector2(INF,INF), reset_states: bool=false
 	nearest={}
 	_layout()
 	if render_budget!=null:render_budget.scene_changed()
+	camera_driver.reset_motion()
 
 func spawn_catalog_creature(entry:Dictionary,at:Vector3) -> Node3D:
 	var script="res://scripts/queen_slime.gd" if entry.style=="queen_slime" else "res://scripts/menagery_enemy.gd"
 	var enemy=load(script).new(); world_root.add_child(enemy); enemy.setup(self,entry,at)
 	EnvironmentArt.creature_quality(enemy,environment_profile)
 	enemies.append(enemy); add_enemy_bar(enemy)
-	enemy.simulation_enabled=player.input_enabled and not gallery_mode
+	enemy.simulation_enabled=simulation_active() and not online_session_active() and not gallery_mode
 	return enemy
 
 func impact_blocked(from:Vector3,to:Vector3) -> bool:
@@ -721,14 +785,13 @@ func add_enemy_bar(enemy:Node3D) -> void:
 func _process(delta: float) -> void:
 	if player==null:
 		return
-	player.input_enabled=not dreadmore.is_open() and not dialog.visible and not conversation.visible and not inventory.visible and not skill_tree.visible and not help_panel.visible and (pause_menu==null or not pause_menu.visible) and not recovering and (title_screen==null or not title_screen.visible) and (menagery==null or not menagery.opened) and (world_browser==null or not world_browser.visible) and (monster_cores.warning==null or not monster_cores.warning.visible)
-	if not player.input_enabled:
-		_cancel_mouse_charge()
-	for enemy in enemies:
-		enemy.simulation_enabled=player.input_enabled and not gallery_mode
+	_refresh_simulation()
+	if online_session_active() and online_view!=null:online_view.tick(delta)
 	camera_driver.refresh_pointer()
 	if camera_mode!="overhead" and not gallery_mode:
+		if online_session_active() and player.weapon_runtime!=null:player.weapon_runtime.pose("ready",0)
 		camera_driver.update(delta)
+		if online_session_active() and player.weapon_runtime!=null:player.weapon_runtime.update_preview()
 	else:
 		camera.projection=Camera3D.PROJECTION_ORTHOGONAL
 		var offset=[0,0,-.7] if current_world.definition.has("interior") else config.camera_focus_offset
@@ -752,6 +815,9 @@ func _process(delta: float) -> void:
 			elif piece is MeshInstance3D and String(piece.name).begins_with("CaveWall"): piece.visible=camera_mode!="overhead" or piece.position.z<player.position.z-1
 	nearest={}
 	var distance=float(config.interaction_distance)
+	for arrow in get_tree().get_nodes_in_group("world_rise_arrow"):
+		if arrow.get("recoverable")==true and player.position.distance_to(arrow.global_position)<minf(distance,2.5):
+			distance=player.position.distance_to(arrow.global_position);nearest={"id":"recover_arrow","wr_arrow":arrow,"title":"Recover arrow","position":arrow.global_position,"actor":null}
 	for target in current_world.interactions:
 		var test_distance=player.position.distance_to(target.position)
 		if test_distance<distance:
@@ -759,7 +825,11 @@ func _process(delta: float) -> void:
 			nearest=target
 	interaction_panel.visible=not nearest.is_empty() and player.input_enabled and player.state=="free"
 	if interaction_panel.visible:
-		if nearest.has("travel"):
+		if nearest.has("wr_claim"):
+			interaction_label.text="E  ·  "+nearest.title
+		elif nearest.has("wr_arrow"):
+			interaction_label.text="E  ·  Recover arrow"
+		elif nearest.has("travel"):
 			interaction_label.text="E  ·  "+nearest.title
 		elif map_id=="village_green" and nearest.id=="well":
 			interaction_label.text="E  ·  Wishing well"
@@ -793,6 +863,11 @@ func _process(delta: float) -> void:
 	_layout()
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	if additional_overlay_open():
+		if event.is_action_pressed("pause"):
+			for screen in [appearance_menu,connection_menu,settings_menu]:
+				if is_instance_valid(screen) and screen.visible:screen.close();break
+		return
 	if world_browser!=null and world_browser.visible:
 		if event.is_action_pressed("pause"): world_browser.close()
 		return
@@ -814,7 +889,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("inventory"):
 		toggle_inventory()
 	elif event.is_action_pressed("draw_sword"):
-		player.toggle_sword()
+		if online_session_active():wr_session.request_action("draw")
+		else:player.toggle_sword()
 	elif event.is_action_pressed("water_attack"):
 		if player.input_enabled:
 			var started=player.begin_water(true) if selected_special_attack=="undertow" else begin_sea_dragon() if selected_special_attack=="sea_dragon" else player.begin_water_lance() if selected_special_attack=="water_lance" else player.begin_water()
@@ -995,8 +1071,11 @@ func apply_character_art(target:Node3D) -> void:
 	EnvironmentArt.actor_quality(target,"original" if personal else environment_profile)
 	if personal: target.set_sword_art(environment_profile)
 	StandaloneHero.apply(target,character_profile)
+	if game_mode!="world_rise":CharacterAppearance.clear(target)
 	BetaHero.apply(target,personal)
 	magic_items.Visuals.apply(target,magic_items)
+	target.set_weapon_visual(target.weapon_runtime.item_id if target.weapon_runtime!=null else magic_items.weapon_id)
+	if game_mode=="world_rise":CharacterAppearance.apply(target,appearance)
 
 func set_environment_profile(profile:String) -> void:
 	if profile not in ["original","darkwood"]:
@@ -1030,9 +1109,12 @@ func set_character_profile(profile:String) -> void:
 
 func save_data() -> Dictionary:
 	# Mode is serialized below and selects a separate Beta file.
-	return {"world_rise":worldrise.snapshot(),"alpha2":alpha2.snapshot(),"game_mode":game_mode,"environment_revision":1,"monster_cores":monster_cores.snapshot(),"magic_items":magic_items.snapshot(),"goblin_campaign":goblin_campaign.snapshot(),"respawn_timers":respawn_timers.duplicate(),"world_id":world_id,"world_defeats":world_defeats.duplicate(),"version":1,"home_layout":2,"home_intro_complete":home_intro_complete,"camera_mode":camera_mode,"first_person_pitch":camera_driver.first_pitch,"camera_yaw":camera_driver.yaw,"camera_pitch":camera_driver.pitch,"camera_distance":camera_driver.distance,"map":map_id,"ground_y":player.position.y,"position":[player.position.x,player.position.z],"facing":player.visual.rotation.y,"resolution":graphics_preset,"environment_profile":environment_profile,"character_profile":character_profile,"health":player.health,"stamina":player.stamina,"sword_drawn":player.sword_drawn,"sword_equipped":player.sword_equipped,"special_attack":selected_special_attack,"heavy_attack":player.heavy_style,"mother_unwrapped":mother_unwrapped,"well_gift_stage":well_gift_stage,"quest_stage":quest_stage,"defeated_enemies":defeated_enemies.duplicate(),"progression":progression.snapshot(),"skill_loadout":{"dash":player.dash_equipped,"jump":player.jump_equipped,"flowing_counter":player.counter_equipped}}
+	return {"appearance":AppearanceProfile.snapshot(appearance),"world_rise":worldrise.snapshot(),"alpha2":alpha2.snapshot(),"game_mode":game_mode,"environment_revision":1,"monster_cores":monster_cores.snapshot(),"magic_items":magic_items.snapshot(),"goblin_campaign":goblin_campaign.snapshot(),"respawn_timers":respawn_timers.duplicate(),"world_id":world_id,"world_defeats":world_defeats.duplicate(),"version":1,"home_layout":2,"home_intro_complete":home_intro_complete,"camera_mode":camera_mode,"first_person_pitch":camera_driver.first_pitch,"camera_yaw":camera_driver.yaw,"camera_pitch":camera_driver.pitch,"camera_distance":camera_driver.distance,"map":map_id,"ground_y":player.position.y,"position":[player.position.x,player.position.z],"facing":player.visual.rotation.y,"resolution":graphics_preset,"environment_profile":environment_profile,"character_profile":character_profile,"health":player.health,"stamina":player.stamina,"sword_drawn":player.sword_drawn,"sword_equipped":player.sword_equipped,"special_attack":selected_special_attack,"heavy_attack":player.heavy_style,"mother_unwrapped":mother_unwrapped,"well_gift_stage":well_gift_stage,"quest_stage":quest_stage,"defeated_enemies":defeated_enemies.duplicate(),"progression":progression.snapshot(),"skill_loadout":{"dash":player.dash_equipped,"jump":player.jump_equipped,"flowing_counter":player.counter_equipped}}
 
 func save_game() -> void:
+	if online_session_active():
+		notify("Your server saves your online character automatically.")
+		return
 	if map_id=="wr_boss_chamber" and current_world.combat_locked():notify("Defeat the Elder before saving in the Vault.");return
 	if game_mode=="world_rise" and not current_world.safe_position(player.position):notify("Return to solid ground before saving.");return
 	if player.state!="free" or recovering:
@@ -1044,6 +1126,7 @@ func current_save_path() -> String:
 	return "user://world-rise-save-v1.json" if game_mode=="world_rise" else "user://alpha2-save-v1.json" if game_mode=="alpha2" else "user://beta-save-v1.json" if game_mode=="beta" else WorldPacks.save_path(world_id)
 
 func apply_save(data: Dictionary) -> bool:
+	if data.has("appearance") and not AppearanceProfile.valid(data.appearance):return false
 	if data.get("special_attack","water_sweep") not in ["water_sweep","water_lance","sea_dragon","undertow"]: return false
 	var mode=String(data.get("game_mode","alpha"))
 	if not alpha2.valid_mode(mode,data.get("map",""),data.get("world_id","")): return false
@@ -1079,6 +1162,8 @@ func apply_save(data: Dictionary) -> bool:
 	game_mode=mode
 	world_id=saved_world; world_defeats=data.get("world_defeats",[]).duplicate(); respawn_timers=data.get("respawn_timers",{}).duplicate()
 	environment_profile=String(data.get("environment_profile","darkwood")) if data.get("environment_revision",0)==1 else "darkwood"
+	appearance=AppearanceProfile.normalized(data.get("appearance",AppearanceProfile.default_profile()))
+	appearance_revision+=1
 	character_profile=String(data.get("character_profile","game"))
 	if world_browser!=null: world_browser.visible=false
 	home_intro_complete=bool(data.get("home_intro_complete",true))
@@ -1108,6 +1193,7 @@ func apply_save(data: Dictionary) -> bool:
 	player.jump_equipped=true
 	player.counter_equipped=bool(data.get("skill_loadout",{}).get("flowing_counter",false))
 	magic_items.restore(data.get("magic_items",{}))
+	player.set_weapon_visual(magic_items.weapon_id)
 	monster_cores.restore(data.get("monster_cores",{}))
 	goblin_campaign.restore(data.get("goblin_campaign",{}))
 	alpha2.restore(data.get("alpha2",{}))
@@ -1128,11 +1214,15 @@ func apply_save(data: Dictionary) -> bool:
 	return true
 
 func load_game() -> void:
+	if online_session_active():notify("Disconnect before loading your offline character.");return
 	if player.state!="free" or recovering:
 		return
 	notify("Welcome back." if apply_save(Save.read(current_save_path())) else "No valid saved place yet.")
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _online_gameplay_input(event):
+		get_viewport().set_input_as_handled()
+		return
 	if monster_cores.warning!=null and monster_cores.warning.visible: return
 	if title_screen!=null and title_screen.visible:
 		return
@@ -1180,12 +1270,62 @@ func _allloot_input(event:InputEvent) -> bool:
 		allloot_index=0
 		for item in magic_items.catalog.items:
 			if item.id not in magic_items.owned:magic_items.owned.append(item.id)
+			if item.category in ["consumable","ammunition"] and not magic_items.quantities.has(item.id):magic_items.quantities[item.id]=1
 		for material in worldrise.guild.catalog.materials:worldrise.guild.materials[material]=999
 		for core in monster_cores.catalog.cores:monster_cores.quantities[core.id]=99
 		notify("ALLOOTNOW: all catalogued items added. Inventory [I] opened.");toggle_inventory()
 	return true
 
+func _online_gameplay_input(event:InputEvent) -> bool:
+	if not online_session_active() or not is_instance_valid(player) or not player.input_enabled:return false
+	if event is InputEventKey and event.echo:return false
+	var mouse=event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT
+	var primary_down=(mouse and event.pressed and world_rect.has_point(event.position)) or event.is_action_pressed("light_attack") or event.is_action_pressed("heavy_attack")
+	var primary_up=(mouse and not event.pressed) or event.is_action_released("light_attack") or event.is_action_released("heavy_attack")
+	if primary_down:
+		if player.input_enabled:
+			wr_session.request_action("dash_attack" if player.state=="dash_charge" else "primary_down")
+			online_primary_pending=true
+		return true
+	if primary_up:
+		if not online_primary_pending:return false
+		if online_primary_pending:
+			var cancelled=not player.input_enabled or (mouse and (event.canceled or not world_rect.has_point(event.position)))
+			wr_session.request_action("cancel" if cancelled else "primary_up")
+		online_primary_pending=false
+		return true
+	var defense=(event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_RIGHT and event.pressed) or event.is_action_pressed("parry")
+	if defense:
+		if player.input_enabled:
+			wr_session.request_action("cancel");wr_session.request_action("parry")
+		return true
+	for command in ["draw_sword","jump","dodge","dash"]:
+		if event.is_action_pressed(command):
+			if player.input_enabled:wr_session.request_action("draw" if command=="draw_sword" else "dash_charge" if command=="dash" else command)
+			return true
+	if event.is_action_released("dash"):
+		if player.input_enabled:wr_session.request_action("dash_release")
+		return true
+	if event is InputEventKey and event.physical_keycode==KEY_SHIFT:
+		if player.input_enabled:wr_session.request_action("shift_down" if event.pressed else "shift_up")
+		return true
+	return false
+
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause") and additional_overlay_open():
+		for screen in [appearance_menu,connection_menu,settings_menu]:
+			if is_instance_valid(screen) and screen.visible:screen.close();break
+		get_viewport().set_input_as_handled()
+		return
+	var focused_control=get_viewport().gui_get_focus_owner()
+	if voice!=null and event is InputEventKey and event.physical_keycode in [KEY_V,KEY_B] and (focused_control is LineEdit or focused_control is TextEdit):
+		voice.cancel_push_to_talk()
+		return
+	if voice!=null and is_instance_valid(player) and online_session_active() and event is InputEventKey and not event.echo and event.physical_keycode in [KEY_V,KEY_B] and (player.input_enabled or not event.pressed):
+		if player!=null and player.input_enabled:voice.set_push_to_talk("proximity" if event.physical_keycode==KEY_V else "group",event.pressed)
+		elif not event.pressed:voice.cancel_push_to_talk()
+		get_viewport().set_input_as_handled()
+		return
 	if player!=null:
 		_refresh_simulation()
 		if _allloot_input(event):
@@ -1199,13 +1339,20 @@ func _input(event: InputEvent) -> void:
 		return
 	if player!=null:
 		_refresh_simulation()
-		if event is InputEventKey: player._input(event)
+		if not (event is InputEventMouseButton and event.pressed) and _online_gameplay_input(event):
+			get_viewport().set_input_as_handled()
+			return
+		if event is InputEventKey and not online_session_active():player._input(event)
 		if camera_driver.handle_input(event):
 			get_viewport().set_input_as_handled()
 			return
+	if player!=null and player.state=="bow_draw" and (event.is_action_released("light_attack") or event.is_action_released("heavy_attack")):
+		_release_primary_input("light")
+		get_viewport().set_input_as_handled()
+		return
 	if event.is_action_released("heavy_attack") and keyboard_thrust_pending:
 		keyboard_thrust_pending=false
-		if player.input_enabled and player.state=="charge": player.release_charge("heavy")
+		if player.input_enabled and player.state in ["charge","bow_draw"]: _release_primary_input("heavy")
 		else: player.cancel_charge()
 		get_viewport().set_input_as_handled()
 	# Capture releases even when the pointer has crossed a UI panel since pressing.
@@ -1213,7 +1360,7 @@ func _input(event: InputEvent) -> void:
 		mouse_attack_pending=false
 		if player.input_enabled and world_rect.has_point(event.position) and not event.canceled:
 			var kind="heavy" if player.thrust_charging and mouse_hold_time>=float(player.combat.heavy_hold_seconds) else "light"
-			if not player.release_charge(kind):
+			if not _release_primary_input(kind):
 				notify("Not enough stamina for this attack.")
 		else:
 			player.cancel_charge()
@@ -1223,8 +1370,14 @@ func _physics_process(delta: float) -> void:
 	_refresh_simulation()
 	if is_instance_valid(current_world):load("res://scripts/wading.gd").tick(self)
 	combat_skills.tick(delta)
-	worldrise.tick(delta)
-	wolf_packs.tick(delta)
+	if online_session_active():
+		var axis=Input.get_vector("move_left","move_right","move_up","move_down") if player.input_enabled else Vector2.ZERO
+		var command={"movement":[axis.x,axis.y],"yaw":camera_driver.yaw,"pitch":camera_driver.first_pitch,"buttons":{"sprint":player.input_enabled and Input.is_action_pressed("sprint"),"blocked":not player.input_enabled}}
+		wr_session.send_input(command)
+		if prediction!=null:prediction.record_input(wr_session.input_sequence,command,delta)
+	else:
+		worldrise.tick(delta)
+		wolf_packs.tick(delta)
 	if parry_after_draw:
 		if not player.input_enabled or player.state not in ["draw","free"]:
 			parry_after_draw=false
@@ -1233,26 +1386,173 @@ func _physics_process(delta: float) -> void:
 			_request_parry()
 	if not mouse_attack_pending:
 		return
-	if not player.input_enabled or player.state not in ["charge","light","roll","stand"]:
+	if not player.input_enabled or player.state not in ["charge","light","roll","stand","weapon_attack","bow_draw","weapon_recovery"]:
 		_cancel_mouse_charge()
 		return
 	mouse_hold_time+=delta
 	if player.state=="charge" and player.thrust_charging: return
+	if player.weapon_runtime!=null and player.weapon_runtime.enabled():return
 	if mouse_hold_time>=float(player.combat.heavy_hold_seconds):
 		mouse_attack_pending=false
 		if player.state in ["light","roll","stand"]:
 			return
-		if not player.release_charge("heavy"):
+		if not _release_primary_input("heavy"):
 			notify("Not enough stamina for a heavy swing.")
 
+func quit_game() -> void:
+	if quit_started:return
+	if online_session_active():
+		quit_after_disconnect=true
+		wr_session.disconnect_session()
+		return
+	quit_started=true
+	if voice!=null:await voice.shutdown_and_drain()
+	if audio!=null:await audio.shutdown_and_drain()
+	get_tree().quit()
+
+func _online_action_result(result:Dictionary) -> void:
+	var kind=String(result.get("kind",""))
+	if kind=="appearance" and appearance_commit_pending:
+		appearance_commit_pending=false
+		var accepted=bool(result.get("ok",false))
+		if accepted and AppearanceProfile.valid(pending_appearance):
+			appearance=AppearanceProfile.normalized(pending_appearance);appearance_revision+=1
+			CharacterAppearance.apply(player,appearance)
+			if camera_driver.visuals!=null:camera_driver.visuals.prepare(player)
+			if inventory!=null and inventory.visible:inventory.refresh()
+		pending_appearance.clear()
+		appearance_commit_finished.emit(accepted,"Appearance applied." if accepted else String(result.get("error","The server rejected this appearance.")))
+	if not result.get("ok",false):
+		notify(String(result.get("error","Action refused")))
+		if audio!=null and kind in ["purchase","sell","equip","drink"]:audio.play("economy.denied")
+		return
+	if audio==null:return
+	var event_id=String({"equip":"inventory.equip","weapon_equipped":"inventory.equip","drink":"inventory.drink","purchase":"economy.buy","sell":"economy.sell","loot":"inventory.pickup","rest":"world.rest","travel":"world.travel"}.get(kind,""))
+	if not event_id.is_empty():audio.play(event_id,player.position)
+
+func _online_joined(character_id:String) -> void:
+	offline_session_snapshot=save_data()
+	online_started=true
+	game_mode="world_rise";start_new_game(false);title_screen.hide()
+	if connection_menu!=null:connection_menu.close()
+	if pause_menu!=null:pause_menu.close()
+	player.entity_id=character_id;player.damage_authority=false
+	player.set_physics_process(false);player.set_meta("canonical_manual_step",true)
+	prediction.clear()
+	last_online_profile="";online_profile_revision=-1
+	if voice!=null:voice.configure_session(true,wr_session.local_peer_id)
+	_refresh_simulation()
+
+func _online_status_changed(_message:String) -> void:
+	if not online_started or online_session_active():return
+	if quit_after_disconnect:
+		online_started=false;call_deferred("quit_game");return
+	online_started=false
+	if appearance_commit_pending:
+		appearance_commit_pending=false;pending_appearance.clear()
+		appearance_commit_finished.emit(false,"Disconnected before the appearance was accepted.")
+	for screen in [appearance_menu,connection_menu,settings_menu]:
+		if is_instance_valid(screen) and screen.visible:screen.close()
+	if online_view!=null:online_view.clear()
+	if prediction!=null:prediction.clear()
+	player.set_physics_process(true);player.set_meta("canonical_manual_step",false)
+	player.command_input_enabled=false
+	if voice!=null:voice.configure_session(false)
+	player.damage_authority=true;player.online_mode=false;player.entity_id="local_player"
+	if not offline_session_snapshot.is_empty():apply_save(offline_session_snapshot)
+	offline_session_snapshot.clear();last_online_profile="";online_profile_revision=-1
+	title_screen.show_menu();_refresh_simulation()
+
+func apply_online_profile(profile:Dictionary) -> void:
+	if not online_session_active() or profile.is_empty():return
+	var revision=int(profile.get("revision",0))
+	if revision<online_profile_revision:return
+	online_profile_revision=revision
+	var digest=JSON.stringify(profile).sha256_text()
+	if digest==last_online_profile:return
+	last_online_profile=digest
+	var previous_level=progression.level()
+	progression.restore(profile.progression)
+	if progression.level()>previous_level and audio!=null:audio.play("progression.level_up")
+	magic_items.restore(profile.magic_items)
+	var loadout:Dictionary=profile.get("skill_loadout",{})
+	player.dash_equipped=bool(loadout.get("dash",false));player.jump_equipped=bool(loadout.get("jump",true));player.counter_equipped=bool(loadout.get("flowing_counter",false))
+	player.heavy_style=String(profile.get("heavy_attack","overhead"))
+	worldrise.guild.copper=int(profile.get("copper",0));worldrise.guild.materials=profile.get("materials",{}).duplicate(true)
+	if AppearanceProfile.valid(profile.get("appearance",{})):
+		appearance=AppearanceProfile.normalized(profile.appearance);appearance_revision+=1
+		CharacterAppearance.apply(player,appearance)
+	if player.get_meta("online_weapon","")!=magic_items.weapon_id:
+		player.set_meta("online_weapon",magic_items.weapon_id);player.set_weapon_visual(magic_items.weapon_id)
+	apply_skill_stats();update_progression_ui()
+	if inventory.visible:inventory.refresh()
+
+func additional_overlay_open() -> bool:
+	for screen in [appearance_menu,connection_menu,settings_menu]:
+		if is_instance_valid(screen) and screen.visible:return true
+	return false
+
+func commit_appearance(draft:Dictionary) -> bool:
+	if game_mode!="world_rise" or not AppearanceProfile.valid(draft):return false
+	if online_session_active():
+		if appearance_commit_pending:return false
+		pending_appearance=AppearanceProfile.normalized(draft);appearance_commit_pending=true
+		wr_session.request_action("appearance",{"profile":pending_appearance})
+		return true
+	appearance=AppearanceProfile.normalized(draft)
+	appearance_revision+=1
+	CharacterAppearance.apply(player,appearance)
+	if camera_driver.visuals!=null:camera_driver.visuals.prepare(player)
+	if inventory!=null and inventory.visible:inventory.refresh()
+	return true
+
+func online_session_active() -> bool:
+	return is_instance_valid(network_session) and network_session.online_session_active()
+
+func combat_player_targets(source_actor:Node=null) -> Array:
+	# Combat queries use the same visible accepted poses; movement capsules stay unchanged.
+	if not online_session_active():return []
+	var actors:Array=[player]
+	var source_identity=String(source_actor.entity_id) if is_instance_valid(source_actor) else ""
+	if online_view!=null:actors.append_array(online_view.remotes.values())
+	return actors.filter(func(actor):return is_instance_valid(actor) and actor!=source_actor and not actor.is_queued_for_deletion() and actor.health>0 and actor.ground_world==current_world and (source_identity.is_empty() or actor.entity_id!=source_identity))
+
+func combat_player_exclusions(source_actor:Node) -> Array[RID]:
+	var excluded:Array[RID]=[]
+	if not is_instance_valid(source_actor):return excluded
+	excluded.append(source_actor.get_rid())
+	if not online_session_active():return excluded
+	var source_identity=String(source_actor.entity_id)
+	var actors:Array=[player]
+	if online_view!=null:actors.append_array(online_view.remotes.values())
+	for actor in actors:
+		if is_instance_valid(actor) and not actor.is_queued_for_deletion() and actor.ground_world==current_world and not source_identity.is_empty() and actor.entity_id==source_identity and actor.get_rid() not in excluded:excluded.append(actor.get_rid())
+	return excluded
+
+func simulation_active() -> bool:
+	return player!=null and player.simulation_active() and not gallery_mode
+
 func _refresh_simulation() -> void:
-	player.input_enabled=not dreadmore.is_open() and not dialog.visible and not conversation.visible and not inventory.visible and not skill_tree.visible and not help_panel.visible and (pause_menu==null or not pause_menu.visible) and not recovering and (title_screen==null or not title_screen.visible) and (menagery==null or not menagery.opened) and (world_browser==null or not world_browser.visible) and (monster_cores.warning==null or not monster_cores.warning.visible)
-	if not player.input_enabled: magicnow_index=0
+	if player==null: return
+	var enabled=not dreadmore.is_open() and not dialog.visible and not conversation.visible and not inventory.visible and not skill_tree.visible and not help_panel.visible and (pause_menu==null or not pause_menu.visible) and not recovering and (title_screen==null or not title_screen.visible) and (menagery==null or not menagery.opened) and (world_browser==null or not world_browser.visible) and (monster_cores.warning==null or not monster_cores.warning.visible) and not additional_overlay_open()
+	var was_enabled=player.input_enabled
+	player.input_enabled=enabled
+	player.online_mode=online_session_active()
+	player.damage_authority=not player.online_mode
+	player.simulation_enabled=enabled or player.online_mode
+	if not enabled:
+		magicnow_index=0
+		if voice!=null:voice.cancel_push_to_talk()
+		if was_enabled:
+			_cancel_mouse_charge()
+			player.cancel_pending_input()
 	camera_driver.refresh_pointer()
 	for enemy in enemies:
-		enemy.simulation_enabled=player.input_enabled and not gallery_mode
+		enemy.simulation_enabled=simulation_active() and not online_session_active()
 
 func _cancel_mouse_charge() -> void:
+	if online_session_active():wr_session.request_action("cancel")
+	online_primary_pending=false
 	parry_after_draw=false
 	mouse_attack_pending=false
 	keyboard_thrust_pending=false
@@ -1261,6 +1561,10 @@ func _cancel_mouse_charge() -> void:
 		player.cancel_charge()
 
 func _request_parry() -> void:
+	if online_session_active():
+		_cancel_mouse_charge()
+		if player.input_enabled:wr_session.request_action("parry")
+		return
 	_refresh_simulation()
 	if not player.input_enabled:
 		return
@@ -1276,7 +1580,18 @@ func _request_parry() -> void:
 	elif player.state=="free" and not player.begin_parry():
 		notify("Rest to recover stamina before parrying.")
 
+func _release_primary_input(kind:String) -> bool:
+	if online_session_active() and player.weapon_type=="greatsword":
+		if not player.input_enabled:return false
+		wr_session.request_action(kind);player.cancel_charge();return true
+	return player.release_charge(kind)
+
 func _request_attack(kind: String) -> void:
+	if online_session_active():
+		if player.input_enabled:
+			if player.weapon_runtime.enabled():player.weapon_runtime.begin_primary()
+			else:wr_session.request_action(kind)
+		return
 	if not player.input_enabled:
 		return
 	if kind=="light" and player.counter_ready():
@@ -1315,6 +1630,7 @@ func _stamina_changed(value: float, maximum: float) -> void:
 	stamina_label.text="STAMINA  %d / %d" % [mini(ceili(value-.00001),roundi(maximum)),roundi(maximum)]
 
 func _parry_succeeded(enemy: Node3D) -> void:
+	if audio!=null:audio.play("combat.parry",player.global_position,player.action_context())
 	combat_skills.parried(enemy)
 	magic_items.parried()
 	var away=enemy.position-player.position
@@ -1328,7 +1644,7 @@ func _update_combat_ui() -> void:
 		var enemy=item.enemy
 		var point=enemy.position+Vector3(0,float(enemy.definition.get("label_height",3.4 if enemy.definition.kind=="warden" else 1.35)),0)
 		var screen=camera.unproject_position(point)
-		item.root.visible=enemy.health>0 and (enemy.health<enemy.max_health or enemy.definition.kind=="vault_elder") and enemy.visible and not pause_menu.visible and not skill_tree.visible and not inventory.visible and not conversation.visible and not recovering and not help_panel.visible and not dialog.visible and (menagery==null or not menagery.opened) and (world_browser==null or not world_browser.visible) and (monster_cores.warning==null or not monster_cores.warning.visible) and not camera.is_position_behind(point) and Rect2(Vector2.ZERO,Vector2(world_view.size)).has_point(screen)
+		item.root.visible=enemy.health>0 and (enemy.health<enemy.max_health or enemy.definition.kind=="vault_elder") and enemy.visible and not pause_menu.visible and not skill_tree.visible and not inventory.visible and not conversation.visible and not recovering and not help_panel.visible and not dialog.visible and (menagery==null or not menagery.opened) and (world_browser==null or not world_browser.visible) and (monster_cores.warning==null or not monster_cores.warning.visible) and not additional_overlay_open() and not camera.is_position_behind(point) and Rect2(Vector2.ZERO,Vector2(world_view.size)).has_point(screen)
 		item.root.position=world_rect.position+screen*(world_rect.size/Vector2(world_view.size))-Vector2(50,30)
 		item.bar.max_value=enemy.max_health
 		item.bar.value=enemy.health
@@ -1337,6 +1653,8 @@ func _update_combat_ui() -> void:
 	quest_label.text=quest_objective()
 
 func _water_cast(origin: Vector3, direction: Vector3) -> void:
+	if bool(player.get_meta("prediction_replay",false)):return
+	if audio!=null:audio.play("ability.water.cast",origin,player.action_context())
 	if player.undertow_cast:
 		var pull=load("res://scripts/undertow.gd").new();world_root.add_child(pull);pull.configure(self,origin,direction);projectiles.append(pull);return
 	water_waves=water_waves.filter(func(wave): return is_instance_valid(wave))
@@ -1346,11 +1664,15 @@ func _water_cast(origin: Vector3, direction: Vector3) -> void:
 	water_waves.append(wave)
 
 func _vertical_water_cast(origin:Vector3,direction:Vector3) -> void:
+	if bool(player.get_meta("prediction_replay",false)):return
+	if audio!=null:audio.play("ability.water.cast",origin,player.action_context())
 	water_waves=water_waves.filter(func(wave): return is_instance_valid(wave))
 	var wave=load("res://scripts/vertical_water_wave.gd").new();world_root.add_child(wave)
 	wave.configure(self,origin,direction,player.combat.water);water_waves.append(wave)
 
 func _water_lance_fired(origin: Vector3, direction: Vector3) -> void:
+	if bool(player.get_meta("prediction_replay",false)):return
+	if audio!=null:audio.play("ability.lance.release",origin,player.action_context())
 	projectiles=projectiles.filter(func(item): return is_instance_valid(item))
 	var lance=WaterLance.new()
 	world_root.add_child(lance)
@@ -1377,6 +1699,7 @@ func special_unlocked(id: String) -> bool:
 	return progression.has("mana_lance") if id=="water_lance" else progression.has("mana")
 
 func select_heavy_attack(id: String) -> void:
+	if online_session_active():wr_session.request_action("heavy_attack",{"style":id});return
 	if id not in ["overhead","charge_thrust"] or (id=="charge_thrust" and not progression.has("charge_thrust")): return
 	player.heavy_style=id
 	inventory.refresh()
@@ -1393,11 +1716,14 @@ func select_special_attack(id: String) -> void:
 	notify("Equipped "+{"water_sweep":"Water Slash","water_lance":"Water Lance","sea_dragon":"Mana Sea Dragon","undertow":"Undertow"}[id]+" on Q.")
 
 func _ground_slam(at:Vector3, heavy:bool) -> void:
+	if bool(player.get_meta("prediction_replay",false)):return
+	if audio!=null:audio.play("combat.slam",at,player.action_context())
 	var impact=load("res://scripts/ground_slam.gd").new()
 	current_world.add_child(impact)
 	impact.configure(self,Vector3(at.x,current_world.ground_height(at)+.018,at.z),heavy)
 
 func _attack_contact(kind: String, direction: Vector3, already_hit: Dictionary) -> void:
+	if online_session_active():return
 	goblin_campaign.sword_contact(already_hit)
 	var tuning=player.attack_tuning()
 	for enemy in enemies:
@@ -1412,15 +1738,42 @@ func _attack_contact(kind: String, direction: Vector3, already_hit: Dictionary) 
 			continue
 		already_hit[enemy.get_instance_id()]=true
 		var previous_health=enemy.health
+		enemy.set_meta("last_damage_context",player.action_context())
 		var weakspot=enemy.sword_weakspot_open()
 		var weapon_mult=magic_items.weapon_base()
 		if enemy.mob_category=="canine":weapon_mult*=1.0+magic_items.weapon_bonus_against("canine")
 		enemy.take_sword_damage(roundi(float(tuning.damage)*weapon_mult*(1.2 if combat_skills.exposed.has(enemy.get_instance_id()) else 1.0)),toward.normalized(),kind in ["heavy","thrust"] or (kind=="light" and player.combo_stage==3 and player.attack_phase()>=.60),(float(player.combat.thrust_charge.recoil_multiplier) if kind=="thrust" else 1.0)*(1+magic_items.bonus("sword_recoil")))
+		if audio!=null:
+			var sound_context=player.action_context();sound_context["target_id"]=String(enemy.definition.get("id",enemy.name))
+			audio.play("combat.hit."+contact_material(enemy),enemy.position,sound_context)
 		magic_items.sword_hit(enemy,previous_health)
-		if game_mode=="world_rise" and previous_health>0 and enemy.health<=0:progression.greatsword_kills=mini(Progression.MAX_XP,progression.greatsword_kills+1)
+		if game_mode=="world_rise" and player.weapon_type=="greatsword" and previous_health>0 and enemy.health<=0:progression.greatsword_kills=mini(Progression.MAX_XP,progression.greatsword_kills+1)
 		combat_skills.sword_hit(enemy,previous_health,weakspot,kind in ["heavy","thrust"] or (kind=="light" and player.combo_stage==3 and player.attack_phase()>=.60))
 
+func contact_material(target:Node) -> String:
+	var kind=String(target.definition.get("kind",""))
+	if "slime" in kind:return "gel"
+	if kind in ["vault_elder","warden"] or "stone" in kind:return "stone"
+	return "flesh"
+
+func resolve_weapon_contact(context:Dictionary,target:Node3D,amount:int,direction:Vector3,strong:bool=false) -> bool:
+	if online_session_active() or not simulation_active() or not is_instance_valid(target) or target.health<=0:return false
+	var before=int(target.health)
+	var multiplier=magic_items.weapon_base()
+	if target.get("mob_category")=="canine":multiplier*=1+magic_items.weapon_bonus_against("canine")
+	target.set_meta("last_damage_context",context.duplicate(true))
+	var melee=context.get("damage_kind","melee")=="melee"
+	if melee:target.take_sword_damage(maxi(1,roundi(amount*multiplier)),direction,strong,1+magic_items.bonus("sword_recoil"))
+	else:target.take_damage(maxi(1,roundi(amount*multiplier)),direction)
+	if melee:magic_items.sword_hit(target,before)
+	if is_instance_valid(audio):
+		var sound_context=context.duplicate();sound_context["target_id"]=String(target.definition.get("id",target.name))
+		audio.play("combat.hit."+contact_material(target),target.global_position,sound_context)
+	return target.health<before
+
 func _thrust_stopped(at:Vector3,direction:Vector3) -> void:
+	if bool(player.get_meta("prediction_replay",false)):return
+	if audio!=null:audio.play("combat.thrust_stop",at,player.action_context())
 	var gust=load("res://scripts/thrust_gust.gd").new()
 	current_world.add_child(gust)
 	gust.configure(self,Vector3(at.x,current_world.ground_height(at)+.35,at.z),direction)
@@ -1436,6 +1789,7 @@ func _unwrap_mother() -> void:
 	_show_line()
 
 func _player_defeated() -> void:
+	if audio!=null:audio.play("player.death",player.position,player.action_context())
 	cancel_sea_dragon()
 	if menagery!=null: menagery.close()
 	if recovering:
@@ -1462,6 +1816,7 @@ func _player_defeated() -> void:
 	death_screen.get_child(0).get_child(2).grab_focus()
 
 func respawn_player() -> void:
+	if online_session_active():wr_session.request_action("respawn");return
 	if not recovering:
 		return
 	player.set_sword_drawn(false)
@@ -1484,6 +1839,7 @@ func respawn_player() -> void:
 	notify("You return to your rest crystal. Experience and discoveries are kept." if game_mode=="world_rise" else "You return to the last pilgrim fire. Your discoveries are kept." if game_mode=="alpha2" else "You return to the meadow. Your journey continues." if game_mode=="beta" else "You return to the starting area. Your journey continues." if not world_id.is_empty() else "You wake in the village square. Your journey continues.")
 
 func _enemy_defeated(id: String, kind: String, slain_enemy:Node3D=null) -> void:
+	if online_session_active():return
 	if id in defeated_enemies: return
 	var first_bonus=worldrise.claim_first_kill_bonus(kind) if game_mode=="world_rise" and kind in ["vault_elder","ashfang"] else false
 	defeated_enemies.append(id)
@@ -1586,6 +1942,11 @@ func _capture(directory: String) -> void:
 	var view="all"
 	if "--capture-view" in arguments:
 		view=arguments[arguments.find("--capture-view")+1]
+	if view=="world-rise-menus":
+		await load("res://scripts/world_rise_ui_capture.gd").new().run(self,directory);return
+	if view=="appearance":
+		var passed=await load("res://scripts/appearance_capture.gd").new().run(self,directory)
+		print("CAPTURE_OK ",directory);get_tree().quit(0 if passed else 1);return
 	if view=="swamp":
 		var passed=await load("res://scripts/swamp_review.gd").new().run(self,directory)
 		print("CAPTURE_OK ",directory);get_tree().quit(0 if passed else 1);return
@@ -1832,6 +2193,7 @@ func gain_xp(amount: int) -> void:
 	var levels=progression.award(amount)
 	update_progression_ui()
 	if levels>0:
+		if audio!=null:audio.play("progression.level_up")
 		notify("Level %d! %d skill points available - P to learn." % [progression.level(),progression.points()])
 
 func receive_wishing_coin() -> bool:
@@ -1887,6 +2249,7 @@ func update_progression_ui() -> void:
 	xp_bar.value=progression.xp-floor_xp if progression.level()<thresholds.size() else xp_bar.max_value
 
 func learn_skill(id: String) -> void:
+	if online_session_active():wr_session.request_action("learn",{"skill":id});return
 	if not progression.learn(id):
 		return
 	apply_skill_stats()
@@ -1902,6 +2265,9 @@ func toggle_passive(id:String) -> void:
 	apply_skill_stats();inventory.refresh()
 
 func toggle_movement_skill(id:String) -> void:
+	if online_session_active():
+		var enabled=not player.dash_equipped if id=="dash" else not player.counter_equipped if id=="flowing_counter" else not player.jump_equipped
+		wr_session.request_action("skill_loadout",{"skill":id,"enabled":enabled});return
 	if id=="flowing_counter" and player.counter_unlocked: player.counter_equipped=not player.counter_equipped
 	if id=="dash" and player.dash_unlocked: player.dash_equipped=not player.dash_equipped
 	inventory.refresh()
@@ -1959,8 +2325,10 @@ func apply_skill_stats() -> void:
 		selected_special_attack="water_sweep"
 	if player.heavy_style=="charge_thrust" and not player.thrust_unlocked:
 		player.heavy_style="overhead"
+	if game_mode=="world_rise":preload("res://scripts/weapon_profiles.gd").apply_tuning(player,magic_items.weapon_id)
 	magic_items.apply_stats()
 	if game_mode=="world_rise":preload("res://scripts/world_rise_stats.gd").apply(self)
+	if player.weapon_runtime!=null and player.weapon_runtime.has_method("apply_stats"):player.weapon_runtime.apply_stats()
 	player.restore_health(mini(player.health,player.max_health))
 	player.restore_stamina(minf(player.stamina,player.max_stamina))
 

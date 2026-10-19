@@ -2,8 +2,8 @@ extends Control
 # Game rules remain in magic_items.gd / monster_cores.gd. This owns the browsing UI.
 const Frost=preload("res://scripts/frosted_backdrop.gd")
 const ICON_ATLAS=preload("res://assets/ui/inventory/skyrim-inventory-icons-v1.png")
-const CATEGORY_ORDER=["all","weapons","apparel","potions","ingredients","quest"]
-const CATEGORY_NAMES={"all":"All", "weapons":"Weapons", "apparel":"Apparel", "potions":"Potions", "ingredients":"Ingredients", "quest":"Quest items"}
+const CATEGORY_ORDER=["all","weapons","ammunition","apparel","potions","ingredients","quest"]
+const CATEGORY_NAMES={"all":"All", "weapons":"Weapons", "ammunition":"Arrows", "apparel":"Apparel", "potions":"Potions", "ingredients":"Ingredients", "quest":"Quest items"}
 const SLOT_NAMES={"ring1":"Ring 1", "ring2":"Ring 2", "torso":"Torso", "leggings":"Leggings", "boots":"Boots", "headwear":"Headwear", "necklace":"Necklace"}
 var game:Control
 var portrait:TextureRect
@@ -20,6 +20,7 @@ var detail:VBoxContainer
 var category_box:VBoxContainer
 var picker_focus:Button
 var rise_map:Control
+var notice_text=""
 
 func configure(owner_game:Control) -> void:
 	game=owner_game
@@ -29,6 +30,7 @@ func configure(owner_game:Control) -> void:
 	tabs=HBoxContainer.new(); tabs.add_theme_constant_override("separation",8); add_child(tabs)
 	for entry in [["equipment","Inventory"],["skills","Skills"],["level","Level Up"],["quests","Quests"],["map","Map"]]:
 		var id:String=entry[0]; tabs.add_child(game.button(entry[1],func(): show_page(id)))
+	tabs.add_child(game.button("Appearance",func(): game.appearance_menu.open()))
 	tabs.add_child(game.button("Close [I / Esc]",close))
 	category_box=VBoxContainer.new(); category_box.add_theme_constant_override("separation",5); add_child(category_box)
 	portrait=TextureRect.new(); portrait.texture=load("res://assets/conversation/hero-inventory-v1.png")
@@ -38,7 +40,9 @@ func configure(owner_game:Control) -> void:
 	box=game.panel(self)
 	var scroll=ScrollContainer.new(); scroll.follow_focus=true; scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED; box.add_child(scroll)
 	slots=VBoxContainer.new(); slots.add_theme_constant_override("separation",7); slots.size_flags_horizontal=Control.SIZE_EXPAND_FILL; scroll.add_child(slots)
-	detail_box=game.panel(self); detail=VBoxContainer.new(); detail.add_theme_constant_override("separation",11); detail_box.add_child(detail)
+	detail_box=game.panel(self)
+	var detail_scroll=ScrollContainer.new(); detail_scroll.follow_focus=true; detail_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED; detail_box.add_child(detail_scroll)
+	detail=VBoxContainer.new(); detail.size_flags_horizontal=Control.SIZE_EXPAND_FILL; detail.add_theme_constant_override("separation",11); detail_scroll.add_child(detail)
 	rise_map=load("res://scripts/rise_map.gd").new();add_child(rise_map);rise_map.configure(game)
 	visible=false
 
@@ -47,7 +51,7 @@ func _process(_delta:float) -> void:
 	var screen=get_viewport_rect().size
 	tabs.position=Vector2(screen.x*.035,16)
 	category_box.position=Vector2(screen.x*.035,75); category_box.size=Vector2(screen.x*.19,screen.y*.32)
-	portrait.position=Vector2(screen.x*.035,screen.y*.42); portrait.size=Vector2(screen.x*.19,screen.y*.54)
+	portrait.position=Vector2(screen.x*.035,maxf(405,screen.y*.56)); portrait.size=Vector2(screen.x*.19,maxf(90,screen.y-portrait.position.y-18))
 	preview.position=portrait.position; preview.size=portrait.size
 	preview.visible=page=="equipment"; portrait.visible=page not in ["equipment","level","map"]
 	rise_map.visible=page=="map";rise_map.position=Vector2(screen.x*.035,75);rise_map.size=Vector2(screen.x*.93,screen.y-94)
@@ -57,6 +61,7 @@ func _process(_delta:float) -> void:
 	category_box.visible=page=="equipment"; detail_box.visible=page=="equipment"
 
 func show_page(id:String) -> void:
+	notice_text=""
 	page=id
 	if id=="equipment" and selected_category.is_empty(): selected_category="apparel"
 	refresh()
@@ -65,11 +70,13 @@ func clear(node:Node) -> void:
 	for child in node.get_children(): node.remove_child(child); child.queue_free()
 
 func refresh() -> void:
+	if game.get("wr_session")!=null and not game.wr_session.action_result.is_connected(online_action_result):game.wr_session.action_result.connect(online_action_result)
 	if page=="map" and game.game_mode!="world_rise":page="equipment"
 	picker_focus=null; clear(slots); clear(detail); clear(category_box)
 	preview.refresh(game)
 	box.visible=page not in ["level","map"]
 	rise_map.visible=page=="map";tabs.get_child(4).visible=game.game_mode=="world_rise"
+	tabs.get_child(5).visible=game.game_mode=="world_rise"
 	if game.skill_tree!=null:
 		game.skill_tree.visible=page=="level" and visible
 		if page=="level": game.skill_tree.refresh()
@@ -78,7 +85,7 @@ func refresh() -> void:
 	if page=="level": return
 	if page=="quests": refresh_quests(); return
 	if page=="skills": refresh_skills(); return
-	refresh_categories(); refresh_inventory_list(); refresh_detail()
+	refresh_categories(); refresh_inventory_list(); wrap_labels(); refresh_detail()
 	if picker_focus!=null: picker_focus.grab_focus()
 
 func refresh_categories() -> void:
@@ -87,16 +94,24 @@ func refresh_categories() -> void:
 	for category in CATEGORY_ORDER:
 		var amount=item_count(category)
 		var title=CATEGORY_NAMES[category]+("  %d" % amount if amount>0 else "")
-		var button=game.button(title,func(): selected_category=category; selected_slot=""; selected_item={}; refresh())
-		button.custom_minimum_size.y=34
-		if category==selected_category: button.add_theme_stylebox_override("normal",game.style(Color("#5a4a2fee"),Color("#e2c277")))
+		var button=game.button(title,func(): notice_text=""; selected_category=category; selected_slot=""; selected_item={}; refresh())
+		button.custom_minimum_size.y=30
+		button.add_theme_font_size_override("font_size",15)
+		for state in ["normal","hover","pressed","focus","disabled"]:
+			var style=button.get_theme_stylebox(state).duplicate(); style.content_margin_top=4; style.content_margin_bottom=4; style.content_margin_left=8; style.content_margin_right=8; button.add_theme_stylebox_override(state,style)
+		if category==selected_category:
+			button.add_theme_stylebox_override("normal",game.style(Color("#5a4a2fee"),Color("#e2c277"))); picker_focus=button
 		category_box.add_child(button)
-	category_box.add_child(game.label("\nEquip gear through Apparel.\nSelect any item to inspect it.",13,Color("#c9c0a2")))
+
 
 func icon(col:int,row:int) -> AtlasTexture:
 	var texture=AtlasTexture.new(); texture.atlas=ICON_ATLAS; texture.region=Rect2(col*443.5,row*443.5,443.5,443.5); return texture
 
 func icon_for(entry:Dictionary) -> Texture2D:
+	if entry.get("kind","")=="ammunition":return load("res://assets/ui/inventory/arrows.svg")
+	if entry.get("kind","")=="weapon":
+		var kind=load("res://scripts/weapon_profiles.gd").kind(String(entry.get("id","")))
+		if kind in ["spear","rapier","bow"]:return load("res://assets/ui/inventory/"+kind+".svg")
 	if entry.get("id","")=="leaf_shield":return load("res://assets/ui/inventory/leaf-shield.svg")
 	match String(entry.get("kind","")):
 		"weapon": return load("res://assets/ui/inventory/beta-longsword.png") if game.personal_character_enabled() else icon(0,1)
@@ -111,30 +126,35 @@ func icon_for(entry:Dictionary) -> Texture2D:
 		_: return icon(3,1)
 
 func item_count(category:String) -> int:
-	if category=="all": return item_count("weapons")+item_count("apparel")+item_count("potions")+item_count("ingredients")+item_count("quest")
+	if category=="all": return item_count("weapons")+item_count("ammunition")+item_count("apparel")+item_count("potions")+item_count("ingredients")+item_count("quest")
+	if category=="ammunition": return game.magic_items.owned.filter(func(id): return game.magic_items.item(id).category=="ammunition").size()
 	if category=="weapons": return game.magic_items.owned.filter(func(id): return game.magic_items.item(id).category=="weapon").size()
-	if category=="apparel": return game.magic_items.owned.filter(func(id): return game.magic_items.item(id).category!="consumable").size()
+	if category=="apparel": return game.magic_items.owned.filter(func(id): return game.magic_items.item(id).category not in ["consumable","weapon","ammunition"]).size()
 	if category=="potions": return game.magic_items.owned.filter(func(id): return game.magic_items.item(id).category=="consumable").size()+(1 if game.well_gift_stage=="potion_owned" else 0)
 	if category=="ingredients": return game.monster_cores.quantities.size()+(game.worldrise.guild.materials.size() if game.game_mode=="world_rise" else 0)
 	if category=="quest": return game.alpha2.quest_items().size() if game.game_mode=="alpha2" else (1 if game.well_gift_stage=="coin_ready" else 0)+(1 if game.goblin_campaign.stage=="goods_ready" else 0)+(1 if "heirloom" in game.goblin_campaign.flags else 0)+(1 if game.quest_stage=="component_ready" else 0)
 	return 0
 
 func weapon_name() -> String:
-	return "Blue-gem War Sword" if game.personal_character_enabled() else "Blue-gem Greatsword"
+	return String(game.magic_items.item(game.magic_items.weapon_id).get("name","Greatsword"))
 
 func weapon_description() -> String:
-	return "A heavy broad steel blade, recessed fuller and two-handed leather grip." if game.personal_character_enabled() else "An oversized blade."
+	return String(game.magic_items.item(game.magic_items.weapon_id).get("description","A two-handed steel blade."))
 
 func listed_items() -> Array:
 	var list=[]
 	if selected_category in ["all","weapons"]:
 		for id in game.magic_items.owned:
 			if game.magic_items.item(id).category=="weapon":
-				var weapon=game.magic_items.item(id);list.append({"kind":"weapon","id":id,"name":weapon.name,"description":weapon.description+" "+("Equipped" if game.magic_items.weapon_id==id else "Stored")})
+				var weapon=game.magic_items.item(id);list.append({"kind":"weapon","id":id,"name":weapon.name,"description":weapon.description+" "+("Equipped" if game.magic_items.weapon_id==id and game.player.sword_equipped else "Stored")})
+	if selected_category in ["all","ammunition"]:
+		for id in game.magic_items.owned:
+			var ammunition=game.magic_items.item(id)
+			if ammunition.category=="ammunition": list.append({"kind":"ammunition","id":id,"name":ammunition.name,"description":ammunition.description,"count":int(game.magic_items.quantities.get(id,0))})
 	if selected_category in ["all","apparel"]:
 		for id in game.magic_items.owned:
 			var item=game.magic_items.item(id)
-			if item.category!="consumable": list.append({"kind":"apparel","id":id,"name":item.name,"description":item.description,"category":item.category,"code":item.code})
+			if item.category not in ["consumable","weapon","ammunition"]: list.append({"kind":"apparel","id":id,"name":item.name,"description":item.description,"category":item.category,"code":item.code})
 	if selected_category in ["all","potions"]:
 		for id in game.magic_items.owned:
 			var item=game.magic_items.item(id)
@@ -157,30 +177,30 @@ func refresh_inventory_list() -> void:
 	slots.add_child(game.label(CATEGORY_NAMES[selected_category].to_upper(),22,Color("#e9c894")))
 	if selected_category=="apparel":
 		slots.add_child(game.label("EQUIPPED",15,Color("#c9c0a2")))
-		var equipment=GridContainer.new(); equipment.columns=2; equipment.add_theme_constant_override("h_separation",7); equipment.add_theme_constant_override("v_separation",7); slots.add_child(equipment)
-		var weapon=game.button("WEAPON\n"+(weapon_name() if game.player.sword_equipped else "Empty"),toggle_weapon); weapon.custom_minimum_size=Vector2(155,52); equipment.add_child(weapon)
+		var equipment=GridContainer.new(); equipment.columns=1 if get_viewport_rect().size.x<1200 else 2; equipment.add_theme_constant_override("h_separation",7); equipment.add_theme_constant_override("v_separation",7); slots.add_child(equipment)
+		var weapon=game.button("WEAPON\n"+(weapon_name() if game.player.sword_equipped else "Empty"),toggle_weapon); weapon.custom_minimum_size=Vector2(0,52); weapon.size_flags_horizontal=Control.SIZE_EXPAND_FILL; weapon.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART; equipment.add_child(weapon)
 		for slot in game.magic_items.SLOTS:
 			var equipped_id=String(game.magic_items.slots.get(slot,"")); var magic=game.magic_items.item(equipped_id)
 			var base={"torso":"Travel dress","boots":"Walking boots"}.get(slot,"Empty")
 			var cell=game.button(SLOT_NAMES[slot].to_upper()+"\n"+(magic.name if not magic.is_empty() else base),func(): selected_slot=slot; refresh())
-			cell.custom_minimum_size=Vector2(155,52); cell.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+			cell.custom_minimum_size=Vector2(0,52); cell.size_flags_horizontal=Control.SIZE_EXPAND_FILL; cell.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 			if selected_slot==slot: cell.add_theme_stylebox_override("normal",game.style(Color("#5a4a2fee"),Color("#e2c277")))
 			equipment.add_child(cell)
 		slots.add_child(game.label("Select a body slot, then choose an owned piece below.",13,Color("#c9c0a2")))
 	for entry in listed_items(): add_item_card(entry)
 	if selected_category=="apparel" and listed_items().is_empty(): slots.add_child(game.label("Find wearable gear in Menagerie [M] > Magic items.",16))
 	if selected_category=="ingredients" and listed_items().is_empty(): slots.add_child(game.label("Monster cores appear here after you loot them.",16))
-	slots.add_child(game.button("Return to game  /  I or Escape",close))
+	var back=game.button("Return to game · I / Esc",close); back.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART; slots.add_child(back)
 
 func add_item_card(entry:Dictionary) -> void:
-	var card=game.button("",func(): selected_item=entry.duplicate(); refresh_detail())
+	var card=game.button("",func(): notice_text=""; selected_item=entry.duplicate(); refresh_detail())
 	card.set_meta("inventory_entry",entry.duplicate())
-	card.custom_minimum_size=Vector2(0,70); card.alignment=HORIZONTAL_ALIGNMENT_LEFT
-	var row=HBoxContainer.new(); row.mouse_filter=Control.MOUSE_FILTER_IGNORE; card.add_child(row)
+	card.custom_minimum_size=Vector2(0,86); card.alignment=HORIZONTAL_ALIGNMENT_LEFT
+	var row=HBoxContainer.new(); row.mouse_filter=Control.MOUSE_FILTER_IGNORE; card.add_child(row); row.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT); row.offset_left=8; row.offset_top=6; row.offset_right=-8; row.offset_bottom=-6
 	var art=TextureRect.new(); art.texture=icon_for(entry); art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE; art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED; art.custom_minimum_size=Vector2(58,58); art.mouse_filter=Control.MOUSE_FILTER_IGNORE; row.add_child(art)
 	var text=VBoxContainer.new(); text.mouse_filter=Control.MOUSE_FILTER_IGNORE; text.size_flags_horizontal=Control.SIZE_EXPAND_FILL; row.add_child(text)
-	var title=game.label(entry.name,17,Color("#f4e5bd")); title.mouse_filter=Control.MOUSE_FILTER_IGNORE; text.add_child(title)
-	var sub=game.label(entry.description,13,Color("#c9c0a2")); sub.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART; sub.max_lines_visible=2; sub.mouse_filter=Control.MOUSE_FILTER_IGNORE; text.add_child(sub)
+	var title=game.label(entry.name,17,Color("#f4e5bd")); title.mouse_filter=Control.MOUSE_FILTER_IGNORE; title.max_lines_visible=1; title.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS; text.add_child(title)
+	var sub=game.label(entry.description,13,Color("#c9c0a2")); sub.autowrap_mode=TextServer.AUTOWRAP_OFF; sub.max_lines_visible=1; sub.custom_minimum_size.y=20; sub.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS; sub.mouse_filter=Control.MOUSE_FILTER_IGNORE; text.add_child(sub)
 	if entry.has("count"):
 		var count=game.label("×"+str(entry.count),18,Color("#e9c894")); count.mouse_filter=Control.MOUSE_FILTER_IGNORE; row.add_child(count)
 	if selected_item.get("kind","")==entry.kind and selected_item.get("id","")==entry.id: card.add_theme_stylebox_override("normal",game.style(Color("#5a4a2fee"),Color("#e2c277")))
@@ -188,23 +208,25 @@ func add_item_card(entry:Dictionary) -> void:
 
 func refresh_detail() -> void:
 	clear(detail)
+	if not notice_text.is_empty():
+		var notice=game.label(notice_text,16,Color("#ffd1a6")); notice.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART; detail.add_child(notice)
 	var entry=selected_item.duplicate()
 	var available=listed_items()
 	var matches=available.filter(func(candidate): return candidate.kind==entry.get("kind","") and candidate.id==entry.get("id",""))
 	if not matches.is_empty(): entry=matches[0].duplicate(); selected_item=entry.duplicate()
 	elif not available.is_empty(): entry=available[0].duplicate(); selected_item=entry.duplicate()
 	if entry.is_empty() or not entry.has("name"):
-		entry={"kind":"weapon","id":"greatsword","name":weapon_name(),"description":weapon_description()}; selected_item=entry.duplicate()
-	var art=TextureRect.new(); art.texture=icon_for(entry); art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE; art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED; art.custom_minimum_size=Vector2(0,190); detail.add_child(art)
-	detail.add_child(game.label(String(entry.get("name","Unknown item")),25,Color("#f4e5bd")))
-	var category_label={"weapon":"Weapon", "apparel":"Apparel", "potion":"Potion", "core":"Ingredient", "material":"Crafting material", "quest":"Quest item"}.get(String(entry.kind),"Item")
+		entry={"kind":"weapon","id":game.magic_items.weapon_id,"name":weapon_name(),"description":weapon_description()}; selected_item=entry.duplicate()
+	var art=TextureRect.new(); art.texture=icon_for(entry); art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE; art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED; art.custom_minimum_size=Vector2(0,130 if get_viewport_rect().size.y<650 else 190); detail.add_child(art)
+	var item_title=game.label(String(entry.get("name","Unknown item")),25,Color("#f4e5bd")); item_title.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART; detail.add_child(item_title)
+	var category_label={"weapon":"Weapon", "ammunition":"Ammunition", "apparel":"Apparel", "potion":"Potion", "core":"Ingredient", "material":"Crafting material", "quest":"Quest item"}.get(String(entry.kind),"Item")
 	detail.add_child(game.label(category_label,15,Color("#c9c0a2")))
 	var description=game.label(String(entry.get("description","")),17); description.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART; detail.add_child(description)
 	match String(entry.kind):
-		"weapon": detail.add_child(game.button("Unequip weapon" if game.magic_items.weapon_id==entry.id else "Equip weapon",func():
-			if game.magic_items.weapon_id==entry.id: game.player.set_sword_equipped(false)
-			elif game.magic_items.equip_weapon(entry.id): game.player.set_weapon_visual(entry.id); game.player.set_sword_equipped(true)
-			refresh()))
+		"weapon":
+			if load("res://scripts/weapon_profiles.gd").kind(String(entry.id))=="bow": detail.add_child(game.label("Arrows: %d" % int(game.magic_items.quantities.get("wooden_arrows",0)),17))
+			detail.add_child(game.button("Unequip weapon" if game.magic_items.weapon_id==entry.id and game.player.sword_equipped else "Equip weapon",func(): select_weapon(String(entry.id))))
+		"ammunition": detail.add_child(game.label("%d arrows remaining. Each released bow shot uses one arrow." % int(game.magic_items.quantities.get(entry.id,0)),16))
 		"apparel": refresh_apparel_detail(entry)
 		"potion":
 			var action=game.button("Drink" if entry.id!="everfull" else "Drink · +1,000 XP",func():
@@ -217,7 +239,11 @@ func refresh_detail() -> void:
 			detail.add_child(consume)
 		"material":detail.add_child(game.label("Sell at the guild front desk, or retain it for the armorer's recipes.",15,Color("#c9c0a2")))
 		"quest": detail.add_child(game.label("This item is tracked by the quest journal.",15,Color("#c9c0a2")))
-	detail.add_child(game.label("\nI closes inventory · equipment and items pause the world.",13,Color("#c9c0a2")))
+	detail.add_child(game.label(("\nI closes inventory · your character remains vulnerable online." if game.online_session_active() else "\nI closes inventory · equipment and items pause the world."),13,Color("#c9c0a2")))
+
+	for child in detail.get_children():
+		if child is Label:child.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+		if child is Button:child.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 
 func refresh_apparel_detail(entry:Dictionary) -> void:
 	if entry.category=="shield":
@@ -302,13 +328,33 @@ func refresh_skills() -> void:
 		cell.disabled=not game.progression.has(id);slots.add_child(cell)
 	wrap_labels()
 
+func select_weapon(id:String)->void:
+	notice_text=""
+	var unequip=game.magic_items.weapon_id==id and game.player.sword_equipped
+	if game.online_session_active():
+		if unequip:game.wr_session.request_action("weapon_equipped",{"enabled":false})
+		else:
+			game.wr_session.request_action("equip",{"item":id})
+			game.wr_session.request_action("weapon_equipped",{"enabled":true})
+		return
+	if unequip:game.player.set_sword_equipped(false)
+	elif game.magic_items.equip_weapon(id):game.player.set_weapon_visual(id);game.player.set_sword_equipped(true)
+	refresh()
+
 func toggle_weapon() -> void:
+	if game.online_session_active():game.wr_session.request_action("weapon_equipped",{"enabled":not game.player.sword_equipped});return
 	game.player.set_sword_equipped(not game.player.sword_equipped); refresh()
 
 func drink_potion() -> void:
 	game.drink_experience_potion(); refresh()
 
 func close() -> void:
+	game._cancel_mouse_charge()
 	visible=false; preview.actor.set_physics_process(false)
 	if game.skill_tree!=null: game.skill_tree.visible=false
 	game._refresh_simulation()
+
+func online_action_result(result:Dictionary)->void:
+	if not visible or result.get("ok",false):return
+	notice_text=String(result.get("error","The server could not complete this action."))
+	if page=="equipment":refresh_detail()

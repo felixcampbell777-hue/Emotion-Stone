@@ -19,15 +19,29 @@ func configure(game:Node) -> void:
 	actor.set_meta("equipment_preview",true)
 	actor.set_sword_equipped(false)
 	actor.set_physics_process(false)
+	actor.weapon_runtime=preload("res://scripts/weapon_runtime.gd").new()
+	actor.weapon_runtime.configure(game,actor)
 	camera=Camera3D.new(); camera.position=Vector3(0,1.1,3.4); camera.fov=38; world.add_child(camera); camera.look_at(Vector3(0,.94,0))
 	actor.visual.rotation.y=.2
 func refresh(game:Node) -> void:
 	actor.set_physics_process(game.inventory.visible and game.inventory.page=="equipment")
-	var key=JSON.stringify(game.magic_items.slots)+str(game.player.sword_equipped)+game.environment_profile+game.character_profile+game.game_mode
+	var appearance_key=preload("res://scripts/appearance_profile.gd").revision_key(game.appearance)
+	var key=JSON.stringify(game.magic_items.slots)+str(game.player.sword_equipped)+game.magic_items.weapon_id+game.environment_profile+game.character_profile+game.game_mode+appearance_key
 	if key==signature: return
 	signature=key
 	actor.set_sword_equipped(game.player.sword_equipped)
+	actor.set_weapon_visual(game.magic_items.weapon_id)
 	game.apply_character_art(actor)
+	if actor.weapon_runtime.enabled():
+		actor.set_sword_drawn(true)
+		actor.movement_camera_yaw=actor.visual.rotation.y+PI
+		actor.weapon_runtime.pose("ready",0.0)
+
+func _process(_delta:float) -> void:
+	if actor==null or not is_visible_in_tree() or actor.weapon_runtime==null:return
+	if actor.weapon_runtime.enabled():
+		actor.movement_camera_yaw=actor.visual.rotation.y+PI
+		actor.weapon_runtime.pose("ready",0.0)
 func _gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseMotion and event.button_mask&MOUSE_BUTTON_MASK_LEFT:
 		actor.visual.rotation.y+=event.relative.x*.012

@@ -4,16 +4,18 @@ func run(test:RefCounted) -> void:
 	game.start_new_game(false); game.home_intro_complete=true
 	game.load_map("menagery",Vector2(10,0),true)
 	var gear=game.magic_items
-	test.check(gear.catalog.items.size()==35 and gear.SLOTS.size()==7,"Magic codex contains thirty-two wearables, three draughts and seven independent wearable slots")
+	var item_ids={}
+	for entry in gear.catalog.items:item_ids[entry.id]=true
+	test.check(gear.catalog.items.size()==item_ids.size() and gear.SLOTS.size()==7,"Magic codex contains unique stable item IDs and seven independent wearable slots")
 	for type in ["ring","torso","leggings","boots","headwear","necklace"]:
 		test.check(gear.catalog.items.filter(func(e): return e.category==type).size()==(6 if type in ["torso","boots"] else 5),type+" includes its distinct item definitions and campaign treasure")
 	game.menagery.toggle(); game.menagery.tabs.current_tab=2
-	test.check(game.menagery.codex.list.get_child_count()==36 and not game.player.input_enabled,"Menagerie magic codex is accessible and pauses gameplay")
+	test.check(game.menagery.codex.list.get_child_count()==gear.catalog.items.size() and not game.player.input_enabled,"Menagerie magic codex is accessible and pauses gameplay")
 	var card=game.menagery.codex.list.get_child(0).get_child(0).get_child(1)
 	card.get_child(2).pressed.emit()
 	test.check("tidal_signet" in gear.owned,"Actual codex Claim button grants an owned specimen")
 	for entry in gear.catalog.items: gear.claim(entry.id)
-	test.check(gear.owned.size()==36 and not gear.claim("tidal_signet"),"Specimen claims never duplicate ownership")
+	test.check(gear.owned.size()==gear.catalog.items.size() and not gear.claim("tidal_signet"),"Specimen claims never duplicate ownership")
 	game.menagery.close()
 	game.load_map("coastal_path",Vector2(0,3),true)
 	test.check(not gear.claim("unknown") and not gear.equip("boots","unowned"),"Unknown and unowned equipment are rejected")

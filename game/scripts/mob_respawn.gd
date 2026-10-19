@@ -22,7 +22,7 @@ func on_death() -> void:
  game.call_deferred("retire_transient",creature)
  creature=null
 func _process(delta:float) -> void:
- if remaining<=0 or not game.player.input_enabled or game.gallery_mode: return
+ if remaining<=0 or not game.simulation_active() or game.gallery_mode: return
  remaining=maxf(0,remaining-delta)
  if remaining<=0: spawn()
  else: game.respawn_timers[key]=remaining

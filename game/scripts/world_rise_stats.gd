@@ -3,6 +3,7 @@ static func tier(rank:int,values:Array) -> float:return float(values[clampi(rank
 static func reduction(g:Node) -> float:return clampf(.02*g.progression.rank("iron_body")+.10*g.progression.rank("stonewall"),0,1)
 static func damage_multiplier(g:Node) -> float:
 	var p=g.progression
+	if g.player.weapon_type!="greatsword":return 1+.02*p.rank("iron_body")
 	return (1+.02*p.rank("iron_body")+.05*p.rank("great_greatsword")+.15*p.rank("basher"))*(2 if p.has("devastating_blade") else 1)
 static func apply(g:Node) -> void:
 	var p=g.player;var s=g.progression;var c=p.combat;var gain=1+.01*(s.level()-1)
@@ -14,7 +15,7 @@ static func apply(g:Node) -> void:
 	for attack in c.combo:attack.damage=roundi(attack.damage*strength)
 	var universal=maxf(.01,1-.02*s.rank("iron_body"))
 	p.jump_stamina_multiplier=universal
-	var swing=maxf(.01,1-.15*s.rank("honed_arms")-.07*s.rank("great_greatsword"))
+	var swing=maxf(.01,1-.15*s.rank("honed_arms")-(.07*s.rank("great_greatsword") if p.weapon_type=="greatsword" else 0.0))
 	for key in ["light","heavy","thrust"]:c[key].stamina_cost*=universal*swing
 	for attack in c.combo:attack.stamina_cost*=universal*swing
 	for key in ["parry","dodge"]:c[key].stamina_cost*=universal
@@ -28,6 +29,7 @@ static func apply(g:Node) -> void:
 	p.dash_stamina_multiplier=universal*saving
 	var roll_speed=1+tier(s.rank("roly_poly"),[0,.25,.40,.75]);var roll_distance=1+tier(s.rank("roly_poly"),[0,.25,.50,.80])
 	c.dodge.speed*=roll_speed*roll_distance;c.dodge.duration/=roll_speed
+	p.thrust_unlocked=s.has("charge_thrust") and p.weapon_type=="greatsword"
 	p.thrust_charge_rate=2.0 if s.has("fast_thrust") else 1.0;c.thrust_charge.max_seconds=5.0;c.thrust_charge.damage_per_second=.15
 	p.water_unlocked=false;p.dash_water_unlocked=false;p.lance_unlocked=false;p.dragon_unlocked=false;p.undertow_unlocked=false
 	g.selected_special_attack="water_sweep"

@@ -77,6 +77,7 @@ func run(test:RefCounted) -> void:
 	test.check(max_gap<.018,"Both skinned grip centers stay on the moving hilt throughout the combo")
 	print("UPPER ARM MAX STEP ",max_upper_step," LEFT OPENER ",opener_left_step)
 	test.check(opener_left_step<25,"Upper arms stay continuous as forearm roll crosses the signed-angle seam; no left-arm inversion during the opener")
+	test.check(max_upper_step<25,"Both guided upper arms remain continuous across all three cuts")
 	print("LEFT ELBOW ABOVE WRIST ",elbow_above)
 	test.check(elbow_above<-.015,"Opening cut keeps the support elbow below the wrist rather than rolling over above the hand")
 	var join_error=0.0

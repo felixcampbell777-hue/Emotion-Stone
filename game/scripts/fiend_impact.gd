@@ -14,7 +14,7 @@ func configure(owner:Node,at:Vector3) -> void:
 		var rock=load("res://scripts/props.gd").box(self,direction*.3,Vector3(.12,.16,.13)*(1+i%3*.3),"#7c7965")
 		debris.append({"node":rock,"velocity":direction*(2.1+i%4*.4)+Vector3.UP*(2.8+i%3*.6)})
 func _physics_process(delta:float) -> void:
-	if not is_instance_valid(game) or not game.player.input_enabled:return
+	if not is_instance_valid(game) or not game.simulation_active():return
 	age+=delta
 	var radius=lerpf(.1,3.0,clampf(age/.48,0,1));ring.scale=Vector3(radius,.2,radius);ring.material_override.albedo_color.a=maxf(0,.8*(1-age/.65))
 	for entry in debris:

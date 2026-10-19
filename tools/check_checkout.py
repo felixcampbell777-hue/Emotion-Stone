@@ -29,6 +29,8 @@ def main():
                  'docs/maps/floor-02-island-codes.json']:
         if name not in tracked:
             problems.append('Required handoff file is not tracked: ' + name)
+            if not (ROOT / name).is_file():
+                problems.append('Missing required handoff file: ' + name)
     references = set()
     for name in sorted(tracked):
         if not name.startswith('game/') or Path(name).suffix not in {
@@ -43,18 +45,29 @@ def main():
                 continue  # Generated test report destinations, never input assets.
             if any(part in target for part in ('*', '%', '{')) or target.endswith('/'):
                 continue  # Dynamic paths are exercised by Godot, not this check.
-            resource = 'game/' + target
+            try:
+                resource = (ROOT / 'game' / target).resolve().relative_to(ROOT).as_posix()
+            except ValueError:
+                problems.append(f'{name}: literal runtime resource is outside the checkout: {target}')
+                continue
             if (ROOT / resource).is_dir():
                 continue
             if (ROOT / resource).is_file():
                 references.add(resource)
                 if resource not in tracked:
                     problems.append('Runtime dependency is untracked: ' + resource)
+                    with (ROOT / resource).open('rb') as stream:
+                        if stream.read(160).startswith(b'version https://git-lfs.github.com/spec/v1\n'):
+                            problems.append('Git LFS object not downloaded: ' + resource)
             else:
                 problems.append(f'{name}: missing literal runtime resource {target}')
     if problems:
         print('\n'.join(sorted(set(problems))))
-        print('Run git lfs pull and resolve missing files before importing Godot.')
+        materialization = [item for item in problems if not item.startswith(('Runtime dependency is untracked:', 'Required handoff file is not tracked:'))]
+        if materialization:
+            print('Materialization failed: resolve missing files or run git lfs pull for LFS stubs before importing Godot.')
+        else:
+            print('MATERIALIZED: tracked files and referenced runtime inputs exist; no LFS stubs. Handoff tracking is incomplete; include the new dependencies when committing.')
         return 1
     print(f'CHECKOUT OK: {len(tracked)} tracked files; '
           f'{len(references)} literal runtime dependencies; no missing files or LFS stubs.')

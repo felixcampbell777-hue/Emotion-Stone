@@ -6,12 +6,18 @@ func freeze(g:Node) -> void:
 	for e in g.enemies:e.set_physics_process(false);e.ai_enabled=false
 func move_to(g:Node,at:Vector2) -> void:
 	g.player.position=Vector3(at.x,0,at.y);g.player.position.y=Shape.height(g.player.position)
-	for i in range(30):g.worldrise.update_packs()
+	# Streaming queues one model per production tick. Explicit fixture ticks
+	# keep automatic physics frozen while allowing the real bounded queue to settle.
+	g.worldrise.update_packs()
+	for i in range(30):g.worldrise.tick(1.0/60)
 	freeze(g)
 func run(test:RefCounted) -> void:
 	var g=test.game;var originals={}
 	for path in ["user://save-v1.json","user://beta-save-v1.json","user://alpha2-save-v1.json","user://world-rise-save-v1.json"]:originals[path]=FileAccess.get_file_as_bytes(path) if FileAccess.file_exists(path) else PackedByteArray()
-	g.set_process(false);g.game_mode="world_rise";g.start_new_game(false);g.title_screen.hide();g._refresh_simulation();freeze(g)
+	g.set_process(false);g.game_mode="world_rise";g.start_new_game(false);g.title_screen.hide();g._refresh_simulation()
+	g.worldrise.update_packs()
+	for i in range(30):g.worldrise.tick(1.0/60)
+	freeze(g)
 	test.check(g.map_id=="wr_floor_01" and g.player.position==Vector3(0,26,0),"Fresh World Rise begins on the central arrival platform")
 	await test.frames(2)
 	await load("res://scripts/rise_slope_checks.gd").new().run(test)

@@ -145,8 +145,10 @@ func _release_ability() -> void:
 		state="recover"; state_time=float(specimen.recover); return
 	state="lunge"; state_time=.45 if style=="piglet" else .32; lunge_hit=false
 
-func notice_trapped_target() -> bool:
+func notice_trapped_target(target:Node3D=null) -> bool:
 	if style!="resin_slime" or health<=0 or not ai_enabled or not simulation_enabled or state not in ["idle","recover","windup"] or knockback.length_squared()>.01 or hit_flash>0 or parry_flash>0: return false
+	if is_instance_valid(target):player=target
+	if not is_instance_valid(player) or player.health<=0:return false
 	state="resin_charge"; state_time=float(game.menagery.catalog.resin_attack.charge_seconds)
 	dash_target=player.position; direction=((dash_target-position)*Vector3(1,0,1)).normalized(); knockback=Vector3.ZERO
 	if dash_line==null:
@@ -154,6 +156,7 @@ func notice_trapped_target() -> bool:
 	return true
 
 func _physics_process(delta:float) -> void:
+	preload("res://scripts/world_sound.gd").creature(self)
 	if not simulation_enabled or health<=0: return
 	if state=="canyon_wait":return
 	if _drop_tick(delta): return

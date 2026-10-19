@@ -1,0 +1,195 @@
+{
+  "author": "Kenney",
+  "license": "CC0-1.0",
+  "page": "https://opengameart.org/content/50-rpg-sound-effects",
+  "download": "https://opengameart.org/sites/default/files/RPGsounds_Kenney.zip",
+  "archive_sha256": "3ae398ad63e293f9c450bda22d5d81c3af69c74df66fc1400f33c012c0bbc231",
+  "files": [
+    "OGG/",
+    "OGG/beltHandle1.ogg",
+    "OGG/beltHandle1.ogg.sfk",
+    "OGG/beltHandle2.ogg",
+    "OGG/beltHandle2.ogg.sfk",
+    "OGG/bookClose.ogg",
+    "OGG/bookClose.ogg.sfk",
+    "OGG/bookFlip1.ogg",
+    "OGG/bookFlip1.ogg.sfk",
+    "OGG/bookFlip2.ogg",
+    "OGG/bookFlip2.ogg.sfk",
+    "OGG/bookFlip3.ogg",
+    "OGG/bookFlip3.ogg.sfk",
+    "OGG/bookOpen.ogg",
+    "OGG/bookOpen.ogg.sfk",
+    "OGG/bookPlace1.ogg",
+    "OGG/bookPlace1.ogg.sfk",
+    "OGG/bookPlace2.ogg",
+    "OGG/bookPlace2.ogg.sfk",
+    "OGG/bookPlace3.ogg",
+    "OGG/bookPlace3.ogg.sfk",
+    "OGG/chop.ogg",
+    "OGG/chop.ogg.sfk",
+    "OGG/cloth1.ogg",
+    "OGG/cloth1.ogg.sfk",
+    "OGG/cloth2.ogg",
+    "OGG/cloth2.ogg.sfk",
+    "OGG/cloth3.ogg",
+    "OGG/cloth3.ogg.sfk",
+    "OGG/cloth4.ogg",
+    "OGG/cloth4.ogg.sfk",
+    "OGG/clothBelt.ogg",
+    "OGG/clothBelt.ogg.sfk",
+    "OGG/clothBelt2.ogg",
+    "OGG/clothBelt2.ogg.sfk",
+    "OGG/creak1.ogg",
+    "OGG/creak1.ogg.sfk",
+    "OGG/creak2.ogg",
+    "OGG/creak2.ogg.sfk",
+    "OGG/creak3.ogg",
+    "OGG/creak3.ogg.sfk",
+    "OGG/doorClose_1.ogg",
+    "OGG/doorClose_1.ogg.sfk",
+    "OGG/doorClose_2.ogg",
+    "OGG/doorClose_2.ogg.sfk",
+    "OGG/doorClose_3.ogg",
+    "OGG/doorClose_3.ogg.sfk",
+    "OGG/doorClose_4.ogg",
+    "OGG/doorClose_4.ogg.sfk",
+    "OGG/doorOpen_1.ogg",
+    "OGG/doorOpen_1.ogg.sfk",
+    "OGG/doorOpen_2.ogg",
+    "OGG/doorOpen_2.ogg.sfk",
+    "OGG/drawKnife1.ogg",
+    "OGG/drawKnife1.ogg.sfk",
+    "OGG/drawKnife2.ogg",
+    "OGG/drawKnife2.ogg.sfk",
+    "OGG/drawKnife3.ogg",
+    "OGG/drawKnife3.ogg.sfk",
+    "OGG/dropLeather.ogg",
+    "OGG/dropLeather.ogg.sfk",
+    "OGG/footstep00.ogg",
+    "OGG/footstep00.ogg.sfk",
+    "OGG/footstep01.ogg",
+    "OGG/footstep01.ogg.sfk",
+    "OGG/footstep02.ogg",
+    "OGG/footstep02.ogg.sfk",
+    "OGG/footstep03.ogg",
+    "OGG/footstep03.ogg.sfk",
+    "OGG/footstep04.ogg",
+    "OGG/footstep04.ogg.sfk",
+    "OGG/footstep05.ogg",
+    "OGG/footstep05.ogg.sfk",
+    "OGG/footstep06.ogg",
+    "OGG/footstep06.ogg.sfk",
+    "OGG/footstep07.ogg",
+    "OGG/footstep07.ogg.sfk",
+    "OGG/footstep08.ogg",
+    "OGG/footstep08.ogg.sfk",
+    "OGG/footstep09.ogg",
+    "OGG/footstep09.ogg.sfk",
+    "OGG/handleCoins.ogg",
+    "OGG/handleCoins.ogg.sfk",
+    "OGG/handleCoins2.ogg",
+    "OGG/handleCoins2.ogg.sfk",
+    "OGG/handleSmallLeather.ogg",
+    "OGG/handleSmallLeather.ogg.sfk",
+    "OGG/handleSmallLeather2.ogg",
+    "OGG/handleSmallLeather2.ogg.sfk",
+    "OGG/knifeSlice.ogg",
+    "OGG/knifeSlice.ogg.sfk",
+    "OGG/knifeSlice2.ogg",
+    "OGG/knifeSlice2.ogg.sfk",
+    "OGG/metalClick.ogg",
+    "OGG/metalClick.ogg.sfk",
+    "OGG/metalLatch.ogg",
+    "OGG/metalLatch.ogg.sfk",
+    "OGG/metalPot1.ogg",
+    "OGG/metalPot1.ogg.sfk",
+    "OGG/metalPot2.ogg",
+    "OGG/metalPot2.ogg.sfk",
+    "OGG/metalPot3.ogg",
+    "OGG/metalPot3.ogg.sfk",
+    "license.txt"
+  ],
+  "selected": [
+    {
+      "file": "game/assets/audio/kenney/footstep00.ogg",
+      "sha256": "6fe61ef1fc3bcf0e253bf2eb64759db6cb69e2fe452f4d88cc597ecf78a3d601",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "game/assets/audio/kenney/footstep01.ogg",
+      "sha256": "313472dba31fd0c855376069fa368bb5a198c27251cc8398ef464578b7047a4c",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "game/assets/audio/kenney/footstep02.ogg",
+      "sha256": "2d9575b7dead6e1217ca113991fc5229e9b6d998ea0726ebbb277e7398ab888f",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "game/assets/audio/kenney/footstep03.ogg",
+      "sha256": "a86756b9af9f370455ab47844239bb07fd1bee7a113068c91f0fcd9b72703fae",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "game/assets/audio/kenney/footstep04.ogg",
+      "sha256": "fd264d72a7cd622b82abde202f4ed09fa7de95d34c36473ee938ce66cdf39830",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "game/assets/audio/kenney/footstep05.ogg",
+      "sha256": "817957e1f95d97fd36870064c41673895575cde17bccb245f50364c86ed10198",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "game/assets/audio/kenney/drawKnife1.ogg",
+      "sha256": "276403e72c3b71c47bc24db3083970c23f8e5551ffa78f436f83483c56f3f0bb",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "game/assets/audio/kenney/drawKnife2.ogg",
+      "sha256": "d5df6a4130cbb016f97b4883769a418917b9629cb4c21717030b186e0c73281a",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "game/assets/audio/kenney/knifeSlice.ogg",
+      "sha256": "4cd96dc630bed9840c15f1dd2306da2cc56a4da26a5d3f1a03c5a7265ac5e54f",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "game/assets/audio/kenney/knifeSlice2.ogg",
+      "sha256": "6c2064d0ef988d1ec3d56868e823ea8823a5cac00f2742560052633529407def",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "game/assets/audio/kenney/handleCoins.ogg",
+      "sha256": "8a91f969e932df709df80ee124d86a51389eed9b67f22e5e716bc2bbf60d8dab",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "game/assets/audio/kenney/handleCoins2.ogg",
+      "sha256": "4b857968d64f9ac9336a10ffac6694d7547e1f01566ad6857b30bc8db3ee6c32",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "game/assets/audio/kenney/cloth1.ogg",
+      "sha256": "ddb93a3671233f95da0e0b10367f082f7eb42fa6caaddcf776410aa8833c747d",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "game/assets/audio/kenney/cloth2.ogg",
+      "sha256": "8a7451193c38bc05483aec25dd193e163a15d44cf7fff04ac7912573231b0201",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "game/assets/audio/kenney/bookOpen.ogg",
+      "sha256": "953390534377222bee89ac8cd9e60a58fdc037c71a4d7c18c43cd647c7f34ba8",
+      "license": "CC0-1.0"
+    },
+    {
+      "file": "game/assets/audio/kenney/bookClose.ogg",
+      "sha256": "81e976532565f4372abd14e83d2684195fa548d0a28d345de221e56052454f32",
+      "license": "CC0-1.0"
+    }
+  ]
+}

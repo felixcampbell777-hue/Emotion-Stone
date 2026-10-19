@@ -1,5 +1,6 @@
 extends MeshInstance3D
 ## One forward pressure fan at the sliding stop; scenery blocks its contacts.
+var source_context:Dictionary={}
 var game:Node
 var tuning:Dictionary
 var direction=Vector3.FORWARD
@@ -9,6 +10,8 @@ var ribbons=ImmediateMesh.new()
 
 func configure(owner:Node,at:Vector3,forward:Vector3) -> void:
 	game=owner
+	if game.player.has_method("action_context"):source_context=game.player.action_context().duplicate(true)
+	source_context["damage_kind"]="skill";source_context["weapon_type"]=""
 	tuning=game.player.combat.thrust_charge
 	global_position=at
 	direction=Vector3(forward.x,0,forward.z).normalized()
@@ -25,12 +28,12 @@ func configure(owner:Node,at:Vector3,forward:Vector3) -> void:
 	redraw()
 
 func _physics_process(delta:float) -> void:
-	if game==null or not game.player.input_enabled or game.gallery_mode: return
+	if game==null or not game.simulation_active() or game.gallery_mode: return
 	age+=delta
 	var progress=clampf(age/float(tuning.gust_seconds),0,1)
 	var reach=float(tuning.gust_distance)*progress
 	var right=Vector3(direction.z,0,-direction.x)
-	for enemy in game.enemies:
+	for enemy in ([] if game.has_method("online_session_active") and game.online_session_active() and game.get("authoritative_simulation")!=true else game.enemies):
 		if not is_instance_valid(enemy) or enemy.health<=0 or hit_ids.has(enemy.get_instance_id()): continue
 		var toward=enemy.global_position-global_position
 		var forward=toward.dot(direction)
@@ -40,6 +43,7 @@ func _physics_process(delta:float) -> void:
 		hit_ids[enemy.get_instance_id()]=true
 		var query=PhysicsRayQueryParameters3D.create(global_position+Vector3.UP*.3,enemy.global_position+Vector3.UP*.65,1)
 		if not get_world_3d().direct_space_state.intersect_ray(query).is_empty(): continue
+		if enemy.size_class!="giant":enemy.set_meta("last_impulse_context",source_context.duplicate(true))
 		enemy.take_thrust_gust(direction,float(tuning.recoil_multiplier),float(tuning.gust_stun_seconds))
 	redraw()
 	if progress>=1: queue_free()

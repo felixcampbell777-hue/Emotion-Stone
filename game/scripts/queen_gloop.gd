@@ -20,7 +20,7 @@ func repel(_away:Vector3,_force:float,_stun:float) -> void:
 	reflected=true; origin=position; landing=queen.position+Vector3.UP*.8; age=0; duration=.4
 	blob.material_override=Props.mat("#9fe3ec")
 func _physics_process(delta:float) -> void:
-	if is_queued_for_deletion() or not game.player.input_enabled or game.gallery_mode: return
+	if is_queued_for_deletion() or not game.simulation_active() or game.gallery_mode: return
 	if not is_instance_valid(queen) or queen.health<=0: queue_free(); return
 	age+=delta; var t=clampf(age/duration,0,1); var next=origin.lerp(landing,t)+Vector3.UP*(8*t*(1-t))
 	var wall=get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(position,next,1))

@@ -20,7 +20,7 @@
       "code": "W0",
       "category": "weapon",
       "name": "Standard Greatsword",
-      "description": "Starter weapon. Base damage 22\u00e2\u20ac\u201c32 per opening strike before stat bonuses; roughly one-third to one-half of a standard boar's 65 HP.",
+      "description": "Starter weapon. Base damage 22 to 32 per opening strike before stat bonuses; roughly one-third to one-half of a standard boar's 65 HP.",
       "color": "#6f7478",
       "accent": "#9ca5a8",
       "variant": 0,
@@ -33,7 +33,7 @@
       "code": "W5",
       "category": "weapon",
       "name": "Improved Standard Greatsword",
-      "description": "Level 5 weapon. Base damage 35\u00e2\u20ac\u201c49 per opening strike before stat bonuses; roughly one-half to three-quarters of a standard boar's 65 HP.",
+      "description": "Level 5 weapon. Base damage 35 to 49 per opening strike before stat bonuses; roughly one-half to three-quarters of a standard boar's 65 HP.",
       "color": "#75818a",
       "accent": "#d59b45",
       "variant": 1,
@@ -47,7 +47,7 @@
       "code": "W7",
       "category": "weapon",
       "name": "Wolf's Bane Greatsword",
-      "description": "Level 7 weapon. Base damage 39\u00e2\u20ac\u201c65 per opening strike before stat bonuses; roughly three-fifths to all of a standard boar's 65 HP. +18% damage against Canine mobs.",
+      "description": "Level 7 weapon. Base damage 39 to 65 per opening strike before stat bonuses; roughly three-fifths to all of a standard boar's 65 HP. +18% damage against Canine mobs.",
       "color": "#08090b",
       "accent": "#171a20",
       "variant": 2,
@@ -633,6 +633,61 @@
         "regen_rate": 0,
         "regen_seconds": 0,
         "burst_heal": 25
+      }
+    },
+    {
+      "id": "field_spear",
+      "code": "WSP",
+      "category": "weapon",
+      "name": "Field Spear",
+      "description": "A long spear. Its steel tip reaches farther than any other melee weapon.",
+      "color": "#806748",
+      "accent": "#c4cbd1",
+      "variant": 0,
+      "effects": {
+        "weapon_base": 1.0,
+        "level": 1
+      }
+    },
+    {
+      "id": "duelist_rapier",
+      "code": "WRP2",
+      "category": "weapon",
+      "name": "Duelist Rapier",
+      "description": "Quick precise thrusts with mobile footwork. Dodges remain vulnerable.",
+      "color": "#806748",
+      "accent": "#c4cbd1",
+      "variant": 0,
+      "effects": {
+        "weapon_base": 1.0,
+        "level": 1
+      }
+    },
+    {
+      "id": "hunting_bow",
+      "code": "WBW",
+      "category": "weapon",
+      "name": "Hunting Bow",
+      "description": "Hold attack to draw, release to fire a physical arrow. Uses Wooden Arrows.",
+      "color": "#806748",
+      "accent": "#c4cbd1",
+      "variant": 0,
+      "effects": {
+        "weapon_base": 1.0,
+        "level": 1
+      }
+    },
+    {
+      "id": "wooden_arrows",
+      "code": "WRA",
+      "category": "ammunition",
+      "name": "Wooden Arrows",
+      "description": "A finite supply for the Hunting Bow. Missed arrows can be recovered.",
+      "color": "#876846",
+      "accent": "#d0d2d4",
+      "variant": 0,
+      "effects": {
+        "ammunition": 1
       }
     }
   ],

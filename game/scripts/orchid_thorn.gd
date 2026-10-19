@@ -14,7 +14,7 @@ func repel(_away:Vector3,_force:float,_stun:float) -> void:
 	reflected=true
 	direction=(thrower.global_position+Vector3.UP*1.7-global_position).normalized()
 func _physics_process(delta:float) -> void:
-	if not is_instance_valid(game) or not game.player.input_enabled:return
+	if not is_instance_valid(game) or not game.simulation_active():return
 	if not is_instance_valid(thrower) or thrower.health<=0:queue_free();return
 	life-=delta;var next=global_position+direction*(17 if reflected else 12)*delta
 	var target=thrower.global_position+Vector3.UP*1.7 if reflected else game.player.position+Vector3.UP*.9

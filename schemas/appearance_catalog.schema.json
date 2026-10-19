@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "catalog_version",
+    "base_id",
+    "geometry_status",
+    "categories",
+    "tints",
+    "review_note"
+  ],
+  "properties": {
+    "catalog_version": {
+      "const": 2
+    },
+    "base_id": {
+      "const": "wr_heroine"
+    },
+    "geometry_status": {
+      "const": "reviewed_rig_preserving_options"
+    },
+    "review_note": {
+      "type": "string",
+      "minLength": 1
+    },
+    "categories": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "face",
+        "hair",
+        "skin",
+        "body"
+      ],
+      "properties": {
+        "face": {
+          "$ref": "#/$defs/category"
+        },
+        "hair": {
+          "$ref": "#/$defs/category"
+        },
+        "skin": {
+          "$ref": "#/$defs/category"
+        },
+        "body": {
+          "$ref": "#/$defs/category"
+        }
+      }
+    },
+    "tints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "skin",
+        "hair",
+        "eyes",
+        "cloth",
+        "leather"
+      ],
+      "properties": {
+        "skin": {
+          "$ref": "#/$defs/swatches"
+        },
+        "hair": {
+          "$ref": "#/$defs/swatches"
+        },
+        "eyes": {
+          "$ref": "#/$defs/swatches"
+        },
+        "cloth": {
+          "$ref": "#/$defs/swatches"
+        },
+        "leather": {
+          "$ref": "#/$defs/swatches"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "swatches": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 16,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^#[0-9A-F]{6}$"
+      }
+    },
+    "category": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "options"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "options": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

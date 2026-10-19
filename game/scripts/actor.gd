@@ -3,6 +3,7 @@ const BODY = preload("res://assets/characters/humanoid-v1.glb")
 const SWORD = preload("res://assets/characters/greatsword-v1.glb")
 const BETA_SWORD = preload("res://assets/characters/greatsword-beta.glb")
 const BetaSwordMotion = preload("res://scripts/beta_sword_motion.gd")
+signal presentation_event(event: Dictionary)
 signal health_changed(current: int, maximum: int)
 signal damaged(amount: int)
 signal dodge_rejected(reason: String)
@@ -52,6 +53,25 @@ var controllable = false
 var camera_relative=false
 var movement_camera_yaw=0.0
 var input_enabled = true
+var damage_authority = true
+var simulation_enabled = true
+var online_mode = false
+# Authority feeds the same action/movement simulation without global Input state.
+var command_input_enabled=false
+var command_movement=Vector2.ZERO
+var command_sprint=false
+func set_network_input(movement:Vector2,sprint:bool) -> void:
+	command_input_enabled=true
+	command_movement=movement.limit_length(1.0)
+	command_sprint=sprint
+func movement_input() -> Vector2:
+	return command_movement if command_input_enabled else Input.get_vector("move_left","move_right","move_up","move_down")
+var entity_id = "local_player"
+var action_sequence = 0
+var action_event_index = 0
+var swing_cue_action=-1
+var weapon_type = "greatsword"
+var weapon_runtime: RefCounted
 var walk_speed = 2.4
 var last_axis = 0
 var current_clip = ""
@@ -77,7 +97,14 @@ var sword_equipped=true
 var dash_stamina_multiplier=1.0
 var jump_stamina_multiplier=1.0
 var sword_drawn = false
-var state = "free"
+var state = "free":
+	set(value):
+		if state == value: return
+		state = value
+		if value != "free":
+			action_sequence += 1
+			action_event_index = 0
+			emit_presentation("action." + value)
 var state_time = 0.0
 var state_duration = 0.0
 var attack_direction = Vector3.FORWARD
@@ -152,6 +179,33 @@ var action_transition_bones: Array=[]
 var action_transition_remaining=0.0
 var action_transition_duration=.16
 
+func simulation_active() -> bool:
+	return simulation_enabled and (input_enabled or online_mode)
+
+func action_context() -> Dictionary:
+	return {"actor_id":entity_id,"action_id":entity_id + ":" + str(action_sequence),"weapon_type":weapon_type,"action":state,"phase":state_time / maxf(.001,state_duration)}
+
+func emit_presentation(event_id:String, extra:Dictionary={}) -> void:
+	if bool(get_meta("prediction_replay",false)):return
+	var event=action_context()
+	event.merge(extra,true)
+	event["id"]=event_id
+	event["event_index"]=action_event_index
+	event["at"]=global_position if is_inside_tree() else position
+	action_event_index+=1
+	presentation_event.emit(event)
+
+func cancel_pending_input() -> void:
+	shift_pending=false
+	shift_clock=0
+	combo_queued=false
+	roll_attack_queued=false
+	dash_release_queued=false
+	if state=="dash_charge":
+		clear_dash_attack()
+		state="free"
+	cancel_charge()
+
 func _init() -> void:
 	collision_layer = 2
 	collision_mask = 1 | 2 | 4
@@ -215,6 +269,7 @@ func configure(data: Dictionary) -> void:
 	sword_equipped = data.modules.equipment == "greatsword"
 	equipment.visible = sword_equipped
 	back_harness.visible=sword_equipped
+	if weapon_runtime!=null and weapon_runtime.enabled():weapon_runtime.pose("ready",0)
 	harness_material.albedo_color=Color(data.palette.leather)
 	holder_material.albedo_color=Color(data.palette.leather)
 	_apply_palette(visual)
@@ -526,6 +581,8 @@ func set_sword_equipped(value: bool) -> void:
 	back_harness.visible=sword_equipped
 
 func set_weapon_visual(id:String) -> void:
+	weapon_type=preload("res://scripts/weapon_profiles.gd").kind(id)
+	if weapon_runtime!=null and weapon_runtime.item_id!=id:weapon_runtime.equip(id)
 	if equipment==null:return
 	for mesh in equipment.find_children("*","MeshInstance3D",true,false):
 		if id=="standard_greatsword" and "gem" in String(mesh.name).to_lower():mesh.visible=false;continue
@@ -569,8 +626,9 @@ func set_sword_drawn(value: bool) -> void:
 	else:
 		_place_on_back()
 	current_clip=""
-	play_clip("drag_idle_loop" if value else "idle_loop",0.0)
+	play_clip("drag_idle_loop" if value and (weapon_runtime==null or not weapon_runtime.enabled()) else "idle_loop",0.0)
 	animator.advance(0)
+	if weapon_runtime!=null and weapon_runtime.enabled():weapon_runtime.pose("ready",0)
 
 func clear_lance_charge() -> void:
 	if is_instance_valid(lance_charge_fx):
@@ -760,6 +818,7 @@ func queue_combo() -> bool:
 	return true
 
 func begin_attack(kind: String, charged:float=0.0, prepared:bool=false) -> bool:
+	if weapon_runtime!=null and weapon_runtime.enabled():return weapon_runtime.begin_primary()
 	if kind=="light" and state=="dash_charge": return queue_dash_attack()
 	if kind=="light" and counter_ready(): return begin_counter()
 	if kind=="light" and state in ["roll","stand"]:
@@ -848,7 +907,7 @@ func _exit_roll_light() -> bool:
 	return true
 
 func sprint_held() -> bool:
-	return Input.is_action_pressed("sprint") and (not roll_unlocked or not shift_pending or shift_clock>float(combat.dodge.tap_seconds))
+	return (command_sprint if command_input_enabled else Input.is_action_pressed("sprint")) and (not roll_unlocked or not shift_pending or shift_clock>float(combat.dodge.tap_seconds))
 
 func begin_dash_charge() -> bool:
 	if not input_enabled or state!="free" or not dash_unlocked or not dash_equipped:
@@ -879,6 +938,7 @@ func release_dash() -> bool:
 	return true
 
 func queue_dash_attack() -> bool:
+	if weapon_runtime!=null and weapon_runtime.enabled():return false
 	if not input_enabled or health<=0 or state!="dash_charge" or not sword_drawn or dash_attack_queued: return false
 	var dash_cost=lerpf(12,24,clampf(state_time/1.5,0,1))*dash_stamina_multiplier
 	if not can_afford(dash_cost+float(combat.light.stamina_cost)): return false
@@ -942,6 +1002,7 @@ func begin_jump() -> bool:
 	return true
 
 func finish_jump() -> void:
+	if jump_active:emit_presentation("player.land")
 	jump_active=false;jump_velocity=0;velocity.y=0
 	if state=="jump": state="free";state_time=0
 
@@ -968,7 +1029,7 @@ func begin_roll() -> bool:
 	state="roll"
 	state_time=0.0
 	state_duration=float(combat.dodge.duration)
-	var axis=Input.get_vector("move_left","move_right","move_up","move_down")
+	var axis=movement_input()
 	attack_direction=movement_vector(axis).normalized() if axis.length_squared()>.01 else facing()
 	visual.rotation.y=atan2(attack_direction.x,attack_direction.z)
 	combo_stage=0
@@ -977,6 +1038,7 @@ func begin_roll() -> bool:
 	return true
 
 func begin_charge() -> bool:
+	if weapon_runtime!=null and weapon_runtime.enabled():return weapon_runtime.begin_primary()
 	if counter_ready():
 		begin_counter();return false
 	if state in ["roll","stand"]:
@@ -1003,6 +1065,7 @@ func _ensure_thrust_wind() -> void:
 	add_child(thrust_wind_fx)
 
 func release_charge(kind: String) -> bool:
+	if weapon_runtime!=null and weapon_runtime.enabled():return weapon_runtime.release_primary()
 	if state in ["roll","stand"]:
 		return queue_roll_light() if kind=="light" else false
 	if state=="light":
@@ -1031,6 +1094,7 @@ func release_charge(kind: String) -> bool:
 	return true
 
 func cancel_charge() -> void:
+	if weapon_runtime!=null and state=="bow_draw":weapon_runtime.cancel()
 	charge_rush=false
 	thrust_charging=false
 	if is_instance_valid(thrust_wind_fx): thrust_wind_fx.visible=false
@@ -1064,7 +1128,7 @@ func parry_pose_phase(progress:float) -> float:
 	return clampf(progress,0,1)
 
 func try_parry(enemy: Node3D,contact:Vector3=Vector3(INF,INF,INF)) -> bool:
-	if not input_enabled or health<=0 or state!="parry" or not is_instance_valid(enemy) or parried_threats.has(enemy.get_instance_id()):
+	if not simulation_active() or health<=0 or state!="parry" or not is_instance_valid(enemy) or parried_threats.has(enemy.get_instance_id()):
 		return false
 	if first_person_driver!=null: attack_direction=-Vector3(sin(first_person_driver.yaw),0,cos(first_person_driver.yaw))
 	if state_time<float(combat.parry.active_start) or state_time>float(combat.parry.active_end):
@@ -1113,14 +1177,16 @@ func _recover_stamina(delta: float) -> void:
 		sprint_exhausted=false
 
 func take_damage(amount: int, direction: Vector3) -> bool:
-	if amount<=0 or health<=0 or invulnerability>0 or not input_enabled:
+	if not damage_authority or amount<=0 or health<=0 or invulnerability>0 or not simulation_active():
 		return false
 	counter_remaining=0;counter_target=null
 	if magic_gear!=null: amount=magic_gear.incoming_damage(amount)
 	if amount<=0:return false
+	if weapon_runtime!=null and state=="bow_draw":weapon_runtime.cancel()
 	var previous_health=health
 	health=maxi(0,health-amount)
 	damaged.emit(previous_health-health)
+	emit_presentation("player.hurt",{"amount":previous_health-health})
 	if dash_water_pending: clear_dash_attack()
 	if state in ["dash_charge","dash"]: clear_dash_attack()
 	invulnerability=float(combat.hurt_invulnerability)
@@ -1152,6 +1218,7 @@ func take_damage(amount: int, direction: Vector3) -> bool:
 		velocity=Vector3.ZERO
 	health_changed.emit(health,max_health)
 	if health==0:
+		if weapon_runtime!=null:weapon_runtime.cancel()
 		clear_lance_charge()
 		defeated.emit()
 	return true
@@ -1161,7 +1228,8 @@ func restore_health(value: int) -> void:
 	health_changed.emit(health,max_health)
 
 func drown() -> void:
-	if health<=0 or not input_enabled:return
+	if not damage_authority or health<=0 or not simulation_active():return
+	emit_presentation("world.water.drown")
 	clear_lance_charge();health=0;health_changed.emit(health,max_health);defeated.emit()
 
 func _draw_value(index:int,key:String) -> Vector3:
@@ -1228,6 +1296,9 @@ func dodge_transform(key: String,t: float) -> Transform3D:
 	return Transform3D(rotation,center-rotation*pivot)
 
 func _pose_sword(key: String, t: float) -> void:
+	if weapon_runtime!=null and weapon_runtime.enabled():
+		weapon_runtime.pose(key,t)
+		return
 	var draw_action=state in ["draw","sheathe"]
 	var f=t if state!="sheathe" else 1-t
 	_update_sword_holders(f if draw_action else 1.0)
@@ -1285,17 +1356,8 @@ func blade_hits(enemy:Node3D) -> bool:
 	var previous=current if blade_sweep_previous.is_empty() else blade_sweep_previous
 	var radius=float(enemy.definition.get("combat_radius",{"small":.25,"medium":.50,"large":.72,"giant":1.05}.get(enemy.size_class,.5)))
 	var height=float(enemy.definition.get("combat_height",3.1 if enemy.definition.kind=="warden" else 1.0))
-	var bottom=enemy.global_position+Vector3(0,minf(radius,height*.5),0)
-	var top=enemy.global_position+Vector3(0,maxf(radius,height-radius),0)
-	# Interpolate the previous/current steel rails, including movement and spin.
-	for index in range(9):
-		var fraction=index/8.0
-		var base:Vector3=previous[0].lerp(current[0],fraction)
-		var tip:Vector3=previous[1].lerp(current[1],fraction)
-		var nearest=Geometry3D.get_closest_points_between_segments(base,tip,bottom,top)
-		var steel_margin=BetaSwordMotion.WIDTH*.5 if equipment.get_meta("beta_sword",false) else .12
-		if nearest[0].distance_to(nearest[1])<=radius+steel_margin: return true
-	return false
+	var steel_margin=BetaSwordMotion.WIDTH*.5 if equipment.get_meta("beta_sword",false) else .12
+	return bool(preload("res://scripts/steel_contact.gd").capsule(current,previous,enemy.global_position,radius,height,steel_margin).hit)
 
 func sword_tip() -> Vector3:
 	var tip=BetaSwordMotion.TIP if equipment.get_meta("beta_sword",false) else -1.17
@@ -1338,26 +1400,29 @@ func _physics_process(delta: float) -> void:
 	if not controllable:
 		animator.advance(delta)
 		return
+	if not simulation_active():
+		shift_pending=false
+		velocity=Vector3.ZERO
+		return
 	invulnerability=maxf(0,invulnerability-delta)
 	visual.visible=not has_meta("beta_hero") and (first_person_driver!=null or not has_meta("standalone_static")) and (first_person_driver!=null or invulnerability<=0 or fmod(invulnerability,.16)<.1)
 	parry_flash=maxf(0,parry_flash-delta)
 	sprinting=false
-	if not input_enabled:
-		shift_pending=false
-		velocity=Vector3.ZERO
-		return
+	if not input_enabled: shift_pending=false
 	counter_remaining=maxf(0,counter_remaining-delta)
 	measured_remaining=maxf(0,measured_remaining-delta)
 	if state!="light": counter_active=false
-	if magic_gear!=null: magic_gear.tick(delta)
+	if magic_gear!=null and damage_authority: magic_gear.tick(delta)
 	presentation_clock+=delta
+	preload("res://scripts/network/wr_view_frame.gd").advance_actor(self,delta)
 	if dash_release_queued: release_dash()
 	for key in slow_sources.keys():
 		slow_sources[key].remaining-=delta
 		if slow_sources[key].remaining<=0: slow_sources.erase(key)
 	if shift_pending: shift_clock+=delta
 	combo_remaining=maxf(0,combo_remaining-delta)
-	var movement=Input.get_vector("move_left","move_right","move_up","move_down")
+	var movement=movement_input() if input_enabled else Vector2.ZERO
+	var legacy_ready=sword_drawn and (weapon_runtime==null or not weapon_runtime.enabled())
 	if state=="free":
 		sprinting=sprint_held() and movement.length_squared()>.01 and stamina>0 and not sprint_exhausted
 		var denied_sprint=sprint_held() and movement.length_squared()>.01 and not sprinting
@@ -1387,9 +1452,9 @@ func _physics_process(delta: float) -> void:
 			rush_credit=maxf(0,rush_credit-delta)
 		if movement.length_squared()>.01:
 			visual.rotation.y=lerp_angle(visual.rotation.y,atan2(movement_direction.x,movement_direction.z),1-exp(-float(combat.turn_response)*delta))
-			play_clip("drag_walk_loop" if sword_drawn else "walk_loop")
+			play_clip("drag_walk_loop" if legacy_ready else "walk_loop")
 		elif current_clip!="interact" or not animator.is_playing():
-			play_clip("drag_idle_loop" if sword_drawn else "idle_loop")
+			play_clip("drag_idle_loop" if legacy_ready else "idle_loop")
 		animator.advance(delta*(1.65 if sprinting else 1.0))
 		if sword_drawn:
 			_pose_sword("drag",0)
@@ -1397,7 +1462,11 @@ func _physics_process(delta: float) -> void:
 		state_time=minf(state_duration,state_time+delta*(thrust_charge_rate if state=="charge" and thrust_charging else 1.0))
 		var progress=attack_phase() if state in ["light","heavy","thrust"] else state_time/state_duration
 		velocity=Vector3.ZERO
-		if state in ["dash_charge","dash","jump"]:
+		if weapon_runtime!=null and weapon_runtime.active():
+			velocity=movement_vector(movement)*float(combat.drawn_walk_speed)*weapon_runtime.movement_multiplier()
+			animator.advance(delta)
+			weapon_runtime.tick(delta)
+		elif state in ["dash_charge","dash","jump"]:
 			dash_attack_blend=move_toward(dash_attack_blend,1.0 if dash_attack_queued else 0.0,delta/DASH_ATTACK_BLEND)
 			var desired=movement_vector(movement)
 			if state=="dash": velocity=attack_direction*dash_distance/state_duration/.8*smoothstep(0,.1,progress)*(1-smoothstep(.7,1,progress))
@@ -1548,6 +1617,9 @@ func _physics_process(delta: float) -> void:
 			if (state=="heavy" or spin_slam) and progress>=.68 and not slam_emitted:
 				slam_emitted=true
 				ground_slam.emit(sword_tip(),state=="heavy")
+			if swing_cue_action!=action_sequence and progress>=maxf(0,float(tuning.active_start)-.08):
+				swing_cue_action=action_sequence
+				emit_presentation("combat.swing."+state)
 			var contact=progress>=float(tuning.active_start) and progress<=float(tuning.active_end)
 			if spin_slam: contact=contact and (progress<=.36 or progress>=.60)
 			if state=="thrust": contact=contact and state_time<thrust_windup_seconds+thrust_launch_seconds
@@ -1576,6 +1648,7 @@ func _physics_process(delta: float) -> void:
 			combo_queued=false
 			if queued and chain:
 				begin_attack("light")
+	if weapon_runtime!=null and weapon_runtime.enabled() and not sword_drawn:weapon_runtime.pose("ready",0)
 	_recover_stamina(delta)
 	velocity*=terrain_speed_scale()
 	velocity+=knockback

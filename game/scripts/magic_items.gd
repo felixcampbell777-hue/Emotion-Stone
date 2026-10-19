@@ -14,6 +14,11 @@ var quantities:Dictionary={}
 var elder_clock=0.0
 var weapon_id:String="standard_greatsword"
 
+func _sound(event_id:String) -> void:
+	if not is_instance_valid(game):return
+	var director=game.get("audio")
+	if director!=null:director.play(event_id,game.player.position)
+
 func item(id:String) -> Dictionary:
 	for entry in catalog.items:
 		if entry.id==id: return entry
@@ -37,14 +42,17 @@ static func valid_save(data:Variant) -> bool:
 		var legacy_wolf=slot=="torso" and id=="wolf_hide_armor"
 		if id not in collection or id in seen or (not legacy_wolf and not items.any(func(e): return e.id==id and e.category==category(slot))): return false
 		seen.append(id)
+	if data.has("weapon_id"):
+		var equipped_weapon=data.weapon_id
+		if not equipped_weapon is String or equipped_weapon not in collection or not items.any(func(e):return e.id==equipped_weapon and e.category=="weapon"):return false
 	var counts=data.get("quantities",{})
 	if not counts is Dictionary: return false
 	for id in counts:
-		if id not in collection or not items.any(func(e): return e.id==id and e.category=="consumable"): return false
+		if id not in collection or not items.any(func(e): return e.id==id and e.category in ["consumable","ammunition"]): return false
 		if not (counts[id] is int or counts[id] is float) or not is_finite(float(counts[id])) or counts[id]!=int(counts[id]) or counts[id]<1 or counts[id]>99: return false
 	if data.has("quantities"):
 		for id in collection:
-			if items.any(func(e): return e.id==id and e.category=="consumable") and not counts.has(id): return false
+			if items.any(func(e): return e.id==id and e.category in ["consumable","ammunition"]) and not counts.has(id): return false
 	var buffs=data.get("healing",[])
 	if buffs is Dictionary: buffs=[] if buffs.is_empty() else [buffs]
 	if not buffs is Array or buffs.size()>297: return false
@@ -74,14 +82,21 @@ func restore(data:Dictionary) -> void:
 	healing=([buffs.duplicate()] if not buffs.is_empty() else []) if buffs is Dictionary else buffs.duplicate(true)
 	quantities=data.get("quantities",{}).duplicate()
 	for id in owned:
-		if item(id).category=="consumable" and not quantities.has(id): quantities[id]=1
+		if item(id).category in ["consumable","ammunition"] and not quantities.has(id): quantities[id]=1
 func weapon_base() -> float:return float(item(weapon_id).get("effects",{}).get("weapon_base",1.0))
 func weapon_bonus_against(category:String) -> float:return float(item(weapon_id).get("effects",{}).get(category+"_damage",0.0))
 func equip_weapon(id:String) -> bool:
+	if is_instance_valid(game) and game.has_method("online_session_active") and game.online_session_active():game.wr_session.request_action("equip",{"item":id});return false
 	if id not in owned or item(id).get("category","")!="weapon":return false
 	var required=int(item(id).get("effects",{}).get("level",1));if game.progression.level()<required:return false
-	weapon_id=id;return true
+	weapon_id=id
+	_sound("inventory.equip")
+	if is_instance_valid(game):
+		game.player.set_weapon_visual(id)
+		game.apply_skill_stats()
+	return true
 func drink(id:String) -> bool:
+	if is_instance_valid(game) and game.has_method("online_session_active") and game.online_session_active():game.wr_session.request_action("drink",{"item":id});return false
 	var entry=item(id)
 	if id not in owned or entry.get("category","")!="consumable" or game.player.health<=0: return false
 	var timed=float(entry.effects.regen_seconds)>0
@@ -90,6 +105,7 @@ func drink(id:String) -> bool:
 	if quantities[id]<=0: quantities.erase(id); owned.erase(id)
 	if timed:healing.append({"id":id,"remaining":float(entry.effects.regen_seconds),"clock":0.0})
 	game.player.restore_health(game.player.health+int(entry.effects.burst_heal))
+	_sound("inventory.drink")
 	game.notify("Drank "+entry.name+".")
 	return true
 func found_windstep() -> void:
@@ -111,14 +127,15 @@ func bonus(key:String) -> float:
 func claim(id:String) -> bool:
 	var entry=item(id)
 	if entry.is_empty() or game.map_id!="menagery": return false
-	if entry.category=="consumable":
+	if entry.category in ["consumable","ammunition"]:
 		if int(quantities.get(id,0))>=99: return false
 		quantities[id]=int(quantities.get(id,0))+1
 	elif id in owned: return false
 	if id not in owned: owned.append(id)
-	game.notify("Added "+entry.name+". "+("Drink in Inventory [I]." if entry.category=="consumable" else "Select an equipment slot in Inventory [I]."))
+	game.notify("Added "+entry.name+". "+("Drink in Inventory [I]." if entry.category=="consumable" else "Ammunition is ready for your bow." if entry.category=="ammunition" else "Select an equipment slot in Inventory [I]."))
 	return true
 func equip(slot:String,id:String) -> bool:
+	if is_instance_valid(game) and game.has_method("online_session_active") and game.online_session_active():game.wr_session.request_action("equip",{"item":id,"slot":slot});return false
 	if slot not in SLOTS or (not id.is_empty() and (id not in owned or item(id).category!=category(slot))): return false
 	# One specimen may move between ring slots, but cannot occupy both at once.
 	for other in SLOTS:
@@ -127,6 +144,7 @@ func equip(slot:String,id:String) -> bool:
 	if slot=="necklace":elder_clock=0
 	if slot=="necklace": game.goblin_campaign.charm_equipped=id=="windstep" and "windstep" in game.goblin_campaign.flags
 	game.apply_skill_stats()
+	_sound("inventory.unequip" if id.is_empty() else "inventory.equip")
 	return true
 func apply_stats() -> void:
 	var p=game.player
@@ -178,7 +196,7 @@ func sword_hit(enemy:Node,previous:int) -> void:
 	var heal=roundi(bonus("life_on_hit"))
 	if heal>0 and game.player.health>0: game.player.restore_health(game.player.health+heal)
 func tick(delta:float) -> void:
-	if not game.player.input_enabled or game.player.health<=0 or game.gallery_mode: return
+	if not game.simulation_active() or game.player.health<=0 or game.gallery_mode: return
 	if bonus("elder_regen")>0:
 		elder_clock+=delta
 		while elder_clock>=10:

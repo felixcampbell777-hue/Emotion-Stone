@@ -18,3 +18,10 @@ art/source/history/
 !.env.example
 *.pem
 *.key
+
+output/linux-server/
+hosting/data/
+hosting/backups/
+hosting/secrets/
+output/clients/
+output/weapon-review/

@@ -12,7 +12,7 @@ func reset() -> void:
 		game.player.counter_remaining=0;game.player.counter_target=null
 		game.player.measured_remaining=0;game.player.counter_active=false
 func tick(delta:float) -> void:
-	if not game.player.input_enabled: return
+	if not game.simulation_active(): return
 	for id in exposed.keys():
 		exposed[id]-=delta
 		if exposed[id]<=0: exposed.erase(id)

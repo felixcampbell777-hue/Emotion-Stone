@@ -1,0 +1,30 @@
+{
+  "source": "https://github.com/goatchurchprime/two-voip-godot-4/tree/fbb35770890cb096ff02bcb7e374f41bac8f673a",
+  "release": "v3.10",
+  "archive_url": "https://github.com/goatchurchprime/two-voip-godot-4/releases/download/v3.10/TwoVoIP.zip",
+  "archive_sha256": "ba833c243908e62b505abc128724114bff36cca13ef58db487db31f7ae31a65a",
+  "binaries": {
+    "libs/libtwovoip.linux.template_release.x86_64.so": "31f394ebbc7dafe4233af81af747b61525aba53e4ce5d6146722e4863241a61b",
+    "libs/libtwovoip.windows.template_release.x86_64.dll": "85917cfaae3c6ecfae2b51adf45d5971e893fd06e7692120f1bc609e0f1d70de",
+    "libs/libtwovoip.linux.template_debug.x86_64.so": "596260834aa247fb1f86d3fa656182b8c07f98be58a31741c0327826950f2d0f",
+    "libs/libtwovoip.windows.template_debug.x86_64.dll": "2482dc2fb98df1e68973b5a09e7681f1fb2b1100dd027043e07bad5927b1bf88",
+    "libs/libtwovoip.macos.template_release.universal.framework/libtwovoip.macos.template_release.universal.dylib": "ebe161b477d3d2572ec39bacccb2d819b31bd1f194eca273ea8a0e45c38d3494",
+    "libs/libtwovoip.macos.template_debug.universal.framework/libtwovoip.macos.template_debug.universal.dylib": "95f9fe1a965a552b38b09e784d7311a393ea01373fe0ebcf4ed4fab2eedd7dc4",
+    "libs/libtwovoip.macos.template_debug.universal.framework/Resources/Info.plist": "dc420d3a6760142ea493c68af27500f54cfd1b8d884b468abbc2812864bf66cc",
+    "libs/libtwovoip.macos.template_release.universal.framework/Resources/Info.plist": "5bb5f38a1a9dbad553cb2b4cdd974ab8584896422d54817d3d07275faac8b883"
+  },
+  "source_commit": "fbb35770890cb096ff02bcb7e374f41bac8f673a",
+  "submodules": {
+    "godot-cpp": "a4f9d22ac54e05ca6a41d54a59afd7555cb7d292",
+    "opus": "ddbe48383984d56acd9e1ab6a090c54ca6b735a6",
+    "noise-suppression-for-voice": "9c4e5c28d8950e2cef837d8a0abd36c2fd9b5c2d"
+  },
+  "licenses": {
+    "RNNOISE-LICENSE": "45d37ca1cdb278c088e1aa85e0e65ca3a534ed86a28dcc96ca16810248a61d35",
+    "LICENSE": "2958bc2a212f1d54b857557465da48161cf982f818bcb7c72911916c50f10167",
+    "SPEEX-LICENSE": "67c251aa894aa8c6af646d52f67be56e19c90a207f422b7127c5f10956c0f0d9",
+    "GODOT-CPP-LICENSE": "26a5b210d90760156ce886267ce9df235787dcc6cebfd7ecd95ef5b6fdcc95bf",
+    "OPUS-LICENSE": "01e1167d54a096d123cf6dfbbeb19587278845c6481d2d66d545669846079551"
+  },
+  "integration_descriptor": "Runtime binary bytes unchanged. macOS references plain dylib inside vendor framework to avoid invalid framework Info.plist signing layout; release-specific feature matches precede generic fallbacks."
+}

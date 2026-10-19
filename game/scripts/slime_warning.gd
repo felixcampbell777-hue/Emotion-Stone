@@ -17,6 +17,6 @@ func configure(at:Vector3,radius:float,caption:String) -> void:
 		var line=Props.box(self,Vector3.ZERO,Vector3(radius*.8,.025,.065),"#ffca76"); line.rotation.y=sign*PI/4
 	var label=Label3D.new(); label.text=caption; label.position.y=.16; label.font_size=28; label.pixel_size=.005; label.billboard=BaseMaterial3D.BILLBOARD_ENABLED; add_child(label)
 func _physics_process(delta:float) -> void:
-	if lifetime<=0 or game==null or not game.player.input_enabled or game.gallery_mode: return
+	if lifetime<=0 or game==null or not game.simulation_active() or game.gallery_mode: return
 	age+=delta; scale=Vector3.ONE*(1+age*.3)
 	if age>=lifetime: queue_free()

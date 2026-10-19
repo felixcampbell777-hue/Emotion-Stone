@@ -74,14 +74,14 @@ func _glow_material(color: Color, emission: Color, energy: float) -> StandardMat
 
 func _physics_process(delta: float) -> void:
 	if finished:
-		if not game.player.input_enabled or game.gallery_mode:
+		if not game.simulation_active() or game.gallery_mode:
 			return
 		impact_time+=delta
 		_animate_impact(delta)
 		if impact_time>.42:
 			queue_free()
 		return
-	if not game.player.input_enabled or game.gallery_mode:
+	if not game.simulation_active() or game.gallery_mode:
 		return
 	var previous=travel
 	var next=minf(float(tuning.range),travel+float(tuning.speed)*delta)

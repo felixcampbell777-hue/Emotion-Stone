@@ -25,6 +25,7 @@ static func read(path: String = SAVE_PATH) -> Dictionary:
 		return {}
 	if parsed.get("version")!=1 or not parsed.get("map") is String or not parsed.get("position") is Array:
 		return {}
+	if parsed.has("appearance") and not preload("res://scripts/appearance_profile.gd").valid(parsed.appearance):return {}
 	var mode=parsed.get("game_mode","alpha")
 	if not preload("res://scripts/alpha2_campaign.gd").valid_mode(mode,parsed.map,parsed.get("world_id","")): return {}
 	if parsed.has("heavy_attack") and parsed.heavy_attack not in ["overhead","charge_thrust"]:

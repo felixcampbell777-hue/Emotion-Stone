@@ -153,6 +153,7 @@ func move_grounded(body:CharacterBody3D,delta:float) -> void:
 		if not outside and body.is_on_floor():body.remove_meta("rise_fall");body.position.y=ground_height(body.position);if_jump_finish(body)
 		if body.position.y< -65 and body.has_method("take_damage"):
 			if body.get("controllable")==true:body.invulnerability=0
+			body.set_meta("pending_damage_context",{"damage_kind":"fall","source":body.get_meta("last_impulse_context",body.get_meta("last_damage_context",{}))})
 			body.take_damage(999999,Vector3.ZERO)
 		return
 	body.motion_mode=CharacterBody3D.MOTION_MODE_GROUNDED

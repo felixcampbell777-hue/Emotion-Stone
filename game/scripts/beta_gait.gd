@@ -8,7 +8,12 @@ var body_drop=0.0
 var run_blend=0.0
 
 func advance_distance(actor:Node3D,distance:float,delta:float) -> void:
-	if actor.state!="free": return
+	if actor.state!="free":
+		blend=0.0;body_drop=0.0;return
+	# Physics owns the gait envelope; render-time synchronization is read-only.
+	if actor.input_enabled:
+		var walking=actor.current_clip in ["walk_loop","drag_walk_loop"]
+		blend=move_toward(blend,1.0 if walking else 0.0,delta/.16)
 	run_blend=move_toward(run_blend,1.0 if actor.sprinting else 0.0,delta/.20)
 	var cycle=lerpf(float(tuning.walk_cycle_distance),float(tuning.burden_run_cycle_distance if actor.sword_drawn else tuning.run_cycle_distance),run_blend)
 	phase=fposmod(phase+distance/cycle,1.0)
@@ -25,16 +30,15 @@ func motion(actor:Node3D,key:String):
 	var run=sample("Jog_Fwd_Loop" if actor.sword_drawn else "Sprint_Loop",key,phase)
 	return walk.slerp(run,run_blend) if walk is Quaternion else walk.lerp(run,run_blend)
 
-func apply(hero:Node3D,delta:float) -> void:
+func apply(hero:Node3D,_delta:float) -> void:
 	var actor=hero.actor
 	if actor.state!="free" or actor.current_clip not in ["idle_loop","drag_idle_loop","walk_loop","drag_walk_loop"]:
 		blend=0.0; body_drop=0.0; return
 	var walking=actor.current_clip in ["walk_loop","drag_walk_loop"]
-	if walking and not actor.is_physics_processing():
+	if walking and not actor.is_physics_processing() and not actor.get_meta("canonical_manual_step",false):
 		phase=fposmod(actor.animator.current_animation_position/actor.animator.get_animation(actor.clips[actor.current_clip]).length,1.0)
 		run_blend=1.0 if actor.sprinting else 0.0
-	blend=move_toward(blend,1.0 if walking else 0.0,delta/0.16)
-	if not actor.is_physics_processing(): blend=1.0 if walking else 0.0
+	if not actor.is_physics_processing() and not actor.get_meta("canonical_manual_step",false): blend=1.0 if walking else 0.0
 	if blend<=0: body_drop=0.0;return
 	var hip_motion:Vector3=motion(actor,"hip")
 	body_drop=(.032-hip_motion.y*lerpf(.35,.45,run_blend))*blend
