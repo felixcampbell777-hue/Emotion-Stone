@@ -28,6 +28,10 @@ func run() -> void:
 	await physics_frame
 	check(p1.has("bridge") and p2.has("bridge"),"Production authority uses canonical Actor bridges")
 	if not p1.has("bridge") or not p2.has("bridge"):finish();return
+	var before_progression=Profile.digest(p1.profile);var before_health=p1.bridge.actor.health;var before_stamina=p1.bridge.actor.stamina
+	p1.action="free";p1.bridge.actor.state="light"
+	check(not authority.action(p1.id,"attribute",{"attribute":"body"}).ok and Profile.digest(p1.profile)==before_progression and p1.bridge.actor.health==before_health and p1.bridge.actor.stamina==before_stamina,"Direct progression request cannot mutate committed actual Actor despite free logical presentation")
+	p1.bridge.actor.state="free"
 	var next=storage.data.duplicate(true);next.flags.append("elder_defeated");check(storage.commit(next),"Fixture floor access established durably")
 	check(authority.action(p2.id,"travel",{"floor":"wr_floor_02"}).ok,"One player travels through production action")
 	await physics_frame
@@ -48,14 +52,16 @@ func run() -> void:
 	if not native_commit:finish();return
 	place(authority,p1,authority.world.floor_arrival("wr_floor_01"));check(authority.action(p1.id,"rest").ok,"Other-floor participant rests normally")
 	check(parent.health==118,"Another player's rest preserves live damaged encounter")
+	var parent_practice=int(p2.profile.progression.weapon_kills.greatsword)
 	var parent_record=authority.enemies["wr_floor_02/"+giant.id];parent_record.contributors[p2.id]=authority.clock;parent_record.last_attacker=p2.id;parent_record.last_weapon="greatsword"
 	fen.apply_enemy_damage(giant.id,9999,Vector3.ZERO,{"damage_kind":"melee","actor_id":p2.id,"weapon_type":"greatsword"})
 	for i in range(35):authority.step(1.0/60)
 	var children=fen.enemies.filter(func(enemy):return enemy.health>0 and String(enemy.definition.id).begins_with(giant.id+"_split_"))
 	check(children.size()==4,"Production giant splits into four native children exactly once")
+	check(int(p2.profile.progression.weapon_kills.greatsword)==parent_practice,"Zero-XP split parent grants no weapon practice")
 	if not children.is_empty():
 		var child=children[0];var record=authority.enemies["wr_floor_02/"+child.definition.id];record.contributors[p2.id]=authority.clock;record.last_attacker=p2.id;record.last_weapon="greatsword"
-		var before=int(p2.profile.progression.xp);var copper=int(p2.profile.copper)
+		var before=int(p2.profile.progression.xp);var copper=int(p2.profile.copper);var practice=int(p2.profile.progression.weapon_kills.greatsword)
 		# Exercise a real personal loot claim without depending on a random no-drop.
 		var reward_probe=RandomNumberGenerator.new()
 		for seed_value in range(128):
@@ -63,6 +69,7 @@ func run() -> void:
 			if not authority.world.roll_rewards(record,reward_probe).items.is_empty():authority.rng.seed=seed_value;break
 		fen.apply_enemy_damage(child.definition.id,9999,Vector3.ZERO,{"damage_kind":"melee","actor_id":p2.id,"weapon_type":"greatsword"})
 		check(int(p2.profile.progression.xp)-before==18,"Production personal split XP pays exactly once")
+		check(int(p2.profile.progression.weapon_kills.greatsword)==practice+1,"Positive native greatsword contribution grants one practice with split-child reward")
 		check(int(p2.profile.copper)-copper in [5,6],"Production personal split copper remains exact")
 		var after=int(p2.profile.progression.xp);authority.settle_kill(record,p2.id);check(int(p2.profile.progression.xp)==after,"Repeated settlement cannot duplicate XP")
 	# Canonical authority may reset only after every participant leaves the area.
@@ -108,10 +115,11 @@ func run() -> void:
 	for i in range(190):authority.step(1.0/60)
 	var elder_record=authority.enemies["wr_boss_chamber/vault_elder"]
 	elder_record.contributors[p1.id]=authority.clock;elder_record.contributors[p2.id]=authority.clock;elder_record.last_attacker=p1.id;elder_record.last_weapon="greatsword"
-	var first_xp=int(p1.profile.progression.xp)
+	var first_xp=int(p1.profile.progression.xp);var targeted_practice=int(p2.profile.progression.weapon_kills.greatsword)
 	vault.apply_enemy_damage("vault_elder",99999,Vector3.ZERO,{"damage_kind":"melee","actor_id":p1.id,"weapon_type":"greatsword"})
 	check(elder_record.health==0 and is_equal_approx(float(elder_record.cooldown_remaining),1080),"Native Elder defeat schedules exact repeat cooldown")
 	check(int(p1.profile.progression.xp)-first_xp==1500,"Native Elder grants repeat XP and personal first bonus")
+	check(int(p2.profile.progression.weapon_kills.greatsword)==targeted_practice,"Targeted-only qualified boss reward grants no weapon practice")
 	check("elder_first_kill_bonus" in p1.profile.bonus_claims and "elder_first_kill_bonus" in p2.profile.bonus_claims,"Both participating personal bonus claims settle")
 	check(not authority.save_departure(p1.id).is_empty(),"Boss cooldown checkpoint persists")
 	storage.stop_worker()
@@ -121,6 +129,7 @@ func run() -> void:
 	elder_record.cooldown_remaining=.03
 	authority.step(.02);authority.step(.02)
 	check(int(elder_record.generation)==1 and vault.enemy_node("vault_elder")!=null and vault.enemy_node("vault_elder").health==1100,"Native cooldown expires into one fresh boss generation")
+	check(elder_record.get("practice_contributors",{}).is_empty() and not elder_record.has("last_weapon"),"Native boss new generation clears prior-life weapon participation")
 	finish()
 func finish() -> void:
 	print("NATIVE_SESSION_CHECKS ",JSON.stringify({"checks":checks,"failures":failures}))

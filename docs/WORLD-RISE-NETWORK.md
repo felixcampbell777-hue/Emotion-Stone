@@ -52,6 +52,44 @@ expiry remains 0.3 seconds, input requests remain capped at 90 per second and
 congestion control and retransmission remain enabled. See the
 [Godot 4.5 ENet throttle API](https://docs.godotengine.org/en/4.5/classes/class_enetpacketpeer.html#class-enetpacketpeer-method-throttle-configure).
 
+## Progression upgrade compatibility
+
+Progression tree 5 uses wire protocol 4. Install matching new client and server
+builds together; previous servers cannot load upgraded characters and mixed-version
+connections are rejected explicitly. An upgraded client can read a strictly valid
+original tree-4 portable file without rewriting it. It proves ownership and sends
+the original profile, retaining its original digest, ancestry and handoff anchors.
+Only after the destination server resolves the original lineage (or explicit
+recovery selects its durable head) does it create one tree-5 checkpoint whose
+parent is that accepted original head. Conflicting histories remain rejected.
+
+The server accepts exactly the previous f3111c1 content fingerprint
+`933244fd47437c84992d30917ceb0be3561144a2f4cc20cd15ff324583ccc6c6`
+for a persisted-world upgrade. Its exact manifest and schema hashes are recorded
+in `docs/evidence/world-rise-f3111c1-content.json` and were confirmed with the
+pinned Godot runtime before content changes. The world fingerprint is replaced
+through the existing durable writer; dormant character records, revisions and
+anchors remain unchanged until their owner imports them. Arbitrary content
+mismatches, malformed legacy profiles and legacy unwrapped network files remain
+rejected. The lossless storage envelope and exclusive writer lock are unchanged.
+
+The tree-4 allocation is retained in a bounded audit receipt. Dash, Dodge and
+Charged Thrust remain learned with their required attributes; retired passive
+ranks refund into the earned perk budget. Original resources must fit original
+stat maxima before import. Accepted upgrades and stat reductions only clamp
+current resources to the new maxima and never heal the character.
+
+Learning, perk refunds, attribute allocation and the one-time attribute reset
+are authoritative durable transactions. A rejected requirement or failed disk
+commit does not spend points or acknowledge success. Progression changes require
+a living free Actor; refunds/reset clear dependent equipped abilities in the same
+commit. Each transaction snapshots current wounds/stamina, and an instant potion
+commits its consumed bottle and accepted burst heal together. Qualified enemy rewards
+also grant weapon practice only for actual accepted damage from that weapon;
+targeting alone grants no practice. The per-enemy contribution set survives a
+checkpoint and clears with encounter reset; split children require their own
+damage contributions. PvP gives no practice.
+
 ## Portable checkpoint rules
 
 The private owner key and portable checkpoint live under the client's isolated

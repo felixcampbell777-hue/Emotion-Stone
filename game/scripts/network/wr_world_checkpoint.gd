@@ -37,7 +37,7 @@ static func visitor(value:Variant) -> bool:
      if not id is String or id.length()>128:return false
  return json_value(value.get("contracts",{})) and value.get("contracts",{}) is Dictionary
 static func valid(value:Variant) -> bool:
- if not value is Dictionary or value.get("schema")!=1 or value.get("content","")!=Profile.content_digest() or not Profile.identifier(value.get("world_id")):return false
+ if not value is Dictionary or value.get("schema")!=1 or not Profile.compatible_world_content(value.get("content","")) or not Profile.identifier(value.get("world_id")):return false
  if not Profile.integer(value.get("sequence"),1000000000000) or not number(value.get("day_clock"),0,1080) or not number(value.get("elapsed",0),0,1e15):return false
  for field in ["characters","visitors","encounters","claims","transactions","cooldowns"]:
   if not value.get(field) is Dictionary:return false
@@ -52,6 +52,14 @@ static func valid(value:Variant) -> bool:
  for key in value.encounters:
   var e=value.encounters[key]
   if not key is String or key.length()>256 or not e is Dictionary or not vector(e.get("position")) or not number(e.get("health"),0,1000000) or not Profile.integer(e.get("generation")) or not number(e.get("cooldown_remaining"),0,1080) or not e.get("native_state",{}) is Dictionary or not json_value(e.get("native_state",{})):return false
+  var practice=e.get("practice_contributors",{})
+  if not practice is Dictionary or practice.size()>256:return false
+  for contributor in practice:
+   if not Profile.identifier(contributor) or not practice[contributor] is Array or practice[contributor].size()>4:return false
+   var seen=[]
+   for weapon in practice[contributor]:
+    if weapon not in ["greatsword","spear","rapier","bow"] or weapon in seen:return false
+    seen.append(weapon)
  for key in value.claims:
   var claim=value.claims[key]
   if not key is String or key.length()>256 or not claim is Dictionary or not Profile.identifier(claim.get("owner")) or claim.get("floor") not in FLOORS or not vector(claim.get("position")) or not claim.get("items") is Dictionary or not claim.get("arrow") is bool or (claim.has("expires") and not number(claim.expires,0,1e15)):return false

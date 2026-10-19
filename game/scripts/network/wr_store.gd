@@ -28,7 +28,12 @@ func open(path:String) -> bool:
   if not loaded.ok:last_error=loaded.error;stop_worker();return false
   var restored=loaded.data
   if not preload("res://scripts/network/wr_world_checkpoint.gd").valid(restored):last_error="Invalid server checkpoint; restore a known backup explicitly";stop_worker();return false
-  data=restored;return true
+  data=restored
+  # Move only the world fingerprint; dormant character hashes/anchors are immutable.
+  if data.content!=Profile.content_digest():
+   var compatible=data.duplicate(true);compatible.content=Profile.content_digest()
+   if not commit(compatible):stop_worker();return false
+  return true
  data={"schema":1,"content":Profile.content_digest(),"world_id":Profile.random_id(),"sequence":0,"characters":{},"visitors":{},"encounters":{},"claims":{},"flags":[],"day_clock":0.0,"cooldowns":{},"transactions":{}}
  return commit(data)
 func commit(next:Dictionary) -> bool:
@@ -58,15 +63,24 @@ func import_character(profile:Dictionary,recover:bool=false) -> Dictionary:
  if not Profile.valid(profile):return {"ok":false,"error":"Invalid portable character"}
  var id=profile.character_id
  var old=data.characters.get(id,{})
+ var selected=profile
+ var recovered=false
  if not old.is_empty():
   if old.public_key!=profile.public_key:return {"ok":false,"error":"Character owner does not match"}
   var old_hash=Profile.digest(old);var incoming_hash=Profile.digest(profile)
-  if recover:return {"ok":true,"profile":old.duplicate(true),"recovered":true}
-  if incoming_hash==old_hash:return {"ok":true,"profile":old.duplicate(true)}
-  if old_hash not in profile.ancestors and profile.get("anchors",{}).get(old.get("issuer",""),"")!=old_hash:return {"ok":false,"error":"Portable character conflict: reconnect to recover this session, or export the current branch from its last server. No data was replaced.","conflict":true}
- var next=data.duplicate(true);next.characters[id]=profile.duplicate(true)
- if not commit(next):return {"ok":false,"error":last_error}
- return {"ok":true,"profile":profile.duplicate(true)}
+  if recover:selected=old;recovered=true
+  elif incoming_hash==old_hash:selected=old
+  elif old_hash not in profile.ancestors and profile.get("anchors",{}).get(old.get("issuer",""),"")!=old_hash:return {"ok":false,"error":"Portable character conflict: reconnect to recover this session, or export the current branch from its last server. No data was replaced.","conflict":true}
+ # Never normalize a candidate before the original digest/lineage is accepted.
+ var accepted=selected.duplicate(true)
+ if int(selected.progression.tree_version)==4:
+  var migrated=Profile.upgraded(selected)
+  if migrated.is_empty():return {"ok":false,"error":"Portable progression migration failed; no data was replaced"}
+  accepted=Profile.checkpoint(migrated,data.world_id,selected)
+ if old.is_empty() or Profile.digest(accepted)!=Profile.digest(old):
+  var next=data.duplicate(true);next.characters[id]=accepted
+  if not commit(next):return {"ok":false,"error":last_error}
+ return {"ok":true,"profile":accepted.duplicate(true),"recovered":recovered}
 func checkpoint_character(id:String,profile:Dictionary,visitor:Dictionary={}) -> Dictionary:
  var next=data.duplicate(true)
  var exported=Profile.checkpoint(profile,data.world_id,data.characters.get(id,{}))

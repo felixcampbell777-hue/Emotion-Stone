@@ -37,7 +37,7 @@ func ensure_runtime(floor_id:String) -> Node:
  runtime.player_damaged.connect(func(id:String,amount:int,_away:Vector3):
   if players.has(id):damage_player(players[id],amount,"enemy"))
  runtime.presentation.connect(func(event_id:String,at:Vector3):events.append({"id":Profile.random_id(),"kind":"audio","event":event_id,"floor":floor_id,"position":arr(at)}))
- runtime.enemy_damaged.connect(func(id:String,_amount:int,context:Dictionary):
+ runtime.enemy_damaged.connect(func(id:String,amount:int,context:Dictionary):
   var key=floor_id+"/"+id
   if not enemies.has(key) and runtime.authored.has(id):
    var authored=runtime.authored[id].duplicate(true);authored.key=key;authored.generation=int(runtime.generation.get(id,0));authored.contributors={};authored.cooldown_remaining=0.0;enemies[key]=authored
@@ -48,7 +48,9 @@ func ensure_runtime(floor_id:String) -> Node:
   e["last_attacker"]=attacker if players.has(attacker) else ""
   if players.has(attacker):
    e.contributors[attacker]=elapsed;players[attacker].last_combat=elapsed
-   if context.get("damage_kind","")=="melee" and source.get("weapon_type","")=="greatsword":e.last_weapon="greatsword")
+   if amount>0 and context.get("damage_kind","") in ["melee","projectile"]:
+    var weapon=String(source.get("weapon_type",""))
+    record_weapon_contribution(e,attacker,weapon))
  runtime.enemy_defeated.connect(func(id:String,_kind:String):
   var key=floor_id+"/"+id
   if not enemies.has(key) and runtime.authored.has(id):
@@ -64,6 +66,12 @@ func ensure_runtime(floor_id:String) -> Node:
    var state={"health":e.health,"at":[e.position[0],e.position[2]]}
    runtime.worldrise.states[e.id]=state;runtime.worldrise.swamp.states[e.id]=state
  return runtime
+func record_weapon_contribution(e:Dictionary,attacker:String,weapon:String) -> void:
+ if not players.has(attacker) or weapon not in ["greatsword","spear","rapier","bow"]:return
+ if not e.has("practice_contributors"):e["practice_contributors"]={}
+ if not e.practice_contributors.has(attacker):e.practice_contributors[attacker]=[]
+ if weapon not in e.practice_contributors[attacker]:e.practice_contributors[attacker].append(weapon)
+ e["last_weapon"]=weapon
 func inherit_participation(e:Dictionary) -> void:
  if e.has("parent_id"):
   var parent=enemies.get(e.floor+"/"+e.parent_id,{})
@@ -92,8 +100,9 @@ func configure(storage:RefCounted) -> void:
    var key=floor_id+"/"+entry.id
    var e=entry.duplicate(true);e["key"]=key;e["generation"]=0;e["state"]="idle";e["timer"]=0.0;e["empty"]=0.0;e["contributors"]={};e["target"]="";e["cooldown_remaining"]=0.0
    var saved=store.data.encounters.get(key,{})
-   for field in ["position","health","generation","cooldown_remaining","native_state"]:
+   for field in ["position","health","generation","cooldown_remaining","native_state","practice_contributors"]:
     if saved.has(field):e[field]=saved[field]
+   for contributor in e.get("practice_contributors",{}):e.contributors[contributor]=elapsed
    enemies[key]=e
 func add_player(profile:Dictionary) -> Dictionary:
  var id=profile.character_id
@@ -186,7 +195,7 @@ func action(id:String,kind:String,payload:Dictionary={}) -> Dictionary:
    p.bridge.set_pose(at,p.yaw,p.pitch);p.bridge.actor.health=p.max_health;p.bridge.actor.restore_stamina(p.max_stamina);p.bridge.actor.state="free"
   return success()
  if p.health<=0:return fail("Character is defeated")
- if kind in ["loot","purchase","sell","contract","equip","drink","learn","appearance","skill_loadout","heavy_attack"]:return economy(p,kind,payload)
+ if kind in ["loot","purchase","sell","contract","equip","drink","learn","attribute","refund","reset_attributes","appearance","skill_loadout","heavy_attack"]:return economy(p,kind,payload)
  if p.has("bridge") and kind in ["draw","jump","parry","dodge","dash","dash_charge","dash_release","dash_attack","primary_down","primary_up","charge","release","fire","attack","light","heavy","thrust","bow_draw","bow_cancel","cancel","focus_lost","weapon_equipped","shift_down","shift_up","cancel_primary"]:
   return bridge_action(p,kind,payload)
  if kind=="weapon_equipped":
@@ -255,7 +264,7 @@ func bridge_melee(p:Dictionary) -> void:
   var weakspot=enemy.sword_weakspot_open()
   if bridge.combat_skills.exposed.has(enemy.get_instance_id()):multiplier*=1.2
   var amount=roundi(float(spec.damage)*multiplier);var before=enemy.health
-  runtime.apply_enemy_damage(String(enemy.definition.id),amount,(enemy.position-actor.position).normalized(),{"damage_kind":"melee","strong":spec.strong,"force":float(spec.get("recoil_multiplier",1+float(p.stats.sword_recoil))),"source":spec.context})
+  runtime.apply_enemy_damage(String(enemy.definition.id),amount,(enemy.position-actor.position).normalized(),{"damage_kind":"melee","strong":spec.strong,"force":float(spec.get("recoil_multiplier",1+float(p.stats.sword_recoil))),"actor_id":p.id,"source":spec.context})
   if persistence_failed:return
   bridge.magic_items.sword_hit(enemy,before)
   bridge.combat_skills.sword_hit(enemy,before,weakspot,bool(spec.strong))
@@ -350,13 +359,13 @@ func step(delta:float) -> void:
    if float(e.cooldown_remaining)>0:
     e.cooldown_remaining=maxf(0,float(e.cooldown_remaining)-delta)
     if e.cooldown_remaining<=0 and runtimes.has(e.floor):
-     e.health=e.max_health;e.generation+=1;runtimes[e.floor].allow_boss_respawn(e.id)
+     e.health=e.max_health;e.generation+=1;e.contributors={};e.erase("practice_contributors");e.erase("last_attacker");e.erase("last_weapon");runtimes[e.floor].allow_boss_respawn(e.id)
   for runtime in runtimes.values():
    runtime.sync_players(players.values());runtime.set_day_clock(clock);runtime.step(delta)
    for id in runtime.generation:
     var key=runtime.map_id+"/"+id
     if enemies.has(key) and int(runtime.generation[id])>int(enemies[key].generation):
-     enemies[key].generation=runtime.generation[id];enemies[key].health=enemies[key].max_health;enemies[key].native_state={};enemies[key].state="idle";enemies[key].target="";enemies[key].contributors={};enemies[key].erase("last_attacker");enemies[key].erase("last_weapon")
+     enemies[key].generation=runtime.generation[id];enemies[key].health=enemies[key].max_health;enemies[key].native_state={};enemies[key].state="idle";enemies[key].target="";enemies[key].contributors={};enemies[key].erase("practice_contributors");enemies[key].erase("last_attacker");enemies[key].erase("last_weapon")
    for record in runtime.enemy_records():
     var key=record.floor+"/"+record.id
     if not enemies.has(key):
@@ -454,8 +463,8 @@ func melee(p:Dictionary,previous:float,current:float) -> void:
    if enemy.floor!=p.floor or enemy.health<=0 or not enemy_active(enemy) or p.hits.has(enemy.key):continue
    if contact(p.floor,rails,vec(enemy.position),.65 if enemy.kind=="vault_elder" else .45):
     p.hits[enemy.key]=true;enemy.contributors[p.id]=clock;enemy["last_attacker"]=p.id;enemy["last_weapon"]=Profiles.kind(p.weapon);p.last_combat=elapsed
-    if runtimes.has(p.floor):runtimes[p.floor].apply_enemy_damage(enemy.id,weapon_damage(p,int(spec.damage)),(vec(enemy.position)-vec(p.position)).normalized())
-    else:enemy.health=maxi(0,int(enemy.health)-weapon_damage(p,int(spec.damage)))
+    if runtimes.has(p.floor):runtimes[p.floor].apply_enemy_damage(enemy.id,weapon_damage(p,int(spec.damage)),(vec(enemy.position)-vec(p.position)).normalized(),{"actor_id":p.id,"damage_kind":"melee","source":{"weapon_type":Profiles.kind(p.weapon)}})
+    else:record_weapon_contribution(enemy,p.id,Profiles.kind(p.weapon));enemy.health=maxi(0,int(enemy.health)-weapon_damage(p,int(spec.damage)))
     events.append({"id":p.action_id+enemy.key,"kind":"hit","owner":p.id,"target":enemy.key,"floor":p.floor,"position":enemy.position})
     if enemy.health<=0:settle_kill(enemy,p.id)
   for victim in players.values():
@@ -500,12 +509,12 @@ func enemy_step(e:Dictionary,delta:float) -> void:
  if nearby.is_empty():
   e.empty+=delta
   if e.empty>=Adapter.RESET_EMPTY_SECONDS and not e.get("cooldown",0)>0 and (e.health<e.max_health or e.state!="idle"):
-   e.health=e.max_health;e.position=e.get("home",world.floor_arrival(e.floor) if not e.has("at") else [e.at[0],world.ground_height(e.floor,Vector3(e.at[0],0,e.at[1])),e.at[1]]).duplicate();e.state="idle";e.contributors={};e.generation+=1
+   e.health=e.max_health;e.position=e.get("home",world.floor_arrival(e.floor) if not e.has("at") else [e.at[0],world.ground_height(e.floor,Vector3(e.at[0],0,e.at[1])),e.at[1]]).duplicate();e.state="idle";e.contributors={};e.erase("practice_contributors");e.generation+=1
   return
  e.empty=0.0
  if e.cooldown_remaining>0:
   e.cooldown_remaining=maxf(0,e.cooldown_remaining-delta)
-  if e.cooldown_remaining<=0:e.health=e.max_health;e.generation+=1
+  if e.cooldown_remaining<=0:e.health=e.max_health;e.generation+=1;e.contributors={};e.erase("practice_contributors")
  if e.health<=0 or not enemy_active(e):return
  var target:Dictionary={};var nearest=float(e.get("aggro",18))
  for p in nearby:
@@ -537,7 +546,10 @@ func settle_kill(e:Dictionary,killer:String) -> void:
   var profile=p.profile.duplicate(true);var reward=world.roll_rewards(e,rng);var xp=int(reward.xp)
   if e.has("first_flag") and e.first_flag not in profile.bonus_claims:profile.bonus_claims.append(e.first_flag);xp+=int(e.first_bonus)
   profile.progression.xp=mini(10000000,int(profile.progression.xp)+xp);profile.copper=mini(100000000,int(profile.copper)+int(reward.copper))
-  if p.id==killer and e.get("last_weapon","")=="greatsword":profile.progression.greatsword_kills+=1
+  if xp>0 and not e.get("practice_contributors",{}).get(p.id,[]).is_empty():
+   var growth=preload("res://scripts/progression.gd").new();growth.restore(profile.progression)
+   for weapon in e.practice_contributors[p.id]:growth.award_practice(String(weapon),1)
+   profile.progression=growth.snapshot()
   var claim=tx+"/"+p.id
   if not reward.items.is_empty():next.claims[claim]={"owner":p.id,"floor":e.floor,"position":e.position.duplicate(),"items":reward.items,"arrow":false}
   Economy.record_kill(next,p.id,e.kind)
@@ -549,7 +561,7 @@ func settle_kill(e:Dictionary,killer:String) -> void:
  pending_settlements.erase(tx);persistence_failed=false
  for p in candidates:p.profile=store.data.characters[p.id].duplicate(true);refresh_stats(p)
  events.append({"id":tx,"kind":"defeat","target":e.key,"floor":e.floor,"position":e.position})
-func encounter_save(e:Dictionary) -> Dictionary:return {"position":e.position.duplicate(),"health":e.health,"generation":e.generation,"cooldown_remaining":e.cooldown_remaining,"native_state":e.get("native_state",{}).duplicate(true)}
+func encounter_save(e:Dictionary) -> Dictionary:return {"position":e.position.duplicate(),"health":e.health,"generation":e.generation,"cooldown_remaining":e.cooldown_remaining,"native_state":e.get("native_state",{}).duplicate(true),"practice_contributors":e.get("practice_contributors",{}).duplicate(true)}
 func checkpoint_all() -> bool:
  if not pending_settlements.is_empty() or not unsettled_deaths.is_empty():return false
  var next=store.data.duplicate(true);next.day_clock=clock;next["elapsed"]=elapsed
@@ -642,9 +654,13 @@ func checkpoints(floor_id:String) -> Dictionary:
   for entry in preload("res://scripts/swamp_shape.gd").spec.sites:
    sites[entry.id]=[entry.at[0],world.ground_height(floor_id,Vector3(entry.at[0],0,entry.at[1])),entry.at[1]]
  return sites
+func live_resources(p:Dictionary) -> Dictionary:
+ if p.has("bridge"):return {"health":p.bridge.actor.health,"stamina":p.bridge.actor.stamina}
+ return {"health":p.health,"stamina":p.stamina}
 func economy(p:Dictionary,kind:String,payload:Dictionary) -> Dictionary:
  if kind in ["purchase","sell","contract"]:return Economy.transact(self,p,kind,payload)
  var profile=p.profile.duplicate(true);var next=store.data.duplicate(true)
+ profile["resources"]=live_resources(p)
  var post_heal=0
  if kind=="equip":
   var item=String(payload.get("item",""))
@@ -681,10 +697,19 @@ func economy(p:Dictionary,kind:String,payload:Dictionary) -> Dictionary:
   var style=String(payload.get("style",""))
   if style not in ["overhead","charge_thrust"] or (style=="charge_thrust" and "charge_thrust" not in profile.progression.learned):return fail("Learn this heavy style first")
   profile.heavy_attack=style
- elif kind=="learn":
+ elif kind in ["learn","attribute","refund","reset_attributes"]:
+  if p.health<=0 or p.action!="free" or (p.has("bridge") and p.bridge.actor.state!="free"):return fail("Finish your action before changing progression")
   var growth=preload("res://scripts/progression.gd").new();growth.restore(profile.progression)
-  if not growth.learn(String(payload.get("skill",""))):return fail("Skill requirements not met")
+  var changed=false
+  if kind=="learn":changed=growth.learn(String(payload.get("skill","")))
+  elif kind=="attribute":changed=growth.increase_attribute(String(payload.get("attribute","")))
+  elif kind=="refund":changed=growth.refund(String(payload.get("skill","")))
+  else:changed=growth.reset_attributes()
+  if not changed:return fail("Progression requirements not met")
   profile.progression=growth.snapshot()
+  for ability in ["dash","flowing_counter"]:
+   if not growth.has(ability):profile.skill_loadout[ability]=false
+  if not growth.has("charge_thrust"):profile.heavy_attack="overhead"
  elif kind=="loot":
   var claim_id=String(payload.get("claim",payload.get("id","")));var claim=next.claims.get(claim_id,{})
   if claim.is_empty() or claim.floor!=p.floor or (claim.owner!=p.id and not claim.get("arrow",false)) or vec(claim.position).distance_to(vec(p.position))>3:return fail("Loot is unavailable")
@@ -710,21 +735,21 @@ func economy(p:Dictionary,kind:String,payload:Dictionary) -> Dictionary:
   if not preload("res://scripts/appearance_profile.gd").valid(appearance):return fail("Invalid appearance")
   profile.appearance=appearance.duplicate(true)
  else:return fail("Unknown transaction")
+ if post_heal>0:profile.resources.health=mini(int(Profile.resource_maxima(profile).health),int(profile.resources.health)+post_heal)
  var exported=Profile.checkpoint(profile,store.data.world_id,store.data.characters.get(p.id,{}))
  if not Profile.valid(exported):return fail("Transaction would invalidate the profile")
  next.characters[p.id]=exported
  if not store.commit(next):return fail(store.last_error)
- p.profile=exported;p.weapon=exported.magic_items.weapon_id;refresh_stats(p)
- if post_heal>0:
-  p.health=mini(p.max_health,p.health+post_heal)
-  if p.has("bridge"):p.bridge.actor.restore_health(p.health)
+ p.profile=exported;p.weapon=exported.magic_items.weapon_id;p.health=exported.resources.health;p.stamina=exported.resources.stamina;refresh_stats(p)
+ if post_heal>0 and p.has("bridge"):p.bridge.actor.restore_health(p.health)
  return success()
 func finish_economy(p:Dictionary,profile:Dictionary,next:Dictionary) -> Dictionary:
+ profile["resources"]=live_resources(p)
  var exported=Profile.checkpoint(profile,store.data.world_id,store.data.characters.get(p.id,{}))
  if not Profile.valid(exported):return fail("Transaction would invalidate profile")
  next.characters[p.id]=exported
  if not store.commit(next):return fail(store.last_error)
- p.profile=exported;p.weapon=exported.magic_items.weapon_id;refresh_stats(p)
+ p.profile=exported;p.weapon=exported.magic_items.weapon_id;p.health=exported.resources.health;p.stamina=exported.resources.stamina;refresh_stats(p)
  return success()
 func purchase(p:Dictionary,payload:Dictionary) -> Dictionary:
  var catalog=preload("res://scripts/rise_guild.gd").catalog
@@ -804,7 +829,7 @@ func arrow_step(a:Dictionary,delta:float) -> void:
   var definition:Dictionary=collider.definition;var key=a.floor+"/"+String(definition.get("id",""))
   if enemies.has(key):
    var e=enemies[key];e.contributors[a.owner]=elapsed;e["last_attacker"]=a.owner;e["last_weapon"]=a.weapon_kind
-   runtime.apply_enemy_damage(e.id,int(a.damage),velocity.normalized(),{"damage_kind":"projectile","source":a.get("context",{})})
+   runtime.apply_enemy_damage(e.id,int(a.damage),velocity.normalized(),{"damage_kind":"projectile","actor_id":a.owner,"source":{"weapon_type":a.weapon_kind,"actor_id":a.owner}})
    events.append({"id":a.id+":hit","kind":"hit","owner":a.owner,"target":key,"floor":a.floor,"position":arr(hit.position)})
    return
  recover_arrow(a,hit.position)
