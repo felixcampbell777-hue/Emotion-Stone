@@ -30,7 +30,7 @@ func run() -> void:
 	if not p1.has("bridge") or not p2.has("bridge"):finish();return
 	var before_progression=Profile.digest(p1.profile);var before_health=p1.bridge.actor.health;var before_stamina=p1.bridge.actor.stamina
 	p1.action="free";p1.bridge.actor.state="light"
-	check(not authority.action(p1.id,"attribute",{"attribute":"body"}).ok and Profile.digest(p1.profile)==before_progression and p1.bridge.actor.health==before_health and p1.bridge.actor.stamina==before_stamina,"Direct progression request cannot mutate committed actual Actor despite free logical presentation")
+	check(not authority.action(p1.id,"attribute",{"attribute":"strength"}).ok and Profile.digest(p1.profile)==before_progression and p1.bridge.actor.health==before_health and p1.bridge.actor.stamina==before_stamina,"Direct progression request cannot mutate committed actual Actor despite free logical presentation")
 	p1.bridge.actor.state="free"
 	var next=storage.data.duplicate(true);next.flags.append("elder_defeated");check(storage.commit(next),"Fixture floor access established durably")
 	check(authority.action(p2.id,"travel",{"floor":"wr_floor_02"}).ok,"One player travels through production action")

@@ -54,30 +54,37 @@ congestion control and retransmission remain enabled. See the
 
 ## Progression upgrade compatibility
 
-Progression tree 5 uses wire protocol 4. Install matching new client and server
-builds together; previous servers cannot load upgraded characters and mixed-version
-connections are rejected explicitly. An upgraded client can read a strictly valid
-original tree-4 portable file without rewriting it. It proves ownership and sends
-the original profile, retaining its original digest, ancestry and handoff anchors.
+Progression tree 6 uses wire protocol 5 with Strength, Agility and Greatsword.
+Install matching new client and server builds together; previous servers cannot
+load upgraded characters and mixed-version connections are rejected explicitly.
+An upgraded client reads strictly valid original tree-4 or five-category draft
+tree-5 portable files without rewriting them. It proves ownership and sends the
+original profile, retaining its original digest, ancestry and handoff anchors.
 Only after the destination server resolves the original lineage (or explicit
-recovery selects its durable head) does it create one tree-5 checkpoint whose
+recovery selects its durable head) does it create one tree-6 checkpoint whose
 parent is that accepted original head. Conflicting histories remain rejected.
 
-The server accepts exactly the previous f3111c1 content fingerprint
-`933244fd47437c84992d30917ceb0be3561144a2f4cc20cd15ff324583ccc6c6`
-for a persisted-world upgrade. Its exact manifest and schema hashes are recorded
-in `docs/evidence/world-rise-f3111c1-content.json` and were confirmed with the
-pinned Godot runtime before content changes. The world fingerprint is replaced
+Persisted worlds may upgrade from exactly two previous content fingerprints:
+
+- f3111c1 tree-4 candidate: `933244fd47437c84992d30917ceb0be3561144a2f4cc20cd15ff324583ccc6c6`.
+- 4177e44 five-category draft: `6266368031e0d0db87af11c82b83a857c4e427734662adbc8f5a0310fccd3c78`.
+
+Their exact manifests and schema hashes are retained in
+`docs/evidence/world-rise-f3111c1-content.json` and
+`docs/evidence/world-rise-4177e44-content.json`. The world fingerprint is replaced
 through the existing durable writer; dormant character records, revisions and
 anchors remain unchanged until their owner imports them. Arbitrary content
 mismatches, malformed legacy profiles and legacy unwrapped network files remain
 rejected. The lossless storage envelope and exclusive writer lock are unchanged.
 
-The tree-4 allocation is retained in a bounded audit receipt. Dash, Dodge and
-Charged Thrust remain learned with their required attributes; retired passive
-ranks refund into the earned perk budget. Original resources must fit original
+Original allocations are retained in bounded audit receipts, including an earlier
+tree-4 receipt nested within a migrated draft-5 profile. Dash, Dodge and Charged
+Thrust remain learned with their minimum required attributes and existing loadout.
+Retired passive ranks and old attribute allocations refund into the normal earned
+budgets. XP, every weapon's practice, equipment, stacks, currency and a used
+one-time reset remain intact. Original resources must fit their frozen original
 stat maxima before import. Accepted upgrades and stat reductions only clamp
-current resources to the new maxima and never heal the character.
+current resources to new maxima: wounds never heal and defeated health stays zero.
 
 Learning, perk refunds, attribute allocation and the one-time attribute reset
 are authoritative durable transactions. A rejected requirement or failed disk

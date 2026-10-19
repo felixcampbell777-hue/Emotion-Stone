@@ -61,12 +61,23 @@ var voice_diagnostics={"incoming":0,"forwarded":0,"recipients":{},"last_sequence
 var relay=VoiceRelay.new()
 var data_dir=""
 var _subtree_api:SceneMultiplayer
-func _ready() -> void:
+var _retiring_transport_scope=false
+func _ready() -> void:_configure_subtree_api()
+func _configure_subtree_api() -> void:
  _subtree_api=SceneMultiplayer.new();_subtree_api.allow_object_decoding=false;_subtree_api.server_relay=false
  get_tree().set_multiplayer(_subtree_api,get_path())
+ # Engine RPC-cache callbacks run synchronously on tree_exited. Release the
+ # private API afterward from a static callable that outlives this Node.
+ tree_exited.connect(_release_subtree_api.bind(get_tree(),get_path(),_subtree_api),CONNECT_DEFERRED|CONNECT_ONE_SHOT)
  _subtree_api.peer_connected.connect(_peer_connected);_subtree_api.peer_disconnected.connect(_peer_disconnected)
- _subtree_api.connected_to_server.connect(_connected);_subtree_api.connection_failed.connect(func():connecting=false;stop_voice_transport();report("Connection failed"))
- _subtree_api.server_disconnected.connect(func():connected=false;connecting=false;stop_voice_transport();report("Server disconnected; portable checkpoint retained") if not status.begins_with("Rejected:") else status_changed.emit(status))
+ _subtree_api.connected_to_server.connect(_connected);_subtree_api.connection_failed.connect(_connection_failed)
+ _subtree_api.server_disconnected.connect(_server_disconnected)
+func _connection_failed() -> void:
+ connecting=false;stop_voice_transport();_retire_transport_scope();report("Connection failed")
+func _server_disconnected() -> void:
+ connected=false;connecting=false;stop_voice_transport();_retire_transport_scope()
+ if status.begins_with("Rejected:"):status_changed.emit(status)
+ else:report("Server disconnected; portable checkpoint retained")
 func report(message:String) -> void:
  status=message;last_error=message;status_changed.emit(message)
 func online_session_active() -> bool:return connected
@@ -164,7 +175,7 @@ func _authenticate(message:Dictionary) -> void:
  var sender=multiplayer.get_remote_sender_id()
  if not pending.has(sender) or Time.get_ticks_msec()>pending[sender].deadline or var_to_bytes(message).size()>262144:return reject(sender,"Authentication expired or oversized")
  var challenge:PackedByteArray=pending[sender].nonce;pending.erase(sender)
- if message.get("protocol")!=Profile.PROTOCOL:return reject(sender,"World Rise version mismatch. Update both client and server for progression tree 5; older servers cannot read upgraded characters.")
+ if message.get("protocol")!=Profile.PROTOCOL:return reject(sender,"World Rise version mismatch. Update both client and server for progression tree 6; older servers cannot read upgraded characters.")
  if message.get("content")!=Profile.content_digest():return reject(sender,"World Rise content mismatch. Install matching client and server downloads.")
  if not Profile.valid(message.get("profile",{})):return reject(sender,"Invalid portable character; no checkpoint was replaced")
  var profile:Dictionary=message.profile;var signature=message.get("signature")
@@ -196,7 +207,8 @@ func reject(id:int,message:String) -> void:
   var rejected_peer=peer.get_peer(id)
   if rejected_peer!=null and rejected_peer.is_active():rejected_peer.peer_disconnect_later()
 @rpc("authority","call_remote","reliable",0)
-func _denied(message:String) -> void:connecting=false;report("Rejected: "+message)
+func _denied(message:String) -> void:
+ connecting=false;stop_voice_transport();_retire_transport_scope();report("Rejected: "+message)
 @rpc("authority","call_remote","reliable",0)
 func _accepted(profile:Dictionary,_world_id:String,token:PackedByteArray,server_voice_port:int) -> void:
  if server or not Profile.valid(profile) or token.size()!=32 or server_voice_port<1024 or server_voice_port>65535:return
@@ -388,6 +400,10 @@ func process_admin() -> void:
  var output=FileAccess.open(data_dir.path_join("admin.result.json"),FileAccess.WRITE)
  if output!=null:output.store_string(JSON.stringify(result));output.flush();output.close()
 func send_snapshot(recipient:int,snapshot:Dictionary) -> void:
+ # ENet can finish disconnecting between the last roster update and this tick.
+ if peer==null or recipient not in multiplayer.get_peers():return
+ var recipient_peer=peer.get_peer(recipient)
+ if recipient_peer==null or recipient_peer.get_state()!=ENetPacketPeer.STATE_CONNECTED:return
  var started=Time.get_ticks_usec();var raw=var_to_bytes(snapshot)
  if members.size()==8 and authority.tick>=600 and OS.get_environment("WORLD_RISE_PROFILE_RUNTIME")=="1" and OS.get_environment("WORLD_RISE_PROFILE_SNAPSHOT")=="1":
   var capture_floor=String(snapshot.players.get(members.get(recipient,""),{}).get("floor","unknown"))
@@ -447,7 +463,7 @@ func disconnect_session() -> void:leave_server()
 func leave_server() -> void:
  if connecting and not connected:
   connecting=false
-  if peer!=null:peer.close()
+  _retire_transport_scope()
   report("Connection cancelled");return
  if server and authority!=null:
   if not authority.checkpoint_all():report("Cannot stop: "+storage.last_error);return
@@ -457,13 +473,12 @@ func leave_server() -> void:
    if profile.is_empty():report("Cannot stop: "+storage.last_error);return
    if int(id)==1 and not profile.is_empty():local_profile=profile;install_checkpoint(profile)
    elif not profile.is_empty():_checkpoint.rpc_id(int(id),profile)
-  if peer!=null:peer.close()
   for id in authority.players.keys():authority.release_player(id)
   for runtime in authority.runtimes.values():runtime.queue_free()
   stop_voice_transport()
-  authority=null;storage=null;server=false;connected=false;members.clear();departures.clear();report("Server stopped after checkpoint")
+  authority=null;storage=null;server=false;connected=false;members.clear();departures.clear();_retire_transport_scope();report("Server stopped after checkpoint")
  elif connected:_depart.rpc_id(1)
- elif peer!=null:peer.close()
+ elif peer!=null:_retire_transport_scope()
 @rpc("any_peer","call_remote","reliable",2)
 func _depart() -> void:
  var sender=multiplayer.get_remote_sender_id()
@@ -493,7 +508,7 @@ func _export_ack(digest:String) -> void:
 func _export_closed() -> void:
  connected=false;connecting=false
  stop_voice_transport()
- if peer!=null:peer.close()
+ _retire_transport_scope()
  report("Character exported; disconnected")
 func retry_checkpoint_install() -> bool:
  if pending_export.is_empty():return true
@@ -521,19 +536,51 @@ func network_diagnostics() -> Dictionary:
   var extremes=transport_extrema[id];extremes.throttle_min=minf(extremes.throttle_min,sample.throttle);extremes.limit_min=minf(extremes.limit_min,sample.limit);extremes.rtt_max_ms=maxf(extremes.rtt_max_ms,sample.rtt_ms)
   sample.merge(extremes);result.peers[id]=sample
  return result
+func _retire_transport_scope() -> void:
+ # Retire only an entire transport, never an individual server member. A real
+ # tree exit lets Godot's stored RPC-cache callbacks remove tracked nodes.
+ if _retiring_transport_scope or not is_inside_tree() or is_queued_for_deletion():return
+ var parent=get_parent()
+ if parent==null or parent.is_queued_for_deletion():return
+ var tree=get_tree();var path=get_path();var api=_subtree_api;var index=get_index()
+ var owners:Array=[]
+ _capture_tree_owners(self,owners)
+ _retiring_transport_scope=true
+ parent.remove_child(self)
+ _release_subtree_api(tree,path,api,false)
+ peer=null
+ # A real tree-exit observer may have requested shutdown during removal.
+ if is_queued_for_deletion() or not is_instance_valid(parent) or parent.is_queued_for_deletion() or not parent.is_inside_tree():
+  if not is_queued_for_deletion():queue_free()
+  _retiring_transport_scope=false
+  return
+ # Re-enter the existing Node without re-running subclass one-time startup.
+ parent.add_child(self);_configure_subtree_api();parent.move_child(self,mini(index,parent.get_child_count()-1))
+ for entry in owners:
+  if is_instance_valid(entry.node) and is_instance_valid(entry.owner):entry.node.owner=entry.owner
+ _retiring_transport_scope=false
+
+static func _capture_tree_owners(node:Node,result:Array) -> void:
+ if node.owner!=null:result.append({"node":node,"owner":node.owner})
+ for child in node.get_children():_capture_tree_owners(child,result)
+
 func _exit_tree() -> void:
  # Scene removal is an abrupt disconnect, never a successful portable export.
  connected=false;connecting=false
- # Clear RPC node tracking while this Session and its callbacks are alive,
- # before deregistration can release the engine-owned multiplayer reference.
- # Clear first also avoids dispatching a synthetic disconnect during removal.
- if _subtree_api!=null:
-  _subtree_api.clear()
-  _subtree_api.multiplayer_peer=null
- if peer!=null:peer.close()
+ if _retiring_transport_scope:return
+ # The registered peer is released after natural tree_exited callbacks. A peer
+ # that never belonged to the API has no RPC tracking and can close immediately.
+ if peer!=null and (_subtree_api==null or _subtree_api.multiplayer_peer!=peer):peer.close()
  stop_voice_transport()
  if server and storage!=null:storage.stop_worker()
- if get_tree()!=null:get_tree().set_multiplayer(null,get_path())
+
+static func _release_subtree_api(tree:SceneTree,path:NodePath,api:SceneMultiplayer,unregister:bool=true) -> void:
+ var retired_peer=api.multiplayer_peer
+ api.clear()
+ api.multiplayer_peer=null
+ if retired_peer!=null:retired_peer.close()
+ # A replacement Session may already own this path by the deferred turn.
+ if unregister and is_instance_valid(tree) and tree.get_multiplayer(path)==api:tree.set_multiplayer(null,path)
 
 static func configure_gameplay_peer(connection:ENetPacketPeer) -> void:
  if connection==null or not connection.is_active():return

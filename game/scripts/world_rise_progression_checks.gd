@@ -6,9 +6,9 @@ func state(amount:int=957383) -> RefCounted:
 	var result=Growth.new();result.set_profile(true);result.xp=amount;return result
 func run(test:Object) -> void:
 	var s=state(0)
-	test.check(s.level()==1 and s.points()==0 and s.attribute_points()==7,"Fresh tree5 has seven attribute points, no paid perks, and unchanged level one")
+	test.check(s.level()==1 and s.points()==0 and s.attribute_points()==7,"Fresh tree6 has seven attribute points, no paid perks, and unchanged level one")
 	test.check(s.definition.level_thresholds==JSON.parse_string(FileAccess.get_file_as_string(Growth.LEGACY_WORLD_RISE)).level_thresholds,"Every XP threshold matches frozen tree4")
-	test.check(Growth.valid(s.snapshot()) and Growth.valid(JSON.parse_string(JSON.stringify(s.snapshot()))),"Fresh tree5 and JSON-number snapshots validate strictly")
+	test.check(Growth.valid(s.snapshot()) and Growth.valid(JSON.parse_string(JSON.stringify(s.snapshot()))),"Fresh tree6 and JSON-number snapshots validate strictly")
 	for id in Growth.ATTRIBUTE_IDS:
 		s=state()
 		for value in range(3,20):test.check(s.increase_attribute(id),"Attribute investment succeeds within earned budget and cap")
@@ -23,8 +23,8 @@ func run(test:Object) -> void:
 			test.check(not s.learn(item.id),"Perk rank cap rejects excess allocation: "+item.id)
 			test.check(Growth.valid(s.snapshot()),"Every legal branch allocation survives strict validation")
 		test.check(Stats.weapon_stamina_multiplier(s,"greatsword")>=.5 and Stats.weapon_stamina_multiplier(s,"rapier")>=.5 and Stats.weapon_stamina_multiplier(s,"bow")>=.5,"Action stamina savings remain bounded for each branch")
-	s=state();s.increase_attribute("mastery");s.learn("charge_thrust")
-	for i in range(5):s.increase_attribute("mastery")
+	s=state();s.increase_attribute("greatsword");s.learn("charge_thrust")
+	for i in range(5):s.increase_attribute("greatsword")
 	s.learn("fast_thrust")
 	test.check(not s.refund("charge_thrust") and s.has("charge_thrust"),"Refund rejects removing a dependency still used by Fast Thrust")
 	var before=s.points();test.check(s.refund("fast_thrust") and s.points()==before+1 and s.refund("charge_thrust"),"Refund returns exactly one point per removed rank, in dependency order")
@@ -35,13 +35,13 @@ func run(test:Object) -> void:
 			test.check(Growth.valid(s.snapshot()),"Practice counters and legacy greatsword mirror remain valid")
 	s=state();s.award_practice("bow",400);s.award_practice("invalid",100);s.award_practice("bow",-1)
 	test.check(s.practice_rank("bow")==5 and s.weapon_kills.bow==400 and is_equal_approx(Stats.weapon_damage_multiplier(s,"bow"),1.10),"Weapon practice caps its bonus at ten percent and rejects invalid awards")
-	s.increase_attribute("body");s.learn("iron_body");var old_xp=s.xp;var old_kills=s.weapon_kills.duplicate()
+	s.increase_attribute("strength");s.learn("iron_body");var old_xp=s.xp;var old_kills=s.weapon_kills.duplicate()
 	test.check(s.reset_attributes() and s.attributes==Growth.base_attributes() and s.learned.is_empty() and s.attribute_points()==56 and s.points()==49,"One free attribute reset atomically returns all attribute and perk allocations")
 	test.check(s.xp==old_xp and s.weapon_kills==old_kills and not s.reset_attributes(),"Reset preserves XP/practice and cannot be used twice")
 	var legacy={"tree_version":4,"profile":"world_rise","xp":957383,"learned":["iron_body","swiftfoot","dash","belly_roll","great_greatsword","charge_thrust","fast_thrust","basher","basher","basher","devastating_blade"],"passives":[],"greatsword_kills":400}
 	var untouched=legacy.duplicate(true);var upgraded=Growth.migrate_world_rise(legacy)
 	test.check(Growth.valid_world_rise4(legacy) and Growth.valid(upgraded) and legacy==untouched,"Legacy validator accepts the exact original gates, and migration never mutates its input")
-	test.check(upgraded.learned==["dash","belly_roll","charge_thrust"] and upgraded.attributes.reflexes==4 and upgraded.attributes.mastery==4,"Migration retains paid active abilities and assigns only their minimum attribute gates")
+	test.check(upgraded.learned==["dash","belly_roll","charge_thrust"] and upgraded.attributes.agility==4 and upgraded.attributes.greatsword==4,"Migration retains paid active abilities and assigns only their minimum attribute gates")
 	s.restore(upgraded)
 	test.check(s.points()==46 and s.attribute_points()==54 and s.xp==957383 and s.greatsword_kills==400,"Migration returns every retired passive rank while preserving XP and lifetime kills")
 	test.check(Growth.migrate_world_rise(upgraded)==upgraded and upgraded.migration_v4.learned==legacy.learned,"Migration is idempotent and keeps a bounded exact allocation receipt")
@@ -53,17 +53,17 @@ func run(test:Object) -> void:
 	test.check(not Growth.valid_world_rise4(malformed) and Growth.migrate_world_rise(malformed).is_empty(),"Migration refuses a legacy allocation missing original prerequisites")
 	malformed=legacy.duplicate(true);malformed.greatsword_kills=0;malformed.learned=["great_greatsword","charge_thrust"]
 	test.check(not Growth.valid_world_rise4(malformed),"Legacy validation keeps its original fifteen-kill Charged Thrust gate")
-	s=state();var bad=s.snapshot();bad.attributes.body=20;bad.attributes.reflexes=20;bad.attributes.precision=20;bad.attributes.endurance=20
-	test.check(not Growth.valid(bad),"Tree5 rejects attribute overspending")
-	bad=s.snapshot();bad.attributes.body=3.5;test.check(not Growth.valid(bad),"Tree5 rejects fractional attribute ranks")
-	bad=s.snapshot();bad.weapon_kills.greatsword=15;test.check(not Growth.valid(bad),"Tree5 rejects mismatched legacy and current greatsword counters")
-	bad=s.snapshot();bad.learned=["devastating_blade"];test.check(not Growth.valid(bad),"Tree5 rejects perk gates and missing dependencies")
-	bad=s.snapshot();bad["free_points"]=999;test.check(not Growth.valid(bad),"Tree5 rejects invented economy fields")
+	s=state();var bad=s.snapshot();bad.attributes.strength=20;bad.attributes.agility=20;bad.attributes.greatsword=20;bad.xp=100
+	test.check(not Growth.valid(bad),"Tree6 rejects attribute overspending")
+	bad=s.snapshot();bad.attributes.strength=3.5;test.check(not Growth.valid(bad),"Tree6 rejects fractional attribute ranks")
+	bad=s.snapshot();bad.weapon_kills.greatsword=15;test.check(not Growth.valid(bad),"Tree6 rejects mismatched legacy and current greatsword counters")
+	bad=s.snapshot();bad.learned=["devastating_blade"];test.check(not Growth.valid(bad),"Tree6 rejects perk gates and missing dependencies")
+	bad=s.snapshot();bad["free_points"]=999;test.check(not Growth.valid(bad),"Tree6 rejects invented economy fields")
 	var older=Growth.new();older.restore({"tree_version":3,"xp":8200,"learned":["strength","mana","mana_lance"],"passives":[]})
 	test.check(not older.world_rise and older.has("mana_lance") and older.snapshot().tree_version==3,"Older game modes retain their independent Mana tree and save version")
 
 	var notice=preload("res://scripts/world_rise_migration_notice.gd")
-	var notice_path="user://tree5-notice-fixture.cfg"
+	var notice_path="user://tree6-notice-fixture.cfg"
 	var receipt={"learned":["iron_body","swiftfoot"]}
 	test.check(not notice.acknowledged("offline",receipt,notice_path),"Missing local notice preference safely shows migration explanation")
 	test.check(notice.remember("offline",receipt,notice_path) and notice.acknowledged("offline",receipt,notice_path),"Offline acknowledgement persists and reopens through a fresh ConfigFile read")
@@ -80,3 +80,27 @@ func run(test:Object) -> void:
 	var broken=ConfigFile.new();broken.set_value("notices","acknowledged",["invalid preference shape"]);broken.save(notice_path)
 	test.check(not notice.acknowledged("offline",receipt,notice_path),"Corrupt presentation preference cannot suppress a migration notice")
 	DirAccess.remove_absolute(notice_path)
+
+	var maxed=state()
+	for id in Growth.ATTRIBUTE_IDS:
+		for point in range(17):maxed.increase_attribute(id)
+	test.check(maxed.attribute_points()==5 and maxed.attributes=={"strength":20,"agility":20,"greatsword":20},"Level fifty keeps all five earned excess attribute points after three capped branches are maxed")
+	var draft={"tree_version":5,"profile":"world_rise","xp":957383,"learned":["iron_body","honed_arms","swiftfoot","dash","great_greatsword","charge_thrust","deep_reserve"],"passives":[],"greatsword_kills":400,"weapon_kills":{"greatsword":400,"bow":50,"rapier":15,"spear":100},"attributes":{"body":9,"endurance":9,"reflexes":4,"precision":3,"mastery":4},"attribute_reset_used":true,"migration_v4":{"learned":[]}}
+	var original_draft=draft.duplicate(true)
+	test.check(Growth.valid_world_rise5(draft) and Growth.valid(JSON.parse_string(JSON.stringify(draft))),"Unreleased five-attribute draft validates against its exact immutable catalog and JSON-number schema")
+	var draft_bounds=Growth.legacy5_resource_maxima(100,100,draft)
+	test.check(draft_bounds.health==161 and is_equal_approx(draft_bounds.stamina,166),"Original draft resource maxima use frozen Body/Endurance effects before migration")
+	var revised=Growth.migrate_world_rise(draft)
+	test.check(draft==original_draft and Growth.valid(revised) and revised.tree_version==6 and revised.attributes=={"strength":3,"agility":4,"greatsword":4},"Draft-to-three-branch migration is pure and assigns only retained active minimum gates")
+	test.check(revised.learned==["dash","charge_thrust"] and revised.weapon_kills==draft.weapon_kills and revised.xp==draft.xp and revised.attribute_reset_used,"Draft migration retains active ranks, XP, all weapon practice and free reset usage")
+	test.check(revised.migration_v5==draft and revised.migration_v4==draft.migration_v4 and Growth.migrate_world_rise(revised)==revised,"Draft migration retains exact bounded audit receipts and is idempotent")
+	var migrated_state=state();migrated_state.restore(revised)
+	test.check(migrated_state.points()==47 and migrated_state.attribute_points()==54 and not migrated_state.reset_attributes(),"Draft passive and attribute allocations are fully refunded without restoring an already used reset")
+	var inconsistent=revised.duplicate(true);inconsistent.xp-=1
+	test.check(not Growth.valid(inconsistent),"Migration receipt rejects lowering earned XP below the preserved original draft")
+	inconsistent=revised.duplicate(true);inconsistent.weapon_kills.bow=49
+	test.check(not Growth.valid(inconsistent),"Migration receipt rejects losing historical weapon practice")
+	inconsistent=revised.duplicate(true);inconsistent.attribute_reset_used=false
+	test.check(not Growth.valid(inconsistent),"Migration receipt rejects silently restoring a spent attribute reset")
+	inconsistent=revised.duplicate(true);inconsistent.erase("migration_v4")
+	test.check(not Growth.valid(inconsistent),"Draft receipt retains the original tree4 audit receipt consistently")

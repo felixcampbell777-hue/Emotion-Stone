@@ -1,5 +1,5 @@
 extends SceneTree
-## Focused native tree5 acceptance; all userdata is supplied by the isolated harness.
+## Focused native tree6 acceptance; all userdata is supplied by the isolated harness.
 var game:Node
 var failures:Array=[]
 var checks=0

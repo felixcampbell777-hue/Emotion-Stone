@@ -51,6 +51,7 @@ func run() -> void:
  check(session.ensure_character() and Profile.digest(session.local_profile)==Profile.digest(original),"normal client loads original hash without eager migration")
  var original_file=FileAccess.get_file_as_string(session.checkpoint_path)
  check(Codec.read_file(session.checkpoint_path,"character").data.progression.tree_version==4,"original disk remains tree4 before authentication")
+ await reject_invalid_owner(original_file)
  await visit("A-first",int(options["port-a"]),"a",true)
  print("PROGRESSION_HOP_START_B")
  var deadline=Time.get_ticks_msec()+30000
@@ -61,6 +62,23 @@ func run() -> void:
   await visit("A-return",int(options["port-a"]),"a",false)
  check(FileAccess.get_file_as_string(session.checkpoint_path)!=original_file,"migration installs a new lossless portable checkpoint")
  finish()
+func reject_invalid_owner(original_file:String) -> void:
+ var before=Codec.read_file(String(options.scenario).path_join("a/world.json"),"world")
+ var raw=before.get("data",{}).get("characters",{}).get(session.character_id,{})
+ check(not raw.is_empty() and Profile.digest(raw)==Profile.digest(original),"bad proof: raw legacy registry head is original before authentication")
+ var code=session.join("127.0.0.1",int(options["port-a"]))
+ check(code==OK,"bad proof: real admission challenge starts")
+ if code!=OK:return
+ # join loads the legitimate portable file/key first. Only this challenge proof
+ # is signed by an unrelated key; the claimed raw profile remains byte-exact.
+ session.owner_key=Crypto.new().generate_rsa(2048)
+ var deadline=Time.get_ticks_msec()+12000
+ while not session.status.begins_with("Rejected:") and Time.get_ticks_msec()<deadline:await create_timer(.05).timeout
+ check(not session.connected and not session.connecting and "ownership proof failed" in session.status.to_lower(),"bad proof: server rejects ownership before migration")
+ var after=Codec.read_file(String(options.scenario).path_join("a/world.json"),"world")
+ var retained=after.get("data",{}).get("characters",{}).get(session.character_id,{})
+ check(not retained.is_empty() and Profile.digest(retained)==Profile.digest(raw) and retained.progression.tree_version==4,"bad proof: dormant registry digest/revision and original progression remain exact")
+ check(FileAccess.get_file_as_string(session.checkpoint_path)==original_file,"bad proof: original portable bytes remain unchanged")
 func seed_scenario() -> void:
  DirAccess.make_dir_recursive_absolute(String(options.scenario).path_join("portable"))
  var key=Crypto.new().generate_rsa(2048)
@@ -116,12 +134,12 @@ func visit(label:String,port:int,world_name:String,migrates:bool) -> void:
  check(session.connected and own_seen and snapshots>=12,label+": authenticated and receives own native snapshots")
  check(voice_ready,label+": authenticated voice UDP ready")
  if accepted.is_empty():check(false,label+": accepted profile observed");return
- check(Profile.valid(accepted) and accepted.progression.tree_version==5,label+": accepted profile is valid tree5")
+ check(Profile.valid(accepted) and accepted.progression.tree_version==6,label+": accepted profile is valid tree6")
  check(original_constants(accepted)==original_constants(original),label+": original identity copper materials equipment items appearance and equipped actives exact")
  check(accepted.progression.learned==RETAINED and accepted.progression.migration_v4.learned==LEGACY_LEARNED,label+": retained actives and exact refund receipt")
  check(accepted.progression.xp==1900 and accepted.progression.greatsword_kills==31,label+": original XP and historical practice preserved")
  var growth=Growth.new();growth.restore(accepted.progression)
- check(growth.points()==growth.level()-1-RETAINED.size() and growth.attribute_points()==7+growth.level()-1-2 and accepted.progression.attributes.reflexes==4 and accepted.progression.attributes.mastery==4,label+": refunded perk budget and minimum active attributes")
+ check(growth.points()==growth.level()-1-RETAINED.size() and growth.attribute_points()==7+growth.level()-1-2 and accepted.progression.attributes=={"strength":3,"agility":4,"greatsword":4},label+": refunded perk budget and minimum active attributes")
  if migrates:
   check(accepted.revision==before.revision+1 and accepted.parent==incoming and incoming in accepted.ancestors,label+": exactly one migration checkpoint descends from original authenticated head")
   check(accepted.resources==original.resources,label+": migration does not heal or round original resources")
@@ -145,5 +163,5 @@ func visit(label:String,port:int,world_name:String,migrates:bool) -> void:
  phases.append(record)
  await create_timer(.2).timeout
 func finish() -> void:
- print("PROGRESSION_HOP_RESULT ",JSON.stringify({"passed":failures.is_empty(),"protocol":Profile.PROTOCOL,"storage_format":Codec.FORMAT,"current_tree5_live_proof":true,"checks":checks,"phases":phases,"failures":failures,"blood_scope":"Not exercised: actual Session migration probe does not instantiate Main or synthesize blood events."}))
+ print("PROGRESSION_HOP_RESULT ",JSON.stringify({"passed":failures.is_empty(),"protocol":Profile.PROTOCOL,"storage_format":Codec.FORMAT,"current_tree6_live_proof":true,"checks":checks,"phases":phases,"failures":failures,"blood_scope":"Not exercised: actual Session migration probe does not instantiate Main or synthesize blood events."}))
  quit(0 if failures.is_empty() else 1)

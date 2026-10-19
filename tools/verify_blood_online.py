@@ -1,4 +1,4 @@
-"""Real dedicated authority plus two authenticated Session peers, one in the actual game."""
+"""Screen-only local hurt against real dedicated authority and two authenticated peers."""
 import argparse
 import json
 import os
@@ -50,7 +50,7 @@ def run(engine):
             result = json.loads(reports[-1]) if reports else None
             outcome = {'passed': client.returncode == 0 and bool(result and result.get('passed')) and not errors,
                        'engine': 'Godot 4.5.1', 'platform': os.sys.platform + ' source', 'client_exit': client.returncode,
-                       'fixture_mode': 'accepted-online-blood',
+                       'fixture_mode': 'accepted-online-screen-only-blood',
                        'topology': 'One separate dedicated server; two independent authenticated Session peers; one actual main scene',
                        'result': result, 'errors': errors,
                        'server_health': json.loads((scratch / 'scenario/server/ready.json').read_text())}

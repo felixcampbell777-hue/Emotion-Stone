@@ -14,7 +14,7 @@ func observe(index:int,snapshot:Dictionary) -> void:
   var identity=String(event.get("id",""))
   if observed_event_ids.has(identity):continue
   observed_event_ids[identity]=true
-  hurt_observations.append({"event":event.duplicate(true),"tick":snapshot.tick,"local":String(event.get("actor_id",""))==peers[0].character_id,"feedback_hits":game.blood.accepted_hits,"vignette":game.blood.vignette_remaining,"splash_visible":game.blood.splash.visible,"bursts":game.blood.emitted_bursts,"camera_mode":game.camera_mode})
+  hurt_observations.append({"event":event.duplicate(true),"tick":snapshot.tick,"local":String(event.get("actor_id",""))==peers[0].character_id,"feedback_hits":game.blood.accepted_hits,"vignette":game.blood.vignette_remaining,"world_blood_absent":game.world_root.get_node_or_null("HumanHitSplashes")==null and game.blood.get_child_count()==0,"camera_mode":game.camera_mode})
   damage_snapshots.append(snapshot.duplicate(true))
 
 func run() -> void:
@@ -54,29 +54,29 @@ func run() -> void:
  check(local_hits.size()==1 and game.blood.accepted_hits==blood_before+1,"Local accepted physical hit produces exactly one blood event",local_hits)
  if not local_hits.is_empty():
   check(float(local_hits[0].vignette)>0 and local_hits[0].camera_mode=="first_person","Actual online Main routes victim hurt into red first-person feedback",local_hits[0])
-  check(not local_hits[0].splash_visible,"First-person victim keeps blood outside the eye/body volume")
+  check(local_hits[0].world_blood_absent,"Actual local hurt creates no world-space blood objects")
  var accepted=game.blood.accepted_hits;var stable_health=hp(0)
  game.camera_driver.set_mode("third_person");await pause(.25)
  game.camera_driver.set_mode("first_person");await pause(.25)
  check(game.blood.accepted_hits==accepted and hp(0)==stable_health,"First/third-person toggles replay neither blood nor damage")
  await stance(0,"standard_greatsword",2.0)
- blood_before=game.blood.accepted_hits;var burst_before=game.blood.emitted_bursts
+ blood_before=game.blood.accepted_hits
  health_before=hp(1)
  await attack(0)
  check(hp(1)<health_before,"Main's actual native greatsword damages the remote human",{"before":health_before,"after":hp(1),"attack":attack_history[-1]})
  var remote_hits=hurt_observations.filter(func(item):return not item.local)
- check(remote_hits.size()==1 and game.blood.accepted_hits==blood_before+1,"Remote accepted human hit produces exactly one blood event",remote_hits)
+ check(remote_hits.size()==1 and game.blood.accepted_hits==blood_before,"Remote accepted human damage produces no local feedback event",remote_hits)
  if not remote_hits.is_empty():
-  check(remote_hits[0].splash_visible and int(remote_hits[0].bursts)==burst_before+1 and float(remote_hits[0].vignette)==0,"Actual online Main receives remote human splash without local damage vignette",remote_hits[0])
- accepted=game.blood.accepted_hits;burst_before=game.blood.emitted_bursts
+  check(remote_hits[0].world_blood_absent and float(remote_hits[0].vignette)==0,"Remote accepted damage changes neither local screen nor world blood objects",remote_hits[0])
+ accepted=game.blood.accepted_hits
  var healths=[hp(0),hp(1)]
  for snapshot in damage_snapshots:
   game.online_view.receive(snapshot)
   game.online_view.receive(snapshot)
  await pause(.2)
- check(game.blood.accepted_hits==accepted and game.blood.emitted_bursts==burst_before,"Replaying captured real dedicated damage snapshots cannot duplicate presentation")
+ check(game.blood.accepted_hits==accepted and game.world_root.get_node_or_null("HumanHitSplashes")==null,"Replaying captured real dedicated damage snapshots cannot duplicate presentation")
  check([hp(0),hp(1)]==healths,"Repeated accepted presentation cannot alter health")
- check(hurt_observations.all(func(item):return float(item.event.get("amount",0))>0 and String(item.event.get("actor_id","")) in [peers[0].character_id,peers[1].character_id]),"Every observed blood event is a real server-confirmed positive human health delta",hurt_observations)
+ check(hurt_observations.all(func(item):return float(item.event.get("amount",0))>0 and String(item.event.get("actor_id","")) in [peers[0].character_id,peers[1].character_id]),"Every observed hurt event is a real server-confirmed positive human health delta",hurt_observations)
  await finish()
 
 func finish() -> void:

@@ -39,14 +39,14 @@ func run(game:Control,directory:String) -> void:
 	game.game_mode="world_rise";game.start_new_game(false);game.set_resolution(0)
 	for e in game.enemies:e.ai_enabled=false;e.set_physics_process(false)
 	game.progression.xp=int(game.progression.definition.level_thresholds[49]);game.progression.award_practice("greatsword",400)
-	for attribute in ["body","reflexes","mastery"]:
-		for point in range(12 if attribute!="mastery" else 17):game.progression.increase_attribute(attribute)
+	for attribute in ["strength","agility","greatsword"]:
+		for point in range(12 if attribute!="greatsword" else 17):game.progression.increase_attribute(attribute)
 	for id in ["iron_body","iron_body","iron_body","swiftfoot","dash","belly_roll","great_greatsword","basher","basher","basher"]:game.progression.learn(id)
 	game.apply_skill_stats();game.toggle_inventory();game.inventory.show_page("level")
-	var menu=game.skill_tree.rise_menu;menu.selected="body";menu.refresh();await picture(game,directory+"/world-rise-system-categories.png")
-	for category in ["body","reflexes","precision","endurance","mastery"]:
+	var menu=game.skill_tree.rise_menu;menu.selected="strength";menu.refresh();await picture(game,directory+"/world-rise-system-categories.png")
+	for category in ["strength","agility","greatsword"]:
 		menu.selected=category;menu.refresh();await picture(game,directory+"/world-rise-system-"+category.to_lower()+".png")
-	DisplayServer.window_set_size(Vector2i(960,540));menu.selected="body";menu.refresh();await picture(game,directory+"/world-rise-system-small.png")
+	DisplayServer.window_set_size(Vector2i(960,540));menu.selected="strength";menu.refresh();await picture(game,directory+"/world-rise-system-small.png")
 	game.inventory.show_page("skills");await picture(game,directory+"/world-rise-system-abilities.png")
 	game.inventory.close();DisplayServer.window_set_size(Vector2i(1366,768))
 	print("CAPTURE_OK "+directory)

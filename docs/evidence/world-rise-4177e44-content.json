@@ -1,0 +1,37 @@
+{
+  "commit": "4177e44e8fd78a7c1f2851f436023451af349cbf",
+  "content_digest": "6266368031e0d0db87af11c82b83a857c4e427734662adbc8f5a0310fccd3c78",
+  "manifest_prefix": "4.5.1/world-rise-network-v1",
+  "content_sha256": {
+    "res://content/alpha2.json": "4e1a61a30ccbc973c674718820f093747484d17de2dadc3a86fea4925b6706d8",
+    "res://content/alpha2_creatures.json": "b72164b5e98f0fe549e1d660fed85f33dde7a596c95c4202f317023ed33c4be4",
+    "res://content/beta.json": "62db7d019283686ba6d23645f138ed82a33cbaa481b3b9bc1d451d7d9bf88ec5",
+    "res://content/beta_locomotion_samples.json": "36271ad680f014f095cba5b4ae2303c4ef0328a724fb613843716cbb190a4c13",
+    "res://content/combat.json": "6ff601fd66441626ed1e8ca940249bf71b050db0e3ec8af8e78ebb823f60d1a9",
+    "res://content/first_person_motion.json": "e53c85ec7dca35170b8e57bf4cd109a6ea8ba24123f048f377e160fb856e6869",
+    "res://content/knockback.json": "eaa1b14fecd499d2427814d7d2dfa05904a74fdd16b9a47c72e82a42e57cd2bf",
+    "res://content/magic_items.json": "c21db0b004b8f8dbd7f3134d85b7a3a51feff0c83ef2186f197bf4c2b87ecac0",
+    "res://content/maps/wr_boss_chamber.json": "1c3f7f463cb180fe9530e1f52686d71c2ebcbcf8567df81cea06d45231d7de71",
+    "res://content/maps/wr_floor_01.json": "3fe6f763eb337ad6c3503e67c81a964932df24c6fb2738d8b55833f1364d5030",
+    "res://content/maps/wr_floor_02.json": "37a12b993d48d4b9aaf74eb8650a96967735e01a6a17b7941ae8e4a5006472da",
+    "res://content/menagery.json": "94eb3707ed6ef206b9727b61797b26749b72e566477fff0e6f9f26137edda1cd",
+    "res://content/platform.json": "aaefa74c6756d23050542681a3fefe7dcbf7d56c012bcbfeb684e0feeaa04d4a",
+    "res://content/progression.json": "030877fff394965154ba91624b1b3ac0a87f11cb5b1d01ccd6250f504787dd0e",
+    "res://content/progression_legacy_v4.json": "10d798e1b4efcfb790933818f8e0f1affc302845baebb447e46a35af148b2cfc",
+    "res://content/world_rise/appearance.json": "3e35531f93adcc680f2ab7d5ff4b50c05ff1d1e65628a0bc501ed5115ecec2c0",
+    "res://content/world_rise/audio_events.json": "a0216d0fed6eb389362bb2593c67ce05579880b5dc51ae4c797145d435226965",
+    "res://content/world_rise/floor_01.json": "ede9509e8521edd3d1d29377731e0d714818f8dac7261db37d228d4e0dd80524",
+    "res://content/world_rise/floor_02.json": "be93e7f5edd7273bf06a8d22ee212d82905e73ceaeebb9cb074edfddd6551541",
+    "res://content/world_rise/guild.json": "6c1add0cb184c338c454927237a2447221332dc8157e891d0365644841b51236",
+    "res://content/world_rise/skills.json": "3e9c563a5a95e94b67b88a92d74c94c453f354fa53d923f5718ff28d4d504e1f",
+    "res://content/world_rise/weapons.json": "0ccd4187fabfeb100548381d64d0e9fed5840a19d70b7160bc539bbf03aea98d"
+  },
+  "schema_sha256": {
+    "game/scripts/network/wr_profile.gd": "7979d187efcb4c7adc13a7475973646b03d54abbb6027ba778a298a99b58f4ee",
+    "game/scripts/network/wr_world_checkpoint.gd": "0c9bf94b65989beb9a114ef3c654e54de303230a19d4655800560699f84cd70c",
+    "game/scripts/network/wr_storage_codec.gd": "c8b479c023f5a12c22d2281b4e81402dda9d95d468422e3ef9a32ac6ee1c5437",
+    "game/scripts/progression.gd": "34e9835f0d032ee731d9b9b29fe73d00566141f80ee8a6f6b46c5abf9042bca1",
+    "game/scripts/world_rise_stats.gd": "67c466bebf92526d640ede230d2fb98bab610d1dc74c537e652548902c33d2e2"
+  },
+  "verification": "Godot 4.5.1.stable.official.f62fdbde1 executed the exact archived WrProfile.content_digest implementation against exact 4177e44 content blobs in a disposable project; runtime digest matched the recorded manifest."
+}

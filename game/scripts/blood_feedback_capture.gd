@@ -28,11 +28,11 @@ func run() -> void:
 	for index in range(12):await physics_frame
 	game.player.invulnerability=0
 	require(game.player.take_damage(12,Vector3.ZERO),"Actual offline Actor accepts third-person hurt")
-	require(game.blood.splash.visible,"Third-person production camera sees the human splash")
+	require(game.blood.overlay.visible and game.world_root.get_node_or_null("HumanHitSplashes")==null,"Third-person hurt uses only the screen vignette with no world blood")
 	game.blood._process(.06);game.blood.set_process(false)
 	await capture("third-person-hurt")
 	game.blood.set_level("off");game.player.invulnerability=0;game.player.take_damage(12,Vector3.ZERO)
-	require(not game.blood.overlay.visible and not game.blood.splash.visible,"Off preference suppresses actual gameplay hurt feedback")
+	require(not game.blood.overlay.visible,"Off preference suppresses actual gameplay hurt feedback")
 	game.settings_menu.open();await process_frame
 	game.settings_menu.content_scroll.scroll_vertical=10000;await process_frame
 	await capture("blood-settings")

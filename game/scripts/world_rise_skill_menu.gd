@@ -1,21 +1,34 @@
 extends Control
 ## World Rise: separate attributes, perks and earned weapon practice.
 const MigrationNotice=preload("res://scripts/world_rise_migration_notice.gd")
-const ATTRIBUTE_ORDER=["body","reflexes","precision","endurance","mastery"]
-const ATTRIBUTE_COPY={
-	"body":"Resilience & efficiency", "reflexes":"Movement & evasion",
-	"precision":"Aim & control", "endurance":"Stamina & travel", "mastery":"Weapon techniques"
-}
-const COLORS={"body":Color("#bd7562"),"reflexes":Color("#64b9a4"),"precision":Color("#8bb5d4"),"endurance":Color("#c4ab69"),"mastery":Color("#b19bd8")}
+const ATTRIBUTE_ORDER=["strength","agility","greatsword"]
+const ATTRIBUTE_COPY={"strength":"Resilience & efficiency","agility":"Movement & finesse","greatsword":"Weapon techniques"}
+const COLORS={"strength":Color("#bd7562"),"agility":Color("#64b9a4"),"greatsword":Color("#b19bd8")}
+## Actual prerequisite edges run through the card gaps and the reserved outer rail.
+class PerkGrid extends GridContainer:
+	var accent=Color("#98bcc8")
+	func _ready() -> void:
+		sort_children.connect(queue_redraw);resized.connect(queue_redraw)
+	func _draw() -> void:
+		var cards={};var edge_index=0
+		for card in get_children():cards[String(card.get_meta("skill_id",""))]=card
+		for card in get_children():
+			for parent_id in card.get_meta("requires",[]):
+				if not cards.has(String(parent_id)):continue
+				var parent:Control=cards[String(parent_id)];var source=parent.get_rect();var target=card.get_rect()
+				var start=Vector2(source.get_center().x,source.end.y);var finish=Vector2(target.get_center().x,target.position.y)
+				var lane=-7.0-3.0*(edge_index%4);edge_index+=1
+				var path=PackedVector2Array([start,start+Vector2(0,4),Vector2(lane,start.y+4),Vector2(lane,finish.y-4),finish-Vector2(0,4),finish])
+				draw_polyline(path,accent*.70,1.5,true);draw_circle(start,2.5,accent);draw_circle(finish,2.5,accent)
 const PRACTICE_MILESTONES=[15,50,100,200,400]
 var game:Node
-var selected="body"
+var selected="strength"
 var header:Label
 var status:Label
 var categories:HBoxContainer
 var scroll:ScrollContainer
 var content:VBoxContainer
-var grid:GridContainer
+var grid:PerkGrid
 var attribute_tiles:Dictionary={}
 var reset_confirm=false
 var practice_expanded=false
@@ -23,7 +36,7 @@ var practice_expanded=false
 func configure(g:Node) -> void:
 	game=g
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	header=game.label("WORLD RISE  /  CHARACTER",22,Color("#e1f5ff"));add_child(header)
+	header=game.label("WORLD RISE  /  PERK TREES",22,Color("#e1f5ff"));add_child(header)
 	status=_text("",14,Color("#c1d8e9"));add_child(status)
 	categories=HBoxContainer.new();categories.add_theme_constant_override("separation",8);add_child(categories)
 	for attribute in ATTRIBUTE_ORDER:
@@ -70,17 +83,19 @@ func refresh() -> void:
 	for child in content.get_children():content.remove_child(child);child.queue_free()
 	var state=game.progression
 	status.text="LEVEL %d    •    %d ATTRIBUTE POINTS    •    %d PERK POINTS"%[state.level(),state.attribute_points(),state.points()]
-	status.tooltip_text="Attributes 3–20. Perk tiers 4 / 9 / 15 / 20. All learned passives are always active."
+	status.tooltip_text="Branch attributes 3–20. Perk tiers 4 / 9 / 15 / 20. All learned passives are always active."
+	if ATTRIBUTE_ORDER.all(func(id):return int(state.attributes.get(id,3))>=20):status.text+="    •    ALL BRANCHES MAXED"
 	for attribute in ATTRIBUTE_ORDER:
 		var value=int(state.attributes.get(attribute,3));var tile=attribute_tiles[attribute];var accent:Color=COLORS[attribute]
-		tile.select.text="%s\n%d / 20"%[attribute.to_upper(),value]
+		tile.select.text="%s   %d / 20"%[attribute.to_upper(),value]
 		tile.select.tooltip_text=ATTRIBUTE_COPY[attribute]
 		tile.select.add_theme_stylebox_override("normal",compact_panel(accent.darkened(.72 if selected==attribute else .88),accent if selected==attribute else Color("#334553")))
 		tile.select.add_theme_stylebox_override("focus",compact_panel(accent.darkened(.68),Color("#e2f4ff")))
 		tile.raise.disabled=state.attribute_points()<=0 or value>=20
-		tile.raise.text="AT MAXIMUM" if value>=20 else "RAISE +1  /  1 AP"
+		tile.raise.text="BRANCH MAXED" if value>=20 else "RAISE +1  /  1 AP"
+		if value>=20:tile.raise.tooltip_text="This branch is capped at 20. Earned unspent points are retained."
 	if bool(state.migration_notice):
-		if MigrationNotice.acknowledged(MigrationNotice.key_for(game),state.migration_v4):state.migration_notice=false
+		if MigrationNotice.acknowledged(MigrationNotice.key_for(game),state.migration_receipt()):state.migration_notice=false
 		else:_migration_notice(state)
 	_practice(state)
 	var heading=HBoxContainer.new();content.add_child(heading)
@@ -88,7 +103,10 @@ func refresh() -> void:
 	heading.add_child(_text("Attribute %d / 20"%int(state.attributes.get(selected,3)),14,COLORS[selected]))
 	for attribute_definition in state.definition.get("attributes",[]):
 		if str(attribute_definition.get("id",""))==selected:content.add_child(_text(str(attribute_definition.get("description","")),14))
-	grid=GridContainer.new();grid.size_flags_horizontal=Control.SIZE_EXPAND_FILL;grid.add_theme_constant_override("h_separation",12);grid.add_theme_constant_override("v_separation",12);content.add_child(grid)
+	var tree_margin=MarginContainer.new();tree_margin.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	tree_margin.add_theme_constant_override("margin_left",20);tree_margin.add_theme_constant_override("margin_right",4);content.add_child(tree_margin)
+	grid=PerkGrid.new();grid.accent=COLORS[selected];grid.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	grid.add_theme_constant_override("h_separation",12);grid.add_theme_constant_override("v_separation",12);tree_margin.add_child(grid)
 	for item in state.definition.skills:
 		if str(item.get("attribute",""))==selected:_perk_card(state,item)
 	_reset_section(state)
@@ -97,11 +115,12 @@ func refresh() -> void:
 func _migration_notice(state) -> void:
 	var body=_section(Color("#192e35"),Color("#75bfae"))
 	body.add_child(_text("YOUR CHARACTER HAS BEEN UPDATED",18,Color("#b9eedf")))
-	var description="Your XP, equipment and lifetime kills are preserved. Attribute and perk points are ready to spend in the new progression."
-	if not state.migration_v4.is_empty():description+=" Previous passive allocations were refunded; your migration receipt is saved with this character."
+	var description="Your XP, equipment and lifetime kills are preserved. Strength, Agility and Greatsword now have branching perk trees. Attribute and perk points are ready to spend."
+	if not state.migration_v5.is_empty():description+=" The five-attribute draft was retired: its attributes and passives were refunded. Your active abilities and free-reset usage are preserved."
+	elif not state.migration_v4.is_empty():description+=" Previous passive allocations were refunded; your migration receipt is saved with this character."
 	body.add_child(_text(description))
 	body.add_child(game.button("GOT IT",func():
-		MigrationNotice.remember(MigrationNotice.key_for(game),state.migration_v4)
+		MigrationNotice.remember(MigrationNotice.key_for(game),state.migration_receipt())
 		state.migration_notice=false;refresh()))
 
 func _practice(state) -> void:
@@ -126,12 +145,12 @@ func _practice(state) -> void:
 
 func _perk_card(state,item:Dictionary) -> void:
 	var id:String=item.id;var rank=int(state.rank(id));var cap=int(item.max_rank);var gate=int(item.get("gate",4));var available=bool(state.can_learn(id));var accent:Color=COLORS[selected]
-	var card=PanelContainer.new();card.size_flags_horizontal=Control.SIZE_EXPAND_FILL;card.add_theme_stylebox_override("panel",compact_panel(Color("#172330"),accent if available or rank>0 else Color("#344251")));grid.add_child(card)
+	var card=PanelContainer.new();card.set_meta("skill_id",id);card.set_meta("requires",item.get("requires",[]));card.size_flags_horizontal=Control.SIZE_EXPAND_FILL;card.add_theme_stylebox_override("panel",compact_panel(Color("#172330"),accent if available or rank>0 else Color("#344251")));grid.add_child(card)
 	var body=VBoxContainer.new();body.add_theme_constant_override("separation",6);card.add_child(body)
 	var top=HBoxContainer.new();body.add_child(top)
 	var title=_text(str(item.name),18,Color("#edf4fa"));top.add_child(title)
 	var rank_label=game.label("%d / %d"%[rank,cap],16,accent);top.add_child(rank_label)
-	body.add_child(_text("%s %d  •  %s"%[selected.capitalize(),gate,str(item.get("category","perk")).to_upper()],13,accent))
+	body.add_child(_text("TIER %d  •  %s"%[gate,str(item.get("category","perk")).to_upper()],13,accent))
 	body.add_child(_text(str(item.get("description","")),14))
 	var requirements:Array[String]=["%s %d (%d / %d)"%[selected.capitalize(),gate,int(state.attributes.get(selected,3)),gate]]
 	for parent in item.get("requires",[]):
@@ -155,7 +174,7 @@ func _reset_section(state) -> void:
 	if bool(state.attribute_reset_used):
 		reset_confirm=false;body.add_child(_text("Free attribute reset already used.",14,Color("#a09aaa")));return
 	if reset_confirm:
-		body.add_child(_text("Use your one free reset now? This refunds all learned perks and resets all five attributes.",14,Color("#ead1b1")))
+		body.add_child(_text("Use your one free reset now? This refunds all learned perks and resets all three branch attributes.",14,Color("#ead1b1")))
 		var row=HBoxContainer.new();row.add_theme_constant_override("separation",10);body.add_child(row)
 		row.add_child(game.button("CONFIRM FREE RESET",func():reset_confirm=false;game.reset_attributes()))
 		row.add_child(game.button("KEEP MY BUILD",func():reset_confirm=false;refresh()))
@@ -172,4 +191,4 @@ func _layout() -> void:
 	scroll.position=Vector2(margin,content_top);scroll.size=Vector2(width,maxf(80,size.y-content_top-10))
 	if is_instance_valid(grid):
 		grid.columns=2 if size.x>=1100 else 1
-		for card in grid.get_children():card.custom_minimum_size.x=maxf(130,(width-24-12*(grid.columns-1))/grid.columns)
+		for card in grid.get_children():card.custom_minimum_size.x=maxf(130,(width-48-12*(grid.columns-1))/grid.columns)

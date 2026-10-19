@@ -2,7 +2,7 @@
 
 Prepared **October 18, 2026**. Branch `codex/world-rise-handoff`, game release `0.41.4`, based on the pushed Alpha commit `7af7e89`. This document records the released offline baseline at handoff. Implementation of the later roadmap/tree was subsequently authorized; current sources include new weapons, approved appearance, audio/voice and dedicated multiplayer, with acceptance still incomplete. Read the newest [baseline entry](CURRENT-BASELINE.md), [implementation status](WORLD-RISE-IMPLEMENTATION-STATUS.md) and [integration contract](WORLD-RISE-INTEGRATION-CONTRACT.md) before treating behavior below as current. Gameplay metadata now selects the v0.42.0 candidate; the released offline baseline documented below remains v0.41.4.
 
-The October 18 follow-up supersedes this released baseline's first-person-only and tree-version-4-only descriptions: current candidate work adds a local first/third-person camera toggle, attribute/perk progression with legacy migration, cosmetic blood feedback and measured performance improvements. See the newest baseline and implementation status for current evidence and remaining acceptance.
+The October 18 follow-up supersedes this released baseline's first-person-only and tree-version-4-only descriptions: current candidate work adds a local first/third-person camera toggle, Strength / Agility / Greatsword perk trees (tree 6/protocol 5) with strict original 4/draft 5 migration, screen-only cosmetic blood feedback and measured performance improvements. See the newest baseline and implementation status for current evidence and remaining acceptance.
 
 ## What exists now
 

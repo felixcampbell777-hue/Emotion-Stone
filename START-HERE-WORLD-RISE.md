@@ -2,7 +2,7 @@
 
 **For the next human and AI developer. Prepared October 18, 2026.**
 
-**Current source candidate:** implementation was subsequently authorized and now includes new weapons, approved appearance options, audio/voice and dedicated multiplayer. The October 18 follow-up additionally authorizes attribute/perk progression, C to toggle first/third person, cosmetic blood feedback and measured performance improvements; read current status for the verification gate before treating these additions as accepted. Gameplay metadata now selects v0.42.0. Local source acceptance and separate mandatory native publication gates are recorded in the status; consult the exact reports/checksums shipped with each download. Start with the newest [baseline entry](docs/CURRENT-BASELINE.md), [implementation status](docs/WORLD-RISE-IMPLEMENTATION-STATUS.md) and [integration contract](docs/WORLD-RISE-INTEGRATION-CONTRACT.md). The setup/released-baseline material below remains useful, while original planning snapshots and older behavior descriptions are historical.
+**Current source candidate:** implementation was subsequently authorized and now includes new weapons, approved appearance options, audio/voice and dedicated multiplayer. The latest follow-up keeps Strength / Agility / Greatsword with Cyberpunk-inspired perk trees (tree 6/protocol 5), C to toggle first/third person, screen-only cosmetic blood feedback and measured performance improvements; read current status for the verification gate before treating these additions as accepted. Gameplay metadata now selects v0.42.0. Local source acceptance and separate mandatory native publication gates are recorded in the status; consult the exact reports/checksums shipped with each download. Start with the newest [baseline entry](docs/CURRENT-BASELINE.md), [implementation status](docs/WORLD-RISE-IMPLEMENTATION-STATUS.md) and [integration contract](docs/WORLD-RISE-INTEGRATION-CONTRACT.md). The setup/released-baseline material below remains useful, while original planning snapshots and older behavior descriptions are historical.
 
 Branch: **`codex/world-rise-handoff`**. Gameplay: **v0.41.4**, based on Alpha commit **`7af7e89`**. This branch contains the full shared project, both World Rise floors, editable art, runtime assets, shaders, content, map builder, recipes and licences. Other modes remain to preserve shared dependencies.
 
@@ -24,7 +24,7 @@ Use a local folder outside OneDrive. The final checkout check requires Python 3 
 
 1. Install **Godot 4.5.1 standard** (GDScript; no .NET requirement).
 2. Import/open **`game/project.godot`** after LFS finishes. Let Godot complete its first asset import, then run with F6/F5 as appropriate (F5 runs the whole project).
-3. On the title screen choose **World Rise — Floor 1**, then Start New Game. The shared project still defaults to Alpha 2; selecting World Rise is deliberate.
+3. On the title screen choose **World Rise — Floor 1**, then Start New Game. The editor/shared project defaults to Alpha 2; the dedicated World Rise client download defaults its title selection to World Rise. Other title choices remain available.
 
 Blender and Python are unnecessary to run the game in Godot. No exported Windows EXE is committed. Your new local character starts at level one; Floor Two unlocks after the Elder. Existing player saves from Felix's computer are intentionally excluded.
 

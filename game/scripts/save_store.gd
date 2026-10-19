@@ -75,14 +75,25 @@ static func read(path: String = SAVE_PATH) -> Dictionary:
 	var maximum=int(JSON.parse_string(FileAccess.get_file_as_string("res://content/combat.json")).max_health)+int(state.bonus("health"))+roundi(magic.bonus("health"))
 	if growth.get("tree_version",1)==1 and "steady_heart" in growth.get("learned",[]):
 		maximum+=15
+	var legacy4_gain=1.0
+	if state.world_rise and growth.get("tree_version")==4:
+		var original=JSON.parse_string(FileAccess.get_file_as_string("res://content/progression_legacy_v4.json"))
+		legacy4_gain=1+.01*(Progression.legacy_level(int(growth.get("xp",0)),original)-1)
+	var legacy5_maxima={}
+	if state.world_rise and growth.get("tree_version")==5:
+		legacy5_maxima=Progression.legacy5_resource_maxima(maximum,float(JSON.parse_string(FileAccess.get_file_as_string("res://content/combat.json")).max_stamina)+state.bonus("stamina"),growth)
 	var health=parsed.get("health",maximum)
 	if state.world_rise:
-		maximum=roundi(maximum*(1+.01*(state.level()-1))) if growth.get("tree_version")==4 else preload("res://scripts/world_rise_stats.gd").max_health(maximum,state)
+		if growth.get("tree_version")==4:maximum=roundi(maximum*legacy4_gain)
+		elif growth.get("tree_version")==5:maximum=int(legacy5_maxima.health)
+		else:maximum=preload("res://scripts/world_rise_stats.gd").max_health(maximum,state)
 	if not (health is int or health is float) or float(health)!=int(health) or health<1 or health>maximum:
 		return {}
 	var max_stamina=float(JSON.parse_string(FileAccess.get_file_as_string("res://content/combat.json")).max_stamina)+state.bonus("stamina")
 	if state.world_rise:
-		max_stamina=max_stamina*(1+.01*(state.level()-1)) if growth.get("tree_version")==4 else preload("res://scripts/world_rise_stats.gd").max_stamina(max_stamina,state)
+		if growth.get("tree_version")==4:max_stamina*=legacy4_gain
+		elif growth.get("tree_version")==5:max_stamina=float(legacy5_maxima.stamina)
+		else:max_stamina=preload("res://scripts/world_rise_stats.gd").max_stamina(max_stamina,state)
 	if growth.get("tree_version",1)==1 and "deep_breath" in growth.get("learned",[]):
 		max_stamina+=15
 	var stamina=parsed.get("stamina",max_stamina)

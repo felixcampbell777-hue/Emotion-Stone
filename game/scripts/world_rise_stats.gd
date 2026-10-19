@@ -1,20 +1,20 @@
 extends RefCounted
-## Shared tree5 numeric policy; presentation, native authority and save bounds agree.
+## Shared tree6 numeric policy; presentation, native authority and save bounds agree.
 static func tier(rank:int,values:Array) -> float:return float(values[clampi(rank,0,values.size()-1)])
 static func attribute_bonus(growth:RefCounted,id:String) -> int:
 	return maxi(0,int(growth.attributes.get(id,3))-3)
 static func max_health(base:float,growth:RefCounted) -> int:
-	return roundi(base*(1+.01*(growth.level()-1)))+2*attribute_bonus(growth,"body")+15*growth.rank("iron_resolve")
+	return roundi(base*(1+.01*(growth.level()-1)))+2*attribute_bonus(growth,"strength")+15*growth.rank("iron_resolve")
 static func max_stamina(base:float,growth:RefCounted) -> float:
-	return base*(1+.01*(growth.level()-1))+2*attribute_bonus(growth,"endurance")+5*growth.rank("deep_reserve")+15*growth.rank("second_wind")
+	return base*(1+.01*(growth.level()-1))+2*attribute_bonus(growth,"strength")+5*growth.rank("deep_reserve")+15*growth.rank("second_wind")
 static func reduction(g:Node) -> float:
 	return clampf(.02*g.progression.rank("iron_body")+.04*g.progression.rank("stonewall"),0,.5)
 static func weapon_damage_multiplier(growth:RefCounted,kind:String) -> float:
 	var bonus=.02*growth.practice_rank(kind)
 	if kind in ["greatsword","spear"]:
-		bonus+=.01*attribute_bonus(growth,"mastery")+.03*growth.rank("great_greatsword")+.04*growth.rank("basher")
+		bonus+=.01*attribute_bonus(growth,"greatsword")+.03*growth.rank("great_greatsword")+.04*growth.rank("basher")
 	if kind in ["bow","rapier"]:
-		bonus+=.01*attribute_bonus(growth,"precision")+.03*growth.rank("finesse")+.10*growth.rank("deadeye")
+		bonus+=.01*attribute_bonus(growth,"agility")+.03*growth.rank("finesse")+.10*growth.rank("deadeye")
 	if kind=="greatsword":bonus+=.15*growth.rank("devastating_blade")
 	return 1+bonus
 static func weapon_stamina_multiplier(growth:RefCounted,kind:String) -> float:
@@ -36,7 +36,7 @@ static func apply(g:Node) -> void:
 	for key in ["light","heavy","thrust"]:c[key].stamina_cost*=swing
 	for attack in c.combo:attack.stamina_cost*=swing
 	c.thrust_charge.stamina_per_second*=swing
-	var speed=minf(1.25,1+.005*attribute_bonus(s,"reflexes")+.02*s.rank("swiftfoot"))
+	var speed=minf(1.25,1+.005*attribute_bonus(s,"agility")+.02*s.rank("swiftfoot"))
 	p.walk_speed*=speed
 	for key in ["drawn_walk_speed","sprint_speed","drawn_sprint_speed"]:c[key]*=speed
 	for key in ["sprint_drain","drawn_sprint_drain"]:c[key]*=maxf(.5,1-.05*s.rank("long_march"))

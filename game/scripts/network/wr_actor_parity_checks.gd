@@ -16,8 +16,8 @@ func run() -> void:
 	for e in g.enemies:e.set_physics_process(false);e.ai_enabled=false
 	g.progression.xp=10000000
 	for kind in ["greatsword","spear","rapier","bow"]:g.progression.award_practice(kind,400)
-	for attribute in {"body":9,"reflexes":15,"precision":15,"endurance":9,"mastery":20}:
-		while g.progression.attributes[attribute]<{"body":9,"reflexes":15,"precision":15,"endurance":9,"mastery":20}[attribute]:
+	for attribute in {"strength":9,"agility":15,"greatsword":20}:
+		while g.progression.attributes[attribute]<{"strength":9,"agility":15,"greatsword":20}[attribute]:
 			check(g.progression.increase_attribute(attribute),"Actual progression raises "+attribute)
 	for id in ["iron_body","iron_body","honed_arms","swiftfoot","dash","streaming_dash","deep_reserve","lightstep","belly_roll","roly_poly","finesse","measured_draw","point_control","great_greatsword","great_greatsword","charge_thrust","fast_thrust","basher","basher","basher","devastating_blade"]:
 		check(g.progression.learn(id),"Actual progression learns "+id)

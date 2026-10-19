@@ -70,10 +70,10 @@ func import_character(profile:Dictionary,recover:bool=false) -> Dictionary:
   var old_hash=Profile.digest(old);var incoming_hash=Profile.digest(profile)
   if recover:selected=old;recovered=true
   elif incoming_hash==old_hash:selected=old
-  elif old_hash not in profile.ancestors and profile.get("anchors",{}).get(old.get("issuer",""),"")!=old_hash:return {"ok":false,"error":"Portable character conflict: reconnect to recover this session, or export the current branch from its last server. No data was replaced.","conflict":true}
+  elif old_hash not in profile.get("ancestors",[]) and profile.get("anchors",{}).get(old.get("issuer",""),"")!=old_hash:return {"ok":false,"error":"Portable character conflict: reconnect to recover this session, or export the current branch from its last server. No data was replaced.","conflict":true}
  # Never normalize a candidate before the original digest/lineage is accepted.
  var accepted=selected.duplicate(true)
- if int(selected.progression.tree_version)==4:
+ if int(selected.progression.tree_version) in [4,5]:
   var migrated=Profile.upgraded(selected)
   if migrated.is_empty():return {"ok":false,"error":"Portable progression migration failed; no data was replaced"}
   accepted=Profile.checkpoint(migrated,data.world_id,selected)

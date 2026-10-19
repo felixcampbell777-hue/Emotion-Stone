@@ -1,14 +1,15 @@
 extends RefCounted
 ## Portable character data is distinct from world position/encounter state and private keys.
 const SCHEMA=1
-const PROTOCOL=4
-# Only this exact released candidate may upgrade its persisted world fingerprint.
+const PROTOCOL=5
+# Only these exact previous candidates may upgrade their persisted world fingerprints.
 const LEGACY_CONTENT_F3111C1="933244fd47437c84992d30917ceb0be3561144a2f4cc20cd15ff324583ccc6c6"
+const LEGACY_CONTENT_4177E44="6266368031e0d0db87af11c82b83a857c4e427734662adbc8f5a0310fccd3c78"
 const Growth=preload("res://scripts/progression.gd")
 static var cached_content=""
 static func content_digest() -> String:
  if not cached_content.is_empty():return cached_content
- var files=["res://content/combat.json","res://content/progression.json","res://content/progression_legacy_v4.json","res://content/magic_items.json","res://content/first_person_motion.json","res://content/knockback.json","res://content/platform.json","res://content/beta.json","res://content/alpha2.json","res://content/alpha2_creatures.json","res://content/menagery.json","res://content/beta_locomotion_samples.json","res://content/maps/wr_floor_01.json","res://content/maps/wr_floor_02.json","res://content/maps/wr_boss_chamber.json"]
+ var files=["res://content/combat.json","res://content/progression.json","res://content/progression_legacy_v4.json","res://content/progression_legacy_v5.json","res://content/magic_items.json","res://content/first_person_motion.json","res://content/knockback.json","res://content/platform.json","res://content/beta.json","res://content/alpha2.json","res://content/alpha2_creatures.json","res://content/menagery.json","res://content/beta_locomotion_samples.json","res://content/maps/wr_floor_01.json","res://content/maps/wr_floor_02.json","res://content/maps/wr_boss_chamber.json"]
  for filename in DirAccess.get_files_at("res://content/world_rise"):
   if filename.ends_with(".json"):files.append("res://content/world_rise/"+filename)
  files.sort()
@@ -16,7 +17,7 @@ static func content_digest() -> String:
  for path in files:manifest+=path+":"+FileAccess.get_sha256(path)
  cached_content=manifest.sha256_text();return cached_content
 static func compatible_world_content(value:Variant) -> bool:
- return value is String and value in [content_digest(),LEGACY_CONTENT_F3111C1]
+ return value is String and value in [content_digest(),LEGACY_CONTENT_F3111C1,LEGACY_CONTENT_4177E44]
 static func upgraded(profile:Dictionary) -> Dictionary:
  # Call only after authenticating the original owner and resolving its original lineage.
  if not valid(profile):return {}
@@ -30,8 +31,9 @@ static func resource_maxima(profile:Dictionary) -> Dictionary:
  var health=float(combat.max_health)+roundi(gear.bonus("health"));var stamina=float(combat.max_stamina)
  if int(profile.progression.tree_version)==4:
   var legacy=JSON.parse_string(FileAccess.get_file_as_string("res://content/progression_legacy_v4.json"))
-  var gain=1+.01*(Growth.legacy_level(int(profile.progression.xp),legacy)-1)
+  var gain=1+.01*(Growth.legacy_level(int(profile.progression.get("xp",0)),legacy)-1)
   return {"health":roundi(health*gain),"stamina":stamina*gain}
+ if int(profile.progression.tree_version)==5:return Growth.legacy5_resource_maxima(health,stamina,profile.progression)
  var growth=Growth.new();growth.restore(profile.progression)
  var stats=preload("res://scripts/world_rise_stats.gd")
  return {"health":stats.max_health(health,growth),"stamina":stats.max_stamina(stamina,growth)}
@@ -85,11 +87,13 @@ static func valid(profile:Variant) -> bool:
  if not anchors is Dictionary or anchors.size()>256:return false
  for world_id in anchors:
   if not identifier(world_id) or not hash_string(anchors[world_id]):return false
- if not preload("res://scripts/progression.gd").valid(profile.get("progression",{})) or profile.progression.get("tree_version") not in [4,5] or profile.progression.get("profile")!="world_rise":return false
- if not preload("res://scripts/magic_items.gd").valid_save(profile.get("magic_items",{})):return false
+ var progression=profile.get("progression",{})
+ if not Growth.valid(progression) or progression.get("tree_version") not in [4,5,6] or progression.get("profile")!="world_rise":return false
+ var equipment=profile.get("magic_items",{})
+ if not preload("res://scripts/magic_items.gd").valid_save(equipment):return false
  var catalog=JSON.parse_string(FileAccess.get_file_as_string("res://content/magic_items.json")).items
- var weapon=profile.magic_items.get("weapon_id","standard_greatsword")
- if weapon not in profile.magic_items.get("owned",[]) or not catalog.any(func(item):return item.id==weapon and item.category=="weapon"):return false
+ var weapon=equipment.get("weapon_id","standard_greatsword")
+ if weapon not in equipment.get("owned",[]) or not catalog.any(func(item):return item.id==weapon and item.category=="weapon"):return false
  if not profile.get("materials") is Dictionary or profile.materials.size()>64:return false
  for id in profile.materials:
   if not id is String or id not in preload("res://scripts/rise_guild.gd").catalog.materials or not integer(profile.materials[id],99999):return false
@@ -102,11 +106,12 @@ static func valid(profile:Variant) -> bool:
  if not loadout is Dictionary or loadout.size()>3:return false
  for skill in loadout:
   if skill not in ["dash","jump","flowing_counter"] or not loadout[skill] is bool:return false
-  if loadout[skill] and skill!="jump" and skill not in profile.progression.learned:return false
+  if loadout[skill] and skill!="jump" and skill not in progression.get("learned",[]):return false
  if profile.get("heavy_attack","overhead") not in ["overhead","charge_thrust"]:return false
- if profile.get("heavy_attack","overhead")=="charge_thrust" and "charge_thrust" not in profile.progression.learned:return false
- if not profile.get("bonus_claims",[]) is Array or profile.bonus_claims.size()>128:return false
- for claim in profile.bonus_claims:
+ if profile.get("heavy_attack","overhead")=="charge_thrust" and "charge_thrust" not in progression.get("learned",[]):return false
+ var claims=profile.get("bonus_claims",[])
+ if not claims is Array or claims.size()>128:return false
+ for claim in claims:
   if claim not in ["elder_first_kill_bonus","ashfang_first_kill_bonus"]:return false
  return true
 static func checkpoint(profile:Dictionary,issuer:String,accepted:Dictionary={}) -> Dictionary:

@@ -1,0 +1,390 @@
+{
+  "tree_version": 5,
+  "attributes": [
+    {
+      "id": "body",
+      "name": "Body",
+      "description": "+2 maximum health per point above 3."
+    },
+    {
+      "id": "reflexes",
+      "name": "Reflexes",
+      "description": "+0.5% movement speed per point above 3."
+    },
+    {
+      "id": "precision",
+      "name": "Precision",
+      "description": "+1% bow and rapier damage per point above 3."
+    },
+    {
+      "id": "endurance",
+      "name": "Endurance",
+      "description": "+2 maximum stamina per point above 3."
+    },
+    {
+      "id": "mastery",
+      "name": "Mastery",
+      "description": "+1% greatsword and spear damage per point above 3."
+    }
+  ],
+  "skills": [
+    {
+      "id": "iron_body",
+      "branch": "Body",
+      "attribute": "body",
+      "name": "Iron Body",
+      "gate": 4,
+      "category": "passive",
+      "max_rank": 3,
+      "requires": [],
+      "effects": {},
+      "description": "Per rank: 2% less incoming damage. Total progression damage reduction is capped at 50%."
+    },
+    {
+      "id": "honed_arms",
+      "branch": "Body",
+      "attribute": "body",
+      "name": "Honed Arms",
+      "gate": 9,
+      "category": "passive",
+      "max_rank": 3,
+      "requires": [
+        "iron_body"
+      ],
+      "effects": {},
+      "description": "Per rank: 5% less stamina for greatsword, spear and rapier attacks."
+    },
+    {
+      "id": "stonewall",
+      "branch": "Body",
+      "attribute": "body",
+      "name": "Stonewall",
+      "gate": 15,
+      "category": "passive",
+      "max_rank": 3,
+      "requires": [
+        "honed_arms"
+      ],
+      "effects": {},
+      "description": "Per rank: 4% less incoming damage, added to Iron Body. Total progression reduction is capped at 50%."
+    },
+    {
+      "id": "iron_resolve",
+      "branch": "Body",
+      "attribute": "body",
+      "name": "Iron Resolve",
+      "gate": 20,
+      "category": "passive",
+      "max_rank": 1,
+      "requires": [
+        "stonewall"
+      ],
+      "effects": {},
+      "description": "+15 maximum health. Learning this perk preserves your current health."
+    },
+    {
+      "id": "swiftfoot",
+      "branch": "Reflexes",
+      "attribute": "reflexes",
+      "name": "Swiftfoot",
+      "gate": 4,
+      "category": "passive",
+      "max_rank": 3,
+      "requires": [],
+      "effects": {},
+      "description": "Per rank: +2% walking and sprinting speed. Total progression movement bonus is capped at 25%."
+    },
+    {
+      "id": "dash",
+      "branch": "Reflexes",
+      "attribute": "reflexes",
+      "name": "Dash",
+      "gate": 4,
+      "category": "active",
+      "max_rank": 1,
+      "requires": [],
+      "effects": {},
+      "description": "Hold T to charge distance, release to dash. Queue an uppercut with left click while holding T."
+    },
+    {
+      "id": "belly_roll",
+      "branch": "Reflexes",
+      "attribute": "reflexes",
+      "name": "Dodge",
+      "gate": 4,
+      "category": "active",
+      "max_rank": 1,
+      "requires": [],
+      "effects": {},
+      "description": "Ctrl or tap Shift to roll. Hold Shift to sprint. You remain vulnerable throughout the roll."
+    },
+    {
+      "id": "streaming_dash",
+      "branch": "Reflexes",
+      "attribute": "reflexes",
+      "name": "Streaming Dash",
+      "gate": 9,
+      "category": "passive",
+      "max_rank": 3,
+      "requires": [
+        "dash"
+      ],
+      "effects": {},
+      "description": "Per rank: +15% quick and charged dash distance."
+    },
+    {
+      "id": "roly_poly",
+      "branch": "Reflexes",
+      "attribute": "reflexes",
+      "name": "Roly-Poly",
+      "gate": 15,
+      "category": "passive",
+      "max_rank": 3,
+      "requires": [
+        "belly_roll"
+      ],
+      "effects": {},
+      "description": "Per rank: +10% roll distance at the same duration. No damage immunity."
+    },
+    {
+      "id": "finesse",
+      "branch": "Precision",
+      "attribute": "precision",
+      "name": "Finesse",
+      "gate": 4,
+      "category": "passive",
+      "max_rank": 3,
+      "requires": [],
+      "effects": {},
+      "description": "Per rank: +3% bow and rapier damage."
+    },
+    {
+      "id": "measured_draw",
+      "branch": "Precision",
+      "attribute": "precision",
+      "name": "Measured Draw",
+      "gate": 9,
+      "category": "passive",
+      "max_rank": 3,
+      "requires": [
+        "finesse"
+      ],
+      "effects": {},
+      "description": "Per rank: 5% less stamina to fire a bow."
+    },
+    {
+      "id": "point_control",
+      "branch": "Precision",
+      "attribute": "precision",
+      "name": "Point Control",
+      "gate": 15,
+      "category": "passive",
+      "max_rank": 3,
+      "requires": [
+        "finesse"
+      ],
+      "effects": {},
+      "description": "Per rank: 5% less stamina for rapier attacks."
+    },
+    {
+      "id": "deadeye",
+      "branch": "Precision",
+      "attribute": "precision",
+      "name": "Deadeye",
+      "gate": 20,
+      "category": "passive",
+      "max_rank": 1,
+      "requires": [
+        "point_control"
+      ],
+      "effects": {},
+      "description": "+10% bow and rapier damage."
+    },
+    {
+      "id": "deep_reserve",
+      "branch": "Endurance",
+      "attribute": "endurance",
+      "name": "Deep Reserve",
+      "gate": 4,
+      "category": "passive",
+      "max_rank": 3,
+      "requires": [],
+      "effects": {},
+      "description": "Per rank: +5 maximum stamina. Learning this perk preserves your current stamina."
+    },
+    {
+      "id": "lightstep",
+      "branch": "Endurance",
+      "attribute": "endurance",
+      "name": "Lightstep",
+      "gate": 9,
+      "category": "passive",
+      "max_rank": 3,
+      "requires": [
+        "deep_reserve"
+      ],
+      "effects": {},
+      "description": "Per rank: 10% less stamina for quick and charged dashes."
+    },
+    {
+      "id": "long_march",
+      "branch": "Endurance",
+      "attribute": "endurance",
+      "name": "Long March",
+      "gate": 15,
+      "category": "passive",
+      "max_rank": 3,
+      "requires": [
+        "lightstep"
+      ],
+      "effects": {},
+      "description": "Per rank: 5% less walking-sprint and drawn-sprint stamina drain."
+    },
+    {
+      "id": "second_wind",
+      "branch": "Endurance",
+      "attribute": "endurance",
+      "name": "Second Wind",
+      "gate": 20,
+      "category": "passive",
+      "max_rank": 1,
+      "requires": [
+        "long_march"
+      ],
+      "effects": {},
+      "description": "+15 maximum stamina. Learning this perk preserves your current stamina."
+    },
+    {
+      "id": "great_greatsword",
+      "branch": "Mastery",
+      "attribute": "mastery",
+      "name": "Martial Training",
+      "gate": 4,
+      "category": "passive",
+      "max_rank": 3,
+      "requires": [],
+      "effects": {},
+      "description": "Per rank: +3% greatsword and spear damage."
+    },
+    {
+      "id": "charge_thrust",
+      "branch": "Mastery",
+      "attribute": "mastery",
+      "name": "Charged Thrust",
+      "gate": 4,
+      "category": "active",
+      "max_rank": 1,
+      "requires": [],
+      "effects": {},
+      "description": "Greatsword heavy style: hold up to five seconds for +15% damage per charged second. Full charge deals 175% base damage. Equip as heavy attack."
+    },
+    {
+      "id": "fast_thrust",
+      "branch": "Mastery",
+      "attribute": "mastery",
+      "name": "Fast Thrust",
+      "gate": 9,
+      "category": "passive",
+      "max_rank": 1,
+      "requires": [
+        "charge_thrust"
+      ],
+      "effects": {},
+      "description": "Charged Thrust reaches its full five-second power in 2.5 real seconds."
+    },
+    {
+      "id": "breaker",
+      "branch": "Mastery",
+      "attribute": "mastery",
+      "name": "Breaker",
+      "gate": 9,
+      "category": "passive",
+      "max_rank": 3,
+      "requires": [
+        "great_greatsword"
+      ],
+      "effects": {},
+      "description": "Greatsword hits build stagger: +25% / +31.25% / +37.5% buildup. Breaking interrupts an enemy and exposes it to +20% sword damage for 1.8 seconds."
+    },
+    {
+      "id": "basher",
+      "branch": "Mastery",
+      "attribute": "mastery",
+      "name": "Basher",
+      "gate": 15,
+      "category": "passive",
+      "max_rank": 3,
+      "requires": [
+        "great_greatsword"
+      ],
+      "effects": {},
+      "description": "Per rank: +4% greatsword and spear damage."
+    },
+    {
+      "id": "devastating_blade",
+      "branch": "Mastery",
+      "attribute": "mastery",
+      "name": "Devastating Blade",
+      "gate": 20,
+      "category": "passive",
+      "max_rank": 1,
+      "requires": [
+        "basher"
+      ],
+      "effects": {},
+      "description": "+15% greatsword damage. Does not increase spear, rapier or bow damage."
+    }
+  ],
+  "level_thresholds": [
+    0,
+    100,
+    240,
+    430,
+    680,
+    1000,
+    1400,
+    1900,
+    2500,
+    3200,
+    4000,
+    4900,
+    5900,
+    7000,
+    8200,
+    9568,
+    11128,
+    12906,
+    14933,
+    17244,
+    19879,
+    22883,
+    26308,
+    30212,
+    34663,
+    39737,
+    45521,
+    52115,
+    59632,
+    68201,
+    77970,
+    89107,
+    101803,
+    116276,
+    132775,
+    151584,
+    173026,
+    197470,
+    225336,
+    257103,
+    293317,
+    334601,
+    381665,
+    435318,
+    496482,
+    566209,
+    645698,
+    736315,
+    839618,
+    957383
+  ]
+}
