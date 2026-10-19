@@ -5,6 +5,7 @@ Persistent private pipe: durable_replace.py --worker /data/world.json
 The worker's target is fixed at startup; commands cannot supply filesystem paths.
 """
 import json
+import errno
 import base64
 import hashlib
 import os
@@ -110,8 +111,17 @@ def parent_monitor(parent_pid):
     return lambda: kernel.WaitForSingleObject(handle, 0) == 258
 
 
+def request_io_retryable(exc):
+    # Python's Windows CRT fopen can report a sharing denial as plain EACCES,
+    # without a winerror attribute. This policy applies only before processing
+    # a private request, never to checkpoint replacement or acknowledgement.
+    native_error = getattr(exc, 'winerror', None)
+    return (native_error in (32, 33)
+            or (os.name == 'nt' and native_error is None and exc.errno == errno.EACCES))
+
+
 def take_request(request_path, retry_seconds=1.0):
-    """Remove one private request before processing it; retry only Windows sharing locks.
+    """Remove one private request before processing it; retry bounded Windows access denials.
 
     A scanner or a still-closing native file handle can transiently deny access.
     No checkpoint operation has started here, so rereading after a failed removal
@@ -119,14 +129,18 @@ def take_request(request_path, retry_seconds=1.0):
     """
     deadline = time.monotonic() + retry_seconds
     while True:
+        operation = 'read'
         try:
             line = request_path.read_text()
+            operation = 'remove'
             request_path.unlink()
             return line
         except FileNotFoundError:
             return None
         except OSError as exc:
-            if getattr(exc, 'winerror', None) not in (32, 33) or time.monotonic() >= deadline:
+            if not request_io_retryable(exc) or time.monotonic() >= deadline:
+                # Preserve stage and CRT/native error codes across the JSON ACK.
+                exc.request_operation = operation
                 raise
             time.sleep(0.001)
 
@@ -158,7 +172,8 @@ def worker(target, parent_pid=None, namespace=None):
             except OSError as exc:
                 # Preserve the first read/remove failure instead of silently
                 # terminating the worker and leaving only downstream timeouts.
-                print(json.dumps({'id': -1, 'ok': False, 'error': 'Private request read/remove failed: ' + str(exc)[:512]}), flush=True)
+                print(json.dumps({'id': -1, 'ok': False, 'error': 'Private request read/remove failed: ' + (str(exc) + ' [operation=' + str(getattr(exc, 'request_operation', 'unknown'))
+                          + ', errno=' + str(exc.errno) + ', winerror=' + str(getattr(exc, 'winerror', None)) + ']')[:512]}), flush=True)
                 return
             if line is None:
                 time.sleep(0.0001)

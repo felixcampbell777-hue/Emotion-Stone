@@ -1,5 +1,6 @@
 """Fault-injection checks for private request acquisition, before any world commit."""
 import importlib.util
+import errno
 import json
 import os
 import subprocess
@@ -56,6 +57,38 @@ class RequestRetryChecks(unittest.TestCase):
         self.assertEqual(len(attempts), 3)
         self.assertFalse(self.request.exists())
 
+    def test_transient_windows_crt_read_denial_without_winerror_retries_once_delivery(self):
+        real_read = Path.read_text
+        attempts = []
+        def injected(path, *args, **kwargs):
+            attempts.append(path)
+            if len(attempts) <= 2:
+                raise PermissionError(errno.EACCES, 'injected CRT fopen sharing denial')
+            return real_read(path, *args, **kwargs)
+        with patch.object(helper.os, 'name', 'nt'), patch.object(Path, 'read_text', injected):
+            self.assertEqual(helper.take_request(self.request), self.payload)
+            self.assertIsNone(helper.take_request(self.request))
+        self.assertEqual(len(attempts), 4)
+        self.assertFalse(self.request.exists())
+
+    def test_permanent_windows_crt_denial_is_bounded_reports_read_and_preserves_request(self):
+        error = PermissionError(errno.EACCES, 'injected permanent CRT denial')
+        with patch.object(helper.os, 'name', 'nt'), patch.object(Path, 'read_text', side_effect=error) as read:
+            with self.assertRaises(PermissionError) as raised:
+                helper.take_request(self.request, retry_seconds=0.01)
+            self.assertGreater(read.call_count, 1)
+        self.assertEqual(raised.exception.request_operation, 'read')
+        self.assertEqual(self.request.read_text(), self.payload)
+
+    def test_posix_permission_denial_is_immediate_and_preserves_request(self):
+        error = PermissionError(errno.EACCES, 'injected POSIX access denial')
+        with patch.object(helper.os, 'name', 'posix'), patch.object(Path, 'read_text', side_effect=error) as read:
+            with self.assertRaises(PermissionError) as raised:
+                helper.take_request(self.request)
+            self.assertEqual(read.call_count, 1)
+        self.assertEqual(raised.exception.request_operation, 'read')
+        self.assertEqual(self.request.read_text(), self.payload)
+
     def test_other_io_error_remains_immediate_and_preserves_request(self):
         with patch.object(Path, 'read_text', side_effect=OSError('injected I/O failure')) as read:
             with self.assertRaisesRegex(OSError, 'I/O failure'):
@@ -87,6 +120,7 @@ class RequestRetryChecks(unittest.TestCase):
             self.assertGreater(remove.call_count, 1)
         self.assertLess(time.monotonic() - started, 0.5)
         self.assertEqual(self.request.read_text(), self.payload)
+        self.assertEqual(remove.side_effect.request_operation, 'remove')
 
 
 if __name__ == '__main__':
