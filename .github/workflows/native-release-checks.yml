@@ -1,0 +1,44 @@
+name: Native release checks
+on:
+  push:
+    branches:
+      - codex/world-rise-handoff
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: native-release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  native:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          lfs: true
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.13'
+      - name: Materialize LFS
+        run: git lfs pull
+      - name: Install pinned runtime
+        run: python tools/bootstrap_runtime.py
+      - name: Check native source and exported release runtime
+        run: python tools/verify_native_release.py
+      - name: Retain current reports and native package
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: native-release-${{ matrix.os }}-${{ github.sha }}
+          path: |
+            output/verification/*.json
+            output/verification/*.log
+            output/clients/windows/
+            output/linux-server/
+          retention-days: 7
+          if-no-files-found: error

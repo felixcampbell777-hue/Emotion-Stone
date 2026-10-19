@@ -30,6 +30,7 @@ def export_client(target, skip_tests=False):
 name="World Rise Client"
 platform="{platform}"
 runnable=true
+custom_features="world_rise_client"
 export_filter="all_resources"
 include_filter="{raw_include}"
 exclude_filter=""

@@ -14,6 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def scenario(engine, clients, duration, external_port=None, password_file=None, rtt_ms=0, jitter_ms=0, loss=0, gameplay=False, scenario_registry=None, prediction=False, client_fps="", state_file=None):
+    from platform_cli import package_fingerprints
+    source_before = package_fingerprints()
     processes = []
     proxies = []
     with tempfile.TemporaryDirectory(prefix='world-rise-net-probe-') as temporary:
@@ -111,11 +113,19 @@ def scenario(engine, clients, duration, external_port=None, password_file=None, 
                     actual_cap = (item.get('result') or {}).get('render_fps_cap')
                     if actual_cap != requested_caps[index % len(requested_caps)]:
                         acceptance_failures.append(f'Client {index} cap {actual_cap} differs from requested cap')
+            if registry and registry.get('progression_tree_version') == 5:
+                for index, item in enumerate(results):
+                    if (item.get('result') or {}).get('progression_tree_version') != 5:
+                        acceptance_failures.append(f'Client {index} did not durably export current tree5 progression')
             ready = Path(registry['server']) / 'ready.json' if registry else scratch / 'world/ready.json'
             health = json.loads(ready.read_text()) if ready.exists() else {}
+            source_after = package_fingerprints()
+            if source_before != source_after:
+                acceptance_failures.append('Runtime sources changed during this scenario')
             outcome = {'clients': clients, 'requested_client_seconds': duration, 'external_server': bool(external_port), 'passed': all(r['exit'] == 0 and not r['errors'] for r in results) and 'ERROR' not in server_log.read_text() and not acceptance_failures,
+                       'source_before': source_before, 'source_after': source_after, 'source_unchanged': source_before == source_after,
                        'acceptance_failures': acceptance_failures,
-                       'server_samples': samples, 'server_health': health, 'prediction_clients': prediction, 'client_fps': client_fps or '60', 'authored_gameplay': registry is not None, 'conditions': {'rtt_ms': rtt_ms, 'jitter_ms': jitter_ms, 'loss': loss},
+                       'server_samples': samples, 'server_health': health, 'prediction_clients': prediction, 'client_fps': client_fps or '60', 'authored_gameplay': registry is not None, 'scenario_progression_tree_version': registry.get('progression_tree_version') if registry else None, 'scenario_content_digest': registry.get('content_digest') if registry else None, 'conditions': {'rtt_ms': rtt_ms, 'jitter_ms': jitter_ms, 'loss': loss},
                        'proxy_metrics': [proxy.stats for proxy in proxies],
                        'server_peak_rss_kib': max((s['rss_kib'] for s in samples if 'rss_kib' in s), default=None),
                        'server_peak_cpu_percent': max((s['cpu_percent'] for s in samples if 'cpu_percent' in s), default=None),

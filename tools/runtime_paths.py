@@ -14,7 +14,8 @@ def isolated_environment(scratch):
     env = dict(os.environ)
     for key, suffix in {'APPDATA': 'roaming', 'LOCALAPPDATA': 'local',
                         'XDG_DATA_HOME': 'data', 'XDG_CONFIG_HOME': 'config',
-                        'XDG_CACHE_HOME': 'cache'}.items():
+                        'XDG_CACHE_HOME': 'cache', 'TMPDIR': 'tmp',
+                        'TEMP': 'tmp', 'TMP': 'tmp'}.items():
         folder = root / suffix
         folder.mkdir(parents=True, exist_ok=True)
         env[key] = str(folder)

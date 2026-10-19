@@ -3,7 +3,7 @@ FROM python:3.13.7-slim-bookworm@sha256:adafcc17694d715c905b4c7bebd96907a1fd5cf1
 # Godot's headless Linux template and the tested relay/codec need only this base's libc.
 RUN groupadd --gid 10001 worldrise && useradd --uid 10001 --gid 10001 --no-create-home worldrise \
     && mkdir /data && chown 10001:10001 /data
-ARG SERVER_VERSION=0.41.4
+ARG SERVER_VERSION=0.42.0
 LABEL org.opencontainers.image.title="World Rise Dedicated Server" \
     org.opencontainers.image.version="${SERVER_VERSION}" io.worldrise.engine.version="4.5.1"
 COPY output/linux-server/v${SERVER_VERSION}/ /app/

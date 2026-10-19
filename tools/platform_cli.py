@@ -273,7 +273,9 @@ def toolchain(required=('godot',)):
 
 def digest(paths,extra=''):
     result=hashlib.sha256(extra.encode())
-    for path in sorted(paths):
+    # PureWindowsPath compares case-insensitively; explicit case-sensitive
+    # component ordering preserves the existing POSIX hash order on every host.
+    for path in sorted(paths,key=lambda path:path.relative_to(ROOT).parts):
         result.update(path.relative_to(ROOT).as_posix().encode())
         result.update(path.read_bytes())
     return result.hexdigest()

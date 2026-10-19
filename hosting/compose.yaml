@@ -1,11 +1,11 @@
 services:
   world-rise:
-    image: world-rise-server:0.41.4
+    image: world-rise-server:0.42.0
     build:
       context: ..
       dockerfile: hosting/Dockerfile
       args:
-        SERVER_VERSION: 0.41.4
+        SERVER_VERSION: 0.42.0
     platform: linux/amd64
     read_only: true
     user: "10001:10001"
