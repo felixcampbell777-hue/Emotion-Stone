@@ -524,6 +524,12 @@ func network_diagnostics() -> Dictionary:
 func _exit_tree() -> void:
  # Scene removal is an abrupt disconnect, never a successful portable export.
  connected=false;connecting=false
+ # Clear RPC node tracking while this Session and its callbacks are alive,
+ # before deregistration can release the engine-owned multiplayer reference.
+ # Clear first also avoids dispatching a synthetic disconnect during removal.
+ if _subtree_api!=null:
+  _subtree_api.clear()
+  _subtree_api.multiplayer_peer=null
  if peer!=null:peer.close()
  stop_voice_transport()
  if server and storage!=null:storage.stop_worker()
