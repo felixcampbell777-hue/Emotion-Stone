@@ -128,6 +128,9 @@ def docker_smoke(executable, version):
             raise RuntimeError('Docker readiness deadline exceeded: ' + last)
         try:
             run(['build'], timeout=600)
+            run(['run', '--rm', '--no-deps', '--entrypoint', 'python3', 'world-rise', '-c',
+                 'from pathlib import Path; import os; assert os.geteuid()==10001; assert Path("/run/secrets/server_password").read_bytes().strip()'])
+            report['secret_readable_by_service_uid'] = True
             run(['up', '-d'], timeout=120)
             report['initial_health'] = ready(0)
             identifier = run(['ps', '-q', 'world-rise']).stdout.strip()
