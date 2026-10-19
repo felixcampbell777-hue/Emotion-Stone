@@ -72,7 +72,9 @@ def _snapshot(data, destination, retain):
             entry = tarfile.TarInfo('backup-manifest.json')
             entry.size = len(raw)
             archive.addfile(entry, io.BytesIO(raw))
-        with temporary.open('rb') as stream:
+        # Windows CRT fsync requires a writable descriptor, even after the
+        # archive writer has already flushed and closed successfully.
+        with temporary.open('r+b') as stream:
             os.fsync(stream.fileno())
         temporary.replace(output)
         for obsolete in sorted(destination.glob('world-rise-*.tar.gz'), key=lambda p: p.stat().st_mtime, reverse=True)[retain:]:

@@ -2,10 +2,12 @@
 import importlib.util
 import io
 import json
+import os
 from pathlib import Path
 import tarfile
 import tempfile
 import unittest
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('wr_backup', ROOT / 'hosting/backup.py')
@@ -46,6 +48,21 @@ class BackupChecks(unittest.TestCase):
         for _ in range(3):
             source = backup_module.backup(self.data, self.root / 'backups', 2)
         self.assertEqual(2, len(list((self.root / 'backups').glob('*.tar.gz'))))
+        backup_module.restore(source, self.root / 'restored')
+        self.assertEqual((self.data / 'world.json').read_bytes(), (self.root / 'restored/world.json').read_bytes())
+
+    def test_archive_sync_uses_writable_descriptor(self):
+        real_sync = os.fsync
+        synced = []
+        def windows_style_sync(descriptor):
+            # A read-only descriptor may fsync on POSIX but fails with EBADF
+            # in the Windows CRT. A zero-byte write checks the same access.
+            os.write(descriptor, b'')
+            real_sync(descriptor)
+            synced.append(True)
+        with mock.patch.object(backup_module.os, 'fsync', side_effect=windows_style_sync):
+            source = backup_module.backup(self.data, self.root / 'backups', 2)
+        self.assertTrue(synced)
         backup_module.restore(source, self.root / 'restored')
         self.assertEqual((self.data / 'world.json').read_bytes(), (self.root / 'restored/world.json').read_bytes())
 
