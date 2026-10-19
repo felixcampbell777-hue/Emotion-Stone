@@ -107,7 +107,7 @@ func start_worker(target:String) -> bool:
    last_error=String(value.get("error","World writer lock unavailable")) if value is Dictionary else "Invalid world writer acknowledgement"
    stop_worker();return false
   OS.delay_usec(100)
- last_error="World writer lock startup timed out";stop_worker();return false
+ last_error="World writer lock startup timed out"+worker_failure_detail(stream);stop_worker();return false
 func durable_commit(target:String) -> bool:
  if worker.is_empty() and not start_worker(target):return false
  worker_sequence+=1;last_worker_stages={}
@@ -118,7 +118,7 @@ func durable_commit(target:String) -> bool:
  if request==null:last_error="Cannot create checkpoint worker request";return false
  request.store_string(JSON.stringify({"id":worker_sequence,"op":"commit"}));request.close()
  if DirAccess.rename_absolute(request_path+".pending",request_path)!=OK:last_error="Cannot publish checkpoint worker request";return false
- var response=PackedByteArray()
+ var response=PackedByteArray();var reply_error=""
  var deadline=Time.get_ticks_msec()+5000
  while Time.get_ticks_msec()<deadline:
   var chunk=stream.get_buffer(1024)
@@ -126,6 +126,7 @@ func durable_commit(target:String) -> bool:
   if response.size()>4096:break
   if response.has(10):
    var value=JSON.parse_string(response.get_string_from_utf8())
+   if value is Dictionary and value.get("error") is String:reply_error=" "+String(value.error).left(512)
    if value is Dictionary and value.get("id")==worker_sequence and value.get("ok") is bool:
     if value.ok:last_worker_stages=value.get("stages",{}).duplicate();return true
     read_only=true;last_error="Durable checkpoint failed; restart to recover disk state: "+String(value.get("error","unknown error")).left(512);stop_worker();return false
@@ -134,8 +135,15 @@ func durable_commit(target:String) -> bool:
   OS.delay_usec(100)
  # An acknowledgement lost after rename is ambiguous. Freeze writes until an
  # explicit restart reloads the committed file; never overwrite it from stale RAM.
- read_only=true;last_error="Durable checkpoint worker failed; restart to recover the accepted disk checkpoint"
+ read_only=true;last_error="Durable checkpoint worker failed; restart to recover the accepted disk checkpoint"+reply_error+worker_failure_detail(stream)
  stop_worker();return false
+func worker_failure_detail(stream:FileAccess) -> String:
+ var detail=" [reply pipe="+str(stream.get_error())+"]"
+ var errors:FileAccess=worker.get("stderr")
+ if errors!=null:
+  var diagnostic=errors.get_buffer(2048).get_string_from_utf8().strip_edges()
+  if not diagnostic.is_empty():detail+=" "+diagnostic.left(2048)
+ return detail
 func stop_worker() -> void:
  if worker.is_empty():return
  OS.kill(int(worker.pid))

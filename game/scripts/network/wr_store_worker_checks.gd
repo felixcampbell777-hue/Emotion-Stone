@@ -2,11 +2,18 @@ extends SceneTree
 const Store=preload("res://scripts/network/wr_store.gd")
 var failures:Array=[]
 var checks=0
+var diagnostic_stores:Array=[]
+var storage_errors:Array=[]
 func check(value:bool,label:String) -> void:
  checks+=1
- if not value:failures.append(label)
+ if not value:
+  failures.append(label)
+  for storage in diagnostic_stores:
+   if not storage.last_error.is_empty():
+    var detail={"check":label,"error":storage.last_error}
+    if storage_errors.size()<32:storage_errors.append(detail)
 func _init() -> void:
- var store=Store.new()
+ var store=Store.new();diagnostic_stores.append(store)
  check(store.open("user://worker-check"),"initial durable worker checkpoint")
  var first_pid=int(store.worker.get("pid",-1))
  var samples:Array=[]
@@ -24,7 +31,7 @@ func _init() -> void:
  check(not store.commit(rejected),"dead worker never acknowledged")
  check(store.read_only,"ambiguous worker failure freezes further writes")
  check(store.data==accepted,"failed write leaves accepted memory unchanged")
- var reopened=Store.new()
+ var reopened=Store.new();diagnostic_stores.append(reopened)
  check(reopened.open("user://worker-check"),"explicit restart recovers durable file")
  check(reopened.data.get("probe_counter")==29,"accepted disk preserved after worker failure")
  # Every platform exercises a real replacement followed by an ambiguous failure.
@@ -32,7 +39,7 @@ func _init() -> void:
  # POSIX additionally retains the specific parent-directory fsync failure path.
  if OS.get_name()!="Windows":
   check_post_replace_fault("directory-fsync-fault", "real_fsync=os.fsync\ndef injected(fd):\n if stat.S_ISDIR(os.fstat(fd).st_mode): raise OSError('injected directory fsync failure')\n return real_fsync(fd)\nos.fsync=injected\n")
- var precision=Store.new()
+ var precision=Store.new();diagnostic_stores.append(precision)
  check(precision.open("user://fractional-precision"),"fractional checkpoint opens")
  var owner=Crypto.new().generate_rsa(2048)
  var profile=preload("res://scripts/network/wr_profile.gd").new_profile(owner.save_to_string(true))
@@ -42,17 +49,17 @@ func _init() -> void:
  proposal.encounters["wr_floor_01/precision_probe"]={"position":[0,0,0],"health":1,"generation":0,"cooldown_remaining":0.0,"native_state":{"state_time":.44999999999999996}}
  check(precision.commit(proposal),"fractional profile and native clocks durably committed")
  precision.stop_worker()
- var exact=Store.new();check(exact.open("user://fractional-precision"),"fractional checkpoint reopened")
+ var exact=Store.new();diagnostic_stores.append(exact);check(exact.open("user://fractional-precision"),"fractional checkpoint reopened")
  check(preload("res://scripts/network/wr_profile.gd").digest(profile)==preload("res://scripts/network/wr_profile.gd").digest(exact.data.characters[profile.character_id]),"fractional profile disk digest exact")
  check(exact.data.day_clock==proposal.day_clock and exact.data.elapsed==proposal.elapsed and exact.data.encounters["wr_floor_01/precision_probe"].native_state.state_time==.44999999999999996,"world and native clocks retain full double precision")
  check(exact.import_character(profile).ok,"unchanged fractional portable profile is not a false conflict after restart")
  exact.stop_worker()
  samples.sort()
- print("WR_STORE_WORKER_CHECKS ",JSON.stringify({"checks":checks,"failures":failures,"warm_commit_p95_usec":samples[28],"warm_commit_max_usec":samples[-1],"stages":summarize_stages(stage_samples)}))
+ print("WR_STORE_WORKER_CHECKS ",JSON.stringify({"checks":checks,"failures":failures,"storage_errors":storage_errors,"warm_commit_p95_usec":samples[28],"warm_commit_max_usec":samples[-1],"stages":summarize_stages(stage_samples)}))
  store.stop_worker();reopened.stop_worker();quit(0 if failures.is_empty() else 1)
 
 func check_post_replace_fault(label:String,injection:String) -> void:
- var fault=Store.new()
+ var fault=Store.new();diagnostic_stores.append(fault)
  check(fault.open("user://"+label),label+": initial durable checkpoint")
  fault.stop_worker()
  var wrapper_path=ProjectSettings.globalize_path("user://"+label+".py")

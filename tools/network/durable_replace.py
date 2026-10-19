@@ -110,6 +110,27 @@ def parent_monitor(parent_pid):
     return lambda: kernel.WaitForSingleObject(handle, 0) == 258
 
 
+def take_request(request_path, retry_seconds=1.0):
+    """Remove one private request before processing it; retry only Windows sharing locks.
+
+    A scanner or a still-closing native file handle can transiently deny access.
+    No checkpoint operation has started here, so rereading after a failed removal
+    cannot replay an acknowledged commit. All other failures remain fatal.
+    """
+    deadline = time.monotonic() + retry_seconds
+    while True:
+        try:
+            line = request_path.read_text()
+            request_path.unlink()
+            return line
+        except FileNotFoundError:
+            return None
+        except OSError as exc:
+            if getattr(exc, 'winerror', None) not in (32, 33) or time.monotonic() >= deadline:
+                raise
+            time.sleep(0.001)
+
+
 def worker(target, parent_pid=None, namespace=None):
     if namespace is not None and (len(namespace) != 32 or any(c not in "0123456789abcdef" for c in namespace)):
         raise ValueError("invalid private worker namespace")
@@ -133,11 +154,16 @@ def worker(target, parent_pid=None, namespace=None):
             return
         while parent_alive():
             try:
-                line = request_path.read_text()
-                request_path.unlink()
-                yield line
-            except FileNotFoundError:
+                line = take_request(request_path)
+            except OSError as exc:
+                # Preserve the first read/remove failure instead of silently
+                # terminating the worker and leaving only downstream timeouts.
+                print(json.dumps({'id': -1, 'ok': False, 'error': 'Private request read/remove failed: ' + str(exc)[:512]}), flush=True)
+                return
+            if line is None:
                 time.sleep(0.0001)
+            else:
+                yield line
     for line in requests():
         request_id = -1
         try:
