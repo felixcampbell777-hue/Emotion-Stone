@@ -53,6 +53,9 @@ func run() -> void:
  check(Codec.read_file(session.checkpoint_path,"character").data.progression.tree_version==4,"original disk remains tree4 before authentication")
  await reject_invalid_owner(original_file)
  await visit("A-first",int(options["port-a"]),"a",true)
+ var requested=write_text(String(options.scenario).path_join("start-b.request"),"start")
+ check(requested,"fresh B startup requested through flushed fixture handoff file")
+ if not requested:finish();return
  print("PROGRESSION_HOP_START_B")
  var deadline=Time.get_ticks_msec()+30000
  while not FileAccess.file_exists(String(options.scenario).path_join("b-started")) and Time.get_ticks_msec()<deadline:await create_timer(.05).timeout
