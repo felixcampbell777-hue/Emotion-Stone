@@ -318,6 +318,44 @@ func character_id(body:Variant) -> String:
 	return String(body.get_meta("character_id",body.character_id if body is Proxy else body.get("entity_id")))
 
 const NATIVE_STATE_FIELDS=["state","state_time","direction","knockback","phase","home","lunge_hit","half_called","engaged","circle_clock","leap_start","leap_target","attacks","attack_kind","duration","exposed","target_point","strikes","pursuit_time","turns","cooldown","jump_origin","jump_target","jump_clock","bounce_count","regen_clock","resin_dash_active","dash_target","pack_target","pack_speed","pack_engaged","encounter_engaged","encounter_attack_allowed","encounter_goal"]
+# Controller fields are Variants: clocks may currently contain integer zero.
+# Restore uses their persistent schema, never that temporary current value.
+const NATIVE_STATE_TYPES={
+	"state":TYPE_STRING,
+	"state_time":TYPE_FLOAT,
+	"direction":TYPE_VECTOR3,
+	"knockback":TYPE_VECTOR3,
+	"phase":TYPE_FLOAT,
+	"home":TYPE_VECTOR3,
+	"lunge_hit":TYPE_BOOL,
+	"half_called":TYPE_BOOL,
+	"engaged":TYPE_BOOL,
+	"circle_clock":TYPE_FLOAT,
+	"leap_start":TYPE_VECTOR3,
+	"leap_target":TYPE_VECTOR3,
+	"attacks":TYPE_INT,
+	"attack_kind":TYPE_STRING,
+	"duration":TYPE_FLOAT,
+	"exposed":TYPE_FLOAT,
+	"target_point":TYPE_VECTOR3,
+	"strikes":TYPE_INT,
+	"pursuit_time":TYPE_FLOAT,
+	"turns":TYPE_INT,
+	"cooldown":TYPE_FLOAT,
+	"jump_origin":TYPE_VECTOR3,
+	"jump_target":TYPE_VECTOR3,
+	"jump_clock":TYPE_FLOAT,
+	"bounce_count":TYPE_INT,
+	"regen_clock":TYPE_FLOAT,
+	"resin_dash_active":TYPE_BOOL,
+	"dash_target":TYPE_VECTOR3,
+	"pack_target":TYPE_VECTOR3,
+	"pack_speed":TYPE_FLOAT,
+	"pack_engaged":TYPE_BOOL,
+	"encounter_engaged":TYPE_BOOL,
+	"encounter_attack_allowed":TYPE_BOOL,
+	"encounter_goal":TYPE_VECTOR3,
+}
 var pending_native_states:Dictionary={}
 func capture_enemy_state(enemy:Node) -> Dictionary:
 	var result={}
@@ -341,22 +379,22 @@ func restore_enemy_state(enemy:Node,state:Dictionary) -> void:
 	for property in enemy.get_property_list():fields[property.name]=true
 	for field in NATIVE_STATE_FIELDS:
 		if not state.has(field) or not fields.has(field):continue
-		var value=state[field];var expected=enemy.get(field)
-		if expected is Vector3:
+		var value=state[field];var expected_type=NATIVE_STATE_TYPES[field]
+		if expected_type==TYPE_VECTOR3:
 			if not value is Dictionary or value.size()!=1 or not value.get("vector3") is Array:continue
 			var at=value.vector3
 			if at.size()!=3 or not at.all(func(component):return (component is float or component is int) and is_finite(float(component))):continue
 			value=Vector3(float(at[0]),float(at[1]),float(at[2]))
-		elif expected is String:
+		elif expected_type==TYPE_STRING:
 			if not value is String or value.length()>64:continue
-		elif expected is bool:
+		elif expected_type==TYPE_BOOL:
 			if not value is bool:continue
-		elif expected is int:
-			if not (value is int or value is float) or not is_finite(float(value)) or absf(float(value))>2147483647 or float(value)!=floorf(float(value)):continue
-			value=int(value)
-		elif expected is float:
+		elif expected_type==TYPE_FLOAT:
 			if not (value is int or value is float) or not is_finite(float(value)) or absf(float(value))>100000000:continue
 			value=float(value)
+		elif expected_type==TYPE_INT:
+			if not (value is int or value is float) or not is_finite(float(value)) or absf(float(value))>2147483647 or float(value)!=floorf(float(value)):continue
+			value=int(value)
 		else:continue
 		enemy.set(field,value)
 	var target_id=String(state.get("target",""))

@@ -1,11 +1,15 @@
 extends SceneTree
 const Runtime=preload("res://scripts/network/wr_floor_runtime.gd")
+const Codec=preload("res://scripts/network/wr_storage_codec.gd")
 const Adapter=preload("res://scripts/network/wr_world_adapter.gd")
 var failures=0
+var checks=0
 func check(ok:bool,message:String) -> void:
+	checks+=1
 	if not ok:failures+=1;push_error(message)
 func _initialize() -> void:call_deferred("run")
 func run() -> void:
+	check(Runtime.NATIVE_STATE_FIELDS.size()==Runtime.NATIVE_STATE_TYPES.size() and Runtime.NATIVE_STATE_FIELDS.all(func(field):return Runtime.NATIVE_STATE_TYPES.has(field)),"Every retained native state field has one explicit persistent type")
 	var adapter=Adapter.new();var floors={}
 	for floor_id in adapter.FLOORS:
 		var runtime=Runtime.new();root.add_child(runtime);runtime.setup(floor_id,adapter);floors[floor_id]=runtime
@@ -31,6 +35,24 @@ func run() -> void:
 	enemy.state="idle";enemy.state_time=0;enemy.jump_target=Vector3.ZERO
 	fen.restore_enemy_state(enemy,native_state)
 	check(enemy.state=="giant_warn" and is_equal_approx(enemy.state_time,.42) and enemy.jump_target==Vector3(4,2,8),"Native action clock and trajectory survive JSON roundtrip")
+	check(enemy.state_time is float,"Native clock restores its declared floating type after an integer-zero reset")
+	var clock=.420000000000031
+	enemy.state="giant_warn";enemy.state_time=clock;enemy.jump_target=Vector3(4.125,2.5,8.75);enemy.jump_clock=.187500000000019
+	var exact_state=fen.capture_enemy_state(enemy)
+	var path="user://floor-runtime-native-state.json"
+	var file=FileAccess.open(path,FileAccess.WRITE);file.store_string(Codec.encode({"native_state":exact_state},"world"));file.close()
+	var stored=Codec.read_file(path,"world");DirAccess.remove_absolute(path)
+	check(stored.ok and var_to_bytes(stored.data.native_state)==var_to_bytes(exact_state),"Production lossless world-file envelope preserves exact native state bytes")
+	enemy.state="idle";enemy.state_time=0;enemy.jump_clock=0;enemy.jump_target=Vector3.ZERO
+	if stored.ok:fen.restore_enemy_state(enemy,stored.data.native_state)
+	check(enemy.state=="giant_warn" and enemy.state_time==clock and enemy.jump_clock==.187500000000019 and enemy.jump_target==Vector3(4.125,2.5,8.75),"Production world-file restore preserves exact active clocks and trajectory after integer resets")
+	var restored_clock=enemy.state_time;var restored_phase=enemy.phase
+	enemy.bounce_count=0.0
+	fen.restore_enemy_state(enemy,{"target":"fen_player","bounce_count":2})
+	check(enemy.bounce_count is int and enemy.bounce_count==2,"Integer native counters restore by schema even when their temporary current Variant is float")
+	fen.restore_enemy_state(enemy,{"target":"fen_player","state_time":INF,"jump_clock":"0.5","phase":100000001.0,"bounce_count":1.5})
+	check(enemy.state_time==restored_clock and enemy.jump_clock==.187500000000019 and enemy.phase==restored_phase and enemy.bounce_count==2,"Native restore still rejects nonfinite out-of-range wrong-type clocks and fractional counters")
+	enemy.bounce_count=0
 	enemy.state="idle"
 
 	check(rise.enemies[0].player.character_id=="rise_player" and enemy.player.character_id=="fen_player","Targets never cross floor")
@@ -49,7 +71,7 @@ func run() -> void:
 	vault.player_damaged.connect(func(character_id,_amount,_away):damaged.append(character_id))
 	vault.enemies[0].strike(5.5,30,true)
 	check("vault_a" in damaged and "vault_b" in damaged,"Native Elder slam tests every player body")
-	print("Authored floor runtime checks failures=",failures)
+	print("FLOOR_RUNTIME_CHECKS ",JSON.stringify({"checks":checks,"failures":failures}))
 	for runtime in floors.values():runtime.queue_free()
 	await process_frame
 	quit(1 if failures else 0)
