@@ -69,11 +69,19 @@ def scenario(engine, port_a, port_b, exported=False, durable_helper=None):
             process, log = spawn(name, ['res://scenes/world_rise_server.tscn', '--',
                                 f'--port={port}', f'--data-dir={data / world}', '--bind=127.0.0.1'])
             deadline = time.monotonic() + 45
-            while 'WORLD_RISE_SERVER_READY' not in log.read_text():
-                if process.poll() is not None or time.monotonic() > deadline:
-                    raise RuntimeError(f'Server startup failed ({name}, exit={process.poll()}, deadline=45s): ' + log.read_text()[-4000:])
+            health = {}
+            while process.poll() is None and time.monotonic() < deadline:
+                try:
+                    health = json.loads((data / world / 'ready.json').read_text())
+                except (OSError, ValueError):
+                    health = {}
+                # Release-template stdout is buffered when redirected. Use the
+                # real production readiness record, then count startup markers
+                # after clean exits have flushed the logs.
+                if health.get('ready') and health.get('voice_ready') and not health.get('storage_error'):
+                    return process, log
                 time.sleep(.1)
-            return process, log
+            raise RuntimeError(f'Server startup failed ({name}, exit={process.poll()}, deadline=45s, health={health}): ' + log.read_text()[-4000:])
 
         try:
             setup, setup_log = spawn('setup', ['--script', PROBE, '--', '--mode=seed', f'--scenario={data}'])
@@ -86,7 +94,7 @@ def scenario(engine, port_a, port_b, exported=False, durable_helper=None):
             started_b = False
             deadline = time.monotonic() + 160
             while client.poll() is None and time.monotonic() < deadline:
-                if not started_b and 'PROGRESSION_HOP_START_B' in client_log.read_text():
+                if not started_b and (data / 'start-b.request').is_file():
                     server('serverB', port_b, 'b')
                     (data / 'b-started').write_text('ready')
                     started_b = True
