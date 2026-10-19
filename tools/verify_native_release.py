@@ -137,6 +137,9 @@ def main():
             raise RuntimeError('Real online Main blood report did not pass')
         run_process([sys.executable, 'tools/test_hosting.py'], log='native-hosting-python.log', isolated=True)
         run_process([sys.executable, 'tools/network/verify_world_lock.py'], log='native-writer-lock-python.log', isolated=True)
+        report['checks'].append({'kind': 'native-python-process-lock', 'script': 'network/verify_world_lock.py', 'passed': True})
+        run_process([sys.executable, 'tools/network/test_request_retry.py'], log='native-request-retry-python.log', isolated=True)
+        report['checks'].append({'kind': 'native-python-fault-injection', 'script': 'network/test_request_retry.py', 'passed': True})
         run_process([sys.executable, 'tools/test_release_downloads.py'], log='native-release-bundle-python.log', isolated=True)
         if sys.platform == 'win32':
             package = export_client('windows')

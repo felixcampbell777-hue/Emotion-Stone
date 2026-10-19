@@ -1,6 +1,7 @@
 """Launch a separate authority and real ENet client processes in disposable storage."""
 import argparse
 from collections import Counter
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -16,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def scenario(engine, clients, duration, external_port=None, password_file=None, rtt_ms=0, jitter_ms=0, loss=0, gameplay=False, scenario_registry=None, prediction=False, client_fps="", state_file=None):
     from platform_cli import package_fingerprints
     source_before = package_fingerprints()
+    helper_before = hashlib.sha256((ROOT / 'tools/network/durable_replace.py').read_bytes()).hexdigest()
     processes = []
     proxies = []
     with tempfile.TemporaryDirectory(prefix='world-rise-net-probe-') as temporary:
@@ -120,10 +122,12 @@ def scenario(engine, clients, duration, external_port=None, password_file=None, 
             ready = Path(registry['server']) / 'ready.json' if registry else scratch / 'world/ready.json'
             health = json.loads(ready.read_text()) if ready.exists() else {}
             source_after = package_fingerprints()
-            if source_before != source_after:
+            helper_after = hashlib.sha256((ROOT / 'tools/network/durable_replace.py').read_bytes()).hexdigest()
+            if source_before != source_after or helper_before != helper_after:
                 acceptance_failures.append('Runtime sources changed during this scenario')
             outcome = {'clients': clients, 'requested_client_seconds': duration, 'external_server': bool(external_port), 'passed': all(r['exit'] == 0 and not r['errors'] for r in results) and 'ERROR' not in server_log.read_text() and not acceptance_failures,
-                       'source_before': source_before, 'source_after': source_after, 'source_unchanged': source_before == source_after,
+                       'source_before': source_before, 'source_after': source_after, 'durable_helper_before': helper_before,
+                       'durable_helper_after': helper_after, 'source_unchanged': source_before == source_after and helper_before == helper_after,
                        'acceptance_failures': acceptance_failures,
                        'server_samples': samples, 'server_health': health, 'prediction_clients': prediction, 'client_fps': client_fps or '60', 'authored_gameplay': registry is not None, 'scenario_progression_tree_version': registry.get('progression_tree_version') if registry else None, 'scenario_content_digest': registry.get('content_digest') if registry else None, 'conditions': {'rtt_ms': rtt_ms, 'jitter_ms': jitter_ms, 'loss': loss},
                        'proxy_metrics': [proxy.stats for proxy in proxies],
